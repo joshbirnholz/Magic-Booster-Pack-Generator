@@ -10,6 +10,9 @@ import Foundation
 #if canImport(FoundationNetworking)
 import FoundationNetworking
 #endif
+#if canImport(Vapor)
+import Vapor
+#endif
 
 typealias ObjectStateJSON = String
 
@@ -2265,6 +2268,34 @@ public func generate(input: Input, inputString: String, output: Output) throws -
 		
 		mtgCards = allCards
 	case .scryfallSetCode:
+		let customSets = [
+			"net": "net",
+			"netropolis": "net"
+		]
+		
+		#if canImport(Vapor)
+		if let customsetcode = customSets[inputString.lowercased()] {
+			let directory = DirectoryConfig.detect()
+			let configDir = "Sources/App/Generation"
+			let jsonURL = URL(fileURLWithPath: directory.workDir)
+				.appendingPathComponent(configDir, isDirectory: true)
+				.appendingPathComponent("custom-\(customsetcode).json", isDirectory: false)
+			
+			if let data = try? Data(contentsOf: jsonURL),
+				let string = String(data: data, encoding: .utf8) {
+				return try generate(input: .cockatriceJSON, inputString: string, output: output)
+			}
+		}
+		
+		#else
+		if let customsetcode = customSets[inputString.lowercased()],
+			let jsonURL = Bundle.main.url(forResource: "custom-\(customsetcode)", withExtension: "json"),
+			let data = try? Data(contentsOf: jsonURL),
+			let string = String(data: data, encoding: .utf8) {
+			return try generate(input: .cockatriceJSON, inputString: string, output: output)
+		}
+		#endif
+		
 		let set = try Swiftfall.getSet(code: inputString)
 		mtgCards = set.getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init)
 		setName = set.name
@@ -2320,6 +2351,10 @@ func cardsFromCockatriceJSON(json: String) throws -> (cards: [MTGCard], setName:
 		
 		if mtgCard.oracleText?.contains("Arm") == true || mtgCard.oracleText?.contains(" arm ") == true {
 			reverseRelated.append(contentsOf: ["Weapon (Bow)", "Weapon (Katana)", "Weapon (Pistol)", "Weapon (Rifle)"].map(CockatriceCardDatabase.Card.ReverseRelated.init))
+		}
+		
+		if mtgCard.typeLine?.lowercased().contains("basic") == true && mtgCard.typeLine?.lowercased().contains("land") == true && mtgCard.name?.hasPrefix("NET") == true {
+			mtgCard.name = mtgCard.name?.replacingOccurrences(of: "NET ", with: "")
 		}
 		
 		mtgCard.allParts = reverseRelated.compactMap { relation in

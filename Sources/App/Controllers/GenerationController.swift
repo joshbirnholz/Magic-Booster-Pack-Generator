@@ -104,4 +104,78 @@ final class GeneratorController {
 			return promise.futureResult
 		}
 	}
+	
+	func singleCardNamed(_ req: Request) throws -> Future<String> {
+		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
+		let facedown: Bool = (try? req.query.get(Bool.self, at: "facedown")) ?? false
+		
+		let fuzzy = try? req.query.get(String.self, at: "fuzzy")
+		let exact = try? req.query.get(String.self, at: "exact")
+		
+		let promise: Promise<String> = req.eventLoop.newPromise()
+		
+		DispatchQueue.global().async {
+			do {
+				if let fuzzy = fuzzy {
+					let result = try singleCardFuzzy(name: fuzzy, facedown: facedown, export: export)
+					promise.succeed(result: result)
+				} else if let exact = exact {
+					let result = try singleCardExact(name: exact, facedown: facedown, export: export)
+					promise.succeed(result: result)
+				} else {
+					throw PackError.noName
+				}
+			} catch {
+				promise.fail(error: error)
+			}
+		}
+		
+		return promise.futureResult
+	}
+	
+	func singleCard(_ req: Request) throws -> Future<String> {
+		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
+		let facedown: Bool = (try? req.query.get(Bool.self, at: "facedown")) ?? false
+		
+		let code = try req.parameters.next(String.self)
+		let number = try req.parameters.next(String.self)
+		
+		let promise: Promise<String> = req.eventLoop.newPromise()
+		
+		DispatchQueue.global().async {
+			do {
+				let result = try singleCardCodeNumber(code: code, number: number, facedown: facedown, export: export)
+				promise.succeed(result: result)
+			} catch {
+				promise.fail(error: error)
+			}
+		}
+		
+		return promise.futureResult
+	}
+	
+	func singleCardRandom(_ req: Request) throws -> Future<String> {
+		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
+		let facedown: Bool = (try? req.query.get(Bool.self, at: "facedown")) ?? false
+		
+		let query = try? req.query.get(String.self, at: "q", "query")
+		
+		let promise: Promise<String> = req.eventLoop.newPromise()
+		
+		DispatchQueue.global().async {
+			do {
+				if let query = query {
+					let result = try singleCardScryfallQuery(query: query, facedown: facedown, export: export)
+					promise.succeed(result: result)
+				} else {
+					let result = try singleCardRand(facedown: facedown, export: export)
+					promise.succeed(result: result)
+				}
+			} catch {
+				promise.fail(error: error)
+			}
+		}
+		
+		return promise.futureResult
+	}
 }

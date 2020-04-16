@@ -24,6 +24,7 @@ enum PackError: Int, Error {
 	case notEnoughLands
 	case noCards
 	case unsupported
+	case noName
 }
 
 public enum Input: Int, CaseIterable {
@@ -1102,11 +1103,67 @@ func singleBoosterPack(setName: String, setCode: String, boosterPack: [MTGCard],
 """
 }
 
-func singleCard(_ card: MTGCard, facedown: Bool = true) throws -> String {
+func singleCardFuzzy(name: String, facedown: Bool, export: Bool) throws -> String {
+	let card = try Swiftfall.getCard(fuzzy: name)
+	let mtgCard = MTGCard(card)
+	return try singleCard(mtgCard, facedown: facedown, export: export)
+}
+
+func singleCardExact(name: String, facedown: Bool, export: Bool) throws -> String {
+	let card = try Swiftfall.getCard(exact: name)
+	let mtgCard = MTGCard(card)
+	return try singleCard(mtgCard, facedown: facedown, export: export)
+}
+
+func singleCardCodeNumber(code: String, number: String, facedown: Bool, export: Bool) throws -> String {
+	let card = try Swiftfall.getCard(code: code, number: number)
+	let mtgCard = MTGCard(card)
+	return try singleCard(mtgCard, facedown: facedown, export: export)
+}
+
+func singleCardRand(facedown: Bool, export: Bool) throws -> String {
+	let card = try Swiftfall.getRandomCard()
+	let mtgCard = MTGCard(card)
+	return try singleCard(mtgCard, facedown: facedown, export: export)
+}
+
+func singleCardScryfallQuery(query: String, facedown: Bool, export: Bool) throws -> String {
+	guard let card = Swiftfall.getCards(query: query).compactMap({ $0?.data }).joined().randomElement() else {
+		throw PackError.noCards
+	}
+	let mtgCard = MTGCard(card)
+	return try singleCard(mtgCard, facedown: facedown, export: export)
+}
+
+func singleCard(_ card: MTGCard, facedown: Bool = true, export: Bool = false) throws -> String {
 	guard var cardInfo = CardInfo(num: 1, card: card) else { throw PackError.noImage }
 	cardInfo.facedown = facedown
 	
-	return cardInfo.cardCustomObject
+	if !export {
+		return cardInfo.cardCustomObject
+	}
+	
+	return """
+	{
+	  "SaveName": "",
+	  "GameMode": "",
+	  "Gravity": 0.5,
+	  "PlayArea": 0.5,
+	  "Date": "",
+	  "Table": "",
+	  "Sky": "",
+	  "Note": "",
+	  "Rules": "",
+	  "XmlUI": "",
+	  "LuaScript": "",
+	  "LuaScriptState": "",
+	  "ObjectStates": [
+		\(cardInfo.cardCustomObject)
+	  ],
+	  "TabStates": {},
+	  "VersionNumber": ""
+	}
+	"""
 }
 
 

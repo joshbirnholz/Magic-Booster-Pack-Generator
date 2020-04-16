@@ -41,6 +41,8 @@ extension PackError: Debuggable {
 			return "There are no cards in the specified set."
 		case .unsupported:
 			return "Generating an object of the specified type for the specified set is unsupported."
+		case .noName:
+			return "A value must be provided for either the 'fuzzy' or 'exact' parameter."
 		}
 	}
 	

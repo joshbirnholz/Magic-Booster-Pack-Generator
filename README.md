@@ -13,6 +13,7 @@ Generates a booster pack for a given set.
 |:set|String||The set name or code.|
 |export|Boolean|✔︎|If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
 |count|Integer|✔︎|The number of booster packs to generate. The default value is 1.|
+|extendedart|Boolean|✔︎|Whether or not to use extended-art cards, if available, in place of foils. The default value is true.|
 
 Example: https://tts-magic-booster.herokuapp.com/iko?count=3&export=false
 
@@ -25,6 +26,7 @@ Generates a box of booster packs for a given set.
 |:set|String||The set name or code.|
 |export|Boolean|✔︎|If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
 |count|Integer|✔︎|The number of booster packs to generate. The default value depends on the set (usually 36).|
+|extendedart|Boolean|✔︎|Whether or not to use extended-art cards, if available, in place of foils. The default value is true.|
 
 Example: https://tts-magic-booster.herokuapp.com/box/thb
 
@@ -42,6 +44,7 @@ Generates a number of prerelease packs for a given set.
 |sheet|Boolean|✔︎|Whether or not to include a "Building a Prerelease Deck" sheet in each prerelease pack. The default value is true.|
 |lands|Boolean|✔︎|Whether or not to include a pack of basic lands in each prerelease pack. The default value is true.|
 |spindown|Boolean|✔︎|Whether or not to include a spindown die in each prerelease pack. The default value is true.|
+|extendedart|Boolean|✔︎|Whether or not to use extended-art cards, if available, in place of foils. The default value is true.|
 
 Example: https://tts-magic-booster.herokuapp.com/pre/eld?count=10&sheet=false
 

@@ -4,6 +4,16 @@ An API to generate _Magic: The Gathering_ cards, booster packs, and prerelease p
 
 Packs are meant to have cards that match what you'd really find in booster packs from that set.
 
+|Endpoint|Description|Example|
+|---|---|---|
+|/:set|Generate a booster pack|https://tts-magic-booster.herokuapp.com/iko|
+|/box/:set|Generate booster boxes|https://tts-magic-booster.herokuapp.com/box/iko|
+|/pre/:set|Generate prerelease packs|https://tts-magic-booster.herokuapp.com/pre/iko|
+|/card/named|Get a specific card|https://tts-magic-booster.herokuapp.com/card/named?fuzzy=gemrazer|
+|/card/:code/:number|Get a specific card|https://tts-magic-booster.herokuapp.com/card/iko/155|
+|/card/random|Get a random card|https://tts-magic-booster.herokuapp.com/card/random|
+|/deck|Load an entire deck list|https://tts-magic-booster.herokuapp.com/deck|
+
 ### GET /:set
 
 Generates a booster pack for a given set.

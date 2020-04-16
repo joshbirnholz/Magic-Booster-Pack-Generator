@@ -16,7 +16,7 @@ import Vapor
 
 typealias ObjectStateJSON = String
 
-enum PackError: Error {
+enum PackError: Int, Error {
 	case wrongNumberOfCards
 	case noImage
 	case noValidPromo

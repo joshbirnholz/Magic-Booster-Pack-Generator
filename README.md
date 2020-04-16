@@ -100,11 +100,10 @@ Example: https://tts-magic-booster.herokuapp.com/card/random?q=o:companion+set:i
 
 ### GET /deck
 
-Returns a deck of cards. The request must have a body containing the requested decklist in plaintext card list or Arena format.
+Returns a deck of cards. The request must have a body containing the requested decklist in plaintext card list or Arena format. The returned JSON can be saved to a file and imported as a Saved Object.
 
 |Parameter|Type|Optional|Details|
 |---|---|---|---|
-|export|Boolean|✔︎|If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
 |deck|Object||The deck list.|
 
 Example: https://tts-magic-booster.herokuapp.com/deck

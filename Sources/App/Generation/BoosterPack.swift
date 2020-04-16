@@ -1071,11 +1071,11 @@ func boosterPackJSON(setName: String, setCode: String, cards: [MTGCard], tokens:
 	return pack
 }
 
-func singleBoosterPack(setName: String, setCode: String, boosterPack: [MTGCard], tokens: [MTGCard], objectStateOnly: Bool) throws -> String {
+func singleBoosterPack(setName: String, setCode: String, boosterPack: [MTGCard], tokens: [MTGCard], export: Bool) throws -> String {
 	
 	let boosterPackString = try boosterPackJSON(setName: setName, setCode: setCode, cards: boosterPack, tokens: tokens)
 	
-	if objectStateOnly {
+	if !export {
 		return boosterPackString
 	}
 	
@@ -1110,7 +1110,7 @@ func singleCard(_ card: MTGCard, facedown: Bool = true) throws -> String {
 }
 
 
-func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], tokens: [MTGCard], inPack: Bool = true, objectStateOnly: Bool) throws -> String {
+func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], tokens: [MTGCard], inPack: Bool = true, export: Bool) throws -> String {
 	
 	let boosterPackString = try boosterPacks.map { try boosterPackJSON(setName: setName, setCode: setCode, cards: $0, tokens: tokens, inPack: inPack) }.joined(separator: ",\n")
 	
@@ -1158,7 +1158,7 @@ func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], tok
 	}
 	"""
 	
-	if objectStateOnly {
+	if !export {
 		return objectState
 	}
 	
@@ -2108,12 +2108,24 @@ fileprivate let ikoKeywordCounters = """
 }
 """
 
-func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]], promoCard: MTGCard, tokens: [MTGCard], basicLands: [MTGCard], objectStateOnly: Bool) throws -> String {
+func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]], promoCard: MTGCard, tokens: [MTGCard], basicLands: [MTGCard], includePromoCard: Bool?, includeLands: Bool?, includeSheet: Bool?, includeSpindown: Bool?, export: Bool) throws -> String {
+	let includeSheet = includeSheet ?? true
+	let includeSpindown = includeSpindown ?? true
+	let includeLands = includeLands ?? true
+	let includePromoCard = includePromoCard ?? true
 	
 	let boosterPackString = try boosterPacks.map { try boosterPackJSON(setName: setName, setCode: setCode, cards: $0, tokens: tokens) }.joined(separator: ",\n")
 	let promoCardString = try singleCard(promoCard, facedown: false)
 	
-	var containedObjects = [spindownDieJSON(setCode: setCode), prereleaseSheet]
+	var containedObjects: [String] = []
+	
+	if includeSpindown {
+		containedObjects.append(spindownDieJSON(setCode: setCode))
+	}
+	
+	if includeSheet {
+		containedObjects.append(prereleaseSheet)
+	}
 	
 	// Add supplemental objects
 	switch setCode {
@@ -2123,11 +2135,16 @@ func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]],
 		break
 	}
 	
-	containedObjects.append(promoCardString)
+	if includePromoCard {
+		containedObjects.append(promoCardString)
+	}
+	
 	containedObjects.append(boosterPackString)
 	
-	let landPacks = try landPacksJSON(basicLands: basicLands)
-	containedObjects.append(contentsOf: landPacks)
+	if includeLands {
+		let landPacks = try landPacksJSON(basicLands: basicLands)
+		containedObjects.append(contentsOf: landPacks)
+	}
 	
 	let objectState = """
 	{
@@ -2173,7 +2190,7 @@ func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]],
 	}
 	"""
 	
-	if objectStateOnly {
+	if !export {
 		return objectState
 	}
 	
@@ -2273,7 +2290,7 @@ fileprivate let prereleaseSheet = """
 }
 """
 
-public func generate(input: Input, inputString: String, output: Output, objectStateOnly: Bool) throws -> String {
+public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil) throws -> String {
 	let mtgCards: [MTGCard]
 	let setName: String
 	let setCode: String?
@@ -2303,7 +2320,7 @@ public func generate(input: Input, inputString: String, output: Output, objectSt
 			
 			if let data = try? Data(contentsOf: jsonURL),
 				let string = String(data: data, encoding: .utf8) {
-				return try generate(input: .cockatriceJSON, inputString: string, output: output, objectStateOnly: objectStateOnly)
+				return try generate(input: .cockatriceJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount)
 			}
 		}
 		
@@ -2328,7 +2345,7 @@ public func generate(input: Input, inputString: String, output: Output, objectSt
 			tokens = []
 		}
 	case .cardlist:
-		return try deck(decklist: inputString, objectStateOnly: objectStateOnly)
+		return try deck(decklist: inputString, export: export)
 		
 	}
 	
@@ -2350,11 +2367,11 @@ public func generate(input: Input, inputString: String, output: Output, objectSt
 	
 	switch output {
 	case .boosterBox:
-		return try boosterBox(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, objectStateOnly: objectStateOnly)
+		return try boosterBox(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, boxCount: boxCount)
 	case .boosterPack:
-		return try boosterPack(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, objectStateOnly: objectStateOnly)
+		return try boosterPack(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export)
 	case .prereleaseKit:
-		return try prereleaseKit(setName: setName, setCode: setCode ?? mtgCards.first?.set ?? inputString, cards: mtgCards, tokens: tokens, mode: mode, objectStateOnly: objectStateOnly)
+		return try prereleaseKit(setName: setName, setCode: setCode ?? mtgCards.first?.set ?? inputString, cards: mtgCards, tokens: tokens, mode: mode, export: export, packCount: boxCount, includePromoCard: prereleaseIncludePromoCard, includeLands: prereleaseIncludeLands, includeSheet: prereleaseIncludeSheet, includeSpindown: prereleaseIncludeSpindown, boosterCount: prereleaseBoosterCount)
 	}
 }
 
@@ -2625,22 +2642,12 @@ fileprivate func process(cards: [MTGCard], setCode: String?) throws -> Processed
 						  basicLands: basicLands)
 }
 
-fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, objectStateOnly: Bool) throws -> String {
-	if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
-		let cards = processMysteryBoosterCards(cards)
-		let packs: [[MTGCard]] = (1...36).map { _ in generateMysteryBooster(cards: cards) }
-		
-		return try boosterBag(setName: "Mystery Booster", setCode: setCode ?? "", boosterPacks: packs, tokens: [], objectStateOnly: objectStateOnly)
-	} else if setCode?.lowercased() == "plc" {
-		let cards = processPlanarChaosCards(cards: cards)
-		let packs: [[MTGCard]] = (1...36).map { _ in generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities) }
-		
-		return try boosterBag(setName: setName, setCode: setCode ?? "", boosterPacks: packs, tokens: [], objectStateOnly: objectStateOnly)
-	}
-	
-	let processed = try process(cards: cards, setCode: setCode)
-	
+fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool, boxCount: Int?) throws -> String {
 	let count: Int = {
+		if let boxCount = boxCount, boxCount > 0 {
+			return boxCount
+		}
+		
 		switch setCode {
 		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma":
 			return 24
@@ -2648,6 +2655,20 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 			return 36
 		}
 	}()
+	
+	if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
+		let cards = processMysteryBoosterCards(cards)
+		let packs: [[MTGCard]] = (1...count).map { _ in generateMysteryBooster(cards: cards) }
+		
+		return try boosterBag(setName: "Mystery Booster", setCode: setCode ?? "", boosterPacks: packs, tokens: [], export: export)
+	} else if setCode?.lowercased() == "plc" {
+		let cards = processPlanarChaosCards(cards: cards)
+		let packs: [[MTGCard]] = (1...count).map { _ in generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities) }
+		
+		return try boosterBag(setName: setName, setCode: setCode ?? "", boosterPacks: packs, tokens: [], export: export)
+	}
+	
+	let processed = try process(cards: cards, setCode: setCode)
 	
 	let packs: [[MTGCard]] = (1...count).map { _ in generatePack(rarities: processed.rarities,
 																 customSlotRarities: processed.customSlotRarities,
@@ -2658,20 +2679,20 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 																 meldResults: processed.meldResults,
 																 mode: mode) }
 	
-	return try boosterBag(setName: setName, setCode: setCode ?? "", boosterPacks: packs, tokens: tokens + processed.tokens, objectStateOnly: objectStateOnly)
+	return try boosterBag(setName: setName, setCode: setCode ?? "", boosterPacks: packs, tokens: tokens + processed.tokens, export: export)
 }
 
-fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, objectStateOnly: Bool) throws -> String {
+fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool) throws -> String {
 	if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
 		let cards = processMysteryBoosterCards(cards)
 		let pack = generateMysteryBooster(cards: cards)
 		
-		return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack, tokens: [], objectStateOnly: objectStateOnly)
+		return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack, tokens: [], export: export)
 	} else if setCode?.lowercased() == "plc" {
 		let cards = processPlanarChaosCards(cards: cards)
 		let pack = generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities)
 		
-		return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack, tokens: [], objectStateOnly: objectStateOnly)
+		return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack, tokens: [], export: export)
 	}
 	
 	let processed = try process(cards: cards, setCode: setCode)
@@ -2685,64 +2706,170 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 							meldResults: processed.meldResults,
 							mode: mode)
 	
-	return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack, tokens: tokens + processed.tokens, objectStateOnly: objectStateOnly)
+	return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack, tokens: tokens + processed.tokens, export: export)
 }
 
-fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard], tokens: [MTGCard], mode: Mode, objectStateOnly: Bool) throws -> String {
-	if setCode.lowercased() == "mb1" || setCode.lowercased() == "fmb1" || setCode.lowercased() == "cmb1" {
-		throw PackError.unsupported
-	} else if setCode.lowercased() == "plc" {
-		let cards = processPlanarChaosCards(cards: cards)
-		let packs = (1...6).map { _ in generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities) }
+fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard], tokens: [MTGCard], mode: Mode, export: Bool, packCount: Int? = nil, includePromoCard: Bool?, includeLands: Bool?, includeSheet: Bool?, includeSpindown: Bool?, boosterCount: Int?) throws -> String {
+	let boosterCount = boosterCount ?? 6
+	let packCount = packCount ?? 1
+	let prereleasePacks: [String] = try (0 ..< (packCount)).map { _ in
+		if setCode.lowercased() == "mb1" || setCode.lowercased() == "fmb1" || setCode.lowercased() == "cmb1" {
+			throw PackError.unsupported
+		} else if setCode.lowercased() == "plc" {
+			let cards = processPlanarChaosCards(cards: cards)
+			let packs = (1...boosterCount).map { _ in generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities) }
+			
+			let promoCard = try MTGCard(Swiftfall.getCard(id: "c287d593-cfd0-46b6-bde0-0c04a83d828b"))
+			
+			let basicLands: [MTGCard] = Swiftfall
+			.getCards(query: "set:tsp type:'basic land'", unique: true)
+			.compactMap { $0?.data }
+			.joined()
+			.compactMap(MTGCard.init)
+			
+			return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs, promoCard: promoCard, tokens: [], basicLands: basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: export)
+		}
 		
-		let promoCard = try MTGCard(Swiftfall.getCard(id: "c287d593-cfd0-46b6-bde0-0c04a83d828b"))
+		let processed = try process(cards: cards, setCode: setCode)
 		
-		let basicLands: [MTGCard] = []
-		// TODO: Get basic lands from time spiral
-		return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs, promoCard: promoCard, tokens: [], basicLands: basicLands, objectStateOnly: objectStateOnly)
+		let packs: [[MTGCard]] = (1...boosterCount).map { _ in generatePack(rarities: processed.rarities,
+																 customSlotRarities: processed.customSlotRarities,
+																 basicLands: processed.basicLandsSlotCards,
+																 tokens: tokens + processed.tokens,
+																 showcases: processed.showcaseCards,
+																 extendedArt: processed.extendedArtCards,
+																 meldResults: processed.meldResults,
+																 mode: mode) }
+		
+		let promoCard: MTGCard = try {
+			let promos = Swiftfall.getCards(query: "set:p\(setCode) is:prerelease").compactMap { $0?.data }.joined().map(MTGCard.init)
+			let promosRarities: [MTGCard.Rarity: [MTGCard]] = .init(grouping: promos, by: \.rarity)
+			
+			let promoRarity: MTGCard.Rarity = (1...8).randomElement()! == 8 ? .mythic : .rare
+			
+			if let promo = promosRarities[promoRarity]?.randomElement() ?? promosRarities[.rare]?.randomElement() {
+				return promo
+			} else if let card = processed.rarities[promoRarity]?.randomElement() ?? processed.rarities[.rare]?.randomElement() {
+				if setCode == "iko" {
+					var card = card
+					let name = card.name?.lowercased().replacingOccurrences(of: " ", with: "-").replacingOccurrences(of: ",", with: "").replacingOccurrences(of: "'", with: "") ?? ""
+					let imageURL = URL(string: "http://josh.birnholz.com/tts/cards/iko/iko-\(card.collectorNumber)-\(name).jpg")!
+					card.imageUris?["normal"] = imageURL
+					card.imageUris?["large"] = imageURL
+					return card
+				}
+				
+				return processed.extendedArtCards.filter({ $0.name == card.name }).randomElement() ?? processed.showcaseCards.filter({ $0.name == card.name }).randomElement() ?? card
+			} else {
+				throw PackError.noValidPromo
+			}
+			}()
+		
+		
+		return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs, promoCard: promoCard, tokens: tokens + processed.tokens, basicLands: processed.basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: export)
 	}
 	
-	let processed = try process(cards: cards, setCode: setCode)
-	
-	let packs: [[MTGCard]] = (1...6).map { _ in generatePack(rarities: processed.rarities,
-															 customSlotRarities: processed.customSlotRarities,
-															 basicLands: processed.basicLandsSlotCards,
-															 tokens: tokens + processed.tokens,
-															 showcases: processed.showcaseCards,
-															 extendedArt: processed.extendedArtCards,
-															 meldResults: processed.meldResults,
-															 mode: mode) }
-	
-	let promoCard: MTGCard = try {
-		let promos = Swiftfall.getCards(query: "set:p\(setCode) is:prerelease").compactMap { $0?.data }.joined().map(MTGCard.init)
-		let promosRarities: [MTGCard.Rarity: [MTGCard]] = .init(grouping: promos, by: \.rarity)
-		
-		let promoRarity: MTGCard.Rarity = (1...8).randomElement()! == 8 ? .mythic : .rare
-		
-		if let promo = promosRarities[promoRarity]?.randomElement() ?? promosRarities[.rare]?.randomElement() {
-			return promo
-		} else if let card = processed.rarities[promoRarity]?.randomElement() ?? processed.rarities[.rare]?.randomElement() {
-			if setCode == "iko" {
-				var card = card
-				let name = card.name?.lowercased().replacingOccurrences(of: " ", with: "-").replacingOccurrences(of: ",", with: "").replacingOccurrences(of: "'", with: "") ?? ""
-				let imageURL = URL(string: "http://josh.birnholz.com/tts/cards/iko/iko-\(card.collectorNumber)-\(name).jpg")!
-				card.imageUris?["normal"] = imageURL
-				card.imageUris?["large"] = imageURL
-				return card
-			}
-			
-			return processed.extendedArtCards.filter({ $0.name == card.name }).randomElement() ?? processed.showcaseCards.filter({ $0.name == card.name }).randomElement() ?? card
-		} else {
-			throw PackError.noValidPromo
+	if let first = prereleasePacks.first, packCount == 1 {
+		if !export {
+			return first
 		}
-		}()
+		return """
+			{
+			  "SaveName": "",
+			  "GameMode": "",
+			  "Gravity": 0.5,
+			  "PlayArea": 0.5,
+			  "Date": "",
+			  "Table": "",
+			  "Sky": "",
+			  "Note": "",
+			  "Rules": "",
+			  "XmlUI": "",
+			  "LuaScript": "",
+			  "LuaScriptState": "",
+			  "ObjectStates": [
+				\(first)
+			  ],
+			  "TabStates": {},
+			  "VersionNumber": ""
+			}
+		"""
+	}
 	
+	// put in a bag
 	
-	
-	return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs, promoCard: promoCard, tokens: tokens + processed.tokens, basicLands: processed.basicLands, objectStateOnly: objectStateOnly)
+	let objectState = """
+		{
+		  "Name": "Bag",
+		  "Transform": {
+			"posX": -3.06584024,
+			"posY": 0.7009516,
+			"posZ": 1.23003662,
+			"rotX": 1.61583137E-06,
+			"rotY": -8.71582743E-05,
+			"rotZ": -2.39790438E-06,
+			"scaleX": 1.39999974,
+			"scaleY": 1.39999974,
+			"scaleZ": 1.39999974
+		  },
+		  "Nickname": "\(setName) Prerelease Packs",
+		  "Description": "",
+		  "GMNotes": "",
+		  "ColorDiffuse": {
+			"r": 0.7058823,
+			"g": 0.366520882,
+			"b": 0.0
+		  },
+		  "Locked": false,
+		  "Grid": true,
+		  "Snap": true,
+		  "IgnoreFoW": false,
+		  "Autoraise": true,
+		  "Sticky": true,
+		  "Tooltip": true,
+		  "GridProjection": false,
+		  "HideWhenFaceDown": false,
+		  "Hands": false,
+		  "MaterialIndex": -1,
+		  "MeshIndex": -1,
+		  "XmlUI": "",
+		  "LuaScript": "",
+		  "LuaScriptState": "",
+		  "ContainedObjects": [
+			\(prereleasePacks.joined(separator: ",\n"))
+		  ],
+		  "GUID": "929456"
+		}
+		"""
+		
+		if !export {
+			return objectState
+		}
+		
+		return """
+		{
+		  "SaveName": "",
+		  "GameMode": "",
+		  "Gravity": 0.5,
+		  "PlayArea": 0.5,
+		  "Date": "",
+		  "Table": "",
+		  "Sky": "",
+		  "Note": "",
+		  "Rules": "",
+		  "XmlUI": "",
+		  "LuaScript": "",
+		  "LuaScriptState": "",
+		  "ObjectStates": [
+			\(objectState)
+		  ],
+		  "TabStates": {},
+		  "VersionNumber": ""
+		}
+	"""
 }
 
-func deck(decklist: String, objectStateOnly: Bool) throws -> String {
+func deck(decklist: String, export: Bool) throws -> String {
 	let groups = DeckParser.parse(deckList: decklist)
 	let identifiers = Array(Set(groups.map { $0.cardCounts }.joined().map { $0.identifier }))
 	
@@ -2765,7 +2892,7 @@ func deck(decklist: String, objectStateOnly: Bool) throws -> String {
 		}
 	}
 	
-	return try boosterBag(setName: "Deck", setCode: "", boosterPacks: packs, tokens: [], inPack: false, objectStateOnly: objectStateOnly)
+	return try boosterBag(setName: "Deck", setCode: "", boosterPacks: packs, tokens: [], inPack: false, export: export)
 	
 }
 

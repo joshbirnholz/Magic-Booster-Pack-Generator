@@ -158,7 +158,7 @@ final class GeneratorController {
 		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
 		let facedown: Bool = (try? req.query.get(Bool.self, at: "facedown")) ?? false
 		
-		let query = try? req.query.get(String.self, at: "q", "query")
+		let query = try? req.query.get(String.self, at: "q")
 		
 		let promise: Promise<String> = req.eventLoop.newPromise()
 		

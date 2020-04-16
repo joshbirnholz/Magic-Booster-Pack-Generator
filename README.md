@@ -34,7 +34,7 @@ Example: https://tts-magic-booster.herokuapp.com/iko?count=3&export=false
 
 ### GET /box/:set
 
-Generates a number of booster box for a given set.
+Generates a box of booster packs for a given set.
 
 |Parameter|Type|Optional|Details|
 |---|---|---|---|
@@ -46,7 +46,7 @@ Example: https://tts-magic-booster.herokuapp.com/box/thb
 
 ### GET /pre/:set
 
-Generates a number of booster box for a given set.
+Generates a number of prerelease packs for a given set.
 
 |Parameter|Type|Optional|Details|
 |---|---|---|---|
@@ -97,3 +97,21 @@ Returns a single random card.
 Example: https://tts-magic-booster.herokuapp.com/card/random  
 Example: https://tts-magic-booster.herokuapp.com/card/random?q=cmc:6+type:creature  
 Example: https://tts-magic-booster.herokuapp.com/card/random?q=o:companion+set:iko&export=false
+
+### GET /deck
+
+Returns a deck of cards. The request must have a body containing the requested decklist in plaintext card list or Arena format.
+
+|Parameter|Type|Optional|Details|
+|---|---|---|---|
+|export|Boolean|✔︎|If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
+|deck|Object||The deck list.|
+
+Example: https://tts-magic-booster.herokuapp.com/deck
+
+Body:
+```json
+{
+    "deck": "26 Island\n4 Reliquary Tower (C19) 268\n24 Swamp\n4 Treasure Hunt (C18) 109\n2 Zombie Infestation (C19) 132"
+}
+```

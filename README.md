@@ -95,5 +95,5 @@ Returns a single random card.
 |q|String|✔︎|A scryfall search query. If provided, a random card matching the query will be returned.
 
 Example: https://tts-magic-booster.herokuapp.com/card/random  
-Example: https://tts-magic-booster.herokuapp.com/card/random?q=cmc:6  
+Example: https://tts-magic-booster.herokuapp.com/card/random?q=cmc:6+type:creature  
 Example: https://tts-magic-booster.herokuapp.com/card/random?q=o:companion+set:iko&export=false

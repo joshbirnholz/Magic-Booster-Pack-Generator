@@ -1256,11 +1256,18 @@ func checkIfFileExists(at url: URL, timeout: TimeInterval = 1.0, completion: @es
 	task.resume()
 }
 
+fileprivate var fileExists: [URL: Bool] = [:]
+
 func fileExists(at url: URL, timeout: TimeInterval = 1.0) -> Bool {
+	if let exists = fileExists[url] {
+		return exists
+	}
+	
 	var result = false
 	let semaphore = DispatchSemaphore(value: 0)
 	checkIfFileExists(at: url, timeout: timeout) { (exists) in
 		result = exists
+		fileExists[url] = exists
 		semaphore.signal()
 	}
 	semaphore.wait()
@@ -2203,27 +2210,37 @@ func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]],
 		containedObjects.append(contentsOf: landPacks)
 	}
 	
+	var boxTextureName = setCode
+	var boxURL: URL { URL(string: "http://josh.birnholz.com/tts/resources/prerelease/\(boxTextureName).jpg")! }
+	
+	if !fileExists(at: boxURL) {
+		boxTextureName = "default"
+		print("No texture for \(setCode) prerelease box, using default")
+	} else {
+		print("Found texture for \(setCode) prerelease box")
+	}
+	
 	let objectState = """
 	{
-	  "Name": "Bag",
+	  "Name": "Custom_Model_Bag",
 	  "Transform": {
-		"posX": -3.06584024,
-		"posY": 0.7009516,
-		"posZ": 1.23003662,
-		"rotX": 1.61583137E-06,
-		"rotY": -8.71582743E-05,
-		"rotZ": -2.39790438E-06,
-		"scaleX": 1.39999974,
-		"scaleY": 1.39999974,
-		"scaleZ": 1.39999974
+		"posX": -5.646385,
+		"posY": 0.9599922,
+		"posZ": 1.21570218,
+		"rotX": 9.832292E-06,
+		"rotY": 180.0,
+		"rotZ": -8.7960525E-06,
+		"scaleX": 1.0,
+		"scaleY": 1.0,
+		"scaleZ": 1.0
 	  },
 	  "Nickname": "\(setName) Prerelease Pack",
 	  "Description": "",
 	  "GMNotes": "",
 	  "ColorDiffuse": {
-		"r": 0.7058823,
-		"g": 0.366520882,
-		"b": 0.0
+		"r": 1.0,
+		"g": 1.0,
+		"b": 1.0
 	  },
 	  "Locked": false,
 	  "Grid": true,
@@ -2237,6 +2254,27 @@ func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]],
 	  "Hands": false,
 	  "MaterialIndex": -1,
 	  "MeshIndex": -1,
+	  "Number": 0,
+	  "CustomMesh": {
+		"MeshURL": "http://josh.birnholz.com/tts/resources/prerelease/Pre-Release_Box.obj",
+		"DiffuseURL": "\(boxURL)",
+		"NormalURL": "",
+		"ColliderURL": "",
+		"Convex": true,
+		"MaterialIndex": 3,
+		"TypeIndex": 6,
+		"CustomShader": {
+		  "SpecularColor": {
+			"r": 1.0,
+			"g": 1.0,
+			"b": 1.0
+		  },
+		  "SpecularIntensity": 0.0,
+		  "SpecularSharpness": 2.0,
+		  "FresnelStrength": 0.0
+		},
+		"CastShadows": true
+	  },
 	  "XmlUI": "",
 	  "LuaScript": "",
 	  "LuaScriptState": "",
@@ -2826,7 +2864,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 			}()
 		
 		
-		return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs, promoCard: promoCard, tokens: tokens + processed.tokens, basicLands: processed.basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: export)
+		return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs, promoCard: promoCard, tokens: tokens + processed.tokens, basicLands: processed.basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: false)
 	}
 	
 	if let first = prereleasePacks.first, packCount == 1 {

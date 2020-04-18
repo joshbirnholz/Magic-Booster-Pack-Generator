@@ -262,7 +262,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		
 		if includeMasterpiece, let masterpiece = masterpieceCards.randomElement() {
 			pack.insert(masterpiece, at: 0)
-		} else if let rarity = includedShowcaseRarity {
+		} /*else if let rarity = includedShowcaseRarity {
 			let card: MTGCard? = {
 				switch rarity {
 				case .random:
@@ -276,10 +276,10 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			if let showcase = card {
 				pack.insert(showcase, at: 0)
 			}
-		} else if let rarity = includedFoilRarity, let foil = [(rarities[rarity] ?? []), (customSlotRarities[rarity] ?? [])].joined().randomElement() {
+		} */else if let rarity = includedFoilRarity, let foil = [(rarities[rarity] ?? []), (customSlotRarities[rarity] ?? [])].joined().filter(\.isFoilAvailable).randomElement() {
 			if includeExtendedArt, let extendedArtVersion = extendedArt.filter({ $0.name == foil.name }).randomElement() {
 				pack.insert(extendedArtVersion, at: 0)
-			} else {
+			} else if rarity != .common {
 				pack.insert(foil, at: 0)
 			}
 		}
@@ -500,21 +500,21 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			}
 		}
 		
-//		if let includedShowcaseRarity = includedShowcaseRarity, !showcases.isEmpty {
-//			let showcaseCards: [(Int, MTGCard)] = pack.enumerated().compactMap { (index, card) in
-//				guard let showcaseCard = showcases.filter({ $0.name == card.name }).randomElement() else { return nil }
-//
-//				guard includedShowcaseRarity.allowedRarities.contains(showcaseCard.rarity) else {
-//					return nil
-//				}
-//
-//				return (index, showcaseCard)
-//			}
-//
-//			if let (index, showcaseCard) = showcaseCards.randomElement() {
-//				pack[index] = showcaseCard
-//			}
-//		}
+		if let includedShowcaseRarity = includedShowcaseRarity {
+			let showcaseCards: [(Int, MTGCard)] = pack.filter({ $0.frameEffects?.contains("extendedart") != true }).enumerated().compactMap { (index, card) in
+				guard let showcaseCard = includedShowcaseRarity.allowedRarities.compactMap({ showcaseRarities[$0] }).joined().filter({ $0.name == card.name }).randomElement() else { return nil }
+
+				guard includedShowcaseRarity.allowedRarities.contains(showcaseCard.rarity) else {
+					return nil
+				}
+
+				return (index, showcaseCard)
+			}
+
+			if let (index, showcaseCard) = showcaseCards.randomElement() {
+				pack[index] = showcaseCard
+			}
+		}
 		
 //		if includeExendedArt && !extendedArt.isEmpty {
 //			let extendedArtCards: [(Int, MTGCard)] = pack.enumerated().compactMap { (index, card) in
@@ -980,7 +980,7 @@ func boosterPackJSON(setName: String, setCode: String, cards: [MTGCard], tokens:
 //	guard cards.count == 15 || cards.count == 16 else { throw PackError.wrongNumberOfCards }
 	
 //	let cardInfo = Array(cards.enumerated().compactMap(CardInfo.init(offset:card:)))
-	let cardInfo: [CardInfo] = cards.enumerated().compactMap { sequence in
+	let cardInfo: [CardInfo] = cards.reversed().enumerated().compactMap { sequence in
 		if (sequence.element.layout == "token" || sequence.element.layout == "emblem") && !tokens.isEmpty {
 			return CardInfo(offset: sequence.offset, currentState: sequence.element, allStates: tokens)
 		} else {

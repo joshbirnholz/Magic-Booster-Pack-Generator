@@ -98,6 +98,9 @@ enum Mode {
 	case zendikarExpeditions
 	case amonkhetInvocations
 	case kaladeshInventions
+	
+	/// Basic land is replaced with a foil of any rarity, OR, except 1/53 packs, a Power Nine card
+	case vintageMasters
 }
 
 extension MTGCard {
@@ -119,10 +122,14 @@ enum FoilPolicy {
 	/// Foil cards appear 1 in 45 cards, or 33.4% chance in any one booster pack
 	case modern
 	
+	/// Foil cards appear in 52/53 booster packs
+	case vintageMasters
+	
 	fileprivate var limit: Int {
 		switch self {
 		case .pre2020: return 225
 		case .modern: return 334
+		case .vintageMasters: return 981
 		}
 	}
 }
@@ -251,6 +258,10 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			nonTokenCount -= 1
 		}
 		
+		if mode == .vintageMasters {
+			nonTokenCount += 1
+		}
+		
 		return nonTokenCount
 	}()
 	
@@ -282,6 +293,9 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			} else if rarity != .common {
 				pack.insert(foil, at: 0)
 			}
+		} else if mode == .vintageMasters, let powerNine = customSlotRarities.values.joined().randomElement() {
+			// Vintage Masters packs that don't contain a foil card instead contain a Power Nine card.
+			pack.insert(powerNine, at: 0)
 		}
 		
 		let rareSlotRarities = guaranteedPlaneswalkerSlot == 3 ? customSlotRarities : rarities
@@ -2500,10 +2514,14 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			tokens = []
 		}
 		
-		let foilCutoff = Date(timeIntervalSince1970: 1562889600) // Sets released after this date use the modern foil policy.
-		if let releaseDate = set.releasedAt, releaseDate < foilCutoff {
-			foilPolicy = .pre2020
-		}
+		if setCode?.lowercased() == "vma" {
+			foilPolicy = .vintageMasters
+		} else {
+			let foilCutoff = Date(timeIntervalSince1970: 1562889600) // Sets released after this date use the modern foil policy.
+			if let releaseDate = set.releasedAt, releaseDate < foilCutoff {
+				foilPolicy = .pre2020
+			}
+		}		
 	case .cardlist:
 		return try deck(decklist: inputString, export: export)
 	}
@@ -2523,6 +2541,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		case "akh", "hou": return .amonkhetInvocations
 		case "bfz", "ogw": return .zendikarExpeditions
 		case "kld", "aer": return .kaladeshInventions
+		case "vma": return .vintageMasters
 		default: return .default
 		}
 	}()
@@ -2673,6 +2692,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		}
 		}().filter { $0.isFoundInBoosters && !$0.isPromo }
 	
+	// Actual basic lands. Used when creating land packs
 	let basicLands: [MTGCard] = {
 		switch setCode?.lowercased() ?? "" {
 		case "dgm":
@@ -2690,8 +2710,17 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		case "tsp",
 			 _ where basicLandSlotCards.isEmpty:
 			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true && $0.isFoundInBoosters && !$0.isPromo }
-		default:
+		case "ogw":
+			return basicLandSlotCards.filter { $0.name != "Wastes" }
+		case _ where basicLandSlotCards.count == 5 && basicLandSlotCards.allSatisfy({ $0.typeLine?.hasPrefix("Basic Land —") == true }):
 			return basicLandSlotCards
+		default:
+			// Just get the most recent standard set basic lands if there are none others.
+			return Swiftfall
+			.getCards(query: "type='basic land –'", unique: false)
+			.compactMap { $0?.data }
+			.joined()
+			.compactMap(MTGCard.init)
 		}
 	}()
 	
@@ -2772,6 +2801,8 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			return .init(grouping: mainCards.separate(by: { $0.layout == "transform" || $0.layout == "meld" }), by: \.rarity)
 		case "war":
 			return .init(grouping: mainCards.separate(by: { $0.typeLine?.lowercased().contains("planeswalker") == true }), by: \.rarity)
+		case "vma":
+			return .init(grouping: mainCards.separate { (1...9).contains(Int($0.collectorNumber) ?? 0) }, by: \.rarity)
 		default:
 			return [:]
 		}

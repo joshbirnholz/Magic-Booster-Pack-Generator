@@ -2521,7 +2521,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			if let releaseDate = set.releasedAt, releaseDate < foilCutoff {
 				foilPolicy = .pre2020
 			}
-		}		
+		}
 	case .cardlist:
 		return try deck(decklist: inputString, export: export)
 	}
@@ -2712,7 +2712,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true && $0.isFoundInBoosters && !$0.isPromo }
 		case "ogw":
 			return basicLandSlotCards.filter { $0.name != "Wastes" }
-		case _ where basicLandSlotCards.count == 5 && basicLandSlotCards.allSatisfy({ $0.typeLine?.hasPrefix("Basic Land —") == true }):
+		case _ where Set(basicLandSlotCards.compactMap({ $0.name })).count == 5 && basicLandSlotCards.allSatisfy({ $0.typeLine?.hasPrefix("Basic Land —") == true }):
 			return basicLandSlotCards
 		default:
 			// Just get the most recent standard set basic lands if there are none others.

@@ -25,7 +25,7 @@ Generates a booster pack for a given set.
 |count|Integer|✔︎|The number of booster packs to generate. The default value is 1.|
 |extendedart|Boolean|✔︎|Whether or not to use extended-art cards, if available, in place of foils. The default value is true.|
 
-Example: https://tts-magic-booster.herokuapp.com/iko?count=3&export=false
+Example: https://tts-magic-booster.herokuapp.com/iko?count=3
 
 ### GET /box/:set
 

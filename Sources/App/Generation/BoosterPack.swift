@@ -2473,34 +2473,39 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		tokens = allCards.separate { $0.layout == "token" || $0.typeLine?.lowercased().contains("emblem") == true || $0.typeLine?.lowercased().contains("token") == true }
 		
 		mtgCards = allCards
+		
+		do {
+			let encoder = JSONEncoder()
+			let data = try encoder.encode(mtgCards)
+			if let string = String(data: data, encoding: .utf8) {
+				print(string)
+			}
+		} catch {
+			print(error)
+		}
 	case .scryfallSetCode:
 		let customSets = [
 			"net": "net",
 			"netropolis": "net"
 		]
 		
-		#if canImport(Vapor)
 		if let customsetcode = customSets[inputString.lowercased()] {
-			let directory = DirectoryConfig.detect()
-			let configDir = "Sources/App/Generation"
-			let jsonURL = URL(fileURLWithPath: directory.workDir)
-				.appendingPathComponent(configDir, isDirectory: true)
-				.appendingPathComponent("custom-\(customsetcode).json", isDirectory: false)
+			let jsonURL: URL? = {
+				#if canImport(Vapor)
+				let directory = DirectoryConfig.detect()
+				let configDir = "Sources/App/Generation"
+				return URL(fileURLWithPath: directory.workDir)
+					.appendingPathComponent(configDir, isDirectory: true)
+					.appendingPathComponent("custom-\(customsetcode).json", isDirectory: false)
+				#else
+				return Bundle.main.url(forResource: "custom-\(customsetcode)", withExtension: "json")
+				#endif
+			}()
 			
-			if let data = try? Data(contentsOf: jsonURL),
-				let string = String(data: data, encoding: .utf8) {
+			if let url = jsonURL, let data = try? Data(contentsOf: url), let string = String(data: data, encoding: .utf8) {
 				return try generate(input: .cockatriceJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt)
 			}
 		}
-		
-		#else
-		if let customsetcode = customSets[inputString.lowercased()],
-			let jsonURL = Bundle.main.url(forResource: "custom-\(customsetcode)", withExtension: "json"),
-			let data = try? Data(contentsOf: jsonURL),
-			let string = String(data: data, encoding: .utf8) {
-			return try generate(input: .cockatriceJSON, inputString: string, output: output)
-		}
-		#endif
 		
 		let set = try Swiftfall.getSet(code: inputString)
 		mtgCards = set.getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init)
@@ -2588,6 +2593,7 @@ func cardsFromCockatriceJSON(json: String) throws -> (cards: [MTGCard], setName:
 		if mtgCard.name?.hasPrefix("Weapon") == true && mtgCard.layout == "token" {
 			mtgCard.name = "Weapon"
 		}
+			
 		
 		return mtgCard
 	}
@@ -2685,6 +2691,10 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
+		case "iko":
+			let basicLands = mainCards.separate { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true }
+			let dualLands = mainCards.separate { $0.typeLine?.lowercased().contains("land") == true && $0.oracleText?.contains("enters the battlefield tapped") == true && $0.oracleText?.contains("gain 1 life") == true }
+			return basicLands + dualLands
 		case "mir", "vis", "5ed", "por", "wth", "tmp", "sth", "exo", "p02", "usg", "ulg", "6ed", "ptk", "uds", "mmq", "nem", "pcy", "inv", "pls", "7ed", "csp", "dis", "gpt", "rav", "9ed", "lrw", "mor", "shm", "eve", "apc", "ody", "tor", "jud", "ons", "lgn", "scg", "mrd", "dst", "5dn", "chk", "bok", "sok", "plc":
 			return []
 		default:
@@ -2712,8 +2722,8 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true && $0.isFoundInBoosters && !$0.isPromo }
 		case "ogw":
 			return basicLandSlotCards.filter { $0.name != "Wastes" }
-		case _ where Set(basicLandSlotCards.compactMap({ $0.name })).count == 5 && basicLandSlotCards.allSatisfy({ $0.typeLine?.hasPrefix("Basic Land —") == true }):
-			return basicLandSlotCards
+		case _ where Set(basicLandSlotCards.filter { $0.typeLine?.hasPrefix("Basic Land —") == true }.compactMap({ $0.name })).count == 5:
+			return basicLandSlotCards.filter { $0.typeLine?.hasPrefix("Basic Land —") == true }
 		default:
 			// Just get the most recent standard set basic lands if there are none others.
 			return Swiftfall

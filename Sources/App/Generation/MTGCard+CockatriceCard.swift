@@ -14,15 +14,17 @@ extension MTGCard {
 		let manaCost: String? = card.manacost?.map { "{\($0)}" }.joined()
 		let relatedCards: [MTGCard.RelatedCard]? = nil
 		let colors: [MTGColor]? = card.color.components(separatedBy: "").compactMap(MTGColor.init(rawValue:))
-		let imageName = "http://www.planesculptors.net/upload/18/4671/\(card.name.replacingOccurrences(of: ",", with: "").replacingOccurrences(of: " ", with: "%20").replacingOccurrences(of: "'", with: "").replacingOccurrences(of: "(", with: "%28").replacingOccurrences(of: ")", with: "%29")).png"
-		let imageUris: [String: URL]? = ["normal": URL(string: imageName)!]
+		let imageName = "\(card.name.replacingOccurrences(of: ",", with: "").replacingOccurrences(of: " ", with: "%20").replacingOccurrences(of: "'", with: "").replacingOccurrences(of: "(", with: "%28").replacingOccurrences(of: ")", with: "%29"))"
+		let imageURL = URL(string: "http://www.planesculptors.net/upload/18/4671/\(imageName).png")!
+		let artCropURL = URL(string: "http://josh.birnholz.com/cardart/\(card.set.shortName.lowercased())/\(imageName).jpg")!
+		let imageUris: [String: URL]? = ["normal": imageURL, "large": imageURL, "small": imageURL, "png": imageURL, "art_crop": artCropURL]
 		
 		self.init(scryfallID: UUID(),
 				  oracleID: nil,
 				  typeLine: card.type,
 				  power: powerToughness?.first,
 				  toughness: powerToughness?.last,
-				  oracleText: card.text,
+				  oracleText: card.text?.replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: ""),
 				  flavorText: nil,
 				  name: card.name,
 				  loyalty: card.loyalty,

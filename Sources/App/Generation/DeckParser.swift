@@ -35,7 +35,7 @@ public struct DeckParser {
 		public var count: Int
 	}
 	
-	private static let regex = #"^(?:(?:\/\/)?(\S+)$|\s*(\d+)\s+([^\(\n]+\S)(?:\s*|\s+\(\s*(\S+)\s*\)(?:\s+(\S+)\s*|\s*)))$"#
+	private static let regex = #"^(?:(?:\/\/)?(\S+)$|\s*(\d+)\s+([^\(\n]+\S)(?:\s*|\s+\(\s*(\S+)\s*\)(?:\h+(\S+)\s*|\s*)))$"#
 	
 	public static func parse(deckList: String) -> [CardGroup] {
 		let matches = deckList.matches(forRegex: regex, options: [.anchorsMatchLines])

@@ -2660,7 +2660,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
-				+ cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true }
+				+ cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true && $0.typeLine?.lowercased().contains("—") == true }
 		case "bng", "jou":
 			return Swiftfall
 				.getCards(query: "set:ths type:'basic land'", unique: true)
@@ -2704,6 +2704,8 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 	
 	// Actual basic lands. Used when creating land packs
 	let basicLands: [MTGCard] = {
+		let defaultBasicLands = { basicLandSlotCards.filter { $0.typeLine?.contains("Basic") == true && $0.typeLine?.contains("Land") == true && $0.typeLine?.contains("—") == true } }() // Get basic lands with a type. This will find normal basic lands and basic snow lands, but not Wastes, which appears at Common rarity, not land rarity.
+		
 		switch setCode?.lowercased() ?? "" {
 		case "dgm":
 			return Swiftfall
@@ -2722,8 +2724,8 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true && $0.isFoundInBoosters && !$0.isPromo }
 		case "ogw":
 			return basicLandSlotCards.filter { $0.name != "Wastes" }
-		case _ where Set(basicLandSlotCards.filter { $0.typeLine?.hasPrefix("Basic Land —") == true }.compactMap({ $0.name })).count == 5:
-			return basicLandSlotCards.filter { $0.typeLine?.hasPrefix("Basic Land —") == true }
+		case _ where Set(defaultBasicLands.compactMap { $0.name }).count == 5:
+			return defaultBasicLands
 		default:
 			// Just get the most recent standard set basic lands if there are none others.
 			return Swiftfall

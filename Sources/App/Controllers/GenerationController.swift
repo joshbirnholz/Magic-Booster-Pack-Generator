@@ -94,13 +94,14 @@ final class GeneratorController {
 	
 	func fullDeck(_ req: Request) throws -> Future<String> {
 		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
+		let cardBack: URL? = (try? req.query.get(String.self, at: "back")).flatMap(URL.init(string:))
 		
 		return try req.content.decode(DeckList.self).flatMap { decklist in
 			let promise: Promise<String> = req.eventLoop.newPromise()
 			
 			DispatchQueue.global().async {
 				do {
-					let result: String = try deck(decklist: decklist.deck, export: export)
+					let result: String = try deck(decklist: decklist.deck, export: export, cardBack: cardBack)
 					promise.succeed(result: result)
 				} catch {
 					promise.fail(error: error)

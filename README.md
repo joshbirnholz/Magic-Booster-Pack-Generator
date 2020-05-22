@@ -101,7 +101,7 @@ Returns a deck of cards. The request must have a body containing the requested d
 
 |Parameter|Type|Optional|Details|
 |---|---|---|---|
-|deck|Object||The deck list.|
+|back|URL|✔︎|The URL of an image to use as the card back.|
 
 Example: https://tts-magic-booster.herokuapp.com/deck
 

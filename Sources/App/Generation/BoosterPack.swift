@@ -990,7 +990,7 @@ fileprivate struct CardInfo {
 fileprivate var packTexturesExist: [String: Bool] = [:]
 
 /// Put commons into the array first (index 0) and rares last. Then the basic land after the rares.
-func boosterPackJSON(setName: String, setCode: String, cards: [MTGCard], tokens: [MTGCard] = [], inPack: Bool = true) throws -> ObjectStateJSON {
+func boosterPackJSON(setName: String, setCode: String, cards: [MTGCard], tokens: [MTGCard] = [], inPack: Bool = true, cardBack: URL? = nil) throws -> ObjectStateJSON {
 //	guard cards.count == 15 || cards.count == 16 else { throw PackError.wrongNumberOfCards }
 	
 //	let cardInfo = Array(cards.enumerated().compactMap(CardInfo.init(offset:card:)))
@@ -998,7 +998,11 @@ func boosterPackJSON(setName: String, setCode: String, cards: [MTGCard], tokens:
 		if (sequence.element.layout == "token" || sequence.element.layout == "emblem") && !tokens.isEmpty {
 			return CardInfo(offset: sequence.offset, currentState: sequence.element, allStates: tokens)
 		} else {
-			return CardInfo(offset: sequence.offset, card: sequence.element)
+			var cardInfo = CardInfo(offset: sequence.offset, card: sequence.element)
+			if let back = cardBack {
+				cardInfo?.backURL = back
+			}
+			return cardInfo
 		}
 	}
 //	guard cardInfo.count == 15 || cardInfo.count == 16 else { throw PackError.wrongNumberOfCards }
@@ -1240,9 +1244,9 @@ func singleCard(_ card: MTGCard, facedown: Bool = true, export: Bool = false) th
 }
 
 
-func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], tokens: [MTGCard], inPack: Bool = true, export: Bool) throws -> String {
+func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], tokens: [MTGCard], inPack: Bool = true, export: Bool, cardBack: URL? = nil) throws -> String {
 	
-	let boosterPackString = try boosterPacks.map { try boosterPackJSON(setName: setName, setCode: setCode, cards: $0, tokens: tokens, inPack: inPack) }.joined(separator: ",\n")
+	let boosterPackString = try boosterPacks.map { try boosterPackJSON(setName: setName, setCode: setCode, cards: $0, tokens: tokens, inPack: inPack, cardBack: cardBack) }.joined(separator: ",\n")
 	
 	let objectState = """
 	{
@@ -2458,7 +2462,7 @@ fileprivate let prereleaseSheet = """
 }
 """
 
-public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, specialOptions: [String] = []) throws -> String {
+public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, specialOptions: [String] = [], cardBack: URL? = nil) throws -> String {
 	let mtgCards: [MTGCard]
 	let setName: String
 	let setCode: String?
@@ -2528,7 +2532,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			}
 		}
 	case .cardlist:
-		return try deck(decklist: inputString, export: export)
+		return try deck(decklist: inputString, export: export, cardBack: cardBack)
 	}
 	
 	guard !mtgCards.isEmpty else { throw PackError.noCards }
@@ -3128,7 +3132,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 	"""
 }
 
-func deck(decklist: String, export: Bool) throws -> String {
+func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String {
 	let groups = DeckParser.parse(deckList: decklist)
 	let identifiers = Array(Set(groups.map { $0.cardCounts }.joined().map { $0.identifier }))
 	
@@ -3146,18 +3150,21 @@ func deck(decklist: String, export: Bool) throws -> String {
 	
 	let packs: [[MTGCard]] = groups.map { group in
 		return group.cardCounts.reduce(into: [MTGCard]()) { (deck, cardCount) in
-			guard let card = cards[cardCount.identifier] else { return }
+			guard let card = cards[cardCount.identifier] else {
+				print("error")
+				return
+			}
 			deck.append(contentsOf: Array(repeating: MTGCard(card), count: cardCount.count))
 		}
 	}
 	
-	return try boosterBag(setName: "Deck", setCode: "", boosterPacks: packs, tokens: [], inPack: false, export: export)
+	return try boosterBag(setName: "Deck", setCode: "", boosterPacks: packs, tokens: [], inPack: false, export: export, cardBack: cardBack)
 	
 }
 
 extension Sequence where Element == Swiftfall.Card {
 	subscript(_ identifier: MTGCardIdentifier) -> Swiftfall.Card? {
-		return first { (card) -> Bool in
+		let foundCard = first { (card) -> Bool in
 			switch identifier {
 			case .id(let id):
 				return card.id == id
@@ -3176,6 +3183,16 @@ extension Sequence where Element == Swiftfall.Card {
 			case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set):
 				return card.collectorNumber.lowercased() == collectorNumber.lowercased() && card.set.lowercased() == set.lowercased()
 			}
+		}
+		
+		if let result = foundCard {
+			return result
+		} else if case .nameSet(let name, let set) = identifier, set.lowercased() == "dar" {
+			return self[.nameSet(name: name, set: "dom")]
+		} else if case .collectorNumberSet(let collectorNumber, let set) = identifier, set.lowercased() == "dar" {
+			return self[.collectorNumberSet(collectorNumber: collectorNumber, set: "dom")]
+		} else {
+			return nil
 		}
 	}
 }

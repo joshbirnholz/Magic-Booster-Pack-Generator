@@ -21,7 +21,7 @@ public func routes(_ router: Router) throws {
 	router.get("prerelease", String.parameter, use: generatorController.prereleasePack)
 	router.get("pre", String.parameter, use: generatorController.prereleasePack)
 	
-	
+	router.get("token", String.parameter, use: generatorController.completeToken)
 	
 	router.get("deck", use: generatorController.fullDeck)
 }

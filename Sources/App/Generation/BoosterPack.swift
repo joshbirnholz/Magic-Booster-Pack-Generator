@@ -989,6 +989,36 @@ fileprivate struct CardInfo {
 
 fileprivate var packTexturesExist: [String: Bool] = [:]
 
+func singleCompleteToken(tokens: [MTGCard], export: Bool) throws -> ObjectStateJSON {
+	guard !tokens.isEmpty, let first = tokens.first, let cardInfo = CardInfo(offset: 0, currentState: first, allStates: tokens) else { throw PackError.noCards }
+	
+	if !export {
+		return cardInfo.cardCustomObject
+	}
+	
+	return """
+	{
+	  "SaveName": "",
+	  "GameMode": "",
+	  "Gravity": 0.5,
+	  "PlayArea": 0.5,
+	  "Date": "",
+	  "Table": "",
+	  "Sky": "",
+	  "Note": "",
+	  "Rules": "",
+	  "XmlUI": "",
+	  "LuaScript": "",
+	  "LuaScriptState": "",
+	  "ObjectStates": [
+		\(cardInfo.cardCustomObject)
+	  ],
+	  "TabStates": {},
+	  "VersionNumber": ""
+	}
+	"""
+}
+
 /// Put commons into the array first (index 0) and rares last. Then the basic land after the rares.
 func boosterPackJSON(setName: String, setCode: String, cards: [MTGCard], tokens: [MTGCard] = [], inPack: Bool = true, cardBack: URL? = nil) throws -> ObjectStateJSON {
 //	guard cards.count == 15 || cards.count == 16 else { throw PackError.wrongNumberOfCards }
@@ -1243,6 +1273,22 @@ func singleCard(_ card: MTGCard, facedown: Bool = true, export: Bool = false) th
 	"""
 }
 
+func allTokensForSet(setCode: String) throws -> [MTGCard] {
+	let set: Swiftfall.ScryfallSet
+	do {
+		set = try Swiftfall.getSet(code: "t\(setCode)")
+	} catch {
+		set = try Swiftfall.getSet(code: setCode)
+	}
+	
+	let cards = set.getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init).sorted { ($0.name ?? "") < ($1.name ?? "") }
+	
+	guard !cards.isEmpty else {
+		throw PackError.noCards
+	}
+	
+	return cards
+}
 
 func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], tokens: [MTGCard], inPack: Bool = true, export: Bool, cardBack: URL? = nil) throws -> String {
 	
@@ -3151,7 +3197,7 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String
 	let packs: [[MTGCard]] = groups.map { group in
 		return group.cardCounts.reduce(into: [MTGCard]()) { (deck, cardCount) in
 			guard let card = cards[cardCount.identifier] else {
-				print("error")
+				print("Could not find card with identifier \(cardCount.identifier)")
 				return
 			}
 			deck.append(contentsOf: Array(repeating: MTGCard(card), count: cardCount.count))

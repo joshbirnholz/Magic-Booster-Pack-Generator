@@ -185,4 +185,24 @@ final class GeneratorController {
 		
 		return promise.futureResult
 	}
+	
+	func completeToken(_ req: Request) throws -> Future<String> {
+		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
+		let set = try req.parameters.next(String.self)
+		
+		let promise: Promise<String> = req.eventLoop.newPromise()
+		
+		DispatchQueue.global().async {
+			do {
+				let allTokens = try allTokensForSet(setCode: set)
+				let token = try singleCompleteToken(tokens: allTokens, export: export)
+				promise.succeed(result: token)
+			} catch {
+				promise.fail(error: error)
+			}
+			
+		}
+		
+		return promise.futureResult
+	}
 }

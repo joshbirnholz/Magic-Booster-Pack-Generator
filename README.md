@@ -12,6 +12,7 @@ Packs are meant to have cards that match what you'd really find in booster packs
 |/card/named|Get a specific card|https://tts-magic-booster.herokuapp.com/card/named?fuzzy=gemrazer|
 |/card/:code/:number|Get a specific card|https://tts-magic-booster.herokuapp.com/card/iko/155|
 |/card/random|Get a random card|https://tts-magic-booster.herokuapp.com/card/random|
+|/token/:set|Get a card that is every token in a set|https://tts-magic-booster.herokuapp.com/token/c20|
 |/deck|Load an entire deck list|https://tts-magic-booster.herokuapp.com/deck|
 
 ### GET /:set
@@ -94,6 +95,17 @@ Returns a single random card.
 Example: https://tts-magic-booster.herokuapp.com/card/random  
 Example: https://tts-magic-booster.herokuapp.com/card/random?q=cmc:6+type:creature  
 Example: https://tts-magic-booster.herokuapp.com/card/random?q=o:companion+set:iko&export=false
+
+### GET /token/:set
+
+Returns a token that can be right-clicked in Tabletop Simulator to be changed to any token in the specified set.
+
+|Parameter|Type|Optional|Details|
+|---|---|---|---|
+|:set|String||The set for which a token should be created.|
+|export|Boolean|✔︎|If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
+
+Example: https://tts-magic-booster.herokuapp.com/card/token/c20
 
 ### GET /deck
 

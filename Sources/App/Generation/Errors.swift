@@ -22,7 +22,7 @@ extension Swiftfall.ScryfallError: Debuggable {
 
 extension PackError: Debuggable {
 	var identifier: String {
-		return String(rawValue)
+		return String(code)
 	}
 	
 	var reason: String {
@@ -43,6 +43,8 @@ extension PackError: Debuggable {
 			return "Generating an object of the specified type for the specified set is unsupported."
 		case .noName:
 			return "A value must be provided for either the 'fuzzy' or 'exact' parameter."
+		case .noCardFound(let identifier):
+			return "No cards found with identifiers: \(identifier)"
 		}
 	}
 	

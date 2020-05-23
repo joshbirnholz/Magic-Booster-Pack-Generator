@@ -16,7 +16,7 @@ import Vapor
 
 typealias ObjectStateJSON = String
 
-enum PackError: Int, Error {
+enum PackError: Error {
 	case wrongNumberOfCards
 	case noImage
 	case noValidPromo
@@ -25,6 +25,30 @@ enum PackError: Int, Error {
 	case noCards
 	case unsupported
 	case noName
+	case noCardFound(String)
+	
+	var code: Int {
+		switch self {
+		case .wrongNumberOfCards:
+			return 0
+		case .noImage:
+			return 1
+		case .noValidPromo:
+			return 2
+		case .notInBoosters:
+			return 3
+		case .notEnoughLands:
+			return 4
+		case .noCards:
+			return 5
+		case .unsupported:
+			return 6
+		case .noName:
+			return 7
+		case .noCardFound(_):
+			return 8
+		}
+	}
 }
 
 public enum Input: Int, CaseIterable {
@@ -3194,14 +3218,20 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String
 	//			throw NSError(domain: "com.josh.birnholz.mtgcards", code: 1, userInfo: [NSLocalizedDescriptionKey: "Not Found:\n\n" + String(describing: notFound.map(String.init).joined())])
 	//		}
 	
+	var notFound: [MTGCardIdentifier] = []
+	
 	let packs: [[MTGCard]] = groups.map { group in
 		return group.cardCounts.reduce(into: [MTGCard]()) { (deck, cardCount) in
 			guard let card = cards[cardCount.identifier] else {
-				print("Could not find card with identifier \(cardCount.identifier)")
+				notFound.append(cardCount.identifier)
 				return
 			}
 			deck.append(contentsOf: Array(repeating: MTGCard(card), count: cardCount.count))
 		}
+	}
+	
+	guard notFound.isEmpty else {
+		throw PackError.noCardFound(String(describing: notFound.map { String(describing: $0) }.joined(separator: ", ")))
 	}
 	
 	return try boosterBag(setName: "Deck", setCode: "", boosterPacks: packs, tokens: [], inPack: false, export: export, cardBack: cardBack)

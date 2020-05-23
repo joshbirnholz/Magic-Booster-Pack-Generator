@@ -105,7 +105,7 @@ Returns a token that can be right-clicked in Tabletop Simulator to be changed to
 |:set|String||The set for which a token should be created.|
 |export|Boolean|✔︎|If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
 
-Example: https://tts-magic-booster.herokuapp.com/card/token/c20
+Example: https://tts-magic-booster.herokuapp.com/token/c20
 
 ### GET /deck
 

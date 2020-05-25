@@ -45,6 +45,8 @@ extension PackError: Debuggable {
 			return "A value must be provided for either the 'fuzzy' or 'exact' parameter."
 		case .noCardFound(let identifier):
 			return "No cards found with identifiers: \(identifier)"
+		case .emptyInput:
+			return "The input is empty."
 		}
 	}
 	

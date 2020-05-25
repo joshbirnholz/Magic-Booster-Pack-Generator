@@ -2,6 +2,12 @@ import Vapor
 
 /// Register your application's routes here.
 public func routes(_ router: Router) throws {
+	router.get { req -> Response in
+		return req.response(http: HTTPResponse(status: .movedPermanently,
+												   version: HTTPVersion(major: 1, minor: 1),
+												   headers: HTTPHeaders([("Location", "index.html")])))
+	}
+	
 	let generatorController = GeneratorController()
 	
 	router.get("card", "named", use: generatorController.singleCardNamed)
@@ -24,4 +30,5 @@ public func routes(_ router: Router) throws {
 	router.get("token", String.parameter, use: generatorController.completeToken)
 	
 	router.get("deck", use: generatorController.fullDeck)
+	router.post("deck", use: generatorController.fullDeck)
 }

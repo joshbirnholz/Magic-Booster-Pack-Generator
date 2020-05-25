@@ -22,6 +22,7 @@ enum PackError: Error {
 	case noValidPromo
 	case notInBoosters
 	case notEnoughLands
+	case emptyInput
 	case noCards
 	case unsupported
 	case noName
@@ -47,6 +48,8 @@ enum PackError: Error {
 			return 7
 		case .noCardFound(_):
 			return 8
+		case .emptyInput:
+			return 9
 		}
 	}
 }
@@ -3206,6 +3209,10 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String
 	let groups = DeckParser.parse(deckList: decklist)
 	let identifiers = Array(Set(groups.map { $0.cardCounts }.joined().map { $0.identifier }))
 	
+	guard !identifiers.isEmpty else {
+		throw PackError.emptyInput
+	}
+	
 	//		let collection = try Swiftfall.getCollection(identifiers: identifiers)
 	let fetchedCardGroups: [[Swiftfall.Card]] = identifiers.chunked(by: 20).map { identifiers in
 		let query = identifiers.compactMap(\.query).map { "(\($0))" }.joined(separator: " or ")
@@ -3214,9 +3221,9 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String
 	}
 	let cards: [Swiftfall.Card] = Array(fetchedCardGroups.joined())
 	
-	//		if let notFound = collection.notFound, !notFound.isEmpty {
-	//			throw NSError(domain: "com.josh.birnholz.mtgcards", code: 1, userInfo: [NSLocalizedDescriptionKey: "Not Found:\n\n" + String(describing: notFound.map(String.init).joined())])
-	//		}
+	guard !identifiers.isEmpty else {
+		throw PackError.noCards
+	}
 	
 	var notFound: [MTGCardIdentifier] = []
 	

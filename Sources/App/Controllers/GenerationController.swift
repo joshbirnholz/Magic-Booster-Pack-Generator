@@ -103,6 +103,20 @@ final class GeneratorController {
 				do {
 					let result: String = try deck(decklist: decklist.deck, export: export, cardBack: cardBack)
 					promise.succeed(result: result)
+				} catch let error as PackError {
+					struct ErrorMessage: Codable {
+						var error: String
+					}
+					
+					let encoder = JSONEncoder()
+					let errorMessage = ErrorMessage(error: error.reason)
+					do {
+						let data = try encoder.encode(errorMessage)
+						let string = String(data: data, encoding: .utf8)!
+						promise.succeed(result: string)
+					} catch {
+						promise.fail(error: error)
+					}
 				} catch {
 					promise.fail(error: error)
 				}

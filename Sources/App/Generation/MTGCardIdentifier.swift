@@ -34,7 +34,7 @@ public enum MTGCardIdentifier: Codable, Hashable, CustomStringConvertible {
 	
 		switch self {
 		case .id(let id):
-			try container.encode(id, forKey: .id)
+			try container.encode(id.uuidString.lowercased(), forKey: .id)
 		case .mtgoID(let id):
 			try container.encode(id, forKey: .mtgoID)
 		case .multiverseID(let id):

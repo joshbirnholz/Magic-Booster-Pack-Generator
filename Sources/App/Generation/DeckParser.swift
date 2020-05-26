@@ -14,13 +14,15 @@ public struct DeckParser {
 			case deck = "Deck"
 			case sideboard = "Sideboard"
 			case command = "Commander"
+			case companion = "Companion"
 		}
 		
 		public static func name(for line: String) -> String {
 			switch line.lowercased() {
-			case "deck", "main deck", "maindeck": return GroupName.deck.rawValue
+			case "deck", "main deck", "maindeck", "main", "creatures", "creature", "instant", "instants", "land", "lands", "sorceries", "sorcery", "spell", "spells", "enchantment", "enchantments", "artifact", "artifacts": return GroupName.deck.rawValue
 			case "sideboard", "", "\n": return GroupName.sideboard.rawValue
 			case "commander", "command": return GroupName.command.rawValue
+			case "companion": return GroupName.companion.rawValue
 			default:
 				return line
 			}
@@ -35,7 +37,7 @@ public struct DeckParser {
 		public var count: Int
 	}
 	
-	private static let regex = #"^(?:(?:\/\/)?(\S+)$|\s*(\d+)\s+([^\(\n]+\S)(?:\s*|\s+\(\s*(\S+)\s*\)(?:\h+(\S+)\s*|\s*)))$"#
+	private static let regex = #"^(?:(?:\/\/)?(\S*)\s*$|\s*(\d+)\s+([^\(\n]+\S)(?:\s*|\s+\(\s*(\S+)\s*\)(?:\h+(\S+)\s*|\s*)))$"#
 	
 	public static func parse(deckList: String) -> [CardGroup] {
 		let matches = deckList.matches(forRegex: regex, options: [.anchorsMatchLines])
@@ -44,7 +46,8 @@ public struct DeckParser {
 		for (_, groups) in matches {
 			switch groups.count {
 			case 1:
-				let newGroup = CardGroup(name: CardGroup.name(for: groups[0].value), cardCounts: [])
+				let value = groups[0].value.trimmingCharacters(in: .whitespacesAndNewlines)
+				let newGroup = CardGroup(name: CardGroup.name(for: value), cardCounts: [])
 				cardGroups.append(newGroup)
 			case 2:
 				if cardGroups.isEmpty {

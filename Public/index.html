@@ -2,7 +2,9 @@
 <head>
 	<meta charset="utf-8"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="watermark.js"></script>
 	<script src="scripts.js"></script>
+	
 	<link rel="stylesheet" href="style.css"></style>
 </head>
 <body>
@@ -16,15 +18,53 @@
 	<textarea id="deck" cols="50" rows="20"></textarea>
 	</form>
 	<input id="back" type="text" size="52" placeholder="Card back image URL (optional)"></input>
-	<p><input type="button" value="Download Deck" onclick="doDownloadDeck()"></p>
-	
-	
-	<p>
-		Formatting examples:
+	<p><input type="button" value="Download Deck" onclick="doDownloadDeck()"> <span id="progress"></span></p>
+		
+		<p>Identify cards by either just a name, a name and set code, or a set code and collector number. (MTG Arena format)
 		<ul>
 			<li>17 Mountain</li>
 			<li>17 Mountain (IKO)</li>
 			<li>17 Mountain (IKO) 270</li>
 		</ul>
 	</p>
+	
+	<p></p>
+	<p>Tokens will be added automatically. To use specific a specific version or art for a token, include the token anywhere in your deck list, like this:</p>
+	<ul><li>1 Spirit (TGK2) 2</li></ul>
+	
+	<p>Example:</p>
+	<div style="indent: 40px;font-size:13">
+		1 Brazen Borrower // Petty Theft
+		<br>4 Brineborn Cutthroat
+		<br>4 Frilled Mystic
+		<br>4 Nightpack Ambusher
+		<br>4 Spectral Sailor
+		<br>1 Wavebreak Hippocamp
+		<br>4 Wildborn Preserver
+		<br>4 Opt (ELD)
+		<br>4 Quench
+		<br>2 Sinister Sabotage
+		<br>2 Thassa's Intervention
+		<br>2 Unsummon (M20)
+		<br>2 Castle Vantress
+		<br>1 Fabled Passage
+		<br>2 Forest (ELD) 266
+		<br>2 Forest (ELD) 267
+		<br>2 Forest (ELD) 268
+		<br>2 Forest (ELD) 269
+		<br>2 Island (ELD) 254
+		<br>2 Island (ELD) 255
+		<br>2 Island (ELD) 256
+		<br>2 Island (ELD) 257
+		<br>2 Temple of Mystery (M20)
+		<br>3 Thornwood Falls (M20)
+		<br>
+		<br>3 Aether Gust (M20) 42
+		<br>2 Disdainful Stroke (GRN) 37
+		<br>2 Mystical Dispute (ELD) 58
+		<br>2 Negate (M20) 69
+		<br>3 Shifting Ceratops (M20) 194
+		<br>3 Threnody Singer (THB) 75
+		<br>
+	</div>
 </body>

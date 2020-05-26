@@ -871,7 +871,7 @@ fileprivate struct CardInfo {
 		guard !otherStates.isEmpty else { return "" }
 		
 		let customObjects = otherStates.map { object in
-			"\(object.state): \(object.cardCustomObject)"
+			"\"\(object.state)\": \(object.cardCustomObject)"
 		}
 		
 		let altFaceCustomObject = """
@@ -1047,7 +1047,7 @@ func singleCompleteToken(tokens: [MTGCard], export: Bool) throws -> ObjectStateJ
 }
 
 /// Put commons into the array first (index 0) and rares last. Then the basic land after the rares.
-func boosterPackJSON(setName: String, setCode: String, cards: [MTGCard], tokens: [MTGCard] = [], inPack: Bool = true, cardBack: URL? = nil) throws -> ObjectStateJSON {
+func boosterPackJSON(setName: String, setCode: String, name: String? = nil, cards: [MTGCard], tokens: [MTGCard] = [], inPack: Bool = true, cardBack: URL? = nil) throws -> ObjectStateJSON {
 //	guard cards.count == 15 || cards.count == 16 else { throw PackError.wrongNumberOfCards }
 	
 //	let cardInfo = Array(cards.enumerated().compactMap(CardInfo.init(offset:card:)))
@@ -1063,10 +1063,11 @@ func boosterPackJSON(setName: String, setCode: String, cards: [MTGCard], tokens:
 		}
 	}
 //	guard cardInfo.count == 15 || cardInfo.count == 16 else { throw PackError.wrongNumberOfCards }
+	let packName = name ?? ""
 	
 	let deck = """
 	{
-	  "Name": "Deck",
+	"Name": "Deck",
 	  "Transform": {
 		"posX": 0.1779872,
 		"posY": 3.08887124,
@@ -1078,7 +1079,7 @@ func boosterPackJSON(setName: String, setCode: String, cards: [MTGCard], tokens:
 		"scaleY": 1.0,
 		"scaleZ": 1.0
 	  },
-	  "Nickname": "",
+	  "Nickname": "\(!inPack ? packName : "")",
 	  "Description": "",
 	  "GMNotes": "",
 	  "ColorDiffuse": {
@@ -1127,13 +1128,13 @@ func boosterPackJSON(setName: String, setCode: String, cards: [MTGCard], tokens:
 	
 	let bagLuaScript = """
 	function onObjectLeaveContainer(bag, object)
-		if (bag.getGUID() == self.getGUID()) then
-			destroyObject(bag)
-		end
+	  if (bag.getGUID() == self.getGUID()) then
+	    destroyObject(bag)
+	  end
 	end
 
 	function filterObjectEnter(object)
-		return false
+	  return false
 	end
 	""".replacingOccurrences(of: "\n", with: "\\n")
 	
@@ -1151,7 +1152,7 @@ func boosterPackJSON(setName: String, setCode: String, cards: [MTGCard], tokens:
 		"scaleY": 1.0,
 		"scaleZ": 1.0
 	  },
-	  "Nickname": "\(setName) Booster Pack",
+	  "Nickname": "\(name ?? "\(setName) Booster Pack")",
 	  "Description": "",
 	  "GMNotes": "",
 	  "ColorDiffuse": {
@@ -1206,9 +1207,14 @@ func boosterPackJSON(setName: String, setCode: String, cards: [MTGCard], tokens:
 	return pack
 }
 
-func singleBoosterPack(setName: String, setCode: String, boosterPack: [MTGCard], tokens: [MTGCard], export: Bool) throws -> String {
+func singleBoosterPack(setName: String, setCode: String, boosterPack: [MTGCard], tokens: [MTGCard], inPack: Bool? = nil, export: Bool, cardBack: URL? = nil) throws -> String {
+	let boosterPackString: String
 	
-	let boosterPackString = try boosterPackJSON(setName: setName, setCode: setCode, cards: boosterPack, tokens: tokens)
+	if let inPack = inPack {
+		boosterPackString = try boosterPackJSON(setName: setName, setCode: setCode, cards: boosterPack, tokens: tokens, inPack: inPack, cardBack: cardBack)
+	} else {
+		boosterPackString = try boosterPackJSON(setName: setName, setCode: setCode, cards: boosterPack, tokens: tokens, cardBack: cardBack)
+	}
 	
 	if !export {
 		return boosterPackString
@@ -1269,8 +1275,27 @@ func singleCardScryfallQuery(query: String, facedown: Bool, export: Bool) throws
 	return try singleCard(mtgCard, facedown: facedown, export: export)
 }
 
-func singleCard(_ card: MTGCard, facedown: Bool = true, export: Bool = false) throws -> String {
-	guard var cardInfo = CardInfo(num: 1, card: card) else { throw PackError.noImage }
+func singleCard(_ card: MTGCard, tokens: [MTGCard] = [], facedown: Bool = true, export: Bool = false) throws -> String {
+//	let cardInfo: [CardInfo] = cards.reversed().enumerated().compactMap { sequence in
+//		if (sequence.element.layout == "token" || sequence.element.layout == "emblem") && !tokens.isEmpty {
+//			return CardInfo(offset: sequence.offset, currentState: sequence.element, allStates: tokens)
+//		} else {
+//			var cardInfo = CardInfo(offset: sequence.offset, card: sequence.element)
+//			if let back = cardBack {
+//				cardInfo?.backURL = back
+//			}
+//			return cardInfo
+//		}
+//	}
+	
+	let info: CardInfo?
+	if card.layout == "token" || card.layout == "emblem" && !tokens.isEmpty {
+		info = CardInfo(offset: 1, currentState: card, allStates: tokens)
+	} else {
+		info = CardInfo(num: 1, card: card)
+	}
+	
+	guard var cardInfo = info else { throw PackError.noImage }
 	cardInfo.facedown = facedown
 	
 	if !export {
@@ -1317,9 +1342,17 @@ func allTokensForSet(setCode: String) throws -> [MTGCard] {
 	return cards
 }
 
-func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], tokens: [MTGCard], inPack: Bool = true, export: Bool, cardBack: URL? = nil) throws -> String {
+func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], names: [String?]? = nil, tokens: [MTGCard], inPack: Bool = true, export: Bool, cardBack: URL? = nil) throws -> String {
 	
-	let boosterPackString = try boosterPacks.map { try boosterPackJSON(setName: setName, setCode: setCode, cards: $0, tokens: tokens, inPack: inPack, cardBack: cardBack) }.joined(separator: ",\n")
+	let names: [String?] = names ?? Array(repeating: String?.none, count: boosterPacks.count)
+	let packs = zip(boosterPacks, names)
+	let boosterPackString = try packs.map { cards, name in
+		if cards.count == 1, let card = cards.first {
+			return try singleCard(card, tokens: tokens, facedown: false, export: false)
+		} else {
+			return try boosterPackJSON(setName: setName, setCode: setCode, name: name, cards: cards, tokens: tokens, inPack: inPack, cardBack: cardBack)
+		}
+	}.joined(separator: ",\n")
 	
 	let objectState = """
 	{
@@ -1335,7 +1368,7 @@ func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], tok
 		"scaleY": 1.0,
 		"scaleZ": 1.0
 	  },
-	  "Nickname": "\(setName) Booster Box",
+	  "Nickname": "\(setName)",
 	  "Description": "",
 	  "GMNotes": "",
 	  "ColorDiffuse": {
@@ -3206,7 +3239,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 }
 
 func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String {
-	let groups = DeckParser.parse(deckList: decklist)
+	let groups = DeckParser.parse(deckList: decklist).filter { !$0.cardCounts.isEmpty }
 	let identifiers = Array(Set(groups.map { $0.cardCounts }.joined().map { $0.identifier }))
 	
 	guard !identifiers.isEmpty else {
@@ -3215,7 +3248,7 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String
 	
 	//		let collection = try Swiftfall.getCollection(identifiers: identifiers)
 	let fetchedCardGroups: [[Swiftfall.Card]] = identifiers.chunked(by: 20).map { identifiers in
-		let query = identifiers.compactMap(\.query).map { "(\($0))" }.joined(separator: " or ")
+		let query = identifiers.compactMap(\.query).map { "(\($0))" }.joined(separator: " or ") + " prefer:newest game:paper"
 		let fetchedCards: [Swiftfall.Card] = Array(Swiftfall.getCards(query: query, unique: true).compactMap { $0?.data }.joined())
 		return fetchedCards
 	}
@@ -3226,6 +3259,7 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String
 	}
 	
 	var notFound: [MTGCardIdentifier] = []
+	var tokens: [MTGCard] = []
 	
 	let packs: [[MTGCard]] = groups.map { group in
 		return group.cardCounts.reduce(into: [MTGCard]()) { (deck, cardCount) in
@@ -3233,15 +3267,60 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String
 				notFound.append(cardCount.identifier)
 				return
 			}
-			deck.append(contentsOf: Array(repeating: MTGCard(card), count: cardCount.count))
+			if card.layout == "token" || card.layout == "emblem" {
+				tokens.append(contentsOf: Array(repeating: MTGCard(card), count: cardCount.count))
+			} else {
+				deck.append(contentsOf: Array(repeating: MTGCard(card), count: cardCount.count))
+			}
 		}
 	}
 	
 	guard notFound.isEmpty else {
 		throw PackError.noCardFound(String(describing: notFound.map { String(describing: $0) }.joined(separator: ", ")))
 	}
+	let tokenIdentifiers = Set(cards.compactMap { $0.allParts?.compactMap { $0.component == "token" ? $0.id : nil } }.joined()).map { MTGCardIdentifier.id($0) }
 	
-	return try boosterBag(setName: "Deck", setCode: "", boosterPacks: packs, tokens: [], inPack: false, export: export, cardBack: cardBack)
+	if !tokenIdentifiers.isEmpty {
+		do {
+			let collection = try Swiftfall.getCollection(identifiers: tokenIdentifiers)
+			tokens.append(contentsOf: collection.data.map(MTGCard.init).filter { card in card.oracleID != nil && !tokens.contains(where: { manualToken in manualToken.oracleID == card.oracleID }) })
+			
+			let cards: [UUID?: [MTGCard]] = .init(grouping: tokens, by: \.oracleID)
+			
+			tokens = cards.compactMap { oracleID, cards in
+				let cards = cards.sorted {
+					($0.releaseDate ?? Date()) > ($1.releaseDate ?? Date())
+				}
+				
+				return cards.first
+			}
+		} catch {
+			
+		}
+	}
+	
+	tokens = tokens.sorted {
+		($0.name ?? "") < ($1.name ?? "")
+	}
+	
+  	if groups.count == 1 {
+		var pack = Array(packs.joined())
+		
+		if let token = tokens.first {
+			pack.insert(token, at: 0)
+		}
+		
+		return try singleBoosterPack(setName: "", setCode: "", boosterPack: pack, tokens: tokens, inPack: false, export: export, cardBack: cardBack)
+	} else {
+		var names = groups.reversed().map(\.name)
+		var packs = Array(packs.reversed())
+		if let token = tokens.first {
+			packs.insert([token], at: 0)
+			names.insert("Token", at: 0)
+		}
+		
+		return try boosterBag(setName: "", setCode: "", boosterPacks: packs, names: names, tokens: tokens, inPack: false, export: export, cardBack: cardBack)
+	}
 	
 }
 

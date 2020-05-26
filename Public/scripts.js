@@ -29,6 +29,8 @@ function downloadFromURL(filename, fromURL) {
 }
 
 function doDownloadDeck() {
+	$("#progress").html("Working…");
+	
 	var data = new FormData($("#mainform")[0]);
 	
 	data.append("deck", document.getElementById("deck").value);
@@ -42,6 +44,7 @@ function doDownloadDeck() {
 			url += "?back=" + cardBack;
 		} else {
 			alert("The card back image URL isn't valid.");
+			$("#progress").html("");
 			return
 		}
 	}
@@ -61,17 +64,20 @@ function doDownloadDeck() {
 			
 			if (obj.error !== undefined) {
 				alert(obj.error);
+				$("#progress").html("");
 				return;
 			}
 			
 			var formatted = JSON.stringify(obj, null, 1);
 			download("deck.json", formatted, "application/json");
+			$("#progress").html("");
 		},
 		error: function(xhr, status, error) {
 			console.log("error");
 			console.log(xhr);
 			console.log(status);
 			console.log(error);
+			$("#progress").html("");
 		}
 	})
 }

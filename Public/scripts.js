@@ -77,6 +77,8 @@ function doDownloadDeck() {
 			console.log(xhr);
 			console.log(status);
 			console.log(error);
+			
+			alert(error);
 			$("#progress").html("");
 		}
 	})

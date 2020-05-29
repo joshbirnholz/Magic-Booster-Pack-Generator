@@ -831,10 +831,10 @@ fileprivate struct CardInfo {
 		  "GridProjection": false,
 		  "HideWhenFaceDown": \(backIsHidden),
 		  "Hands": true,
-		  "CardID": 1500,
+		  "CardID": \(id),
 		  "SidewaysCard": \(sideways),
 		  "CustomDeck": {
-			"15": \(customDeck)
+			"\(num)": \(customDeck)
 		  },
 		  "XmlUI": "",
 		  "LuaScript": "",
@@ -1048,7 +1048,6 @@ func singleCompleteToken(tokens: [MTGCard], export: Bool) throws -> ObjectStateJ
 
 /// Put commons into the array first (index 0) and rares last. Then the basic land after the rares.
 func boosterPackJSON(setName: String, setCode: String, name: String? = nil, cards: [MTGCard], tokens: [MTGCard] = [], inPack: Bool = true, cardBack: URL? = nil) throws -> ObjectStateJSON {
-//	guard cards.count == 15 || cards.count == 16 else { throw PackError.wrongNumberOfCards }
 	
 //	let cardInfo = Array(cards.enumerated().compactMap(CardInfo.init(offset:card:)))
 	let cardInfo: [CardInfo] = cards.reversed().enumerated().compactMap { sequence in
@@ -3246,19 +3245,38 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String
 		throw PackError.emptyInput
 	}
 	
-	//		let collection = try Swiftfall.getCollection(identifiers: identifiers)
-	let fetchedCardGroups: [[Swiftfall.Card]] = identifiers.chunked(by: 20).map { identifiers in
-		let query = identifiers.compactMap(\.query).map { "(\($0))" }.joined(separator: " or ") + " prefer:newest game:paper"
-		let fetchedCards: [Swiftfall.Card] = Array(Swiftfall.getCards(query: query, unique: true).compactMap { $0?.data }.joined())
-		return fetchedCards
-	}
-	let cards: [Swiftfall.Card] = Array(fetchedCardGroups.joined())
+//	let fetchedCardGroups: [[Swiftfall.Card]] = identifiers.chunked(by: 20).map { identifiers in
+//		let query = identifiers.compactMap(\.query).map { "(\($0))" }.joined(separator: " or ") + " prefer:newest game:paper"
+//		let fetchedCards: [Swiftfall.Card] = Array(Swiftfall.getCards(query: query, unique: true).compactMap { $0?.data }.joined())
+//		return fetchedCards
+//	}
+//	let cards: [Swiftfall.Card] = Array(fetchedCardGroups.joined())
+	let collections = identifiers.chunked(by: 75).compactMap { try? Swiftfall.getCollection(identifiers: $0) }
+	var cards = Array(collections.map(\.data).joined())
+	var notFound: [MTGCardIdentifier] = Array(collections.compactMap(\.notFound).joined())
+	
+//	if !notFound.isEmpty {
+//		let retriedNotFoundCardGroups: [[Swiftfall.Card]] = notFound.chunked(by: 20).map { identifiers in
+//			let query = identifiers.compactMap(\.query).map { "(\($0))" }.joined(separator: " or ") + " prefer:newest game:paper"
+//			let fetchedCards: [Swiftfall.Card] = Array(Swiftfall.getCards(query: query, unique: true).compactMap { $0?.data }.joined())
+//			return fetchedCards
+//		}
+//		let retriedNotFoundCards = retriedNotFoundCardGroups.joined()
+//
+//		notFound = notFound.filter { identifier in
+//			if let card = retriedNotFoundCards[identifier] {
+//				cards.append(card)
+//				return false
+//			}
+//			return true
+//		}
+//	}
 	
 	guard !identifiers.isEmpty else {
 		throw PackError.noCards
 	}
 	
-	var notFound: [MTGCardIdentifier] = []
+//	var notFound: [MTGCardIdentifier] = []
 	var tokens: [MTGCard] = []
 	
 	let packs: [[MTGCard]] = groups.map { group in
@@ -3324,7 +3342,7 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String
 	
 }
 
-extension Sequence where Element == Swiftfall.Card {
+extension Collection where Element == Swiftfall.Card {
 	subscript(_ identifier: MTGCardIdentifier) -> Swiftfall.Card? {
 		let foundCard = first { (card) -> Bool in
 			switch identifier {
@@ -3339,9 +3357,9 @@ extension Sequence where Element == Swiftfall.Card {
 			case .illustrationID(let id):
 				return card.illustrationId == id.uuidString
 			case .name(let name):
-				return card.name?.lowercased() == name.lowercased()
+				return card.name?.hasPrefix(name.lowercased()) == true || card.cardFaces?.contains(where: { $0.name?.lowercased() == name.lowercased() }) == true
 			case .nameSet(name: let name, set: let set):
-				return card.name?.lowercased() == name.lowercased() && card.set.lowercased() == set.lowercased()
+				return card.name?.hasPrefix(name.lowercased()) == true || card.cardFaces?.contains(where: { $0.name?.lowercased() == name.lowercased() }) == true && card.set.lowercased() == set.lowercased()
 			case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set):
 				return card.collectorNumber.lowercased() == collectorNumber.lowercased() && card.set.lowercased() == set.lowercased()
 			}
@@ -3363,9 +3381,9 @@ extension MTGCardIdentifier {
 	var query: String? {
 		switch self {
 		case .name(let name):
-			return "!\"\(name)\""
+			return "\"\(name)\""
 		case .nameSet(name: let name, set: let set):
-			return "!\"\(name)\" set:\(set)"
+			return "\"\(name)\" set:\(set)"
 		case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set):
 			return "number:\(collectorNumber) set:\(set)"
 		default:

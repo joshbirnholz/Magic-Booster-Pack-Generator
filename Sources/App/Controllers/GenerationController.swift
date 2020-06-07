@@ -223,4 +223,28 @@ final class GeneratorController {
 		
 		return promise.futureResult
 	}
+	
+	func landPacks(_ req: Request) throws -> Future<String> {
+		let export: Bool = false
+		let set: String? = try? req.query.get(String.self, at: "set")
+		
+		let promise: Promise<String> = req.eventLoop.newPromise()
+		
+		DispatchQueue.global().async {
+			do {
+				if let set = set {
+					let packs = try generate(input: .scryfallSetCode, inputString: set, output: .landPack, export: export, boxCount: nil, prereleaseIncludePromoCard: nil, prereleaseIncludeLands: nil, prereleaseIncludeSheet: nil, prereleaseIncludeSpindown: nil, prereleaseBoosterCount: nil, includeExtendedArt: false, includeBasicLands: true, includeTokens: false, specialOptions: [], cardBack: nil)
+					promise.succeed(result: packs)
+				} else {
+					let packs = try allLandPacksSingleJSON(setCards: nil, specialOptions: [], export: export)
+					promise.succeed(result: packs)
+				}
+			} catch {
+				promise.fail(error: error)
+			}
+			
+		}
+		
+		return promise.futureResult
+	}
 }

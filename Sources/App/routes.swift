@@ -16,6 +16,9 @@ public func routes(_ router: Router) throws {
 	
 	router.get("card", "random", use: generatorController.singleCardRandom)
 	
+	router.get("landpacks", String.parameter, use: generatorController.landPacks)
+	router.get("landpacks", use: generatorController.landPacks)
+	
 	router.get(String.parameter, use: generatorController.boosterPack)
 	router.get("booster", String.parameter, use: generatorController.boosterPack)
 	router.get("boosterpack", String.parameter, use: generatorController.boosterPack)
@@ -28,6 +31,8 @@ public func routes(_ router: Router) throws {
 	router.get("pre", String.parameter, use: generatorController.prereleasePack)
 	
 	router.get("token", String.parameter, use: generatorController.completeToken)
+	
+	
 	
 	router.get("deck", use: generatorController.fullDeck)
 	router.post("deck", use: generatorController.fullDeck)

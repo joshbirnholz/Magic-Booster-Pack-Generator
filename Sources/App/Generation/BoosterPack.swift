@@ -74,6 +74,7 @@ public enum Output: Int, CaseIterable {
 	case boosterPack
 	case boosterBox
 	case prereleaseKit
+	case landPack
 	
 	var title: String {
 		switch self {
@@ -83,6 +84,8 @@ public enum Output: Int, CaseIterable {
 			return "Booster Box"
 		case .prereleaseKit:
 			return "Prerelease Pack"
+		case .landPack:
+			return "Land Pack"
 			//			case .allCards:
 			//				return "All Cards"
 		}
@@ -96,6 +99,8 @@ public enum Output: Int, CaseIterable {
 			return "Generate a booster box (usually 36 packs)."
 		case .prereleaseKit:
 			return "Generate a prerelease pack (6 boosters and a promo card)."
+		case .landPack:
+			return "Generate a pack of basic lands."
 			//			case .allCards:
 			//				return "Generate a deck with all of the input cards."
 		}
@@ -2496,6 +2501,93 @@ func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]],
 """
 }
 
+func allLandPacksSingleJSON(setCards: (cards: [MTGCard], setCode: String)?, specialOptions: [String], export: Bool) throws -> String {
+	let lands: [MTGCard] = try {
+		if let (cards, setCode) = setCards {
+			let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: true)
+			return processed.basicLands
+		} else {
+			return Swiftfall
+			.getCards(query: "type='basic land –'", unique: false)
+			.compactMap { $0?.data }
+			.joined()
+			.compactMap(MTGCard.init)
+		}
+	}()
+	
+	let landPacks = try landPacksJSON(basicLands: lands)
+	
+	let objectState = """
+		{
+		  "Name": "Bag",
+		  "Transform": {
+			"posX": -3.06584024,
+			"posY": 0.7009516,
+			"posZ": 1.23003662,
+			"rotX": 1.61583137E-06,
+			"rotY": -8.71582743E-05,
+			"rotZ": -2.39790438E-06,
+			"scaleX": 1.39999974,
+			"scaleY": 1.39999974,
+			"scaleZ": 1.39999974
+		  },
+		  "Nickname": "Land Packs",
+		  "Description": "",
+		  "GMNotes": "",
+		  "ColorDiffuse": {
+			"r": 0.7058823,
+			"g": 0.366520882,
+			"b": 0.0
+		  },
+		  "Locked": false,
+		  "Grid": true,
+		  "Snap": true,
+		  "IgnoreFoW": false,
+		  "Autoraise": true,
+		  "Sticky": true,
+		  "Tooltip": true,
+		  "GridProjection": false,
+		  "HideWhenFaceDown": false,
+		  "Hands": false,
+		  "MaterialIndex": -1,
+		  "MeshIndex": -1,
+		  "XmlUI": "",
+		  "LuaScript": "",
+		  "LuaScriptState": "",
+		  "ContainedObjects": [
+			\(landPacks.joined(separator: ",\n"))
+		  ],
+		  "GUID": "929456"
+		}
+		"""
+		
+		if !export {
+			return objectState
+		}
+		
+		return """
+		{
+		  "SaveName": "",
+		  "GameMode": "",
+		  "Gravity": 0.5,
+		  "PlayArea": 0.5,
+		  "Date": "",
+		  "Table": "",
+		  "Sky": "",
+		  "Note": "",
+		  "Rules": "",
+		  "XmlUI": "",
+		  "LuaScript": "",
+		  "LuaScriptState": "",
+		  "ObjectStates": [
+			\(objectState)
+		  ],
+		  "TabStates": {},
+		  "VersionNumber": ""
+		}
+	"""
+}
+
 func landPacksJSON(basicLands: [MTGCard]) throws -> [String] {
 	let plains = basicLands.filter { $0.name == "Plains" }
 	let islands = basicLands.filter { $0.name == "Island" }
@@ -2673,6 +2765,8 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		return try boosterPack(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, specialOptions: specialOptions, includeBasicLands: includeBasicLands, includeTokens: includeTokens)
 	case .prereleaseKit:
 		return try prereleaseKit(setName: setName, setCode: setCode ?? mtgCards.first?.set ?? inputString, cards: mtgCards, tokens: tokens, mode: mode, export: export, packCount: boxCount, includePromoCard: prereleaseIncludePromoCard, includeLands: prereleaseIncludeLands, includeSheet: prereleaseIncludeSheet, includeSpindown: prereleaseIncludeSpindown, boosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, specialOptions: specialOptions)
+	case .landPack:
+		return try allLandPacksSingleJSON(setCards: (cards: mtgCards, setCode: setCode ?? mtgCards.first?.set ?? inputString), specialOptions: specialOptions, export: export)
 	}
 }
 

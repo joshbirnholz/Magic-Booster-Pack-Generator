@@ -943,10 +943,12 @@ fileprivate struct CardInfo {
 	
 	/// frontState should be contained in allStates.
 	init?(offset: Int, currentState: MTGCard, allStates: [MTGCard]) {
+		var allStates = allStates.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
+		
 		guard let currentStateIndex = allStates.firstIndex(of: currentState) else { return nil }
 		
 		// fix names
-		let allStates: [MTGCard] = allStates.map { card in
+		allStates = allStates.map { card in
 			enum Difference {
 				case powerToughness
 				case color
@@ -2567,7 +2569,7 @@ fileprivate let prereleaseSheet = """
 }
 """
 
-public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, specialOptions: [String] = [], cardBack: URL? = nil) throws -> String {
+public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, includeBasicLands: Bool, includeTokens: Bool, specialOptions: [String] = [], cardBack: URL? = nil) throws -> String {
 	let mtgCards: [MTGCard]
 	let setName: String
 	let setCode: String?
@@ -2579,7 +2581,11 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		var allCards: [MTGCard]
 		(allCards, setName, setCode) = try cardsFromCockatriceJSON(json: inputString)
 		
-		tokens = allCards.separate { $0.layout == "token" || $0.typeLine?.lowercased().contains("emblem") == true || $0.typeLine?.lowercased().contains("token") == true }
+		if includeTokens {
+			tokens = allCards.separate { $0.layout == "token" || $0.typeLine?.lowercased().contains("emblem") == true || $0.typeLine?.lowercased().contains("token") == true }
+		} else {
+			tokens = []
+		}
 		
 		mtgCards = allCards
 		
@@ -2612,7 +2618,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			}()
 			
 			if let url = jsonURL, let data = try? Data(contentsOf: url), let string = String(data: data, encoding: .utf8) {
-				return try generate(input: .cockatriceJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt)
+				return try generate(input: .cockatriceJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens)
 			}
 		}
 		
@@ -2622,7 +2628,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		setCode = set.code
 		
 		let tokenCutoff = Date(timeIntervalSince1970: 1184284800) // Only sets released after this date include tokens
-		if let code = set.code, let tokenSet = try? Swiftfall.getSet(code: "t\(code)"), let releaseDate = set.releasedAt, releaseDate >= tokenCutoff {
+		if includeTokens, let code = set.code, let tokenSet = try? Swiftfall.getSet(code: "t\(code)"), let releaseDate = set.releasedAt, releaseDate >= tokenCutoff {
 			tokens = tokenSet.getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init)
 		} else {
 			tokens = []
@@ -2662,9 +2668,9 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 	
 	switch output {
 	case .boosterBox:
-		return try boosterBox(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, boxCount: boxCount, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, specialOptions: specialOptions)
+		return try boosterBox(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, boxCount: boxCount, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, specialOptions: specialOptions, includeBasicLands: includeBasicLands, includeTokens: includeTokens)
 	case .boosterPack:
-		return try boosterPack(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, specialOptions: specialOptions)
+		return try boosterPack(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, specialOptions: specialOptions, includeBasicLands: includeBasicLands, includeTokens: includeTokens)
 	case .prereleaseKit:
 		return try prereleaseKit(setName: setName, setCode: setCode ?? mtgCards.first?.set ?? inputString, cards: mtgCards, tokens: tokens, mode: mode, export: export, packCount: boxCount, includePromoCard: prereleaseIncludePromoCard, includeLands: prereleaseIncludeLands, includeSheet: prereleaseIncludeSheet, includeSpindown: prereleaseIncludeSpindown, boosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, specialOptions: specialOptions)
 	}
@@ -2724,7 +2730,7 @@ struct ProcessedCards {
 	var basicLands: [MTGCard]
 }
 
-fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [String]) throws -> ProcessedCards {
+fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBasicLands: Bool) throws -> ProcessedCards {
 	var mainCards = cards
 	
 	let basicLandSlotCards: [MTGCard] = { () -> [MTGCard] in
@@ -2732,12 +2738,14 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		case "grn", "rna":
 			return cards.filter { $0.typeLine?.lowercased().contains("gate") == true }
 		case "dgm":
+			guard includeBasicLands else { return [] }
 			return Swiftfall
 				.getCards(query: "(set:rtr or set:gtc) type:land -type:basic")
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
 		case "frf":
+			guard includeBasicLands else { return [] }
 			return Swiftfall
 				.getCards(query: "((set:ktk oracle:'search your library') or (set:frf oracle:'gain 1 life')) type:land")
 				.compactMap { $0?.data }
@@ -2752,18 +2760,21 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.joined()
 				.compactMap(MTGCard.init)
 		case "emn":
+			guard includeBasicLands else { return [] }
 			return Swiftfall
 				.getCards(query: "set:soi type:'basic land'", unique: true)
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
 		case "aer":
+			guard includeBasicLands else { return [] }
 			return Swiftfall
 				.getCards(query: "set:kld type:'basic land'", unique: true)
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
 		case "ogw":
+			guard includeBasicLands else { return [] }
 			return Swiftfall
 				.getCards(query: "set:bfz type:'basic land'", unique: true)
 				.compactMap { $0?.data }
@@ -2771,30 +2782,35 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.compactMap(MTGCard.init)
 				+ cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true && $0.typeLine?.lowercased().contains("—") == true }
 		case "bng", "jou":
+			guard includeBasicLands else { return [] }
 			return Swiftfall
 				.getCards(query: "set:ths type:'basic land'", unique: true)
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
 		case "gtc":
+			guard includeBasicLands else { return [] }
 			return Swiftfall
 				.getCards(query: "set:rtr type:'basic land'", unique: true)
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
 		case "dka":
+			guard includeBasicLands else { return [] }
 			return Swiftfall
 				.getCards(query: "set:isd type:'basic land'", unique: true)
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
 		case "wwk":
+			guard includeBasicLands else { return [] }
 			return Swiftfall
 				.getCards(query: "set:zen type:'basic land'", unique: true)
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
 		case "arb", "con":
+			guard includeBasicLands else { return [] }
 			return Swiftfall
 				.getCards(query: "set:ala type:'basic land'", unique: true)
 				.compactMap { $0?.data }
@@ -2802,18 +2818,21 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.compactMap(MTGCard.init)
 		case "iko":
 			let basicLands = mainCards.separate { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true }
+			guard includeBasicLands else { return [] }
 			let dualLands = mainCards.separate { $0.typeLine?.lowercased().contains("land") == true && $0.oracleText?.contains("enters the battlefield tapped") == true && $0.oracleText?.contains("gain 1 life") == true }
 			return basicLands + dualLands
 		case "mir", "vis", "5ed", "por", "wth", "tmp", "sth", "exo", "p02", "usg", "ulg", "6ed", "ptk", "uds", "mmq", "nem", "pcy", "inv", "pls", "7ed", "csp", "dis", "gpt", "rav", "9ed", "lrw", "mor", "shm", "eve", "apc", "ody", "tor", "jud", "ons", "lgn", "scg", "mrd", "dst", "5dn", "chk", "bok", "sok", "plc":
 			return []
 		default:
-			return mainCards.separate { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true }
+			let basicLands = mainCards.separate { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true }
+			guard includeBasicLands else { return [] }
+			return basicLands
 		}
 		}().filter { $0.isFoundInBoosters && !$0.isPromo }
 	
 	// Actual basic lands. Used when creating land packs
 	let basicLands: [MTGCard] = {
-		let defaultBasicLands = { basicLandSlotCards.filter { $0.typeLine?.contains("Basic") == true && $0.typeLine?.contains("Land") == true && $0.typeLine?.contains("—") == true } }() // Get basic lands with a type. This will find normal basic lands and basic snow lands, but not Wastes, which appears at Common rarity, not land rarity.
+		let defaultBasicLands = { basicLandSlotCards.filter { $0.typeLine?.contains("Basic") == true && $0.typeLine?.contains("Land") == true && $0.typeLine?.contains("—") == true && $0.frameEffects?.contains("showcase") != true } }() // Get basic lands with a type. This will find normal basic lands and basic snow lands, but not Wastes, which appears at Common rarity, not land rarity.
 		
 		switch setCode?.lowercased() ?? "" {
 		case "dgm":
@@ -2822,9 +2841,9 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
-		case "cns", "cn2":
-			return []
-		// TODO: Find lands for conspiracy.
+//		case "cns", "cn2":
+//			return []
+//		// TODO: Find lands for conspiracy.
 		case "thb":
 			// Use regular, non-Nyx basic lands that aren't found in boosters for THB.
 			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true && !$0.isFoundInBoosters && !$0.isPromo }
@@ -2997,7 +3016,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 						  basicLands: basicLands)
 }
 
-fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool, boxCount: Int?, includeExtendedArt: Bool, foilPolicy: FoilPolicy, specialOptions: [String]) throws -> String {
+fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool, boxCount: Int?, includeExtendedArt: Bool, foilPolicy: FoilPolicy, specialOptions: [String], includeBasicLands: Bool, includeTokens: Bool) throws -> String {
 	let count: Int = {
 		if let boxCount = boxCount, boxCount > 0 {
 			return boxCount
@@ -3023,12 +3042,12 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		return try boosterBag(setName: setName, setCode: setCode ?? "", boosterPacks: packs, tokens: [], export: export)
 	}
 	
-	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions)
+	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
 	
 	let packs: [[MTGCard]] = (1...count).map { _ in generatePack(rarities: processed.rarities,
 																 customSlotRarities: processed.customSlotRarities,
 																 basicLands: processed.basicLandsSlotCards,
-																 tokens: tokens + processed.tokens,
+																 tokens: includeTokens ? tokens + processed.tokens : [],
 																 showcaseRarities: processed.showcaseRarities,
 																 extendedArt: processed.extendedArtCards,
 																 meldResults: processed.meldResults,
@@ -3040,7 +3059,7 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 	return try boosterBag(setName: setName, setCode: setCode ?? "", boosterPacks: packs, tokens: tokens + processed.tokens, export: export)
 }
 
-fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool, includeExtendedArt: Bool, foilPolicy: FoilPolicy, specialOptions: [String]) throws -> String {
+fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool, includeExtendedArt: Bool, foilPolicy: FoilPolicy, specialOptions: [String], includeBasicLands: Bool, includeTokens: Bool) throws -> String {
 	if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
 		let cards = processMysteryBoosterCards(cards)
 		let pack = generateMysteryBooster(cards: cards)
@@ -3053,12 +3072,12 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 		return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack, tokens: [], export: export)
 	}
 	
-	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions)
+	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
 	
 	let pack = generatePack(rarities: processed.rarities,
 							customSlotRarities: processed.customSlotRarities,
 							basicLands: processed.basicLandsSlotCards,
-							tokens: tokens + processed.tokens,
+							tokens: includeTokens ? tokens + processed.tokens : [],
 							showcaseRarities: processed.showcaseRarities,
 							extendedArt: processed.extendedArtCards,
 							meldResults: processed.meldResults,
@@ -3091,7 +3110,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 			return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs, promoCard: promoCard, tokens: [], basicLands: basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: export)
 		}
 		
-		let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions)
+		let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: true)
 		
 		let packs: [[MTGCard]] = (1...boosterCount).map { _ in generatePack(rarities: processed.rarities,
 																 customSlotRarities: processed.customSlotRarities,
@@ -3255,22 +3274,22 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String
 	var cards = Array(collections.map(\.data).joined())
 	var notFound: [MTGCardIdentifier] = Array(collections.compactMap(\.notFound).joined())
 	
-//	if !notFound.isEmpty {
-//		let retriedNotFoundCardGroups: [[Swiftfall.Card]] = notFound.chunked(by: 20).map { identifiers in
-//			let query = identifiers.compactMap(\.query).map { "(\($0))" }.joined(separator: " or ") + " prefer:newest game:paper"
-//			let fetchedCards: [Swiftfall.Card] = Array(Swiftfall.getCards(query: query, unique: true).compactMap { $0?.data }.joined())
-//			return fetchedCards
-//		}
-//		let retriedNotFoundCards = retriedNotFoundCardGroups.joined()
-//
-//		notFound = notFound.filter { identifier in
-//			if let card = retriedNotFoundCards[identifier] {
-//				cards.append(card)
-//				return false
-//			}
-//			return true
-//		}
-//	}
+	if !notFound.isEmpty {
+		let retriedNotFoundCardGroups: [[Swiftfall.Card]] = notFound.chunked(by: 20).map { identifiers in
+			let query = identifiers.compactMap(\.query).map { "(\($0))" }.joined(separator: " or ") + " prefer:newest game:paper"
+			let fetchedCards: [Swiftfall.Card] = Array(Swiftfall.getCards(query: query, unique: true).compactMap { $0?.data }.joined())
+			return fetchedCards
+		}
+		let retriedNotFoundCards = retriedNotFoundCardGroups.joined()
+
+		notFound = notFound.filter { identifier in
+			if let card = retriedNotFoundCards[identifier] {
+				cards.append(card)
+				return false
+			}
+			return true
+		}
+	}
 	
 	guard !identifiers.isEmpty else {
 		throw PackError.noCards
@@ -3357,9 +3376,11 @@ extension Collection where Element == Swiftfall.Card {
 			case .illustrationID(let id):
 				return card.illustrationId == id.uuidString
 			case .name(let name):
-				return card.name?.hasPrefix(name.lowercased()) == true || card.cardFaces?.contains(where: { $0.name?.lowercased() == name.lowercased() }) == true
+				let name = name.lowercased()
+				return card.name?.lowercased().hasPrefix(name) == true || card.cardFaces?.contains(where: { $0.name?.lowercased().hasPrefix(name) == true }) == true
 			case .nameSet(name: let name, set: let set):
-				return card.name?.hasPrefix(name.lowercased()) == true || card.cardFaces?.contains(where: { $0.name?.lowercased() == name.lowercased() }) == true && card.set.lowercased() == set.lowercased()
+				let name = name.lowercased()
+				return card.name?.lowercased().hasPrefix(name) == true || card.cardFaces?.contains(where: { $0.name?.lowercased().hasPrefix(name) == true }) == true && card.set.lowercased() == set.lowercased()
 			case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set):
 				return card.collectorNumber.lowercased() == collectorNumber.lowercased() && card.set.lowercased() == set.lowercased()
 			}

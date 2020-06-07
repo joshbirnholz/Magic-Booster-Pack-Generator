@@ -25,6 +25,7 @@ Generates a booster pack for a given set.
 |export|Boolean|✔︎|If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
 |count|Integer|✔︎|The number of booster packs to generate. The default value is 1.|
 |extendedart|Boolean|✔︎|Whether or not to use extended-art cards, if available, in place of foils. The default value is true.|
+|lands|Boolean|✔︎|Whether or not to include basic lands in the booster packs. The default value is true.|
 
 Example: https://tts-magic-booster.herokuapp.com/iko?count=3
 
@@ -38,6 +39,7 @@ Generates a box of booster packs for a given set.
 |export|Boolean|✔︎|If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
 |count|Integer|✔︎|The number of booster packs to generate. The default value depends on the set (usually 36).|
 |extendedart|Boolean|✔︎|Whether or not to use extended-art cards, if available, in place of foils. The default value is true.|
+|lands|Boolean|✔︎|Whether or not to include basic lands in the booster packs. The default value is true.|
 
 Example: https://tts-magic-booster.herokuapp.com/box/thb
 

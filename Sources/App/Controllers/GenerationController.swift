@@ -17,12 +17,14 @@ final class GeneratorController {
 		let includeExtendedArt: Bool = (try? req.query.get(Bool.self, at: "extendedart")) ?? true
 		let set = try req.parameters.next(String.self)
 		let specialOptions = (try? req.query.get(String.self, at: "special").components(separatedBy: ",")) ?? []
+		let includeBasicLands: Bool = (try? req.query.get(Bool.self, at: "lands")) ?? true
+		let includeTokens: Bool = (try? req.query.get(Bool.self, at: "tokens")) ?? true
 		
 		let promise: Promise<String> = req.eventLoop.newPromise()
 		
 		DispatchQueue.global().async {
 			do {
-				let result = try generate(input: .scryfallSetCode, inputString: set, output: .boosterPack, export: export, includeExtendedArt: includeExtendedArt, specialOptions: specialOptions)
+				let result = try generate(input: .scryfallSetCode, inputString: set, output: .boosterPack, export: export, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, specialOptions: specialOptions)
 				promise.succeed(result: result)
 			} catch {
 				promise.fail(error: error)
@@ -37,6 +39,8 @@ final class GeneratorController {
 		let count = (try? req.query.get(Int.self, at: "count")) ?? (try? req.query.get(Int.self, at: "boosters"))
 		let includeExtendedArt: Bool = (try? req.query.get(Bool.self, at: "extendedart")) ?? true
 		let specialOptions = (try? req.query.get(String.self, at: "special").components(separatedBy: ",")) ?? []
+		let includeBasicLands: Bool = (try? req.query.get(Bool.self, at: "lands")) ?? true
+		let includeTokens: Bool = (try? req.query.get(Bool.self, at: "tokens")) ?? true
 		
 		if count == 1 {
 			return try boosterPack(req)
@@ -48,7 +52,7 @@ final class GeneratorController {
 		
 		DispatchQueue.global().async {
 			do {
-				let result = try generate(input: .scryfallSetCode, inputString: set, output: .boosterBox, export: export, boxCount: count, includeExtendedArt: includeExtendedArt, specialOptions: specialOptions)
+				let result = try generate(input: .scryfallSetCode, inputString: set, output: .boosterBox, export: export, boxCount: count, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, specialOptions: specialOptions)
 				promise.succeed(result: result)
 			} catch {
 				promise.fail(error: error)
@@ -76,7 +80,7 @@ final class GeneratorController {
 		
 		DispatchQueue.global().async {
 			do {
-				let result = try generate(input: .scryfallSetCode, inputString: set, output: .prereleaseKit, export: export, boxCount: count, prereleaseIncludePromoCard: includePromo, prereleaseIncludeLands: includeLands, prereleaseIncludeSheet: includeSheet, prereleaseIncludeSpindown: includeSpindown, prereleaseBoosterCount: boosterCount, includeExtendedArt: includeExtendedArt, specialOptions: specialOptions)
+				let result = try generate(input: .scryfallSetCode, inputString: set, output: .prereleaseKit, export: export, boxCount: count, prereleaseIncludePromoCard: includePromo, prereleaseIncludeLands: includeLands, prereleaseIncludeSheet: includeSheet, prereleaseIncludeSpindown: includeSpindown, prereleaseBoosterCount: boosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: true, includeTokens: true, specialOptions: specialOptions)
 				promise.succeed(result: result)
 			} catch {
 				promise.fail(error: error)

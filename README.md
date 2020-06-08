@@ -14,20 +14,20 @@ Packs are meant to have cards that match what you'd really find in booster packs
 |/card/random|Get a random card|https://tts-magic-booster.herokuapp.com/card/random|
 |/token/:set|Get a token that can be every token in a set|https://tts-magic-booster.herokuapp.com/token/iko|
 |/landpacks|Get a pack of basic lands|https://tts-magic-booster.herokuapp.com/landpacks|
-|/token/:set|Get a card that is every token in a set|https://tts-magic-booster.herokuapp.com/token/c20|
 |/deck|Load an entire deck list|https://tts-magic-booster.herokuapp.com/deck|
 
 ### GET /:set
 
 Generates a booster pack for a given set.
 
-|Parameter|Type|Optional|Details|
+|Parameter|Type|Required|Details|
 |---|---|---|---|
-|:set|String||The set name or code.|
-|export|Boolean|✔︎|If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
-|count|Integer|✔︎|The number of booster packs to generate. The default value is 1.|
-|extendedart|Boolean|✔︎|Whether or not to use extended-art cards, if available, in place of foils. The default value is true.|
-|lands|Boolean|✔︎|Whether or not to include basic lands in the booster packs. The default value is true.|
+|:set|String|✔︎|The set name or code.|
+|export|Boolean||If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
+|count|Integer||The number of booster packs to generate. The default value is 1.|
+|extendedart|Boolean||Whether or not to use extended-art cards, if available, in place of foils. The default value is true.|
+|lands|Boolean||Whether or not to include basic lands in the booster packs. The default value is true.|
+|token|Boolean||Whether or not to include a token in the booster packs. The default value is true.|
 
 Example: https://tts-magic-booster.herokuapp.com/iko?count=3
 
@@ -35,13 +35,14 @@ Example: https://tts-magic-booster.herokuapp.com/iko?count=3
 
 Generates a box of booster packs for a given set.
 
-|Parameter|Type|Optional|Details|
+|Parameter|Type|Required|Details|
 |---|---|---|---|
-|:set|String||The set name or code.|
-|export|Boolean|✔︎|If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
-|count|Integer|✔︎|The number of booster packs to generate. The default value depends on the set (usually 36).|
-|extendedart|Boolean|✔︎|Whether or not to use extended-art cards, if available, in place of foils. The default value is true.|
-|lands|Boolean|✔︎|Whether or not to include basic lands in the booster packs. The default value is true.|
+|:set|String|✔︎|The set name or code.|
+|export|Boolean||If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
+|count|Integer||The number of booster packs to generate. The default value depends on the set (usually 36).|
+|extendedart|Boolean||Whether or not to use extended-art cards, if available, in place of foils. The default value is true.|
+|lands|Boolean||Whether or not to include basic lands in the booster packs. The default value is true.|
+|token|Boolean||Whether or not to include a token in the booster packs. The default value is true.|
 
 Example: https://tts-magic-booster.herokuapp.com/box/thb
 
@@ -49,29 +50,29 @@ Example: https://tts-magic-booster.herokuapp.com/box/thb
 
 Generates a number of prerelease packs for a given set.
 
-|Parameter|Type|Optional|Details|
+|Parameter|Type|Required|Details|
 |---|---|---|---|
-|:set|String||The set name or code.|
-|export|Boolean|✔︎|If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
-|count|Integer|✔︎|The number of prerelease packs to generate. The default value is 1.|
-|boosters|Integer|✔︎|The number of booster packs to include in each prerelease pack. The default value is 6.|
-|promo|Boolean|✔︎|Whether or not to include a promo card in each prerelease pack. The default value is true.|
-|sheet|Boolean|✔︎|Whether or not to include a "Building a Prerelease Deck" sheet in each prerelease pack. The default value is true.|
-|lands|Boolean|✔︎|Whether or not to include a pack of basic lands in each prerelease pack. The default value is true.|
-|spindown|Boolean|✔︎|Whether or not to include a spindown die in each prerelease pack. The default value is true.|
-|extendedart|Boolean|✔︎|Whether or not to use extended-art cards, if available, in place of foils. The default value is true.|
+|:set|String|✔︎|The set name or code.|
+|export|Boolean||If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
+|count|Integer||The number of prerelease packs to generate. The default value is 1.|
+|boosters|Integer||The number of booster packs to include in each prerelease pack. The default value is 6.|
+|promo|Boolean||Whether or not to include a promo card in each prerelease pack. The default value is true.|
+|sheet|Boolean||Whether or not to include a "Building a Prerelease Deck" sheet in each prerelease pack. The default value is true.|
+|lands|Boolean||Whether or not to include a pack of basic lands in each prerelease pack. The default value is true.|
+|spindown|Boolean||Whether or not to include a spindown die in each prerelease pack. The default value is true.|
+|extendedart|Boolean||Whether or not to use extended-art cards, if available, in place of foils. The default value is true.|
 
 Example: https://tts-magic-booster.herokuapp.com/pre/eld?count=10&sheet=false
 
 ### GET /card/named
 
-Returns a single card with a given name. A value must be provided for either the `fuzzy` parameter or the `exact` parameter.
+Returns a single card with a given name. A value is required for either the `fuzzy` parameter or the `exact` parameter.
 
-|Parameter|Type|Optional|Details|
+|Parameter|Type|Required|Details|
 |---|---|---|---|
-|export|Boolean|✔︎|If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
-|fuzzy|String|✔︎|A fuzzy name of a card.|
-|exact|String|✔︎|An exact name of a card.|
+|export|Boolean||If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
+|fuzzy|String||A fuzzy name of a card.|
+|exact|String||An exact name of a card.|
 
 Example: https://tts-magic-booster.herokuapp.com/card/named?fuzzy=under+dream
 
@@ -79,11 +80,11 @@ Example: https://tts-magic-booster.herokuapp.com/card/named?fuzzy=under+dream
 
 Returns a single card with the given set code and collector number.
 
-|Parameter|Type|Optional|Details|
+|Parameter|Type|Required|Details|
 |---|---|---|---|
-|export|Boolean|✔︎|If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
-|:code|String|✔︎|The set code.|
-|:number|String|✔︎|The collector number.|
+|export|Boolean||If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
+|:code|String||The set code.|
+|:number|String||The collector number.|
 
 Example: https://tts-magic-booster.herokuapp.com/card/thb/253
 
@@ -91,10 +92,10 @@ Example: https://tts-magic-booster.herokuapp.com/card/thb/253
 
 Returns a single random card.
 
-|Parameter|Type|Optional|Details|
+|Parameter|Type|Required|Details|
 |---|---|---|---|
-|export|Boolean|✔︎|If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
-|q|String|✔︎|A scryfall search query. If provided, a random card matching the query will be returned.
+|export|Boolean||If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
+|q|String||A scryfall search query. If provided, a random card matching the query will be returned.
 
 Example: https://tts-magic-booster.herokuapp.com/card/random  
 Example: https://tts-magic-booster.herokuapp.com/card/random?q=cmc:6+type:creature  
@@ -104,10 +105,10 @@ Example: https://tts-magic-booster.herokuapp.com/card/random?q=o:companion+set:i
 
 Returns a token that can be right-clicked in Tabletop Simulator to be changed to any token in the specified set.
 
-|Parameter|Type|Optional|Details|
+|Parameter|Type|Required|Details|
 |---|---|---|---|
-|:set|String||The set for which a token should be created.|
-|export|Boolean|✔︎|If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
+|:set|String|✔︎|The set for which a token should be created.|
+|export|Boolean||If true, the returned JSON can be saved to a file and imported as a Saved Object. If false, the returned JSON can be used to spawn an object directly via scripting. The default value is true.|
 
 Example: https://tts-magic-booster.herokuapp.com/token/c20
 
@@ -115,9 +116,9 @@ Example: https://tts-magic-booster.herokuapp.com/token/c20
 
 Returns a pack of 20 of each basic land. The returned JSON can only be used to spawn an object directly via scripting.
 
-|Parameter|Type|Optional|Details|
+|Parameter|Type|Required|Details|
 |---|---|---|---|
-|set|String|✔︎|The set for which basic lands should be taken.|
+|set|String||The set for which basic lands should be taken.|
 
 Example: https://tts-magic-booster.herokuapp.com/landpacks?set=thb
 
@@ -125,9 +126,9 @@ Example: https://tts-magic-booster.herokuapp.com/landpacks?set=thb
 
 Returns a deck of cards. The request must have a body containing the requested decklist in plaintext card list or Arena format. The returned JSON can be saved to a file and imported as a Saved Object.
 
-|Parameter|Type|Optional|Details|
+|Parameter|Type|Required|Details|
 |---|---|---|---|
-|back|URL|✔︎|The URL of an image to use as the card back.|
+|back|URL||The URL of an image to use as the card back.|
 
 Example: https://tts-magic-booster.herokuapp.com/deck
 

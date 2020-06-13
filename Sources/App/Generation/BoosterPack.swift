@@ -3352,7 +3352,18 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 
 func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String {
 	let groups = DeckParser.parse(deckList: decklist).filter { !$0.cardCounts.isEmpty }
-	let identifiers = Array(Set(groups.map { $0.cardCounts }.joined().map { $0.identifier }))
+	let identifiers: [MTGCardIdentifier] = Array(Set(groups.map { $0.cardCounts }.joined().map {
+		let identifier = $0.identifier
+		
+		switch identifier {
+		case .nameSet(name: let name, set: let set) where set.lowercased() == "dar":
+			return .nameSet(name: name, set: "dom")
+		case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set) where set.lowercased() == "dar":
+			return .collectorNumberSet(collectorNumber: collectorNumber, set: "dom")
+		default:
+			return identifier
+		}
+	}))
 	
 	guard !identifiers.isEmpty else {
 		throw PackError.emptyInput

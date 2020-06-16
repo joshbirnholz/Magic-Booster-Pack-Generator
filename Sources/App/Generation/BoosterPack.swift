@@ -2991,7 +2991,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
-		case "iko":
+		case "iko", "m21":
 			let basicLands = mainCards.separateAll { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true }
 			guard includeBasicLands else { return [] }
 			let dualLands = mainCards.separateAll { $0.typeLine?.lowercased().contains("land") == true && $0.oracleText?.contains("enters the battlefield tapped") == true && $0.oracleText?.contains("gain 1 life") == true }

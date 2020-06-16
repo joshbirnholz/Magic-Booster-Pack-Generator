@@ -47,7 +47,7 @@ extension Array {
 	/// Removes all the elements that satisfy the given predicate, and returns a new array containing the removed elements.
 	/// - Parameter shouldBeRemoved: A closure that takes an element of the sequence as its argument and returns a Boolean value indicating whether the element should be removed from the array.
 	/// - Returns: The removed elements.
-	mutating func separate(by shouldBeRemoved: (Element) throws -> Bool) rethrows -> [Element] {		
+	mutating func separateAll(where shouldBeRemoved: (Element) throws -> Bool) rethrows -> [Element] {		
 		var separation: [Element] = []
 		for (index, element) in enumerated().reversed() {
 			if try shouldBeRemoved(element) {
@@ -62,5 +62,26 @@ extension Array {
 		return stride(from: 0, to: self.count, by: chunkSize).map {
 			Array(self[$0..<Swift.min($0 + chunkSize, self.count)])
 		}
+	}
+}
+
+extension Optional where Wrapped: StringProtocol {
+	func contains<T: StringProtocol>(_ other: T) -> Bool {
+		guard let value = self else { return false }
+		return value.contains(other)
+	}
+}
+
+extension Optional where Wrapped: Collection, Wrapped.Element: Equatable {
+	func contains(_ element: Wrapped.Element) -> Bool {
+		guard let value = self else { return false }
+		return value.contains(element)
+	}
+}
+
+extension Optional where Wrapped: Collection {
+	func contains(where predicate: (Wrapped.Element) throws -> Bool) rethrows -> Bool {
+		guard let value = self else { return false }
+		return try value.contains(where: predicate)
 	}
 }

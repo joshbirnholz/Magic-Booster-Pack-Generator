@@ -150,4 +150,8 @@ public extension MTGCard {
 		return false
 //		return isFoilAvailable && collectorNumber.hasSuffix("★")
 	}
+	
+	var isShowcase: Bool {
+		frameEffects?.contains("showcase") == true
+	}
 }

@@ -2594,7 +2594,7 @@ func allLandPacksSingleJSON(setCards: (cards: [MTGCard], setCode: String)?, spec
 		}
 	}()
 	
-	let landPacks = try landPacksJSON(basicLands: lands)
+	let landPacks = try landPacksJSON(basicLands: lands).reversed()
 	
 	let objectState = """
 		{
@@ -3464,28 +3464,36 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String
 			return nil
 		}
 	}
-	var cards = Array(collections.map(\.data).joined())
-	var notFound: [MTGCardIdentifier] = Array(collections.compactMap(\.notFound).joined())
+	let cards = Array(collections.map(\.data).joined())
+	let notFound: [MTGCardIdentifier] = Array(collections.compactMap(\.notFound).joined())
 	
-	if !notFound.isEmpty {
-		let retriedNotFoundCardGroups: [[Swiftfall.Card]] = notFound.chunked(by: 20).map { identifiers in
-			let query = identifiers.compactMap(\.query).map { "(\($0))" }.joined(separator: " or ") + " prefer:newest game:paper"
-			let fetchedCards: [Swiftfall.Card] = Array(Swiftfall.getCards(query: query, unique: true).compactMap { $0?.data }.joined())
-			return fetchedCards
-		}
-		let retriedNotFoundCards = retriedNotFoundCardGroups.joined()
-
-		notFound = notFound.filter { identifier in
-			if let card = retriedNotFoundCards[identifier] {
-				cards.append(card)
-				return false
-			}
-			return true
-		}
-	}
+//	if !notFound.isEmpty {
+//		let retriedNotFoundCardGroups: [[Swiftfall.Card]] = notFound.chunked(by: 20).map { identifiers in
+//			let query = identifiers.compactMap(\.query).map { "(\($0))" }.joined(separator: " or ") + " prefer:newest game:paper"
+//			let fetchedCards: [Swiftfall.Card] = Array(Swiftfall.getCards(query: query, unique: true).compactMap { $0?.data }.joined())
+//			return fetchedCards
+//		}
+//		let retriedNotFoundCards = retriedNotFoundCardGroups.joined()
+//
+//		notFound = notFound.filter { identifier in
+//			if let card = retriedNotFoundCards[identifier] {
+//				cards.append(card)
+//				return false
+//			}
+//			return true
+//		}
+//	}
 	
 	guard !identifiers.isEmpty else {
 		throw PackError.noCards
+	}
+	
+	guard notFound.isEmpty else {
+		throw PackError.noCardFound(String(describing: notFound.map { String(describing: $0) }.joined(separator: ", ")))
+	}
+	
+	guard cards.count == identifiers.count else {
+		throw PackError.wrongNumberOfCards
 	}
 	
 //	var notFound: [MTGCardIdentifier] = []
@@ -3493,10 +3501,10 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String
 	
 	let packs: [[MTGCard]] = groups.map { group in
 		return group.cardCounts.reduce(into: [MTGCard]()) { (deck, cardCount) in
-			guard let card = cards[cardCount.identifier] else {
-				notFound.append(cardCount.identifier)
+			guard let index = identifiers.firstIndex(of: cardCount.identifier) else {
 				return
 			}
+			let card = cards[index]
 			if card.layout == "token" || card.layout == "emblem" {
 				tokens.append(contentsOf: Array(repeating: MTGCard(card), count: cardCount.count))
 			} else {
@@ -3505,9 +3513,6 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String
 		}
 	}
 	
-	guard notFound.isEmpty else {
-		throw PackError.noCardFound(String(describing: notFound.map { String(describing: $0) }.joined(separator: ", ")))
-	}
 	let tokenIdentifiers = Set(cards.compactMap { $0.allParts?.compactMap { $0.component == "token" ? $0.id : nil } }.joined()).map { MTGCardIdentifier.id($0) }
 	
 	if !tokenIdentifiers.isEmpty {
@@ -3570,10 +3575,10 @@ extension Collection where Element == Swiftfall.Card {
 				return card.illustrationId == id.uuidString
 			case .name(let name):
 				let name = name.lowercased()
-				return card.name?.lowercased().hasPrefix(name) == true || card.cardFaces?.contains(where: { $0.name?.lowercased().hasPrefix(name) == true }) == true
+				return card.name?.lowercased() == name || card.cardFaces?.contains(where: { $0.name?.lowercased() == name }) == true
 			case .nameSet(name: let name, set: let set):
 				let name = name.lowercased()
-				return card.name?.lowercased().hasPrefix(name) == true || card.cardFaces?.contains(where: { $0.name?.lowercased().hasPrefix(name) == true }) == true && card.set.lowercased() == set.lowercased()
+				return (card.name?.lowercased() == name || card.cardFaces?.contains(where: { $0.name?.lowercased() == name }) == true) && card.set.lowercased() == set.lowercased()
 			case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set):
 				return card.collectorNumber.lowercased() == collectorNumber.lowercased() && card.set.lowercased() == set.lowercased()
 			}

@@ -1566,19 +1566,8 @@ func allTokensForSet(setCode: String) throws -> [MTGCard] {
 	return cards
 }
 
-func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], names: [String?]? = nil, tokens: [MTGCard], inPack: Bool = true, export: Bool, cardBack: URL? = nil) throws -> String {
-	
-	let names: [String?] = names ?? Array(repeating: String?.none, count: boosterPacks.count)
-	let packs = zip(boosterPacks, names)
-	let boosterPackString = try packs.map { cards, name in
-		if cards.count == 1, let card = cards.first {
-			return try singleCard(card, tokens: tokens, facedown: false, export: false)
-		} else {
-			return try boosterPackJSON(setName: setName, setCode: setCode, name: name, cards: cards, tokens: tokens, inPack: inPack, cardBack: cardBack)
-		}
-	}.joined(separator: ",\n")
-	
-	let objectState = """
+func bag(objectStates: [ObjectStateJSON], nickname: String) -> ObjectStateJSON {
+	return """
 	{
 	  "Name": "Bag",
 	  "Transform": {
@@ -1592,7 +1581,7 @@ func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], nam
 		"scaleY": 1.0,
 		"scaleZ": 1.0
 	  },
-	  "Nickname": "\(setName)",
+	  "Nickname": "\(nickname)",
 	  "Description": "",
 	  "GMNotes": "",
 	  "ColorDiffuse": {
@@ -1616,16 +1605,14 @@ func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], nam
 	  "LuaScript": "",
 	  "LuaScriptState": "",
 	  "ContainedObjects": [
-		\(boosterPackString)
+		\(objectStates.joined(separator: ",\n"))
 	  ],
 	  "GUID": "929456"
 	}
 	"""
-	
-	if !export {
-		return objectState
-	}
-	
+}
+
+func wrapObjectStateInSaveFile(_ objectState: ObjectStateJSON) -> String {
 	return """
 	{
 	  "SaveName": "",
@@ -1646,7 +1633,28 @@ func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], nam
 	  "TabStates": {},
 	  "VersionNumber": ""
 	}
-"""
+	"""
+}
+
+func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], names: [String?]? = nil, tokens: [MTGCard], inPack: Bool = true, export: Bool, cardBack: URL? = nil) throws -> String {
+	
+	let names: [String?] = names ?? Array(repeating: String?.none, count: boosterPacks.count)
+	let packs = zip(boosterPacks, names)
+	let boosterPacks: [ObjectStateJSON] = try packs.map { cards, name in
+		if cards.count == 1, let card = cards.first {
+			return try singleCard(card, tokens: tokens, facedown: false, export: false)
+		} else {
+			return try boosterPackJSON(setName: setName, setCode: setCode, name: name, cards: cards, tokens: tokens, inPack: inPack, cardBack: cardBack)
+		}
+	}
+	
+	let objectState = bag(objectStates: boosterPacks, nickname: setName)
+	
+	if !export {
+		return objectState
+	}
+	
+	return wrapObjectStateInSaveFile(objectState)
 }
 
 func checkIfFileExists(at url: URL, timeout: TimeInterval = 1.0, completion: @escaping (Bool) -> Void) {
@@ -2913,7 +2921,16 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		case .boosterPack:
 			return try generateJumpStartPack(export: export, cardBack: cardBack)
 		case .boosterBox:
-			throw PackError.unsupported
+			let count = boxCount ?? 24
+			let packs: [ObjectStateJSON] = try (0 ..< count).map { _ in try generateJumpStartPack(export: false, cardBack: cardBack) }
+			
+			let b = bag(objectStates: packs, nickname: "JumpStart Booster Box")
+			
+			if export {
+				return wrapObjectStateInSaveFile(b)
+			} else {
+				return b
+			}
 		case .prereleaseKit:
 			throw PackError.unsupported
 		case .landPack:

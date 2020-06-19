@@ -1,0 +1,17 @@
+1 Carrion Grub (M21) 92
+1 Crow of Dark Tidings (JMP) 221
+1 Crypt Lurker (M21) 93
+1 Eliminate (M21) 97
+1 Funeral Rites (JMP) 235
+1 Gloom Sower (M21) 100
+1 Goremand (M21) 101
+1 Miasmic Mummy (JMP) 256
+1 Mire Triton (JMP) 257
+1 Rise Again (M21) 119
+1 Rise of the Dark Realms (JMP) 271
+1 Soul Salvage (JMP)
+2 Swamp (M21) 266
+2 Swamp (M21) 267
+2 Swamp (M21) 268
+1 Swamp (JMP) 56
+1 Thriving Moor (JMP) 37

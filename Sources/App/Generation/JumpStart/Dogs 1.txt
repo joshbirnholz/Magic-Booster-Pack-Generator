@@ -1,0 +1,17 @@
+1 Affa Guard Hound (JMP) 81
+1 Alpine Watchdog (M21) 2
+1 Cathar's Companion (JMP) 94
+1 Feat of Resistance (M21) 19
+1 Pacifism (JMP) 125
+1 Pack Leader (M21) 29
+2 Plains (M21) 260
+2 Plains (M21) 261
+2 Plains (M21) 262
+1 Plains (JMP) 45
+1 Rambunctious Mutt (M21) 30
+1 Release the Dogs (JMP) 4
+1 Secure the Scene (M21) 35
+1 Selfless Savior (M21) 36
+1 Supply Runners (JMP) 7
+1 Thriving Heath (JMP) 35
+1 Trusty Retriever (JMP) 8

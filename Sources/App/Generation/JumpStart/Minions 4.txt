@@ -1,0 +1,17 @@
+1 Dutiful Attendant (JMP) 226
+1 Eliminate (M21) 97
+1 Fetid Imp (M21) 98
+1 Ghoulcaller Gisa (JMP) 236
+1 Ghoulcaller's Accomplice (JMP) 237
+1 Goremand (M21) 101
+1 Innocent Blood (JMP) 244
+1 Liliana's Devotee (M21) 109
+1 Nocturnal Feeder (JMP) 16
+1 Shambling Goblin (JMP) 277
+2 Swamp (M21) 266
+2 Swamp (M21) 267
+2 Swamp (M21) 268
+1 Swamp (JMP) 54
+1 Thriving Moor (JMP) 37
+1 Village Rites (M21) 126
+1 Witch's Cauldron (M21) 129

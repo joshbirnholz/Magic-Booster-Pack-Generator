@@ -1,0 +1,17 @@
+1 Exclude (JMP) 152
+2 Island (M21) 263
+2 Island (M21) 264
+2 Island (M21) 265
+1 Island (M21) 310
+1 Leave in the Dust (JMP) 156
+1 Opt (M21) 59
+1 Prescient Chimera (JMP) 164
+1 Sage's Row Savant (JMP) 171
+1 Talrand's Invocation (JMP) 182
+1 Teferi's Ageless Insight (M21) 76
+1 Teferi's Protege (M21) 77
+1 Teferi's Tutelage (M21) 78
+1 Teferi, Master of Time (M21) 75
+1 Thriving Isle (JMP) 36
+1 Tolarian Kraken (M21) 80
+1 Vodalian Arcanist (M21) 83

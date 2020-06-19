@@ -1,0 +1,16 @@
+1 Bake into a Pie (JMP) 201
+1 Bloodhunter Bat (JMP) 210
+1 Bogbrew Witch (JMP) 211
+1 Bubbling Cauldron (JMP) 460
+1 Cauldron Familiar (JMP) 216
+2 Festering Newt (JMP) 234
+1 Finishing Blow (M21) 99
+1 Malakir Familiar (JMP) 253
+2 Swamp (M21) 266
+2 Swamp (M21) 267
+2 Swamp (M21) 268
+1 Swamp (JMP) 59
+1 Tempting Witch (JMP) 283
+1 Thriving Moor (JMP) 37
+1 Witch of the Moors (JMP) 18
+1 Witch's Cauldron (M21) 129

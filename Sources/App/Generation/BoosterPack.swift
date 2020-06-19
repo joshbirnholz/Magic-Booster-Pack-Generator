@@ -829,6 +829,145 @@ func generatePlanarChaosPack(normalRarities: [MTGCard.Rarity: [MTGCard]], colors
 	return pack
 }
 
+func generateJumpStartPack(export: Bool, cardBack: URL?) throws -> ObjectStateJSON {
+	let jumpstartDeckListURLs: [URL] = try! {
+		#if canImport(Vapor)
+		let directory = DirectoryConfig.detect()
+		let jumpstartDirectory = "Sources/App/Generation/JumpStart"
+		let jumpstartDirectoryURL = URL(fileURLWithPath: directory.workDir)
+			.appendingPathComponent(jumpstartDirectory, isDirectory: true)
+		return try FileManager.default.contentsOfDirectory(at: jumpstartDirectoryURL, includingPropertiesForKeys: nil)
+		#else
+		guard let urls = Bundle.main.urls(forResourcesWithExtension: "txt", subdirectory: "JumpStart") else {
+			throw PackError.unsupported
+		}
+		return urls
+		#endif
+	}()
+	
+	guard let deckListURL = jumpstartDeckListURLs.randomElement() else {
+		throw PackError.unsupported
+	}
+	
+	let contents = try String(contentsOf: deckListURL)
+	
+	let deckList = try deck(decklist: contents, export: false, cardBack: cardBack, includeTokens: false)
+	
+	let setCode = "jmp"
+	
+	var packTextureURL = URL(string: "http://josh.birnholz.com/tts/resources/pack/\(setCode).jpg")!
+	let exists = packTexturesExist[setCode] ?? fileExists(at: packTextureURL)
+	packTexturesExist[setCode] = exists
+	if !exists {
+		print("No pack texture for \(setCode), using default")
+		packTextureURL = URL(string: "http://josh.birnholz.com/tts/resources/pack/default.jpg")!
+	} else {
+		print("Found pack texture for \(setCode)")
+	}
+	
+	let bagLuaScript = """
+	function onObjectLeaveContainer(bag, object)
+	  if (bag.getGUID() == self.getGUID()) then
+	    destroyObject(bag)
+	  end
+	end
+
+	function filterObjectEnter(object)
+	  return false
+	end
+	""".replacingOccurrences(of: "\n", with: "\\n")
+	
+	let objectState = """
+	{
+	  "Name": "Custom_Model_Bag",
+	  "Transform": {
+		"posX": -5.75182,
+		"posY": 0.960000038,
+		"posZ": 1.48507118,
+		"rotX": -3.88456328E-07,
+		"rotY": 179.672028,
+		"rotZ": -3.12079976E-07,
+		"scaleX": 1.0,
+		"scaleY": 1.0,
+		"scaleZ": 1.0
+	  },
+	  "Nickname": "JumpStart Booster Pack",
+	  "Description": "",
+	  "GMNotes": "",
+	  "ColorDiffuse": {
+		"r": 1.0,
+		"g": 1.0,
+		"b": 1.0
+	  },
+	  "Locked": false,
+	  "Grid": true,
+	  "Snap": true,
+	  "IgnoreFoW": false,
+	  "Autoraise": true,
+	  "Sticky": true,
+	  "Tooltip": true,
+	  "GridProjection": false,
+	  "HideWhenFaceDown": false,
+	  "Hands": false,
+	  "MaterialIndex": -1,
+	  "MeshIndex": -1,
+	  "CustomMesh": {
+	  "MeshURL": "http://josh.birnholz.com/tts/resources/pack/MagicPack_\(Bool.random() ? 1 : 2).obj",
+		"DiffuseURL": "\(packTextureURL)",
+		"NormalURL": "http://josh.birnholz.com/tts/resources/pack/NormalMap_CardPack.png",
+		"ColliderURL": "",
+		"Convex": true,
+		"MaterialIndex": 0,
+		"TypeIndex": 6,
+		"CustomShader": {
+		  "SpecularColor": {
+			"r": 1.0,
+			"g": 1.0,
+			"b": 1.0
+		  },
+		  "SpecularIntensity": 0.5,
+		  "SpecularSharpness": 3.93060017,
+		  "FresnelStrength": 0.8772789
+		},
+		"CastShadows": true
+	  },
+	  "XmlUI": "",
+	  "LuaScript": "\(bagLuaScript)",
+	  "LuaScriptState": "",
+	  "ContainedObjects": [
+		\(deckList)
+	  ],
+	  "GUID": "d944ee"
+	}
+	"""
+	
+	if !export {
+		return objectState
+	}
+	
+	return """
+	{
+	  "SaveName": "",
+	  "GameMode": "",
+	  "Gravity": 0.5,
+	  "PlayArea": 0.5,
+	  "Date": "",
+	  "Table": "",
+	  "Sky": "",
+	  "Note": "",
+	  "Rules": "",
+	  "XmlUI": "",
+	  "LuaScript": "",
+	  "LuaScriptState": "",
+	  "ObjectStates": [
+		\(objectState)
+	  ],
+	  "TabStates": {},
+	  "VersionNumber": ""
+	}
+	"""
+}
+
 fileprivate struct CardInfo {
 	private static let defaultBack = URL(string: "https://img.scryfall.com/card_backs/image/normal/0a/0aeebaf5-8c7d-4636-9e82-8c27447861f7.jpg")!
 	private static let tokenBack = URL(string: "http://josh.birnholz.com/tts/tback.jpg")!
@@ -2769,6 +2908,17 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		} catch {
 			print(error)
 		}
+	case .scryfallSetCode where inputString.lowercased() == "jmp" || inputString.lowercased() == "jumpstart":
+		switch output {
+		case .boosterPack:
+			return try generateJumpStartPack(export: export, cardBack: cardBack)
+		case .boosterBox:
+			throw PackError.unsupported
+		case .prereleaseKit:
+			throw PackError.unsupported
+		case .landPack:
+			throw PackError.unsupported
+		}
 	case .scryfallSetCode:
 		let customSets = [
 			"net": "net",
@@ -2792,6 +2942,8 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 				return try generate(input: .cockatriceJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens)
 			}
 		}
+		
+		
 		
 		let set = try Swiftfall.getSet(code: inputString)
 		mtgCards = set.getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init)
@@ -3431,7 +3583,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 	"""
 }
 
-func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String {
+func deck(decklist: String, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true) throws -> String {
 	let groups = DeckParser.parse(deckList: decklist).filter { !$0.cardCounts.isEmpty }
 	let identifiers: [MTGCardIdentifier] = Array(Set(groups.map { $0.cardCounts }.joined().map {
 		let identifier = $0.identifier
@@ -3484,7 +3636,7 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String
 //		}
 //	}
 	
-	guard !identifiers.isEmpty else {
+	guard !cards.isEmpty else {
 		throw PackError.noCards
 	}
 	
@@ -3505,7 +3657,7 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String
 				return
 			}
 			let card = cards[index]
-			if card.layout == "token" || card.layout == "emblem" {
+			if card.layout == "token" || card.layout == "emblem" && includeTokens {
 				tokens.append(contentsOf: Array(repeating: MTGCard(card), count: cardCount.count))
 			} else {
 				deck.append(contentsOf: Array(repeating: MTGCard(card), count: cardCount.count))
@@ -3513,7 +3665,10 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil) throws -> String
 		}
 	}
 	
-	let tokenIdentifiers = Set(cards.compactMap { $0.allParts?.compactMap { $0.component == "token" ? $0.id : nil } }.joined()).map { MTGCardIdentifier.id($0) }
+	let tokenIdentifiers: [MTGCardIdentifier] = {
+		guard includeTokens else { return [] }
+		return Set(cards.compactMap { $0.allParts?.compactMap { $0.component == "token" ? $0.id : nil } }.joined()).map { MTGCardIdentifier.id($0) }
+	}()
 	
 	if !tokenIdentifiers.isEmpty {
 		do {

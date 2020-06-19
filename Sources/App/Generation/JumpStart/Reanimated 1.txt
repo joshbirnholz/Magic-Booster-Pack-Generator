@@ -1,0 +1,17 @@
+1 Archfiend's Vessel (M21) 88
+1 Cadaver Imp (JMP) 215
+1 Crow of Dark Tidings (JMP) 221
+1 Crypt Lurker (M21) 93
+1 Eliminate (M21) 97
+1 Funeral Rites (JMP) 235
+1 Goremand (M21) 101
+1 Miasmic Mummy (JMP) 256
+1 Mire Triton (JMP) 257
+1 Reanimate (JMP) 270
+1 Rise Again (M21) 119
+2 Swamp (M21) 266
+2 Swamp (M21) 267
+2 Swamp (M21) 268
+1 Swamp (JMP) 56
+1 Thriving Moor (JMP) 37
+1 Tithebearer Giant (JMP) 284

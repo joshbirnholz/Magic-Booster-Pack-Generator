@@ -1,0 +1,20 @@
+1 Alloy Myr (JMP) 457
+1 Auger Spree (JMP) 449
+1 Chamber Sentry (JMP) 461
+1 Dinrova Horror (JMP) 450
+1 Forest (M21) 272
+1 Fusion Elemental (JMP) 451
+1 Ironroot Warlord (JMP) 452
+1 Island (M21) 263
+1 Lawmage's Binding (JMP) 453
+1 Maelstrom Archangel (JMP) 454
+1 Mirrodin's Core (JMP) 492
+1 Mountain (M21) 269
+1 Plains (M21) 260
+1 Prismite (M21) 235
+1 Prophetic Prism (JMP) 478
+1 Raging Regisaur (JMP) 455
+1 Rupture Spire (JMP) 495
+1 Skittering Surveyor (JMP) 486
+1 Swamp (M21) 266
+1 Terramorphic Expanse (JMP) 78

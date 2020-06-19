@@ -1,0 +1,17 @@
+1 Blighted Bat (JMP) 205
+1 Cemetery Recruitment (JMP) 217
+1 Ghoulraiser (JMP) 238
+1 Goremand (M21) 101
+1 Liliana's Devotee (M21) 109
+1 Liliana's Elite (JMP) 250
+1 Liliana's Standard Bearer (M21) 110
+1 Liliana's Steward (M21) 111
+1 Liliana, Waker of the Dead (M21) 108
+1 Rise Again (M21) 119
+1 Settle the Score (JMP) 276
+2 Swamp (M21) 266
+2 Swamp (M21) 267
+2 Swamp (M21) 268
+1 Swamp (M21) 311
+1 Thriving Moor (JMP) 37
+1 Wailing Ghoul (JMP) 286

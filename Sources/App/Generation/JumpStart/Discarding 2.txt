@@ -1,0 +1,16 @@
+1 Assassin's Strike (JMP) 200
+1 Burglar Rat (JMP) 214
+1 Death's Approach (JMP) 222
+1 Entomber Exarch (JMP) 227
+1 Fell Specter (JMP) 233
+1 Liliana's Reaver (JMP)
+1 Nyxathid (JMP) 259
+1 Phyrexian Rager (JMP) 266
+1 Ravenous Chupacabra (JMP) 269
+1 Slate Street Ruffian (JMP)
+2 Swamp (M21) 266
+2 Swamp (M21) 267
+2 Swamp (M21) 268
+1 Swamp (JMP) 55
+1 Thriving Moor (JMP) 37
+2 Wight of Precinct Six (JMP) 287

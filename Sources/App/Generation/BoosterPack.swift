@@ -849,9 +849,13 @@ func generateJumpStartPack(export: Bool, cardBack: URL?) throws -> ObjectStateJS
 		throw PackError.unsupported
 	}
 	
+	let name = String(deckListURL.lastPathComponent.prefix(while: { $0 != " " && $0 != "." }))
+	
+	let faceCard = MTGCard(scryfallID: nil, oracleID: nil, typeLine: nil, power: nil, toughness: nil, oracleText: nil, flavorText: nil, name: name, loyalty: nil, cardFaces: nil, convertedManaCost: nil, layout: "normal", frame: "token", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: nil, isFullArt: true, allParts: nil, collectorNumber: "-1", set: "jumpstartface", colors: nil, printedName: nil, printedText: nil, printedTypeLine: nil, artist: nil, watermark: nil, rarity: .common, scryfallCardBackID: UUID(), isFoilAvailable: false, isNonFoilAvailable: true, isPromo: false, isFoundInBoosters: false, language: .english, releaseDate: nil, imageUris: ["normal": URL(string: "http://josh.birnholz.com/tts/resources/jumpstart/\(name).jpg")!])
+	
 	let contents = try String(contentsOf: deckListURL)
 	
-	let deckList = try deck(decklist: contents, export: false, cardBack: cardBack, includeTokens: false)
+	let deckList = try deck(decklist: contents, export: false, cardBack: cardBack, includeTokens: false, faceCards: [faceCard])
 	
 	let setCode = "jmp"
 	
@@ -971,6 +975,7 @@ func generateJumpStartPack(export: Bool, cardBack: URL?) throws -> ObjectStateJS
 fileprivate struct CardInfo {
 	private static let defaultBack = URL(string: "https://img.scryfall.com/card_backs/image/normal/0a/0aeebaf5-8c7d-4636-9e82-8c27447861f7.jpg")!
 	private static let tokenBack = URL(string: "http://josh.birnholz.com/tts/tback.jpg")!
+	private static let jumpstartBack = URL(string: "http://josh.birnholz.com/tts/resources/jumpstartback.jpg")!
 	
 	var faceURL: URL
 	var backURL: URL
@@ -1159,6 +1164,10 @@ fileprivate struct CardInfo {
 			self.sideways = card.layout == "split" && (card.set != "cmb1" && (card.oracleText?.lowercased().contains("aftermath") == false))
 		} else {
 			return nil
+		}
+		
+		if card.set == "jumpstartface" {
+			self.backURL = Self.jumpstartBack
 		}
 		
 		self.num = num
@@ -3600,7 +3609,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 	"""
 }
 
-func deck(decklist: String, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true) throws -> String {
+func deck(decklist: String, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = []) throws -> String {
 	let groups = DeckParser.parse(deckList: decklist).filter { !$0.cardCounts.isEmpty }
 	let identifiers: [MTGCardIdentifier] = Array(Set(groups.map { $0.cardCounts }.joined().map {
 		let identifier = $0.identifier
@@ -3717,6 +3726,8 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil, includeTokens: B
 			pack.insert(token, at: 0)
 		}
 		
+		pack.insert(contentsOf: faceCards, at: 0)
+		
 		return try singleBoosterPack(setName: "", setCode: "", boosterPack: pack, tokens: tokens, inPack: false, export: export, cardBack: cardBack)
 	} else {
 		var names = groups.reversed().map(\.name)
@@ -3724,6 +3735,11 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil, includeTokens: B
 		if let token = tokens.first {
 			packs.insert([token], at: 0)
 			names.insert("Token", at: 0)
+		}
+		
+		if !faceCards.isEmpty {
+			packs.insert(faceCards, at: 0)
+			names.insert("", at: 0)
 		}
 		
 		return try boosterBag(setName: "", setCode: "", boosterPacks: packs, names: names, tokens: tokens, inPack: false, export: export, cardBack: cardBack)

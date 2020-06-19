@@ -1,0 +1,16 @@
+1 Ball Lightning (JMP)
+1 Chain Lightning (JMP)
+1 Lightning Axe (JMP)
+1 Lightning Diadem (JMP)
+1 Lightning Elemental (JMP)
+1 Lightning Phoenix (JMP) 21
+2 Lightning Visionary (JMP) 22
+1 Lightning-Core Excavator (JMP) 32
+1 Living Lightning (JMP) 23
+2 Mountain (M21) 269
+2 Mountain (M21) 270
+2 Mountain (M21) 271
+1 Mountain (JMP) 68
+1 Riddle of Lightning (JMP)
+1 Thriving Bluff (JMP) 33
+1 Weaver of Lightning (JMP)

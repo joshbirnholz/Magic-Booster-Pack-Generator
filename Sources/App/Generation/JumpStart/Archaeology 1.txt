@@ -1,0 +1,17 @@
+1 Aether Spellbomb (JMP) 456
+1 Ancestral Statue (JMP) 458
+2 Archaeomender (JMP) 9
+1 Buried Ruin (JMP) 491
+1 Chromatic Sphere (JMP) 462
+1 Erratic Visionary (JMP) 150
+1 Hedron Archive (JMP) 468
+2 Island (M21) 263
+2 Island (M21) 264
+1 Island (M21) 265
+1 Island (JMP) 49
+1 Juggernaut (JMP) 471
+1 Lightning-Core Excavator (JMP) 32
+1 Meteor Golem (JMP) 474
+1 Scholar of the Lost Trove (JMP) 14
+1 Thirst for Knowledge (JMP) 183
+1 Thriving Isle (JMP) 36

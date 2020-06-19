@@ -1,0 +1,17 @@
+1 Allosaurus Shepherd (JMP) 28
+1 Crushing Canopy (JMP) 386
+1 Dwynen's Elite (JMP) 389
+2 Forest (M21) 272
+2 Forest (M21) 273
+2 Forest (M21) 274
+1 Forest (JMP) 77
+1 Hunter's Edge (M21) 189
+1 Leaf Gilder (JMP) 408
+1 Llanowar Visionary (M21) 193
+1 Presence of Gond (JMP) 420
+1 Silhana Wayfinder (JMP) 430
+1 Skyway Sniper (M21) 206
+1 Thriving Grove (JMP) 34
+1 Titanic Growth (M21) 210
+1 Wildheart Invoker (JMP) 444
+1 Wren's Run Vanquisher (JMP) 447

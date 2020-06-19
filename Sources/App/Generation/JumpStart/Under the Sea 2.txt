@@ -1,0 +1,16 @@
+1 Aegis Turtle (JMP)
+1 Cryptic Serpent (JMP)
+3 Island (M21) 263
+2 Island (M21) 264
+2 Island (M21) 265
+1 Island (JMP) 46
+1 Octoprophet (JMP)
+1 Pursued Whale (M21) 60
+1 Sigiled Starfish (JMP)
+1 Sweep Away (JMP)
+1 Thriving Isle (JMP) 36
+1 Unstable Obelisk (JMP)
+1 Waker of Waves (M21) 84
+1 Waterknot (JMP)
+1 Whelming Wave (JMP)
+1 Wishful Merfolk (JMP)

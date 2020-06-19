@@ -1,0 +1,17 @@
+1 Aerial Assault (JMP)
+1 Aven Gagglemaster (M21) 5
+1 Celestial Enforcer (M21) 11
+1 Concordia Pegasus (M21) 12
+1 Dauntless Onslaught (JMP)
+1 Falconer Adept (M21) 18
+1 Gale Swooper (M21) 20
+1 Healer's Hawk (JMP)
+1 Moment of Heroism (JMP)
+2 Plains (M21) 260
+2 Plains (M21) 261
+2 Plains (M21) 262
+1 Plains (JMP) 44
+1 Sky Tether (JMP)
+1 Steel-Plume Marshal (JMP)
+1 Thriving Heath (JMP) 35
+1 Warded Battlements (M21) 44

@@ -1,0 +1,17 @@
+1 Cloudreader Sphinx (JMP) 143
+1 Curiosity (JMP) 147
+1 Erratic Visionary (JMP) 150
+2 Island (M21) 264
+2 Island (M21) 265
+2 Island (M21) 263
+1 Island (JMP) 53
+1 Library Larcenist (M21) 55
+1 Narcolepsy (JMP) 159
+1 Oneirophage (JMP) 162
+1 Opt (M21) 59
+1 Rhystic Study (JMP) 169
+1 Runed Servitor (JMP) 481
+1 Suspicious Bookcase (JMP) 487
+1 Thriving Isle (JMP) 36
+1 Tolarian Kraken (M21) 80
+1 Tome Anima (M21) 81

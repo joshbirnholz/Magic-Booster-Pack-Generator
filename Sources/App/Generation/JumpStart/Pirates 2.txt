@@ -1,0 +1,17 @@
+1 Capture Sphere (M21) 47
+1 Chart a Course (JMP)
+1 Corsair Captain (JMP)
+1 Curious Obsession (JMP)
+1 Departed Deckhand (JMP)
+2 Island (M21) 263
+2 Island (M21) 264
+2 Island (M21) 265
+1 Island (JMP) 52
+1 Kitesail Corsair (JMP)
+1 Pirate's Cutlass (JMP)
+1 Prosperous Pirates (JMP)
+1 Read the Tides (M21) 62
+1 Rishadan Airship (JMP)
+1 Sailor of Means (JMP)
+1 Spectral Sailor (JMP)
+1 Thriving Isle (JMP) 36

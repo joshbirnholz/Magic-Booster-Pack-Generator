@@ -1,0 +1,17 @@
+1 Basri's Acolyte (M21) 8
+1 Battlefield Promotion (JMP)
+1 Bulwark Giant (JMP)
+1 Cathars' Crusade (JMP) 95
+1 Gird for Battle (JMP)
+1 Lightwalker (JMP) 118
+1 Makeshift Battalion (M21) 26
+1 Patron of the Valiant (JMP) 128
+2 Plains (M21) 260
+2 Plains (M21) 261
+2 Plains (M21) 262
+1 Plains (JMP) 43
+1 Secure the Scene (M21) 35
+1 Siege Striker (M21) 37
+1 Tempered Veteran (M21) 41
+1 Thriving Heath (JMP) 35
+1 Trusty Retriever (JMP) 8

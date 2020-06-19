@@ -1,0 +1,17 @@
+1 Agonizing Syphon (JMP) 199
+1 Bloodbond Vampire (JMP) 209
+1 Exquisite Blood (JMP) 231
+1 Gifted Aetherborn (JMP)
+1 Gloom Sower (M21) 100
+1 Last Gasp (JMP) 247
+1 Nocturnal Feeder (JMP) 16
+1 Sangromancer (JMP) 272
+1 Sanguine Indulgence (M21) 121
+1 Sengir Vampire (JMP) 275
+1 Silversmote Ghoul (M21) 122
+2 Swamp (M21) 266
+2 Swamp (M21) 267
+2 Swamp (M21) 268
+1 Swamp (JMP) 60
+1 Thriving Moor (JMP) 37
+1 Vampire Neonate (JMP) 285

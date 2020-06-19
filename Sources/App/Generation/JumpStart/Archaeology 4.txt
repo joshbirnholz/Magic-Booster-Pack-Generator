@@ -1,0 +1,17 @@
+1 Aether Spellbomb (JMP) 456
+2 Archaeomender (JMP) 9
+1 Buried Ruin (JMP) 491
+2 Island (M21) 263
+2 Island (M21) 264
+1 Island (M21) 265
+1 Island (JMP) 49
+1 Jousting Dummy (JMP) 470
+1 Juggernaut (JMP) 471
+1 Lightning-Core Excavator (JMP) 32
+1 Meteor Golem (JMP) 474
+1 Scarecrone (JMP) 482
+1 Scuttlemutt (JMP) 484
+1 Short Sword (M21) 236
+1 Signpost Scarecrow (JMP) 485
+1 Thirst for Knowledge (JMP) 183
+1 Thriving Isle (JMP) 36

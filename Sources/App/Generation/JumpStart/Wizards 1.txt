@@ -1,0 +1,17 @@
+1 Befuddle (JMP) 140
+1 Exclusion Mage (JMP) 153
+1 Frost Breath (M21) 51
+2 Island (M21) 264
+2 Island (M21) 265
+2 Island (M21) 263
+1 Island (JMP) 47
+1 Opt (M21) 59
+1 Read the Tides (M21) 62
+1 Sage's Row Savant (JMP) 171
+1 Shipwreck Dowser (M21) 71
+1 Talrand's Invocation (JMP) 182
+1 Talrand, Sky Summoner (JMP) 181
+1 Thriving Isle (JMP) 36
+1 Vodalian Arcanist (M21) 83
+1 Winged Words (JMP) 196
+1 Wizard's Retort (JMP) 198

@@ -1,0 +1,17 @@
+1 Ashmouth Hound (JMP) 290
+1 Bloodrock Cyclops (JMP) 297
+1 Cinder Elemental (JMP) 304
+1 Grim Lavamancer (JMP) 331
+1 Magma Jet (JMP) 346
+1 Magmaquake (JMP) 347
+1 Mana Geode (JMP)
+1 Molten Ravager (JMP) 351
+2 Mountain (M21) 269
+2 Mountain (M21) 270
+2 Mountain (M21) 271
+1 Mountain (JMP) 64
+1 Seismic Elemental (JMP) 362
+1 Spitting Earth (JMP) 364
+1 Thriving Bluff (JMP) 33
+1 Volcanic Fallout (JMP) 368
+1 Volcanic Geyser (M21) 171

@@ -849,9 +849,9 @@ func generateJumpStartPack(export: Bool, cardBack: URL?) throws -> ObjectStateJS
 		throw PackError.unsupported
 	}
 	
-	let name = String(deckListURL.lastPathComponent.prefix(while: { $0 != " " && $0 != "." }))
+	let name = String(deckListURL.lastPathComponent.prefix(while: { !$0.isNumber && $0 != "." }).trimmingCharacters(in: .whitespacesAndNewlines))
 	
-	let faceCard = MTGCard(scryfallID: nil, oracleID: nil, typeLine: nil, power: nil, toughness: nil, oracleText: nil, flavorText: nil, name: name, loyalty: nil, cardFaces: nil, convertedManaCost: nil, layout: "normal", frame: "token", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: nil, isFullArt: true, allParts: nil, collectorNumber: "-1", set: "jumpstartface", colors: nil, printedName: nil, printedText: nil, printedTypeLine: nil, artist: nil, watermark: nil, rarity: .common, scryfallCardBackID: UUID(), isFoilAvailable: false, isNonFoilAvailable: true, isPromo: false, isFoundInBoosters: false, language: .english, releaseDate: nil, imageUris: ["normal": URL(string: "http://josh.birnholz.com/tts/resources/jumpstart/\(name).jpg")!])
+	let faceCard = MTGCard(scryfallID: nil, oracleID: nil, typeLine: nil, power: nil, toughness: nil, oracleText: nil, flavorText: nil, name: name, loyalty: nil, cardFaces: nil, convertedManaCost: nil, layout: "normal", frame: "token", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: nil, isFullArt: true, allParts: nil, collectorNumber: "-1", set: "jumpstartface", colors: nil, printedName: nil, printedText: nil, printedTypeLine: nil, artist: nil, watermark: nil, rarity: .common, scryfallCardBackID: UUID(), isFoilAvailable: false, isNonFoilAvailable: true, isPromo: false, isFoundInBoosters: false, language: .english, releaseDate: nil, imageUris: ["normal": URL(string: "http://josh.birnholz.com/tts/resources/jumpstart")!.appendingPathComponent(name).appendingPathExtension("jpg")])
 	
 	let contents = try String(contentsOf: deckListURL)
 	

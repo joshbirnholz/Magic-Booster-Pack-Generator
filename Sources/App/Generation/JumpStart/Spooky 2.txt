@@ -7,7 +7,7 @@
 1 Eternal Taskmaster (JMP) 228
 1 Finishing Blow (M21) 99
 1 Gristle Grinner (JMP)
-1 Harvester of Souls (JMP) 0
+1 Harvester of Souls (JMP)
 1 Malefic Scythe (M21) 112
 1 Sanitarium Skeleton (JMP)
 2 Swamp (M21) 266

@@ -1,4 +1,4 @@
-1 Black Market (JMP) 0
+1 Black Market (JMP)
 1 Bone Picker (JMP) 212
 1 Caged Zombie (M21) 91
 1 Crypt Lurker (M21) 93

@@ -6,7 +6,7 @@
 1 Fetid Imp (M21) 98
 1 Finishing Blow (M21) 99
 1 Gristle Grinner (JMP)
-1 Languish (JMP) 0
+1 Languish (JMP)
 1 Liliana's Devotee (M21) 109
 1 Malefic Scythe (M21) 112
 1 Ogre Slumlord (JMP)

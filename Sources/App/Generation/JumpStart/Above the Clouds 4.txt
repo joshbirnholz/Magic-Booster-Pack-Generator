@@ -1,0 +1,17 @@
+1 Capture Sphere (M21) 47
+2 Island (M21) 264
+2 Island (M21) 265
+2 Island (M21) 263
+1 Island (JMP) 48
+1 Keen Glidemaster (M21) 54
+1 Kira, Great Glass-Spinner (JMP) 154
+1 Lofty Denial (M21) 56
+1 Mistral Singer (M21) 58
+1 Rain of Revelation (M21) 61
+1 Roaming Ghostlight (M21) 65
+1 Rookie Mistake (M21) 66
+1 Thriving Isle (JMP) 36
+1 Tide Skimmer (M21) 79
+1 Unsubstantiate (M21) 82
+1 Wall of Runes (M21) 85
+1 Windstorm Drake (JMP) 195

@@ -1,0 +1,17 @@
+1 Ajani's Chosen (JMP) 82
+1 Blessed Spirits (JMP) 92
+1 Bulwark Giant (JMP)
+1 Celestial Mantle (JMP) 96
+1 Face of Divinity (JMP) 103
+1 Faith's Fetters (M21) 17
+1 Forced Worship (JMP)
+1 Indomitable Will (JMP)
+1 Knightly Valor (JMP)
+2 Plains (M21) 260
+2 Plains (M21) 261
+2 Plains (M21) 262
+1 Plains (JMP) 42
+1 Staunch Shieldmate (M21) 39
+1 Stone Haven Pilgrim (JMP) 6
+1 Thriving Heath (JMP) 35
+1 Trusty Retriever (JMP) 8

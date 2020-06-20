@@ -1,0 +1,17 @@
+1 Chandra's Pyreling (M21) 138
+1 Crash Through (M21) 140
+1 Doublecast (JMP)
+1 Heartfire Immolator (M21) 150
+1 Hungry Flames (JMP) 336
+1 Immolating Gyre (JMP) 0
+1 Kiln Fiend (JMP)
+1 Kinetic Augur (JMP)
+1 Lightning Visionary (JMP) 22
+2 Mountain (M21) 269
+2 Mountain (M21) 270
+2 Mountain (M21) 271
+1 Mountain (JMP) 66
+1 Shock (M21) 159
+1 Thermo-Alchemist (JMP)
+1 Thrill of Possibility (M21) 165
+1 Thriving Bluff (JMP) 33

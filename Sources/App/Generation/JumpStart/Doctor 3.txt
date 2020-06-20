@@ -1,0 +1,17 @@
+1 Angel of Mercy (JMP)
+1 Anointed Chorister (M21) 4
+1 Basri's Acolyte (M21) 8
+1 Brightmare (JMP) 2
+1 Faith's Fetters (M21) 17
+1 Griffin Aerie (M21) 22
+1 Light of Promise (M21) 25
+1 Mesa Unicorn (JMP) 122
+1 Moment of Heroism (JMP) 124
+2 Plains (M21) 260
+2 Plains (M21) 261
+2 Plains (M21) 262
+1 Plains (JMP) 39
+1 Revitalize (M21) 31
+1 Rhox Faithmender (JMP)
+1 Swift Response (M21) 40
+1 Thriving Heath (JMP) 35

@@ -1,0 +1,17 @@
+1 Beetleback Chief (JMP)
+1 Boggart Brute (JMP)
+1 Goblin Arsonist (M21) 147
+1 Goblin Commando (JMP)
+1 Goblin Instigator (JMP)
+1 Goblin Shortcutter (JMP)
+1 Makeshift Munitions (JMP)
+2 Mountain (M21) 269
+2 Mountain (M21) 270
+2 Mountain (M21) 271
+1 Mountain (JMP) 65
+1 Muxus, Goblin Grandee (JMP) 24
+1 Ornery Goblin (JMP)
+1 Outnumber (JMP)
+1 Shock (M21) 159
+1 Thriving Bluff (JMP) 33
+1 Volley Veteran (JMP)

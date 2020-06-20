@@ -1,0 +1,17 @@
+1 Basri's Solidarity (M21) 10
+1 Daybreak Charger (M21) 14
+1 Faith's Fetters (M21) 17
+1 Fortify (JMP) 0
+1 Legion's Judgment (M21) 24
+1 Lena, Selfless Champion (JMP) 0
+1 Makeshift Battalion (M21) 26
+1 Mentor of the Meek (JMP) 121
+2 Plains (M21) 260
+2 Plains (M21) 261
+2 Plains (M21) 262
+1 Plains (JMP) 38
+1 Raise the Alarm (JMP) 0
+1 Selfless Savior (M21) 36
+1 Siege Striker (M21) 37
+1 Thriving Heath (JMP) 35
+1 Valorous Steed (M21) 42

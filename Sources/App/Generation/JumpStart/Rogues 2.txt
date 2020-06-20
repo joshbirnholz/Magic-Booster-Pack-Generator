@@ -1,0 +1,17 @@
+1 Alchemist's Gift (M21) 87
+1 Corpse Hauler (JMP)
+1 Corpse Traders (JMP)
+1 Last Gasp (JMP) 247
+1 Lawless Broker (JMP)
+1 Masked Blackguard (M21) 113
+1 Nightshade Stinger (JMP)
+1 Nocturnal Feeder (JMP) 16
+1 Oona's Blackguard (JMP)
+1 Rogue's Gloves (JMP)
+1 Stab Wound (JMP)
+2 Swamp (M21) 266
+2 Swamp (M21) 267
+2 Swamp (M21) 268
+1 Swamp (JMP) 57
+1 Thieves' Guild Enforcer (M21) 125
+1 Thriving Moor (JMP) 37

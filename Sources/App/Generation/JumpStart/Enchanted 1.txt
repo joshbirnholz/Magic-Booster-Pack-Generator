@@ -1,0 +1,17 @@
+1 Anointed Chorister (M21) 4
+1 Blessed Spirits (JMP) 92
+1 Dub (M21) 16
+1 Face of Divinity (JMP) 103
+1 Faith's Fetters (M21) 17
+1 Forced Worship (JMP)
+1 Indomitable Will (JMP)
+1 Knight of the Tusk (JMP) 114
+1 Knightly Valor (JMP)
+1 Kor Spiritdancer (JMP) 116
+2 Plains (M21) 260
+2 Plains (M21) 261
+2 Plains (M21) 262
+1 Plains (JMP) 42
+1 Stone Haven Pilgrim (JMP) 6
+1 Thriving Heath (JMP) 35
+1 Trusty Retriever (JMP) 8

@@ -1,0 +1,16 @@
+1 Capture Sphere (M21) 47
+1 Frost Breath (M21) 51
+3 Island (M21) 264
+2 Island (M21) 265
+2 Island (M21) 263
+1 Island (JMP) 48
+1 Keen Glidemaster (M21) 54
+1 Lofty Denial (M21) 56
+1 Rain of Revelation (M21) 61
+1 Roaming Ghostlight (M21) 65
+1 Thriving Isle (JMP) 36
+1 Tide Skimmer (M21) 79
+1 Unsubstantiate (M21) 82
+1 Wall of Runes (M21) 85
+1 Warden of Evos Isle (JMP) 191
+1 Windreader Sphinx (JMP) 194

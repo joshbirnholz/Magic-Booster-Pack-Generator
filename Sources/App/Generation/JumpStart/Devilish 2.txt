@@ -1,0 +1,16 @@
+1 Chained Brute (JMP)
+1 Collateral Damage (JMP)
+1 Havoc Jester (M21) 149
+1 Heartfire (JMP)
+1 Hobblefiend (M21) 152
+2 Mountain (M21) 269
+2 Mountain (M21) 270
+2 Mountain (M21) 271
+1 Mountain (JMP) 63
+1 Pitchburn Devils (M21) 156
+1 Spiteful Prankster (JMP) 26
+1 Thriving Bluff (JMP) 33
+1 Tibalt's Rager (JMP)
+2 Torch Fiend (JMP)
+1 Traitorous Greed (M21) 166
+1 Zurzoth, Chaos Rider (JMP) 27

@@ -1,0 +1,17 @@
+1 Battleground Geist (JMP) 0
+1 Capture Sphere (M21) 47
+1 Departed Deckhand (JMP) 149
+1 Frost Breath (M21) 51
+2 Island (M21) 264
+2 Island (M21) 265
+2 Island (M21) 263
+1 Island (JMP) 51
+1 Nebelgast Herald (JMP) 0
+1 Rattlechains (JMP) 0
+1 Rewind (M21) 63
+1 Roaming Ghostlight (M21) 65
+1 Rookie Mistake (M21) 66
+1 Shacklegeist (M21) 70
+1 Thriving Isle (JMP) 36
+1 Tome Anima (M21) 81
+1 Winged Words (JMP) 196

@@ -1,0 +1,17 @@
+1 Bone Picker (JMP) 212
+1 Caged Zombie (M21) 91
+1 Crypt Lurker (M21) 93
+1 Dutiful Attendant (JMP) 226
+1 Eternal Taskmaster (JMP) 228
+1 Fetid Imp (M21) 98
+1 Finishing Blow (M21) 99
+1 Gristle Grinner (JMP)
+1 Languish (JMP) 0
+1 Liliana's Devotee (M21) 109
+1 Malefic Scythe (M21) 112
+1 Ogre Slumlord (JMP)
+2 Swamp (M21) 266
+2 Swamp (M21) 267
+2 Swamp (M21) 268
+1 Swamp (JMP) 61
+1 Thriving Moor (JMP) 37

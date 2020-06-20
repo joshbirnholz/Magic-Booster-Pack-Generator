@@ -11,7 +11,7 @@
 2 Plains (M21) 261
 2 Plains (M21) 262
 1 Plains (JMP) 38
-1 Raise the Alarm (JMP) 0
+1 Raise the Alarm (JMP)
 1 Selfless Savior (M21) 36
 1 Thriving Heath (JMP) 35
 1 Valorous Steed (M21) 42

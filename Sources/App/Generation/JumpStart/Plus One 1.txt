@@ -10,7 +10,7 @@
 1 Ironshell Beetle (JMP)
 1 Nessian Hornbeetle (JMP)
 1 Pridemalkin (M21) 196
-1 Primeval Bounty (JMP) 0
+1 Primeval Bounty (JMP)
 1 Thriving Grove (JMP) 34
 1 Trufflesnout (M21) 212
 1 Wildwood Scourge (M21) 214

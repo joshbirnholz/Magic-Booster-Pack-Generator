@@ -9,7 +9,7 @@
 2 Plains (M21) 261
 2 Plains (M21) 262
 1 Plains (JMP) 38
-1 Raise the Alarm (JMP) 0
+1 Raise the Alarm (JMP)
 1 Release the Dogs (JMP) 4
 1 Siege Striker (M21) 37
 1 Staunch Shieldmate (M21) 39

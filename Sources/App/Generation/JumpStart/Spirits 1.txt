@@ -1,4 +1,4 @@
-1 Battleground Geist (JMP) 0
+1 Battleground Geist (JMP)
 1 Befuddle (JMP) 140
 1 Capture Sphere (M21) 47
 1 Departed Deckhand (JMP) 149
@@ -9,7 +9,7 @@
 2 Island (M21) 263
 1 Island (JMP) 51
 1 Murmuring Phantasm (JMP)
-1 Nebelgast Herald (JMP) 0
+1 Nebelgast Herald (JMP)
 1 Roaming Ghostlight (M21) 65
 1 Shacklegeist (M21) 70
 1 Thriving Isle (JMP) 36

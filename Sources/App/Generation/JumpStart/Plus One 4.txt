@@ -1,6 +1,6 @@
 1 Arbor Armament (JMP)
-1 Branching Evolution (JMP) 0
-1 Champion of Lambholt (JMP) 0
+1 Branching Evolution (JMP)
+1 Champion of Lambholt (JMP)
 3 Forest (M21) 272
 2 Forest (M21) 273
 2 Forest (M21) 274

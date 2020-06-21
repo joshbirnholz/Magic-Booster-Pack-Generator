@@ -26,6 +26,7 @@ enum PackError: Error {
 	case noCards
 	case unsupported
 	case noName
+	case invalidJumpStartName
 	case noCardFound(String)
 	
 	var code: Int {
@@ -50,6 +51,8 @@ enum PackError: Error {
 			return 8
 		case .emptyInput:
 			return 9
+		case .invalidJumpStartName:
+			return 10
 		}
 	}
 }
@@ -845,131 +848,135 @@ func generateJumpStartPack(export: Bool, cardBack: URL?) throws -> ObjectStateJS
 		#endif
 	}()
 	
-	guard let deckListURL = jumpstartDeckListURLs.randomElement() else {
-		throw PackError.unsupported
-	}
-	
-	let name = String(deckListURL.lastPathComponent.prefix(while: { !$0.isNumber && $0 != "." }).trimmingCharacters(in: .whitespacesAndNewlines))
-	
-	let faceCard = MTGCard(scryfallID: nil, oracleID: nil, typeLine: nil, power: nil, toughness: nil, oracleText: nil, flavorText: nil, name: name, loyalty: nil, cardFaces: nil, convertedManaCost: nil, layout: "normal", frame: "token", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: nil, isFullArt: true, allParts: nil, collectorNumber: "-1", set: "jumpstartface", colors: nil, printedName: nil, printedText: nil, printedTypeLine: nil, artist: nil, watermark: nil, rarity: .common, scryfallCardBackID: UUID(), isFoilAvailable: false, isNonFoilAvailable: true, isPromo: false, isFoundInBoosters: false, language: .english, releaseDate: nil, imageUris: ["normal": URL(string: "http://josh.birnholz.com/tts/resources/jumpstart")!.appendingPathComponent(name).appendingPathExtension("jpg")])
-	
-	let contents = try String(contentsOf: deckListURL)
-	
-	let deckList = try deck(decklist: contents, export: false, cardBack: cardBack, includeTokens: false, faceCards: [faceCard])
-	
-	let setCode = "jmp"
-	
-	var packTextureURL = URL(string: "http://josh.birnholz.com/tts/resources/pack/\(setCode).jpg")!
-	let exists = packTexturesExist[setCode] ?? fileExists(at: packTextureURL)
-	packTexturesExist[setCode] = exists
-	if !exists {
-		print("No pack texture for \(setCode), using default")
-		packTextureURL = URL(string: "http://josh.birnholz.com/tts/resources/pack/default.jpg")!
-	} else {
-		print("Found pack texture for \(setCode)")
-	}
-	
-	let bagLuaScript = """
-	function onObjectLeaveContainer(bag, object)
-	  if (bag.getGUID() == self.getGUID()) then
-	    destroyObject(bag)
-	  end
-	end
+	func jumpstartDeck(deckListURL: URL) throws -> ObjectStateJSON {
+		let name = String(deckListURL.lastPathComponent.prefix(while: { !$0.isNumber && $0 != "." }).trimmingCharacters(in: .whitespacesAndNewlines))
+		
+		let faceCard = MTGCard(scryfallID: nil, oracleID: nil, typeLine: nil, power: nil, toughness: nil, oracleText: nil, flavorText: nil, name: name, loyalty: nil, cardFaces: nil, convertedManaCost: nil, layout: "normal", frame: "token", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: nil, isFullArt: true, allParts: nil, collectorNumber: "-1", set: "jumpstartface", colors: nil, printedName: nil, printedText: nil, printedTypeLine: nil, artist: nil, watermark: nil, rarity: .common, scryfallCardBackID: UUID(), isFoilAvailable: false, isNonFoilAvailable: true, isPromo: false, isFoundInBoosters: false, language: .english, releaseDate: nil, imageUris: ["normal": URL(string: "http://josh.birnholz.com/tts/resources/jumpstart")!.appendingPathComponent(name).appendingPathExtension("jpg")])
+		
+		let contents = try String(contentsOf: deckListURL)
+		
+		let deckList = try deck(decklist: contents, export: false, cardBack: cardBack, includeTokens: false, faceCards: [faceCard])
+		
+		let setCode = "jmp"
+		
+		var packTextureURL = URL(string: "http://josh.birnholz.com/tts/resources/pack/\(setCode).jpg")!
+		let exists = packTexturesExist[setCode] ?? fileExists(at: packTextureURL)
+		packTexturesExist[setCode] = exists
+		if !exists {
+			print("No pack texture for \(setCode), using default")
+			packTextureURL = URL(string: "http://josh.birnholz.com/tts/resources/pack/default.jpg")!
+		} else {
+			print("Found pack texture for \(setCode)")
+		}
+		
+		let bagLuaScript = """
+		function onObjectLeaveContainer(bag, object)
+		  if (bag.getGUID() == self.getGUID()) then
+			destroyObject(bag)
+		  end
+		end
 
-	function filterObjectEnter(object)
-	  return false
-	end
-	""".replacingOccurrences(of: "\n", with: "\\n")
-	
-	let objectState = """
-	{
-	  "Name": "Custom_Model_Bag",
-	  "Transform": {
-		"posX": -5.75182,
-		"posY": 0.960000038,
-		"posZ": 1.48507118,
-		"rotX": -3.88456328E-07,
-		"rotY": 179.672028,
-		"rotZ": -3.12079976E-07,
-		"scaleX": 1.0,
-		"scaleY": 1.0,
-		"scaleZ": 1.0
-	  },
-	  "Nickname": "JumpStart Booster Pack",
-	  "Description": "",
-	  "GMNotes": "",
-	  "ColorDiffuse": {
-		"r": 1.0,
-		"g": 1.0,
-		"b": 1.0
-	  },
-	  "Locked": false,
-	  "Grid": true,
-	  "Snap": true,
-	  "IgnoreFoW": false,
-	  "Autoraise": true,
-	  "Sticky": true,
-	  "Tooltip": true,
-	  "GridProjection": false,
-	  "HideWhenFaceDown": false,
-	  "Hands": false,
-	  "MaterialIndex": -1,
-	  "MeshIndex": -1,
-	  "CustomMesh": {
-	  "MeshURL": "http://josh.birnholz.com/tts/resources/pack/MagicPack_\(Bool.random() ? 1 : 2).obj",
-		"DiffuseURL": "\(packTextureURL)",
-		"NormalURL": "http://josh.birnholz.com/tts/resources/pack/NormalMap_CardPack.png",
-		"ColliderURL": "",
-		"Convex": true,
-		"MaterialIndex": 0,
-		"TypeIndex": 6,
-		"CustomShader": {
-		  "SpecularColor": {
+		function filterObjectEnter(object)
+		  return false
+		end
+		""".replacingOccurrences(of: "\n", with: "\\n")
+		
+		let objectState = """
+		{
+		  "Name": "Custom_Model_Bag",
+		  "Transform": {
+			"posX": -5.75182,
+			"posY": 0.960000038,
+			"posZ": 1.48507118,
+			"rotX": -3.88456328E-07,
+			"rotY": 179.672028,
+			"rotZ": -3.12079976E-07,
+			"scaleX": 1.0,
+			"scaleY": 1.0,
+			"scaleZ": 1.0
+		  },
+		  "Nickname": "JumpStart Booster Pack",
+		  "Description": "",
+		  "GMNotes": "",
+		  "ColorDiffuse": {
 			"r": 1.0,
 			"g": 1.0,
 			"b": 1.0
 		  },
-		  "SpecularIntensity": 0.5,
-		  "SpecularSharpness": 3.93060017,
-		  "FresnelStrength": 0.8772789
-		},
-		"CastShadows": true
-	  },
-	  "XmlUI": "",
-	  "LuaScript": "\(bagLuaScript)",
-	  "LuaScriptState": "",
-	  "ContainedObjects": [
-		\(deckList)
-	  ],
-	  "GUID": "d944ee"
+		  "Locked": false,
+		  "Grid": true,
+		  "Snap": true,
+		  "IgnoreFoW": false,
+		  "Autoraise": true,
+		  "Sticky": true,
+		  "Tooltip": true,
+		  "GridProjection": false,
+		  "HideWhenFaceDown": false,
+		  "Hands": false,
+		  "MaterialIndex": -1,
+		  "MeshIndex": -1,
+		  "CustomMesh": {
+		  "MeshURL": "http://josh.birnholz.com/tts/resources/pack/MagicPack_\(Bool.random() ? 1 : 2).obj",
+			"DiffuseURL": "\(packTextureURL)",
+			"NormalURL": "http://josh.birnholz.com/tts/resources/pack/NormalMap_CardPack.png",
+			"ColliderURL": "",
+			"Convex": true,
+			"MaterialIndex": 0,
+			"TypeIndex": 6,
+			"CustomShader": {
+			  "SpecularColor": {
+				"r": 1.0,
+				"g": 1.0,
+				"b": 1.0
+			  },
+			  "SpecularIntensity": 0.5,
+			  "SpecularSharpness": 3.93060017,
+			  "FresnelStrength": 0.8772789
+			},
+			"CastShadows": true
+		  },
+		  "XmlUI": "",
+		  "LuaScript": "\(bagLuaScript)",
+		  "LuaScriptState": "",
+		  "ContainedObjects": [
+			\(deckList)
+		  ],
+		  "GUID": "d944ee"
+		}
+		"""
+		
+		if !export {
+			return objectState
+		}
+		
+		return """
+		{
+		  "SaveName": "",
+		  "GameMode": "",
+		  "Gravity": 0.5,
+		  "PlayArea": 0.5,
+		  "Date": "",
+		  "Table": "",
+		  "Sky": "",
+		  "Note": "",
+		  "Rules": "",
+		  "XmlUI": "",
+		  "LuaScript": "",
+		  "LuaScriptState": "",
+		  "ObjectStates": [
+			\(objectState)
+		  ],
+		  "TabStates": {},
+		  "VersionNumber": ""
+		}
+		"""
 	}
-	"""
 	
-	if !export {
-		return objectState
+	guard let deckListURL = jumpstartDeckListURLs.randomElement() else {
+		throw PackError.unsupported
 	}
 	
-	return """
-	{
-	  "SaveName": "",
-	  "GameMode": "",
-	  "Gravity": 0.5,
-	  "PlayArea": 0.5,
-	  "Date": "",
-	  "Table": "",
-	  "Sky": "",
-	  "Note": "",
-	  "Rules": "",
-	  "XmlUI": "",
-	  "LuaScript": "",
-	  "LuaScriptState": "",
-	  "ObjectStates": [
-		\(objectState)
-	  ],
-	  "TabStates": {},
-	  "VersionNumber": ""
-	}
-	"""
+	return try jumpstartDeck(deckListURL: deckListURL)
 }
 
 fileprivate struct CardInfo {

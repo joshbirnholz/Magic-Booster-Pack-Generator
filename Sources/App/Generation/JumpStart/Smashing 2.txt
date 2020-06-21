@@ -10,7 +10,7 @@
 2 Mountain (M21) 270
 2 Mountain (M21) 271
 1 Mountain (JMP) 67
-1 Onakke Ogre (JMP)
+1 Onakke Ogre (M21)
 1 Short Sword (M21) 236
 1 Thriving Bluff (JMP) 33
 1 Turret Ogre (M21) 169

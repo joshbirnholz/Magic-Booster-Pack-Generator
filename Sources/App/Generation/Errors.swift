@@ -47,6 +47,8 @@ extension PackError: Debuggable {
 			return "No cards found with identifiers: \(identifier)"
 		case .emptyInput:
 			return "The input is empty."
+		case .invalidJumpStartName:
+			return "There isn't a pack with that name."
 		}
 	}
 	

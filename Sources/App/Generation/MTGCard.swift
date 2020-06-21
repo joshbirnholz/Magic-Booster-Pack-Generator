@@ -82,7 +82,7 @@ public struct MTGCard: Codable, Equatable, Hashable {
 		case ancientGreek = "grc"
 		case arabic = "ar"
 		case sanskrit = "sa"
-		case phyrexian = "px"
+		case phyrexian = "ph"
 	}
 	
 	public enum Rarity: String, Codable, Equatable, Hashable, CaseIterable {

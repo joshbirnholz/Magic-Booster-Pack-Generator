@@ -407,7 +407,7 @@ internal class Swiftfall {
 			case ancientGreek = "grc"
 			case arabic = "ar"
 			case sanskrit = "sa"
-			case phyrexian = "px"
+			case phyrexian = "ph"
 		}
         
         public let prices: Prices?

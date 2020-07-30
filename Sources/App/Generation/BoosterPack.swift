@@ -134,6 +134,9 @@ enum Mode {
 	/// 1/15 packs contain rare/mythic showcase or borderless card. If that fails, 2/7 packs contain common/uncommon showcase or borderless card. Foil showcase/borderless show up 1/35 packs.
 	case m21
 	
+	/// 2 rares in each pack, 2 guaranteed foils.
+	case doubleMasters
+	
 	case zendikarExpeditions
 	case amonkhetInvocations
 	case kaladeshInventions
@@ -237,7 +240,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		}
 	}
 	
-	let includeMythic = (1...8).randomElement()! == 8
+	var includeMythic: Bool { (1...8).randomElement()! == 8 }
 	let includedShowcaseRarity: ShowcaseRarity? = {
 		guard !showcaseRarities.values.joined().isEmpty else { return nil }
 		
@@ -271,8 +274,8 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		default: return false
 		}
 	}()
-	let includedFoilRarity: MTGCard.Rarity? = {
-		guard (1...1000).randomElement()! <= foilPolicy.limit else { return nil }
+	var includedFoilRarity: MTGCard.Rarity? {
+		guard mode == .doubleMasters || (1...1000).randomElement()! <= foilPolicy.limit else { return nil }
 		
 		let rarityValue = (1...1000).randomElement()!
 		switch rarityValue {
@@ -281,7 +284,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		case 1...979: return .rare
 		default: return .mythic
 		}
-	}()
+	}
 	
 	var uniqueCardCount: Int { Set(pack.compactMap { $0.name }).count }
 	var allColorsCount: Int { Set(pack.compactMap { $0.colors }.joined()).count }
@@ -324,7 +327,15 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			return .common
 		}
 	}()
-	let landCount = mode == .twoLands ? 2 : 1
+	let landCount: Int = {
+		if mode == .twoLands {
+			return 2
+		} else if mode == .doubleMasters {
+			return 0
+		} else {
+			return 1
+		}
+	}()
 	
 	let cardCount: Int = {
 		var nonTokenCount: Int
@@ -401,19 +412,37 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			pack.insert(powerNine, at: 0)
 		}
 		
+		// Add a second foil to double masters packs.
+		if mode == .doubleMasters, let rarity = includedFoilRarity, let foil = [(rarities[rarity] ?? []), (customSlotRarities[rarity] ?? [])].joined().filter(\.isFoilAvailable).randomElement() {
+			if includeExtendedArt, let extendedArtVersion = extendedArt.filter({ $0.name == foil.name }).randomElement() {
+				pack.insert(extendedArtVersion, at: 0)
+			} else if rarity != .common {
+				pack.insert(foil, at: 0)
+			}
+		}
+		
 		let rareSlotRarities = guaranteedPlaneswalkerSlot == 3 ? customSlotRarities : rarities
-		if includeMythic, let mythic = rareSlotRarities[.mythic]?.randomElement() {
-			pack.insert(mythic, at: 0)
-			
-			if mythic.hasPartner, let partner = mythic.partner(from: rarities.values.joined()) {
-				pack.insert(partner, at: 0)
+		func addRareOrMythic() {
+			if includeMythic, let mythic = rareSlotRarities[.mythic]?.randomElement() {
+				pack.insert(mythic, at: 0)
+				
+				if mythic.hasPartner, let partner = mythic.partner(from: rarities.values.joined()) {
+					pack.insert(partner, at: 0)
+				}
+			} else if let rare = rareSlotRarities[.rare]?.randomElement() {
+				pack.insert(rare, at: 0)
+				
+				if rare.hasPartner, let partner = rare.partner(from: rarities.values.joined()) {
+					pack.insert(partner, at: 0)
+				}
 			}
-		} else if let rare = rareSlotRarities[.rare]?.randomElement() {
-			pack.insert(rare, at: 0)
-			
-			if rare.hasPartner, let partner = rare.partner(from: rarities.values.joined()) {
-				pack.insert(partner, at: 0)
-			}
+		}
+		
+		addRareOrMythic()
+		
+		// Add a second rare or mythic to double masters packs
+		if mode == .doubleMasters {
+			addRareOrMythic()
 		}
 		
 		let uncommonCount: Int = {
@@ -3020,6 +3049,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		case "kld", "aer": return .kaladeshInventions
 		case "vma": return .vintageMasters
 		case "m21": return .m21
+		case "2xm": return .doubleMasters
 		default: return .default
 		}
 	}()
@@ -3383,7 +3413,7 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		}
 		
 		switch setCode {
-		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma":
+		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm":
 			return 24
 		default:
 			return 36
@@ -3641,12 +3671,12 @@ func deck(decklist: String, export: Bool, cardBack: URL? = nil, includeTokens: B
 //		return fetchedCards
 //	}
 //	let cards: [Swiftfall.Card] = Array(fetchedCardGroups.joined())
-	let collections: [Swiftfall.CardCollectionList] = identifiers.chunked(by: 75).compactMap {
+	let collections: [Swiftfall.CardCollectionList] = try identifiers.chunked(by: 75).compactMap {
 		do {
 			return try Swiftfall.getCollection(identifiers: $0)
 		} catch {
 			print(error)
-			return nil
+			throw error
 		}
 	}
 	let cards = Array(collections.map(\.data).joined())

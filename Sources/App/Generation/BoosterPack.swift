@@ -1162,7 +1162,7 @@ fileprivate struct CardInfo {
 	
 	// Uses the given number
 	init?(num: Int, card: MTGCard) {
-		if card.layout == "transform", let faces = card.cardFaces, faces.count == 2,
+		/* if card.layout == "transform", let faces = card.cardFaces, faces.count == 2,
 			let front = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"],
 			let back = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
 			let frontName = faces[0].name ?? ""
@@ -1196,6 +1196,42 @@ fileprivate struct CardInfo {
 			self.otherStates = [backState]
 			self.state = 1
 			
+		} else */
+		
+		if card.layout == "transform", let faces = card.cardFaces, faces.count >= 2, let faceURL = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"], let backFaceURL = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
+			self.backURL = Self.defaultBack
+			
+			let frontName = faces[0].name ?? ""
+			let backName = faces[1].name ?? ""
+			
+			self.nickname = frontName
+			self.description = "// \(backName)"
+			
+			var backState = CardInfo(faceURL: backFaceURL, backURL: Self.defaultBack, nickname: backName, description: "// \(frontName)", sideways: false)
+			backState.state = 2
+			otherStates = [backState]
+			self.state = 1
+			self.sideways = false
+			self.backIsHidden = true
+			
+			self.faceURL = faceURL
+		} else if let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"], card.layout == "meld", let result = card.allParts?.first(where: { $0.name != card.name && $0.component == .meldResult }), let backFaceURL = URL(string: "https://img.scryfall.com/card_backs/image/normal/\(card.scryfallCardBackID.uuidString.lowercased().prefix(2))/\(card.scryfallCardBackID.uuidString.lowercased()).jpg") {
+			self.backURL = Self.defaultBack
+			
+			let frontName = card.name ?? ""
+			let backName = result.name
+			
+			self.nickname = frontName
+			self.description = "// \(backName)"
+			
+			var backState = CardInfo(faceURL: backFaceURL, backURL: Self.defaultBack, nickname: backName, description: "// \(frontName)", sideways: false)
+			backState.state = 2
+			otherStates = [backState]
+			self.state = 1
+			self.sideways = false
+			self.backIsHidden = true
+			
+			self.faceURL = faceURL
 		} else if let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"] {
 			self.faceURL = faceURL
 			if card.layout == "double_faced_token", let faces = card.cardFaces, faces.count >= 2, let backFaceURL = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
@@ -3674,19 +3710,47 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 }
 
 func deck(decklist: String, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = []) throws -> String {
-	let groups = DeckParser.parse(deckList: decklist).filter { !$0.cardCounts.isEmpty }
-	let identifiers: [MTGCardIdentifier] = Array(Set(groups.map { $0.cardCounts }.joined().map {
-		let identifier = $0.identifier
+	let fixedSetCodes: [String: String] = [
+		"dar": "dom",
+		"7e": "7ed",
+		"8e": "8ed"
+	]
+	
+	let groups: [DeckParser.CardGroup] = DeckParser.parse(deckList: decklist).filter { !$0.cardCounts.isEmpty }.map {
+		var cardGroup = $0
 		
-		switch identifier {
-		case .nameSet(name: let name, set: let set) where set.lowercased() == "dar":
-			return .nameSet(name: name, set: "dom")
-		case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set) where set.lowercased() == "dar":
-			return .collectorNumberSet(collectorNumber: collectorNumber, set: "dom")
-		default:
-			return identifier
+		cardGroup.cardCounts = cardGroup.cardCounts.map { cardCount in
+			let identifier: MTGCardIdentifier = {
+				let identifier = cardCount.identifier
+				
+				switch identifier {
+				case .nameSet(name: let name, set: let set):
+					if let fixedCode = fixedSetCodes[set.lowercased()] {
+						return .nameSet(name: name, set: fixedCode)
+					} else {
+						break
+					}
+				case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set):
+					if let fixedCode = fixedSetCodes[set.lowercased()] {
+						return .collectorNumberSet(collectorNumber: collectorNumber, set: fixedCode)
+					} else {
+						break
+					}
+				default:
+					break
+				}
+				
+				return identifier
+			}()
+			
+			return DeckParser.CardCount(identifier: identifier, count: cardCount.count)
 		}
-	}))
+		
+		return cardGroup
+	}
+
+	
+	let identifiers: [MTGCardIdentifier] = Array(Set(groups.map { $0.cardCounts }.joined().map { $0.identifier }))
 	
 	guard !identifiers.isEmpty else {
 		throw PackError.emptyInput

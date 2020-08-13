@@ -60,12 +60,12 @@ enum PackError: Error {
 public enum Input: Int, CaseIterable {
 	case scryfallSetCode
 //		case scryfallSetJSON
-	case cockatriceJSON
+	case mtgCardJSON
 	case cardlist
 	
 	var title: String {
 		switch self {
-		case .cockatriceJSON: return "Cockatrice JSON"
+		case .mtgCardJSON: return "MTG Card JSON"
 //			case .scryfallSetJSON: return "Scryfall Set JSON"
 		case .scryfallSetCode: return "Scryfall Set"
 		case .cardlist: return "Deck List"
@@ -2829,7 +2829,7 @@ func allLandPacksSingleJSON(setCards: (cards: [MTGCard], setCode: String)?, spec
 			return processed.basicLands
 		} else {
 			return Swiftfall
-			.getCards(query: "type='basic land –'", unique: false)
+			.getCards(query: "type='basic land –' is:highres", unique: false)
 			.compactMap { $0?.data }
 			.joined()
 			.compactMap(MTGCard.init)
@@ -2991,9 +2991,17 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 	var mythicPolicy: MythicPolicy = .postM21
 	
 	switch input {
-	case .cockatriceJSON:
+	case .mtgCardJSON:
 		var allCards: [MTGCard]
-		(allCards, setName, setCode) = try cardsFromCockatriceJSON(json: inputString)
+		
+		let data = inputString.data(using: .utf8)!
+		let decoder = JSONDecoder()
+		
+		let set = try decoder.decode(MTGSet.self, from: data)
+		setName = set.name
+		setCode = set.code
+		
+		allCards = set.cards
 		
 		if setCode?.lowercased() == "net" {
 			mythicPolicy = .previous
@@ -3006,16 +3014,16 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		}
 		
 		mtgCards = allCards
-		
-		do {
-			let encoder = JSONEncoder()
-			let data = try encoder.encode(mtgCards)
-			if let string = String(data: data, encoding: .utf8) {
-				print(string)
-			}
-		} catch {
-			print(error)
-		}
+//	case .scryfallSetCode where inputString.lowercased() == "takr":
+//		let cards = Swiftfall.getCards(query: "(set:takh -cn:5 -cn:6 -cn:7 -cn:11 -cn:13 -cn:14 -cn:26 -cn:27) or (set:thou -cn:1 -cn:3 -cn:5 -cn:7 -cn:8 -cn:11 -cn:13 -cn:14) or (set:tm15 cn:10) or (set:tsoi cn:17)").compactMap { $0?.data }.joined().map(MTGCard.init)
+//
+//		let encoder = JSONEncoder()
+//		encoder.outputFormatting = .prettyPrinted
+//		let data = try encoder.encode(cards)
+//		let string = String(data: data, encoding: .utf8)!
+//		print(string)
+//
+//		return string
 	case .scryfallSetCode where inputString.lowercased() == "jmp" || inputString.lowercased() == "jumpstart":
 		switch output {
 		case .boosterPack:
@@ -3036,10 +3044,28 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		case .landPack:
 			throw PackError.unsupported
 		}
+//	case .scryfallSetCode where inputString.lowercased() == "akr":
+//		let cards = try Swiftfall.getCards(query: "(set:akh,hou in:akr) or (set:akr)").compactMap { $0?.data }.joined().map(MTGCard.init)
+//
+//
+//
+//		let set = MTGSet(cards: Array(cards), name: "Amonkhet Remastered", code: "AKR")
+//
+//		let encoder = JSONEncoder()
+//		encoder.outputFormatting = .prettyPrinted
+//
+//		let data = try encoder.encode(set)
+//		let string = String(data: data, encoding: .utf8)!
+//
+//		print(string)
+//
+//		throw PackError.unsupported
 	case .scryfallSetCode:
 		let customSets = [
 			"net": "net",
-			"netropolis": "net"
+			"netropolis": "net",
+			"akr": "akr",
+			"amonkhet remastered": "akr"
 		]
 		
 		if let customsetcode = customSets[inputString.lowercased()] {
@@ -3049,18 +3075,16 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 				let configDir = "Sources/App/Generation"
 				return URL(fileURLWithPath: directory.workDir)
 					.appendingPathComponent(configDir, isDirectory: true)
-					.appendingPathComponent("custom-\(customsetcode).json", isDirectory: false)
+					.appendingPathComponent("custommtg-\(customsetcode).json", isDirectory: false)
 				#else
-				return Bundle.main.url(forResource: "custom-\(customsetcode)", withExtension: "json")
+				return Bundle.main.url(forResource: "custommtg-\(customsetcode)", withExtension: "json")
 				#endif
 			}()
 			
 			if let url = jsonURL, let data = try? Data(contentsOf: url), let string = String(data: data, encoding: .utf8) {
-				return try generate(input: .cockatriceJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens)
+				return try generate(input: .mtgCardJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens)
 			}
 		}
-		
-		
 		
 		let set = try Swiftfall.getSet(code: inputString)
 		mtgCards = set.getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init)
@@ -3271,6 +3295,13 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			guard includeBasicLands else { return [] }
 			let dualLands = mainCards.separateAll { $0.typeLine?.lowercased().contains("land") == true && $0.oracleText?.contains("enters the battlefield tapped") == true && $0.oracleText?.contains("gain 1 life") == true }
 			return basicLands + dualLands
+		case "akr":
+			guard includeBasicLands else { return [] }
+			return Swiftfall
+				.getCards(query: "set:akh,hou type:'basic land'", unique: true)
+				.compactMap { $0?.data }
+				.joined()
+				.compactMap(MTGCard.init)
 		case "mir", "vis", "5ed", "por", "wth", "tmp", "sth", "exo", "p02", "usg", "ulg", "6ed", "ptk", "uds", "mmq", "nem", "pcy", "inv", "pls", "7ed", "csp", "dis", "gpt", "rav", "9ed", "lrw", "mor", "shm", "eve", "apc", "ody", "tor", "jud", "ons", "lgn", "scg", "mrd", "dst", "5dn", "chk", "bok", "sok", "plc", "2xm":
 			return []
 		default:
@@ -3305,9 +3336,9 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		case _ where Set(defaultBasicLands.compactMap { $0.name }).count == 5:
 			return defaultBasicLands
 		default:
-			// Just get the most recent standard set basic lands if there are none others.
+			// Just get the most recent hi-res basic lands if there are none others.
 			return Swiftfall
-			.getCards(query: "type='basic land –'", unique: false)
+			.getCards(query: "type='basic land –' is:highres", unique: false)
 			.compactMap { $0?.data }
 			.joined()
 			.compactMap(MTGCard.init)

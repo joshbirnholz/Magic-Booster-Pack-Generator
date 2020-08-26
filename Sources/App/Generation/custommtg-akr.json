@@ -694,8 +694,8 @@
       "collectorNumber": "U-PON",
       "artist": "Titus Lunter",
       "imageUris": {
-        "large": "https://i.imgur.com/yT7Vzwm.jpg",
-        "normal": "https://i.imgur.com/yT7Vzwm.jpg"
+        "large": "https://i.imgur.com/hTv0chy.jpg",
+        "normal": "https://i.imgur.com/hTv0chy.jpg"
       },
       "isFoundInBoosters": true,
       "rarity": "rare",
@@ -2350,8 +2350,8 @@
       "collectorNumber": "R-SSTRM",
       "artist": "Johann Bodin",
       "imageUris": {
-        "large": "https://i.imgur.com/MCv54Vb.jpg",
-        "normal": "https://i.imgur.com/MCv54Vb.jpg"
+        "large": "https://i.imgur.com/0mLjtzU.jpg",
+        "normal": "https://i.imgur.com/0mLjtzU.jpg"
       },
       "isFoundInBoosters": true,
       "rarity": "rare",
@@ -2910,8 +2910,8 @@
       "collectorNumber": "M-SR",
       "artist": "John Di Giovanni",
       "imageUris": {
-        "large": "https://i.imgur.com/BSkpjdM.jpg",
-        "normal": "https://i.imgur.com/BSkpjdM.jpg"
+        "large": "https://i.imgur.com/tjlAqrT.jpg",
+        "normal": "https://i.imgur.com/tjlAqrT.jpg"
       },
       "isFoundInBoosters": true,
       "rarity": "mythic",
@@ -3943,8 +3943,8 @@
       "collectorNumber": "B-TS",
       "artist": "James Ryman",
       "imageUris": {
-        "large": "https://i.imgur.com/oA6nvVh.jpg",
-        "normal": "https://i.imgur.com/oA6nvVh.jpg"
+        "large": "https://i.imgur.com/tiISrAj.jpg",
+        "normal": "https://i.imgur.com/tiISrAj.jpg"
       },
       "isFoundInBoosters": true,
       "rarity": "rare",
@@ -5449,8 +5449,8 @@
       "collectorNumber": "R-AOTG",
       "artist": "Yigit Koroglu",
       "imageUris": {
-        "large": "https://i.imgur.com/1PM4hGp.jpg",
-        "normal": "https://i.imgur.com/1PM4hGp.jpg"
+        "large": "https://i.imgur.com/I6NHbEH.jpg",
+        "normal": "https://i.imgur.com/I6NHbEH.jpg"
       },
       "isFoundInBoosters": true,
       "rarity": "rare",
@@ -6702,7 +6702,6 @@
       "frame": "2015",
       "convertedManaCost": 0,
       "colors": [],
-      "flavorText": "\"The power that flows here cannot be denied. But where is the source?\"\n—Nissa Revane",
       "releaseDate": 618984000,
       "isNonFoilAvailable": true,
       "isPromo": false,
@@ -6717,8 +6716,8 @@
       "collectorNumber": "240",
       "artist": "Paul Scott Canavan",
       "imageUris": {
-        "large": "https://i.imgur.com/EZt5oVk.jpg",
-        "normal": "https://i.imgur.com/EZt5oVk.jpg"
+        "large": "https://i.imgur.com/4LXCIXD.jpg",
+        "normal": "https://i.imgur.com/4LXCIXD.jpg"
       },
       "isFoundInBoosters": true,
       "rarity": "rare",
@@ -7035,15 +7034,16 @@
       "collectorNumber": "G-CC",
       "artist": "Lake Hurwitz",
       "imageUris": {
-        "large": "https://i.imgur.com/zLQNxr5.jpg",
-        "normal": "https://i.imgur.com/zLQNxr5.jpg"
+        "large": "https://i.imgur.com/kHcWE6V.jpg",
+        "normal": "https://i.imgur.com/kHcWE6V.jpg"
       },
       "isFoundInBoosters": true,
       "rarity": "rare",
       "borderColor": "black",
       "isFoilAvailable": true,
       "scryfallID": "A6A13554-22D3-40E3-BF70-63FF939BC434",
-      "oracleText": "Look at the top six cards of your library. Put up to two creature cards with converted mana cost 3 or less from among them onto the battlefield. Put the rest on the bottom of your library in any order."
+      "oracleText": "Look at the top six cards of your library. Put up to two creature cards with converted mana cost 3 or less from among them onto the battlefield. Put the rest on the bottom of your library in any order.",
+	  "flavorText": "We enter a new world—together."
     },
     {
       "manaCost": "{2}{R}",
@@ -11390,8 +11390,8 @@
       "artist": "Jason A. Engle",
       "isFoundInBoosters": true,
       "imageUris": {
-        "large": "https://i.imgur.com/ixYxCXT.jpg",
-        "normal": "https://i.imgur.com/ixYxCXT.jpg"
+        "large": "https://i.imgur.com/x4SDkG6.jpg",
+        "normal": "https://i.imgur.com/x4SDkG6.jpg"
       },
       "rarity": "rare",
       "borderColor": "black",

@@ -1,7 +1,7 @@
 1 Awakener Druid (JMP) 379
 1 Crushing Canopy (JMP) 386
 1 Cultivate (M21) 177
-2 Elemental Uprising (JMP) 392
+1 Elemental Uprising (JMP) 392
 1 Fa'adiyah Seer (JMP) 394
 1 Feral Hydra (JMP) 395
 1 Fertilid (JMP) 398

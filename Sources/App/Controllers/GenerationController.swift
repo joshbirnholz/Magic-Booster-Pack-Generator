@@ -6,6 +6,9 @@
 //
 
 import Vapor
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 final class GeneratorController {
 	func boosterPack(_ req: Request) throws -> Future<String> {

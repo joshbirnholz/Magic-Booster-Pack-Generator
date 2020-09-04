@@ -37,9 +37,9 @@ public struct DeckParser {
 		public var count: Int
 	}
 	
-	private static let regex = #"^(?:(?:\/\/)?(\S*)\s*$|\s*(\d+)\s+([^\(\n]+\S)(?:\s*|\s+\(\s*(\S+)\s*\)(?:\h+(\S+)\s*|\s*)))$"#
-	
 	public static func parse(deckList: String) -> [CardGroup] {
+		let regex = #"^(?:(?:\/\/)?(\S*)\s*$|\s*(\d+)\s+([^\(\n]+\S)(?:\s*|\s+\(\s*(\S+)\s*\)(?:\h+(\S+)\s*|\s*)))$"#
+		
 		let matches = deckList.matches(forRegex: regex, options: [.anchorsMatchLines])
 		var cardGroups: [CardGroup] = []
 		
@@ -86,6 +86,60 @@ public struct DeckParser {
 				
 				guard let number = Int(count) else { continue }
 				let cardCount = CardCount(identifier: .collectorNumberSet(collectorNumber: collectorNumber, set: set), count: number)
+				cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
+			default:
+				break
+			}
+		}
+		
+		return cardGroups
+	}
+	
+	public static func parse(deckstatsDecklist: String) -> [CardGroup] {
+		let regex = #"(?:^\/\/(\S+)$|^([0-9]+) (?:\[(.+)\] (.+)$|(.+)$))"#
+		
+		let deckList = deckstatsDecklist
+			.components(separatedBy: .newlines)
+			.map {
+				var line = $0
+				if let range = line.range(of: "//") {
+					line.removeSubrange(range)
+				}
+				return line
+		}.joined(separator: "\n")
+		
+		let matches = deckList.matches(forRegex: regex, options: [.anchorsMatchLines])
+		var cardGroups: [CardGroup] = []
+		
+		for (_, groups) in matches {
+			switch groups.count {
+			case 1:
+				let value = groups[0].value.trimmingCharacters(in: .whitespacesAndNewlines)
+				let newGroup = CardGroup(name: CardGroup.name(for: value), cardCounts: [])
+				cardGroups.append(newGroup)
+			case 2:
+				if cardGroups.isEmpty {
+					let newGroup = CardGroup(name: cardGroups.isEmpty ? CardGroup.GroupName.deck.rawValue : nil, cardCounts: [])
+					cardGroups.append(newGroup)
+				}
+				
+				let count = groups[0].value
+				let name = groups[1].value
+				guard let number = Int(count) else { continue }
+				let cardCount = CardCount(identifier: .name(name), count: number)
+				cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
+			case 3:
+				if cardGroups.isEmpty {
+					let newGroup = CardGroup(name: cardGroups.isEmpty ? CardGroup.GroupName.deck.rawValue : nil, cardCounts: [])
+					cardGroups.append(newGroup)
+				}
+				
+				let count = groups[0].value
+				let name = groups[2].value
+				let set = groups[1].value
+				
+				guard let number = Int(count) else { continue }
+				let cardCount = CardCount(identifier: .nameSet(name: name, set: set), count: number)
 				cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
 			default:
 				break

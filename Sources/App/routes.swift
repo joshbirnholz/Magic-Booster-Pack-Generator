@@ -32,8 +32,9 @@ public func routes(_ router: Router) throws {
 	
 	router.get("token", String.parameter, use: generatorController.completeToken)
 	
-	
-	
 	router.get("deck", use: generatorController.fullDeck)
 	router.post("deck", use: generatorController.fullDeck)
+	
+	router.get("url", String.parameter, use: generatorController.deckstatsDeck)
+	router.post("url", String.parameter, use: generatorController.deckstatsDeck)
 }

@@ -27,6 +27,7 @@ enum PackError: Error {
 	case unsupported
 	case noName
 	case invalidJumpStartName
+	case invalidURL
 	case noCardFound(String)
 	
 	var code: Int {
@@ -53,6 +54,8 @@ enum PackError: Error {
 			return 9
 		case .invalidJumpStartName:
 			return 10
+		case .invalidURL:
+			return 11
 		}
 	}
 }
@@ -3740,14 +3743,28 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 	"""
 }
 
-func deck(decklist: String, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = []) throws -> String {
+enum DeckFormat {
+	case arena
+	case deckstats
+}
+
+func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = []) throws -> String {
 	let fixedSetCodes: [String: String] = [
 		"dar": "dom",
 		"7e": "7ed",
 		"8e": "8ed"
 	]
 	
-	let groups: [DeckParser.CardGroup] = DeckParser.parse(deckList: decklist).filter { !$0.cardCounts.isEmpty }.map {
+	let parsed: [DeckParser.CardGroup] = {
+		switch format {
+		case .arena:
+			return DeckParser.parse(deckList: decklist)
+		case .deckstats:
+			return DeckParser.parse(deckstatsDecklist: decklist)
+		}
+	}()
+	
+	let groups: [DeckParser.CardGroup] = parsed.filter { !$0.cardCounts.isEmpty }.map {
 		var cardGroup = $0
 		
 		cardGroup.cardCounts = cardGroup.cardCounts.map { cardCount in

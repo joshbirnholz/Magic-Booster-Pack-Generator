@@ -49,6 +49,8 @@ extension PackError: Debuggable {
 			return "The input is empty."
 		case .invalidJumpStartName:
 			return "There isn't a pack with that name."
+		case .invalidURL:
+			return "The URL is invalid."
 		}
 	}
 	

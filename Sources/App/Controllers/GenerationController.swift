@@ -122,7 +122,7 @@ final class GeneratorController {
 				throw PackError.invalidURL
 			}
 			
-			DispatchQueue.global(qos: .userInitiated).async {
+			DispatchQueue.global().async {
 				let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
 				URLSession.shared.dataTask(with: request) { data, response, error in
 					do {
@@ -138,26 +138,47 @@ final class GeneratorController {
 						let decoder = JSONDecoder()
 						let deckList = try decoder.decode(DeckStatsList.self, from: data)
 						
-						let result: String = try deck(decklist: deckList.list, format: .deckstats, export: export, cardBack: cardBack)
-						print("Success")
-						promise.succeed(result: result)
-					} catch let error as PackError {
-							struct ErrorMessage: Codable {
-								var error: String
-							}
-							
-							let encoder = JSONEncoder()
-							let errorMessage = ErrorMessage(error: error.reason)
+						DispatchQueue(label: "decklist").async {
 							do {
-								let data = try encoder.encode(errorMessage)
-								let string = String(data: data, encoding: .utf8)!
-								promise.succeed(result: string)
+								
+								let result: String = try deck(decklist: deckList.list, format: .deckstats, export: export, cardBack: cardBack)
+								print("Success")
+								promise.succeed(result: result)
+							} catch let error as PackError {
+								struct ErrorMessage: Codable {
+									var error: String
+								}
+								
+								let encoder = JSONEncoder()
+								let errorMessage = ErrorMessage(error: error.reason)
+								do {
+									let data = try encoder.encode(errorMessage)
+									let string = String(data: data, encoding: .utf8)!
+									promise.succeed(result: string)
+								} catch {
+									promise.fail(error: error)
+								}
 							} catch {
 								promise.fail(error: error)
 							}
+						}
+					} catch let error as PackError {
+						struct ErrorMessage: Codable {
+							var error: String
+						}
+						
+						let encoder = JSONEncoder()
+						let errorMessage = ErrorMessage(error: error.reason)
+						do {
+							let data = try encoder.encode(errorMessage)
+							let string = String(data: data, encoding: .utf8)!
+							promise.succeed(result: string)
 						} catch {
 							promise.fail(error: error)
 						}
+					} catch {
+						promise.fail(error: error)
+					}
 				}.resume()
 			}
 		default:

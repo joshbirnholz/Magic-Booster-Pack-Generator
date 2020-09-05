@@ -136,6 +136,8 @@ enum Mode {
 	case ikoria
 	/// 1/15 packs contain rare/mythic showcase or borderless card. If that fails, 2/7 packs contain common/uncommon showcase or borderless card. Foil showcase/borderless show up 1/35 packs.
 	case m21
+	/// Gauranteed modal double-faced card.
+	case zendikarRising
 	
 	/// 2 rares in each pack, 2 guaranteed foils.
 	case doubleMasters
@@ -460,6 +462,24 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		// Add a second rare or mythic to double masters packs
 		if mode == .doubleMasters {
 			addRareOrMythic()
+		}
+		
+		if mode == .zendikarRising {
+			// Add a modal double-faced card to ZNR packs.
+			
+			let rarity: MTGCard.Rarity = {
+				let rarityValue = (1...1000).randomElement()!
+				switch rarityValue {
+				case 1...500: return .common
+				case 1...833: return .uncommon
+				case 1...979: return .rare
+				default: return .mythic
+				}
+			}()
+			
+			if let dfc = rarities[rarity]?.shuffled().first(where: { $0.layout == "modal_dfc" }) {
+				pack.insert(dfc, at: 0)
+			}
 		}
 		
 		let uncommonCount: Int = {
@@ -1201,7 +1221,7 @@ fileprivate struct CardInfo {
 			
 		} else */
 		
-		if card.layout == "transform", let faces = card.cardFaces, faces.count >= 2, let faceURL = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"], let backFaceURL = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
+		if (card.layout == "transform" || card.layout == "modal_dfc"), let faces = card.cardFaces, faces.count >= 2, let faceURL = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"], let backFaceURL = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
 			self.backURL = Self.defaultBack
 			
 			let frontName = faces[0].name ?? ""

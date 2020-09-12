@@ -3157,6 +3157,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		case "vma": return .vintageMasters
 		case "m21": return .m21
 		case "2xm": return .doubleMasters
+		case "znr": return .zendikarRising
 		default: return .default
 		}
 	}()
@@ -3325,6 +3326,10 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
+		case "znr":
+			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
+			guard includeBasicLands else { return [] }
+			return basicLands.filter { $0.isFullArt }
 		case "mir", "vis", "5ed", "por", "wth", "tmp", "sth", "exo", "p02", "usg", "ulg", "6ed", "ptk", "uds", "mmq", "nem", "pcy", "inv", "pls", "7ed", "csp", "dis", "gpt", "rav", "9ed", "lrw", "mor", "shm", "eve", "apc", "ody", "tor", "jud", "ons", "lgn", "scg", "mrd", "dst", "5dn", "chk", "bok", "sok", "plc", "2xm":
 			return []
 		default:
@@ -3356,6 +3361,8 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true && $0.isFoundInBoosters && !$0.isPromo }
 		case "ogw":
 			return basicLandSlotCards.filter { $0.name != "Wastes" }
+		case "znr":
+			return basicLandSlotCards.filter { $0.isFullArt }
 		case _ where Set(defaultBasicLands.compactMap { $0.name }).count == 5:
 			return defaultBasicLands
 		default:
@@ -3640,12 +3647,20 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 			if let promo = promosRarities[promoRarity]?.randomElement() ?? promosRarities[.rare]?.randomElement() {
 				return promo
 			} else if let card = (processed.rarities[promoRarity] ?? processed.rarities[.rare])?.filter({ $0.frameEffects?.contains("showcase") != true }).randomElement() {
-				let currentPrereleaseSetCode = "m21"
+				let currentPrereleaseSetCode = "znr"
 				if setCode == currentPrereleaseSetCode {
 					var card = card
 					let imageURL = URL(string: "http://josh.birnholz.com/tts/cards/\(currentPrereleaseSetCode)/\(card.collectorNumber).jpg")!
-					card.imageUris?["normal"] = imageURL
-					card.imageUris?["large"] = imageURL
+					
+					if (card.cardFaces?.first?.imageUris) != nil {
+						// Set the image only on the front of double-faced cards.
+						card.cardFaces?[0].imageUris?["normal"] = imageURL
+						card.cardFaces?[0].imageUris?["large"] = imageURL
+					} else {
+						card.imageUris?["normal"] = imageURL
+						card.imageUris?["large"] = imageURL
+					}
+					
 					return card
 				}
 				

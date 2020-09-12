@@ -195,6 +195,8 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 	
 	let guaranteedPlaneswalkerSlot = mode == .warOfTheSpark ? (0...3).randomElement()! : nil
 	
+	var allRarities: [MTGCard.Rarity: [MTGCard]] = [:]
+	
 	let landRarities: [MTGCard.Rarity: [MTGCard]]? = {
 		// todo: maybe change this to check if basicLands contains where { $0.typeline.contains("basic") == false }
 		guard Set(basicLands.map(\.rarity)).count > 1 else {
@@ -235,6 +237,14 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			rarities[.mythic] = mythics
 		}
 		
+		allRarities = rarities
+		
+		if mode == .zendikarRising {
+			for rarity in MTGCard.Rarity.allCases {
+				rarities[rarity] = rarities[rarity]?.filter { $0.layout != "modal_dfc" }
+			}
+		}
+		
 		return rarities
 	}()
 	
@@ -261,9 +271,9 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		}
 	}
 	let includedShowcaseRarity: ShowcaseRarity? = {
-		guard !showcaseRarities.values.joined().filter({ $0.isFoundInBoosters }).isEmpty else { return nil }
+		guard showcaseRarities.values.joined().contains(where: \.isFoundInBoosters) else { return nil }
 		
-		if mode == .ikoria {
+		if mode == .ikoria || mode == .zendikarRising {
 			if (1...29).randomElement()! <= 2 {
 				return .rareMythic
 			} else if (1...3).randomElement() == 1 {
@@ -283,6 +293,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		
 		return (1...9).randomElement() == 9 ? .random : nil
 	}()
+	
 	let shouldIncludeRareMythicDoubleFaced = (1...8).randomElement()! == 8 // for shadowsOverInnistradDoubleFaced mode
 	let includeMasterpiece: Bool = {
 		guard !masterpieceCards.isEmpty else { return false }
@@ -304,6 +315,22 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		default: return .mythic
 		}
 	}
+	let zendikarRisingGuaranteedDFCRarity: MTGCard.Rarity? = {
+		guard mode == .zendikarRising else { return nil }
+		
+//		let rarityValue = (1...1000).randomElement()!
+//		switch rarityValue {
+//		case 1...500: return .uncommon // There are no common modal DFCs
+//		case 1...833: return .uncommon
+//		case 1...979: return .rare
+//		default: return .mythic
+//		}
+		var rarities: [MTGCard.Rarity] = []
+		rarities.append(contentsOf: Array(repeating: .mythic, count: 5))
+		rarities.append(contentsOf: Array(repeating: .rare, count: 11))
+		rarities.append(contentsOf: Array(repeating: .uncommon, count: 20))
+		return rarities.randomElement()
+	}()
 	
 	var uniqueCardCount: Int { Set(pack.compactMap { $0.name }).count }
 	var allColorsCount: Int { Set(pack.compactMap { $0.colors }.joined()).count }
@@ -420,7 +447,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			}
 		} */else if shouldIncludeFoilBorderless, let borderlessFoil = borderlessCards.randomElement() {
 			pack.insert(borderlessFoil, at: 0)
-		} else if let rarity = includedFoilRarity, let foil = [(rarities[rarity] ?? []), (customSlotRarities[rarity] ?? [])].joined().filter(\.isFoilAvailable).randomElement() {
+		} else if let rarity = includedFoilRarity, let foil = [(allRarities[rarity] ?? []), (customSlotRarities[rarity] ?? [])].joined().filter(\.isFoilAvailable).randomElement() {
 			if includeExtendedArt, let extendedArtVersion = extendedArt.filter({ $0.name == foil.name }).randomElement() {
 				pack.insert(extendedArtVersion, at: 0)
 			} else if rarity != .common {
@@ -432,7 +459,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		}
 		
 		// Add a second foil to double masters packs.
-		if mode == .doubleMasters, let rarity = includedFoilRarity, let foil = [(rarities[rarity] ?? []), (customSlotRarities[rarity] ?? [])].joined().filter(\.isFoilAvailable).randomElement() {
+		if mode == .doubleMasters, let rarity = includedFoilRarity, let foil = [(allRarities[rarity] ?? []), (customSlotRarities[rarity] ?? [])].joined().filter(\.isFoilAvailable).randomElement() {
 			if includeExtendedArt, let extendedArtVersion = extendedArt.filter({ $0.name == foil.name }).randomElement() {
 				pack.insert(extendedArtVersion, at: 0)
 			} else if rarity != .common {
@@ -442,6 +469,10 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		
 		let rareSlotRarities = guaranteedPlaneswalkerSlot == 3 ? customSlotRarities : rarities
 		func addRareOrMythic() {
+			if zendikarRisingGuaranteedDFCRarity == .rare || zendikarRisingGuaranteedDFCRarity == .mythic {
+				return
+			}
+			
 			if includeMythic, let mythic = rareSlotRarities[.mythic]?.randomElement() {
 				pack.insert(mythic, at: 0)
 				
@@ -457,29 +488,23 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			}
 		}
 		
+		if let rarity = zendikarRisingGuaranteedDFCRarity {
+			// Add a modal double-faced card to ZNR packs.
+			print("Adding a \(rarity.rawValue) DFC")
+			if let dfc = allRarities[rarity]?.shuffled().first(where: { $0.layout == "modal_dfc" }) {
+				pack.insert(dfc, at: 0)
+			} else {
+				print("Coudln't find one!")
+			}
+		} else {
+			print("Not adding a DFC")
+		}
+		
 		addRareOrMythic()
 		
 		// Add a second rare or mythic to double masters packs
 		if mode == .doubleMasters {
 			addRareOrMythic()
-		}
-		
-		if mode == .zendikarRising {
-			// Add a modal double-faced card to ZNR packs.
-			
-			let rarity: MTGCard.Rarity = {
-				let rarityValue = (1...1000).randomElement()!
-				switch rarityValue {
-				case 1...500: return .common
-				case 1...833: return .uncommon
-				case 1...979: return .rare
-				default: return .mythic
-				}
-			}()
-			
-			if let dfc = rarities[rarity]?.shuffled().first(where: { $0.layout == "modal_dfc" }) {
-				pack.insert(dfc, at: 0)
-			}
 		}
 		
 		let uncommonCount: Int = {
@@ -493,6 +518,10 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			}()
 			
 			if pack.contains(where: \.hasPartner) {
+				base -= 1
+			}
+			
+			if zendikarRisingGuaranteedDFCRarity == .uncommon {
 				base -= 1
 			}
 			
@@ -3425,6 +3454,18 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		}
 	default:
 		break
+	}
+	
+	if setCode == "znr" {
+		mainCards = mainCards.map { card in
+			if card.frameEffects?.contains("showcase") == true {
+				var card = card
+				card.isFoundInBoosters = mainCards.contains(where: { $0.name == card.name && $0.isFoundInBoosters })
+				return card
+			} else {
+				return card
+			}
+		}
 	}
 	
 	let showcases: [MTGCard.Rarity: [MTGCard]] = .init(grouping: mainCards.separateAll { $0.frameEffects?.contains("showcase") == true || $0.borderColor == .borderless }, by: \.rarity)

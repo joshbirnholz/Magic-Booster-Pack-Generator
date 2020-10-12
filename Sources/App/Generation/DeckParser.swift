@@ -85,7 +85,7 @@ public struct DeckParser {
 				let collectorNumber = groups[3].value
 				
 				guard let number = Int(count) else { continue }
-				let cardCount = CardCount(identifier: .collectorNumberSet(collectorNumber: collectorNumber, set: set), count: number)
+				let cardCount = CardCount(identifier: .collectorNumberSet(collectorNumber: collectorNumber, set: set, name: name), count: number)
 				cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
 			default:
 				break

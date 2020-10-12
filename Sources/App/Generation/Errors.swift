@@ -51,6 +51,8 @@ extension PackError: Debuggable {
 			return "There isn't a pack with that name."
 		case .invalidURL:
 			return "The URL is invalid."
+		case .privateDeck:
+			return "The deck is set to private."
 		}
 	}
 	

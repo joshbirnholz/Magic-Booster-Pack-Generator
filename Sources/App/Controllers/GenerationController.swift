@@ -27,7 +27,7 @@ final class GeneratorController {
 		
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
-				let result = try generate(input: .scryfallSetCode, inputString: set, output: .boosterPack, export: export, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, specialOptions: specialOptions)
+				let result = try generate(input: .scryfallSetCode, inputString: set, output: .boosterPack, export: export, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, specialOptions: specialOptions, autofixDecklist: false)
 				promise.succeed(result: result)
 			} catch {
 				promise.fail(error: error)
@@ -55,7 +55,7 @@ final class GeneratorController {
 		
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
-				let result = try generate(input: .scryfallSetCode, inputString: set, output: .boosterBox, export: export, boxCount: count, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, specialOptions: specialOptions)
+				let result = try generate(input: .scryfallSetCode, inputString: set, output: .boosterBox, export: export, boxCount: count, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, specialOptions: specialOptions, autofixDecklist: false)
 				promise.succeed(result: result)
 			} catch {
 				promise.fail(error: error)
@@ -83,7 +83,7 @@ final class GeneratorController {
 		
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
-				let result = try generate(input: .scryfallSetCode, inputString: set, output: .prereleaseKit, export: export, boxCount: count, prereleaseIncludePromoCard: includePromo, prereleaseIncludeLands: includeLands, prereleaseIncludeSheet: includeSheet, prereleaseIncludeSpindown: includeSpindown, prereleaseBoosterCount: boosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: true, includeTokens: true, specialOptions: specialOptions)
+				let result = try generate(input: .scryfallSetCode, inputString: set, output: .prereleaseKit, export: export, boxCount: count, prereleaseIncludePromoCard: includePromo, prereleaseIncludeLands: includeLands, prereleaseIncludeSheet: includeSheet, prereleaseIncludeSpindown: includeSpindown, prereleaseBoosterCount: boosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: true, includeTokens: true, specialOptions: specialOptions, autofixDecklist: false)
 				promise.succeed(result: result)
 			} catch {
 				promise.fail(error: error)
@@ -99,17 +99,10 @@ final class GeneratorController {
 		var deck: String
 	}
 	
-	func deckstatsDeck(_ req: Request) throws -> Future<String> {
-		// https://deckstats.net/api.php?action=get_deck&id_type=saved&owner_id=149419&id=1676048&response_type=list
-		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
-		let cardBack: URL? = (try? req.query.get(String.self, at: "back")).flatMap(URL.init(string:))
-		
-		let deckURLString = try req.parameters.next(String.self)
-		guard let deckURL = URL(string: deckURLString), let components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else {
+	fileprivate func deckFromURL(_ deckURL: URL, _ export: Bool, _ cardBack: URL?, autofix: Bool, _ promise: EventLoopPromise<String>) throws -> EventLoopFuture<String> {
+		guard let components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else {
 			throw PackError.invalidURL
 		}
-		
-		let promise: Promise<String> = req.eventLoop.newPromise()
 		
 		switch components.host {
 		case "deckstats.net":
@@ -141,7 +134,66 @@ final class GeneratorController {
 						DispatchQueue(label: "decklist").async {
 							do {
 								
-								let result: String = try deck(decklist: deckList.list, format: .deckstats, export: export, cardBack: cardBack)
+								let result: String = try deck(decklist: deckList.list, format: .deckstats, export: export, cardBack: cardBack, allowRetries: autofix)
+								print("Success")
+								promise.succeed(result: result)
+							} catch let error as PackError {
+								struct ErrorMessage: Codable {
+									var error: String
+								}
+								
+								let encoder = JSONEncoder()
+								let errorMessage = ErrorMessage(error: error.reason)
+								do {
+									let data = try encoder.encode(errorMessage)
+									let string = String(data: data, encoding: .utf8)!
+									promise.succeed(result: string)
+								} catch {
+									promise.fail(error: error)
+								}
+							} catch {
+								promise.fail(error: error)
+							}
+						}
+					} catch let error as PackError {
+						struct ErrorMessage: Codable {
+							var error: String
+						}
+						
+						let encoder = JSONEncoder()
+						let errorMessage = ErrorMessage(error: error.reason)
+						do {
+							let data = try encoder.encode(errorMessage)
+							let string = String(data: data, encoding: .utf8)!
+							promise.succeed(result: string)
+						} catch {
+							promise.fail(error: error)
+						}
+					} catch {
+						promise.fail(error: error)
+					}
+				}.resume()
+			}
+		case "tappedout.net":
+			DispatchQueue.global().async {
+				let request = URLRequest(url: deckURL, cachePolicy: .reloadIgnoringLocalCacheData)
+				URLSession.shared.dataTask(with: request) { data, response, error in
+					do {
+						if let response = response as? HTTPURLResponse, response.statusCode == 404 {
+							throw PackError.privateDeck
+						}
+						
+						guard let data = data, let page = String(data: data, encoding: .utf8) else {
+							throw PackError.invalidURL
+						}
+						
+						guard let arenaDecklist = page.matches(forRegex: #"<textarea id="mtga-textarea">(.*)<\/textarea>"#, options: .dotMatchesLineSeparators).first?.groups.first?.value else {
+							throw PackError.invalidURL
+						}
+						
+						DispatchQueue(label: "decklist").async {
+							do {
+								let result: String = try deck(decklist: arenaDecklist, format: .arena, export: export, cardBack: cardBack, allowRetries: autofix)
 								print("Success")
 								promise.succeed(result: result)
 							} catch let error as PackError {
@@ -188,16 +240,37 @@ final class GeneratorController {
 		return promise.futureResult
 	}
 	
+	func deckstatsDeck(_ req: Request) throws -> Future<String> {
+		// https://deckstats.net/api.php?action=get_deck&id_type=saved&owner_id=149419&id=1676048&response_type=list
+		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
+		let autofix: Bool = (try? req.query.get(Bool.self, at: "autofix")) ?? true
+		let cardBack: URL? = (try? req.query.get(String.self, at: "back")).flatMap(URL.init(string:))
+		
+		let deckURLString = try req.parameters.next(String.self)
+		guard let deckURL = URL(string: deckURLString) else {
+			throw PackError.invalidURL
+		}
+		
+		let promise: Promise<String> = req.eventLoop.newPromise()
+		
+		return try deckFromURL(deckURL, export, cardBack, autofix: autofix, promise)
+	}
+	
 	func fullDeck(_ req: Request) throws -> Future<String> {
 		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
+		let autofix: Bool = (try? req.query.get(Bool.self, at: "autofix")) ?? true
 		let cardBack: URL? = (try? req.query.get(String.self, at: "back")).flatMap(URL.init(string:))
 		
 		return try req.content.decode(DeckList.self).flatMap { decklist in
 			let promise: Promise<String> = req.eventLoop.newPromise()
 			
+			if let url = URL(string: decklist.deck) {
+				return try self.deckFromURL(url, export, cardBack, autofix: autofix, promise)
+			}
+			
 			DispatchQueue.global().async {
 				do {
-					let result: String = try deck(decklist: decklist.deck, export: export, cardBack: cardBack)
+					let result: String = try deck(decklist: decklist.deck, export: export, cardBack: cardBack, allowRetries: autofix)
 					promise.succeed(result: result)
 				} catch let error as PackError {
 					struct ErrorMessage: Codable {
@@ -325,7 +398,7 @@ final class GeneratorController {
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
 				if let set = set {
-					let packs = try generate(input: .scryfallSetCode, inputString: set, output: .landPack, export: export, boxCount: nil, prereleaseIncludePromoCard: nil, prereleaseIncludeLands: nil, prereleaseIncludeSheet: nil, prereleaseIncludeSpindown: nil, prereleaseBoosterCount: nil, includeExtendedArt: false, includeBasicLands: true, includeTokens: false, specialOptions: [], cardBack: nil)
+					let packs = try generate(input: .scryfallSetCode, inputString: set, output: .landPack, export: export, boxCount: nil, prereleaseIncludePromoCard: nil, prereleaseIncludeLands: nil, prereleaseIncludeSheet: nil, prereleaseIncludeSpindown: nil, prereleaseBoosterCount: nil, includeExtendedArt: false, includeBasicLands: true, includeTokens: false, specialOptions: [], cardBack: nil, autofixDecklist: false)
 					promise.succeed(result: packs)
 				} else {
 					let packs = try allLandPacksSingleJSON(setCards: nil, specialOptions: [], export: export)

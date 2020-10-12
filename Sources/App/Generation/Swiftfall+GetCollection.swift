@@ -78,6 +78,7 @@ extension Swiftfall {
 	static func getCollection(identifiers: [MTGCardIdentifier]) throws -> CardCollectionList {
 		let encoder = JSONEncoder()
 		encoder.outputFormatting = .prettyPrinted
+		encoder.keyEncodingStrategy = .convertToSnakeCase
 		
 		let data = try encoder.encode(["identifiers": identifiers])
 		let string = String(data: data, encoding: .utf8)!

@@ -28,6 +28,7 @@ enum PackError: Error {
 	case noName
 	case invalidJumpStartName
 	case invalidURL
+	case privateDeck
 	case noCardFound(String)
 	
 	var code: Int {
@@ -56,6 +57,8 @@ enum PackError: Error {
 			return 10
 		case .invalidURL:
 			return 11
+		case .privateDeck:
+			return 12
 		}
 	}
 }
@@ -950,7 +953,7 @@ func generateJumpStartPack(export: Bool, cardBack: URL?) throws -> ObjectStateJS
 		
 		let contents = try String(contentsOf: deckListURL)
 		
-		let deckList = try deck(decklist: contents, export: false, cardBack: cardBack, includeTokens: false, faceCards: [faceCard])
+		let deckList = try deck(decklist: contents, export: false, cardBack: cardBack, includeTokens: false, faceCards: [faceCard], allowRetries: true)
 		
 		let setCode = "jmp"
 		
@@ -3034,7 +3037,7 @@ fileprivate let prereleaseSheet = """
 }
 """
 
-public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, includeBasicLands: Bool, includeTokens: Bool, specialOptions: [String] = [], cardBack: URL? = nil) throws -> String {
+public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, includeBasicLands: Bool, includeTokens: Bool, specialOptions: [String] = [], cardBack: URL? = nil, autofixDecklist: Bool) throws -> String {
 	let mtgCards: [MTGCard]
 	let setName: String
 	let setCode: String?
@@ -3134,7 +3137,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			}()
 			
 			if let url = jsonURL, let data = try? Data(contentsOf: url), let string = String(data: data, encoding: .utf8) {
-				return try generate(input: .mtgCardJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens)
+				return try generate(input: .mtgCardJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, autofixDecklist: autofixDecklist)
 			}
 		}
 		
@@ -3164,7 +3167,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			mythicPolicy = .previous
 		}
 	case .cardlist:
-		return try deck(decklist: inputString, export: export, cardBack: cardBack)
+		return try deck(decklist: inputString, export: export, cardBack: cardBack, allowRetries: autofixDecklist)
 	}
 	
 	guard !mtgCards.isEmpty else { throw PackError.noCards }
@@ -3824,12 +3827,14 @@ enum DeckFormat {
 	case deckstats
 }
 
-func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = []) throws -> String {
-	let fixedSetCodes: [String: String] = [
-		"dar": "dom",
-		"7e": "7ed",
-		"8e": "8ed"
-	]
+let fixedSetCodes: [String: String] = [
+	"dar": "dom",
+	"7e": "7ed",
+	"8e": "8ed",
+	"eo2": "e02"
+]
+
+func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], allowRetries: Bool) throws -> String {
 	
 	let parsed: [DeckParser.CardGroup] = {
 		switch format {
@@ -3851,12 +3856,18 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 				case .nameSet(name: let name, set: let set):
 					if let fixedCode = fixedSetCodes[set.lowercased()] {
 						return .nameSet(name: name, set: fixedCode)
+					} else if set.uppercased() == "MYSTOR" || set.uppercased() == "MYS1" {
+						return .name(name)
 					} else {
 						break
 					}
-				case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set):
+				case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set, let name):
 					if let fixedCode = fixedSetCodes[set.lowercased()] {
-						return .collectorNumberSet(collectorNumber: collectorNumber, set: fixedCode)
+						return .collectorNumberSet(collectorNumber: collectorNumber, set: fixedCode, name: name)
+					} else if let name = name, set.uppercased() == "MYSTOR" {
+						return .nameSet(name: name, set: "fmb1")
+					} else if let name = name, set.uppercased() == "MYS1" {
+						return .nameSet(name: name, set: "mb1")
 					} else {
 						break
 					}
@@ -3894,8 +3905,70 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 			throw error
 		}
 	}
-	let cards = Array(collections.map(\.data).joined())
-	let notFound: [MTGCardIdentifier] = Array(collections.compactMap(\.notFound).joined())
+	var cards = Array(collections.map(\.data).joined())
+	var notFound: [MTGCardIdentifier] = Array(collections.compactMap(\.notFound).joined())
+	
+	// First round of retries: Remove incorrect collector numbers
+	
+	retry: if !notFound.isEmpty && allowRetries {
+		let retriable: [MTGCardIdentifier] = notFound.compactMap { identifier in
+			guard let originalIdentifier = identifiers.first(where: { $0.set == identifier.set && $0.collectorNumber == identifier.collectorNumber }) else {
+				return nil
+			}
+			
+			if case .collectorNumberSet(collectorNumber: _, let set, name: let name?) = originalIdentifier {
+				return .nameSet(name: name, set: set)
+			} else {
+				return nil
+			}
+		}
+		guard retriable.count == notFound.count else {
+			break retry
+		}
+		
+		notFound.removeAll()
+		
+		let collections: [Swiftfall.CardCollectionList] = try retriable.chunked(by: 75).compactMap {
+			do {
+				return try Swiftfall.getCollection(identifiers: $0)
+			} catch {
+				print(error)
+				throw error
+			}
+		}
+		
+		cards += Array(collections.map(\.data).joined())
+		notFound = Array(collections.compactMap(\.notFound).joined())
+	}
+	
+	// Second round of retries: Remove incorrect set codes
+	
+	retry: if !notFound.isEmpty && allowRetries {
+		let retriable: [MTGCardIdentifier] = notFound.compactMap { identifier in
+			if let name = identifier.name {
+				return .name(name)
+			} else {
+				return nil
+			}
+		}
+		guard retriable.count == notFound.count else {
+			break retry
+		}
+		
+		notFound.removeAll()
+		
+		let collections: [Swiftfall.CardCollectionList] = try retriable.chunked(by: 75).compactMap {
+			do {
+				return try Swiftfall.getCollection(identifiers: $0)
+			} catch {
+				print(error)
+				throw error
+			}
+		}
+		
+		cards += Array(collections.map(\.data).joined())
+		notFound = Array(collections.compactMap(\.notFound).joined())
+	}
 	
 //	if !notFound.isEmpty {
 //		let retriedNotFoundCardGroups: [[Swiftfall.Card]] = notFound.chunked(by: 20).map { identifiers in
@@ -4019,7 +4092,7 @@ extension Collection where Element == Swiftfall.Card {
 			case .nameSet(name: let name, set: let set):
 				let name = name.lowercased()
 				return (card.name?.lowercased() == name || card.cardFaces?.contains(where: { $0.name?.lowercased() == name }) == true) && card.set.lowercased() == set.lowercased()
-			case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set):
+			case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set, _):
 				return card.collectorNumber.lowercased() == collectorNumber.lowercased() && card.set.lowercased() == set.lowercased()
 			}
 		}
@@ -4028,8 +4101,8 @@ extension Collection where Element == Swiftfall.Card {
 			return result
 		} else if case .nameSet(let name, let set) = identifier, set.lowercased() == "dar" {
 			return self[.nameSet(name: name, set: "dom")]
-		} else if case .collectorNumberSet(let collectorNumber, let set) = identifier, set.lowercased() == "dar" {
-			return self[.collectorNumberSet(collectorNumber: collectorNumber, set: "dom")]
+		} else if case .collectorNumberSet(let collectorNumber, let set, let name) = identifier, let fixedSet = fixedSetCodes[set.lowercased()] {
+			return self[.collectorNumberSet(collectorNumber: collectorNumber, set: fixedSet, name: name)]
 		} else {
 			return nil
 		}
@@ -4043,7 +4116,7 @@ extension MTGCardIdentifier {
 			return "\"\(name)\""
 		case .nameSet(name: let name, set: let set):
 			return "\"\(name)\" set:\(set)"
-		case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set):
+		case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set, _):
 			return "number:\(collectorNumber) set:\(set)"
 		default:
 			return nil

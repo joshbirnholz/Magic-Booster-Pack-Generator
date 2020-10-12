@@ -37,11 +37,17 @@ function doDownloadDeck() {
 	
 	var url = "deck";
 	
+	if ($("#autofix").prop("checked") == true) {
+		url += "?autofix=true"
+	} else {
+		url += "?autofix=false"
+	}
+	
 	var cardBack = document.getElementById("back").value;
 	
 	if (cardBack !== "") {
 		if (validURL(cardBack)) {
-			url += "?back=" + cardBack;
+			url += "&back=" + cardBack;
 		} else {
 			alert("The card back image URL isn't valid.");
 			$("#progress").html("");

@@ -3841,7 +3841,7 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 	let parsed: [DeckParser.CardGroup] = {
 		switch format {
 		case .arena:
-			return DeckParser.parse(deckList: decklist)
+			return DeckParser.parse(deckList: decklist, autofix: allowRetries)
 		case .deckstats:
 			return DeckParser.parse(deckstatsDecklist: decklist)
 		}
@@ -3972,29 +3972,12 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 		notFound = Array(collections.compactMap(\.notFound).joined())
 	}
 	
-//	if !notFound.isEmpty {
-//		let retriedNotFoundCardGroups: [[Swiftfall.Card]] = notFound.chunked(by: 20).map { identifiers in
-//			let query = identifiers.compactMap(\.query).map { "(\($0))" }.joined(separator: " or ") + " prefer:newest game:paper"
-//			let fetchedCards: [Swiftfall.Card] = Array(Swiftfall.getCards(query: query, unique: true).compactMap { $0?.data }.joined())
-//			return fetchedCards
-//		}
-//		let retriedNotFoundCards = retriedNotFoundCardGroups.joined()
-//
-//		notFound = notFound.filter { identifier in
-//			if let card = retriedNotFoundCards[identifier] {
-//				cards.append(card)
-//				return false
-//			}
-//			return true
-//		}
-//	}
+	guard notFound.isEmpty else {
+		throw PackError.noCardFound(String(describing: notFound.map { String(describing: $0) }.joined(separator: ", ")))
+	}
 	
 	guard !cards.isEmpty else {
 		throw PackError.noCards
-	}
-	
-	guard notFound.isEmpty else {
-		throw PackError.noCardFound(String(describing: notFound.map { String(describing: $0) }.joined(separator: ", ")))
 	}
 	
 	guard cards.count == identifiers.count else {

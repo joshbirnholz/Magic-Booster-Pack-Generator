@@ -37,7 +37,7 @@ public struct DeckParser {
 		public var count: Int
 	}
 	
-	public static func parse(deckList: String) -> [CardGroup] {
+	public static func parse(deckList: String, autofix: Bool) -> [CardGroup] {
 		let regex = #"^(?:(?:\/\/)?(\S*)\s*$|\s*(\d+)\s+([^\(\n]+\S)(?:\s*|\s+\(\s*(\S*)\s*\)(?:\h+(\S+)\s*|\s*)))$"#
 		
 		let matches = deckList.matches(forRegex: regex, options: [.anchorsMatchLines])
@@ -72,7 +72,7 @@ public struct DeckParser {
 				
 				guard let number = Int(count) else { continue }
 				
-				if set.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+				if autofix && set.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
 					let cardCount = CardCount(identifier: .name(name), count: number)
 					cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
 				} else {
@@ -92,7 +92,7 @@ public struct DeckParser {
 				
 				guard let number = Int(count) else { continue }
 				
-				if set.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+				if autofix && set.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
 					let cardCount = CardCount(identifier: .name(name), count: number)
 					cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
 				} else {

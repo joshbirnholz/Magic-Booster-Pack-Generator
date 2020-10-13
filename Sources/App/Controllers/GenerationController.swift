@@ -137,7 +137,7 @@ final class GeneratorController {
 								let result: String = try deck(decklist: deckList.list, format: .deckstats, export: export, cardBack: cardBack, allowRetries: autofix)
 								print("Success")
 								promise.succeed(result: result)
-							} catch let error as PackError {
+							} catch let error as Debuggable {
 								struct ErrorMessage: Codable {
 									var error: String
 								}
@@ -155,7 +155,7 @@ final class GeneratorController {
 								promise.fail(error: error)
 							}
 						}
-					} catch let error as PackError {
+					} catch let error as Debuggable {
 						struct ErrorMessage: Codable {
 							var error: String
 						}
@@ -196,7 +196,7 @@ final class GeneratorController {
 								let result: String = try deck(decklist: arenaDecklist, format: .arena, export: export, cardBack: cardBack, allowRetries: autofix)
 								print("Success")
 								promise.succeed(result: result)
-							} catch let error as PackError {
+							} catch let error as Debuggable {
 								struct ErrorMessage: Codable {
 									var error: String
 								}
@@ -214,7 +214,7 @@ final class GeneratorController {
 								promise.fail(error: error)
 							}
 						}
-					} catch let error as PackError {
+					} catch let error as Debuggable {
 						struct ErrorMessage: Codable {
 							var error: String
 						}
@@ -266,7 +266,7 @@ final class GeneratorController {
 										let result: String = try deck(decklist: decklist, format: .arena, export: export, cardBack: cardBack, allowRetries: autofix)
 										print("Success")
 										promise.succeed(result: result)
-									} catch let error as PackError {
+									} catch let error as Debuggable {
 										struct ErrorMessage: Codable {
 											var error: String
 										}
@@ -285,7 +285,7 @@ final class GeneratorController {
 									}
 								}
 								
-							} catch let error as PackError {
+							} catch let error as Debuggable {
 								struct ErrorMessage: Codable {
 									var error: String
 								}
@@ -327,7 +327,7 @@ final class GeneratorController {
 //								promise.fail(error: error)
 //							}
 //						}
-					} catch let error as PackError {
+					} catch let error as Debuggable {
 						struct ErrorMessage: Codable {
 							var error: String
 						}
@@ -385,7 +385,7 @@ final class GeneratorController {
 				do {
 					let result: String = try deck(decklist: decklist.deck, export: export, cardBack: cardBack, allowRetries: autofix)
 					promise.succeed(result: result)
-				} catch let error as PackError {
+				} catch let error as Debuggable {
 					struct ErrorMessage: Codable {
 						var error: String
 					}

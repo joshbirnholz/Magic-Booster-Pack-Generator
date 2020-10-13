@@ -233,6 +233,119 @@ final class GeneratorController {
 					}
 				}.resume()
 			}
+		case "www.mtggoldfish.com":
+			DispatchQueue.global().async {
+				let request = URLRequest(url: deckURL, cachePolicy: .reloadIgnoringLocalCacheData)
+				URLSession.shared.dataTask(with: request) { data, response, error in
+					do {
+						if let response = response as? HTTPURLResponse, response.statusCode == 404 {
+							throw PackError.privateDeck
+						}
+						
+						guard let data = data, let page = String(data: data, encoding: .utf8) else {
+							throw PackError.invalidURL
+						}
+						
+						guard let arenaDownloadLink = page.matches(forRegex: #"<a class="btn btn-secondary deck-tools-btn" href="(\/deck\/arena_download\/.+)">"#).first?.groups.first?.value, let arenaDownloadURL = URL(string: "https://www.mtggoldfish.com" + arenaDownloadLink) else {
+							throw PackError.invalidURL
+						}
+						
+						let arenaDownloadRequest = URLRequest(url: arenaDownloadURL, cachePolicy: .reloadIgnoringLocalCacheData)
+						URLSession.shared.dataTask(with: arenaDownloadRequest) { data, response, error in
+							do {
+								guard let data = data, let page = String(data: data, encoding: .utf8) else {
+									throw PackError.invalidURL
+								}
+								
+								guard let decklist = page.matches(forRegex: #"<textarea class='copy-paste-box'>(.*)<\/textarea>"#, options: .dotMatchesLineSeparators).first?.groups.first?.value.decodingHTMLEntities else {
+									throw PackError.invalidURL
+								}
+								
+								DispatchQueue(label: "decklist").async {
+									do {
+										let result: String = try deck(decklist: decklist, format: .arena, export: export, cardBack: cardBack, allowRetries: autofix)
+										print("Success")
+										promise.succeed(result: result)
+									} catch let error as PackError {
+										struct ErrorMessage: Codable {
+											var error: String
+										}
+										
+										let encoder = JSONEncoder()
+										let errorMessage = ErrorMessage(error: error.reason)
+										do {
+											let data = try encoder.encode(errorMessage)
+											let string = String(data: data, encoding: .utf8)!
+											promise.succeed(result: string)
+										} catch {
+											promise.fail(error: error)
+										}
+									} catch {
+										promise.fail(error: error)
+									}
+								}
+								
+							} catch let error as PackError {
+								struct ErrorMessage: Codable {
+									var error: String
+								}
+								
+								let encoder = JSONEncoder()
+								let errorMessage = ErrorMessage(error: error.reason)
+								do {
+									let data = try encoder.encode(errorMessage)
+									let string = String(data: data, encoding: .utf8)!
+									promise.succeed(result: string)
+								} catch {
+									promise.fail(error: error)
+								}
+							} catch {
+								promise.fail(error: error)
+							}
+						}.resume()
+//
+//						DispatchQueue(label: "decklist").async {
+//							do {
+//								let result: String = try deck(decklist: arenaDecklist, format: .arena, export: export, cardBack: cardBack, allowRetries: autofix)
+//								print("Success")
+//								promise.succeed(result: result)
+//							} catch let error as PackError {
+//								struct ErrorMessage: Codable {
+//									var error: String
+//								}
+//
+//								let encoder = JSONEncoder()
+//								let errorMessage = ErrorMessage(error: error.reason)
+//								do {
+//									let data = try encoder.encode(errorMessage)
+//									let string = String(data: data, encoding: .utf8)!
+//									promise.succeed(result: string)
+//								} catch {
+//									promise.fail(error: error)
+//								}
+//							} catch {
+//								promise.fail(error: error)
+//							}
+//						}
+					} catch let error as PackError {
+						struct ErrorMessage: Codable {
+							var error: String
+						}
+						
+						let encoder = JSONEncoder()
+						let errorMessage = ErrorMessage(error: error.reason)
+						do {
+							let data = try encoder.encode(errorMessage)
+							let string = String(data: data, encoding: .utf8)!
+							promise.succeed(result: string)
+						} catch {
+							promise.fail(error: error)
+						}
+					} catch {
+						promise.fail(error: error)
+					}
+				}.resume()
+			}
 		default:
 			promise.fail(error: PackError.invalidURL)
 		}

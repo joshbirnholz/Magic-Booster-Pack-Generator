@@ -3831,7 +3831,9 @@ let fixedSetCodes: [String: String] = [
 	"dar": "dom",
 	"7e": "7ed",
 	"8e": "8ed",
-	"eo2": "e02"
+	"eo2": "e02",
+	"mi": "mir",
+	"ul": "ulg"
 ]
 
 func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], allowRetries: Bool) throws -> String {

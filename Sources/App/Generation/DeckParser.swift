@@ -38,7 +38,7 @@ public struct DeckParser {
 	}
 	
 	public static func parse(deckList: String) -> [CardGroup] {
-		let regex = #"^(?:(?:\/\/)?(\S*)\s*$|\s*(\d+)\s+([^\(\n]+\S)(?:\s*|\s+\(\s*(\S+)\s*\)(?:\h+(\S+)\s*|\s*)))$"#
+		let regex = #"^(?:(?:\/\/)?(\S*)\s*$|\s*(\d+)\s+([^\(\n]+\S)(?:\s*|\s+\(\s*(\S*)\s*\)(?:\h+(\S+)\s*|\s*)))$"#
 		
 		let matches = deckList.matches(forRegex: regex, options: [.anchorsMatchLines])
 		var cardGroups: [CardGroup] = []
@@ -71,8 +71,14 @@ public struct DeckParser {
 				let set = groups[2].value
 				
 				guard let number = Int(count) else { continue }
-				let cardCount = CardCount(identifier: .nameSet(name: name, set: set), count: number)
-				cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
+				
+				if set.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+					let cardCount = CardCount(identifier: .name(name), count: number)
+					cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
+				} else {
+					let cardCount = CardCount(identifier: .nameSet(name: name, set: set), count: number)
+					cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
+				}
 			case 4:
 				if cardGroups.isEmpty {
 					let newGroup = CardGroup(name: cardGroups.isEmpty ? CardGroup.GroupName.deck.rawValue : nil, cardCounts: [])
@@ -85,8 +91,14 @@ public struct DeckParser {
 				let collectorNumber = groups[3].value
 				
 				guard let number = Int(count) else { continue }
-				let cardCount = CardCount(identifier: .collectorNumberSet(collectorNumber: collectorNumber, set: set, name: name), count: number)
-				cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
+				
+				if set.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+					let cardCount = CardCount(identifier: .name(name), count: number)
+					cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
+				} else {
+					let cardCount = CardCount(identifier: .collectorNumberSet(collectorNumber: collectorNumber, set: set, name: name), count: number)
+					cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
+				}
 			default:
 				break
 			}

@@ -3865,7 +3865,7 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 						return .nameSet(name: name, set: fixedCode)
 					} else if set.uppercased() == "MYSTOR" || set.uppercased() == "MYS1" {
 						return .name(name)
-					} else if autofix && set.count < 3 {
+					} else if autofix && !(3...6).contains(set.count) {
 						return .name(name)
 					} else {
 						break
@@ -3877,7 +3877,7 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 						return .nameSet(name: name, set: "fmb1")
 					} else if let name = name, set.uppercased() == "MYS1" {
 						return .nameSet(name: name, set: "mb1")
-					} else if let name = name, autofix && set.count < 3 {
+					} else if let name = name, autofix && !(3...6).contains(set.count) {
 						return .name(name)
 					} else {
 						break

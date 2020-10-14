@@ -3852,7 +3852,7 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 		}
 	}()
 	
-	let groups: [DeckParser.CardGroup] = parsed.filter { !$0.cardCounts.isEmpty }.map {
+	var groups: [DeckParser.CardGroup] = parsed.filter { !$0.cardCounts.isEmpty }.map {
 		var cardGroup = $0
 		
 		cardGroup.cardCounts = cardGroup.cardCounts.map { cardCount in
@@ -3895,8 +3895,7 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 		return cardGroup
 	}
 
-	
-	let identifiers: [MTGCardIdentifier] = Array(Set(groups.map { $0.cardCounts }.joined().map { $0.identifier }))
+	var identifiers: [MTGCardIdentifier] = Array(Set(groups.map { $0.cardCounts }.joined().map { $0.identifier }))
 	
 	guard !identifiers.isEmpty else {
 		throw PackError.emptyInput
@@ -3922,22 +3921,33 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 	// First round of retries: Remove incorrect collector numbers
 	
 	retry: if !notFound.isEmpty && autofix {
-		let retriable: [MTGCardIdentifier] = notFound.compactMap { identifier in
-			guard let originalIdentifier = identifiers.first(where: { $0.set == identifier.set && $0.collectorNumber == identifier.collectorNumber }) else {
-				return nil
+		let newIdentifiers: [MTGCardIdentifier] = identifiers.map { identifier in
+			if case .collectorNumberSet(collectorNumber: let collectorNumber, let set, name: let name?) = identifier {
+				if notFound.contains(where: { $0.collectorNumber == collectorNumber && $0.set == set }) {
+					return .nameSet(name: name, set: set)
+				}
 			}
 			
-			if case .collectorNumberSet(collectorNumber: _, let set, name: let name?) = originalIdentifier {
-				return .nameSet(name: name, set: set)
-			} else {
-				return nil
-			}
-		}
-		guard retriable.count == notFound.count else {
-			break retry
+			return identifier
 		}
 		
-		notFound.removeAll()
+		// Change card groups to use the changed identifiers, so cards can be found by the new identifiers later.
+		groups = groups.map { group in
+			var group = group
+			
+			group.cardCounts = group.cardCounts.map { cardCount in
+				guard let index = identifiers.firstIndex(of: cardCount.identifier) else { return cardCount }
+				var cardCount = cardCount
+				cardCount.identifier = newIdentifiers[index]
+				return cardCount
+			}
+			
+			return group
+		}
+		
+		let retriable = newIdentifiers.filter { !identifiers.contains($0) }
+		
+		identifiers = newIdentifiers
 		
 		let collections: [Swiftfall.CardCollectionList] = try retriable.chunked(by: 75).compactMap {
 			do {
@@ -3948,25 +3958,48 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 			}
 		}
 		
-		cards += Array(collections.map(\.data).joined())
 		notFound = Array(collections.compactMap(\.notFound).joined())
+		
+		// Move the new identifiers to the end of the identifiers array, so their new positions match up with the found cards.
+		let newlyFoundIdentifiers = retriable.filter { !notFound.contains($0) }
+		for identifier in newlyFoundIdentifiers {
+			if let index = identifiers.firstIndex(of: identifier) {
+				identifiers.remove(at: index)
+				identifiers.append(identifier)
+			}
+		}
+		
+		cards += Array(collections.map(\.data).joined())
 	}
 	
 	// Second round of retries: Remove incorrect set codes
 	
 	retry: if !notFound.isEmpty && autofix {
-		let retriable: [MTGCardIdentifier] = notFound.compactMap { identifier in
-			if let name = identifier.name {
+		let newIdentifiers: [MTGCardIdentifier] = identifiers.map { identifier in
+			if let name = identifier.name, notFound.contains(where: { $0.name == name }) {
 				return .name(name)
-			} else {
-				return nil
 			}
-		}
-		guard retriable.count == notFound.count else {
-			break retry
+			
+			return identifier
 		}
 		
-		notFound.removeAll()
+		// Change card groups to use the changed identifiers, so cards can be found by the new identifiers later.
+		groups = groups.map { group in
+			var group = group
+			
+			group.cardCounts = group.cardCounts.map { cardCount in
+				guard let index = identifiers.firstIndex(of: cardCount.identifier) else { return cardCount }
+				var cardCount = cardCount
+				cardCount.identifier = newIdentifiers[index]
+				return cardCount
+			}
+			
+			return group
+		}
+		
+		let retriable = newIdentifiers.filter { !identifiers.contains($0) }
+		
+		identifiers = newIdentifiers
 		
 		let collections: [Swiftfall.CardCollectionList] = try retriable.chunked(by: 75).compactMap {
 			do {
@@ -3977,8 +4010,18 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 			}
 		}
 		
-		cards += Array(collections.map(\.data).joined())
 		notFound = Array(collections.compactMap(\.notFound).joined())
+		
+		// Move the new identifiers to the end of the identifiers array, so their new positions match up with the found cards.
+		let newlyFoundIdentifiers = retriable.filter { !notFound.contains($0) }
+		for identifier in newlyFoundIdentifiers {
+			if let index = identifiers.firstIndex(of: identifier) {
+				identifiers.remove(at: index)
+				identifiers.append(identifier)
+			}
+		}
+		
+		cards += Array(collections.map(\.data).joined())
 	}
 	
 	var mtgCards = cards.map(MTGCard.init)

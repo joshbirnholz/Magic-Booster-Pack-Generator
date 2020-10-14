@@ -114,6 +114,7 @@ public struct MTGCard: Codable, Equatable, Hashable {
 	public var collectorNumber: String
 	public var set: String
 	public var colors: [MTGColor]?
+	public var keywords: [String]?
 	
 	public var printedName: String?
 	public var printedText: String?

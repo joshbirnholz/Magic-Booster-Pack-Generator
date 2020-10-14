@@ -471,6 +471,9 @@ internal class Swiftfall {
         
         // This card’s colors.
         public let colors: [String]?
+		
+		// Thie card’s keywords.
+		public let keywords: [String]?
         
         // Online listings for these cards names.
         public let purchaseUris: [String:String]?

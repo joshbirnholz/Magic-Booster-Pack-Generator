@@ -1326,6 +1326,7 @@ fileprivate struct CardInfo {
 				case powerToughness
 				case color
 				case oracle
+				case keyword
 			}
 			var differences: [Difference] = []
 			for otherCard in allStates where otherCard.name == card.name && otherCard != card {
@@ -1337,6 +1338,9 @@ fileprivate struct CardInfo {
 				}
 				if otherCard.oracleText != card.oracleText {
 					differences.append(.oracle)
+				}
+				if otherCard.keywords != card.keywords {
+					differences.append(.keyword)
 				}
 			}
 			
@@ -1361,13 +1365,23 @@ fileprivate struct CardInfo {
 					// Do nothing. future: maybe put "(1)" or something.
 				}
 				
+				if differences.contains(.keyword), let keywords = card.keywords {
+					if keywords.count == 1, let first = keywords.first {
+						nameParts.append("with \(first)")
+					} else if keywords.count == 2 {
+						nameParts.append("with \(keywords.joined(separator: " and "))")
+					}
+				}
+				
 				var newCard = card
 				newCard.name = nameParts.joined(separator: " ")
 				return newCard
 			}
 		}
 		
-		self.init(offset: offset, card: currentState)
+		let renamedCurrentState = allStates[currentStateIndex]
+		
+		self.init(offset: offset, card: renamedCurrentState)
 		
 		self.state = currentStateIndex + 1
 		self.backURL = Self.tokenBack
@@ -4106,6 +4120,11 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 		} catch {
 			
 		}
+	}
+	
+	if cards.contains(where: { $0.name == "Ophiomancer" }) {
+		let customSnakeToken = MTGCard(power: "1", toughness: "1", oracleText: "Deathtouch", name: "Snake", convertedManaCost: 0, layout: "token", frame: "2015", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: .black, isFullArt: false, allParts: [MTGCard.RelatedCard(scryfallID: UUID(uuidString: "66d80dd1-b944-4cb2-8578-b4dbcabbbc1e"), component: .token, name: "Ophiomancer", typeLine: "Creature — Human Shaman", url: URL(string: "https://scryfall.com/card/c13/84/ophiomancer"))], collectorNumber: "1", set: "TC13", colors: [.black], keywords: ["Deathtouch"], artist: "Maria Trepalina", watermark: nil, rarity: .common, scryfallCardBackID: UUID(uuidString: "0AEEBAF5-8C7D-4636-9E82-8C27447861F7")!, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, language: .english, releaseDate: nil, imageUris: ["normal": URL(string: "http://josh.birnholz.com/tts/cards/custom/c13snakefixed.jpg")!])
+		tokens.append(customSnakeToken)
 	}
 	
 	tokens = tokens.sorted {

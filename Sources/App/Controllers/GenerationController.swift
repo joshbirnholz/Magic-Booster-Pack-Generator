@@ -123,6 +123,10 @@ final class GeneratorController {
 							throw error!
 						}
 						
+						if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 400 {
+							throw PackError.privateDeck
+						}
+						
 						struct DeckStatsList: Decodable {
 							var success: Bool
 							var list: String
@@ -134,7 +138,7 @@ final class GeneratorController {
 						DispatchQueue(label: "decklist").async {
 							do {
 								
-								let result: String = try deck(decklist: deckList.list, format: .deckstats, export: export, cardBack: cardBack, allowRetries: autofix)
+								let result: String = try deck(decklist: deckList.list, format: .deckstats, export: export, cardBack: cardBack, autofix: autofix)
 								print("Success")
 								promise.succeed(result: result)
 							} catch let error as Debuggable {
@@ -193,7 +197,7 @@ final class GeneratorController {
 						
 						DispatchQueue(label: "decklist").async {
 							do {
-								let result: String = try deck(decklist: arenaDecklist, format: .arena, export: export, cardBack: cardBack, allowRetries: autofix)
+								let result: String = try deck(decklist: arenaDecklist, format: .arena, export: export, cardBack: cardBack, autofix: autofix)
 								print("Success")
 								promise.succeed(result: result)
 							} catch let error as Debuggable {
@@ -263,7 +267,7 @@ final class GeneratorController {
 								
 								DispatchQueue(label: "decklist").async {
 									do {
-										let result: String = try deck(decklist: decklist, format: .arena, export: export, cardBack: cardBack, allowRetries: autofix)
+										let result: String = try deck(decklist: decklist, format: .arena, export: export, cardBack: cardBack, autofix: autofix)
 										print("Success")
 										promise.succeed(result: result)
 									} catch let error as Debuggable {
@@ -383,7 +387,7 @@ final class GeneratorController {
 			
 			DispatchQueue.global().async {
 				do {
-					let result: String = try deck(decklist: decklist.deck, export: export, cardBack: cardBack, allowRetries: autofix)
+					let result: String = try deck(decklist: decklist.deck, export: export, cardBack: cardBack, autofix: autofix)
 					promise.succeed(result: result)
 				} catch let error as Debuggable {
 					struct ErrorMessage: Codable {

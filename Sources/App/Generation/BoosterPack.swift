@@ -953,7 +953,7 @@ func generateJumpStartPack(export: Bool, cardBack: URL?) throws -> ObjectStateJS
 		
 		let contents = try String(contentsOf: deckListURL)
 		
-		let deckList = try deck(decklist: contents, export: false, cardBack: cardBack, includeTokens: false, faceCards: [faceCard], allowRetries: true)
+		let deckList = try deck(decklist: contents, export: false, cardBack: cardBack, includeTokens: false, faceCards: [faceCard], autofix: true)
 		
 		let setCode = "jmp"
 		
@@ -3037,6 +3037,29 @@ fileprivate let prereleaseSheet = """
 }
 """
 
+
+
+fileprivate func customSetJSONURL(forSetCode inputString: String) -> URL? {
+	let customSets = [
+		"netropolis": "net",
+		"amonkhet remastered": "akr"
+	]
+	
+	guard let customsetcode = customSets[inputString.lowercased()] ?? customSets.values.first(where: { $0 == inputString.lowercased() }) else {
+		return nil
+	}
+	
+	#if canImport(Vapor)
+	let directory = DirectoryConfig.detect()
+	let configDir = "Sources/App/Generation"
+	return URL(fileURLWithPath: directory.workDir)
+		.appendingPathComponent(configDir, isDirectory: true)
+		.appendingPathComponent("custommtg-\(customsetcode).json", isDirectory: false)
+	#else
+	return Bundle.main.url(forResource: "custommtg-\(customsetcode)", withExtension: "json")
+	#endif
+}
+
 public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, includeBasicLands: Bool, includeTokens: Bool, specialOptions: [String] = [], cardBack: URL? = nil, autofixDecklist: Bool) throws -> String {
 	let mtgCards: [MTGCard]
 	let setName: String
@@ -3116,29 +3139,8 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 //
 //		throw PackError.unsupported
 	case .scryfallSetCode:
-		let customSets = [
-			"net": "net",
-			"netropolis": "net",
-			"akr": "akr",
-			"amonkhet remastered": "akr"
-		]
-		
-		if let customsetcode = customSets[inputString.lowercased()] {
-			let jsonURL: URL? = {
-				#if canImport(Vapor)
-				let directory = DirectoryConfig.detect()
-				let configDir = "Sources/App/Generation"
-				return URL(fileURLWithPath: directory.workDir)
-					.appendingPathComponent(configDir, isDirectory: true)
-					.appendingPathComponent("custommtg-\(customsetcode).json", isDirectory: false)
-				#else
-				return Bundle.main.url(forResource: "custommtg-\(customsetcode)", withExtension: "json")
-				#endif
-			}()
-			
-			if let url = jsonURL, let data = try? Data(contentsOf: url), let string = String(data: data, encoding: .utf8) {
-				return try generate(input: .mtgCardJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, autofixDecklist: autofixDecklist)
-			}
+		if let url = customSetJSONURL(forSetCode: inputString), let data = try? Data(contentsOf: url), let string = String(data: data, encoding: .utf8) {
+			return try generate(input: .mtgCardJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, autofixDecklist: autofixDecklist)
 		}
 		
 		let set = try Swiftfall.getSet(code: inputString)
@@ -3167,7 +3169,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			mythicPolicy = .previous
 		}
 	case .cardlist:
-		return try deck(decklist: inputString, export: export, cardBack: cardBack, allowRetries: autofixDecklist)
+		return try deck(decklist: inputString, export: export, cardBack: cardBack, autofix: autofixDecklist)
 	}
 	
 	guard !mtgCards.isEmpty else { throw PackError.noCards }
@@ -3833,15 +3835,18 @@ let fixedSetCodes: [String: String] = [
 	"8e": "8ed",
 	"eo2": "e02",
 	"mi": "mir",
-	"ul": "ulg"
+	"ul": "ulg",
+	"od": "ody",
+	"wl": "wth",
+	"uz": "usg"
 ]
 
-func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], allowRetries: Bool) throws -> String {
+func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool) throws -> String {
 	
 	let parsed: [DeckParser.CardGroup] = {
 		switch format {
 		case .arena:
-			return DeckParser.parse(deckList: decklist, autofix: allowRetries)
+			return DeckParser.parse(deckList: decklist, autofix: autofix)
 		case .deckstats:
 			return DeckParser.parse(deckstatsDecklist: decklist)
 		}
@@ -3860,6 +3865,8 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 						return .nameSet(name: name, set: fixedCode)
 					} else if set.uppercased() == "MYSTOR" || set.uppercased() == "MYS1" {
 						return .name(name)
+					} else if autofix && set.count < 3 {
+						return .name(name)
 					} else {
 						break
 					}
@@ -3870,6 +3877,8 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 						return .nameSet(name: name, set: "fmb1")
 					} else if let name = name, set.uppercased() == "MYS1" {
 						return .nameSet(name: name, set: "mb1")
+					} else if let name = name, autofix && set.count < 3 {
+						return .name(name)
 					} else {
 						break
 					}
@@ -3912,7 +3921,7 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 	
 	// First round of retries: Remove incorrect collector numbers
 	
-	retry: if !notFound.isEmpty && allowRetries {
+	retry: if !notFound.isEmpty && autofix {
 		let retriable: [MTGCardIdentifier] = notFound.compactMap { identifier in
 			guard let originalIdentifier = identifiers.first(where: { $0.set == identifier.set && $0.collectorNumber == identifier.collectorNumber }) else {
 				return nil
@@ -3945,7 +3954,7 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 	
 	// Second round of retries: Remove incorrect set codes
 	
-	retry: if !notFound.isEmpty && allowRetries {
+	retry: if !notFound.isEmpty && autofix {
 		let retriable: [MTGCardIdentifier] = notFound.compactMap { identifier in
 			if let name = identifier.name {
 				return .name(name)
@@ -3972,6 +3981,37 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 		notFound = Array(collections.compactMap(\.notFound).joined())
 	}
 	
+	var mtgCards = cards.map(MTGCard.init)
+	
+	if autofix {
+		// Set codes for arena-only sets whose images should be changed to use versions listed in a custom set file.
+		let customSets: Set<String> = [
+			"akr"
+		]
+		
+		for customSetCode in customSets {
+			if mtgCards.contains(where: { $0.set.lowercased() == customSetCode }) {
+				if let jsonURL = customSetJSONURL(forSetCode: customSetCode), let data = try? Data(contentsOf: jsonURL), let set = try? JSONDecoder().decode(MTGSet.self, from: data) {
+					mtgCards = mtgCards.map { originalCard in
+						var fixedCard = originalCard
+						
+						if originalCard.set.lowercased() == set.code.lowercased(), let card = set.cards.first(where: { $0.oracleID == originalCard.oracleID }) {
+							fixedCard.imageUris = card.imageUris
+							
+							if let faces = card.cardFaces {
+								for (index, face) in faces.enumerated() where originalCard.cardFaces?.indices.contains(index) == true {
+									fixedCard.cardFaces?[index].imageUris = face.imageUris
+								}
+							}
+						}
+						
+						return fixedCard
+					}
+				}
+			}
+		}
+	}
+	
 	guard notFound.isEmpty else {
 		throw PackError.noCardFound(String(describing: notFound.map { String(describing: $0) }.joined(separator: ", ")))
 	}
@@ -3992,11 +4032,11 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 			guard let index = identifiers.firstIndex(of: cardCount.identifier) else {
 				return
 			}
-			let card = cards[index]
+			let card = mtgCards[index]
 			if card.layout == "token" || card.layout == "emblem" && includeTokens {
-				tokens.append(contentsOf: Array(repeating: MTGCard(card), count: cardCount.count))
+				tokens.append(contentsOf: Array(repeating: card, count: cardCount.count))
 			} else {
-				deck.append(contentsOf: Array(repeating: MTGCard(card), count: cardCount.count))
+				deck.append(contentsOf: Array(repeating: card, count: cardCount.count))
 			}
 		}
 	}

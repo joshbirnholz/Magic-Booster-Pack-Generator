@@ -52,7 +52,7 @@ extension PackError: Debuggable {
 		case .invalidURL:
 			return "The URL is invalid."
 		case .privateDeck:
-			return "The deck is set to private."
+			return "There was an error loading the deck. Check that the deck is set to public."
 		}
 	}
 	

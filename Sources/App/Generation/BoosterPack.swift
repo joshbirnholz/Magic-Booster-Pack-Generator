@@ -82,6 +82,7 @@ public enum Input: Int, CaseIterable {
 public enum Output: Int, CaseIterable {
 	case boosterPack
 	case boosterBox
+	case commanderBoxingLeagueBox
 	case prereleaseKit
 	case landPack
 	
@@ -97,6 +98,8 @@ public enum Output: Int, CaseIterable {
 			return "Land Pack"
 			//			case .allCards:
 			//				return "All Cards"
+		case .commanderBoxingLeagueBox:
+			return "Commander Boxing League Booster Box"
 		}
 	}
 	
@@ -112,6 +115,8 @@ public enum Output: Int, CaseIterable {
 			return "Generate a pack of basic lands."
 			//			case .allCards:
 			//				return "Generate a deck with all of the input cards."
+		case .commanderBoxingLeagueBox:
+			return "Generate a booster box pre-sorted for Commander boxing league."
 		}
 	}
 	
@@ -1347,6 +1352,10 @@ fileprivate struct CardInfo {
 			if differences.isEmpty {
 				return card
 			} else {
+				if let subtypes = card.typeLine?.components(separatedBy: " — ").last, let name = card.name, subtypes != name {
+					return card
+				}
+				
 				var nameParts: [String] = []
 				
 				if let power = card.power, let toughness = card.toughness {
@@ -3135,6 +3144,8 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			throw PackError.unsupported
 		case .landPack:
 			throw PackError.unsupported
+		case .commanderBoxingLeagueBox:
+			throw PackError.unsupported
 		}
 //	case .scryfallSetCode where inputString.lowercased() == "akr":
 //		let cards = try Swiftfall.getCards(query: "(set:akh,hou in:akr) or (set:akr)").compactMap { $0?.data }.joined().map(MTGCard.init)
@@ -3213,6 +3224,8 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 	switch output {
 	case .boosterBox:
 		return try boosterBox(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, boxCount: boxCount, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, includeBasicLands: includeBasicLands, includeTokens: includeTokens)
+	case .commanderBoxingLeagueBox:
+		return try commanderBoxingLeagueBox(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, boxCount: boxCount, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, includeBasicLands: includeBasicLands, includeTokens: includeTokens)
 	case .boosterPack:
 		return try boosterPack(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, includeBasicLands: includeBasicLands, includeTokens: includeTokens)
 	case .prereleaseKit:
@@ -3629,6 +3642,92 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 																 mythicPolicy: mythicPolicy) }
 	
 	return try boosterBag(setName: setName, setCode: setCode ?? "", boosterPacks: packs, tokens: tokens + processed.tokens, export: export)
+}
+
+fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool, boxCount: Int?, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], includeBasicLands: Bool, includeTokens: Bool) throws -> String {
+	let count: Int = {
+		if let boxCount = boxCount, boxCount > 0 {
+			return boxCount
+		}
+		
+		switch setCode {
+		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm":
+			return 24
+		default:
+			return 36
+		}
+	}()
+	
+	if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
+		let cards = processMysteryBoosterCards(cards)
+		let packs: [[MTGCard]] = (1...count).map { _ in generateMysteryBooster(cards: cards) }
+		
+		return try boosterBag(setName: "Mystery Booster", setCode: setCode ?? "", boosterPacks: packs, tokens: [], export: export)
+	} else if setCode?.lowercased() == "plc" {
+		let cards = processPlanarChaosCards(cards: cards)
+		let packs: [[MTGCard]] = (1...count).map { _ in generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities) }
+		
+		return try boosterBag(setName: setName, setCode: setCode ?? "", boosterPacks: packs, tokens: [], export: export)
+	}
+	
+	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
+	
+	var cards: [MTGCard] = Array((1...count).map { _ in generatePack(rarities: processed.rarities,
+													customSlotRarities: processed.customSlotRarities,
+													basicLands: processed.basicLandsSlotCards,
+													tokens: includeTokens ? tokens + processed.tokens : [],
+													showcaseRarities: processed.showcaseRarities,
+													extendedArt: processed.extendedArtCards,
+													meldResults: processed.meldResults,
+													mode: mode,
+													includeExtendedArt: includeExtendedArt,
+													masterpieceCards: processed.masterpieces,
+													foilPolicy: foilPolicy,
+													mythicPolicy: mythicPolicy) }.joined()).sorted(by: { $0.name ?? "" < $1.name ?? "" })
+	
+	let code = setCode ?? cards.first?.set ?? ""
+	
+	let tokens = try allTokensForSet(setCode: code)
+	let token = try singleCompleteToken(tokens: tokens, export: false)
+	
+	cards.removeAll(where: { $0.typeLine?.lowercased().contains("basic") == true || $0.layout == "token" || $0.layout == "double_faced_token" })
+	
+	let commanders = cards.separateAll(where: { $0.typeLine?.lowercased().contains("legendary") == true && $0.typeLine?.lowercased().contains("creature") == true })
+	
+	let rares = cards.separateAll(where: { $0.rarity == .rare || $0.rarity == .mythic })
+	
+	// Commons and uncommons
+	let white = cards.separateAll(where: { $0.colors == [.white] })
+	let blue = cards.separateAll(where: { $0.colors == [.blue] })
+	let black = cards.separateAll(where: { $0.colors == [.black] })
+	let red = cards.separateAll(where: { $0.colors == [.red] })
+	let green = cards.separateAll(where: { $0.colors == [.green] })
+	let multicolor = cards.separateAll(where: { ($0.colors?.count ?? 0) > 1 })
+	let colorless = cards
+	
+	let namesAndPacks = Array([
+		("Commanders", commanders),
+		("Rares", rares),
+		("White Commons & Uncommons", white),
+		("Blue Commons & Uncommons", blue),
+		("Black Commons & Uncommons", black),
+		("Red Commons & Uncommons", red),
+		("Green Commons & Uncommons", green),
+		("Multicolor Commons & Uncommons", multicolor),
+		("Colorless Commons & Uncommons", colorless)
+	].reversed())
+	
+	let packs = try namesAndPacks.map { name, cards in
+		return try boosterPackJSON(setName: setName, setCode: code, name: name, cards: cards, tokens: tokens, inPack: false, cardBack: nil)
+	}
+	
+	let objectState = bag(objectStates: [token] + packs, nickname: setName)
+	
+	if !export {
+		return objectState
+	}
+	
+	return wrapObjectStateInSaveFile(objectState)
 }
 
 fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], includeBasicLands: Bool, includeTokens: Bool) throws -> String {

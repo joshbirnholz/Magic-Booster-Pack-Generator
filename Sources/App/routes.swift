@@ -27,6 +27,8 @@ public func routes(_ router: Router) throws {
 	router.get("boosterbox", String.parameter, use: generatorController.boosterBox)
 	router.get("box", String.parameter, use: generatorController.boosterBox)
 	
+	router.get("boxingleague", String.parameter, use: generatorController.commanderBoxingLeagueBox)
+	
 	router.get("prerelease", String.parameter, use: generatorController.prereleasePack)
 	router.get("pre", String.parameter, use: generatorController.prereleasePack)
 	

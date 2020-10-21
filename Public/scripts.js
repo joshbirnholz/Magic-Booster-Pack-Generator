@@ -28,6 +28,149 @@ function downloadFromURL(filename, fromURL) {
 	}
 }
 
+function doDownloadBox(sorted) {
+	var setCode = prompt("Enter a set code to download a booster box.");
+	
+	if (setCode === undefined || setCode === "" || setCode == null) {
+		return;
+	}
+	
+	$("#boxprogress").html("Working…");
+	
+	var url = "";
+	
+	if (sorted) {
+		url = "boxingleague";
+	} else {
+		url = "box";
+	}
+	
+	url += "/" + setCode;
+	
+	$.ajax({
+		url: url,
+		cache: false,
+		contentType: false,
+		processData: false,
+		method: "GET",
+		success: function(response) {
+			console.log("success");
+			console.log(response);
+			
+			var obj = JSON.parse(response);
+			
+			if (obj.error !== undefined) {
+				alert(obj.error);
+				$("#boxprogress").html("");
+				return;
+			}
+			
+			var formatted = JSON.stringify(obj, null, 1);
+			download(setCode + " box.json", formatted, "application/json");
+			$("#boxprogress").html("");
+		},
+		error: function(xhr, status, error) {
+			console.log("error");
+			console.log(xhr);
+			console.log(status);
+			console.log(error);
+			
+			alert(error);
+			$("#boxprogress").html("");
+		}
+	})
+}
+
+function doDownloadPack() {
+	var setCode = prompt("Enter a set code to download a booster pack.");
+	
+	if (setCode === undefined || setCode === "" || setCode == null) {
+		return;
+	}
+	
+	$("#boxprogress").html("Working…");
+	
+	var url = "pack/" + setCode;
+	
+	$.ajax({
+		url: url,
+		cache: false,
+		contentType: false,
+		processData: false,
+		method: "GET",
+		success: function(response) {
+			console.log("success");
+			console.log(response);
+			
+			var obj = JSON.parse(response);
+			
+			if (obj.error !== undefined) {
+				alert(obj.error);
+				$("#boxprogress").html("");
+				return;
+			}
+			
+			var formatted = JSON.stringify(obj, null, 1);
+			download(setCode + " pack.json", formatted, "application/json");
+			$("#boxprogress").html("");
+		},
+		error: function(xhr, status, error) {
+			console.log("error");
+			console.log(xhr);
+			console.log(status);
+			console.log(error);
+			
+			alert(error);
+			$("#boxprogress").html("");
+		}
+	})
+}
+
+function doDownloadPrereleasePack() {
+	var setCode = prompt("Enter a set code to download a prerelease pack.");
+	
+	if (setCode === undefined || setCode === "" || setCode == null) {
+		return;
+	}
+	
+	$("#boxprogress").html("Working…");
+	
+	var url = "pre/" + setCode;
+	
+	$.ajax({
+		url: url,
+		cache: false,
+		contentType: false,
+		processData: false,
+		method: "GET",
+		success: function(response) {
+			console.log("success");
+			console.log(response);
+			
+			var obj = JSON.parse(response);
+			
+			if (obj.error !== undefined) {
+				alert(obj.error);
+				$("#boxprogress").html("");
+				return;
+			}
+			
+			var formatted = JSON.stringify(obj, null, 1);
+			download(setCode + " pack.json", formatted, "application/json");
+			$("#boxprogress").html("");
+		},
+		error: function(xhr, status, error) {
+			console.log("error");
+			console.log(xhr);
+			console.log(status);
+			console.log(error);
+			
+			alert(error);
+			$("#boxprogress").html("");
+		}
+	})
+}
+
 function doDownloadDeck() {
 	$("#progress").html("Working…");
 	

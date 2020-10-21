@@ -65,6 +65,28 @@ final class GeneratorController {
 		return promise.futureResult
 	}
 	
+	func commanderBoxingLeagueBox(_ req: Request) throws -> Future<String> {
+		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
+		let count = (try? req.query.get(Int.self, at: "count")) ?? (try? req.query.get(Int.self, at: "boosters"))
+		let includeExtendedArt: Bool = (try? req.query.get(Bool.self, at: "extendedart")) ?? true
+		let specialOptions = (try? req.query.get(String.self, at: "special").components(separatedBy: ",")) ?? []
+		
+		let set = try req.parameters.next(String.self)
+		
+		let promise: Promise<String> = req.eventLoop.newPromise()
+		
+		DispatchQueue.global(qos: .userInitiated).async {
+			do {
+				let result = try generate(input: .scryfallSetCode, inputString: set, output: .commanderBoxingLeagueBox, export: export, boxCount: count, includeExtendedArt: includeExtendedArt, includeBasicLands: false, includeTokens: false, specialOptions: specialOptions, autofixDecklist: false)
+				promise.succeed(result: result)
+			} catch {
+				promise.fail(error: error)
+			}
+		}
+		
+		return promise.futureResult
+	}
+	
 	func prereleasePack(_ req: Request) throws -> Future<String> {
 		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
 		let includeExtendedArt: Bool = (try? req.query.get(Bool.self, at: "extendedart")) ?? true

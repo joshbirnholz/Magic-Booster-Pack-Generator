@@ -8,6 +8,8 @@
 </head>
 <body>
 	
+	<p><b>Deck Importer</b></p>
+	
 	<p>Enter your deck list or a link to a deck from deckstats.net, TappedOut, or MTGGoldfish.<br>Then place the downloaded file in Tabletop Simulator's Saved Objects folder:<p>
 	<ul>
 		<li>Windows: My Documents/My Games/Tabletop Simulator/Saves/Saved Objects/</li>
@@ -20,6 +22,20 @@
 	<label for="autofix"> Fix errors automatically</label><br><br>
 	<input id="back" type="text" size="52" placeholder="Card back image URL (optional)"></input>
 	<p><input type="button" value="Download Deck" onclick="doDownloadDeck()"> <span id="progress"></span></p>
+		
+		<hr>
+		<p><b>Other Tools</b> <span id="boxprogress"></span></p>
+		
+		<p>
+		<input type="button" value="Download Booster Box…" onclick="doDownloadBox(false)"><br>
+		<input type="button" value="Download Pre-sorted Booster Box…" onclick="doDownloadBox(true)"><br>
+		<input type="button" value="Download Single Booster Pack…" onclick="doDownloadPack()"><br>
+		<input type="button" value="Download Prerelease Pack…" onclick="doDownloadPrereleasePack()">
+		</p>
+			
+		<hr>
+		
+		<p><b>Help</b></p>
 		
 		<p>When entering a deck list, identify cards by either just a name, a name and set code, or a set code and collector number. (MTG Arena format)
 		<ul>

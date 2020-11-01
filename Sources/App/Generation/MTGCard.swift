@@ -85,11 +85,24 @@ public struct MTGCard: Codable, Equatable, Hashable {
 		case phyrexian = "ph"
 	}
 	
-	public enum Rarity: String, Codable, Equatable, Hashable, CaseIterable {
+	public enum Rarity: String, Codable, Equatable, Hashable, CaseIterable, Comparable {
+		public static func < (lhs: MTGCard.Rarity, rhs: MTGCard.Rarity) -> Bool {
+			return lhs.compareValue < rhs.compareValue
+		}
+		
 		case common
 		case uncommon
 		case rare
 		case mythic
+		
+		private var compareValue: Int {
+			switch self {
+			case .common: return 0
+			case .uncommon: return 1
+			case .rare: return 2
+			case .mythic: return 3
+			}
+		}
 	}
 	
 	public var scryfallID: UUID?

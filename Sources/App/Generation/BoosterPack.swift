@@ -837,7 +837,7 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> [MT
 			
 			return true
 		}
-		var rarities: [MTGCard.Rarity: [MTGCard]] = .init(grouping: processed.etchedFoils, by: \.rarity)
+		var rarities: [MTGCard.Rarity: [MTGCard]] = [:]
 		
 		for rarity in MTGCard.Rarity.allCases {
 			var cards: [MTGCard] = []
@@ -850,6 +850,7 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> [MT
 			
 			if rarity == .mythic {
 				cards.append(contentsOf: foilEtchedReprints)
+				cards.append(contentsOf: processed.borderlessPlaneswalkers)
 			}
 			
 			rarities[rarity] = cards
@@ -915,7 +916,11 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> [MT
 		}
 		
 		if let foil = foilRarities[includedFoilRarity]?.randomElement() {
-			if !foil.frameEffects.contains("etched"), let extendedArt = processed.extendedArt.first(where: { $0.name == foil.name }) {
+			// New legendary creature foils have a 50% chance to be etched foil.
+			// If a new legendary creature is chosen, 50% chance to add its etched foil version instead.
+			if .random(), !foil.frameEffects.contains("etched"), let etchedVersion = processed.etchedFoils.first(where: { $0.oracleID == foil.oracleID }) {
+				pack.insert(etchedVersion, at: 0)
+			} else if let extendedArt = processed.extendedArt.first(where: { $0.name == foil.name }) {
 				pack.insert(extendedArt, at: 0)
 			} else {
 				pack.insert(foil, at: 0)

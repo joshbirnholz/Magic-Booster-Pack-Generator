@@ -3920,13 +3920,34 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 	
 	let rares = cards.separateAll(where: { $0.rarity == .rare || $0.rarity == .mythic })
 	
+	func colors(for card: MTGCard) -> Set<MTGColor> {
+		var colors: Set<MTGColor> = []
+		
+		if let c = card.colors {
+			for color in c {
+				colors.insert(color)
+			}
+		}
+		if let faces = card.cardFaces {
+			for face in faces {
+				if let c = face.colors {
+					for color in c {
+						colors.insert(color)
+					}
+				}
+			}
+		}
+		
+		return colors
+	}
+	
 	// Commons and uncommons
-	let white = cards.separateAll(where: { $0.colors == [.white] })
-	let blue = cards.separateAll(where: { $0.colors == [.blue] })
-	let black = cards.separateAll(where: { $0.colors == [.black] })
-	let red = cards.separateAll(where: { $0.colors == [.red] })
-	let green = cards.separateAll(where: { $0.colors == [.green] })
-	let multicolor = cards.separateAll(where: { ($0.colors?.count ?? 0) > 1 })
+	let white = cards.separateAll(where: { colors(for: $0) == [.white] })
+	let blue = cards.separateAll(where: { colors(for: $0) == [.blue] })
+	let black = cards.separateAll(where: { colors(for: $0) == [.black] })
+	let red = cards.separateAll(where: { colors(for: $0) == [.red] })
+	let green = cards.separateAll(where: { colors(for: $0) == [.green] })
+	let multicolor = cards.separateAll(where: { colors(for: $0).count > 1 })
 	let colorless = cards
 	
 	let namesAndPacks = Array([

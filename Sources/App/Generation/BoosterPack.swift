@@ -200,8 +200,8 @@ enum MythicPolicy {
 
 // MARK: - Generate Booster Pack
 
-func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MTGCard.Rarity: [MTGCard]], basicLands: [MTGCard], tokens: [MTGCard], showcaseRarities: [MTGCard.Rarity: [MTGCard]], extendedArt: [MTGCard], meldResults: [MTGCard], mode: Mode, includeExtendedArt: Bool, masterpieceCards: [MTGCard], foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy) -> [MTGCard] {
-	var pack: [MTGCard] = []
+func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MTGCard.Rarity: [MTGCard]], basicLands: [MTGCard], tokens: [MTGCard], showcaseRarities: [MTGCard.Rarity: [MTGCard]], extendedArt: [MTGCard], meldResults: [MTGCard], mode: Mode, includeExtendedArt: Bool, masterpieceCards: [MTGCard], foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy) -> CardCollection {
+	var pack = CardCollection()
 	
 	let guaranteedPlaneswalkerSlot = mode == .warOfTheSpark ? (0...3).randomElement()! : nil
 	
@@ -342,8 +342,8 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		return rarities.randomElement()
 	}()
 	
-	var uniqueCardCount: Int { Set(pack.compactMap { $0.name }).count }
-	var allColorsCount: Int { Set(pack.compactMap { $0.colors }.joined()).count }
+	var uniqueCardCount: Int { Set(pack.mtgCards.compactMap { $0.name }).count }
+	var allColorsCount: Int { Set(pack.mtgCards.compactMap { $0.colors }.joined()).count }
 	var showcaseOkay: Bool {
 		guard let showcaseRarity = includedShowcaseRarity, !showcaseRarities.values.joined().isEmpty else {
 			return true
@@ -351,15 +351,15 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		
 		// If the pack should contain a showcase, and there are showcase cards in the set,
 		// ensure that the pack actually does contain a showcase card.
-		return pack.filter { $0.typeLine?.contains("Basic") != true }.contains(where: { $0.frameEffects?.contains("showcase") == true && showcaseRarity.allowedRarities.contains($0.rarity) })
+		return pack.mtgCards.filter { $0.typeLine?.contains("Basic") != true }.contains(where: { $0.frameEffects?.contains("showcase") == true && showcaseRarity.allowedRarities.contains($0.rarity) })
 	}
 	var legendaryOkay: Bool {
 		guard mode == .dominaria else { return true }
-		return pack.contains { $0.typeLine?.lowercased().contains("legendary") == true && $0.typeLine?.lowercased().contains("creature") == true }
+		return pack.mtgCards.contains { $0.typeLine?.lowercased().contains("legendary") == true && $0.typeLine?.lowercased().contains("creature") == true }
 	}
 	var futureSightOkay: Bool {
 		guard mode == .futureSight else { return true }
-		let futureCount = pack.reduce(into: 0) { (count, card) in
+		let futureCount = pack.mtgCards.reduce(into: 0) { (count, card) in
 			if card.frame == "future" {
 				count += 1
 			}
@@ -440,7 +440,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		pack.insert(contentsOf: lands, at: 0)
 		
 		if includeMasterpiece, let masterpiece = masterpieceCards.randomElement() {
-			pack.insert(masterpiece, at: 0)
+			pack.insert(masterpiece, at: 0, isFoil: true)
 		} /*else if let rarity = includedShowcaseRarity {
 			let card: MTGCard? = {
 				switch rarity {
@@ -459,9 +459,9 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			pack.insert(borderlessFoil, at: 0)
 		} else if let rarity = includedFoilRarity, let foil = [(allRarities[rarity] ?? []), (customSlotRarities[rarity] ?? [])].joined().filter(\.isFoilAvailable).randomElement() {
 			if includeExtendedArt, let extendedArtVersion = extendedArt.filter({ $0.name == foil.name }).randomElement() {
-				pack.insert(extendedArtVersion, at: 0)
+				pack.insert(extendedArtVersion, at: 0, isFoil: true)
 			} else if rarity != .common {
-				pack.insert(foil, at: 0)
+				pack.insert(foil, at: 0, isFoil: true)
 			}
 		} else if mode == .vintageMasters, let powerNine = customSlotRarities.values.joined().randomElement() {
 			// Vintage Masters packs that don't contain a foil card instead contain a Power Nine card.
@@ -471,9 +471,9 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		// Add a second foil to double masters packs.
 		if mode == .doubleMasters, let rarity = includedFoilRarity, let foil = [(allRarities[rarity] ?? []), (customSlotRarities[rarity] ?? [])].joined().filter(\.isFoilAvailable).randomElement() {
 			if includeExtendedArt, let extendedArtVersion = extendedArt.filter({ $0.name == foil.name }).randomElement() {
-				pack.insert(extendedArtVersion, at: 0)
+				pack.insert(extendedArtVersion, at: 0, isFoil: true)
 			} else if rarity != .common {
-				pack.insert(foil, at: 0)
+				pack.insert(foil, at: 0, isFoil: true)
 			}
 		}
 		
@@ -527,7 +527,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 				}
 			}()
 			
-			if pack.contains(where: \.hasPartner) {
+			if pack.mtgCards.contains(where: \.hasPartner) {
 				base -= 1
 			}
 			
@@ -546,7 +546,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 				var card: MTGCard
 				
 				var cardIsValid: Bool {
-					if card.hasPartner && (pack.contains(where: \.hasPartner) || uncommons.contains(where: \.hasPartner)) {
+					if card.hasPartner && (pack.mtgCards.contains(where: \.hasPartner) || uncommons.contains(where: \.hasPartner)) {
 						return false
 					}
 					return !uncommons.contains(card)
@@ -639,7 +639,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			}()
 			
 			for token in uniqueTokens {
-				let cardsToLookAt: [MTGCard] = pack + pack.compactMap { card in
+				let cardsToLookAt: [MTGCard] = pack.mtgCards + pack.mtgCards.compactMap { card in
 					guard let meldResultRelation = card.allParts?.first(where: { $0.scryfallID != card.scryfallID && $0.component == .meldResult } ),
 						let meldResult = meldResults.first(where: { $0.scryfallID == meldResultRelation.scryfallID }) else {
 						return nil
@@ -677,7 +677,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		}
 		
 		if let includedShowcaseRarity = includedShowcaseRarity {
-			let showcaseCards: [(Int, MTGCard)] = pack.filter({ $0.frameEffects?.contains("extendedart") != true }).enumerated().compactMap { (index, card) in
+			let showcaseCards: [(Int, MTGCard)] = pack.mtgCards.filter({ $0.frameEffects?.contains("extendedart") != true }).enumerated().compactMap { (index, card) in
 				guard let showcaseCard = includedShowcaseRarity.allowedRarities.compactMap({ showcaseRarities[$0] }).joined().filter({ $0.name == card.name }).randomElement() else { return nil }
 
 				guard includedShowcaseRarity.allowedRarities.contains(showcaseCard.rarity) else {
@@ -688,14 +688,14 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			}
 
 			if let (index, showcaseCard) = showcaseCards.filter({ mode != .m21 ? $0.1.typeLine?.contains("Planeswalker") != true : true }).randomElement() {
-				pack[index] = showcaseCard
+				pack.replace(at: index, with: showcaseCard)
 			}
 		}
 		
 		if shouldIncludeBorderlessPlaneswalker,
 			let borderlessCard = borderlessCards.randomElement(),
-			let index = pack.enumerated().filter({ $0.element.rarity == .common }).randomElement()?.offset {
-			pack[index] = borderlessCard
+			let index = pack.mtgCards.enumerated().filter({ $0.element.rarity == .common }).randomElement()?.offset {
+			pack.replace(at: index, with: borderlessCard)
 		}
 		
 		// TODO: Move gauranteed legendary to the back of the pack for Dominaria. (Currently it just checks if at least one card in the pack is legendary.)
@@ -785,8 +785,67 @@ func processCommanderLegendsCards(_ cards: [MTGCard], tokens: [MTGCard]) -> Comm
 	return processed
 }
 
-func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> [MTGCard] {
-	var pack: [MTGCard] = []
+struct CardCollection {
+	struct CardSelection {
+		var card: MTGCard
+		var isFoil: Bool
+		
+		init(_ card: MTGCard, isFoil: Bool = false) {
+			self.card = card
+			self.isFoil = isFoil
+		}
+	}
+	
+	var cards: [CardSelection] = []
+	
+	var mtgCards: [MTGCard] {
+		cards.map(\.card)
+	}
+	
+	mutating func insert(_ card: MTGCard, at index: Int, isFoil: Bool = false) {
+		let selection = CardSelection(card, isFoil: isFoil)
+		cards.insert(selection, at: index)
+	}
+	
+	mutating func insert<S: Sequence>(contentsOf collection: S, at index: Int, cardsAreFoil: Bool = false) where S.Element == MTGCard {
+		let selections = collection.map { CardSelection($0, isFoil: cardsAreFoil) }
+		cards.insert(contentsOf: selections, at: index)
+	}
+	
+	mutating func append(_ card: MTGCard, isFoil: Bool = false) {
+		let selection = CardSelection(card, isFoil: isFoil)
+		cards.append(selection)
+	}
+	
+	mutating func append<S: Sequence>(contentsOf collection: S, cardsAreFoil: Bool = false) where S.Element == MTGCard {
+		let selections = collection.map { CardSelection($0, isFoil: cardsAreFoil) }
+		cards.append(contentsOf: selections)
+	}
+	
+	mutating func removeAll() {
+		cards.removeAll()
+	}
+	
+	var count: Int {
+		cards.count
+	}
+	
+	mutating func reverse() {
+		cards.reverse()
+	}
+	
+	subscript(_ index: Int) -> MTGCard {
+		cards[index].card
+	}
+	
+	mutating func replace(at index: Int, with card: MTGCard, isFoil: Bool = false) {
+		let selection = CardSelection(card, isFoil: isFoil)
+		cards[index] = selection
+	}
+}
+
+func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> CardCollection {
+	var pack = CardCollection()
 	
 //	let possibleLegendRarities: [[MTGCard.Rarity: Int]] = [
 //		[.uncommon: 2],
@@ -872,8 +931,8 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> [MT
 		var problems: [String] = []
 		
 		let cardCount = 20
-		var uniqueCardCount: Int { Set(pack.compactMap { $0.name }).count }
-		var allColorsCount: Int { Set(pack.compactMap { $0.colors }.joined()).count }
+		var uniqueCardCount: Int { Set(pack.mtgCards.compactMap { $0.name }).count }
+		var allColorsCount: Int { Set(pack.mtgCards.compactMap { $0.colors }.joined()).count }
 		
 		if allColorsCount != 5 {
 			problems.append("Pack doesn't have 5 colors")
@@ -919,11 +978,11 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> [MT
 			// New legendary creature foils have a 50% chance to be etched foil.
 			// If a new legendary creature is chosen, 50% chance to add its etched foil version instead.
 			if .random(), !foil.frameEffects.contains("etched"), let etchedVersion = processed.etchedFoils.first(where: { $0.oracleID == foil.oracleID }) {
-				pack.insert(etchedVersion, at: 0)
+				pack.insert(etchedVersion, at: 0, isFoil: true)
 			} else if let extendedArt = processed.extendedArt.first(where: { $0.name == foil.name }) {
-				pack.insert(extendedArt, at: 0)
+				pack.insert(extendedArt, at: 0, isFoil: true)
 			} else {
-				pack.insert(foil, at: 0)
+				pack.insert(foil, at: 0, isFoil: true)
 			}
 		}
 		
@@ -966,7 +1025,7 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> [MT
 	}()
 	
 	for token in uniqueTokens {
-		let cardsToLookAt: [MTGCard] = pack
+		let cardsToLookAt: [MTGCard] = pack.mtgCards
 		
 		for card in cardsToLookAt {
 			if card.allParts?.contains(where: { $0.scryfallID == token.scryfallID }) == true
@@ -1060,11 +1119,11 @@ func processMysteryBoosterCards(_ cards: [MTGCard]) -> [MysterBoosterSlot: [MTGC
 	}
 }
 
-func generateMysteryBooster(cards: [MysterBoosterSlot: [MTGCard]]) -> [MTGCard] {
-	var pack: [MTGCard] = []
+func generateMysteryBooster(cards: [MysterBoosterSlot: [MTGCard]]) -> CardCollection {
+	var pack = CardCollection()
 	
-	var uniqueCardCount: Int { Set(pack.compactMap { $0.name }).count }
-	var allColorsCount: Int { Set(pack.compactMap { $0.colors }.joined()).count }
+	var uniqueCardCount: Int { Set(pack.mtgCards.compactMap { $0.name }).count }
+	var allColorsCount: Int { Set(pack.mtgCards.compactMap { $0.colors }.joined()).count }
 	
 	repeat {
 		pack.removeAll()
@@ -1093,7 +1152,7 @@ func generateMysteryBooster(cards: [MysterBoosterSlot: [MTGCard]]) -> [MTGCard] 
 		if let playtestCard = cards[.playtest]?.randomElement() {
 			pack.append(playtestCard)
 		} else if let foil = cards[.foil]?.randomElement() {
-			pack.append(foil)
+			pack.append(foil, isFoil: true)
 		}
 	} while allColorsCount != 5 || uniqueCardCount != 15
 	
@@ -1116,11 +1175,11 @@ func processPlanarChaosCards(cards: [MTGCard]) -> (normalRarities: [MTGCard.Rari
 	return (.init(grouping: normal, by: \.rarity), .init(grouping: colorshifted, by: \.rarity))
 }
 
-func generatePlanarChaosPack(normalRarities: [MTGCard.Rarity: [MTGCard]], colorshiftedRarities: [MTGCard.Rarity: [MTGCard]]) -> [MTGCard] {
-	var pack: [MTGCard] = []
+func generatePlanarChaosPack(normalRarities: [MTGCard.Rarity: [MTGCard]], colorshiftedRarities: [MTGCard.Rarity: [MTGCard]]) -> CardCollection {
+	var pack = CardCollection()
 	
-	var uniqueCardCount: Int { Set(pack.compactMap { $0.name }).count }
-	var allColorsCount: Int { Set(pack.compactMap { $0.colors }.joined()).count }
+	var uniqueCardCount: Int { Set(pack.mtgCards.compactMap { $0.name }).count }
+	var allColorsCount: Int { Set(pack.mtgCards.compactMap { $0.colors }.joined()).count }
 	
 	repeat {
 		pack.removeAll()
@@ -3849,28 +3908,27 @@ struct DownloadOutput: Codable {
 	var downloadOutput: String
 }
 
-func cardListOutput<S: Sequence>(cards: S, foilCards: S? = nil) throws -> String where S.Element == MTGCard {
-	var cardCounts: [UUID: CardLine] = [:]
+func cardListOutput(cards: CardCollection) throws -> String {
+	struct Key: Hashable {
+		var oracleID: UUID
+		var isFoil: Bool
+	}
 	
-	func addCard(_ card: MTGCard, isFoil: Bool = false, isPinned: Bool = false) {
-		guard let id = card.oracleID else { return }
-		if var count = cardCounts[id] {
+	var cardCounts: [Key: CardLine] = [:]
+	
+	func addCard(_ card: CardCollection.CardSelection, isPinned: Bool = false) {
+		guard let id = card.card.oracleID else { return }
+		let key = Key(oracleID: id, isFoil: card.isFoil)
+		if var count = cardCounts[key] {
 			count.count += 1
-			cardCounts[id] = count
+			cardCounts[key] = count
 		} else {
-			cardCounts[id] = CardLine(count: 1, name: card.name ?? "", set: card.set.uppercased(), isFoil: isFoil, isPinned: isPinned)
+			cardCounts[key] = CardLine(count: 1, name: card.card.name ?? "", set: card.card.set.uppercased(), isFoil: card.isFoil, isPinned: isPinned)
 		}
 	}
 	
-	if let pinnedCards = foilCards {
-		for card in pinnedCards {
-			guard !card.layout.contains("token") && !card.layout.contains("emblem") else { continue }
-			addCard(card, isFoil: true)
-		}
-	}
-	
-	for card in cards {
-		guard !card.layout.contains("token") && !card.layout.contains("emblem") else { continue }
+	for card in cards.cards {
+		guard !card.card.layout.contains("token") && !card.card.layout.contains("emblem") else { continue }
 		addCard(card)
 	}
 	
@@ -3894,27 +3952,35 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		}
 	}()
 	
+	func output(setName: String, setCode: String, packs: [CardCollection], tokens: [MTGCard]) throws -> String {
+		if cardList {
+			return try cardListOutput(cards: CardCollection(cards: Array(packs.map(\.cards).joined())))
+		} else {
+			return try boosterBag(setName: setName, setCode: setCode, boosterPacks: packs.map(\.mtgCards), tokens: tokens, export: export)
+		}
+	}
+	
 	if setCode?.lowercased() == "cmr" {
 		let cards = processCommanderLegendsCards(cards, tokens: tokens)
 		
-		let packs: [[MTGCard]] = (1...count).map { _ in generateCommanderLegendsPack(cards) }
+		let packs: [CardCollection] = (1...count).map { _ in generateCommanderLegendsPack(cards) }
 		
-		return try boosterBag(setName: "Commander Legends", setCode: setCode ?? "", boosterPacks: packs, tokens: cards.tokens, export: export)
+		return try output(setName: "Commander Legends", setCode: setCode ?? "", packs: packs, tokens: cards.tokens)
 	} else if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
 		let cards = processMysteryBoosterCards(cards)
-		let packs: [[MTGCard]] = (1...count).map { _ in generateMysteryBooster(cards: cards) }
+		let packs: [CardCollection] = (1...count).map { _ in generateMysteryBooster(cards: cards) }
 		
-		return try boosterBag(setName: "Mystery Booster", setCode: setCode ?? "", boosterPacks: packs, tokens: [], export: export)
+		return try output(setName: "Mystery Booster", setCode: setCode ?? "", packs: packs, tokens: [])
 	} else if setCode?.lowercased() == "plc" {
 		let cards = processPlanarChaosCards(cards: cards)
-		let packs: [[MTGCard]] = (1...count).map { _ in generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities) }
+		let packs: [CardCollection] = (1...count).map { _ in generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities) }
 		
-		return try boosterBag(setName: setName, setCode: setCode ?? "", boosterPacks: packs, tokens: [], export: export)
+		return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
 	}
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
 	
-	let packs: [[MTGCard]] = (1...count).map { _ in generatePack(rarities: processed.rarities,
+	let packs: [CardCollection] = (1...count).map { _ in generatePack(rarities: processed.rarities,
 																 customSlotRarities: processed.customSlotRarities,
 																 basicLands: processed.basicLandsSlotCards,
 																 tokens: includeTokens ? tokens + processed.tokens : [],
@@ -3927,11 +3993,7 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 																 foilPolicy: foilPolicy,
 																 mythicPolicy: mythicPolicy) }
 	
-	if cardList {
-		return try cardListOutput(cards: packs.joined())
-	}
-	
-	return try boosterBag(setName: setName, setCode: setCode ?? "", boosterPacks: packs, tokens: tokens + processed.tokens, export: export)
+	return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: tokens + processed.tokens)
 }
 
 fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool, boxCount: Int?, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], includeBasicLands: Bool, includeTokens: Bool) throws -> String {
@@ -3951,19 +4013,19 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 	if setCode?.lowercased() == "cmr" {
 		let cards = processCommanderLegendsCards(cards, tokens: tokens)
 		
-		let packs: [[MTGCard]] = (1...count).map { _ in generateCommanderLegendsPack(cards) }
+		let packs: [CardCollection] = (1...count).map { _ in generateCommanderLegendsPack(cards) }
 		
-		return try boosterBag(setName: "Commander Legends", setCode: setCode ?? "", boosterPacks: packs, tokens: cards.tokens, export: export)
+		return try boosterBag(setName: "Commander Legends", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: cards.tokens, export: export)
 	} else if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
 		let cards = processMysteryBoosterCards(cards)
-		let packs: [[MTGCard]] = (1...count).map { _ in generateMysteryBooster(cards: cards) }
+		let packs: [CardCollection] = (1...count).map { _ in generateMysteryBooster(cards: cards) }
 		
-		return try boosterBag(setName: "Mystery Booster", setCode: setCode ?? "", boosterPacks: packs, tokens: [], export: export)
+		return try boosterBag(setName: "Mystery Booster", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: [], export: export)
 	} else if setCode?.lowercased() == "plc" {
 		let cards = processPlanarChaosCards(cards: cards)
-		let packs: [[MTGCard]] = (1...count).map { _ in generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities) }
+		let packs: [CardCollection] = (1...count).map { _ in generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities) }
 		
-		return try boosterBag(setName: setName, setCode: setCode ?? "", boosterPacks: packs, tokens: [], export: export)
+		return try boosterBag(setName: setName, setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: [], export: export)
 	}
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
@@ -3979,7 +4041,7 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 													includeExtendedArt: includeExtendedArt,
 													masterpieceCards: processed.masterpieces,
 													foilPolicy: foilPolicy,
-													mythicPolicy: mythicPolicy) }.joined()).sorted(by: { $0.name ?? "" < $1.name ?? "" })
+													mythicPolicy: mythicPolicy).mtgCards }.joined()).sorted(by: { $0.name ?? "" < $1.name ?? "" })
 	
 	let code = setCode ?? cards.first?.set ?? ""
 	
@@ -4060,17 +4122,17 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 		
 		let pack = generateCommanderLegendsPack(cards)
 		
-		return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack, tokens: cards.tokens, export: export)
+		return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack.mtgCards, tokens: cards.tokens, export: export)
 	} else if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
 		let cards = processMysteryBoosterCards(cards)
 		let pack = generateMysteryBooster(cards: cards)
 		
-		return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack, tokens: [], export: export)
+		return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack.mtgCards, tokens: [], export: export)
 	} else if setCode?.lowercased() == "plc" {
 		let cards = processPlanarChaosCards(cards: cards)
 		let pack = generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities)
 		
-		return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack, tokens: [], export: export)
+		return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack.mtgCards, tokens: [], export: export)
 	}
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
@@ -4086,7 +4148,7 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 							includeExtendedArt: includeExtendedArt,
 							masterpieceCards: processed.masterpieces,
 							foilPolicy: foilPolicy,
-							mythicPolicy: mythicPolicy)
+							mythicPolicy: mythicPolicy).mtgCards
 	
 	return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack, tokens: tokens + processed.tokens, export: export)
 }
@@ -4110,17 +4172,19 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 			.compactMap(MTGCard.init)
 			
 			if cardlist {
-				let cards = Array(packs.joined())
-				let foil = includePromoCard == true ? [promoCard] : []
-				return try cardListOutput(cards: cards, foilCards: foil)
+				var cards = CardCollection(cards: Array(packs.map(\.cards).joined()))
+				if includePromoCard == true {
+					cards.append(promoCard, isFoil: true)
+				}
+				return try cardListOutput(cards: cards)
 			}
 			
-			return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs, promoCard: promoCard, tokens: [], basicLands: basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: export)
+			return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs.map(\.mtgCards), promoCard: promoCard, tokens: [], basicLands: basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: export)
 		}
 		
 		let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: true)
 		
-		let packs: [[MTGCard]] = (1...boosterCount).map { _ in generatePack(rarities: processed.rarities,
+		let packs: [CardCollection] = (1...boosterCount).map { _ in generatePack(rarities: processed.rarities,
 																 customSlotRarities: processed.customSlotRarities,
 																 basicLands: processed.basicLandsSlotCards,
 																 tokens: tokens + processed.tokens,
@@ -4170,12 +4234,14 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 			}()
 		
 		if cardlist {
-			let cards = Array(packs.joined())
-			let foil = includePromoCard == true ? [promoCard] : []
-			return try cardListOutput(cards: cards, foilCards: foil)
+			var cards = CardCollection(cards: Array(packs.map(\.cards).joined()))
+			if includePromoCard == true {
+				cards.append(promoCard, isFoil: true)
+			}
+			return try cardListOutput(cards: cards)
 		}
 		
-		return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs, promoCard: promoCard, tokens: tokens + processed.tokens, basicLands: processed.basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: false)
+		return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs.map(\.mtgCards), promoCard: promoCard, tokens: tokens + processed.tokens, basicLands: processed.basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: false)
 	}
 	
 	if cardlist && packCount == 1, let first = prereleasePacks.first {

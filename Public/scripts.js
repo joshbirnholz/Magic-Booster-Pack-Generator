@@ -65,7 +65,52 @@ function doDownloadBox(sorted) {
 				return;
 			}
 			
-			var formatted = JSON.stringify(obj, null, 1);
+			var formatted = downloadOutput(obj);
+			download(setCode + " box.json", formatted, "application/json");
+			$("#boxprogress").html("");
+		},
+		error: function(xhr, status, error) {
+			console.log("error");
+			console.log(xhr);
+			console.log(status);
+			console.log(error);
+			
+			alert(error);
+			$("#boxprogress").html("");
+		}
+	})
+}
+
+function doDownloadBoxList() {
+	var setCode = prompt("Enter a set code to download a booster box.");
+	
+	if (setCode === undefined || setCode === "" || setCode == null) {
+		return;
+	}
+	
+	$("#boxprogress").html("Working…");
+	
+	var url = "box" + "/" + setCode + "?cardlist=true";
+	
+	$.ajax({
+		url: url,
+		cache: false,
+		contentType: false,
+		processData: false,
+		method: "GET",
+		success: function(response) {
+			console.log("success");
+			console.log(response);
+			
+			var obj = JSON.parse(response);
+			
+			if (obj.error !== undefined) {
+				alert(obj.error);
+				$("#boxprogress").html("");
+				return;
+			}
+			
+			var formatted = downloadOutput(obj);
 			download(setCode + " box.json", formatted, "application/json");
 			$("#boxprogress").html("");
 		},
@@ -110,7 +155,7 @@ function doDownloadPack() {
 				return;
 			}
 			
-			var formatted = JSON.stringify(obj, null, 1);
+			var formatted = downloadOutput(obj);
 			download(setCode + " pack.json", formatted, "application/json");
 			$("#boxprogress").html("");
 		},
@@ -155,7 +200,52 @@ function doDownloadPrereleasePack() {
 				return;
 			}
 			
-			var formatted = JSON.stringify(obj, null, 1);
+			var formatted = downloadOutput(obj);
+			download(setCode + " pack.json", formatted, "application/json");
+			$("#boxprogress").html("");
+		},
+		error: function(xhr, status, error) {
+			console.log("error");
+			console.log(xhr);
+			console.log(status);
+			console.log(error);
+			
+			alert(error);
+			$("#boxprogress").html("");
+		}
+	})
+}
+
+function doDownloadPrereleasePackList() {
+	var setCode = prompt("Enter a set code to download a prerelease pack.");
+	
+	if (setCode === undefined || setCode === "" || setCode == null) {
+		return;
+	}
+	
+	$("#boxprogress").html("Working…");
+	
+	var url = "pre/" + setCode + "?cardlist=true";
+	
+	$.ajax({
+		url: url,
+		cache: false,
+		contentType: false,
+		processData: false,
+		method: "GET",
+		success: function(response) {
+			console.log("success");
+			console.log(response);
+			
+			var obj = JSON.parse(response);
+			
+			if (obj.error !== undefined) {
+				alert(obj.error);
+				$("#boxprogress").html("");
+				return;
+			}
+			
+			var formatted = downloadOutput(obj);
 			download(setCode + " pack.json", formatted, "application/json");
 			$("#boxprogress").html("");
 		},
@@ -217,7 +307,7 @@ function doDownloadDeck() {
 				return;
 			}
 			
-			var formatted = JSON.stringify(obj, null, 1);
+			var formatted = downloadOutput(obj);
 			download("deck.json", formatted, "application/json");
 			$("#progress").html("");
 		},
@@ -241,4 +331,12 @@ function validURL(str) {
     '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
     '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
   return !!pattern.test(str);
+}
+
+function downloadOutput(obj) {
+	if (obj.downloadOutput !== undefined) {
+		return obj.downloadOutput;
+	} else {
+		return JSON.stringify(obj, null, 1);
+	}
 }

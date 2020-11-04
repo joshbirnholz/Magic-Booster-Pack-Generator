@@ -22,12 +22,13 @@ final class GeneratorController {
 		let specialOptions = (try? req.query.get(String.self, at: "special").components(separatedBy: ",")) ?? []
 		let includeBasicLands: Bool = (try? req.query.get(Bool.self, at: "lands")) ?? true
 		let includeTokens: Bool = (try? req.query.get(Bool.self, at: "tokens")) ?? true
+		let cardList: Bool = (try? req.query.get(Bool.self, at: "cardlist")) ?? false
 		
 		let promise: Promise<String> = req.eventLoop.newPromise()
 		
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
-				let result = try generate(input: .scryfallSetCode, inputString: set, output: .boosterPack, export: export, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, specialOptions: specialOptions, autofixDecklist: false)
+				let result = try generate(input: .scryfallSetCode, inputString: set, output: .boosterPack, export: export, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, specialOptions: specialOptions, autofixDecklist: false, cardList: cardList)
 				promise.succeed(result: result)
 			} catch {
 				promise.fail(error: error)
@@ -44,6 +45,7 @@ final class GeneratorController {
 		let specialOptions = (try? req.query.get(String.self, at: "special").components(separatedBy: ",")) ?? []
 		let includeBasicLands: Bool = (try? req.query.get(Bool.self, at: "lands")) ?? true
 		let includeTokens: Bool = (try? req.query.get(Bool.self, at: "tokens")) ?? true
+		let cardList: Bool = (try? req.query.get(Bool.self, at: "cardlist")) ?? false
 		
 		if count == 1 {
 			return try boosterPack(req)
@@ -55,7 +57,7 @@ final class GeneratorController {
 		
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
-				let result = try generate(input: .scryfallSetCode, inputString: set, output: .boosterBox, export: export, boxCount: count, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, specialOptions: specialOptions, autofixDecklist: false)
+				let result = try generate(input: .scryfallSetCode, inputString: set, output: .boosterBox, export: export, boxCount: count, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, specialOptions: specialOptions, autofixDecklist: false, cardList: cardList)
 				promise.succeed(result: result)
 			} catch {
 				promise.fail(error: error)
@@ -77,7 +79,7 @@ final class GeneratorController {
 		
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
-				let result = try generate(input: .scryfallSetCode, inputString: set, output: .commanderBoxingLeagueBox, export: export, boxCount: count, includeExtendedArt: includeExtendedArt, includeBasicLands: false, includeTokens: false, specialOptions: specialOptions, autofixDecklist: false)
+				let result = try generate(input: .scryfallSetCode, inputString: set, output: .commanderBoxingLeagueBox, export: export, boxCount: count, includeExtendedArt: includeExtendedArt, includeBasicLands: false, includeTokens: false, specialOptions: specialOptions, autofixDecklist: false, cardList: false)
 				promise.succeed(result: result)
 			} catch {
 				promise.fail(error: error)
@@ -99,13 +101,15 @@ final class GeneratorController {
 		let includeSpindown: Bool = (try? req.query.get(Bool.self, at: "spindown")) ?? true
 		let boosterCount = try? req.query.get(Int.self, at: "boosters")
 		
+		let cardlist: Bool = (try? req.query.get(Bool.self, at: "cardlist")) ?? false
+		
 		let set = try req.parameters.next(String.self)
 		
 		let promise: Promise<String> = req.eventLoop.newPromise()
 		
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
-				let result = try generate(input: .scryfallSetCode, inputString: set, output: .prereleaseKit, export: export, boxCount: count, prereleaseIncludePromoCard: includePromo, prereleaseIncludeLands: includeLands, prereleaseIncludeSheet: includeSheet, prereleaseIncludeSpindown: includeSpindown, prereleaseBoosterCount: boosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: true, includeTokens: true, specialOptions: specialOptions, autofixDecklist: false)
+				let result = try generate(input: .scryfallSetCode, inputString: set, output: .prereleaseKit, export: export, boxCount: count, prereleaseIncludePromoCard: includePromo, prereleaseIncludeLands: includeLands, prereleaseIncludeSheet: includeSheet, prereleaseIncludeSpindown: includeSpindown, prereleaseBoosterCount: boosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: true, includeTokens: true, specialOptions: specialOptions, autofixDecklist: false, cardList: cardlist)
 				promise.succeed(result: result)
 			} catch {
 				promise.fail(error: error)
@@ -537,7 +541,7 @@ final class GeneratorController {
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
 				if let set = set {
-					let packs = try generate(input: .scryfallSetCode, inputString: set, output: .landPack, export: export, boxCount: nil, prereleaseIncludePromoCard: nil, prereleaseIncludeLands: nil, prereleaseIncludeSheet: nil, prereleaseIncludeSpindown: nil, prereleaseBoosterCount: nil, includeExtendedArt: false, includeBasicLands: true, includeTokens: false, specialOptions: [], cardBack: nil, autofixDecklist: false)
+					let packs = try generate(input: .scryfallSetCode, inputString: set, output: .landPack, export: export, boxCount: nil, prereleaseIncludePromoCard: nil, prereleaseIncludeLands: nil, prereleaseIncludeSheet: nil, prereleaseIncludeSpindown: nil, prereleaseBoosterCount: nil, includeExtendedArt: false, includeBasicLands: true, includeTokens: false, specialOptions: [], cardBack: nil, autofixDecklist: false, cardList: false)
 					promise.succeed(result: packs)
 				} else {
 					let packs = try allLandPacksSingleJSON(setCards: nil, specialOptions: [], export: export)

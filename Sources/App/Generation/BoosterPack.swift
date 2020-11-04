@@ -1211,22 +1211,30 @@ func generatePlanarChaosPack(normalRarities: [MTGCard.Rarity: [MTGCard]], colors
 	return pack
 }
 
-func generateJumpStartPack(export: Bool, cardBack: URL?) throws -> ObjectStateJSON {
-	let jumpstartDeckListURLs: [URL] = try! {
-		#if canImport(Vapor)
-		let directory = DirectoryConfig.detect()
-		let jumpstartDirectory = "Sources/App/Generation/JumpStart"
-		let jumpstartDirectoryURL = URL(fileURLWithPath: directory.workDir)
-			.appendingPathComponent(jumpstartDirectory, isDirectory: true)
-		return try FileManager.default.contentsOfDirectory(at: jumpstartDirectoryURL, includingPropertiesForKeys: nil)
-		#else
-		guard let urls = Bundle.main.urls(forResourcesWithExtension: "txt", subdirectory: "JumpStart") else {
-			throw PackError.unsupported
-		}
-		return urls
-		#endif
-	}()
+let jumpstartDeckListURLs: [URL] = try! {
+	#if canImport(Vapor)
+	let directory = DirectoryConfig.detect()
+	let jumpstartDirectory = "Sources/App/Generation/JumpStart"
+	let jumpstartDirectoryURL = URL(fileURLWithPath: directory.workDir)
+		.appendingPathComponent(jumpstartDirectory, isDirectory: true)
+	return try FileManager.default.contentsOfDirectory(at: jumpstartDirectoryURL, includingPropertiesForKeys: nil)
+	#else
+	guard let urls = Bundle.main.urls(forResourcesWithExtension: "txt", subdirectory: "JumpStart") else {
+		throw PackError.unsupported
+	}
+	return urls
+	#endif
+}()
+
+func jumpstartDeckList() throws -> String {
+	guard let deckListURL = jumpstartDeckListURLs.randomElement() else {
+		throw PackError.unsupported
+	}
 	
+	return try String(contentsOf: deckListURL)
+}
+
+func generateJumpStartPack(export: Bool, cardBack: URL?) throws -> ObjectStateJSON {
 	func jumpstartDeck(deckListURL: URL) throws -> ObjectStateJSON {
 		let name = String(deckListURL.lastPathComponent.prefix(while: { !$0.isNumber && $0 != "." }).trimmingCharacters(in: .whitespacesAndNewlines))
 		
@@ -1354,6 +1362,7 @@ func generateJumpStartPack(export: Bool, cardBack: URL?) throws -> ObjectStateJS
 	guard let deckListURL = jumpstartDeckListURLs.randomElement() else {
 		throw PackError.unsupported
 	}
+	
 	
 	return try jumpstartDeck(deckListURL: deckListURL)
 }
@@ -3404,9 +3413,22 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 	case .scryfallSetCode where inputString.lowercased() == "jmp" || inputString.lowercased() == "jumpstart":
 		switch output {
 		case .boosterPack:
+			if cardList {
+				let list = try jumpstartDeckList()
+				let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: list))
+				return String(data: data, encoding: .utf8) ?? ""
+			}
+			
 			return try generateJumpStartPack(export: export, cardBack: cardBack)
 		case .boosterBox:
 			let count = boxCount ?? 24
+			
+			if cardList {
+				let list = try (0 ..< count).map { _ in try jumpstartDeckList() }.joined(separator: "\n").components(separatedBy: .newlines).filter { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }.joined(separator: "\n")
+				let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: list))
+				return String(data: data, encoding: .utf8) ?? ""
+			}
+			
 			let packs: [ObjectStateJSON] = try (0 ..< count).map { _ in try generateJumpStartPack(export: false, cardBack: cardBack) }
 			
 			let b = bag(objectStates: packs, nickname: "JumpStart Booster Box")
@@ -3503,7 +3525,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 	case .commanderBoxingLeagueBox:
 		return try commanderBoxingLeagueBox(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, boxCount: boxCount, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, includeBasicLands: includeBasicLands, includeTokens: includeTokens)
 	case .boosterPack:
-		return try boosterPack(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, includeBasicLands: includeBasicLands, includeTokens: includeTokens)
+		return try boosterPack(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, includeBasicLands: includeBasicLands, includeTokens: includeTokens, cardlist: cardList)
 	case .prereleaseKit:
 		return try prereleaseKit(setName: setName, setCode: setCode ?? mtgCards.first?.set ?? inputString, cards: mtgCards, tokens: tokens, mode: mode, export: export, packCount: boxCount, includePromoCard: prereleaseIncludePromoCard, includeLands: prereleaseIncludeLands, includeSheet: prereleaseIncludeSheet, includeSpindown: prereleaseIncludeSpindown, boosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, cardlist: cardList)
 	case .landPack:
@@ -4115,24 +4137,32 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 	return wrapObjectStateInSaveFile(objectState)
 }
 
-fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], includeBasicLands: Bool, includeTokens: Bool) throws -> String {
+fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], includeBasicLands: Bool, includeTokens: Bool, cardlist: Bool) throws -> String {
+	
+	func output(setName: String, setCode: String, pack: CardCollection, tokens: [MTGCard]) throws -> String {
+		if cardlist {
+			return try cardListOutput(cards: pack)
+		} else {
+			return try singleBoosterPack(setName: setName, setCode: setCode, boosterPack: pack.mtgCards, tokens: tokens, export: export)
+		}
+	}
 	
 	if setCode?.lowercased() == "cmr" {
 		let cards = processCommanderLegendsCards(cards, tokens: tokens)
 		
 		let pack = generateCommanderLegendsPack(cards)
 		
-		return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack.mtgCards, tokens: cards.tokens, export: export)
+		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: cards.tokens)
 	} else if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
 		let cards = processMysteryBoosterCards(cards)
 		let pack = generateMysteryBooster(cards: cards)
 		
-		return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack.mtgCards, tokens: [], export: export)
+		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
 	} else if setCode?.lowercased() == "plc" {
 		let cards = processPlanarChaosCards(cards: cards)
 		let pack = generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities)
 		
-		return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack.mtgCards, tokens: [], export: export)
+		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
 	}
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
@@ -4148,9 +4178,9 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 							includeExtendedArt: includeExtendedArt,
 							masterpieceCards: processed.masterpieces,
 							foilPolicy: foilPolicy,
-							mythicPolicy: mythicPolicy).mtgCards
+							mythicPolicy: mythicPolicy)
 	
-	return try singleBoosterPack(setName: setName, setCode: setCode ?? "", boosterPack: pack, tokens: tokens + processed.tokens, export: export)
+	return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens + processed.tokens)
 }
 
 fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard], tokens: [MTGCard], mode: Mode, export: Bool, packCount: Int? = nil, includePromoCard: Bool?, includeLands: Bool?, includeSheet: Bool?, includeSpindown: Bool?, boosterCount: Int?, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], cardlist: Bool) throws -> String {

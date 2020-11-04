@@ -126,6 +126,51 @@ function doDownloadBoxList() {
 	})
 }
 
+function doDownloadCustomNumPacksList(packCount) {
+	var setCode = prompt("Enter a set code to download booster packs.");
+	
+	if (setCode === undefined || setCode === "" || setCode == null) {
+		return;
+	}
+	
+	$("#boxprogress").html("Working…");
+	
+	var url = "box" + "/" + setCode + "?cardlist=true&boosters=" + packCount;
+	
+	$.ajax({
+		url: url,
+		cache: false,
+		contentType: false,
+		processData: false,
+		method: "GET",
+		success: function(response) {
+			console.log("success");
+			console.log(response);
+			
+			var obj = JSON.parse(response);
+			
+			if (obj.error !== undefined) {
+				alert(obj.error);
+				$("#boxprogress").html("");
+				return;
+			}
+			
+			var formatted = downloadOutput(obj);
+			download(setCode + " box.json", formatted, "application/json");
+			$("#boxprogress").html("");
+		},
+		error: function(xhr, status, error) {
+			console.log("error");
+			console.log(xhr);
+			console.log(status);
+			console.log(error);
+			
+			alert(error);
+			$("#boxprogress").html("");
+		}
+	})
+}
+
 function doDownloadPack() {
 	var setCode = prompt("Enter a set code to download a booster pack.");
 	

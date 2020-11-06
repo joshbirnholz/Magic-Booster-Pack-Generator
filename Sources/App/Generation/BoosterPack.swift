@@ -729,7 +729,9 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			problems.append("No legendary card")
 		}
 		
-		print(problems.joined(separator: ", "))
+		if !problems.isEmpty {
+			print(problems.joined(separator: ", "))
+		}
 		
 	} while allColorsCount != 5 || uniqueCardCount != cardCount || !futureSightOkay || !showcaseOkay || !legendaryOkay
 	
@@ -933,7 +935,9 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> Car
 			problems.append("Card count is wrong; Should be \(cardCount), was \(uniqueCardCount)")
 		}
 		
-		print(problems.joined(separator: ", "))
+		if !problems.isEmpty {
+			print(problems.joined(separator: ", "))
+		}
 		
 		return problems.isEmpty
 	}
@@ -3898,7 +3902,7 @@ struct CardLine: CustomStringConvertible {
 	var isPinned: Bool
 	
 	var description: String {
-		var desc = "\(count) [\(set)] \(name)"
+		var desc = "\(count) \(name) (\(set))"
 		
 		var commentFlags: [String] = []
 		

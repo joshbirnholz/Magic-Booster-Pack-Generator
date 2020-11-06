@@ -171,13 +171,13 @@ internal class Swiftfall {
     public struct ScryfallSet: Codable, CustomStringConvertible {
         
         // The unique three or four-letter code for this set.
-        public let code: String?
+        public var code: String?
         
         // The unique code for this set on MTGO, which may differ from the regular code.
         public let mtgo: String?
         
         //The English name of the set.
-        public let name: String
+        public var name: String
         
         //
         public let uri: String

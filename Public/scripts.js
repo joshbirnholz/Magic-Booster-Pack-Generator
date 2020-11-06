@@ -29,7 +29,7 @@ function downloadFromURL(filename, fromURL) {
 }
 
 function doDownloadBox(sorted) {
-	var setCode = prompt("Enter a set code to download a booster box.");
+	var setCode = $("#setlist option:selected").val();
 	
 	if (setCode === undefined || setCode === "" || setCode == null) {
 		return;
@@ -52,7 +52,7 @@ function doDownloadBox(sorted) {
 		cache: false,
 		contentType: false,
 		processData: false,
-		method: "GET",
+		method: "POST",
 		success: function(response) {
 			console.log("success");
 			console.log(response);
@@ -82,7 +82,7 @@ function doDownloadBox(sorted) {
 }
 
 function doDownloadBoxList() {
-	var setCode = prompt("Enter a set code to download a booster box.");
+	var setCode = $("#setlist option:selected").val();
 	
 	if (setCode === undefined || setCode === "" || setCode == null) {
 		return;
@@ -97,7 +97,7 @@ function doDownloadBoxList() {
 		cache: false,
 		contentType: false,
 		processData: false,
-		method: "GET",
+		method: "POST",
 		success: function(response) {
 			console.log("success");
 			console.log(response);
@@ -127,7 +127,7 @@ function doDownloadBoxList() {
 }
 
 function doDownloadCustomNumPacksList(packCount) {
-	var setCode = prompt("Enter a set code to download booster packs.");
+	var setCode = $("#setlist option:selected").val();
 	
 	if (setCode === undefined || setCode === "" || setCode == null) {
 		return;
@@ -142,7 +142,7 @@ function doDownloadCustomNumPacksList(packCount) {
 		cache: false,
 		contentType: false,
 		processData: false,
-		method: "GET",
+		method: "POST",
 		success: function(response) {
 			console.log("success");
 			console.log(response);
@@ -172,7 +172,7 @@ function doDownloadCustomNumPacksList(packCount) {
 }
 
 function doDownloadPack() {
-	var setCode = prompt("Enter a set code to download a booster pack.");
+	var setCode = $("#setlist option:selected").val();
 	
 	if (setCode === undefined || setCode === "" || setCode == null) {
 		return;
@@ -187,7 +187,7 @@ function doDownloadPack() {
 		cache: false,
 		contentType: false,
 		processData: false,
-		method: "GET",
+		method: "POST",
 		success: function(response) {
 			console.log("success");
 			console.log(response);
@@ -217,7 +217,7 @@ function doDownloadPack() {
 }
 
 function doDownloadPrereleasePack() {
-	var setCode = prompt("Enter a set code to download a prerelease pack.");
+	var setCode = $("#setlist option:selected").val();
 	
 	if (setCode === undefined || setCode === "" || setCode == null) {
 		return;
@@ -232,7 +232,7 @@ function doDownloadPrereleasePack() {
 		cache: false,
 		contentType: false,
 		processData: false,
-		method: "GET",
+		method: "POST",
 		success: function(response) {
 			console.log("success");
 			console.log(response);
@@ -262,7 +262,7 @@ function doDownloadPrereleasePack() {
 }
 
 function doDownloadPrereleasePackList() {
-	var setCode = prompt("Enter a set code to download a prerelease pack.");
+	var setCode = $("#setlist option:selected").val();
 	
 	if (setCode === undefined || setCode === "" || setCode == null) {
 		return;
@@ -277,7 +277,7 @@ function doDownloadPrereleasePackList() {
 		cache: false,
 		contentType: false,
 		processData: false,
-		method: "GET",
+		method: "POST",
 		success: function(response) {
 			console.log("success");
 			console.log(response);
@@ -364,6 +364,39 @@ function doDownloadDeck() {
 			
 			alert(error);
 			$("#progress").html("");
+		}
+	})
+}
+
+loadSets();
+function loadSets() {
+	$.ajax({
+		url: "sets",
+		data: null,
+		cache: false,
+		contentType: false,
+		processData: false,
+		method: "POST",
+		success: function(response) {
+			console.log("success");
+			
+			$("#setlist option[value='']").remove();
+			
+			response.forEach((element) => {
+				var o = new Option(element.name, element.code);
+				/// jquerify the DOM object 'o' so we can use the html method
+				$(o).html(element.name);
+				
+				$("#setlist").append(o);
+			})
+		},
+		error: function(xhr, status, error) {
+			console.log("error");
+			console.log(xhr);
+			console.log(status);
+			console.log(error);
+			
+			alert(error);
 		}
 	})
 }

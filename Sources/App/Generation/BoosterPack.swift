@@ -755,22 +755,14 @@ func processCommanderLegendsCards(_ cards: [MTGCard], tokens: [MTGCard]) -> Comm
 	
 	var cards = cards
 	
-	if let index = cards.firstIndex(where: { $0.name == "The Prismatic Piper" && !$0.frameEffects.contains("etched") }) {
+	if let piperID = UUID(uuidString: "a69e6d8f-f742-4508-a83a-38ae84be228c"),
+	   let index = cards.firstIndex(where: { $0.scryfallID == piperID }) {
 		processed.prismaticPiper = cards.remove(at: index)
 	}
 	
 	processed.etchedFoils = cards.separateAll(where: { $0.frameEffects.contains("etched") })
 	processed.extendedArt = cards.separateAll(where: { $0.frameEffects.contains("extendedart") })
 	processed.borderlessPlaneswalkers = cards.separateAll(where: { $0.borderColor == .borderless })
-	
-	// TEMP FIX
-	cards = cards.map {
-		var fixedCard = $0
-		if let num = Int($0.collectorNumber), num <= 361 {
-			fixedCard.isFoundInBoosters = true
-		}
-		return fixedCard
-	}
 	
 	cards.removeAll(where: { !$0.isFoundInBoosters })
 	
@@ -849,37 +841,26 @@ struct CardCollection {
 func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> CardCollection {
 	var pack = CardCollection()
 	
-	var selectedLegendRarities: [MTGCard.Rarity: Int] = [:]
-	let firstLegendRarityValue = (1...100).randomElement()!
-	switch firstLegendRarityValue {
-	case 74...: selectedLegendRarities[.mythic] = 1
-	case 66...: selectedLegendRarities[.rare] = 1
-	default: selectedLegendRarities[.uncommon] = 1
-	}
-	
-	let secondLegendRarityValue = (1...100).randomElement()!
-	switch secondLegendRarityValue {
-	case 66...:
-		let value = selectedLegendRarities[.rare] ?? 0
-		selectedLegendRarities[.rare] = value + 1
-	default:
-		let value = selectedLegendRarities[.uncommon] ?? 0
-		selectedLegendRarities[.uncommon] = value + 1
-	}
-	// TODO: These values are guesses. Compare with box opening
-	
-	let shouldIncludeBorderlessPlaneswalker = (1...126).randomElement() == 1
-	if shouldIncludeBorderlessPlaneswalker {
-		let rarityToRemove: MTGCard.Rarity = selectedLegendRarities.keys.contains(.mythic) ? .mythic : selectedLegendRarities.keys.randomElement()!
-		if let value = selectedLegendRarities[rarityToRemove] {
-			let newValue = value-1
-			if newValue <= 0 {
-				selectedLegendRarities[rarityToRemove] = nil
-			} else {
-				selectedLegendRarities[rarityToRemove] = newValue
+	let selectedLegendRarities: [MTGCard.Rarity: Int] = {
+		let raritiesAndWeights: [[MTGCard.Rarity: Int]: Double] = [
+			[.uncommon: 2]: 17,
+			[.uncommon: 1, .rare: 1]: 12,
+			[.rare: 2]: 2,
+			[.uncommon: 1, .mythic: 1]: 1,
+			[.rare: 1, .mythic: 1]: 0.5 // total guess!
+		]
+		var result = raritiesAndWeights.keys.first!
+		let sum = raritiesAndWeights.values.reduce(0, +)
+		var value = Double.random(in: 1..<sum)
+		for (rarities, weight) in raritiesAndWeights {
+			value -= weight
+			result = rarities
+			if value <= 0 {
+				break
 			}
 		}
-	}
+		return result
+	}()
 	
 	let shouldIncludeMythic = (1...100).randomElement()! >= 74
 	let foilRarities: [MTGCard.Rarity: [MTGCard]] = {
@@ -957,8 +938,8 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> Car
 		let uncommons = processed.rarities[.uncommon]?.choose(3) ?? []
 		pack.insert(contentsOf: uncommons, at: 0)
 		
-		if shouldIncludeBorderlessPlaneswalker, let planeswalker = processed.borderlessPlaneswalkers.randomElement() {
-			pack.insert(planeswalker, at: 0)
+		if let rare = processed.rarities[shouldIncludeMythic ? .mythic : .rare]?.randomElement() {
+			pack.insert(rare, at: 0)
 		}
 		
 		for (rarity, count) in selectedLegendRarities {
@@ -966,8 +947,10 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> Car
 			pack.insert(contentsOf: cards, at: 0)
 		}
 		
-		if let rare = processed.rarities[shouldIncludeMythic ? .mythic : .rare]?.randomElement() {
-			pack.insert(rare, at: 0)
+		if .random(),
+		   let planeswalkerIndex = pack.mtgCards.firstIndex(where: { cardInPack in processed.borderlessPlaneswalkers.contains(where: { borderlessCard in borderlessCard.oracleID == cardInPack.oracleID }) }),
+		   let borderlessPlaneswalker = processed.borderlessPlaneswalkers.first(where: { $0.oracleID == pack[planeswalkerIndex].oracleID }) {
+			pack.replace(at: planeswalkerIndex, with: borderlessPlaneswalker)
 		}
 		
 		if let foil = foilRarities[includedFoilRarity]?.randomElement() {

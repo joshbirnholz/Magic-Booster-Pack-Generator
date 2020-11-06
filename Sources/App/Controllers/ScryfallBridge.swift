@@ -16,6 +16,10 @@ extension Swiftfall.ScryfallSet: Content {
 
 final class ScryfallBridgeController {
 	
+	static let customSets = [
+	Swiftfall.ScryfallSet(code: "net", mtgo: nil, name: "Netropolis (Custom Set)", uri: "", scryfallUri: "", searchUri: "", releasedAt: nil, setType: "expansion", cardCount: 0, digital: true, foilOnly: false, blockCode: "net", block: "net", iconSvgUri: nil)
+	]
+	
 	func getSets(_ req: Request) throws -> EventLoopFuture<[Swiftfall.ScryfallSet]> {
 		let promise: Promise<[Swiftfall.ScryfallSet]> = req.eventLoop.newPromise()
 		
@@ -32,7 +36,7 @@ final class ScryfallBridgeController {
 					"plist"
 				]
 				
-				let sets: [Swiftfall.ScryfallSet] = try Swiftfall.getSetList().data.compactMap {
+				var sets: [Swiftfall.ScryfallSet] = try Swiftfall.getSetList().data.compactMap {
 					guard allowedSetTypes.contains($0.setType),
 						  let code = $0.code,
 						  !disallowedSetCodes.contains(code)
@@ -51,6 +55,8 @@ final class ScryfallBridgeController {
 					
 					return set
 				}
+				
+				sets.append(contentsOf: Self.customSets)
 				
 				promise.succeed(result: sets)
 			} catch {

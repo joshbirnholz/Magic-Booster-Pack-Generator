@@ -847,14 +847,6 @@ struct CardCollection {
 func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> CardCollection {
 	var pack = CardCollection()
 	
-//	let possibleLegendRarities: [[MTGCard.Rarity: Int]] = [
-//		[.uncommon: 2],
-//		[.uncommon: 1, .rare: 1],
-//		[.rare: 2],
-//		[.mythic: 1, .uncommon: 1],
-//		[.mythic: 1, .rare: 1]
-//	]
-//	var selectedLegendRarities = possibleLegendRarities.randomElement()! // TODO -- Make this better, not just random.
 	var selectedLegendRarities: [MTGCard.Rarity: Int] = [:]
 	let firstLegendRarityValue = (1...100).randomElement()!
 	switch firstLegendRarityValue {
@@ -866,10 +858,10 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> Car
 	let secondLegendRarityValue = (1...100).randomElement()!
 	switch secondLegendRarityValue {
 	case 66...:
-		let value =  selectedLegendRarities[.rare] ?? 0
+		let value = selectedLegendRarities[.rare] ?? 0
 		selectedLegendRarities[.rare] = value + 1
 	default:
-		let value =  selectedLegendRarities[.uncommon] ?? 0
+		let value = selectedLegendRarities[.uncommon] ?? 0
 		selectedLegendRarities[.uncommon] = value + 1
 	}
 	// TODO: These values are guesses. Compare with box opening
@@ -966,7 +958,7 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> Car
 		}
 		
 		for (rarity, count) in selectedLegendRarities {
-			let cards = processed.legendRarities[rarity]?.prefix(count) ?? []
+			let cards = processed.legendRarities[rarity]?.shuffled().prefix(count) ?? []
 			pack.insert(contentsOf: cards, at: 0)
 		}
 		

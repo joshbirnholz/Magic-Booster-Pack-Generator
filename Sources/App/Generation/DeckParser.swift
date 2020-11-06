@@ -38,6 +38,14 @@ public struct DeckParser {
 	}
 	
 	public static func parse(deckList: String, autofix: Bool) -> [CardGroup] {
+		let deckList = deckList.components(separatedBy: .newlines).compactMap {
+			if let index = $0.firstIndex(of: "#") {
+				return String($0[..<index])
+			} else {
+				return $0
+			}
+		}.joined(separator: "\n")
+		
 		let regex = #"^(?:(?:\/\/)?(\S*)\s*$|\s*(\d+)\s+([^\(\n]+\S)(?:\s*|\s+\(\s*(\S*)\s*\)(?:\h+(\S+)\s*|\s*)))$"#
 		
 		let matches = deckList.matches(forRegex: regex, options: [.anchorsMatchLines])

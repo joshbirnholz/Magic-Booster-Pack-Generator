@@ -717,7 +717,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			problems.append("Pack doesn't have 5 colors")
 		}
 		if uniqueCardCount != cardCount {
-			problems.append("Card count is wrong; Should be \(cardCount), was \(uniqueCardCount)")
+			problems.append("Unique card count is wrong; Should be \(cardCount), was \(uniqueCardCount)")
 		}
 		if !futureSightOkay {
 			problems.append("Future sight isn't satisfied")
@@ -932,7 +932,7 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> Car
 			problems.append("Pack doesn't have 5 colors")
 		}
 		if uniqueCardCount != cardCount {
-			problems.append("Card count is wrong; Should be \(cardCount), was \(uniqueCardCount)")
+			problems.append("Unique card is wrong; Should be \(cardCount), was \(uniqueCardCount)")
 		}
 		
 		if !problems.isEmpty {
@@ -3900,9 +3900,10 @@ struct CardLine: CustomStringConvertible {
 	var set: String
 	var isFoil: Bool
 	var isPinned: Bool
+	var collectorNumber: String
 	
 	var description: String {
-		var desc = "\(count) \(name) (\(set))"
+		var desc = "\(count) \(name) (\(set)) \(collectorNumber)"
 		
 		var commentFlags: [String] = []
 		
@@ -3941,7 +3942,7 @@ func cardListOutput(cards: CardCollection) throws -> String {
 			count.count += 1
 			cardCounts[key] = count
 		} else {
-			cardCounts[key] = CardLine(count: 1, name: card.card.name ?? "", set: card.card.set.uppercased(), isFoil: card.isFoil, isPinned: isPinned)
+			cardCounts[key] = CardLine(count: 1, name: card.card.name ?? "", set: card.card.set.uppercased(), isFoil: card.isFoil, isPinned: isPinned, collectorNumber: card.card.collectorNumber)
 		}
 	}
 	

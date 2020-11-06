@@ -430,12 +430,12 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 	repeat {
 		pack.removeAll()
 		
-		let lands: ArraySlice<MTGCard> = {
+		let lands: [MTGCard] = {
 			var lands = landRarities?[landRarity] ?? basicLands
 			if shouldIncludeShowcaseLand {
 				lands = lands.filter { $0.isShowcase }
 			}
-			return lands.shuffled().prefix(landCount)
+			return lands.choose(landCount)
 		}()
 		pack.insert(contentsOf: lands, at: 0)
 		
@@ -538,7 +538,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			return base
 		}()
 		
-//		var uncommons = rarities[.uncommon]?.shuffled().prefix(uncommonCount) ?? []
+//		var uncommons = rarities[.uncommon]?.choose(uncommonCount) ?? []
 		var uncommons: [MTGCard] = {
 			var uncommons: [MTGCard] = []
 			
@@ -604,7 +604,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			}
 			return count
 		}()
-		let commons = rarities[.common]?.shuffled().prefix(commonCount) ?? []
+		let commons = rarities[.common]?.choose(commonCount) ?? []
 		pack.insert(contentsOf: commons, at: 0)
 		
 		// Tokens
@@ -947,10 +947,10 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> Car
 			pack.insert(piper, at: 0)
 		}
 		
-		let commons = processed.rarities[.common]?.shuffled().prefix(13-pack.count) ?? []
+		let commons = processed.rarities[.common]?.choose(13-pack.count) ?? []
 		pack.insert(contentsOf: commons, at: 0)
 		
-		let uncommons = processed.rarities[.uncommon]?.shuffled().prefix(3) ?? []
+		let uncommons = processed.rarities[.uncommon]?.choose(3) ?? []
 		pack.insert(contentsOf: uncommons, at: 0)
 		
 		if shouldIncludeBorderlessPlaneswalker, let planeswalker = processed.borderlessPlaneswalkers.randomElement() {
@@ -958,7 +958,7 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> Car
 		}
 		
 		for (rarity, count) in selectedLegendRarities {
-			let cards = processed.legendRarities[rarity]?.shuffled().prefix(count) ?? []
+			let cards = processed.legendRarities[rarity]?.choose(count) ?? []
 			pack.insert(contentsOf: cards, at: 0)
 		}
 		
@@ -1121,7 +1121,7 @@ func generateMysteryBooster(cards: [MysterBoosterSlot: [MTGCard]]) -> CardCollec
 		pack.removeAll()
 		
 		for color: MTGColor in [.white, .blue, .black, .red, .green] {
-			let colorCommonUncommons = cards[.monocolorCommonUncommon(color)]?.shuffled().prefix(2) ?? []
+			let colorCommonUncommons = cards[.monocolorCommonUncommon(color)]?.choose(2) ?? []
 			pack.append(contentsOf: colorCommonUncommons)
 		}
 		
@@ -1176,11 +1176,11 @@ func generatePlanarChaosPack(normalRarities: [MTGCard.Rarity: [MTGCard]], colors
 	repeat {
 		pack.removeAll()
 		
-		if let commons = normalRarities[.common]?.shuffled().prefix(8) {
+		if let commons = normalRarities[.common]?.choose(8) {
 			pack.append(contentsOf: commons)
 		}
 		
-		if let uncommons = normalRarities[.uncommon]?.shuffled().prefix(2) {
+		if let uncommons = normalRarities[.uncommon]?.choose(2) {
 			pack.append(contentsOf: uncommons)
 		}
 		
@@ -1188,13 +1188,13 @@ func generatePlanarChaosPack(normalRarities: [MTGCard.Rarity: [MTGCard]], colors
 			pack.append(rare)
 		}
 		
-		if let colorshiftedCommons = colorshiftedRarities[.common]?.shuffled().prefix(3) {
+		if let colorshiftedCommons = colorshiftedRarities[.common]?.choose(3) {
 			pack.append(contentsOf: colorshiftedCommons)
 		}
 		
 		if let colorshiftedUncommons = colorshiftedRarities[.uncommon], let colorshiftedRares = colorshiftedRarities[.rare] {
 			let all = colorshiftedUncommons + colorshiftedRares
-			if let colorshiftedUncommonOrRare = all.shuffled().randomElement() {
+			if let colorshiftedUncommonOrRare = all.randomElement() {
 				pack.append(colorshiftedUncommonOrRare)
 			}
 		}

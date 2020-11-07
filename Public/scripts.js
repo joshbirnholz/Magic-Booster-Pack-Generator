@@ -111,7 +111,7 @@ function doDownloadBoxList() {
 			}
 			
 			var formatted = downloadOutput(obj);
-			download(setCode + " box.json", formatted, "application/json");
+			download(setCode + " box.txt", formatted, "text/plain");
 			$("#boxprogress").html("");
 		},
 		error: function(xhr, status, error) {
@@ -156,7 +156,7 @@ function doDownloadCustomNumPacksList(packCount) {
 			}
 			
 			var formatted = downloadOutput(obj);
-			download(setCode + " box.json", formatted, "application/json");
+			download(setCode + " packs.txt", formatted, "text/plain");
 			$("#boxprogress").html("");
 		},
 		error: function(xhr, status, error) {
@@ -291,7 +291,7 @@ function doDownloadPrereleasePackList() {
 			}
 			
 			var formatted = downloadOutput(obj);
-			download(setCode + " pack.json", formatted, "application/json");
+			download(setCode + " prerelease pack.txt", formatted, "text/plain");
 			$("#boxprogress").html("");
 		},
 		error: function(xhr, status, error) {

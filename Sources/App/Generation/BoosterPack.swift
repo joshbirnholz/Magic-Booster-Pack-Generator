@@ -430,7 +430,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 	repeat {
 		pack.removeAll()
 		
-		let lands: [MTGCard] = {
+		let lands: ArraySlice<MTGCard> = {
 			var lands = landRarities?[landRarity] ?? basicLands
 			if shouldIncludeShowcaseLand {
 				lands = lands.filter { $0.isShowcase }

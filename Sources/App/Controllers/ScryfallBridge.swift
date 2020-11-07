@@ -53,6 +53,10 @@ final class ScryfallBridgeController {
 						set.name = "Mystery Booster (Retail Edition)"
 					}
 					
+					if set.code == "tsr", set.cardCount < 390 {
+						return nil
+					}
+					
 					return set
 				}
 				

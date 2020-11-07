@@ -64,7 +64,7 @@ extension Array {
 		}
 	}
 	
-	public func choose(_ n: Int) -> [Element] {
+	public func choose(_ n: Int) -> ArraySlice<Element> {
 		guard n >= 0 else { return [] }
 		let n = Swift.min(n, count)
 		
@@ -72,7 +72,7 @@ extension Array {
 		for i in stride(from: count - 1, to: count - n - 1, by: -1) {
 			copy.swapAt(i, Int.random(in: 0..<(i+1)))
 		}
-		return Array(copy.suffix(n))
+		return copy.suffix(n)
 	}
 }
 

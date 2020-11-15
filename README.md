@@ -6,7 +6,7 @@ Packs are meant to have cards that match what you'd really find in booster packs
 
 |Endpoint|Description|Example|
 |---|---|---|
-|/:set|Generate a booster pack|https://tts-magic-booster.herokuapp.com/iko|
+|/pack/:set|Generate a booster pack|https://tts-magic-booster.herokuapp.com/pack/iko|
 |/box/:set|Generate booster boxes|https://tts-magic-booster.herokuapp.com/box/iko|
 |/pre/:set|Generate prerelease packs|https://tts-magic-booster.herokuapp.com/pre/iko|
 |/card/named|Get a specific card|https://tts-magic-booster.herokuapp.com/card/named?fuzzy=gemrazer|
@@ -16,7 +16,7 @@ Packs are meant to have cards that match what you'd really find in booster packs
 |/landpacks|Get a pack of basic lands|https://tts-magic-booster.herokuapp.com/landpacks|
 |/deck|Load an entire deck list|https://tts-magic-booster.herokuapp.com/deck|
 
-### GET /:set
+### POST /pack/:set
 
 Generates a booster pack for a given set.
 
@@ -29,9 +29,9 @@ Generates a booster pack for a given set.
 |lands|Boolean||Whether or not to include basic lands in the booster packs. The default value is true.|
 |token|Boolean||Whether or not to include a token in the booster packs. The default value is true.|
 
-Example: https://tts-magic-booster.herokuapp.com/iko?count=3
+Example: https://tts-magic-booster.herokuapp.com/pack/iko?count=3
 
-### GET /box/:set
+### POST /box/:set
 
 Generates a box of booster packs for a given set.
 
@@ -46,7 +46,7 @@ Generates a box of booster packs for a given set.
 
 Example: https://tts-magic-booster.herokuapp.com/box/thb
 
-### GET /pre/:set
+### POST /pre/:set
 
 Generates a number of prerelease packs for a given set.
 
@@ -64,7 +64,7 @@ Generates a number of prerelease packs for a given set.
 
 Example: https://tts-magic-booster.herokuapp.com/pre/eld?count=10&sheet=false
 
-### GET /card/named
+### POST /card/named
 
 Returns a single card with a given name. A value is required for either the `fuzzy` parameter or the `exact` parameter.
 
@@ -76,7 +76,7 @@ Returns a single card with a given name. A value is required for either the `fuz
 
 Example: https://tts-magic-booster.herokuapp.com/card/named?fuzzy=under+dream
 
-### GET /card/:code/:number
+### POST /card/:code/:number
 
 Returns a single card with the given set code and collector number.
 
@@ -88,7 +88,7 @@ Returns a single card with the given set code and collector number.
 
 Example: https://tts-magic-booster.herokuapp.com/card/thb/253
 
-### GET /card/random
+### POST /card/random
 
 Returns a single random card.
 
@@ -101,7 +101,7 @@ Example: https://tts-magic-booster.herokuapp.com/card/random
 Example: https://tts-magic-booster.herokuapp.com/card/random?q=cmc:6+type:creature  
 Example: https://tts-magic-booster.herokuapp.com/card/random?q=o:companion+set:iko&export=false
 
-### GET /token/:set
+### POST /token/:set
 
 Returns a token that can be right-clicked in Tabletop Simulator to be changed to any token in the specified set.
 
@@ -112,7 +112,7 @@ Returns a token that can be right-clicked in Tabletop Simulator to be changed to
 
 Example: https://tts-magic-booster.herokuapp.com/token/c20
 
-### GET /landpacks/
+### POST /landpacks/
 
 Returns a pack of 20 of each basic land. The returned JSON can only be used to spawn an object directly via scripting.
 
@@ -122,7 +122,7 @@ Returns a pack of 20 of each basic land. The returned JSON can only be used to s
 
 Example: https://tts-magic-booster.herokuapp.com/landpacks?set=thb
 
-### GET /deck
+### POST /deck
 
 Returns a deck of cards. The request must have a body containing the requested decklist in plaintext card list or Arena format. The returned JSON can be saved to a file and imported as a Saved Object.
 

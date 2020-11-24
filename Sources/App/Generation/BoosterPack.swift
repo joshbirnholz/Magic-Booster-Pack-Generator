@@ -843,11 +843,11 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> Car
 	
 	let selectedLegendRarities: [MTGCard.Rarity: Int] = {
 		let raritiesAndWeights: [[MTGCard.Rarity: Int]: Double] = [
-			[.uncommon: 2]: 17,
-			[.uncommon: 1, .rare: 1]: 12,
-			[.rare: 2]: 2,
-			[.uncommon: 1, .mythic: 1]: 1,
-			[.rare: 1, .mythic: 1]: 0.5 // total guess!
+			[.uncommon: 2]: 76,
+			[.uncommon: 1, .rare: 1]: 46,
+			[.rare: 2]: 8,
+			[.uncommon: 1, .mythic: 1]: 5,
+			[.rare: 1, .mythic: 1]: 2
 		]
 		var result = raritiesAndWeights.keys.first!
 		let sum = raritiesAndWeights.values.reduce(0, +)

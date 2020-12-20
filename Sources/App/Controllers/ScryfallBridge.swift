@@ -57,6 +57,10 @@ final class ScryfallBridgeController {
 						return nil
 					}
 					
+					if set.code == "khm", set.cardCount < 285 {
+						return nil
+					}
+					
 					return set
 				}
 				

@@ -865,11 +865,11 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> Car
 	let shouldIncludeMythic = (1...100).randomElement()! >= 74
 	let foilRarities: [MTGCard.Rarity: [MTGCard]] = {
 		let foilEtchedReprints = processed.etchedFoils.filter {
-			guard let number = Int($0.collectorNumber), number <= 546 else {
+			guard let number = Int($0.collectorNumber) else {
 				return false
 			}
 			
-			return true
+			return number <= 546
 		}
 		var rarities: [MTGCard.Rarity: [MTGCard]] = [:]
 		
@@ -4645,6 +4645,11 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 	if cards.contains(where: { $0.name == "Ophiomancer" }) {
 		let customSnakeToken = MTGCard(power: "1", toughness: "1", oracleText: "Deathtouch", name: "Snake", convertedManaCost: 0, layout: "token", frame: "2015", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: .black, isFullArt: false, allParts: [MTGCard.RelatedCard(scryfallID: UUID(uuidString: "66d80dd1-b944-4cb2-8578-b4dbcabbbc1e"), component: .token, name: "Ophiomancer", typeLine: "Creature — Human Shaman", url: URL(string: "https://scryfall.com/card/c13/84/ophiomancer"))], collectorNumber: "1", set: "TC13", colors: [.black], keywords: ["Deathtouch"], artist: "Maria Trepalina", watermark: nil, rarity: .common, scryfallCardBackID: UUID(uuidString: "0AEEBAF5-8C7D-4636-9E82-8C27447861F7")!, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, language: .english, releaseDate: nil, imageUris: ["normal": URL(string: "http://josh.birnholz.com/tts/cards/custom/c13snakefixed.jpg")!])
 		tokens.append(customSnakeToken)
+	}
+	
+	if cards.contains(where: { $0.oracleText?.lowercased().contains("the monarch") == true }) {
+		let monarchToken = try Swiftfall.getCard(id: "bf7f3fc9-35f1-4b8c-b02b-494c71f31107")
+		tokens.append(MTGCard(monarchToken))
 	}
 	
 	tokens = tokens.sorted {

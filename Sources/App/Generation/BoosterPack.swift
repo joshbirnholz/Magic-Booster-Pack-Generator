@@ -1213,137 +1213,35 @@ func jumpstartDeckList() throws -> String {
 	return try String(contentsOf: deckListURL)
 }
 
-func generateJumpStartPack(export: Bool, cardBack: URL?) throws -> ObjectStateJSON {
-	func jumpstartDeck(deckListURL: URL) throws -> ObjectStateJSON {
-		let name = String(deckListURL.lastPathComponent.prefix(while: { !$0.isNumber && $0 != "." }).trimmingCharacters(in: .whitespacesAndNewlines))
-		
-		let faceCard = MTGCard(scryfallID: nil, oracleID: nil, typeLine: nil, power: nil, toughness: nil, oracleText: nil, flavorText: nil, name: name, loyalty: nil, cardFaces: nil, convertedManaCost: nil, layout: "normal", frame: "token", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: nil, isFullArt: true, allParts: nil, collectorNumber: "-1", set: "jumpstartface", colors: nil, printedName: nil, printedText: nil, printedTypeLine: nil, artist: nil, watermark: nil, rarity: .common, scryfallCardBackID: UUID(), isFoilAvailable: false, isNonFoilAvailable: true, isPromo: false, isFoundInBoosters: false, language: .english, releaseDate: nil, imageUris: ["normal": URL(string: "http://josh.birnholz.com/tts/resources/jumpstart")!.appendingPathComponent(name).appendingPathExtension("jpg")])
-		
-		let contents = try String(contentsOf: deckListURL)
-		
-		let deckList = try deck(decklist: contents, export: false, cardBack: cardBack, includeTokens: false, faceCards: [faceCard], autofix: true)
-		
-		let setCode = "jmp"
-		
-		var packTextureURL = URL(string: "http://josh.birnholz.com/tts/resources/pack/\(setCode).jpg")!
-		let exists = packTexturesExist[setCode] ?? fileExists(at: packTextureURL)
-		packTexturesExist[setCode] = exists
-		if !exists {
-			print("No pack texture for \(setCode), using default")
-			packTextureURL = URL(string: "http://josh.birnholz.com/tts/resources/pack/default.jpg")!
-		} else {
-			print("Found pack texture for \(setCode)")
-		}
-		
-		let bagLuaScript = """
-		function onObjectLeaveContainer(bag, object)
-		  if (bag.getGUID() == self.getGUID()) then
-			destroyObject(bag)
-		  end
-		end
-
-		function filterObjectEnter(object)
-		  return false
-		end
-		""".replacingOccurrences(of: "\n", with: "\\n")
-		
-		let objectState = """
-		{
-		  "Name": "Custom_Model_Bag",
-		  "Transform": {
-			"posX": -5.75182,
-			"posY": 0.960000038,
-			"posZ": 1.48507118,
-			"rotX": -3.88456328E-07,
-			"rotY": 179.672028,
-			"rotZ": -3.12079976E-07,
-			"scaleX": 1.0,
-			"scaleY": 1.0,
-			"scaleZ": 1.0
-		  },
-		  "Nickname": "JumpStart Booster Pack",
-		  "Description": "",
-		  "GMNotes": "",
-		  "ColorDiffuse": {
-			"r": 1.0,
-			"g": 1.0,
-			"b": 1.0
-		  },
-		  "Locked": false,
-		  "Grid": true,
-		  "Snap": true,
-		  "IgnoreFoW": false,
-		  "Autoraise": true,
-		  "Sticky": true,
-		  "Tooltip": true,
-		  "GridProjection": false,
-		  "HideWhenFaceDown": false,
-		  "Hands": false,
-		  "MaterialIndex": -1,
-		  "MeshIndex": -1,
-		  "CustomMesh": {
-		  "MeshURL": "http://josh.birnholz.com/tts/resources/pack/MagicPack_\(Bool.random() ? 1 : 2).obj",
-			"DiffuseURL": "\(packTextureURL)",
-			"NormalURL": "http://josh.birnholz.com/tts/resources/pack/NormalMap_CardPack.png",
-			"ColliderURL": "",
-			"Convex": true,
-			"MaterialIndex": 0,
-			"TypeIndex": 6,
-			"CustomShader": {
-			  "SpecularColor": {
-				"r": 1.0,
-				"g": 1.0,
-				"b": 1.0
-			  },
-			  "SpecularIntensity": 0.5,
-			  "SpecularSharpness": 3.93060017,
-			  "FresnelStrength": 0.8772789
-			},
-			"CastShadows": true
-		  },
-		  "XmlUI": "",
-		  "LuaScript": "\(bagLuaScript)",
-		  "LuaScriptState": "",
-		  "ContainedObjects": [
-			\(deckList)
-		  ],
-		  "GUID": "d944ee"
-		}
-		"""
-		
-		if !export {
-			return objectState
-		}
-		
-		return """
-		{
-		  "SaveName": "",
-		  "GameMode": "",
-		  "Gravity": 0.5,
-		  "PlayArea": 0.5,
-		  "Date": "",
-		  "Table": "",
-		  "Sky": "",
-		  "Note": "",
-		  "Rules": "",
-		  "XmlUI": "",
-		  "LuaScript": "",
-		  "LuaScriptState": "",
-		  "ObjectStates": [
-			\(objectState)
-		  ],
-		  "TabStates": {},
-		  "VersionNumber": ""
-		}
-		"""
-	}
-	
+func generateJumpStartPack() throws -> CardCollection {
 	guard let deckListURL = jumpstartDeckListURLs.randomElement() else {
 		throw PackError.unsupported
 	}
 	
+	let name = String(deckListURL.lastPathComponent.prefix(while: { !$0.isNumber && $0 != "." }).trimmingCharacters(in: .whitespacesAndNewlines))
 	
-	return try jumpstartDeck(deckListURL: deckListURL)
+	let faceCardIdentifier: MTGCardIdentifier = .nameSet(name: name, set: "fjmp")
+	
+	let contents = try String(contentsOf: deckListURL)
+	let cardCounts = DeckParser.parse(deckList: contents, autofix: true).first?.cardCounts ?? []
+	let identifiers: [MTGCardIdentifier] = [faceCardIdentifier] + cardCounts.map(\.identifier)
+	let cards = try Swiftfall.getCollection(identifiers: identifiers).data
+	
+	var collection = CardCollection()
+	if let faceCard = cards.first(where: { $0.set.lowercased() == "fjmp" }) {
+		let mtgCard = MTGCard(faceCard)
+		collection.append(mtgCard)
+	}
+	
+	for cardCount in cardCounts.reversed() {
+		guard let card = cards[cardCount.identifier] else { continue }
+		let mtgCard = MTGCard(card)
+		for _ in 0 ..< cardCount.count {
+			collection.append(mtgCard)
+		}
+	}
+	
+	return collection
 }
 
 fileprivate struct CardInfo {
@@ -3141,27 +3039,7 @@ func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]],
 		return objectState
 	}
 	
-	return """
-	{
-	  "SaveName": "",
-	  "GameMode": "",
-	  "Gravity": 0.5,
-	  "PlayArea": 0.5,
-	  "Date": "",
-	  "Table": "",
-	  "Sky": "",
-	  "Note": "",
-	  "Rules": "",
-	  "XmlUI": "",
-	  "LuaScript": "",
-	  "LuaScriptState": "",
-	  "ObjectStates": [
-		\(objectState)
-	  ],
-	  "TabStates": {},
-	  "VersionNumber": ""
-	}
-"""
+	return wrapObjectStateInSaveFile(objectState)
 }
 
 func allLandPacksSingleJSON(setCards: (cards: [MTGCard], setCode: String)?, specialOptions: [String], export: Bool) throws -> String {
@@ -3389,57 +3267,6 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 //		print(string)
 //
 //		return string
-	case .scryfallSetCode where inputString.lowercased() == "jmp" || inputString.lowercased() == "jumpstart":
-		switch output {
-		case .boosterPack:
-			if cardList {
-				let list = try jumpstartDeckList()
-				let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: list))
-				return String(data: data, encoding: .utf8) ?? ""
-			}
-			
-			return try generateJumpStartPack(export: export, cardBack: cardBack)
-		case .boosterBox:
-			let count = boxCount ?? 24
-			
-			if cardList {
-				let list = try (0 ..< count).map { _ in try jumpstartDeckList() }.joined(separator: "\n").components(separatedBy: .newlines).filter { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }.joined(separator: "\n")
-				let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: list))
-				return String(data: data, encoding: .utf8) ?? ""
-			}
-			
-			let packs: [ObjectStateJSON] = try (0 ..< count).map { _ in try generateJumpStartPack(export: false, cardBack: cardBack) }
-			
-			let b = bag(objectStates: packs, nickname: "JumpStart Booster Box")
-			
-			if export {
-				return wrapObjectStateInSaveFile(b)
-			} else {
-				return b
-			}
-		case .prereleaseKit:
-			throw PackError.unsupported
-		case .landPack:
-			throw PackError.unsupported
-		case .commanderBoxingLeagueBox:
-			throw PackError.unsupported
-		}
-//	case .scryfallSetCode where inputString.lowercased() == "akr":
-//		let cards = try Swiftfall.getCards(query: "(set:akh,hou in:akr) or (set:akr)").compactMap { $0?.data }.joined().map(MTGCard.init)
-//
-//
-//
-//		let set = MTGSet(cards: Array(cards), name: "Amonkhet Remastered", code: "AKR")
-//
-//		let encoder = JSONEncoder()
-//		encoder.outputFormatting = .prettyPrinted
-//
-//		let data = try encoder.encode(set)
-//		let string = String(data: data, encoding: .utf8)!
-//
-//		print(string)
-//
-//		throw PackError.unsupported
 	case .scryfallSetCode:
 		if let url = customSetJSONURL(forSetCode: inputString), let data = try? Data(contentsOf: url), let string = String(data: data, encoding: .utf8) {
 			return try generate(input: .mtgCardJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, autofixDecklist: autofixDecklist, cardList: cardList)
@@ -3947,7 +3774,7 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		}
 		
 		switch setCode {
-		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "cmr":
+		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "cmr", "jmp":
 			return 24
 		default:
 			return 36
@@ -3976,6 +3803,10 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 	} else if setCode?.lowercased() == "plc" {
 		let cards = processPlanarChaosCards(cards: cards)
 		let packs: [CardCollection] = (1...count).map { _ in generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities) }
+		
+		return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
+	} else if setCode?.lowercased() == "jmp" {
+		let packs: [CardCollection] = (1...count).compactMap { _ in try? generateJumpStartPack() }
 		
 		return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
 	}
@@ -4143,6 +3974,10 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 		let pack = generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities)
 		
 		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+	} else if setCode?.lowercased() == "jmp" {
+		let pack = try generateJumpStartPack()
+		
+		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
 	}
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
@@ -4167,7 +4002,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 	let boosterCount = boosterCount ?? 6
 	let packCount = packCount ?? 1
 	let prereleasePacks: [String] = try (0 ..< (packCount)).map { _ in
-		if setCode.lowercased() == "mb1" || setCode.lowercased() == "fmb1" || setCode.lowercased() == "cmb1" {
+		if setCode.lowercased() == "mb1" || setCode.lowercased() == "fmb1" || setCode.lowercased() == "cmb1" || setCode.lowercased() == "jmp" {
 			throw PackError.unsupported
 		} else if setCode.lowercased() == "plc" {
 			let cards = processPlanarChaosCards(cards: cards)

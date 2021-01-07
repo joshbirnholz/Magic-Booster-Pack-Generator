@@ -3495,6 +3495,10 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
 			guard includeBasicLands else { return [] }
 			return basicLands.filter { $0.isFullArt }
+		case "khm":
+			guard includeBasicLands else { return [] }
+			let snowLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Snow") == true && ($0.typeLine ?? "").contains("Land") == true }
+			return snowLands
 		case "mir", "vis", "5ed", "por", "wth", "tmp", "sth", "exo", "p02", "usg", "ulg", "6ed", "ptk", "uds", "mmq", "nem", "pcy", "inv", "pls", "7ed", "csp", "dis", "gpt", "rav", "9ed", "lrw", "mor", "shm", "eve", "apc", "ody", "tor", "jud", "ons", "lgn", "scg", "mrd", "dst", "5dn", "chk", "bok", "sok", "plc", "2xm":
 			return []
 		default:
@@ -3528,6 +3532,8 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			return basicLandSlotCards.filter { $0.name != "Wastes" }
 		case "znr":
 			return basicLandSlotCards.filter { $0.isFullArt }
+		case "khm":
+			return basicLandSlotCards.filter { $0.typeLine.contains("Snow") == false }
 		case _ where Set(defaultBasicLands.compactMap { $0.name }).count == 5:
 			return defaultBasicLands
 		default:

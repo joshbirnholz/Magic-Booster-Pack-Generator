@@ -353,8 +353,21 @@ function doDownloadDeck() {
 			}
 			
 			var formatted = downloadOutput(obj);
-			download("deck.json", formatted, "application/json");
+			
 			$("#progress").html("");
+			
+			var filename = "deck";
+			if (obj.filename !== undefined) {
+				filename = obj.filename;
+			}
+			
+			filename = prompt("Enter a file name for this deck.", filename);
+			
+			if (filename == null) {
+				return;
+			}
+			
+			download(filename + ".json", formatted, "application/json");
 		},
 		error: function(xhr, status, error) {
 			console.log("error");

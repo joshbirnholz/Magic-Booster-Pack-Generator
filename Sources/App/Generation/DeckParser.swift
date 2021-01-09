@@ -15,6 +15,7 @@ public struct DeckParser {
 			case sideboard = "Sideboard"
 			case command = "Commander"
 			case companion = "Companion"
+			case maybeboard = "Maybeboard"
 		}
 		
 		public static func name(for line: String) -> String {
@@ -23,6 +24,7 @@ public struct DeckParser {
 			case "sideboard", "", "\n": return GroupName.sideboard.rawValue
 			case "commander", "command": return GroupName.command.rawValue
 			case "companion": return GroupName.companion.rawValue
+			case "maybe", "maybeboard": return GroupName.maybeboard.rawValue
 			default:
 				return line
 			}
@@ -46,6 +48,36 @@ public struct DeckParser {
 // 			}
 // 		}.joined(separator: "\n")
 		
+		var commanderLines: [String] = []
+		
+		var lines: [String] = deckList
+			.components(separatedBy: .newlines)
+			.compactMap {
+				var line = $0
+				if line.hasPrefix("//"), let range = line.range(of: "//") {
+					line.removeSubrange(range)
+				}
+				
+				let isCommander = line.contains("!Commander")
+				
+				guard !isCommander else {
+					commanderLines.append(line)
+					return nil
+				}
+				
+				line = line.trimmingCharacters(in: .whitespacesAndNewlines)
+				guard !line.isEmpty else { return nil }
+				
+				return line
+		}
+		
+		if !commanderLines.isEmpty {
+			commanderLines.insert("Commander", at: 0)
+			lines.insert(contentsOf: commanderLines, at: 0)
+		}
+		
+		let deckList = lines.joined(separator: "\n")
+		
 		let regex = #"^(?:(?:\/\/)?(\S*)\s*$|\s*(\d+)\s+([^\(\n]+\S)(?:\s*|\s+\(\s*(\S*)\s*\)(?:\h+(\S+)\s*|\s*)))$"#
 		
 		let matches = deckList.matches(forRegex: regex, options: [.anchorsMatchLines])
@@ -64,7 +96,14 @@ public struct DeckParser {
 				}
 				
 				let count = groups[0].value
-				let name = groups[1].value
+				let name: String = {
+					let value = groups[1].value
+					if let index = value.lastIndex(of: "#") {
+						return String(value.prefix(upTo: index)).trimmingCharacters(in: .whitespacesAndNewlines)
+					} else {
+						return value
+					}
+				}()
 				guard let number = Int(count) else { continue }
 				let cardCount = CardCount(identifier: .name(name), count: number)
 				cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
@@ -75,7 +114,14 @@ public struct DeckParser {
 				}
 				
 				let count = groups[0].value
-				let name = groups[1].value
+				let name: String = {
+					let value = groups[1].value
+					if let index = value.lastIndex(of: "#") {
+						return String(value.prefix(upTo: index)).trimmingCharacters(in: .whitespacesAndNewlines)
+					} else {
+						return value
+					}
+				}()
 				let set = groups[2].value
 				
 				guard let number = Int(count) else { continue }
@@ -94,7 +140,14 @@ public struct DeckParser {
 				}
 				
 				let count = groups[0].value
-				let name = groups[1].value
+				let name: String = {
+					let value = groups[1].value
+					if let index = value.lastIndex(of: "#") {
+						return String(value.prefix(upTo: index)).trimmingCharacters(in: .whitespacesAndNewlines)
+					} else {
+						return value
+					}
+				}()
 				let set = groups[2].value
 				let collectorNumber = groups[3].value
 				
@@ -112,11 +165,11 @@ public struct DeckParser {
 			}
 		}
 		
-		return cardGroups
+		return cardGroups.filter { !$0.cardCounts.isEmpty }
 	}
 	
 	public static func parse(deckstatsDecklist: String) -> [CardGroup] {
-		let regex = #"(?:^\/\/(\S+)$|^([0-9]+) (?:\[(.+)\] (.+)$|(.+)$))"#
+		let regex = #"(?:^\/\/(\S+)$|^([0-9]+) (?:\[(.+)\] (.+)$|(.+)$))|(.+$)"#
 		
 		var commanderLines: [String] = []
 		
@@ -124,7 +177,7 @@ public struct DeckParser {
 			.components(separatedBy: .newlines)
 			.compactMap {
 				var line = $0
-				if let range = line.range(of: "//") {
+				if line.hasPrefix("//"), let range = line.range(of: "//") {
 					line.removeSubrange(range)
 				}
 				
@@ -134,6 +187,9 @@ public struct DeckParser {
 					commanderLines.append(line)
 					return nil
 				}
+				
+				line = line.trimmingCharacters(in: .whitespacesAndNewlines)
+				guard !line.isEmpty else { return nil }
 				
 				return line
 		}
@@ -207,6 +263,6 @@ public struct DeckParser {
 			}
 		}
 		
-		return cardGroups
+		return cardGroups.filter { !$0.cardCounts.isEmpty }
 	}
 }

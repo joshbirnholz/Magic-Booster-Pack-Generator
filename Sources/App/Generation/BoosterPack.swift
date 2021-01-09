@@ -30,6 +30,7 @@ enum PackError: Error {
 	case invalidURL
 	case privateDeck
 	case noCardFound(String)
+	case couldNotLoadCards(String)
 	
 	var code: Int {
 		switch self {
@@ -59,6 +60,8 @@ enum PackError: Error {
 			return 11
 		case .privateDeck:
 			return 12
+		case .couldNotLoadCards(_):
+			return 13
 		}
 	}
 }
@@ -3741,6 +3744,7 @@ struct CardLine: CustomStringConvertible {
 
 struct DownloadOutput: Codable {
 	var downloadOutput: String
+	var filename: String?
 }
 
 func cardListOutput(cards: CardCollection) throws -> String {
@@ -4219,12 +4223,15 @@ let fixedSetCodes: [String: String] = [
 func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool) throws -> String {
 	
 	let parsed: [DeckParser.CardGroup] = {
+		var parsed: [DeckParser.CardGroup]
 		switch format {
 		case .arena:
-			return DeckParser.parse(deckList: decklist, autofix: autofix)
+			parsed = DeckParser.parse(deckList: decklist, autofix: autofix)
 		case .deckstats:
-			return DeckParser.parse(deckstatsDecklist: decklist)
+			parsed = DeckParser.parse(deckstatsDecklist: decklist)
 		}
+		parsed.removeAll(where: { $0.name == DeckParser.CardGroup.GroupName.maybeboard.rawValue })
+		return parsed
 	}()
 	
 	var groups: [DeckParser.CardGroup] = parsed.filter { !$0.cardCounts.isEmpty }.map {
@@ -4439,11 +4446,48 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 	}
 	
 	guard cards.count == identifiers.count else {
-		throw PackError.wrongNumberOfCards
+		let missingIdentifiers = identifiers.filter { cards[$0] == nil }
+		
+		throw PackError.couldNotLoadCards(String(describing: missingIdentifiers.map { String(describing: $0) }.joined(separator: ", ")))
 	}
 	
 //	var notFound: [MTGCardIdentifier] = []
 	var tokens: [MTGCard] = []
+	
+	let fileName: String? = {
+		guard let commanderIdentifiers = groups.first(where: { $0.name == DeckParser.CardGroup.GroupName.command.rawValue })?.cardCounts.map(\.identifier) else {
+			return nil
+		}
+		var commanderNames: [String] = commanderIdentifiers.compactMap { identifier in
+			guard let index = identifiers.firstIndex(of: identifier) else { return nil }
+			return mtgCards[index].name
+		}
+		
+		guard !commanderNames.isEmpty else { return nil }
+		
+		if commanderNames.count > 1 {
+			commanderNames = commanderNames.map {
+				if let index = $0.firstIndex(of: ",") {
+					return String($0.prefix(upTo: index))
+				} else if let subrange = $0.range(of: " the") {
+					return String($0.prefix(upTo: subrange.lowerBound))
+				} else {
+					return $0
+				}
+			}
+		}
+		
+		return commanderNames.joined(separator: " and ")
+	}()
+	
+	addCommandersToStartOfMainDecK: if let commandersGroupIndex = groups.firstIndex(where: { $0.name == DeckParser.CardGroup.GroupName.command.rawValue }) {
+		let commandersGroup = groups.remove(at: commandersGroupIndex)
+		guard let mainGroupIndex = groups.firstIndex(where: { $0.name == DeckParser.CardGroup.GroupName.deck.rawValue }) else {
+			groups.insert(commandersGroup, at: 0)
+			break addCommandersToStartOfMainDecK
+		}
+		groups[mainGroupIndex].cardCounts.insert(contentsOf: commandersGroup.cardCounts, at: 0)
+	}
 	
 	let packs: [[MTGCard]] = groups.map { group in
 		return group.cardCounts.reduce(into: [MTGCard]()) { (deck, cardCount) in
@@ -4497,7 +4541,7 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 		($0.name ?? "") < ($1.name ?? "")
 	}
 	
-  	if groups.count == 1 {
+  	if packs.count == 1 {
 		var pack = Array(packs.joined())
 		
 		if let token = tokens.first {
@@ -4506,7 +4550,9 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 		
 		pack.insert(contentsOf: faceCards, at: 0)
 		
-		return try singleBoosterPack(setName: "", setCode: "", boosterPack: pack, tokens: tokens, inPack: false, export: export, cardBack: cardBack)
+		let output = try singleBoosterPack(setName: "", setCode: "", boosterPack: pack, tokens: tokens, inPack: false, export: export, cardBack: cardBack)
+		let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: output, filename: fileName))
+		return String(data: data, encoding: .utf8) ?? ""
 	} else {
 		var names = groups.reversed().map(\.name)
 		var packs = Array(packs.reversed())
@@ -4520,7 +4566,9 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 			names.insert("", at: 0)
 		}
 		
-		return try boosterBag(setName: "", setCode: "", boosterPacks: packs, names: names, tokens: tokens, inPack: false, export: export, cardBack: cardBack)
+		let output = try boosterBag(setName: "", setCode: "", boosterPacks: packs, names: names, tokens: tokens, inPack: false, export: export, cardBack: cardBack)
+		let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: output, filename: fileName))
+		return String(data: data, encoding: .utf8) ?? ""
 	}
 	
 }

@@ -53,6 +53,8 @@ extension PackError: Debuggable {
 			return "The URL is invalid."
 		case .privateDeck:
 			return "There was an error loading the deck. Check that the deck is set to public."
+		case .couldNotLoadCards(let names):
+			return "An internal server error occurred while attempting to load the following cards: \(names)"
 		}
 	}
 	

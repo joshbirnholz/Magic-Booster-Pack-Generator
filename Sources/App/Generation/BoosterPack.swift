@@ -4477,7 +4477,9 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 			}
 		}
 		
-		return commanderNames.joined(separator: " and ")
+		return commanderNames
+			.map { $0.replacingOccurrences(of: ",", with: "") }
+			.joined(separator: " and ")
 	}()
 	
 	addCommandersToStartOfMainDecK: if let commandersGroupIndex = groups.firstIndex(where: { $0.name == DeckParser.CardGroup.GroupName.command.rawValue }) {

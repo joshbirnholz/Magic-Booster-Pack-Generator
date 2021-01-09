@@ -413,7 +413,8 @@ final class GeneratorController {
 			
 			DispatchQueue.global().async {
 				do {
-					let result: String = try deck(decklist: decklist.deck, export: export, cardBack: cardBack, autofix: autofix)
+					let format: DeckFormat = decklist.deck.contains("[") || decklist.deck.contains("]") ? .deckstats : .arena
+					let result: String = try deck(decklist: decklist.deck, format: format, export: export, cardBack: cardBack, autofix: autofix)
 					promise.succeed(result: result)
 				} catch let error as Debuggable {
 					struct ErrorMessage: Codable {

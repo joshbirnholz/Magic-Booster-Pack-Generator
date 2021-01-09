@@ -130,10 +130,6 @@ public struct DeckParser {
 				
 				let isCommander = line.contains("!Commander")
 				
-				if let index = line.firstIndex(of: "#") {
-					line = String(line[..<index])
-				}
-				
 				guard !isCommander else {
 					commanderLines.append(line)
 					return nil
@@ -165,7 +161,14 @@ public struct DeckParser {
 				}
 				
 				let count = groups[0].value
-				let name = groups[1].value
+				let name: String = {
+					let value = groups[1].value
+					if let index = value.lastIndex(of: "#") {
+						return String(value.prefix(upTo: index)).trimmingCharacters(in: .whitespacesAndNewlines)
+					} else {
+						return value
+					}
+				}()
 				guard let number = Int(count) else { continue }
 				let cardCount = CardCount(identifier: .name(name), count: number)
 				cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
@@ -176,11 +179,28 @@ public struct DeckParser {
 				}
 				
 				let count = groups[0].value
-				let name = groups[2].value
-				let set = groups[1].value
+				let name: String = {
+					let value = groups[2].value
+					if let index = value.lastIndex(of: "#") {
+						return String(value.prefix(upTo: index)).trimmingCharacters(in: .whitespacesAndNewlines)
+					} else {
+						return value
+					}
+				}()
+				
+				let setComponents = groups[1].value.components(separatedBy: "#")
+				
+				let set = setComponents[0]
 				
 				guard let number = Int(count) else { continue }
-				let cardCount = CardCount(identifier: .nameSet(name: name, set: set), count: number)
+				let cardCount: CardCount
+				
+				if setComponents.count > 1, let collectorNumber = setComponents.last {
+					cardCount = CardCount(identifier: .collectorNumberSet(collectorNumber: collectorNumber, set: set, name: name), count: number)
+				} else {
+					cardCount = CardCount(identifier: .nameSet(name: name, set: set), count: number)
+				}
+				
 				cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
 			default:
 				break

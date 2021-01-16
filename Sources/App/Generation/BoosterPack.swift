@@ -1387,6 +1387,8 @@ fileprivate struct CardInfo {
 	
 	// Uses the given number
 	init?(num: Int, card: MTGCard) {
+		let backURL = URL(string: "https://c1.scryfall.com/file/scryfall-card-backs/normal/\(card.scryfallCardBackID.uuidString.lowercased().prefix(2))/\(card.scryfallCardBackID.uuidString.lowercased()).jpg") ?? Self.defaultBack
+		
 		/* if card.layout == "transform", let faces = card.cardFaces, faces.count == 2,
 			let front = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"],
 			let back = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
@@ -1424,7 +1426,7 @@ fileprivate struct CardInfo {
 		} else */
 		
 		if (card.layout == "transform" || card.layout == "modal_dfc"), let faces = card.cardFaces, faces.count >= 2, let faceURL = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"], let backFaceURL = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
-			self.backURL = Self.defaultBack
+			self.backURL = backURL
 			
 			let frontName = faces[0].name ?? ""
 			let backName = faces[1].name ?? ""
@@ -1441,7 +1443,7 @@ fileprivate struct CardInfo {
 			
 			self.faceURL = faceURL
 		} else if let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"], card.layout == "meld", let result = card.allParts?.first(where: { $0.name != card.name && $0.component == .meldResult }), let backFaceURL = URL(string: "https://img.scryfall.com/card_backs/image/normal/\(card.scryfallCardBackID.uuidString.lowercased().prefix(2))/\(card.scryfallCardBackID.uuidString.lowercased()).jpg") {
-			self.backURL = Self.defaultBack
+			self.backURL = backURL
 			
 			let frontName = card.name ?? ""
 			let backName = result.name
@@ -1463,7 +1465,7 @@ fileprivate struct CardInfo {
 				self.backURL = backFaceURL
 				self.nickname = ""
 			} else {
-				self.backURL = Self.defaultBack
+				self.backURL = backURL
 				self.nickname = card.printedName ?? card.name ?? ""
 				self.backIsHidden = true
 			}
@@ -1477,7 +1479,7 @@ fileprivate struct CardInfo {
 			return nil
 		}
 		
-		if card.set == "jumpstartface" {
+		if card.set == "jumpstartface" || card.set == "fjmp" {
 			self.backURL = Self.jumpstartBack
 		}
 		

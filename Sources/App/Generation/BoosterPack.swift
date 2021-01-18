@@ -4331,6 +4331,8 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 		
 		let retriable = newIdentifiers.filter { !identifiers.contains($0) }
 		
+		guard !retriable.isEmpty else { break retry }
+		
 		identifiers = newIdentifiers
 		
 		let collections: [Swiftfall.CardCollectionList] = try retriable.chunked(by: 75).compactMap {
@@ -4341,7 +4343,6 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 				throw error
 			}
 		}
-		
 		notFound = Array(collections.compactMap(\.notFound).joined())
 		
 		// Move the new identifiers to the end of the identifiers array, so their new positions match up with the found cards.
@@ -4382,6 +4383,8 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 		}
 		
 		let retriable = newIdentifiers.filter { !identifiers.contains($0) }
+		
+		guard !retriable.isEmpty else { break retry }
 		
 		identifiers = newIdentifiers
 		

@@ -132,16 +132,13 @@ final class GeneratorController {
 		
 		switch components.host {
 		case "deckstats.net":
-			var pathComponents = deckURL.pathComponents
-			guard let deckID = pathComponents.removeLast().components(separatedBy: "-").first, let ownerID = pathComponents.last else {
-				throw PackError.invalidURL
-			}
+			guard var components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else { throw PackError.invalidURL  }
 			
-			guard let decklistURL = URL(string: "https://deckstats.net/api.php?action=get_deck&id_type=saved&owner_id=\(ownerID)&id=\(deckID)&response_type=list") else {
-				throw PackError.invalidURL
-			}
+			components.queryItems = [URLQueryItem(name: "export_mtgarena", value: "1")]
 			
-			DispatchQueue.global().async {
+			guard let decklistURL = components.url else { throw PackError.invalidURL }
+			
+			DispatchQueue.global(qos: .userInitiated).async {
 				let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
 				URLSession.shared.dataTask(with: request) { data, response, error in
 					do {
@@ -153,18 +150,15 @@ final class GeneratorController {
 							throw PackError.privateDeck
 						}
 						
-						struct DeckStatsList: Decodable {
-							var success: Bool
-							var list: String
+						guard let decklist = String(data: data, encoding: .utf8) else {
+							promise.fail(error: PackError.invalidURL)
+							return
 						}
-						
-						let decoder = JSONDecoder()
-						let deckList = try decoder.decode(DeckStatsList.self, from: data)
 						
 						DispatchQueue(label: "decklist").async {
 							do {
 								
-								let result: String = try deck(decklist: deckList.list, format: .deckstats, export: export, cardBack: cardBack, autofix: autofix)
+								let result: String = try deck(decklist: decklist, format: .arena, export: export, cardBack: cardBack, autofix: autofix)
 								print("Success")
 								promise.succeed(result: result)
 							} catch let error as Debuggable {

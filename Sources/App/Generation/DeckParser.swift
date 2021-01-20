@@ -40,6 +40,7 @@ public struct DeckParser {
 	}
 	
 	public static func parse(deckList: String, autofix: Bool) -> [CardGroup] {
+		var deckList = deckList.replacingOccurrences(of: "\r", with: "")
 // 		let deckList = deckList.components(separatedBy: .newlines).compactMap {
 // 			if let index = $0.firstIndex(of: "#") {
 // 				return String($0[..<index])
@@ -49,6 +50,10 @@ public struct DeckParser {
 // 		}.joined(separator: "\n")
 		
 		var commanderLines: [String] = []
+		
+		if let range = deckList.range(of: "\n\n") {
+			deckList.replaceSubrange(range, with: "\n\nSideboard\n")
+		}
 		
 		var lines: [String] = deckList
 			.components(separatedBy: .newlines)
@@ -76,7 +81,7 @@ public struct DeckParser {
 			lines.insert(contentsOf: commanderLines, at: 0)
 		}
 		
-		let deckList = lines.joined(separator: "\n")
+		deckList = lines.joined(separator: "\n")
 		
 		let regex = #"^(?:(?:\/\/)?(\S*)\s*$|\s*(\d+)\s+([^\(\n]+\S)(?:\s*|\s+\(\s*(\S*)\s*\)(?:\h+(\S+)\s*|\s*)))$"#
 		

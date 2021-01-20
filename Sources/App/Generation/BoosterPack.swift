@@ -4264,7 +4264,7 @@ let fixedSetCodes: [String: String] = [
 	"uz": "usg"
 ]
 
-func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool) throws -> String {
+func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil) throws -> String {
 	
 	let parsed: [DeckParser.CardGroup] = {
 		var parsed: [DeckParser.CardGroup]
@@ -4600,7 +4600,7 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 		pack.insert(contentsOf: faceCards, at: 0)
 		
 		let output = try singleBoosterPack(setName: "", setCode: "", boosterPack: pack, tokens: tokens, inPack: false, export: export, cardBack: cardBack)
-		let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: output, filename: fileName))
+		let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: output, filename: outputName ?? fileName))
 		return String(data: data, encoding: .utf8) ?? ""
 	} else {
 		var names = groups.reversed().map(\.name)
@@ -4616,7 +4616,7 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 		}
 		
 		let output = try boosterBag(setName: "", setCode: "", boosterPacks: packs, names: names, tokens: tokens, inPack: false, export: export, cardBack: cardBack)
-		let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: output, filename: fileName))
+		let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: output, filename: outputName ?? fileName))
 		return String(data: data, encoding: .utf8) ?? ""
 	}
 	

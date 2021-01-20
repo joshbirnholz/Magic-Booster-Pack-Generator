@@ -155,10 +155,21 @@ final class GeneratorController {
 							return
 						}
 						
+						let deckName: String?
+						
+						if let response = response as? HTTPURLResponse, let disposition: String = response.allHeaderFields["Content-Disposition"] as? String, let range = disposition.range(of: "attachment; filename=\"") {
+							print(disposition)
+							var name: String = disposition
+							name.replaceSubrange(range, with: "")
+							deckName = String(name.dropLast(5))
+						} else {
+							deckName = nil
+						}
+						
 						DispatchQueue(label: "decklist").async {
 							do {
 								
-								let result: String = try deck(decklist: decklist, format: .arena, export: export, cardBack: cardBack, autofix: autofix)
+								let result: String = try deck(decklist: decklist, format: .arena, export: export, cardBack: cardBack, autofix: autofix, outputName: deckName)
 								print("Success")
 								promise.succeed(result: result)
 							} catch let error as Debuggable {

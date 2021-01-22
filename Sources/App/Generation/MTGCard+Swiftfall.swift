@@ -73,6 +73,7 @@ extension MTGCard {
 				  isNonFoilAvailable: scryfallCard.nonfoil,
 				  isPromo: scryfallCard.promo,
 				  isFoundInBoosters: scryfallCard.booster,
+				  promoTypes: scryfallCard.promoTypes,
 				  language: Language(rawValue: scryfallCard.lang.rawValue)!,
 				  releaseDate: date,
 				  imageUris: scryfallCard.imageUris?.compactMapValues(URL.init(string:)))

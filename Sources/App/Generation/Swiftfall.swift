@@ -529,6 +529,8 @@ internal class Swiftfall {
 		// This card’s frame effects, if any.
 		// https://scryfall.com/docs/api/layouts
 		public let frameEffects: [String]?
+		
+		public let promoTypes: [String]?
         
         // True if this card’s artwork is larger than normal.
         public let fullArt: Bool

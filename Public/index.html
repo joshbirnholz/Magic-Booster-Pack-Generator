@@ -33,8 +33,8 @@
 		<p>
 		<input type="button" value="Booster Box…" onclick="doDownloadBox(false)"><br>
 		<input type="button" value="Pre-sorted Booster Box…" onclick="doDownloadBox(true)"><br>
-		<input type="button" value="Single Booster Pack…" onclick="doDownloadPack()"><br>
-		<input type="button" value="Prerelease Pack…" onclick="doDownloadPrereleasePack()">
+		<input type="button" value="Booster Packs…" onclick="doDownloadPack(document.getElementById('packCount').value)"> (<i>How many? <input type="number" id="packCount" value="1" style="width: 4em">)</i><br>
+		<input type="button" value="Prerelease Packs…" onclick="doDownloadPrereleasePack(document.getElementById('prepackCount').value)"> (<i>How many? <input type="number" id="prepackCount" value="1" style="width: 4em">)</i>
 		
 		</p>
 		

@@ -143,6 +143,8 @@ public struct MTGCard: Codable, Equatable, Hashable {
 	public var isPromo: Bool
 	public var isFoundInBoosters: Bool
 	
+	public var promoTypes: [String]?
+	
 	public var language: Language
 	public var releaseDate: Date?
 	
@@ -168,4 +170,14 @@ public extension MTGCard {
 	var isShowcase: Bool {
 		frameEffects?.contains("showcase") == true
 	}
+}
+
+extension MTGCard: CustomDebugStringConvertible {
+	public var debugDescription: String {
+		"[\(set.uppercased())#\(collectorNumber)] \(name ?? "")"
+	}
+}
+
+func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+	debugPrint(items, separator, terminator)
 }

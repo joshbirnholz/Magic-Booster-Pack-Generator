@@ -171,7 +171,7 @@ function doDownloadCustomNumPacksList(packCount) {
 	})
 }
 
-function doDownloadPack() {
+function doDownloadPack(packCount) {
 	var setCode = $("#setlist option:selected").val();
 	
 	if (setCode === undefined || setCode === "" || setCode == null) {
@@ -180,7 +180,7 @@ function doDownloadPack() {
 	
 	$("#boxprogress").html("Working…");
 	
-	var url = "pack/" + setCode;
+	var url = "pack/" + setCode + "?count=" + packCount;
 	
 	$.ajax({
 		url: url,
@@ -216,7 +216,7 @@ function doDownloadPack() {
 	})
 }
 
-function doDownloadPrereleasePack() {
+function doDownloadPrereleasePack(packCount) {
 	var setCode = $("#setlist option:selected").val();
 	
 	if (setCode === undefined || setCode === "" || setCode == null) {
@@ -225,7 +225,7 @@ function doDownloadPrereleasePack() {
 	
 	$("#boxprogress").html("Working…");
 	
-	var url = "pre/" + setCode;
+	var url = "pre/" + setCode + "?count=" + packCount;
 	
 	$.ajax({
 		url: url,

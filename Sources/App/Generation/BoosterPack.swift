@@ -204,7 +204,7 @@ enum MythicPolicy {
 
 // MARK: - Generate Booster Pack
 
-func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MTGCard.Rarity: [MTGCard]], basicLands: [MTGCard], tokens: [MTGCard], showcaseRarities: [MTGCard.Rarity: [MTGCard]], extendedArt: [MTGCard], meldResults: [MTGCard], mode: Mode, includeExtendedArt: Bool, masterpieceCards: [MTGCard], foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy) -> CardCollection {
+func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MTGCard.Rarity: [MTGCard]], basicLands: [MTGCard], tokens: [MTGCard], showcaseRarities: [MTGCard.Rarity: [MTGCard]], borderless: [MTGCard], extendedArt: [MTGCard], meldResults: [MTGCard], mode: Mode, includeExtendedArt: Bool, masterpieceCards: [MTGCard], foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy) -> CardCollection {
 	var pack = CardCollection()
 	
 	let guaranteedPlaneswalkerSlot = mode == .warOfTheSpark ? (0...3).randomElement()! : nil
@@ -220,18 +220,29 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		return .init(grouping: basicLands, by: \.rarity)
 	}()
 	
+	var borderlessPlaneswalkers = borderless
+	
 	let showcaseRarities: [MTGCard.Rarity: [MTGCard]] = {
 		var showcaseRarities = showcaseRarities
 		
-		// M21 has four alt-art normal and four alt-art showcase versions of Teferi, Master of Time. Remove all but one of them in each slot, so he isn't 4x as likely to appear in the mythic slot.
 		if mode == .m21 {
 			var mythics = showcaseRarities[.mythic] ?? []
 			
+			// M21 has four alt-art normal and four alt-art showcase versions of Teferi, Master of Time. Remove all but one of them in each slot, so he isn't 4x as likely to appear in the mythic slot.
 			if let teferi = mythics.separateAll(where: { $0.name == "Teferi, Master of Time" && $0.borderColor != .borderless }).randomElement() {
 				mythics.append(teferi)
 			}
 			
 			showcaseRarities[.mythic] = mythics
+			
+		}
+		
+		// Add borderless non-planeswalkers to showcases. This makes borderless planeswalkers appear 1 in 3-4 boxes, but non-Planeswalkers appear as often as other showcase cards of their rarity.
+		for rarity in MTGCard.Rarity.allCases {
+			let borderlessNonPlaneswalkers = borderlessPlaneswalkers.separateAll(where: { $0.rarity == rarity && $0.typeLine.contains("Planeswalker") == false })
+			var otherShowcases = showcaseRarities[rarity] ?? []
+			otherShowcases.append(contentsOf: borderlessNonPlaneswalkers)
+			showcaseRarities[rarity] = otherShowcases
 		}
 		
 		return showcaseRarities
@@ -429,11 +440,12 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 	
 	let shouldIncludeShowcaseLand = mode == .m21 && (1...7).randomElement() == 1 && basicLands.contains(where: { $0.isShowcase })
 	
-	let borderlessCards = showcaseRarities.values.joined().filter { $0.borderColor == .borderless } // These are used for foils only. They already appear normally from showcase.
-	let shouldIncludeFoilBorderless = mode != .m21 && (1...35).randomElement() == 35 && !borderlessCards.isEmpty
+//	let shouldIncludeFoilBorderless = mode == .m21 && (1...35).randomElement() == 35 && !borderless.isEmpty
 	
-	// TODO: Fix distribution of borderless planeswalkers
-	let shouldIncludeBorderlessPlaneswalker = mode != .m21 && (1...126).randomElement() == 1
+	let shouldIncludeBorderlessPlaneswalker: Bool = {
+		guard !borderlessPlaneswalkers.isEmpty else { return false }
+		return (1...126).randomElement() == 1
+	}()
 	
 	repeat {
 		pack.removeAll()
@@ -463,9 +475,9 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			if let showcase = card {
 				pack.insert(showcase, at: 0)
 			}
-		} */else if shouldIncludeFoilBorderless, let borderlessFoil = borderlessCards.randomElement() {
+		} else if shouldIncludeFoilBorderless, let borderlessFoil = borderlessCards.randomElement() {
 			pack.insert(borderlessFoil, at: 0)
-		} else if let rarity = includedFoilRarity, let foil = [(allRarities[rarity] ?? []), (customSlotRarities[rarity] ?? [])].joined().filter(\.isFoilAvailable).randomElement() {
+		} */else if let rarity = includedFoilRarity, let foil = [(allRarities[rarity] ?? []), (customSlotRarities[rarity] ?? [])].joined().filter(\.isFoilAvailable).randomElement() {
 			if includeExtendedArt, let extendedArtVersion = extendedArt.filter({ $0.name == foil.name }).randomElement() {
 				pack.insert(extendedArtVersion, at: 0, isFoil: true)
 			} else if rarity != .common {
@@ -483,6 +495,11 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			} else if rarity != .common {
 				pack.insert(foil, at: 0, isFoil: true)
 			}
+		}
+		
+		if shouldIncludeBorderlessPlaneswalker,
+			let borderlessCard = borderlessPlaneswalkers.randomElement() {
+			pack.insert(borderlessCard, at: 0)
 		}
 		
 		let rareSlotRarities = guaranteedPlaneswalkerSlot == 3 ? customSlotRarities : rarities
@@ -533,14 +550,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		
 		let showcaseCommonOrUncommon: MTGCard? = {
 			guard shouldIncludeShowcaseCommonOrUncommon else { return nil }
-			
-			let card = [showcaseRarities[.common], showcaseRarities[.uncommon]].compactMap({ $0 }).joined().randomElement()
-			
-			if let card = card {
-				print("Including showcase \(card.rarity.rawValue): \(card.name ?? "")")
-			}
-			
-			return card
+			return [showcaseRarities[.common], showcaseRarities[.uncommon]].compactMap({ $0 }).joined().randomElement()
 		}()
 		
 		let uncommonCount: Int = {
@@ -730,12 +740,6 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 //				pack.replace(at: index, with: showcaseCard)
 //			}
 //		}
-		
-		if shouldIncludeBorderlessPlaneswalker,
-			let borderlessCard = borderlessCards.randomElement(),
-			let index = pack.mtgCards.enumerated().filter({ $0.element.rarity == .common }).randomElement()?.offset {
-			pack.replace(at: index, with: borderlessCard)
-		}
 		
 		// TODO: Move gauranteed legendary to the back of the pack for Dominaria. (Currently it just checks if at least one card in the pack is legendary.)
 		
@@ -1648,11 +1652,11 @@ func singleCompleteToken(tokens: [MTGCard], export: Bool) throws -> ObjectStateJ
 }
 
 /// Put commons into the array first (index 0) and rares last. Then the basic land after the rares.
-func boosterPackJSON(setName: String, setCode: String, name: String? = nil, cards: [MTGCard], tokens: [MTGCard] = [], inPack: Bool = true, cardBack: URL? = nil) throws -> ObjectStateJSON {
+func boosterPackJSON(setName: String, setCode: String, name: String? = nil, cards: [MTGCard], tokens: [MTGCard] = [], inPack: Bool = true, cardBack: URL? = nil, nickname: String? = nil) throws -> ObjectStateJSON {
 	
 //	let cardInfo = Array(cards.enumerated().compactMap(CardInfo.init(offset:card:)))
 	let cardInfo: [CardInfo] = cards.reversed().enumerated().compactMap { sequence in
-		if (sequence.element.layout == "token" || sequence.element.layout == "emblem") && !tokens.isEmpty {
+		if (sequence.element.layout == "token" || sequence.element.layout == "emblem" || sequence.element.typeLine == "Card") && !tokens.isEmpty {
 			return CardInfo(offset: sequence.offset, currentState: sequence.element, allStates: tokens)
 		} else {
 			var cardInfo = CardInfo(offset: sequence.offset, card: sequence.element)
@@ -1679,7 +1683,7 @@ func boosterPackJSON(setName: String, setCode: String, name: String? = nil, card
 		"scaleY": 1.0,
 		"scaleZ": 1.0
 	  },
-	  "Nickname": "\(!inPack ? packName : "")",
+	  "Nickname": "\(nickname ?? (!inPack ? packName : ""))",
 	  "Description": "",
 	  "GMNotes": "",
 	  "ColorDiffuse": {
@@ -1807,13 +1811,13 @@ func boosterPackJSON(setName: String, setCode: String, name: String? = nil, card
 	return pack
 }
 
-func singleBoosterPack(setName: String, setCode: String, boosterPack: [MTGCard], tokens: [MTGCard], inPack: Bool? = nil, export: Bool, cardBack: URL? = nil) throws -> String {
+func singleBoosterPack(setName: String, setCode: String, boosterPack: [MTGCard], tokens: [MTGCard], inPack: Bool? = nil, export: Bool, cardBack: URL? = nil, nickname: String? = nil) throws -> String {
 	let boosterPackString: String
 	
 	if let inPack = inPack {
 		boosterPackString = try boosterPackJSON(setName: setName, setCode: setCode, cards: boosterPack, tokens: tokens, inPack: inPack, cardBack: cardBack)
 	} else {
-		boosterPackString = try boosterPackJSON(setName: setName, setCode: setCode, cards: boosterPack, tokens: tokens, cardBack: cardBack)
+		boosterPackString = try boosterPackJSON(setName: setName, setCode: setCode, cards: boosterPack, tokens: tokens, cardBack: cardBack, nickname: nickname)
 	}
 	
 	if !export {
@@ -3429,6 +3433,7 @@ struct ProcessedCards {
 	var tokens: [MTGCard]
 	var meldResults: [MTGCard]
 	var showcaseRarities: [MTGCard.Rarity: [MTGCard]]
+	var borderlessCards: [MTGCard]
 	var extendedArtCards: [MTGCard]
 	var masterpieces: [MTGCard]
 	/// Only Plains, Island, Swamp, Mountain, and Forest cards.
@@ -3575,7 +3580,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		case "znr":
 			return basicLandSlotCards.filter { $0.isFullArt }
 		case "khm":
-			return basicLandSlotCards.filter { $0.typeLine.contains("Snow") == false }
+			return cards.filter { $0.typeLine.contains("Basic") && !$0.typeLine.contains("Snow") }
 		case _ where Set(defaultBasicLands.compactMap { $0.name }).count == 5:
 			return defaultBasicLands
 		default:
@@ -3656,9 +3661,20 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		}
 	}
 	
-	let showcases: [MTGCard.Rarity: [MTGCard]] = .init(grouping: mainCards.separateAll { $0.frameEffects?.contains("showcase") == true || $0.borderColor == .borderless }, by: \.rarity)
+	if setCode?.lowercased() == "khm" {
+		mainCards = mainCards.map { card in
+			var card = card
+			if card.typeLine?.contains("Basic") == true {
+				card.isFoundInBoosters = card.typeLine?.contains("Snow") == true
+			}
+			return card
+		}
+	}
 	
-	let extendedArt = mainCards.separateAll { $0.frameEffects?.contains("extendedart") == true && $0.borderColor != .borderless }
+	let borderless: [MTGCard] = mainCards.separateAll { $0.borderColor == .borderless }
+	let showcases: [MTGCard.Rarity: [MTGCard]] = .init(grouping: mainCards.separateAll { $0.frameEffects?.contains("showcase") == true }, by: \.rarity)
+	
+	let extendedArt = mainCards.separateAll { $0.frameEffects?.contains("extendedart") == true }
 	
 	let tokensAndEmblems = mainCards.separateAll {
 		$0.typeLine?.lowercased().contains("token") == true || $0.typeLine?.lowercased().contains("emblem") == true
@@ -3751,6 +3767,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 						  tokens: tokensAndEmblems,
 						  meldResults: meldResults,
 						  showcaseRarities: showcases,
+						  borderlessCards: borderless,
 						  extendedArtCards: extendedArt,
 						  masterpieces: masterpieces,
 						  basicLands: basicLands)
@@ -3872,6 +3889,7 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 																 basicLands: processed.basicLandsSlotCards,
 																 tokens: includeTokens ? tokens + processed.tokens : [],
 																 showcaseRarities: processed.showcaseRarities,
+																 borderless: processed.borderlessCards,
 																 extendedArt: processed.extendedArtCards,
 																 meldResults: processed.meldResults,
 																 mode: mode,
@@ -3922,6 +3940,7 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 													basicLands: processed.basicLandsSlotCards,
 													tokens: includeTokens ? tokens + processed.tokens : [],
 													showcaseRarities: processed.showcaseRarities,
+													borderless: processed.borderlessCards,
 													extendedArt: processed.extendedArtCards,
 													meldResults: processed.meldResults,
 													mode: mode,
@@ -4041,6 +4060,7 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 							basicLands: processed.basicLandsSlotCards,
 							tokens: includeTokens ? tokens + processed.tokens : [],
 							showcaseRarities: processed.showcaseRarities,
+							borderless: processed.borderlessCards,
 							extendedArt: processed.extendedArtCards,
 							meldResults: processed.meldResults,
 							mode: mode,
@@ -4088,6 +4108,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 																 basicLands: processed.basicLandsSlotCards,
 																 tokens: tokens + processed.tokens,
 																 showcaseRarities: processed.showcaseRarities,
+																 borderless: processed.borderlessCards,
 																 extendedArt: processed.extendedArtCards,
 																 meldResults: processed.meldResults,
 																 mode: mode,
@@ -4104,8 +4125,8 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 			
 			if let promo = promosRarities[promoRarity]?.randomElement() ?? promosRarities[.rare]?.randomElement() {
 				return promo
-			} else if let card = (processed.rarities[promoRarity] ?? processed.rarities[.rare])?.filter({ $0.frameEffects?.contains("showcase") != true }).randomElement() {
-				let currentPrereleaseSetCode = "znr"
+			} else if let card = (processed.rarities[promoRarity] ?? processed.rarities[.rare])?.filter({ $0.promoTypes == nil || $0.promoTypes!.contains("boosterfun") == false }).randomElement() {
+				let currentPrereleaseSetCode = "khm"
 				if setCode == currentPrereleaseSetCode {
 					var card = card
 					let imageURL = URL(string: "http://josh.birnholz.com/tts/cards/\(currentPrereleaseSetCode)/\(card.collectorNumber).jpg")!
@@ -4577,7 +4598,7 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 	}
 	
 	if cards.contains(where: { $0.name == "Ophiomancer" }) {
-		let customSnakeToken = MTGCard(power: "1", toughness: "1", oracleText: "Deathtouch", name: "Snake", convertedManaCost: 0, layout: "token", frame: "2015", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: .black, isFullArt: false, allParts: [MTGCard.RelatedCard(scryfallID: UUID(uuidString: "66d80dd1-b944-4cb2-8578-b4dbcabbbc1e"), component: .token, name: "Ophiomancer", typeLine: "Creature — Human Shaman", url: URL(string: "https://scryfall.com/card/c13/84/ophiomancer"))], collectorNumber: "1", set: "TC13", colors: [.black], keywords: ["Deathtouch"], artist: "Maria Trepalina", watermark: nil, rarity: .common, scryfallCardBackID: UUID(uuidString: "0AEEBAF5-8C7D-4636-9E82-8C27447861F7")!, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, language: .english, releaseDate: nil, imageUris: ["normal": URL(string: "http://josh.birnholz.com/tts/cards/custom/c13snakefixed.jpg")!])
+		let customSnakeToken = MTGCard(power: "1", toughness: "1", oracleText: "Deathtouch", name: "Snake", convertedManaCost: 0, layout: "token", frame: "2015", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: .black, isFullArt: false, allParts: [MTGCard.RelatedCard(scryfallID: UUID(uuidString: "66d80dd1-b944-4cb2-8578-b4dbcabbbc1e"), component: .token, name: "Ophiomancer", typeLine: "Creature — Human Shaman", url: URL(string: "https://scryfall.com/card/c13/84/ophiomancer"))], collectorNumber: "1", set: "TC13", colors: [.black], keywords: ["Deathtouch"], artist: "Maria Trepalina", watermark: nil, rarity: .common, scryfallCardBackID: UUID(uuidString: "0AEEBAF5-8C7D-4636-9E82-8C27447861F7")!, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, promoTypes: nil, language: .english, releaseDate: nil, imageUris: ["normal": URL(string: "http://josh.birnholz.com/tts/cards/custom/c13snakefixed.jpg")!])
 		tokens.append(customSnakeToken)
 	}
 	
@@ -4599,10 +4620,13 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 		
 		pack.insert(contentsOf: faceCards, at: 0)
 		
-		let output = try singleBoosterPack(setName: "", setCode: "", boosterPack: pack, tokens: tokens, inPack: false, export: export, cardBack: cardBack)
+		let output = try singleBoosterPack(setName: "", setCode: "", boosterPack: pack, tokens: tokens, inPack: false, export: export, cardBack: cardBack/*, nickname: outputName*/)
 		let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: output, filename: outputName ?? fileName))
 		return String(data: data, encoding: .utf8) ?? ""
 	} else {
+//		if let name = outputName, let index = groups.firstIndex(where: { $0.name == DeckParser.CardGroup.GroupName.deck.rawValue }) {
+//			groups[index].name = name
+//		}
 		var names = groups.reversed().map(\.name)
 		var packs = Array(packs.reversed())
 		if let token = tokens.first {
@@ -4615,7 +4639,7 @@ func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack:
 			names.insert("", at: 0)
 		}
 		
-		let output = try boosterBag(setName: "", setCode: "", boosterPacks: packs, names: names, tokens: tokens, inPack: false, export: export, cardBack: cardBack)
+		let output = try boosterBag(setName: outputName ?? "", setCode: "", boosterPacks: packs, names: names, tokens: tokens, inPack: false, export: export, cardBack: cardBack)
 		let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: output, filename: outputName ?? fileName))
 		return String(data: data, encoding: .utf8) ?? ""
 	}

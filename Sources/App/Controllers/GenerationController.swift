@@ -131,6 +131,62 @@ final class GeneratorController {
 		}
 		
 		switch components.host {
+		case "archidekt.com":
+			guard deckURL.pathComponents.count >= 2, deckURL.pathComponents[1] == "decks", let decklistURL = URL(string: "https://archidekt.com/api/decks/\(deckURL.pathComponents[2])/") else { throw PackError.invalidURL }
+			
+			DispatchQueue.global(qos: .userInitiated).async {
+				let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+				URLSession.shared.dataTask(with: request) { data, response, error in
+					do {
+						guard let data = data else {
+							throw error!
+						}
+						
+						let decoder = JSONDecoder()
+						let archidektDeck = try decoder.decode(ArchidektDeck.self, from: data)
+						
+						DispatchQueue(label: "decklist").async {
+							do {
+								let result: String = try deck(.archidekt(archidektDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: archidektDeck.name)
+								print("Success")
+								promise.succeed(result: result)
+							} catch let error as Debuggable {
+								struct ErrorMessage: Codable {
+									var error: String
+								}
+								
+								let encoder = JSONEncoder()
+								let errorMessage = ErrorMessage(error: error.reason)
+								do {
+									let data = try encoder.encode(errorMessage)
+									let string = String(data: data, encoding: .utf8)!
+									promise.succeed(result: string)
+								} catch {
+									promise.fail(error: error)
+								}
+							} catch {
+								promise.fail(error: error)
+							}
+						}
+					} catch let error as Debuggable {
+						struct ErrorMessage: Codable {
+							var error: String
+						}
+						
+						let encoder = JSONEncoder()
+						let errorMessage = ErrorMessage(error: error.reason)
+						do {
+							let data = try encoder.encode(errorMessage)
+							let string = String(data: data, encoding: .utf8)!
+							promise.succeed(result: string)
+						} catch {
+							promise.fail(error: error)
+						}
+					} catch {
+						promise.fail(error: error)
+					}
+				}.resume()
+			}
 		case "moxfield.com", "www.moxfield.com":
 			guard deckURL.pathComponents.count >= 2, deckURL.pathComponents[1] == "decks", let decklistURL = URL(string: "https://api.moxfield.com/v2/decks/all/\(deckURL.pathComponents[2])") else { throw PackError.invalidURL }
 			

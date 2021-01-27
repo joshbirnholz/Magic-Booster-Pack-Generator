@@ -292,6 +292,28 @@ public struct DeckParser {
 		
 		return groups
 	}
+	
+	public static func parse(archidektDeck: ArchidektDeck) -> [CardGroup] {
+		var groups: [CardGroup] = []
+		
+		var cards = archidektDeck.cards.sorted { $0.card.oracleCard.name < $1.card.oracleCard.name }
+		cards.removeAll { $0.categories.contains("Maybeboard") }
+		
+		let commanderCards = cards.separateAll { $0.categories.contains("Commander") }
+		let sideboardCards = cards.separateAll { $0.categories.contains("Sideboard") }
+		
+		groups.append(CardGroup(name: CardGroup.GroupName.deck.rawValue, cardCounts: cards.map(\.cardCount)))
+		
+		if !commanderCards.isEmpty {
+			groups.append(CardGroup(name: CardGroup.GroupName.command.rawValue, cardCounts: commanderCards.map(\.cardCount)))
+		}
+		
+		if !sideboardCards.isEmpty {
+			groups.append(CardGroup(name: CardGroup.GroupName.sideboard.rawValue, cardCounts: sideboardCards.map(\.cardCount)))
+		}
+		
+		return groups
+	}
 }
 
 extension Collection {

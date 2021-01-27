@@ -4272,6 +4272,32 @@ enum Deck {
 	case arena(String)
 	case deckstats(String)
 	case moxfield(MoxfieldDeck)
+	case archidekt(ArchidektDeck)
+}
+
+public struct ArchidektDeck: Decodable {
+	struct CardInfo: Decodable {
+		struct Card: Decodable {
+			struct Edition: Decodable {
+				let editioncode: String
+			}
+			struct OracleCard: Decodable {
+				let name: String
+			}
+			let edition: Edition
+			let collectorNumber: String
+			let oracleCard: OracleCard
+		}
+		let card: Card
+		let quantity: Int
+		let categories: [String]
+		
+		var cardCount: DeckParser.CardCount {
+			return DeckParser.CardCount(identifier: .nameSet(name: card.oracleCard.name, set: card.edition.editioncode), count: quantity)
+		}
+	}
+	let name: String
+	let cards: [CardInfo]
 }
 
 public struct MoxfieldDeck: Decodable {
@@ -4324,6 +4350,8 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 			parsed = DeckParser.parse(deckstatsDecklist: decklist)
 		case .moxfield(let moxfieldDeck):
 			parsed = DeckParser.parse(moxfieldDeck: moxfieldDeck)
+		case .archidekt(let archidektDeck):
+			parsed = DeckParser.parse(archidektDeck: archidektDeck)
 		}
 		parsed.removeAll(where: { $0.name == DeckParser.CardGroup.GroupName.maybeboard.rawValue })
 		return parsed

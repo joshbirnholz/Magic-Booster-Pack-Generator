@@ -178,6 +178,6 @@ extension MTGCard: CustomDebugStringConvertible {
 	}
 }
 
-func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
-	debugPrint(items, separator, terminator)
-}
+//func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+//	debugPrint(items, separator, terminator)
+//}

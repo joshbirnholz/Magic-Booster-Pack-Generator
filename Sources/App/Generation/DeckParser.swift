@@ -270,4 +270,40 @@ public struct DeckParser {
 		
 		return cardGroups.filter { !$0.cardCounts.isEmpty }
 	}
+	
+	public static func parse(moxfieldDeck: MoxfieldDeck) -> [CardGroup] {
+		var groups: [CardGroup] = []
+		
+		let cardInfos = Array(moxfieldDeck.mainboard.values).sorted(by: { $0.card.name < $1.card.name })
+		
+		var counts: [CardCount] = cardInfos.map(\.cardCount)
+		
+		if let commanders = moxfieldDeck.commanders {
+			let commanderCardCounts = commanders.values.map(\.cardCount)
+			counts.insert(contentsOf: commanderCardCounts, at: 0)
+		}
+		
+		groups.append(CardGroup(name: CardGroup.GroupName.deck.rawValue, cardCounts: counts))
+		
+		if let sideboard = moxfieldDeck.sideboard {
+			let counts: [CardCount] = sideboard.values.map(\.cardCount)
+			groups.append(CardGroup(name: CardGroup.GroupName.sideboard.rawValue, cardCounts: counts))
+		}
+		
+		return groups
+	}
+}
+
+extension Collection {
+	func sorted<Value: Comparable>(on property: KeyPath<Element, Value>, by areInIncreasingOrder: (Value, Value) -> Bool) -> [Element] {
+		return sorted { currentElement, nextElement in
+			areInIncreasingOrder(currentElement[keyPath: property], nextElement[keyPath: property])
+		}
+	}
+	
+	func sorted<Value: Comparable>(on property: KeyPath<Element, Value>) -> [Element] {
+		return sorted { currentElement, nextElement in
+			currentElement[keyPath: property] < nextElement[keyPath: property]
+		}
+	}
 }

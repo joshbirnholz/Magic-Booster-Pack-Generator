@@ -3343,7 +3343,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			mythicPolicy = .previous
 		}
 	case .cardlist:
-		return try deck(decklist: inputString, export: export, cardBack: cardBack, autofix: autofixDecklist)
+		return try deck(.arena(inputString), export: export, cardBack: cardBack, autofix: autofixDecklist)
 	}
 	
 	guard !mtgCards.isEmpty else { throw PackError.noCards }
@@ -4268,9 +4268,37 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 	"""
 }
 
-enum DeckFormat {
-	case arena
-	case deckstats
+enum Deck {
+	case arena(String)
+	case deckstats(String)
+	case moxfield(MoxfieldDeck)
+}
+
+public struct MoxfieldDeck: Decodable {
+	struct CardInfo: Decodable {
+		struct Card: Decodable {
+			let scryfallID: UUID?
+			let set: String
+			let name: String
+		}
+		let quantity: Int
+		let card: Card
+		
+		var cardCount: DeckParser.CardCount {
+			if let id = card.scryfallID {
+				return DeckParser.CardCount(identifier: .id(id), count: quantity)
+			} else {
+				return DeckParser.CardCount(identifier: .nameSet(name: card.name, set: card.set), count: quantity)
+			}
+		}
+	}
+	
+	let id: String
+	let name: String
+	let mainboard: [String: CardInfo]
+	let sideboard: [String: CardInfo]?
+	let commanders: [String: CardInfo]?
+	let maybeboard: [String: CardInfo]?
 }
 
 let fixedSetCodes: [String: String] = [
@@ -4285,15 +4313,17 @@ let fixedSetCodes: [String: String] = [
 	"uz": "usg"
 ]
 
-func deck(decklist: String, format: DeckFormat = .arena, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil) throws -> String {
+func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil) throws -> String {
 	
 	let parsed: [DeckParser.CardGroup] = {
 		var parsed: [DeckParser.CardGroup]
-		switch format {
-		case .arena:
+		switch deck {
+		case .arena(let decklist):
 			parsed = DeckParser.parse(deckList: decklist, autofix: autofix)
-		case .deckstats:
+		case .deckstats(let decklist):
 			parsed = DeckParser.parse(deckstatsDecklist: decklist)
+		case .moxfield(let moxfieldDeck):
+			parsed = DeckParser.parse(moxfieldDeck: moxfieldDeck)
 		}
 		parsed.removeAll(where: { $0.name == DeckParser.CardGroup.GroupName.maybeboard.rawValue })
 		return parsed

@@ -131,6 +131,63 @@ final class GeneratorController {
 		}
 		
 		switch components.host {
+		case "moxfield.com", "www.moxfield.com":
+			guard deckURL.pathComponents.count >= 2, deckURL.pathComponents[1] == "decks", let decklistURL = URL(string: "https://api.moxfield.com/v2/decks/all/\(deckURL.pathComponents[2])") else { throw PackError.invalidURL }
+			
+			DispatchQueue.global(qos: .userInitiated).async {
+				let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+				URLSession.shared.dataTask(with: request) { data, response, error in
+					do {
+						guard let data = data else {
+							throw error!
+						}
+						
+						let decoder = JSONDecoder()
+						let moxfieldDeck = try decoder.decode(MoxfieldDeck.self, from: data)
+						
+						DispatchQueue(label: "decklist").async {
+							do {
+								let result: String = try deck(.moxfield(moxfieldDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: moxfieldDeck.name)
+								print("Success")
+								promise.succeed(result: result)
+							} catch let error as Debuggable {
+								struct ErrorMessage: Codable {
+									var error: String
+								}
+								
+								let encoder = JSONEncoder()
+								let errorMessage = ErrorMessage(error: error.reason)
+								do {
+									let data = try encoder.encode(errorMessage)
+									let string = String(data: data, encoding: .utf8)!
+									promise.succeed(result: string)
+								} catch {
+									promise.fail(error: error)
+								}
+							} catch {
+								promise.fail(error: error)
+							}
+						}
+					} catch let error as Debuggable {
+						struct ErrorMessage: Codable {
+							var error: String
+						}
+						
+						let encoder = JSONEncoder()
+						let errorMessage = ErrorMessage(error: error.reason)
+						do {
+							let data = try encoder.encode(errorMessage)
+							let string = String(data: data, encoding: .utf8)!
+							promise.succeed(result: string)
+						} catch {
+							promise.fail(error: error)
+						}
+					} catch {
+						promise.fail(error: error)
+					}
+				}.resume()
+			}
+			
 		case "deckstats.net":
 			guard var components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else { throw PackError.invalidURL  }
 			
@@ -169,7 +226,7 @@ final class GeneratorController {
 						DispatchQueue(label: "decklist").async {
 							do {
 								
-								let result: String = try deck(decklist: decklist, format: .arena, export: export, cardBack: cardBack, autofix: autofix, outputName: deckName)
+								let result: String = try deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName)
 								print("Success")
 								promise.succeed(result: result)
 							} catch let error as Debuggable {
@@ -228,7 +285,7 @@ final class GeneratorController {
 						
 						DispatchQueue(label: "decklist").async {
 							do {
-								let result: String = try deck(decklist: arenaDecklist, format: .arena, export: export, cardBack: cardBack, autofix: autofix)
+								let result: String = try deck(.arena(arenaDecklist), export: export, cardBack: cardBack, autofix: autofix)
 								print("Success")
 								promise.succeed(result: result)
 							} catch let error as Debuggable {
@@ -298,7 +355,7 @@ final class GeneratorController {
 								
 								DispatchQueue(label: "decklist").async {
 									do {
-										let result: String = try deck(decklist: decklist, format: .arena, export: export, cardBack: cardBack, autofix: autofix)
+										let result: String = try deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix)
 										print("Success")
 										promise.succeed(result: result)
 									} catch let error as Debuggable {
@@ -418,8 +475,8 @@ final class GeneratorController {
 			
 			DispatchQueue.global().async {
 				do {
-					let format: DeckFormat = decklist.deck.contains("[") || decklist.deck.contains("]") ? .deckstats : .arena
-					let result: String = try deck(decklist: decklist.deck, format: format, export: export, cardBack: cardBack, autofix: autofix)
+					let d: Deck = decklist.deck.contains("[") || decklist.deck.contains("]") ? .deckstats(decklist.deck) : .arena(decklist.deck)
+					let result: String = try deck(d, export: export, cardBack: cardBack, autofix: autofix)
 					promise.succeed(result: result)
 				} catch let error as Debuggable {
 					struct ErrorMessage: Codable {

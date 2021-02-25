@@ -437,7 +437,7 @@ function loadCustomCards() {
 				
 				var data = document.createElement("td");
 				var num = i + 1;
-				data.innerHTML = "<center><div><img src='" + element.imageURL + "' height=264 width=189></div><p>" + element.name + "<br>#" + num + "</p><br></center>";
+				data.innerHTML = "<center><div><img src='" + element.imageURL + "' height=264 width=189 style='border-radius:10px;'></div><p>" + element.name + "<br>#" + num + "</p><br></center>";
 				
 				row.appendChild(data);
 				dataCount += 1;

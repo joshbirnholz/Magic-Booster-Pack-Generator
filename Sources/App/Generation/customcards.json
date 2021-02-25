@@ -183,6 +183,34 @@
 		{
 			"name": "Tolsimir, Friend to Wolves",
 			"imageURL": "http://josh.birnholz.com/tts/cards/custom/WAR%20Tolsimir,%20Friend%20to%20Wolves.jpg"
+		},
+		{
+			"name": "Thalisse, Reverent Medium",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/Thalisse.jpg"
+		},
+		{
+			"name": "Liliana, Dreadhorde General",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/WAR%20Liliana.jpg"
+		},
+		{
+			"name": "Aminatou, the Fateshifter",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/Aminatou%20the%20Fateshifter.jpg"
+		},
+		{
+			"name": "Aminatou, the Fateshifter",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/AminatouALT.jpg"
+		},
+		{
+			"name": "Cyclonic Rift",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/MM3%20Cyclonic%20Rift%202.jpg"
+		},
+		{
+			"name": "Kroxa, Titan of Death's Hunger",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/THB%20Kroxa.jpg"
+		},
+		{
+			"name": "Sen Triplets",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/ARB%20Sen%20Triplets.jpg"
 		}
 	]
 }

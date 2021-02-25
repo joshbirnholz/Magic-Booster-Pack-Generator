@@ -125,7 +125,7 @@ final class GeneratorController {
 		var deck: String
 	}
 	
-	fileprivate func deckFromURL(_ deckURL: URL, _ export: Bool, _ cardBack: URL?, autofix: Bool, _ promise: EventLoopPromise<String>) throws -> EventLoopFuture<String> {
+	fileprivate func deckFromURL(_ deckURL: URL, _ export: Bool, _ cardBack: URL?, autofix: Bool, customOverrides: String, _ promise: EventLoopPromise<String>) throws -> EventLoopFuture<String> {
 		guard let components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else {
 			throw PackError.invalidURL
 		}
@@ -147,7 +147,7 @@ final class GeneratorController {
 						
 						DispatchQueue(label: "decklist").async {
 							do {
-								let result: String = try deck(.archidekt(archidektDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: archidektDeck.name)
+								let result: String = try deck(.archidekt(archidektDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: archidektDeck.name, customOverrides: customOverrides)
 								print("Success")
 								promise.succeed(result: result)
 							} catch let error as Debuggable {
@@ -203,7 +203,7 @@ final class GeneratorController {
 						
 						DispatchQueue(label: "decklist").async {
 							do {
-								let result: String = try deck(.moxfield(moxfieldDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: moxfieldDeck.name)
+								let result: String = try deck(.moxfield(moxfieldDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: moxfieldDeck.name, customOverrides: customOverrides)
 								print("Success")
 								promise.succeed(result: result)
 							} catch let error as Debuggable {
@@ -282,7 +282,7 @@ final class GeneratorController {
 						DispatchQueue(label: "decklist").async {
 							do {
 								
-								let result: String = try deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName)
+								let result: String = try deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, customOverrides: customOverrides)
 								print("Success")
 								promise.succeed(result: result)
 							} catch let error as Debuggable {
@@ -341,7 +341,7 @@ final class GeneratorController {
 						
 						DispatchQueue(label: "decklist").async {
 							do {
-								let result: String = try deck(.arena(arenaDecklist), export: export, cardBack: cardBack, autofix: autofix)
+								let result: String = try deck(.arena(arenaDecklist), export: export, cardBack: cardBack, autofix: autofix, customOverrides: customOverrides)
 								print("Success")
 								promise.succeed(result: result)
 							} catch let error as Debuggable {
@@ -411,7 +411,7 @@ final class GeneratorController {
 								
 								DispatchQueue(label: "decklist").async {
 									do {
-										let result: String = try deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix)
+										let result: String = try deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, customOverrides: customOverrides)
 										print("Success")
 										promise.succeed(result: result)
 									} catch let error as Debuggable {
@@ -506,6 +506,7 @@ final class GeneratorController {
 		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
 		let autofix: Bool = (try? req.query.get(Bool.self, at: "autofix")) ?? true
 		let cardBack: URL? = (try? req.query.get(String.self, at: "back")).flatMap(URL.init(string:))
+		let customOverrides: String = (try? req.query.get(String.self, at: "customoverrides")) ?? ""
 		
 		let deckURLString = try req.parameters.next(String.self)
 		guard let deckURL = URL(string: deckURLString) else {
@@ -514,25 +515,26 @@ final class GeneratorController {
 		
 		let promise: Promise<String> = req.eventLoop.newPromise()
 		
-		return try deckFromURL(deckURL, export, cardBack, autofix: autofix, promise)
+		return try deckFromURL(deckURL, export, cardBack, autofix: autofix, customOverrides: customOverrides, promise)
 	}
 	
 	func fullDeck(_ req: Request) throws -> Future<String> {
 		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
 		let autofix: Bool = (try? req.query.get(Bool.self, at: "autofix")) ?? true
 		let cardBack: URL? = (try? req.query.get(String.self, at: "back")).flatMap(URL.init(string:))
+		let customOverrides: String = (try? req.query.get(String.self, at: "customoverrides")) ?? ""
 		
 		return try req.content.decode(DeckList.self).flatMap { decklist in
 			let promise: Promise<String> = req.eventLoop.newPromise()
 			
 			if let url = URL(string: decklist.deck) {
-				return try self.deckFromURL(url, export, cardBack, autofix: autofix, promise)
+				return try self.deckFromURL(url, export, cardBack, autofix: autofix, customOverrides: customOverrides, promise)
 			}
 			
 			DispatchQueue.global().async {
 				do {
 					let d: Deck = decklist.deck.contains("[") || decklist.deck.contains("]") ? .deckstats(decklist.deck) : .arena(decklist.deck)
-					let result: String = try deck(d, export: export, cardBack: cardBack, autofix: autofix)
+					let result: String = try deck(d, export: export, cardBack: cardBack, autofix: autofix, customOverrides: customOverrides)
 					promise.succeed(result: result)
 				} catch let error as Debuggable {
 					struct ErrorMessage: Codable {

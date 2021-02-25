@@ -3343,7 +3343,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			mythicPolicy = .previous
 		}
 	case .cardlist:
-		return try deck(.arena(inputString), export: export, cardBack: cardBack, autofix: autofixDecklist)
+		return try deck(.arena(inputString), export: export, cardBack: cardBack, autofix: autofixDecklist, customOverrides: "")
 	}
 	
 	guard !mtgCards.isEmpty else { throw PackError.noCards }
@@ -4339,7 +4339,7 @@ let fixedSetCodes: [String: String] = [
 	"uz": "usg"
 ]
 
-func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil) throws -> String {
+func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil, customOverrides: String) throws -> String {
 	
 	let parsed: [DeckParser.CardGroup] = {
 		var parsed: [DeckParser.CardGroup]
@@ -4561,6 +4561,29 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 						return fixedCard
 					}
 				}
+			}
+		}
+	}
+	
+	// Custom card overrides
+	let customCardOverrides: [String] = customOverrides.components(separatedBy: ";")
+	for override in customCardOverrides {
+		let identifier: MTGCardIdentifier = {
+			let trimmed = override.trimmingCharacters(in: .whitespacesAndNewlines)
+			if let number = Int(trimmed) {
+				return .collectorNumberSet(collectorNumber: String(number), set: "custom", name: nil)
+			} else {
+				return .name(trimmed)
+			}
+		}()
+		
+		guard let customCard = CustomCards.shared.card(with: identifier) else { continue }
+		
+		mtgCards = mtgCards.map {
+			if $0.oracleID == customCard.oracleID {
+				return customCard
+			} else {
+				return $0
 			}
 		}
 	}

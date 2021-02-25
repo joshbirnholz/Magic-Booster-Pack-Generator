@@ -333,6 +333,9 @@ function doDownloadDeck() {
 		}
 	}
 	
+	var customOverrides = document.getElementById("customoverrides").value;
+	url += "&customoverrides=" + customOverrides;
+	
 	$.ajax({
 		url: url,
 		data: data,
@@ -381,7 +384,6 @@ function doDownloadDeck() {
 	})
 }
 
-loadSets();
 function loadSets() {
 	$.ajax({
 		url: "sets",
@@ -462,6 +464,58 @@ function loadCustomCards() {
 			console.log(error);
 			
 			alert(error);
+		}
+	})
+}
+
+function addCustomCard(number) {
+	var box = document.getElementById('customoverrides');
+	
+	if (box.value !== "") {
+		if (!box.value.endsWith(";")) {
+			box.value += ";";
+		}
+		box.value += number;
+	} else {
+		box.value = number;
+	}
+	
+}
+
+function loadCustomCardsList() {
+	$.ajax({
+		url: "customcards",
+		data: null,
+		cache: false,
+		contentType: false,
+		processData: false,
+		method: "GET",
+		success: function(response) {
+			var div = document.getElementById("customlist");
+			var shownCards = 5;
+			
+			var offset = 1;
+			var elements = response.map((element) => {
+				element.offset = offset;
+				offset += 1;
+				return element;
+			});
+			var newest = elements.slice(Math.max(response.length - shownCards, 0));
+			var objects = newest.map((element) => {
+//				return element.name;
+				
+				var baseW = 63;
+				var baseH = 88;
+				
+				var smallScale = 2;
+				var zoomScale = 5;
+				
+				return "<a class='thumbnail' href='javascript:addCustomCard(" + element.offset +");'><img style='border-radius:7px;' src='" + element.imageURL + "' width='" + (baseW*smallScale) +"px' height='" + (baseH*smallScale) + "px' border='0' /><span><img style='border-radius:17px;' src='" + element.imageURL + "' width='" + (baseW*zoomScale) +"px' height='" + (baseH*zoomScale) + "px' /></span></a>"
+			});
+			div.innerHTML = objects.join(" ");
+		},
+		error: function(xhr, status, error) {
+			
 		}
 	})
 }

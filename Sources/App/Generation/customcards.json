@@ -1,26 +1,6 @@
 {
 	"cards": [
 		{
-			"name": "Demonic Tutor",
-			"imageURL": "http://josh.birnholz.com/tts/cards/custom/Demonic%20Tutor.jpg"
-		},
-		{
-			"name": "Swords to Plowshares",
-			"imageURL": "http://josh.birnholz.com/tts/cards/custom/Swords%20to%20Plowshares.jpg"
-		},
-		{
-			"name": "Opt",
-			"imageURL": "http://josh.birnholz.com/tts/cards/custom/Opt.jpg"
-		},
-		{
-			"name": "Generous Gift",
-			"imageURL": "http://josh.birnholz.com/tts/cards/custom/Generous%20Gift.jpg"
-		},
-		{
-			"name": "Sun Titan",
-			"imageURL": "http://josh.birnholz.com/tts/cards/custom/SLD%20Sun%20Titan.jpg"
-		},
-		{
 			"name": "Anointed Procession",
 			"imageURL": "http://josh.birnholz.com/tts/cards/custom/AKH%20Anointed%20Procession.png"
 		},
@@ -194,11 +174,11 @@
 		},
 		{
 			"name": "Aminatou, the Fateshifter",
-			"imageURL": "http://josh.birnholz.com/tts/cards/custom/Aminatou%20the%20Fateshifter.jpg"
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/AminatouALT.jpg"
 		},
 		{
 			"name": "Aminatou, the Fateshifter",
-			"imageURL": "http://josh.birnholz.com/tts/cards/custom/AminatouALT.jpg"
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/Aminatou%20the%20Fateshifter.jpg"
 		},
 		{
 			"name": "Cyclonic Rift",
@@ -211,6 +191,26 @@
 		{
 			"name": "Sen Triplets",
 			"imageURL": "http://josh.birnholz.com/tts/cards/custom/ARB%20Sen%20Triplets.jpg"
-		}
+		},
+		{
+			"name": "Swords to Plowshares",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/Swords%20to%20Plowshares.jpg"
+		},
+		{
+			"name": "Opt",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/Opt.jpg"
+		},
+		{
+			"name": "Demonic Tutor",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/Demonic%20Tutor.jpg"
+		},
+		{
+			"name": "Generous Gift",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/Generous%20Gift.jpg"
+		},
+		{
+			"name": "Sun Titan",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/SLD%20Sun%20Titan.jpg"
+		},
 	]
 }

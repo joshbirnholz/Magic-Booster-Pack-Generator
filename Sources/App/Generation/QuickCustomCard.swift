@@ -123,7 +123,11 @@ final class CustomCards {
 		while !isFinishedLoading { }
 		switch identifier {
 		case .name(let name), .nameSet(let name, _):
-			return cards.sorted(on: \.key, by: { Int($0)! > Int($1)! }).first(where: { $0.value.name?.lowercased() == name.lowercased() })?.value
+			if let card = cards.sorted(on: \.key, by: { Int($0)! > Int($1)! }).first(where: { $0.value.name?.lowercased() == name.lowercased() })?.value {
+				return card
+			} else {
+				return cards.sorted(on: \.key, by: { Int($0)! > Int($1)! }).first(where: { $0.value.name?.lowercased().hasPrefix(name.lowercased()) == true })?.value
+			}
 		case .collectorNumberSet(let collectorNumber, _, _):
 			guard let number = Int(collectorNumber) else { return nil }
 			return cards[String(number)]

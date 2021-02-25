@@ -439,7 +439,7 @@ function loadCustomCards() {
 				
 				var data = document.createElement("td");
 				var num = i + 1;
-				data.innerHTML = "<center><div><img src='" + element.imageURL + "' height=264 width=189 style='border-radius:10px;'></div><p>" + element.name + "<br>#" + num + "</p><br></center>";
+				data.innerHTML = "<center><div><a href='" + element.imageURL + "'><img src='" + element.imageURL + "' height=264 width=189 style='border-radius:10px;'></a></div><p>" + element.name + "<br>#" + num + "</p><br></center>";
 				
 				row.appendChild(data);
 				dataCount += 1;
@@ -501,7 +501,7 @@ function loadCustomCardsList() {
 				return element;
 			});
 			var newest = elements.slice(Math.max(response.length - shownCards, 0));
-			var objects = newest.map((element) => {
+			var objects = newest.reverse().map((element) => {
 //				return element.name;
 				
 				var baseW = 63;

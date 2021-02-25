@@ -17,12 +17,16 @@
 			"imageURL": "http://josh.birnholz.com/tts/cards/custom/BBD%20Regna,%20the%20Redeemer.jpg"
 		},
 		{
-			"name": "Brazen Borrower",
-			"imageURL": "http://josh.birnholz.com/tts/cards/custom/Brazen%20Borrower.png"
-		},
-		{
 			"name": "Kaseto, Orochi Archmage",
 			"imageURL": "http://josh.birnholz.com/tts/cards/custom/C15%20Kaseto,%20Orochi%20Archmage.jpg"
+		},
+		{
+			"name": "Island Sanctuary",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/Island%20Sanctuary.jpg"
+		},
+		{
+			"name": "Brazen Borrower",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/Brazen%20Borrower.png"
 		},
 		{
 			"name": "Teferi's Protection",

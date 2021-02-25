@@ -414,6 +414,58 @@ function loadSets() {
 	})
 }
 
+function loadCustomCards() {
+	$.ajax({
+		url: "customcards",
+		data: null,
+		cache: false,
+		contentType: false,
+		processData: false,
+		method: "GET",
+		success: function(response) {
+			console.log("success");
+			
+			var table = document.getElementById("cardtable");
+			
+			var dataCount = 0;
+			var rowCount = 6;
+			var row = document.createElement("tr");
+			table.appendChild(row);
+			
+			for(var i=0; i < response.length; i++) {
+				var element = response[i];
+				
+				var data = document.createElement("td");
+				var num = i + 1;
+				data.innerHTML = "<center><div><img src='" + element.imageURL + "' height=264 width=189></div><p>" + element.name + "<br>#" + num + "</p><br></center>";
+				
+				row.appendChild(data);
+				dataCount += 1;
+				if (dataCount >= rowCount) {
+					table.appendChild(row);
+					row = document.createElement("tr");
+					table.appendChild(row);
+					dataCount = 0;
+				}
+			}
+			
+			while (dataCount < rowCount) {
+				var data = document.createElement("td");
+				row.appendChild(data);
+				dataCount += 1;
+			}
+		},
+		error: function(xhr, status, error) {
+			console.log("error");
+			console.log(xhr);
+			console.log(status);
+			console.log(error);
+			
+			alert(error);
+		}
+	})
+}
+
 function validURL(str) {
   var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name

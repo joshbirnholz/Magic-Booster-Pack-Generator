@@ -4406,6 +4406,8 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		throw PackError.emptyInput
 	}
 	
+	let customIdentifiers = identifiers.separateAll(where: { $0.set?.lowercased() == "custom" })
+	
 //	let fetchedCardGroups: [[Swiftfall.Card]] = identifiers.chunked(by: 20).map { identifiers in
 //		let query = identifiers.compactMap(\.query).map { "(\($0))" }.joined(separator: " or ") + " prefer:newest game:paper"
 //		let fetchedCards: [Swiftfall.Card] = Array(Swiftfall.getCards(query: query, unique: true).compactMap { $0?.data }.joined())
@@ -4563,15 +4565,24 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		}
 	}
 	
+	for identifier in customIdentifiers {
+		guard let card = CustomCards.shared.card(with: identifier) else {
+			notFound.append(identifier)
+			continue
+		}
+		identifiers.append(identifier)
+		mtgCards.append(card)
+	}
+	
 	guard notFound.isEmpty else {
 		throw PackError.noCardFound(String(describing: notFound.map { String(describing: $0) }.joined(separator: ", ")))
 	}
 	
-	guard !cards.isEmpty else {
+	guard !mtgCards.isEmpty else {
 		throw PackError.noCards
 	}
 	
-	guard cards.count == identifiers.count else {
+	guard mtgCards.count == identifiers.count else {
 		let missingIdentifiers = identifiers.filter { cards[$0] == nil }
 		
 		throw PackError.couldNotLoadCards(String(describing: missingIdentifiers.map { String(describing: $0) }.joined(separator: ", ")))

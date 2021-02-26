@@ -4340,6 +4340,13 @@ let fixedSetCodes: [String: String] = [
 ]
 
 func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil, customOverrides: String) throws -> String {
+	let customOverrides: String = {
+		if !customOverrides.contains(";") {
+			return customOverrides.replacingOccurrences(of: ",", with: ";")
+		} else {
+			return customOverrides
+		}
+	}()
 	
 	let parsed: [DeckParser.CardGroup] = {
 		var parsed: [DeckParser.CardGroup]

@@ -251,6 +251,21 @@ final class GeneratorController {
 			
 			guard let decklistURL = components.url else { throw PackError.invalidURL }
 			
+			let commentCustomOverrides: String? = {
+				guard let data = try? Data(contentsOf: deckURL),
+					  let page = String(data: data, encoding: .utf8) else { return nil }
+				
+				if let comment = page.matches(forRegex: #"<p>!custom=(.+)<\/p>"#).first?.groups.first?.value.trimmingCharacters(in: .whitespacesAndNewlines), !comment.isEmpty {
+					return comment
+				}
+				
+				return nil
+			}()
+			
+			if let commentCustomOverrides = commentCustomOverrides {
+				print(commentCustomOverrides)
+			}
+			
 			DispatchQueue.global(qos: .userInitiated).async {
 				let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
 				URLSession.shared.dataTask(with: request) { data, response, error in
@@ -282,7 +297,7 @@ final class GeneratorController {
 						DispatchQueue(label: "decklist").async {
 							do {
 								
-								let result: String = try deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, customOverrides: customOverrides)
+								let result: String = try deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, customOverrides: commentCustomOverrides ?? customOverrides)
 								print("Success")
 								promise.succeed(result: result)
 							} catch let error as Debuggable {

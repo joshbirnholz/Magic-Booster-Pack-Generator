@@ -216,5 +216,49 @@
 			"name": "Sun Titan",
 			"imageURL": "http://josh.birnholz.com/tts/cards/custom/SLD%20Sun%20Titan.jpg"
 		},
+		{
+			"name": "Fierce Guardianship",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/C20%20Fierce%20Guardianship.jpg"
+		},
+		{
+			"name": "Blood Crypt",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/textlessBloodCrypt.jpg"
+		},
+		{
+			"name": "Breeding Pool",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/textlessBreedingPool.jpg"
+		},
+		{
+			"name": "Godless Shrine",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/textlessGodlessShrine.jpg"
+		},
+		{
+			"name": "Hallowed Fountain",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/textlessHallowedFountain.jpg"
+		},
+		{
+			"name": "Overgrown Tomb",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/textlessOvergrownTomb.jpg"
+		},
+		{
+			"name": "Sacred Foundry",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/textlessSacredFoundry.jpg"
+		},
+		{
+			"name": "Steam Vents",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/textlessSteamVents.jpg"
+		},
+		{
+			"name": "Stomping Ground",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/textlessStompingGround.jpg"
+		},
+		{
+			"name": "Temple Garden",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/textlessTempleGarden.jpg"
+		},
+		{
+			"name": "Watery Grave",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/textlessWateryGrave.jpg"
+		}
 	]
 }

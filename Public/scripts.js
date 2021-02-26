@@ -434,11 +434,11 @@ function loadCustomCards() {
 			var row = document.createElement("tr");
 			table.appendChild(row);
 			
-			for(var i=0; i < response.length; i++) {
+			for(var i=response.length-1; i >=0; i--) {
 				var element = response[i];
 				
 				var data = document.createElement("td");
-				var num = i + 1;
+				var num = i+1;
 				data.innerHTML = "<center><div><a href='" + element.imageURL + "'><img src='" + element.imageURL + "' height=264 width=189 style='border-radius:10px;'></a></div><p>" + element.name + "<br>#" + num + "</p><br></center>";
 				
 				row.appendChild(data);

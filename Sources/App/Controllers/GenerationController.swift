@@ -147,7 +147,7 @@ final class GeneratorController {
 						
 						DispatchQueue(label: "decklist").async {
 							do {
-								let result: String = try deck(.archidekt(archidektDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: archidektDeck.name, customOverrides: customOverrides)
+								let result: String = try deck(.archidekt(archidektDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: archidektDeck.name, customOverrides: [customOverrides])
 								print("Success")
 								promise.succeed(result: result)
 							} catch let error as Debuggable {
@@ -203,7 +203,7 @@ final class GeneratorController {
 						
 						DispatchQueue(label: "decklist").async {
 							do {
-								let result: String = try deck(.moxfield(moxfieldDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: moxfieldDeck.name, customOverrides: customOverrides)
+								let result: String = try deck(.moxfield(moxfieldDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: moxfieldDeck.name, customOverrides: [customOverrides])
 								print("Success")
 								promise.succeed(result: result)
 							} catch let error as Debuggable {
@@ -262,10 +262,6 @@ final class GeneratorController {
 				return nil
 			}()
 			
-			if let commentCustomOverrides = commentCustomOverrides {
-				print(commentCustomOverrides)
-			}
-			
 			DispatchQueue.global(qos: .userInitiated).async {
 				let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
 				URLSession.shared.dataTask(with: request) { data, response, error in
@@ -297,7 +293,7 @@ final class GeneratorController {
 						DispatchQueue(label: "decklist").async {
 							do {
 								
-								let result: String = try deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, customOverrides: commentCustomOverrides ?? customOverrides)
+								let result: String = try deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, customOverrides: [commentCustomOverrides ?? "", customOverrides])
 								print("Success")
 								promise.succeed(result: result)
 							} catch let error as Debuggable {
@@ -356,7 +352,7 @@ final class GeneratorController {
 						
 						DispatchQueue(label: "decklist").async {
 							do {
-								let result: String = try deck(.arena(arenaDecklist), export: export, cardBack: cardBack, autofix: autofix, customOverrides: customOverrides)
+								let result: String = try deck(.arena(arenaDecklist), export: export, cardBack: cardBack, autofix: autofix, customOverrides: [customOverrides])
 								print("Success")
 								promise.succeed(result: result)
 							} catch let error as Debuggable {
@@ -426,7 +422,7 @@ final class GeneratorController {
 								
 								DispatchQueue(label: "decklist").async {
 									do {
-										let result: String = try deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, customOverrides: customOverrides)
+										let result: String = try deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, customOverrides: [customOverrides])
 										print("Success")
 										promise.succeed(result: result)
 									} catch let error as Debuggable {
@@ -549,7 +545,7 @@ final class GeneratorController {
 			DispatchQueue.global().async {
 				do {
 					let d: Deck = decklist.deck.contains("[") || decklist.deck.contains("]") ? .deckstats(decklist.deck) : .arena(decklist.deck)
-					let result: String = try deck(d, export: export, cardBack: cardBack, autofix: autofix, customOverrides: customOverrides)
+					let result: String = try deck(d, export: export, cardBack: cardBack, autofix: autofix, customOverrides: [customOverrides])
 					promise.succeed(result: result)
 				} catch let error as Debuggable {
 					struct ErrorMessage: Codable {

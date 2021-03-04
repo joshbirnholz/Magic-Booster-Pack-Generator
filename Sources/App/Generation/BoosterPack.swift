@@ -3343,7 +3343,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			mythicPolicy = .previous
 		}
 	case .cardlist:
-		return try deck(.arena(inputString), export: export, cardBack: cardBack, autofix: autofixDecklist, customOverrides: "")
+		return try deck(.arena(inputString), export: export, cardBack: cardBack, autofix: autofixDecklist, customOverrides: [])
 	}
 	
 	guard !mtgCards.isEmpty else { throw PackError.noCards }
@@ -3548,6 +3548,8 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			return snowLands
 		case "mir", "vis", "5ed", "por", "wth", "tmp", "sth", "exo", "p02", "usg", "ulg", "6ed", "ptk", "uds", "mmq", "nem", "pcy", "inv", "pls", "7ed", "csp", "dis", "gpt", "rav", "9ed", "lrw", "mor", "shm", "eve", "apc", "ody", "tor", "jud", "ons", "lgn", "scg", "mrd", "dst", "5dn", "chk", "bok", "sok", "plc", "2xm":
 			return []
+		case "tsr":
+			return mainCards.separateAll(where: { $0.rarity == .special })
 		default:
 			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
 			guard includeBasicLands else { return [] }
@@ -3581,6 +3583,12 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			return basicLandSlotCards.filter { $0.isFullArt }
 		case "khm":
 			return cards.filter { $0.typeLine.contains("Basic") && !$0.typeLine.contains("Snow") }
+		case "tsr":
+			return Swiftfall
+				.getCards(query: "set:tsp t:basic", unique: true)
+				.compactMap { $0?.data }
+				.joined()
+				.compactMap(MTGCard.init)
 		case _ where Set(defaultBasicLands.compactMap { $0.name }).count == 5:
 			return defaultBasicLands
 		default:
@@ -4339,14 +4347,27 @@ let fixedSetCodes: [String: String] = [
 	"uz": "usg"
 ]
 
-func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil, customOverrides: String) throws -> String {
-	let customOverrides: String = {
-		if !customOverrides.contains(";") {
-			return customOverrides.replacingOccurrences(of: ",", with: ";")
-		} else {
-			return customOverrides
+func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil, customOverrides: [String]) throws -> String {
+	enum CustomOverride {
+		case identifiers(String)
+		case url(name: String, imageURL: URL)
+	}
+	
+	let customOverrides: [CustomOverride] = customOverrides.compactMap { customOverrides in
+		if customOverrides.contains("http") {
+			guard let index = customOverrides.firstIndex(of: ":") else { return nil }
+			let name = String(customOverrides[..<index])
+			let urlString = String(customOverrides[index...])
+			guard let url = URL(string: urlString) else { return nil }
+			return .url(name: name, imageURL: url)
 		}
-	}()
+		
+		if !customOverrides.contains(";") {
+			return .identifiers(customOverrides.replacingOccurrences(of: ",", with: ";"))
+		} else {
+			return .identifiers(customOverrides)
+		}
+	}
 	
 	let parsed: [DeckParser.CardGroup] = {
 		var parsed: [DeckParser.CardGroup]
@@ -4573,26 +4594,45 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 	}
 	
 	// Custom card overrides
-	let customCardOverrides: [String] = customOverrides.components(separatedBy: ";")
-	for override in customCardOverrides {
-		let identifier: MTGCardIdentifier = {
-			let trimmed = override.trimmingCharacters(in: .whitespacesAndNewlines)
-			if let number = Int(trimmed) {
-				return .collectorNumberSet(collectorNumber: String(number), set: "custom", name: nil)
-			} else {
-				return .name(trimmed)
+	for customOverrides in customOverrides {
+		switch customOverrides {
+		case .identifiers(let customOverrides):
+			let customCardOverrides: [String] = customOverrides.components(separatedBy: ";")
+			for override in customCardOverrides {
+				let identifier: MTGCardIdentifier = {
+					let trimmed = override.trimmingCharacters(in: .whitespacesAndNewlines)
+					if let number = Int(trimmed) {
+						return .collectorNumberSet(collectorNumber: String(number), set: "custom", name: nil)
+					} else {
+						return .name(trimmed)
+					}
+				}()
+				
+				guard let customCard = CustomCards.shared.card(with: identifier) else { continue }
+				
+				mtgCards = mtgCards.map {
+					if $0.oracleID == customCard.oracleID {
+						return customCard
+					} else {
+						return $0
+					}
+				}
 			}
-		}()
-		
-		guard let customCard = CustomCards.shared.card(with: identifier) else { continue }
-		
-		mtgCards = mtgCards.map {
-			if $0.oracleID == customCard.oracleID {
-				return customCard
-			} else {
-				return $0
+		case .url(let name, let imageURL):
+			mtgCards = mtgCards.map {
+				if $0.name == name {
+					var card = $0
+					var imageURIs = card.imageUris ?? [:]
+					imageURIs["normal"] = imageURL
+					imageURIs["large"] = imageURL
+					card.imageUris = imageURIs
+					return card
+				} else {
+					return $0
+				}
 			}
 		}
+		
 	}
 	
 	for identifier in customIdentifiers {

@@ -4357,7 +4357,11 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		if customOverrides.contains("http") {
 			guard let index = customOverrides.firstIndex(of: ":") else { return nil }
 			let name = String(customOverrides[..<index])
-			let urlString = String(customOverrides[index...])
+			let urlStartIndex = customOverrides.index(after: index)
+			var urlString = String(customOverrides[urlStartIndex...])
+			if urlString.hasPrefix(":") {
+				urlString = String(urlString.dropFirst())
+			}
 			guard let url = URL(string: urlString) else { return nil }
 			return .url(name: name, imageURL: url)
 		}

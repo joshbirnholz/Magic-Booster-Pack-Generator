@@ -403,7 +403,7 @@ function loadSets() {
 				$(o).html(element.name);
 				
 				$("#setlist").append(o);
-			})
+			});
 		},
 		error: function(xhr, status, error) {
 			console.log("error");
@@ -518,6 +518,74 @@ function loadCustomCardsList() {
 			
 		}
 	})
+}
+
+function loadSeeds() {
+	$.ajax({
+		url: "seeds",
+		data: null,
+		cache: false,
+		contentType: false,
+		processData: false,
+		method: "GET",
+		success: function(response) {
+			$("#seedlist option[value='']").remove();
+			
+			Object.keys(response).forEach((setCode) => {
+				var seeds = response[setCode];
+				seeds.forEach((seed) => {
+					var name = seed.name;
+					name += " ";
+					var colors = seed.colors.join('/');
+					name += "(" + colors + ")";
+					
+					var value = seed.set + "-" + seed.name;
+					
+					var o = new Option(name, value);
+					/// jquerify the DOM object 'o' so we can use the html method
+					$(o).html(name);
+					$(o).attr("id", value);
+					
+					$("#seedlist").append(o);
+				});
+			});
+			
+			updateSeeds();
+		},
+		error: function(xhr, status, error) {
+			
+		}
+	})
+}
+
+function updateSeeds() {
+	var selectedSet = $("#setlist").val();
+	
+	var found = false
+	var seedlist = $("#seedlist")
+	
+	seedlist.children().each(function () {
+		var option = document.getElementById(this.id);
+		
+		if (this.value.startsWith(selectedSet + "-")) {
+			console.log(option);
+			option.removeAttribute('hidden');
+			if (!found) {
+				option.selected = true;
+			}
+			found = true;
+		} else {
+			option.setAttribute("hidden","hidden");
+			// TODO: Hiding doesn't work in Safari
+		}
+	});
+	
+	if (!found) {
+		seedlist.hide();
+	} else {
+		seedlist.show();
+	}
+	
 }
 
 function validURL(str) {

@@ -3,7 +3,7 @@
 	<meta charset="utf-8"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="scripts.js"></script>
-	<script>loadSets();loadCustomCardsList();</script>
+	<script>loadSets();loadCustomCardsList();loadSeeds();</script>
 	
 	<link rel="stylesheet" href="style.css"></style>
 </head>
@@ -31,7 +31,7 @@
 			</small>
 			
 			<hr>
-			<select name="setlist" id="setlist">
+			<select name="setlist" id="setlist" onchange="updateSeeds()">
 				<option value="">Loading sets…</option>
 			</select>
 			
@@ -41,7 +41,9 @@
 			<input type="button" value="Booster Box…" onclick="doDownloadBox(false)"><br>
 				<input type="button" value="Pre-sorted Booster Box…" onclick="doDownloadBox(true)"><br>
 					<input type="button" value="Booster Packs…" onclick="doDownloadPack(document.getElementById('packCount').value)"> (<i>How many? <input type="number" id="packCount" value="1" style="width: 4em">)</i><br>
-						<input type="button" value="Prerelease Packs…" onclick="doDownloadPrereleasePack(document.getElementById('prepackCount').value)"> (<i>How many? <input type="number" id="prepackCount" value="1" style="width: 4em">)</i>
+						<input type="button" value="Prerelease Packs…" onclick="doDownloadPrereleasePack(document.getElementById('prepackCount').value)"> <select  name="seedlist" id="seedlist">
+							<option value="">Loading seeds…</option>
+			   </select> (<i>How many? <input type="number" id="prepackCount" value="1" style="width: 4em">)</i>
 							
 							</p>
 							

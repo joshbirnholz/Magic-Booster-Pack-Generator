@@ -39,6 +39,7 @@ public func routes(_ router: Router) throws {
 	router.post("url", String.parameter, use: generatorController.deckstatsDeck)
 	
 	router.get("customcards", use: CustomCards.shared.getCustomCards)
+	router.get("seeds", use: SeedOptions.shared.getAllSeeds)
 	
 	// Scryfall
 	

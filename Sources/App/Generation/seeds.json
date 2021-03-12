@@ -1,0 +1,23 @@
+{
+	"grn": {
+		"gw": "Selesnya",
+		"rw": "Boros",
+		"bg": "Golgari",
+		"ur": "Izzet",
+		"ub": "Dimir"
+	},
+	"rna": {
+		"wu": "Azorius",
+		"br": "Rakdos",
+		"rg": "Gruul",
+		"gu": "Simic",
+		"wb": "Orzhov"
+	},
+	"stx": {
+		"rw": "Lorehold",
+		"ur": "Prismari",
+		"gu": "Quandrix",
+		"wb": "Silverquill",
+		"bg": "Witherbloom"
+	}
+}

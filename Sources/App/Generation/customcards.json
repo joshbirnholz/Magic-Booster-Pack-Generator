@@ -259,6 +259,14 @@
 		{
 			"name": "Watery Grave",
 			"imageURL": "http://josh.birnholz.com/tts/cards/custom/textlessWateryGrave.jpg"
+		},
+		{
+			"name": "Thalisse, Reverent Medium",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/thalisse2.jpg"
+		},
+		{
+			"name": "Vorinclex, Monstrous Raider",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/vorinclex.jpg"
 		}
 	]
 }

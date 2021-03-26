@@ -163,6 +163,7 @@ enum Mode {
 	case commanderLegends
 	case originalShowcase
 	case timeSpiralRemastered
+	case strixhaven
 }
 
 extension MTGCard {
@@ -263,6 +264,14 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			rarities[.mythic] = mythics
 		}
 		
+		if mode == .strixhaven {
+			for (rarity, customSlotCards) in customSlotRarities {
+				var cards = rarities[rarity] ?? []
+				cards.append(contentsOf: customSlotCards)
+				rarities[rarity] = cards
+			}
+		}
+		
 		allRarities = rarities
 		
 		if mode == .zendikarRising {
@@ -345,6 +354,17 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		}
 	}
 	
+	var includedStrixhavenArchiveRarity: MTGCard.Rarity? {
+		guard mode == .strixhaven else { return nil }
+		
+		let value = (1...1000).randomElement()!
+		switch value {
+		case 1...66: return .mythic
+		case 1...264: return .rare
+		default: return .uncommon
+		}
+	}
+	
 	var shouldIncludeTimeshiftedFoil: Bool {
 		return mode == .timeSpiralRemastered && (1...27).randomElement() == 1
 	}
@@ -410,7 +430,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 	let landCount: Int = {
 		if mode == .twoLands {
 			return 2
-		} else if mode == .doubleMasters {
+		} else if mode == .doubleMasters || mode == .strixhaven {
 			return 0
 		} else {
 			return 1
@@ -464,6 +484,10 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			return lands.choose(landCount)
 		}()
 		pack.insert(contentsOf: lands, at: 0)
+		
+		if let rarity = includedStrixhavenArchiveRarity, let archive = customSlotRarities[rarity]?.randomElement() {
+			pack.insert(archive, at: 0, isFoil: false)
+		}
 		
 		if shouldIncludeTimeshiftedFoil, let card = basicLands.randomElement() {
 			pack.insert(card, at: 0, isFoil: true)
@@ -3378,6 +3402,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		case "znr": return .zendikarRising
 		case "eld", "thb": return .originalShowcase
 		case "tsr": return .timeSpiralRemastered
+		case "stx": return .strixhaven
 		default: return .default
 		}
 	}()
@@ -3562,11 +3587,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		case "tsr":
 			return mainCards.separateAll(where: { $0.rarity == .special })
 		case "stx":
-			return Swiftfall
-				.getCards(query: "set:sta lang:en", unique: true)
-				.compactMap { $0?.data }
-				.joined()
-				.compactMap(MTGCard.init)
+			return []
 		default:
 			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
 			guard includeBasicLands else { return [] }
@@ -3728,6 +3749,13 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			return .init(grouping: mainCards.separateAll(where: { $0.typeLine?.lowercased().contains("planeswalker") == true }), by: \.rarity)
 		case "vma":
 			return .init(grouping: mainCards.separateAll { (1...9).contains(Int($0.collectorNumber) ?? 0) }, by: \.rarity)
+		case "sta":
+			let archives = Swiftfall
+				.getCards(query: "set:sta lang:en", unique: true)
+				.compactMap { $0?.data }
+				.joined()
+				.map(MTGCard.init)
+			return .init(grouping: archives, by: \.rarity)
 		default:
 			return [:]
 		}

@@ -162,6 +162,7 @@ enum Mode {
 	
 	case commanderLegends
 	case originalShowcase
+	case timeSpiralRemastered
 }
 
 extension MTGCard {
@@ -343,6 +344,11 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		default: return .mythic
 		}
 	}
+	
+	var shouldIncludeTimeshiftedFoil: Bool {
+		return mode == .timeSpiralRemastered && (1...27).randomElement() == 1
+	}
+	
 	let zendikarRisingGuaranteedDFCRarity: MTGCard.Rarity? = {
 		guard mode == .zendikarRising else { return nil }
 		
@@ -458,6 +464,10 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			return lands.choose(landCount)
 		}()
 		pack.insert(contentsOf: lands, at: 0)
+		
+		if shouldIncludeTimeshiftedFoil, let card = basicLands.randomElement() {
+			pack.insert(card, at: 0, isFoil: true)
+		}
 		
 		if includeMasterpiece, let masterpiece = masterpieceCards.randomElement() {
 			pack.insert(masterpiece, at: 0, isFoil: true)
@@ -3367,6 +3377,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		case "2xm": return .doubleMasters
 		case "znr": return .zendikarRising
 		case "eld", "thb": return .originalShowcase
+		case "tsr": return .timeSpiralRemastered
 		default: return .default
 		}
 	}()
@@ -3550,6 +3561,12 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			return []
 		case "tsr":
 			return mainCards.separateAll(where: { $0.rarity == .special })
+		case "stx":
+			return Swiftfall
+				.getCards(query: "set:sta lang:en", unique: true)
+				.compactMap { $0?.data }
+				.joined()
+				.compactMap(MTGCard.init)
 		default:
 			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
 			guard includeBasicLands else { return [] }
@@ -3589,6 +3606,10 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
+		case "stx":
+			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
+			guard includeBasicLands else { return [] }
+			return basicLands
 		case _ where Set(defaultBasicLands.compactMap { $0.name }).count == 5:
 			return defaultBasicLands
 		default:

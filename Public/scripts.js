@@ -227,6 +227,11 @@ function doDownloadPrereleasePack(packCount) {
 	
 	var url = "pre/" + setCode + "?count=" + packCount;
 	
+	var seed = $("#seedlist").val();
+	if (seed !== null) {
+		url += "&seed=" + seed;
+	}
+	
 	$.ajax({
 		url: url,
 		cache: false,
@@ -270,7 +275,12 @@ function doDownloadPrereleasePackList() {
 	
 	$("#boxprogress").html("Working…");
 	
-	var url = "pre/" + setCode + "?cardlist=true";
+	var url = "pre/" + setCode + "?cardlist=true&extendedart=false";
+	
+	var seed = $("#seedlist").val();
+	if (seed !== null) {
+		url += "&seed=" + seed;
+	}
 	
 	$.ajax({
 		url: url,
@@ -397,13 +407,17 @@ function loadSets() {
 			
 			$("#setlist option[value='']").remove();
 			
+			var setlist = $("#setlist");
+			
 			response.forEach((element) => {
 				var o = new Option(element.name, element.code);
 				/// jquerify the DOM object 'o' so we can use the html method
 				$(o).html(element.name);
 				
-				$("#setlist").append(o);
+				setlist.append(o);
 			});
+			
+			updateSeeds();
 		},
 		error: function(xhr, status, error) {
 			console.log("error");
@@ -529,12 +543,12 @@ function loadSeeds() {
 		processData: false,
 		method: "GET",
 		success: function(response) {
-			$("#seedlist option[value='']").remove();
+			$("#seedlistall option[value='']").remove();
 			
 			Object.keys(response).forEach((setCode) => {
 				var seeds = response[setCode];
 				seeds.forEach((seed) => {
-					var name = seed.name;
+					var name = "Prerelease Pack: " + seed.name;
 					name += " ";
 					var colors = seed.colors.join('/');
 					name += "(" + colors + ")";
@@ -546,7 +560,7 @@ function loadSeeds() {
 					$(o).html(name);
 					$(o).attr("id", value);
 					
-					$("#seedlist").append(o);
+					$("#seedlistall").append(o);
 				});
 			});
 			
@@ -561,22 +575,29 @@ function loadSeeds() {
 function updateSeeds() {
 	var selectedSet = $("#setlist").val();
 	
-	var found = false
-	var seedlist = $("#seedlist")
+	var found = false;
+	var seedlist = $("#seedlist");
+	var allSeedlist = $("#seedlistall");
 	
-	seedlist.children().each(function () {
+	var select = document.getElementById("seedlist");
+	var length = select.options.length;
+	for (i = length-1; i >= 0; i--) {
+	  select.options[i] = null;
+	}
+	
+	allSeedlist.children().each(function () {
 		var option = document.getElementById(this.id);
 		
 		if (this.value.startsWith(selectedSet + "-")) {
-			console.log(option);
-			option.removeAttribute('hidden');
+			var clone = option.cloneNode(true);
+			
 			if (!found) {
-				option.selected = true;
+				clone.selected = true;
 			}
+			
 			found = true;
-		} else {
-			option.setAttribute("hidden","hidden");
-			// TODO: Hiding doesn't work in Safari
+			
+			seedlist.append(clone);
 		}
 	});
 	

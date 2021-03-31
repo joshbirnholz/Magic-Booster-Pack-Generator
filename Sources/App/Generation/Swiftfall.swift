@@ -336,6 +336,8 @@ internal class Swiftfall {
             public let illustrationId: String?
             
             public let imageUris: [String: URL]?
+			
+			public let watermark: String?
             
             public var description: String {
                 var text = ""
@@ -471,6 +473,9 @@ internal class Swiftfall {
         
         // This card’s colors.
         public let colors: [String]?
+		
+		// This card’s color identity.
+		public let colorIdentity: [String]?
 		
 		// Thie card’s keywords.
 		public let keywords: [String]?

@@ -206,7 +206,36 @@ enum MythicPolicy {
 
 // MARK: - Generate Booster Pack
 
-func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MTGCard.Rarity: [MTGCard]], basicLands: [MTGCard], tokens: [MTGCard], showcaseRarities: [MTGCard.Rarity: [MTGCard]], borderless: [MTGCard], extendedArt: [MTGCard], meldResults: [MTGCard], mode: Mode, includeExtendedArt: Bool, masterpieceCards: [MTGCard], foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy) -> CardCollection {
+extension Dictionary where Key == MTGCard.Rarity, Value == [MTGCard] {
+	func filtered(for seed: Seed?) -> [MTGCard.Rarity: [MTGCard]] {
+		guard let seed = seed, seed.packtype == .grnRna else { return self }
+		
+		return mapValues { cards in
+			return cards.filter { seed.contains($0) }
+		}
+	}
+	
+	init(groupingByRarity cards: [MTGCard], filteredFor seed: Seed?) {
+		self.init(grouping: cards, by: \.rarity)
+		self = self.filtered(for: seed)
+	}
+}
+
+extension Array where Element == MTGCard {
+	func filtered(for seed: Seed?) -> [MTGCard] {
+		guard let seed = seed, seed.packtype == .grnRna else { return self }
+		
+		return filter { seed.contains($0) }
+	}
+}
+
+func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MTGCard.Rarity: [MTGCard]], basicLands: [MTGCard], tokens: [MTGCard], showcaseRarities: [MTGCard.Rarity: [MTGCard]], borderless: [MTGCard], extendedArt: [MTGCard], meldResults: [MTGCard], mode: Mode, includeExtendedArt: Bool, masterpieceCards: [MTGCard], foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, seed: Seed? = nil) -> CardCollection {
+	let customSlotRarities = customSlotRarities.filtered(for: seed)
+	let basicLands = basicLands.filtered(for: seed)
+	let borderless = borderless.filtered(for: seed)
+	let extendedArt = extendedArt.filtered(for: seed)
+	let masterpieceCards = masterpieceCards.filtered(for: seed)
+	
 	var pack = CardCollection()
 	
 	let guaranteedPlaneswalkerSlot = mode == .warOfTheSpark ? (0...3).randomElement()! : nil
@@ -219,7 +248,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			return nil
 		}
 		
-		return .init(grouping: basicLands, by: \.rarity)
+		return .init(groupingByRarity: basicLands, filteredFor: seed)
 	}()
 	
 	var borderlessPlaneswalkers = borderless
@@ -247,7 +276,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			showcaseRarities[rarity] = otherShowcases
 		}
 		
-		return showcaseRarities
+		return showcaseRarities.filtered(for: seed)
 	}()
 	
 	let rarities: [MTGCard.Rarity: [MTGCard]] = {
@@ -270,9 +299,10 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 				cards.append(contentsOf: customSlotCards)
 				rarities[rarity] = cards
 			}
+			// TODO: foil archive cards
 		}
 		
-		allRarities = rarities
+		allRarities = rarities.filtered(for: seed)
 		
 		if mode == .zendikarRising {
 			for rarity in MTGCard.Rarity.allCases {
@@ -280,7 +310,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			}
 		}
 		
-		return rarities
+		return rarities.filtered(for: seed)
 	}()
 	
 	var includeMythic: Bool {
@@ -410,8 +440,19 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		}
 		return (5...10).contains(futureCount)
 	}
+	var colorsOkay: Bool {
+		if let seed = seed, seed.packtype == .grnRna {
+			return allColorsCount != seed.colors.count
+		} else {
+			return allColorsCount != 5
+		}
+	}
 	
 	let landRarity: MTGCard.Rarity = {
+		if mode == .strixhaven {
+			return includedStrixhavenArchiveRarity ?? .common
+		}
+		
 		switch (1...13).randomElement()! {
 		case 1:
 			if let mythics = landRarities?[.mythic], !mythics.isEmpty, (1...8).randomElement()! == 8 {
@@ -477,6 +518,10 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		pack.removeAll()
 		
 		let lands: ArraySlice<MTGCard> = {
+			if let seed = seed, seed.packtype == .grnRna, let guildgates = rarities[.common]?.filter({ $0.name == "\(seed.name) Guildgate" }) {
+				return guildgates.choose(landCount)
+			}
+			
 			var lands = landRarities?[landRarity] ?? basicLands
 			if shouldIncludeShowcaseLand {
 				lands = lands.filter { $0.isShowcase }
@@ -485,8 +530,9 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		}()
 		pack.insert(contentsOf: lands, at: 0)
 		
-		if let rarity = includedStrixhavenArchiveRarity, let archive = customSlotRarities[rarity]?.randomElement() {
-			pack.insert(archive, at: 0, isFoil: false)
+		// TODO: Check actual distribution of lessons in the lesson slot. Does each lesson card appear as frequently as the others, or does the rarity matter?
+		if mode == .strixhaven, let lesson = customSlotRarities.values.joined().randomElement() {
+			pack.insert(lesson, at: 0, isFoil: false)
 		}
 		
 		if shouldIncludeTimeshiftedFoil, let card = basicLands.randomElement() {
@@ -536,7 +582,22 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			pack.insert(borderlessCard, at: 0)
 		}
 		
-		let rareSlotRarities = guaranteedPlaneswalkerSlot == 3 ? customSlotRarities : rarities
+		let rareSlotRarities: [MTGCard.Rarity : [MTGCard]] = {
+			if guaranteedPlaneswalkerSlot == 3 {
+				return customSlotRarities
+			}
+			
+			if let seed = seed {
+				return rarities.mapValues { cards in
+					return cards.filter { card in
+						(card.cardFaces?.first?.watermark ?? card.watermark)?.lowercased() == seed.name.lowercased() || seed.matchesExactly(card)
+					}
+				}
+			}
+			
+			return rarities
+		}()
+		
 		func addRareOrMythic() {
 			if zendikarRisingGuaranteedDFCRarity == .rare || zendikarRisingGuaranteedDFCRarity == .mythic {
 				return
@@ -671,6 +732,10 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			}
 		}
 		
+		if let seed = seed, seed.packtype == .grnRna, let locket = rarities[.common]?.first(where: { $0.name == "\(seed.name) Locket" }) {
+			pack.insert(locket, at: 0)
+		}
+		
 		let commonCount: Int = {
 			var count = cardCount-pack.count
 			if !tokens.isEmpty {
@@ -790,8 +855,8 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		
 		var problems: [String] = []
 		
-		if allColorsCount != 5 {
-			problems.append("Pack doesn't have 5 colors")
+		if !colorsOkay {
+			problems.append("Pack doesn't have correct number of colors")
 		}
 		if uniqueCardCount != cardCount {
 			problems.append("Unique card count is wrong; Should be \(cardCount), was \(uniqueCardCount)")
@@ -810,7 +875,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			print(problems.joined(separator: ", "))
 		}
 		
-	} while allColorsCount != 5 || uniqueCardCount != cardCount || !futureSightOkay /* || !showcaseOkay */ || !legendaryOkay
+	} while !colorsOkay || uniqueCardCount != cardCount || !futureSightOkay /* || !showcaseOkay */ || !legendaryOkay
 	
 	print("Using pack")
 	
@@ -3001,19 +3066,26 @@ fileprivate let ikoKeywordCounters = """
 }
 """
 
-func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]], promoCard: MTGCard, tokens: [MTGCard], basicLands: [MTGCard], includePromoCard: Bool?, includeLands: Bool?, includeSheet: Bool?, includeSpindown: Bool?, export: Bool) throws -> String {
+func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]], promoCard: MTGCard, tokens: [MTGCard], basicLands: [MTGCard], includePromoCard: Bool?, includeLands: Bool?, includeSheet: Bool?, includeSpindown: Bool?, export: Bool, seed: Seed?) throws -> String {
 	let includeSheet = includeSheet ?? true
 	let includeSpindown = includeSpindown ?? true
 	let includeLands = includeLands ?? true
 	let includePromoCard = includePromoCard ?? true
 	
-	let boosterPackString = try boosterPacks.map { try boosterPackJSON(setName: setName, setCode: setCode, cards: $0, tokens: tokens) }.joined(separator: ",\n")
+	var name = setName
+	if let seed = seed {
+		name += " — \(seed.name)"
+	}
+	
+	let boosterPackString = try boosterPacks.enumerated().map { index, cards in
+		return try boosterPackJSON(setName: index == 0 ? name : setName, setCode: setCode, cards: cards, tokens: tokens)
+	}.joined(separator: ",\n")
 	let promoCardString = try singleCard(promoCard, facedown: false)
 	
 	var containedObjects: [String] = []
 	
 	if includeSpindown {
-		containedObjects.append(spindownDieJSON(setCode: setCode))
+		containedObjects.append(spindownDieJSON(setCode: seed?.name.lowercased() ?? setCode))
 	}
 	
 	if includeSheet {
@@ -3039,7 +3111,7 @@ func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]],
 		containedObjects.append(contentsOf: landPacks)
 	}
 	
-	var boxTextureName = setCode
+	var boxTextureName = seed?.name.lowercased() ?? setCode
 	var boxURL: URL { URL(string: "http://josh.birnholz.com/tts/resources/prerelease/\(boxTextureName).jpg")! }
 	
 	if !fileExists(at: boxURL) {
@@ -3063,7 +3135,7 @@ func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]],
 		"scaleY": 1.0,
 		"scaleZ": 1.0
 	  },
-	  "Nickname": "\(setName) Prerelease Pack",
+	  "Nickname": "\(name) Prerelease Pack",
 	  "Description": "",
 	  "GMNotes": "",
 	  "ColorDiffuse": {
@@ -3304,7 +3376,7 @@ fileprivate func customSetJSONURL(forSetCode inputString: String) -> URL? {
 	#endif
 }
 
-public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, includeBasicLands: Bool, includeTokens: Bool, specialOptions: [String] = [], cardBack: URL? = nil, autofixDecklist: Bool, cardList: Bool) throws -> String {
+public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, includeBasicLands: Bool, includeTokens: Bool, specialOptions: [String] = [], cardBack: URL? = nil, autofixDecklist: Bool, cardList: Bool, seed: Seed? = nil) throws -> String {
 	let mtgCards: [MTGCard]
 	let setName: String
 	let setCode: String?
@@ -3348,7 +3420,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 //		return string
 	case .scryfallSetCode:
 		if let url = customSetJSONURL(forSetCode: inputString), let data = try? Data(contentsOf: url), let string = String(data: data, encoding: .utf8) {
-			return try generate(input: .mtgCardJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, autofixDecklist: autofixDecklist, cardList: cardList)
+			return try generate(input: .mtgCardJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, autofixDecklist: autofixDecklist, cardList: cardList, seed: seed)
 		}
 		
 		let set = try Swiftfall.getSet(code: inputString)
@@ -3415,7 +3487,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 	case .boosterPack:
 		return try boosterPack(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, includeBasicLands: includeBasicLands, includeTokens: includeTokens, cardlist: cardList)
 	case .prereleaseKit:
-		return try prereleaseKit(setName: setName, setCode: setCode ?? mtgCards.first?.set ?? inputString, cards: mtgCards, tokens: tokens, mode: mode, export: export, packCount: boxCount, includePromoCard: prereleaseIncludePromoCard, includeLands: prereleaseIncludeLands, includeSheet: prereleaseIncludeSheet, includeSpindown: prereleaseIncludeSpindown, boosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, cardlist: cardList)
+		return try prereleaseKit(setName: setName, setCode: setCode ?? mtgCards.first?.set ?? inputString, cards: mtgCards, tokens: tokens, mode: mode, export: export, packCount: boxCount, includePromoCard: prereleaseIncludePromoCard, includeLands: prereleaseIncludeLands, includeSheet: prereleaseIncludeSheet, includeSpindown: prereleaseIncludeSpindown, boosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, cardlist: cardList, seed: seed)
 	case .landPack:
 		return try allLandPacksSingleJSON(setCards: (cards: mtgCards, setCode: setCode ?? mtgCards.first?.set ?? inputString), specialOptions: specialOptions, export: export)
 	}
@@ -3587,7 +3659,12 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		case "tsr":
 			return mainCards.separateAll(where: { $0.rarity == .special })
 		case "stx":
-			return []
+			let archives = Swiftfall
+				.getCards(query: "set:sta lang:en", unique: true)
+				.compactMap { $0?.data }
+				.joined()
+				.map(MTGCard.init)
+			return archives
 		default:
 			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
 			guard includeBasicLands else { return [] }
@@ -3750,12 +3827,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		case "vma":
 			return .init(grouping: mainCards.separateAll { (1...9).contains(Int($0.collectorNumber) ?? 0) }, by: \.rarity)
 		case "sta":
-			let archives = Swiftfall
-				.getCards(query: "set:sta lang:en", unique: true)
-				.compactMap { $0?.data }
-				.joined()
-				.map(MTGCard.init)
-			return .init(grouping: archives, by: \.rarity)
+			return .init(grouping: mainCards.separateAll(where: { $0.typeLine?.lowercased().contains("lesson") == true }), by: \.rarity)
 		default:
 			return [:]
 		}
@@ -4129,7 +4201,7 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 	return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens + processed.tokens)
 }
 
-fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard], tokens: [MTGCard], mode: Mode, export: Bool, packCount: Int? = nil, includePromoCard: Bool?, includeLands: Bool?, includeSheet: Bool?, includeSpindown: Bool?, boosterCount: Int?, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], cardlist: Bool) throws -> String {
+fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard], tokens: [MTGCard], mode: Mode, export: Bool, packCount: Int? = nil, includePromoCard: Bool?, includeLands: Bool?, includeSheet: Bool?, includeSpindown: Bool?, boosterCount: Int?, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], cardlist: Bool, seed: Seed? = nil) throws -> String {
 	let boosterCount = boosterCount ?? 6
 	let packCount = packCount ?? 1
 	let prereleasePacks: [String] = try (0 ..< (packCount)).map { _ in
@@ -4155,34 +4227,46 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 				return try cardListOutput(cards: cards)
 			}
 			
-			return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs.map(\.mtgCards), promoCard: promoCard, tokens: [], basicLands: basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: export)
+			return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs.map(\.mtgCards), promoCard: promoCard, tokens: [], basicLands: basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: export, seed: seed)
 		}
 		
 		let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: true)
 		
-		let packs: [CardCollection] = (1...boosterCount).map { _ in generatePack(rarities: processed.rarities,
-																 customSlotRarities: processed.customSlotRarities,
-																 basicLands: processed.basicLandsSlotCards,
-																 tokens: tokens + processed.tokens,
-																 showcaseRarities: processed.showcaseRarities,
-																 borderless: processed.borderlessCards,
-																 extendedArt: processed.extendedArtCards,
-																 meldResults: processed.meldResults,
-																 mode: mode,
-																 includeExtendedArt: includeExtendedArt,
-																 masterpieceCards: processed.masterpieces,
-																 foilPolicy: foilPolicy,
-																 mythicPolicy: mythicPolicy) }
+		let packs: [CardCollection] = (1...boosterCount).map { value in generatePack(
+			rarities: processed.rarities,
+			customSlotRarities: processed.customSlotRarities,
+			basicLands: processed.basicLandsSlotCards,
+			tokens: tokens + processed.tokens,
+			showcaseRarities: processed.showcaseRarities,
+			borderless: processed.borderlessCards,
+			extendedArt: processed.extendedArtCards,
+			meldResults: processed.meldResults,
+			mode: mode,
+			includeExtendedArt: includeExtendedArt,
+			masterpieceCards: processed.masterpieces,
+			foilPolicy: foilPolicy,
+			mythicPolicy: mythicPolicy,
+			seed: value == 1 ? seed : nil
+		)}
 		
 		let promoCard: MTGCard = try {
 			let promos = Swiftfall.getCards(query: "set:p\(setCode) is:prerelease").compactMap { $0?.data }.joined().map(MTGCard.init)
 			let promosRarities: [MTGCard.Rarity: [MTGCard]] = .init(grouping: promos, by: \.rarity)
+			let filtered: [MTGCard.Rarity: [MTGCard]] = promosRarities.mapValues({ cards in
+				guard let seed = seed, seed.packtype == .grnRna else { return cards }
+				return cards.filter { card in
+					return (card.cardFaces?.first?.watermark ?? card.watermark)?.lowercased() == seed.name.lowercased() || seed.matchesExactly(card)
+				}
+			})
 			
 			let promoRarity: MTGCard.Rarity = (1...8).randomElement()! == 8 ? .mythic : .rare
 			
-			if let promo = promosRarities[promoRarity]?.randomElement() ?? promosRarities[.rare]?.randomElement() {
+			if let promo = filtered[promoRarity]?.randomElement() ?? filtered[.rare]?.randomElement() {
 				return promo
-			} else if let card = (processed.rarities[promoRarity] ?? processed.rarities[.rare])?.filter({ $0.promoTypes == nil || $0.promoTypes!.contains("boosterfun") == false }).randomElement() {
+			} else if let card = (processed.rarities[promoRarity] ?? processed.rarities[.rare])?.filter({ $0.promoTypes == nil || $0.promoTypes!.contains("boosterfun") == false }).filter({ card in
+				guard let seed = seed, seed.packtype == .grnRna else { return true }
+				return (card.cardFaces?.first?.watermark ?? card.watermark)?.lowercased() == seed.name.lowercased() || seed.matchesExactly(card)
+			}).randomElement() {
 				let currentPrereleaseSetCode = "khm"
 				if setCode == currentPrereleaseSetCode {
 					var card = card
@@ -4218,7 +4302,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 			return try cardListOutput(cards: cards)
 		}
 		
-		return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs.map(\.mtgCards), promoCard: promoCard, tokens: tokens + processed.tokens, basicLands: processed.basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: false)
+		return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs.map(\.mtgCards), promoCard: promoCard, tokens: tokens + processed.tokens, basicLands: processed.basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: false, seed: seed)
 	}
 	
 	if cardlist && packCount == 1, let first = prereleasePacks.first {

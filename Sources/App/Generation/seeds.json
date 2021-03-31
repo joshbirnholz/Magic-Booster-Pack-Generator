@@ -1,5 +1,6 @@
 {
 	"grn": {
+		"type": "grnRna",
 		"gw": "Selesnya",
 		"rw": "Boros",
 		"bg": "Golgari",
@@ -7,6 +8,7 @@
 		"ub": "Dimir"
 	},
 	"rna": {
+		"type": "grnRna",
 		"wu": "Azorius",
 		"br": "Rakdos",
 		"rg": "Gruul",
@@ -14,6 +16,7 @@
 		"wb": "Orzhov"
 	},
 	"stx": {
+		"type": "singleRareMythic",
 		"rw": "Lorehold",
 		"ur": "Prismari",
 		"gu": "Quandrix",

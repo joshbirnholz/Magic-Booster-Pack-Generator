@@ -47,6 +47,7 @@ public struct MTGCard: Codable, Equatable, Hashable {
 		public var loyalty: String?
 		public var manaCost: String?
 		public var colors: [MTGColor]?
+		public var watermark: String?
 		
 		var imageUris: [String: URL]?
 	}
@@ -129,6 +130,7 @@ public struct MTGCard: Codable, Equatable, Hashable {
 	public var collectorNumber: String
 	public var set: String
 	public var colors: [MTGColor]?
+	public var colorIdentity: [MTGColor]?
 	public var keywords: [String]?
 	
 	public var printedName: String?

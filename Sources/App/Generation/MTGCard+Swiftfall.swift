@@ -26,6 +26,7 @@ extension MTGCard {
 						 loyalty: face.loyalty,
 						 manaCost: face.manaCost,
 						 colors: face.colors?.compactMap(MTGColor.init(rawValue:)),
+						 watermark: face.watermark,
 						 imageUris: face.imageUris)
 		}
 		
@@ -61,6 +62,7 @@ extension MTGCard {
 				  collectorNumber: scryfallCard.collectorNumber,
 				  set: scryfallCard.set,
 				  colors: scryfallCard.colors?.compactMap(MTGColor.init(rawValue:)),
+				  colorIdentity: scryfallCard.colorIdentity?.compactMap(MTGColor.init(rawValue:)),
 				  keywords: scryfallCard.keywords,
 				  printedName: scryfallCard.printedName,
 				  printedText: scryfallCard.printedText,

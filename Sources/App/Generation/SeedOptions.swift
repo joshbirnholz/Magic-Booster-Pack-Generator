@@ -8,10 +8,29 @@
 import Foundation
 import Vapor
 
-struct Seed: Codable, Content {
+public struct Seed: Codable, Content {
+	enum PackType: String, Codable, CaseIterable {
+		case singleRareMythic, grnRna
+	}
+	
 	let set: String
 	let name: String
+	let packtype: PackType
 	let colors: [MTGColor]
+	
+	func contains(_ card: MTGCard) -> Bool {
+		if let watermark = (card.cardFaces?.first?.watermark ?? card.watermark)?.lowercased() {
+			return watermark == self.name.lowercased()
+		}
+		
+		let colors: Set<MTGColor> = Set(card.colorIdentity ?? [])
+		return colors.isSubset(of: self.colors)
+	}
+	
+	func matchesExactly(_ card: MTGCard) -> Bool {		
+		let colors: Set<MTGColor> = Set(card.colorIdentity ?? [])
+		return colors == Set(self.colors)
+	}
 }
 
 final class SeedOptions {
@@ -42,12 +61,15 @@ final class SeedOptions {
 	}()
 	
 	func seedOptions(forSetCode setCode: String) -> [Seed] {
-		guard let list = seeds[setCode.lowercased()] else { return [] }
+		guard var list = seeds[setCode.lowercased()] else { return [] }
+		let typeRawValue = list["type"] ?? Seed.PackType.allCases.first!.rawValue
+		let packType = Seed.PackType(rawValue: typeRawValue) ?? Seed.PackType.allCases.first!
+		list["type"] = nil
 		
 		return list.compactMap { key, value in
 			let colors = key.compactMap { MTGColor(rawValue: $0.uppercased()) }
-			return Seed(set: setCode.lowercased(), name: value, colors: colors)
-		}
+			return Seed(set: setCode.lowercased(), name: value, packtype: packType, colors: colors)
+		}.sorted(on: \.name)
 	}
 	
 	func getAllSeeds(_ req: Request) throws -> EventLoopFuture<[String: [Seed]]> {

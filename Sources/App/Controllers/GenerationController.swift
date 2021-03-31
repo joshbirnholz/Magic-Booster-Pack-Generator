@@ -94,6 +94,12 @@ final class GeneratorController {
 		let includeExtendedArt: Bool = (try? req.query.get(Bool.self, at: "extendedart")) ?? true
 		let count = try? req.query.get(Int.self, at: "count")
 		let specialOptions = (try? req.query.get(String.self, at: "special").components(separatedBy: ",")) ?? []
+		let seed: Seed? = (try? req.query.get(String.self, at: "seed")).flatMap { seed in
+			let components = seed.components(separatedBy: "-")
+			let code = components[0]
+			let name = components[1]
+			return SeedOptions.shared.seedOptions(forSetCode: code).first(where: { $0.name == name })
+		}
 		
 		let includePromo: Bool = (try? req.query.get(Bool.self, at: "promo")) ?? true
 		let includeLands: Bool = (try? req.query.get(Bool.self, at: "lands")) ?? true
@@ -109,7 +115,7 @@ final class GeneratorController {
 		
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
-				let result = try generate(input: .scryfallSetCode, inputString: set, output: .prereleaseKit, export: export, boxCount: count, prereleaseIncludePromoCard: includePromo, prereleaseIncludeLands: includeLands, prereleaseIncludeSheet: includeSheet, prereleaseIncludeSpindown: includeSpindown, prereleaseBoosterCount: boosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: true, includeTokens: true, specialOptions: specialOptions, autofixDecklist: false, cardList: cardlist)
+				let result = try generate(input: .scryfallSetCode, inputString: set, output: .prereleaseKit, export: export, boxCount: count, prereleaseIncludePromoCard: includePromo, prereleaseIncludeLands: includeLands, prereleaseIncludeSheet: includeSheet, prereleaseIncludeSpindown: includeSpindown, prereleaseBoosterCount: boosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: true, includeTokens: true, specialOptions: specialOptions, autofixDecklist: false, cardList: cardlist, seed: seed)
 				promise.succeed(result: result)
 			} catch {
 				promise.fail(error: error)

@@ -31,9 +31,12 @@
 			</small>
 			
 			<hr>
+			<p>
 			<select name="setlist" id="setlist" onchange="updateSeeds()">
 				<option value="">Loading sets…</option>
-			</select>
+			</select><br>
+			<select name="seedlist" id="seedlist"></select>
+			</p>
 			
 			<p><b>Downloads (Tabletop Simulator)</b> <span id="boxprogress"></span></p>
 			
@@ -41,7 +44,8 @@
 			<input type="button" value="Booster Box…" onclick="doDownloadBox(false)"><br>
 				<input type="button" value="Pre-sorted Booster Box…" onclick="doDownloadBox(true)"><br>
 					<input type="button" value="Booster Packs…" onclick="doDownloadPack(document.getElementById('packCount').value)"> (<i>How many? <input type="number" id="packCount" value="1" style="width: 4em">)</i><br>
-						<input type="button" value="Prerelease Packs…" onclick="doDownloadPrereleasePack(document.getElementById('prepackCount').value)"> <select  name="seedlist" id="seedlist">
+						<select name="seedlistall" id="seedlistall" hidden="hidden">
+						<input type="button" value="Prerelease Packs…" onclick="doDownloadPrereleasePack(document.getElementById('prepackCount').value)">
 							<option value="">Loading seeds…</option>
 			   </select> (<i>How many? <input type="number" id="prepackCount" value="1" style="width: 4em">)</i>
 							

@@ -3658,7 +3658,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			return basicLands.filter { $0.isFullArt }
 		case "khm":
 			guard includeBasicLands else { return [] }
-			let snowLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Snow") == true && ($0.typeLine ?? "").contains("Land") == true }
+			let snowLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Snow") == true && ($0.typeLine ?? "").contains("Land") == true && !($0.colorIdentity ?? []).isEmpty }
 			return snowLands
 		case "mir", "vis", "5ed", "por", "wth", "tmp", "sth", "exo", "p02", "usg", "ulg", "6ed", "ptk", "uds", "mmq", "nem", "pcy", "inv", "pls", "7ed", "csp", "dis", "gpt", "rav", "9ed", "lrw", "mor", "shm", "eve", "apc", "ody", "tor", "jud", "ons", "lgn", "scg", "mrd", "dst", "5dn", "chk", "bok", "sok", "plc", "2xm":
 			return []

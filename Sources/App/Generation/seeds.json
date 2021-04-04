@@ -16,7 +16,7 @@
 		"wb": "Orzhov"
 	},
 	"stx": {
-		"type": "singleRareMythic",
+		"type": "stx",
 		"rw": "Lorehold",
 		"ur": "Prismari",
 		"gu": "Quandrix",

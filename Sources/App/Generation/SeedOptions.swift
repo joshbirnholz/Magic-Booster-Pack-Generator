@@ -10,7 +10,7 @@ import Vapor
 
 public struct Seed: Codable, Content {
 	enum PackType: String, Codable, CaseIterable {
-		case singleRareMythic, grnRna
+		case stx, grnRna, altStx
 	}
 	
 	let set: String

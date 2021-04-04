@@ -90,7 +90,7 @@ function doDownloadBoxList() {
 	
 	$("#boxprogress").html("Working…");
 	
-	var url = "box" + "/" + setCode + "?cardlist=true";
+	var url = "box" + "/" + setCode + "?outputformat=cardlist";
 	
 	$.ajax({
 		url: url,
@@ -135,7 +135,7 @@ function doDownloadCustomNumPacksList(packCount) {
 	
 	$("#boxprogress").html("Working…");
 	
-	var url = "box" + "/" + setCode + "?cardlist=true&boosters=" + packCount;
+	var url = "box" + "/" + setCode + "?outputformat=cardlist&boosters=" + packCount;
 	
 	$.ajax({
 		url: url,
@@ -275,7 +275,7 @@ function doDownloadPrereleasePackList() {
 	
 	$("#boxprogress").html("Working…");
 	
-	var url = "pre/" + setCode + "?cardlist=true&extendedart=false";
+	var url = "pre/" + setCode + "?outputformat=cardlist&extendedart=false";
 	
 	var seed = $("#seedlist").val();
 	if (seed !== null) {
@@ -454,6 +454,76 @@ function loadCustomCards() {
 				var data = document.createElement("td");
 				var num = i+1;
 				data.innerHTML = "<center><div><a href='" + element.imageURL + "'><img src='" + element.imageURL + "' height=264 width=189 style='border-radius:10px;'></a></div><p>" + element.name + "<br>#" + num + "</p><br></center>";
+				
+				row.appendChild(data);
+				dataCount += 1;
+				if (dataCount >= rowCount) {
+					table.appendChild(row);
+					row = document.createElement("tr");
+					table.appendChild(row);
+					dataCount = 0;
+				}
+			}
+			
+			while (dataCount < rowCount) {
+				var data = document.createElement("td");
+				row.appendChild(data);
+				dataCount += 1;
+			}
+		},
+		error: function(xhr, status, error) {
+			console.log("error");
+			console.log(xhr);
+			console.log(status);
+			console.log(error);
+			
+			alert(error);
+		}
+	})
+}
+
+function loadSetTest(setCode, seed) {
+	var url = "pack/" + setCode + "?outputformat=json";
+	
+	if (seed !== null && seed !== undefined) {
+		url += "&seed=" + seed;
+	}
+	
+	$.ajax({
+		url: url,
+		data: null,
+		cache: false,
+		contentType: false,
+		processData: false,
+		method: "POST",
+		success: function(response) {
+			console.log("success");
+			
+			var booster = JSON.parse(response);
+			console.log(booster);
+			
+			var table = document.getElementById("cardtable");
+			
+			var dataCount = 0;
+			var rowCount = 5;
+			var row = document.createElement("tr");
+			table.appendChild(row);
+			
+			for(var i=0; i <= booster.length; i++) {
+				var element = booster[i];
+				
+				var data = document.createElement("td");
+				var num = i+1;
+				
+				var html = "<div class='container'><a href='" + element.scryfallURI + "'><img src='" + element.imageURL + "' height=264 width=189 style='border-radius:10px;' class='image'>";
+				
+				if (element.foil) {
+					html += "<div class='overlay'><img src='HQ-foiling-card.png' class='image'></div>";
+				}
+				
+				html += "</a></div>";
+				
+				data.innerHTML = html;
 				
 				row.appendChild(data);
 				dataCount += 1;

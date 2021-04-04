@@ -3781,9 +3781,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		break
 	}
 	
-	if setCode == "iko" {
-		mainCards.removeAll(where: { $0.name == "Zilortha, Strength Incarnate" })
-	} else if setCode?.lowercased() != "2xm" {
+	if setCode?.lowercased() != "2xm" {
 		mainCards = mainCards.map { card in
 			if (card.frameEffects?.contains("showcase") == true || card.borderColor == .borderless) {
 				var card = card
@@ -3793,11 +3791,15 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				return card
 			}
 		}
+	}
+	
+	if setCode == "iko" {
+		mainCards.removeAll(where: { $0.name == "Zilortha, Strength Incarnate" })
 	} else if setCode?.lowercased() == "khm" {
 		mainCards = mainCards.map { card in
 			var card = card
-			if card.typeLine?.contains("Basic") == true {
-				card.isFoundInBoosters = card.typeLine?.contains("Snow") == true
+			if card.typeLine?.lowercased().contains("basic") == true {
+				card.isFoundInBoosters = card.typeLine?.lowercased().contains("snow") == true
 			}
 			return card
 		}

@@ -208,7 +208,7 @@ enum MythicPolicy {
 
 extension Dictionary where Key == MTGCard.Rarity, Value == [MTGCard] {
 	func filtered(for seed: Seed?) -> [MTGCard.Rarity: [MTGCard]] {
-		guard let seed = seed, seed.packtype == .grnRna || seed.packtype == .altStx else { return self }
+		guard let seed = seed else { return self }
 		
 		return mapValues { cards in
 			return cards.filter { seed.contains($0) }
@@ -223,7 +223,7 @@ extension Dictionary where Key == MTGCard.Rarity, Value == [MTGCard] {
 
 extension Array where Element == MTGCard {
 	func filtered(for seed: Seed?) -> [MTGCard] {
-		guard let seed = seed, seed.packtype == .grnRna || seed.packtype == .altStx else { return self }
+		guard let seed = seed else { return self }
 		
 		return filter { seed.contains($0) }
 	}
@@ -441,7 +441,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		return (5...10).contains(futureCount)
 	}
 	var colorsOkay: Bool {
-		if let seed = seed, seed.packtype == .grnRna || seed.packtype == .altStx {
+		if let seed = seed {
 			return allColorsCount != seed.colors.count
 		} else {
 			return allColorsCount == 5
@@ -520,6 +520,8 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		let lands: ArraySlice<MTGCard> = {
 			if let seed = seed, seed.packtype == .grnRna, let guildgates = rarities[.common]?.filter({ $0.name == "\(seed.name) Guildgate" }) {
 				return guildgates.choose(landCount)
+			} else if let seed = seed, seed.packtype == .stx, let campuses = rarities[.common]?.filter({ $0.name == "\(seed.name) Campus" }) {
+				return campuses.choose(landCount)
 			}
 			
 			var lands = landRarities?[landRarity] ?? basicLands
@@ -529,10 +531,6 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			return lands.choose(landCount)
 		}()
 		pack.insert(contentsOf: lands, at: 0)
-		
-		if let seed = seed, seed.packtype == .altStx, let campuses = rarities[.common]?.filter({ $0.name == "\(seed.name) Campus" }) {
-			pack.insert(contentsOf: campuses.choose(1), at: 0)
-		}
 		
 		if shouldIncludeTimeshiftedFoil, let card = basicLands.randomElement() {
 			pack.insert(card, at: 0, isFoil: true)
@@ -738,8 +736,8 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		
 		if let seed = seed, seed.packtype == .grnRna, let locket = rarities[.common]?.first(where: { $0.name == "\(seed.name) Locket" }) {
 			pack.insert(locket, at: 0)
-		} else if let seed = seed, seed.packtype == .altStx, let letter = rarities[.common]?.first(where: { $0.name == "Letter of Acceptance" }) {
-			pack.insert(letter, at: 0)
+		} else if let seed = seed, seed.packtype == .stx, let pledgemage = rarities[.common]?.first(where: { $0.name == "\(seed.name) Pledgemage" }) {
+			pack.insert(pledgemage, at: 0)
 		}
 		
 		let commonCount: Int = {
@@ -4312,7 +4310,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 			let promos = Swiftfall.getCards(query: "set:p\(setCode) is:prerelease").compactMap { $0?.data }.joined().map(MTGCard.init)
 			let promosRarities: [MTGCard.Rarity: [MTGCard]] = .init(grouping: promos, by: \.rarity)
 			let filtered: [MTGCard.Rarity: [MTGCard]] = promosRarities.mapValues({ cards in
-				guard let seed = seed, seed.packtype == .grnRna || seed.packtype == .altStx else { return cards }
+				guard let seed = seed, seed.packtype == .grnRna else { return cards }
 				return cards.filter { card in
 					return (card.cardFaces?.first?.watermark ?? card.watermark)?.lowercased() == seed.name.lowercased() || seed.matchesExactly(card)
 				}
@@ -4323,10 +4321,10 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 			if let promo = filtered[promoRarity]?.randomElement() ?? filtered[.rare]?.randomElement() {
 				return promo
 			} else if let card = (processed.rarities[promoRarity] ?? processed.rarities[.rare])?.filter({ $0.promoTypes == nil || $0.promoTypes!.contains("boosterfun") == false }).filter({ card in
-				guard let seed = seed, seed.packtype == .grnRna || seed.packtype == .altStx else { return true }
+				guard let seed = seed, seed.packtype == .grnRna else { return true }
 				return (card.cardFaces?.first?.watermark ?? card.watermark)?.lowercased() == seed.name.lowercased() || seed.matchesExactly(card)
 			}).randomElement() {
-				let currentPrereleaseSetCode = "khm"
+				let currentPrereleaseSetCode = "stx"
 				if setCode == currentPrereleaseSetCode {
 					var card = card
 					let imageURL = URL(string: "http://josh.birnholz.com/tts/cards/\(currentPrereleaseSetCode)/\(card.collectorNumber).jpg")!

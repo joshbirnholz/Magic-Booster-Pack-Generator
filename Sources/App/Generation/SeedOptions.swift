@@ -10,7 +10,7 @@ import Vapor
 
 public struct Seed: Codable, Content {
 	enum PackType: String, Codable, CaseIterable {
-		case stx, grnRna, altStx
+		case stx, grnRna
 	}
 	
 	let set: String
@@ -24,6 +24,7 @@ public struct Seed: Codable, Content {
 		}
 		
 		let colors: Set<MTGColor> = Set(card.colorIdentity ?? [])
+		guard !colors.isEmpty else { return false }
 		return colors.isSubset(of: self.colors)
 	}
 	

@@ -440,12 +440,15 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		}
 		return (5...10).contains(futureCount)
 	}
-	var colorsOkay: Bool {
+	var correctColorCount: Int {
 		if let seed = seed {
-			return allColorsCount != seed.colors.count
+			return seed.colors.count
 		} else {
-			return allColorsCount == 5
+			return 5
 		}
+	}
+	var colorsOkay: Bool {
+		return allColorsCount == correctColorCount
 	}
 	
 	let landRarity: MTGCard.Rarity = {
@@ -646,8 +649,24 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		}()
 		
 		// TODO: Check actual distribution of lessons in the lesson slot. Does each lesson card appear as frequently as the others, or does the rarity matter?
-		if mode == .strixhaven, let lesson = customSlotRarities.values.joined().randomElement() {
-			pack.insert(lesson, at: 0, isFoil: false)
+		if mode == .strixhaven {
+			if let seed = seed, seed.packtype == .stx {
+				let mascotName: String? = {
+					switch Set(seed.colors) {
+					case [.blue, .red]: return "Elemental"
+					case [.green, .blue]: return "Fractal"
+					case [.white, .black]: return "Inkling"
+					case [.black, .green]: return "Pest"
+					case [.red, .white]: return "Spirit"
+					default: return nil
+					}
+				}()
+				if let name = mascotName, let mascot = customSlotRarities.values.joined().first(where: { $0.name == "\(name) Summoning" }) {
+					pack.insert(mascot, at: 0)
+				}
+			} else if let lesson = customSlotRarities.values.joined().randomElement() {
+				pack.insert(lesson, at: 0, isFoil: false)
+			}
 		}
 		
 		let uncommonCount: Int = {

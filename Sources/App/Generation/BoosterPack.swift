@@ -4964,12 +4964,6 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		tokens.append(customSnakeToken)
 	}
 	
-	if cards.contains(where: { $0.name == "Shadrix Silverquill" && $0.allParts?.isEmpty != true }) {
-		// Custom token until official is spoiled. Delete this when the final token is on Scryfall
-		let customInkling = MTGCard(power: "2", toughness: "1", oracleText: "Flying", name: "Inkling", convertedManaCost: 0, layout: "token", frame: "2015", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: .black, isFullArt: false, allParts: [MTGCard.RelatedCard(scryfallID: UUID(uuidString: "ab701909-83d6-4d39-9a84-e6a9b2cb38d6"), component: .token, name: "Shadrix Silverquill", typeLine: "Legendary Creature — Elder Dragon", url: URL(string: "https://scryfall.com/card/stx/230/shadrix-silverquill"))], collectorNumber: "0", set: "TSTX", colors: [.black, .white], keywords: ["Flying"], artist: "WOTC", watermark: "Silverquill", rarity: .common, scryfallCardBackID: UUID(uuidString: "0AEEBAF5-8C7D-4636-9E82-8C27447861F7")!, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, promoTypes: nil, language: .english, releaseDate: nil, imageUris: ["normal": URL(string: "https://i.imgur.com/vh9m4VQ.png")!])
-		tokens.append(customInkling)
-	}
-	
 	if cards.contains(where: { $0.oracleText?.lowercased().contains("the monarch") == true }) {
 		let monarchToken = try Swiftfall.getCard(id: "bf7f3fc9-35f1-4b8c-b02b-494c71f31107")
 		tokens.append(MTGCard(monarchToken))

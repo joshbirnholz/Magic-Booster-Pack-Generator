@@ -41,6 +41,8 @@ public func routes(_ router: Router) throws {
 	router.get("customcards", use: CustomCards.shared.getCustomCards)
 	router.get("seeds", use: SeedOptions.shared.getAllSeeds)
 	
+	router.get("decks", use: MyDecks.shared.getDecks(_:))
+	
 	// Scryfall
 	
 	let scryfallController = ScryfallBridgeController()

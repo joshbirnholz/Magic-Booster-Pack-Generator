@@ -552,6 +552,72 @@ function loadSetTest(setCode, seed) {
 	})
 }
 
+function loadDecks() {
+	var url = "decks";
+	
+	$.ajax({
+		url: url,
+		data: null,
+		cache: false,
+		contentType: false,
+		processData: false,
+		method: "GET",
+		success: function(response) {
+			console.log("success");
+			
+			var booster = response;
+			console.log(booster);
+			
+			var table = document.getElementById("cardtable");
+			
+			var dataCount = 0;
+			var rowCount = 2;
+			var row = document.createElement("tr");
+			table.appendChild(row);
+			
+			for(var i=0; i <= booster.length; i++) {
+				var element = booster[i];
+				
+				var data = document.createElement("td");
+				var num = i+1;
+				
+				var html = "<div class='container'><a href='" + element.url + "'><img src='" + element.front + "' height=264 width=189 style='border-radius:10px;' class='image'>";
+//
+//				if (element.foil) {
+//					html += "<div class='overlay'><img src='HQ-foiling-card.png' class='image'></div>";
+//				}
+				
+				html += "</a></div>";
+				
+				data.innerHTML = html;
+				
+				row.appendChild(data);
+				dataCount += 1;
+				if (dataCount >= rowCount) {
+					table.appendChild(row);
+					row = document.createElement("tr");
+					table.appendChild(row);
+					dataCount = 0;
+				}
+			}
+			
+			while (dataCount < rowCount) {
+				var data = document.createElement("td");
+				row.appendChild(data);
+				dataCount += 1;
+			}
+		},
+		error: function(xhr, status, error) {
+			console.log("error");
+			console.log(xhr);
+			console.log(status);
+			console.log(error);
+			
+			alert(error);
+		}
+	})
+}
+
 function addCustomCard(number) {
 	var box = document.getElementById('customoverrides');
 	

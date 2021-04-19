@@ -540,7 +540,6 @@ final class GeneratorController {
 	}
 	
 	func deckstatsDeck(_ req: Request) throws -> Future<String> {
-		// https://deckstats.net/api.php?action=get_deck&id_type=saved&owner_id=149419&id=1676048&response_type=list
 		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
 		let autofix: Bool = (try? req.query.get(Bool.self, at: "autofix")) ?? true
 		let cardBack: URL? = (try? req.query.get(String.self, at: "back")).flatMap(URL.init(string:))

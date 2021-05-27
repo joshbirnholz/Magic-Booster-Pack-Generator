@@ -267,6 +267,10 @@
 		{
 			"name": "Vorinclex, Monstrous Raider",
 			"imageURL": "http://josh.birnholz.com/tts/cards/custom/vorinclex.jpg"
+		},
+		{
+			"name": "Enlightened Tutor",
+			"imageURL": "http://josh.birnholz.com/tts/cards/custom/STA%20Enlightened%20Tutor.jpg"
 		}
 	]
 }

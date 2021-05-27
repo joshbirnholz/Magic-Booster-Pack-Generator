@@ -568,6 +568,15 @@ function loadDecks() {
 			var booster = response;
 			console.log(booster);
 			
+			const linkID = getParameterByName("id");
+			if (linkID !== null) {
+				const found = booster.find(element => element.id == linkID);
+				if (found !== undefined) {
+					window.location.replace(found.url + "#show__stats");
+					return;
+				}
+			}
+			
 			var table = document.getElementById("cardtable");
 			
 			var dataCount = 0;
@@ -581,7 +590,7 @@ function loadDecks() {
 				var data = document.createElement("td");
 				var num = i+1;
 				
-				var html = "<div class='container'><a href='" + element.url + "'><img src='" + element.front + "' height=264 width=189 style='border-radius:10px;' class='image'>";
+				var html = "<div class='container'><a href='" + element.url + "#show__stats'><img src='" + element.front + "' height=264 width=189 style='border-radius:10px;' class='image'>";
 //
 //				if (element.foil) {
 //					html += "<div class='overlay'><img src='HQ-foiling-card.png' class='image'></div>";
@@ -761,4 +770,13 @@ function downloadOutput(obj) {
 	} else {
 		return JSON.stringify(obj, null, 1);
 	}
+}
+
+function getParameterByName(name, url = window.location.href) {
+	name = name.replace(/[\[\]]/g, '\\$&');
+	var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }

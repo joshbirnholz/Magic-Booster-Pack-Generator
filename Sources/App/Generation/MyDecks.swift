@@ -13,6 +13,7 @@ struct MyDeck: Codable, Content {
 	let url: URL
 	let front: URL
 	let back: URL?
+	let id: String
 }
 
 final class MyDecks {

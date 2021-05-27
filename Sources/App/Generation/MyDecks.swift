@@ -13,7 +13,7 @@ struct MyDeck: Codable, Content {
 	let url: URL
 	let front: URL
 	let back: URL?
-	let id: String
+	let ids: [String]
 }
 
 final class MyDecks {

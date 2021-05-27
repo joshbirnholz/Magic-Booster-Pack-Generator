@@ -571,7 +571,7 @@ function loadDecks() {
 			
 			const linkID = getParameterByName("id");
 			if (linkID !== null) {
-				const found = booster.find(element => element.id == linkID);
+				const found = booster.find(element => element.ids.includes(linkID));
 				if (found !== undefined) {
 					window.location.replace(found.url + urlSuffix);
 					return;

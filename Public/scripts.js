@@ -567,12 +567,13 @@ function loadDecks() {
 			
 			var booster = response;
 			console.log(booster);
+			const urlSuffix = "#show__spoiler";
 			
 			const linkID = getParameterByName("id");
 			if (linkID !== null) {
 				const found = booster.find(element => element.id == linkID);
 				if (found !== undefined) {
-					window.location.replace(found.url + "#show__spoiler");
+					window.location.replace(found.url + urlSuffix);
 					return;
 				}
 			}
@@ -590,7 +591,7 @@ function loadDecks() {
 				var data = document.createElement("td");
 				var num = i+1;
 				
-				var html = "<div class='container'><a href='" + element.url + "#show__spoiler'><img src='" + element.front + "' height=264 width=189 style='border-radius:10px;' class='image'>";
+				var html = "<div class='container'><a href='" + element.url + urlSuffix + "'><img src='" + element.front + "' height=264 width=189 style='border-radius:10px;' class='image'>";
 //
 //				if (element.foil) {
 //					html += "<div class='overlay'><img src='HQ-foiling-card.png' class='image'></div>";

@@ -621,6 +621,13 @@ function loadDecks() {
 				html += "border-radius:10px;max-width:189px;max-height:264px' class='image'>";
 				
 				if (element.back !== undefined) {
+					if (dataCount > 0) {
+						table.appendChild(row);
+						row = document.createElement("tr");
+						table.appendChild(row);
+						dataCount = 0;
+					}
+					
 					data.colSpan = 2;
 					dataCount += 1;
 					data.style.padding = "8px";
@@ -631,9 +638,9 @@ function loadDecks() {
 					html += "</a></div>";
 					
 					if (element.type == "partners") {
-						html += "<div style='text-align:center;font-style: italic;'>Partners</div>";
+						html += "<div style='text-align:center;font-style:italic;'>Partners</div>";
 					} else if (element.type == "dfc") {
-						html += "<div style='width:50%; display:inline-block;text-align:center;font-style: italic;'>Front</div><div style='width:50%; display:inline-block;text-align:center;font-style: italic;'>Back</div>";
+						html += "<div style='width:50%; display:inline-block;text-align:center;font-style: italic;'>Front</div><div style='width:50%; display:inline-block;text-align:center;font-style:italic;'>Back</div>";
 					}
 				} else {
 					html += "</a></div>";

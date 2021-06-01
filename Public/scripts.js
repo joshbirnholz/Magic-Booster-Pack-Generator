@@ -612,7 +612,13 @@ function loadDecks() {
 				
 				var html = "<div class='container'><a style='text-decoration: none;' href='" + location + "'>";
 				
-				html += "<img src='" + element.front + "' height=264 width=189 style='border-radius:10px;' class='image'>";
+				html += "<img src='" + element.front + "' style='";
+				
+				if (element.back !== undefined) {
+					html += "width:49%;";
+				}
+				
+				html += "border-radius:10px;max-width:189px;max-height:264px' class='image'>";
 				
 				if (element.back !== undefined) {
 					data.colSpan = 2;
@@ -621,7 +627,7 @@ function loadDecks() {
 					data.style.borderRadius = "10px";
 					data.style.backgroundColor = "lightGray";
 					data.style.border = "2px solid #BBBBBB";
-					html += " <img src='" + element.back + "' height=264 width=189 style='border-radius:10px' class='image'>";
+					html += " <img src='" + element.back + "' style='width:49%;border-radius:10px;max-width:189px;max-height:264px' class='image'>";
 					html += "</a></div>";
 					
 					if (element.type == "partners") {

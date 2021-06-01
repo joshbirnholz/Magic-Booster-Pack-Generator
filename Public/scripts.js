@@ -552,6 +552,18 @@ function loadSetTest(setCode, seed) {
 	})
 }
 
+function locationForDeck(deck) {
+	var location = deck.url;
+	
+	if (deck.revision !== null && deck.revision !== undefined) {
+		location += "?revision=" + deck.revision;
+	}
+	
+	location += "#show__spoiler";
+	
+	return location;
+}
+
 function loadDecks() {
 	var url = "decks";
 	
@@ -572,8 +584,10 @@ function loadDecks() {
 			const linkID = getParameterByName("id");
 			if (linkID !== null) {
 				const found = booster.find(element => element.ids.includes(linkID));
+				const location = locationForDeck(found);
+				
 				if (found !== undefined) {
-					window.location.replace(found.url + urlSuffix);
+					window.location.replace(location);
 					return;
 				}
 			}
@@ -581,29 +595,50 @@ function loadDecks() {
 			var table = document.getElementById("cardtable");
 			
 			var dataCount = 0;
-			var rowCount = 2;
+			var colCount = 2;
 			var row = document.createElement("tr");
 			table.appendChild(row);
+			table.style.borderSpacing = "10px";
 			
-			for(var i=0; i <= booster.length; i++) {
-				var element = booster[i];
+			var decks = booster.filter(deck => deck.type === undefined);
+			var duals = booster.filter(deck => deck.type !== undefined);
+			decks.push(...duals);
+			
+			for(var i=0; i < decks.length; i++) {
+				var element = decks[i];
 				
 				var data = document.createElement("td");
-				var num = i+1;
+				var location = locationForDeck(element);
 				
-				var html = "<div class='container'><a href='" + element.url + urlSuffix + "'><img src='" + element.front + "' height=264 width=189 style='border-radius:10px;' class='image'>";
-//
-//				if (element.foil) {
-//					html += "<div class='overlay'><img src='HQ-foiling-card.png' class='image'></div>";
-//				}
+				var html = "<div class='container'><a style='text-decoration: none;' href='" + location + "'>";
 				
-				html += "</a></div>";
+				html += "<img src='" + element.front + "' height=264 width=189 style='border-radius:10px;' class='image'>";
+				
+				if (element.back !== undefined) {
+					data.colSpan = 2;
+					dataCount += 1;
+					data.style.padding = "8px";
+					data.style.borderRadius = "10px";
+					data.style.backgroundColor = "lightGray";
+					data.style.border = "2px solid #BBBBBB";
+					html += " <img src='" + element.back + "' height=264 width=189 style='border-radius:10px' class='image'>";
+					html += "</a></div>";
+					
+					if (element.type == "partners") {
+						html += "<div style='text-align:center;font-style: italic;'>Partners</div>";
+					} else if (element.type == "dfc") {
+						html += "<div style='width:50%; display:inline-block;text-align:center;font-style: italic;'>Front</div><div style='width:50%; display:inline-block;text-align:center;font-style: italic;'>Back</div>";
+					}
+				} else {
+					html += "</a></div>";
+				}
 				
 				data.innerHTML = html;
 				
 				row.appendChild(data);
 				dataCount += 1;
-				if (dataCount >= rowCount) {
+				
+				if (dataCount >= colCount) {
 					table.appendChild(row);
 					row = document.createElement("tr");
 					table.appendChild(row);
@@ -611,7 +646,7 @@ function loadDecks() {
 				}
 			}
 			
-			while (dataCount < rowCount) {
+			while (dataCount < colCount) {
 				var data = document.createElement("td");
 				row.appendChild(data);
 				dataCount += 1;

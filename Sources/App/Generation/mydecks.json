@@ -2,109 +2,133 @@
   {
     "url": "https://deckstats.net/decks/149419/1889023-aesi-tyrant-of-gyre-strait",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/d/6/d607b003-6b48-429c-a7fd-45b8dd1bb4f9.jpg?1610072986",
-	"ids": ["1"]
+	"ids": ["1"],
+	"ci": "GU"
   },
   {
     "url": "https://deckstats.net/decks/149419/1889069-akiri-fearless-voyager",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/2/52ec2a93-0708-498e-86f2-6f70d51ae4cd.jpg?1607365068",
-	"ids": ["2"]
+	"ids": ["2"],
+	"ci": "RW"
   },
   {
     "url": "https://deckstats.net/decks/149419/1854884-akroma-sakashima",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/c/0/c0bdd07d-9fb9-4ee4-80db-494ee0cba58d.jpg?1608908641",
     "back": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/1/714c3a1f-7b30-4ed8-8f38-6176758741fb.jpg?1608909400",
-	"ids": ["3", "21"]
+	"ids": ["3", "21"],
+	"type": "partners",
+	"ci": "WU"
   },
   {
     "url": "https://deckstats.net/decks/149419/1971009-anowon-the-ruin-thief",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/c/bca84fc4-4710-44c8-b90a-73ef888714d8.jpg?1615171221",
-	"ids": ["4"]
+	"ids": ["4"],
+	"ci": "UB"
   },
   {
     "url": "https://deckstats.net/decks/149419/1960862-crosis-discard",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/3/4/349e598a-aa12-44b7-b9de-067c9b85fcec.jpg?1562905628",
-	"ids": ["5"]
+	"ids": ["5"],
+	"ci": "UBR"
   },
   {
     "url": "https://deckstats.net/decks/149419/1916347-the-prismatic-bridge",
-    "front": "https://c1.scryfall.com/file/scryfall-cards/large/back/f/6/f6cd7465-9dd0-473c-ac5e-dd9e2f22f5f6.jpg?1610295185",
-    "back": "https://c1.scryfall.com/file/scryfall-cards/large/front/f/6/f6cd7465-9dd0-473c-ac5e-dd9e2f22f5f6.jpg?1610295185",
-	"ids": ["6"]
+    "back": "https://c1.scryfall.com/file/scryfall-cards/large/back/f/6/f6cd7465-9dd0-473c-ac5e-dd9e2f22f5f6.jpg?1610295185",
+    "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/f/6/f6cd7465-9dd0-473c-ac5e-dd9e2f22f5f6.jpg?1610295185",
+	"ids": ["6"],
+	"type": "dfc",
+	"ci": "WUBRG"
   },
   {
     "url": "https://deckstats.net/decks/149419/1744536-gavi-nest-warden",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/0/80bc07d5-bdbb-4a6d-8958-0c172ea80245.jpg?1591234237",
-	"ids": ["7"]
+	"ids": ["7"],
+	"ci": "URW"
   },
   {
     "url": "https://deckstats.net/decks/149419/1876924-ghen-arcanum-weaver",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/4/b/4b335496-05d2-40f5-a52c-10029f7fa008.jpg?1608911100",
-	"ids": ["8"]
+	"ids": ["8"],
+	"ci": "RWB"
   },
   {
     "url": "https://deckstats.net/decks/149419/1740765-gishath-sun-s-avatar",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/3/7335e500-342d-476d-975c-817512e6e3d6.jpg?1562558022",
-	"ids": ["9"]
+	"ids": ["9"],
+	"ci": "RGW"
   },
   {
     "url": "https://deckstats.net/decks/149419/1901722-lathril-blade-of-the-elves",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/4/547888c3-a9a6-4413-b29a-6bcd8a9279bf.jpg?1611972929",
-	"ids": ["10"]
+	"ids": ["10"],
+	"ci": "BG"
   },
   {
     "url": "https://deckstats.net/decks/149419/1909081-magda-brazen-outlaw",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/a/b/ab551f0e-7a9c-4c99-b199-042ab018dd9a.jpg?1615604831",
-	"ids": ["11"]
+	"ids": ["11"],
+	"ci": "R"
   },
   {
     "url": "https://deckstats.net/decks/149419/1891916-obuun-mul-daya-ancestor",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/3/8319b155-0fba-4d30-9481-bf01afbd3457.jpg?1617522154",
-	"ids": ["12"]
+	"ids": ["12"],
+	"ci": "RGW"
   },
   {
     "url": "https://deckstats.net/decks/149419/2043629-osgir-the-reconstructor",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/8/5815fe6e-e26b-4918-a090-55d6442722c1.jpg?1616838760",
-	"ids": ["0"]
+	"ids": ["0"],
+	"ci": "RW"
   },
   {
     "url": "https://deckstats.net/decks/149419/1901692-ranar-the-ever-watchful",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/1/c/1c8c41dd-8551-4ce8-a9be-9b9f65718852.jpg?1611972933",
-	"ids": ["14"]
+	"ids": ["14"],
+	"ci": "WU"
   },
   {
     "url": "https://deckstats.net/decks/149419/2002806-rootha-mercurial-artist",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/a/c/acb8f24d-8d1d-48aa-a534-238e969a474c.jpg?1617452503",
-	"ids": ["13"]
+	"ids": ["13"],
+	"ci": "UR"
   },
   {
     "url": "https://deckstats.net/decks/149419/1691052-sen-triplets",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/6/9/6917eb5b-a00c-4268-bc66-795fab2d227f.jpg?1583453957",
-	"ids": ["15"]
+	"ids": ["15"],
+	"ci": "WUB"
   },
   {
     "url": "https://deckstats.net/decks/149419/1994671-shadrix-silverquill",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/a/b/ab701909-83d6-4d39-9a84-e6a9b2cb38d6.jpg?1616704070",
-	"ids": ["16"]
+	"ids": ["16"],
+	"ci": "WB"
   },
   {
     "url": "https://deckstats.net/decks/149419/1841034-thalisse-reverent-medium",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/e/4/e4899773-c501-45e5-bf1f-8d818788d61f.jpg?1610077290",
-	"ids": ["17"]
+	"ids": ["17"],
+	"ci": "WB"
   },
   {
 	"url": "https://deckstats.net/decks/149419/2027459-tymna-ikra-shidiqi",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/c/bc7cbe9b-324e-42b8-94e2-36e91cb32163.jpg?1606762188",
 	"back": "https://c1.scryfall.com/file/scryfall-cards/large/front/4/6/460165df-32db-4773-805e-edd6f18af5d6.jpg?1562397914",
-	"ids": ["18", "22"]
+	"ids": ["18", "22"],
+	"type": "partners",
+	"ci": "WBG"
   },
   {
     "url": "https://deckstats.net/decks/149419/1936713-tribal-tribal",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/e/a/ea949741-af94-47ae-a577-2953c69ab71d.jpg?1582068686",
-	"ids": ["19"]
+	"ids": ["19"],
+	"ci": "WUBRG"
   },
   {
     "url": "https://deckstats.net/decks/149419/1984546-vorel-of-the-hull-clade",
     "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/4/7/47edde50-81c8-4fe0-ae13-9a10171361bc.jpg?1562273842",
-	"ids": ["20"]
+	"ids": ["20"],
+	"ci": "GU"
   }
 ]

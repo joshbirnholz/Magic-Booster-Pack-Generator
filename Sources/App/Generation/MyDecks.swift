@@ -9,11 +9,19 @@ import Foundation
 import Vapor
 
 struct MyDeck: Codable, Content {
+	enum DualType: String, Codable, Content {
+		case dfc, partners
+	}
+	
 	let name: String?
 	let url: URL
 	let front: URL
 	let back: URL?
 	let ids: [String]
+	let revision: Int?
+	let type: DualType?
+	let ci: String
+	let theme: String?
 }
 
 final class MyDecks {

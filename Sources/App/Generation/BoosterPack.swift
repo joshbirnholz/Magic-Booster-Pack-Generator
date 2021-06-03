@@ -164,6 +164,7 @@ enum Mode {
 	case originalShowcase
 	case timeSpiralRemastered
 	case strixhaven
+	case mh2
 }
 
 extension MTGCard {
@@ -384,8 +385,9 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		}
 	}
 	
+	// used for STX mystical archive and MH2 new-to-modern reprint
 	var includedStrixhavenArchiveRarity: MTGCard.Rarity? {
-		guard mode == .strixhaven else { return nil }
+		guard mode == .strixhaven || mode == .mh2 else { return nil }
 		
 		let value = (1...1000).randomElement()!
 		switch value {
@@ -452,7 +454,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 	}
 	
 	let landRarity: MTGCard.Rarity = {
-		if mode == .strixhaven {
+		if mode == .strixhaven || mode == .mh2 {
 			return includedStrixhavenArchiveRarity ?? .common
 		}
 		
@@ -603,7 +605,14 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 				return
 			}
 			
-			if shouldIncludeShowcaseRareOrMythic, let card = [showcaseRarities[.rare], showcaseRarities[.mythic]].compactMap({ $0 }).joined().randomElement() {
+			var showcareRareOrMythic: MTGCard? {
+				let allShowcaseRaresAndMythics = [showcaseRarities[.rare], showcaseRarities[.mythic]].compactMap({ $0 }).joined()
+				let availableShowcaseRareAndMythicNames = Set(allShowcaseRaresAndMythics.compactMap { $0.name })
+				guard let chosenName = availableShowcaseRareAndMythicNames.randomElement() else { return nil }
+				return allShowcaseRaresAndMythics.filter { $0.name == chosenName }.randomElement()
+			}
+			
+			if shouldIncludeShowcaseRareOrMythic, let card = showcareRareOrMythic {
 				pack.insert(card, at: 0)
 				
 				print("Including showcase \(card.rarity.rawValue): \(card.name ?? "")")
@@ -645,7 +654,12 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		
 		let showcaseCommonOrUncommon: MTGCard? = {
 			guard shouldIncludeShowcaseCommonOrUncommon else { return nil }
-			return [showcaseRarities[.common], showcaseRarities[.uncommon]].compactMap({ $0 }).joined().randomElement()
+			
+			let allShowcaseCommonsAndUncommons = [showcaseRarities[.common], showcaseRarities[.uncommon]].compactMap { $0 }.joined()
+			let availableShowcaseCommonAndUncommonNames = Set(allShowcaseCommonsAndUncommons.compactMap { $0.name }) // This makes cards with multiple showcase styles equally likely to appear. Then, a random showcase card with the chosen name is selected.
+			
+			guard let chosenName = availableShowcaseCommonAndUncommonNames.randomElement() else { return nil }
+			return allShowcaseCommonsAndUncommons.filter { $0.name == chosenName }.randomElement()
 		}()
 		
 		// TODO: Check actual distribution of lessons in the lesson slot. Does each lesson card appear as frequently as the others, or does the rarity matter?
@@ -3498,6 +3512,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		case "eld", "thb": return .originalShowcase
 		case "tsr": return .timeSpiralRemastered
 		case "stx": return .strixhaven
+		case "mh2": return .mh2
 		default: return .default
 		}
 	}()
@@ -3691,6 +3706,8 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 					card.isFoundInBoosters = true
 					return card
 				}
+		case "mh2":
+			return mainCards.separateAll(where: { $0.watermark == "set" })
 		default:
 			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
 			guard includeBasicLands else { return [] }
@@ -3730,7 +3747,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
-		case "stx":
+		case "stx", "mh2":
 			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
 			guard includeBasicLands else { return [] }
 			return basicLands
@@ -3798,15 +3815,25 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		break
 	}
 	
+	func cardIsShowcase(_ card: MTGCard) -> Bool {
+		if setCode?.lowercased() == "mh2" && card.frame == "1997" {
+			return true
+		}
+		
+		if (card.frameEffects?.contains("showcase") == true || card.borderColor == .borderless) {
+			return card.promoTypes?.contains("boosterfun") == true || mainCards.contains(where: { $0.name == card.name && $0.isFoundInBoosters })
+		} else {
+			return false
+		}
+	}
+	
 	if setCode?.lowercased() != "2xm" {
 		mainCards = mainCards.map { card in
-			if (card.frameEffects?.contains("showcase") == true || card.borderColor == .borderless) {
-				var card = card
-				card.isFoundInBoosters = mainCards.contains(where: { $0.name == card.name && $0.isFoundInBoosters })
-				return card
-			} else {
-				return card
+			var card = card
+			if cardIsShowcase(card) {
+				card.isFoundInBoosters = true
 			}
+			return card
 		}
 	}
 	
@@ -3831,7 +3858,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 	}
 	
 	let borderless: [MTGCard] = mainCards.separateAll { $0.borderColor == .borderless }
-	let showcases: [MTGCard.Rarity: [MTGCard]] = .init(grouping: mainCards.separateAll { $0.frameEffects?.contains("showcase") == true }, by: \.rarity)
+	let showcases: [MTGCard.Rarity: [MTGCard]] = .init(grouping: mainCards.separateAll(where: cardIsShowcase), by: \.rarity)
 	
 	let extendedArt = mainCards.separateAll { $0.frameEffects?.contains("extendedart") == true }
 	

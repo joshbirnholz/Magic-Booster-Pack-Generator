@@ -18,9 +18,9 @@ struct CockatriceCardDatabase: Decodable {
 	struct Card: Codable {
 		struct SetInfo: Codable {
 			var rarity: String?
-			var picURL: String
-			var picURLHq: String
-			var picURLSt: String
+			var picURL: String?
+			var picURLHq: String?
+			var picURLSt: String?
 			var shortName: String
 			
 			enum CodingKeys: String, CodingKey {
@@ -29,6 +29,22 @@ struct CockatriceCardDatabase: Decodable {
 				case picURLHq = "@picURLHq"
 				case picURLSt = "@picURLSt"
 				case shortName = "#text"
+			}
+			
+			init(from decoder: Decoder) throws {
+				do {
+					let container = try decoder.container(keyedBy: CodingKeys.self)
+					self.rarity = try container.decodeIfPresent(String.self, forKey: .rarity)
+					self.picURL = try container.decodeIfPresent(String.self, forKey: .picURL)
+					self.picURLHq = try container.decodeIfPresent(String.self, forKey: .picURLHq)
+					self.picURLSt = try container.decodeIfPresent(String.self, forKey: .picURLSt)
+					self.shortName = try container.decode(String.self, forKey: .shortName)
+				} catch {
+					let container = try decoder.singleValueContainer()
+					var set = try container.decode(String.self)
+					set = "T" + set
+					self.shortName = set
+				}
 			}
 		}
 		

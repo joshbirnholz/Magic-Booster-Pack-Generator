@@ -3395,7 +3395,8 @@ fileprivate let prereleaseSheet = """
 fileprivate func customSetJSONURL(forSetCode inputString: String) -> URL? {
 	let customSets = [
 		"netropolis": "net",
-		"amonkhet remastered": "akr"
+		"amonkhet remastered": "akr",
+		"hollows of lordran": "hlw"
 	]
 	
 	guard let customsetcode = customSets[inputString.lowercased()] ?? customSets.values.first(where: { $0 == inputString.lowercased() }) else {

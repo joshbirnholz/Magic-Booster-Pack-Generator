@@ -1,0 +1,3846 @@
+{
+   "@version": "3",
+   "sets": {
+	  "set": {
+		 "name": "HLW",
+		 "longname": "Hollows of Lordran",
+		 "settype": "Custom"
+	  }
+   },
+   "cards": [
+	  {
+		 "name": "Arrest",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "2W",
+		 "cmc": "3",
+		 "type": "Enchantment - Aura",
+		 "tablerow": "1",
+		 "text": "Enchant creature\nEnchanted creature can’t attack or block, and its activated abilities can’t be activated."
+	  },
+	  {
+		 "name": "Gwyn's Last Hope",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "1WW",
+		 "cmc": "3",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "As an additional cost to cast this spell, sacrifice a creature.\nDestroy all creatures."
+	  },
+	  {
+		 "name": "Velka's Justice",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "1W",
+		 "cmc": "2",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Velka’s Justice deals 3 damage to target attacking or blocking creature."
+	  },
+	  {
+		 "name": "Pilgrim Phantom",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "3W",
+		 "cmc": "4",
+		 "type": "Creature - Spirit Knight",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": "Flying, first strike"
+	  },
+	  {
+		 "name": "Evander's Phantom",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "2W",
+		 "cmc": "3",
+		 "type": "Creature - Spirit Warrior",
+		 "pt": "1/3",
+		 "tablerow": "2",
+		 "text": "Flying\nWhenever Evander’s Phantom and exactly one other creature attack, they each get +1/+1 until end of turn."
+	  },
+	  {
+		 "name": "Demented Sorcerer",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "3U",
+		 "cmc": "4",
+		 "type": "Creature - Human Wizard",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "When Demented Sorcerer enters the battlefield, look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest into your graveyard.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Wizard. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Overcome the Odds",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "3W",
+		 "cmc": "4",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Destroy target creature with power 4 or greater. Put a +1/+1 counter on up to one target creature you control."
+	  },
+	  {
+		 "name": "New Londo Drowned",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "4U",
+		 "cmc": "5",
+		 "type": "Creature - Zombie",
+		 "pt": "3/5",
+		 "tablerow": "2",
+		 "text": []
+	  },
+	  {
+		 "name": "Crystalline Armor",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "U",
+		 "cmc": "1",
+		 "type": "Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "Equipped creature gets +2/+2.\nWhen equipped creature dies, sacrifice Crystalline Armor.\nEquip 1"
+	  },
+	  {
+		 "name": "Darkroot Sorcerer",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "1U",
+		 "cmc": "2",
+		 "type": "Creature - Human Wizard",
+		 "pt": "1/3",
+		 "tablerow": "2",
+		 "text": "Flash (You may cast this spell any time you could cast an instant.)"
+	  },
+	  {
+		 "name": "Darkmoon Favor",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "3U",
+		 "cmc": "4",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Scry 4, then draw two cards."
+	  },
+	  {
+		 "name": "Traveler's Protection",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "U",
+		 "cmc": "1",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Target creature you control gains hexproof until end of turn.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Ciaran's Obsession",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "4U",
+		 "cmc": "5",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Look at the top four cards of your library. Put up to two of them into your hand and the rest into your graveyard."
+	  },
+	  {
+		 "name": "Ruin Haunt",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "3U",
+		 "cmc": "4",
+		 "type": "Creature - Spirit",
+		 "pt": "2/3",
+		 "tablerow": "2",
+		 "text": "Flash\nFlying"
+	  },
+	  {
+		 "name": "Overwhelming Burden",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "1U",
+		 "cmc": "2",
+		 "type": "Enchantment - Aura",
+		 "tablerow": "1",
+		 "text": "Enchant creature\nEnchanted creature doesn’t untap during its controller’s untap step."
+	  },
+	  {
+		 "name": "Ruin Delver",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "1B",
+		 "cmc": "2",
+		 "type": "Creature - Human Rogue",
+		 "pt": "2/1",
+		 "tablerow": "2",
+		 "text": "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Ruin Delver despairs, you draw a card and you lose 1 life."
+	  },
+	  {
+		 "name": "Scholar's Catalyst",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "U",
+		 "cmc": "1",
+		 "type": "Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "When Scholar’s Catalyst enters the battlefield, target player puts the top three cards of their library into their graveyard.\nEquipped creature gets +1/+1.\nEquip 1 (1: Attach to target creature you control. Equip only as a sorcery.)"
+	  },
+	  {
+		 "name": "Soul Confluence",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "3UUU",
+		 "cmc": "6",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Reveal the top five cards of your library. An opponent separates those cards into three piles. Put the cards in one pile into your graveyard. Put the cards in another pile into your hand. Exile the cards in the third pile, then for each nonland card exiled this way not named Soul Confluence, you may cast that card without paying its mana cost."
+	  },
+	  {
+		 "name": "Black Knight Armor",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "1B",
+		 "cmc": "2",
+		 "type": "Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "Equipped creature gets +2/+2.\nWhenever Black Knight Armor becomes unattached from a permanent, sacrifice that permanent.\nEquip 1"
+	  },
+	  {
+		 "name": "Consumed by the Abyss",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "4B",
+		 "cmc": "5",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Exile target creature."
+	  },
+	  {
+		 "name": "Artorias's Cursed Greatsword",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "2B",
+		 "cmc": "3",
+		 "type": "Legendary Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "Equipped creature gets +3/+0 and has menace.\nEquip—Discard a card or pay 5 life."
+	  },
+	  {
+		 "name": "Behold the Soul",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "2B",
+		 "cmc": "3",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Target player draws two cards, loses 2 life, and puts the top two cards of their library into their graveyard."
+	  },
+	  {
+		 "name": "Darkwraith Elite",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "2B",
+		 "cmc": "3",
+		 "type": "Creature - Skeleton Knight",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "Deathtouch\nWhenever Darkwraith Elite deals combat damage to a player, create a 1/1 black Skeleton creature token.\n1B, Sacrifice another creature: Darkwraith Elite gains indestructible until end of turn. Tap it."
+	  },
+	  {
+		 "name": "Futile Pursuit",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "2B",
+		 "cmc": "3",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Choose one or both —\n• Target player reveals their hand. You choose a nonland card from it. That player discards that card.\n• Target player puts all journeyed cards they own in exile into their graveyard."
+	  },
+	  {
+		 "name": "Quelana's Pupil",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "3R",
+		 "cmc": "4",
+		 "type": "Creature - Human Shaman",
+		 "pt": "3/2",
+		 "tablerow": "2",
+		 "text": "Haste\nWhen Quelana’s Pupil enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Venomous Bandit",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "B",
+		 "cmc": "1",
+		 "type": "Creature - Human Rogue",
+		 "pt": "2/1",
+		 "tablerow": "2",
+		 "text": "Venomous Bandit can’t block.\nDesperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Venomous Bandit despairs, it gets +1/+2 and gains deathtouch until end of turn."
+	  },
+	  {
+		 "name": "Barbed Blade",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "1B",
+		 "cmc": "2",
+		 "type": "Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "When Barbed Blade enters the battlefield, each opponent loses 2 life.\nEquipped creature gets +2/+0.\nEquip 2 (2: Attach to target creature you control. Equip only as a sorcery.)"
+	  },
+	  {
+		 "name": "Vinheim Agent",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "1U",
+		 "cmc": "2",
+		 "type": "Creature - Human Rogue",
+		 "pt": "2/1",
+		 "tablerow": "2",
+		 "text": "Discard a card: Vinheim Agent can’t be blocked this turn."
+	  },
+	  {
+		 "name": "Capra Demon",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "3R",
+		 "cmc": "4",
+		 "type": "Creature - Goat Demon",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "Menace"
+	  },
+	  {
+		 "name": "Ceaseless Destruction",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "1R",
+		 "cmc": "2",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Destroy target artifact. Add RR."
+	  },
+	  {
+		 "name": "Warrior of Sunlight",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "1R",
+		 "cmc": "2",
+		 "type": "Creature - Human Knight",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": "Whenever Warrior of Sunlight and exactly one other creature attack, they both get +1/+0 until end of turn."
+	  },
+	  {
+		 "name": "Bloodied Shotel",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "1R",
+		 "cmc": "2",
+		 "type": "Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "Equipped creature gets +2/+1.\nEquip 3\nWhenever a creature you control despairs, you may attach Bloodied Shotel to that creature."
+	  },
+	  {
+		 "name": "Kalameet's Gaze",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "1R",
+		 "cmc": "2",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Kalameet’s Gaze deals 4 damage to any target that was dealt damage this turn."
+	  },
+	  {
+		 "name": "Lightning Spear",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "2R",
+		 "cmc": "3",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Lightning Spear deals 3 damage to any target."
+	  },
+	  {
+		 "name": "Magma Spider",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "2R",
+		 "cmc": "3",
+		 "type": "Creature - Spider",
+		 "pt": "3/1",
+		 "tablerow": "2",
+		 "text": "Reach\nWhen Magma Spider dies, it deals 3 damage to each opponent."
+	  },
+	  {
+		 "name": "Pyromancer's Flame",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "R",
+		 "cmc": "1",
+		 "type": "Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "Whenever equipped creature attacks, it deals 2 damage to target opponent.\nEquip 2 (2: Attach to target creature you control. Equip only as a sorcery.)"
+	  },
+	  {
+		 "name": "Quelaag's Furysword",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "1RR",
+		 "cmc": "3",
+		 "type": "Legendary Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "Equipped creature has double strike.\nWhenever equipped creature deals combat damage to a player, put a fury counter on Quelaag’s Furysword, then Quelaag’s Furysword deals damage equal to the number of fury counters on it to that player.\nEquip 3"
+	  },
+	  {
+		 "name": "Taurus Demon",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "4R",
+		 "cmc": "5",
+		 "type": "Creature - Ox Demon",
+		 "pt": "5/5",
+		 "tablerow": "2",
+		 "text": "Trample\nTaurus Demon attacks each combat if able."
+	  },
+	  {
+		 "name": "Return to Nature",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "1G",
+		 "cmc": "2",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Choose one —\n• Destroy target artifact.\n• Destroy target enchantment.\n• Exile target card from a graveyard."
+	  },
+	  {
+		 "name": "Darkroot Hunt-Pack",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "2G",
+		 "cmc": "3",
+		 "type": "Creature - Human Archer",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": "Flash\nWhenever you cast a noninstant spell during an opponent’s turn, create a 2/2 green Wolf creature token."
+	  },
+	  {
+		 "name": "Lurching Giant",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "5G",
+		 "cmc": "6",
+		 "type": "Creature - Zombie Giant",
+		 "pt": "6/6",
+		 "tablerow": "2",
+		 "text": []
+	  },
+	  {
+		 "name": "Burrowing Rockwurm",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "4GG",
+		 "cmc": "6",
+		 "type": "Creature - Wurm",
+		 "pt": "5/5",
+		 "tablerow": "2",
+		 "text": "Flash\nWhen Burrowing Rockwurm enters the battlefield, you may destroy target Aura or Equipment."
+	  },
+	  {
+		 "name": "Fading Sage",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "1G",
+		 "cmc": "2",
+		 "type": "Creature - Human Shaman",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Fading Sage despairs, put two +1/+1 counters on another target creature you control."
+	  },
+	  {
+		 "name": "Servant of the Fair Lady",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "G",
+		 "cmc": "1",
+		 "type": "Creature - Zombie Horror",
+		 "pt": "1/1",
+		 "tablerow": "2",
+		 "text": "When Servant of the Fair Lady dies, create a 1/2 green Spider creature token with reach."
+	  },
+	  {
+		 "name": "Ambuscade",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "2G",
+		 "cmc": "3",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Target creature you control gets +1/+0 until end of turn. It deals damage equal to its power to target creature an opponent controls."
+	  },
+	  {
+		 "name": "Hawkeye Gough",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "2GG",
+		 "cmc": "4",
+		 "type": "Legendary Creature - Giant Archer",
+		 "pt": "7/7",
+		 "tablerow": "2",
+		 "text": "Vigilance, reach\nWhen Hawkeye Gough enters the battlefield, target opponent creates a 4/4 colorless Dragon artifact creature token with flying."
+	  },
+	  {
+		 "name": "Pyromantic Shaman",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "1G",
+		 "cmc": "2",
+		 "type": "Creature - Human Shaman",
+		 "pt": "2/1",
+		 "tablerow": "2",
+		 "text": "T: Add R."
+	  },
+	  {
+		 "name": "Murakumo",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "3G",
+		 "cmc": "4",
+		 "type": "Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "Equipped creature gets +4/+2 and has trample.\nAt the beginning of combat on your turn, you may attach Murakumo to target creature with power 4 or greater.\nEquip 4"
+	  },
+	  {
+		 "name": "Soul Infusion",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "1G",
+		 "cmc": "2",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Target creature gets +3/+3 and gains trample until end of turn."
+	  },
+	  {
+		 "name": "Reach the Bonfire",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "2G",
+		 "cmc": "3",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Great Hammer",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "1G",
+		 "cmc": "2",
+		 "type": "Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "Equipped creature gets +2/+2.\nEquip 2 (2: Attach to target creature you control. Equip only as a sorcery.)"
+	  },
+	  {
+		 "name": "Artorias, Abyss-Stricken",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "2BB",
+		 "cmc": "4",
+		 "type": "Legendary Creature - Demigod Knight",
+		 "pt": "5/5",
+		 "tablerow": "2",
+		 "text": "Artorias, Abyss-Stricken can’t block.\nPay 5 life: Artorias gains first strike, trample, and haste until end of turn."
+	  },
+	  {
+		 "name": "Darkmoon Deterrence",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "2W",
+		 "cmc": "3",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Destroy target attacking or blocking creature. Scry 1."
+	  },
+	  {
+		 "name": "Gwynevere's Benediction",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "W",
+		 "cmc": "1",
+		 "type": "Enchantment - Aura",
+		 "tablerow": "1",
+		 "text": "Enchant creature\nEnchanted creature gets +1/+1 for each permanent you control that’s attached to it."
+	  },
+	  {
+		 "name": "Paladin of Holy Relics",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "2W",
+		 "cmc": "3",
+		 "type": "Creature - Human Knight",
+		 "pt": "3/2",
+		 "tablerow": "2",
+		 "text": "When Paladin of Holy Relics enters the battlefield, reveal the top five cards of your library. Put up to one Aura or Equipment card from among them into your hand, and the rest on the bottom of your library in any order."
+	  },
+	  {
+		 "name": "Valley Drake",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "2U",
+		 "cmc": "3",
+		 "type": "Creature - Drake",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": "Flying"
+	  },
+	  {
+		 "name": "Thorned Slayer",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "BG",
+		 "manacost": "BG",
+		 "cmc": "2",
+		 "type": "Creature - Human Knight",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": "You may have Thorned Slayer assign its combat damage as though it weren’t blocked.\n1, Sacrifice another creature: Put a +1/+1 counter on Thorned Slayer."
+	  },
+	  {
+		 "name": "Instant Petrification",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "2U",
+		 "cmc": "3",
+		 "type": "Enchantment - Aura",
+		 "tablerow": "1",
+		 "text": "Flash\nEnchant creature\nEnchanted creature has base power and toughness 0/4. It’s a colorless Wall artifact creature with defender and loses all other abilities."
+	  },
+	  {
+		 "name": "Seath, Scaleless Betrayer",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "3UU",
+		 "cmc": "5",
+		 "type": "Legendary Creature - Dragon Wizard",
+		 "pt": "7/7",
+		 "tablerow": "2",
+		 "text": "This spell can’t be countered.\nFlying, indestructible\nWhen you’re dealt combat damage, sacrifice Seath, Scaleless Betrayer.\nU, Discard a card: Return Seath to its owner’s hand."
+	  },
+	  {
+		 "name": "Crystal Lizard",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": "2",
+		 "cmc": "2",
+		 "type": "Artifact Creature - Lizard",
+		 "pt": "0/1",
+		 "tablerow": "2",
+		 "text": "When Crystal Lizard enters the battlefield, draw a card.\n2, T, Sacrifice Crystal Lizard: Add two mana in any combination of colors."
+	  },
+	  {
+		 "name": "Estus Flask",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": "2",
+		 "cmc": "2",
+		 "type": "Artifact",
+		 "tablerow": "1",
+		 "text": "Estus Flask enters the battlefield with five charge counters on it.\nT, Remove a charge counter from Estus Flask: You gain 2 life."
+	  },
+	  {
+		 "name": "Zweihander",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": "3",
+		 "cmc": "3",
+		 "type": "Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "Equipped creature gets +3/+0.\nEquip 3 (3: Attach to target creature you control. Equip only as a sorcery.)"
+	  },
+	  {
+		 "name": "HLW Plains",
+		 "set": {
+			"@rarity": "",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": [],
+		 "cmc": "0",
+		 "type": "Basic Land - Plains",
+		 "tablerow": "0",
+		 "text": []
+	  },
+	  {
+		 "name": "HLW Island",
+		 "set": {
+			"@rarity": "",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": [],
+		 "cmc": "0",
+		 "type": "Basic Land - Island",
+		 "tablerow": "0",
+		 "text": []
+	  },
+	  {
+		 "name": "HLW Swamp",
+		 "set": {
+			"@rarity": "",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": [],
+		 "cmc": "0",
+		 "type": "Basic Land - Swamp",
+		 "tablerow": "0",
+		 "text": []
+	  },
+	  {
+		 "name": "HLW Mountain",
+		 "set": {
+			"@rarity": "",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": [],
+		 "cmc": "0",
+		 "type": "Basic Land - Mountain",
+		 "tablerow": "0",
+		 "text": []
+	  },
+	  {
+		 "name": "HLW Forest",
+		 "set": {
+			"@rarity": "",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": [],
+		 "cmc": "0",
+		 "type": "Basic Land - Forest",
+		 "tablerow": "0",
+		 "text": []
+	  },
+	  {
+		 "name": "Nito, the Gravelord",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "3BBB",
+		 "cmc": "6",
+		 "type": "Legendary Creature - Skeleton God",
+		 "pt": "6/6",
+		 "tablerow": "2",
+		 "text": "When Nito, the Gravelord enters the battlefield, all other creatures get -2/-2 until end of turn.\nWhenever a nontoken creature dies, create a 1/1 black Skeleton creature token."
+	  },
+	  {
+		 "name": "Gwyn, Lord of Sunlight",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "WR",
+		 "manacost": "3RRWW",
+		 "cmc": "7",
+		 "type": "Legendary Creature - God",
+		 "pt": "7/7",
+		 "tablerow": "2",
+		 "text": "First strike, vigilance\nWhenever Gwyn, Lord of Sunlight or another creature you control attacks, Gwyn deals 3 damage to target creature an opponent controls."
+	  },
+	  {
+		 "name": "Explorer's Reward",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "XG",
+		 "cmc": "1",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Journey X times. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nYou may put a creature card with converted mana cost X or less from among journeyed cards you own in exile onto the battlefield under your control."
+	  },
+	  {
+		 "name": "Wondrous Incandescence",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "1WW",
+		 "cmc": "3",
+		 "type": "Enchantment",
+		 "tablerow": "1",
+		 "text": "Whenever Wondrous Incandescence or a creature enters the battlefield under your control, creatures you control get +1/+1 until end of turn."
+	  },
+	  {
+		 "name": "Mad Prayer",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "2R",
+		 "cmc": "3",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "As an additional cost to cast this spell, discard a card.\nDraw two cards."
+	  },
+	  {
+		 "name": "Quelaag's Ferocity",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "1R",
+		 "cmc": "2",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Target creature gains double strike until end of turn."
+	  },
+	  {
+		 "name": "Crossing the Fog",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "U",
+		 "cmc": "1",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Journey three times. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Darkroot Spellguard",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "3U",
+		 "cmc": "4",
+		 "type": "Creature - Human Knight",
+		 "pt": "3/2",
+		 "tablerow": "2",
+		 "text": "Flash\nWhen Darkroot Spellguard enters the battlefield, counter target spell. If that spell is countered this way, put it into its owner’s hand instead of into that player’s graveyard."
+	  },
+	  {
+		 "name": "Offering of Humanity",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "1B",
+		 "cmc": "2",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "As an additional cost to cast this spell, sacrifice a creature.\nDraw two cards."
+	  },
+	  {
+		 "name": "Hollow Victory",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "5B",
+		 "cmc": "6",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "This spell costs 1 less to cast for each Zombie you control.\nTarget player draws three cards and loses 3 life."
+	  },
+	  {
+		 "name": "Cancel",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "1UU",
+		 "cmc": "3",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Counter target spell."
+	  },
+	  {
+		 "name": "Grand Fire Orb",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "2RR",
+		 "cmc": "4",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Grand Fire Orb deals 5 damage to target creature."
+	  },
+	  {
+		 "name": "Brilliant Phantom",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "WR",
+		 "manacost": "2RW",
+		 "cmc": "4",
+		 "type": "Creature - Spirit Warrior",
+		 "pt": "2/3",
+		 "tablerow": "2",
+		 "text": "Flying\nWhenever Brilliant Phantom and exactly one other creature attack, they each get +2/+0 until end of turn."
+	  },
+	  {
+		 "name": "Mindless Hollow",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "1B",
+		 "cmc": "2",
+		 "type": "Creature - Zombie",
+		 "pt": "1/3",
+		 "tablerow": "2",
+		 "text": []
+	  },
+	  {
+		 "name": "Sidetracked",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "1U",
+		 "cmc": "2",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Return target creature to its owner’s hand.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Adventurer's Rest",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "1G",
+		 "cmc": "2",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "You gain 5 life. If a creature you control dealt combat damage to an opponent this turn, you gain 10 life instead."
+	  },
+	  {
+		 "name": "United in Victory",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "3W",
+		 "cmc": "4",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Put a +1/+1 counter on each creature you control. You gain 1 life for each creature you control."
+	  },
+	  {
+		 "name": "Sunlight Apostate",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "3R",
+		 "cmc": "4",
+		 "type": "Creature - Human Dragon",
+		 "pt": "5/2",
+		 "tablerow": "2",
+		 "text": "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Sunlight Apostate despairs, it deals 1 damage to each of up to two target creatures. Those creatures can’t block this turn."
+	  },
+	  {
+		 "name": "Absorbed in Thought",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "1U",
+		 "cmc": "2",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Journey twice. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nScry 2."
+	  },
+	  {
+		 "name": "Journey's End",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "1B",
+		 "cmc": "2",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "As an additional cost to cast this spell, discard a card.\nDestroy target creature."
+	  },
+	  {
+		 "name": "Slaine's Ally",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "3U",
+		 "cmc": "4",
+		 "type": "Creature - Human Wizard",
+		 "pt": "3/2",
+		 "tablerow": "2",
+		 "text": "When Slaine’s Ally enters the battlefield, tap up to two target creatures."
+	  },
+	  {
+		 "name": "The Road Ahead",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "2G",
+		 "cmc": "3",
+		 "type": "Enchantment",
+		 "tablerow": "1",
+		 "text": "You may play an additional land on each of your turns.\nWhenever a land enters the battlefield under your control, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Parasitic Wallhugger",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "1B",
+		 "cmc": "2",
+		 "type": "Creature - Insect Horror",
+		 "pt": "1/3",
+		 "tablerow": "2",
+		 "text": "Defender\nWhenever another creature you control dies, each opponent loses 1 life."
+	  },
+	  {
+		 "name": "Hunter Hydra",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "XG",
+		 "cmc": "1",
+		 "type": "Creature - Hydra",
+		 "pt": "0/0",
+		 "tablerow": "2",
+		 "text": "Flash\nHunter Hydra enters the battlefield with X +1/+1 counters on it.\nWhenever another creature dies, put a +1/+1 counter on Hunter Hydra."
+	  },
+	  {
+		 "name": "Flame Storm",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "1RR",
+		 "cmc": "3",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Flame Storm deals 3 damage to each creature. Whenever a creature dealt damage this way dies this turn, Flame Storm deals 1 damage to that creature’s controller."
+	  },
+	  {
+		 "name": "Pyromancer's Wisdom",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "1R",
+		 "cmc": "2",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Add RRR.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Provoke the Primeval",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "G",
+		 "cmc": "1",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Put a +1/+1 counter on target creature you control. Untap that creature."
+	  },
+	  {
+		 "name": "Izalith's Ruination",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "3B",
+		 "cmc": "4",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "As an additional cost to cast this spell, sacrifice a creature.\nTarget opponent sacrifices a land and loses 4 life."
+	  },
+	  {
+		 "name": "Darkroot Tracker",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "3G",
+		 "cmc": "4",
+		 "type": "Creature - Human Archer Scout",
+		 "pt": "3/2",
+		 "tablerow": "2",
+		 "text": "Flash\nWhen Darkroot Tracker enters the battlefield, return target card with flash or instant card from your graveyard to your hand. (Not sorcery.)"
+	  },
+	  {
+		 "name": "Solaire's Madness",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "2R",
+		 "cmc": "3",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn. When that creature dies this turn, it deals 2 damage to each opponent."
+	  },
+	  {
+		 "name": "Banish to the Painting",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "4U",
+		 "cmc": "5",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Put target nonland permanent on top of its owner’s library.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Evolving Wilds",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": [],
+		 "cmc": "0",
+		 "type": "Land",
+		 "tablerow": "0",
+		 "text": "T, Sacrifice Evolving Wilds: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library."
+	  },
+	  {
+		 "name": "Seek the Past",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "2U",
+		 "cmc": "3",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Shuffle your graveyard and any number of journeyed cards you own in exile into your library. Draw a card."
+	  },
+	  {
+		 "name": "Dragon-Path Traveler",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "RG",
+		 "manacost": "1RG",
+		 "cmc": "3",
+		 "type": "Creature - Human Dragon",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "Whenever you put a journeyed card into your hand, add RG. Until end of turn, you don’t lose this mana as steps and phases end."
+	  },
+	  {
+		 "name": "Search for Dusk",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "1G",
+		 "cmc": "2",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Look at the top five cards of your library. You may reveal a creature card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Doomsayer Sage",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "1R",
+		 "cmc": "2",
+		 "type": "Creature - Human Shaman",
+		 "pt": "1/3",
+		 "tablerow": "2",
+		 "text": "Whenever you cast a noncreature spell, Doomsayer Sage gets +1/+1 until end of turn."
+	  },
+	  {
+		 "name": "Keeper of the Dead-Woods",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "1GG",
+		 "cmc": "3",
+		 "type": "Creature - Human Shaman",
+		 "pt": "3/4",
+		 "tablerow": "2",
+		 "text": "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Keeper of the Dead-Woods despairs, return up to two target non-Human creature cards from your graveyard to your hand."
+	  },
+	  {
+		 "name": "Moonlight Butterfly",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "2UU",
+		 "cmc": "4",
+		 "type": "Creature - Insect",
+		 "pt": "4/3",
+		 "tablerow": "2",
+		 "text": "Flash\nFlying\nWhen Moonlight Butterfly enters the battlefield, copy target instant or sorcery spell you control. You may choose new targets for the copy."
+	  },
+	  {
+		 "name": "Bell Gargoyles",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "4W",
+		 "cmc": "5",
+		 "type": "Artifact Creature - Gargoyle",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "Flying, vigilance"
+	  },
+	  {
+		 "name": "Centipede Demon",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "5BB",
+		 "cmc": "7",
+		 "type": "Creature - Insect Demon",
+		 "pt": "9/5",
+		 "tablerow": "2",
+		 "text": "When Centipede Demon enters the battlefield, each opponent discards a card and sacrifices a creature."
+	  },
+	  {
+		 "name": "Soothing Sunlight",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "1W",
+		 "cmc": "2",
+		 "type": "Enchantment - Aura",
+		 "tablerow": "1",
+		 "text": "Enchant creature\nWhen Soothing Sunlight enters the battlefield, you gain 2 life.\nEnchanted creature gets +2/+2."
+	  },
+	  {
+		 "name": "Student of the Dragon-Path",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "2R",
+		 "cmc": "3",
+		 "type": "Creature - Human Dragon",
+		 "pt": "2/3",
+		 "tablerow": "2",
+		 "text": "R: Student of the Dragon-Path gets +1/+0 until end of turn."
+	  },
+	  {
+		 "name": "Gargoyle Helm",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "W",
+		 "cmc": "1",
+		 "type": "Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "Equipped creature gets +1/+1 and has vigilance.\nEquip 2 (2: Attach to target creature you control. Equip only as a sorcery.)"
+	  },
+	  {
+		 "name": "Chosen by the Lords",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "2WW",
+		 "cmc": "4",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Choose target creature you control. Tap all other creatures. Put a +1/+1 counter on the chosen creature for each creature tapped this way."
+	  },
+	  {
+		 "name": "Blight Slime",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "2G",
+		 "cmc": "3",
+		 "type": "Creature - Ooze",
+		 "pt": "2/3",
+		 "tablerow": "2",
+		 "text": "Whenever another creature you control dies, put a +1/+1 counter on Blight Slime."
+	  },
+	  {
+		 "name": "Gwyndolin's Bow",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "1W",
+		 "cmc": "2",
+		 "type": "Legendary Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "Equipped creature gets +2/+0 and has first strike.\nWhenever equipped creature attacks, choose target creature an opponent controls. Until your next turn, that creature can’t attack or block and its activated abilities can’t be activated.\nEquip 2"
+	  },
+	  {
+		 "name": "Frosted Sanctuary",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": [],
+		 "cmc": "0",
+		 "type": "Land",
+		 "tablerow": "0",
+		 "cipt": "1",
+		 "text": "Frosted Sanctuary enters the battlefield tapped.\nT: Add W or U.\n2, T, Sacrifice Frosted Sanctuary: Draw a card."
+	  },
+	  {
+		 "name": "Lava Roots",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": [],
+		 "cmc": "0",
+		 "type": "Land",
+		 "tablerow": "0",
+		 "cipt": "1",
+		 "text": "Lava Roots enters the battlefield tapped.\nT: Add R or G.\n2, T, Sacrifice Lava Roots: Draw a card."
+	  },
+	  {
+		 "name": "Sinister Ruins",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": [],
+		 "cmc": "0",
+		 "type": "Land",
+		 "tablerow": "0",
+		 "cipt": "1",
+		 "text": "Sinister Ruins enters the battlefield tapped.\nT: Add B or R.\n2, T, Sacrifice Sinister Ruins: Draw a card."
+	  },
+	  {
+		 "name": "Watery Depths",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": [],
+		 "cmc": "0",
+		 "type": "Land",
+		 "tablerow": "0",
+		 "cipt": "1",
+		 "text": "Watery Depths enters the battlefield tapped.\nT: Add U or B.\n2, T, Sacrifice Watery Depths: Draw a card."
+	  },
+	  {
+		 "name": "Sanctuary Manticore",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "4WW",
+		 "cmc": "6",
+		 "type": "Creature - Manticore",
+		 "pt": "5/4",
+		 "tablerow": "2",
+		 "text": "Flying\n2W: Another target creature you control gains indestructible until end of turn."
+	  },
+	  {
+		 "name": "Sorcerous Explorer",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "2U",
+		 "cmc": "3",
+		 "type": "Creature - Human Wizard",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": "When Sorcerous Explorer enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Duress",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "B",
+		 "cmc": "1",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Target opponent reveals their hand. You choose a noncreature, nonland card from it. That player discards that card."
+	  },
+	  {
+		 "name": "Undead-Burg Captain",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "W",
+		 "cmc": "1",
+		 "type": "Creature - Zombie Soldier",
+		 "pt": "*/*",
+		 "tablerow": "2",
+		 "text": "Undead-Burg Captain’s power and toughness are each equal to the number of Zombies you control."
+	  },
+	  {
+		 "name": "Hollowed Hero",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "1W",
+		 "cmc": "2",
+		 "type": "Creature - Zombie Soldier",
+		 "pt": "1/3",
+		 "tablerow": "2",
+		 "text": "1W, T: Tap target creature."
+	  },
+	  {
+		 "name": "Velka's Crow",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "3B",
+		 "cmc": "4",
+		 "type": "Creature - Bird",
+		 "pt": "2/3",
+		 "tablerow": "2",
+		 "text": "Flying\nWhen Velka’s Crow enters the battlefield, look at the top card of your library. You may put it into your graveyard."
+	  },
+	  {
+		 "name": "Lautrec, the Embraced",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "BR",
+		 "manacost": "1BR",
+		 "cmc": "3",
+		 "type": "Legendary Creature - Human Knight",
+		 "pt": "4/3",
+		 "tablerow": "2",
+		 "text": "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Lautrec, the Embraced despairs, defending player reveals their hand. You choose a nonland card from it and exile it. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any type to cast that spell."
+	  },
+	  {
+		 "name": "Imprisoned Hollow",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "W",
+		 "cmc": "1",
+		 "type": "Creature - Zombie Soldier",
+		 "pt": "0/4",
+		 "tablerow": "2",
+		 "text": []
+	  },
+	  {
+		 "name": "The First Flame",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "R",
+		 "cmc": "1",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Exile the top card of your library. You may play that card this turn. When you play that card this turn, repeat this process."
+	  },
+	  {
+		 "name": "Reign of the Dark Lord",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "3BB",
+		 "cmc": "5",
+		 "type": "Legendary Enchantment",
+		 "tablerow": "1",
+		 "text": "2B, Discard a card: Exile target creature card from your graveyard. Create a token that’s a copy of it, except it’s black and it’s a Zombie in addition to its other types. Activate this ability only any time you could cast a sorcery."
+	  },
+	  {
+		 "name": "Linking the Flame",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "2R",
+		 "cmc": "3",
+		 "type": "Enchantment",
+		 "tablerow": "1",
+		 "text": "At the beginning of your end step, you may put a +1/+1 counter on target creature that attacked this turn.\nAt the beginning of your upkeep, you may sacrifice a Human with power 12 or greater. If you do, you win the game."
+	  },
+	  {
+		 "name": "Abyssal Adventurer",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "B",
+		 "cmc": "1",
+		 "type": "Creature - Human Knight",
+		 "pt": "1/1",
+		 "tablerow": "2",
+		 "text": "When Abyssal Adventurer dies, target creature an opponent controls gets -1/-1 until end of turn."
+	  },
+	  {
+		 "name": "Mushroom Family",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "4G",
+		 "cmc": "5",
+		 "type": "Creature - Fungus",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "When Mushroom Family enters the battlefield, create two 1/1 green Fungus creature tokens."
+	  },
+	  {
+		 "name": "Path of Violence",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "R",
+		 "cmc": "1",
+		 "type": "Enchantment",
+		 "tablerow": "1",
+		 "text": "When Path of Violence enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nAt the beginning of combat on your turn, if you own a journeyed card in exile, target creature you control gets +2/+0 until end of turn."
+	  },
+	  {
+		 "name": "Humanity Hunter",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "2B",
+		 "cmc": "3",
+		 "type": "Creature - Human Rogue",
+		 "pt": "3/2",
+		 "tablerow": "2",
+		 "text": "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Humanity Hunter despairs, it gets +2/+0 and gains menace until end of turn."
+	  },
+	  {
+		 "name": "Relentless Marauder",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "BR",
+		 "manacost": "BR",
+		 "cmc": "2",
+		 "type": "Creature - Zombie Berserker",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Relentless Marauder despairs, other creatures you control gain “When this creature dies, return it to the battlefield tapped under its owner’s control” until end of turn."
+	  },
+	  {
+		 "name": "Hero's Rest",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": [],
+		 "cmc": "0",
+		 "type": "Land",
+		 "tablerow": "0",
+		 "cipt": "1",
+		 "text": "Hero’s Rest enters the battlefield tapped.\nT: Add G or W.\n2, T, Sacrifice Hero’s Rest: Draw a card."
+	  },
+	  {
+		 "name": "Crossing of Paths",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "1G",
+		 "cmc": "2",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Target creature you control fights target creature an opponent controls. Whenever one of those creatures dies this turn, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Abandoned Bonfire",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": [],
+		 "cmc": "0",
+		 "type": "Land",
+		 "tablerow": "0",
+		 "text": "When Abandoned Bonfire enters the battlefield, you gain 2 life.\nT: Add C."
+	  },
+	  {
+		 "name": "Ceaseless Discharge",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "4RRRR",
+		 "cmc": "8",
+		 "type": "Legendary Creature - Elemental Demon",
+		 "pt": "8/8",
+		 "tablerow": "2",
+		 "text": "Trample\nAt the beginning of each of your main phases, add eight R.\nWhenever you lose unspent mana, Ceaseless Discharge deals that much damage to you."
+	  },
+	  {
+		 "name": "Fade to Ash",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "2W",
+		 "cmc": "3",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Exile target artifact or enchantment."
+	  },
+	  {
+		 "name": "A Cold and Gentle Place",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "2U",
+		 "cmc": "3",
+		 "type": "Enchantment",
+		 "tablerow": "1",
+		 "text": "Whenever a creature an opponent controls becomes tapped, that creature doesn’t untap during its controller’s next untap step."
+	  },
+	  {
+		 "name": "Ciaran, Blade of the Lords",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "1UU",
+		 "cmc": "3",
+		 "type": "Legendary Creature - Demigod Assassin",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "As Ciaran, Blade of the Lords enters the battlefield, each opponent chooses a creature card name.\nCiaran can’t be blocked except by creatures with one of the chosen names."
+	  },
+	  {
+		 "name": "Gwynevere's Guidance",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "1G",
+		 "cmc": "2",
+		 "type": "Enchantment - Aura",
+		 "tablerow": "1",
+		 "text": "Enchant creature\nWhen Gwynevere’s Guidance enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nEnchanted creature gets +2/+1."
+	  },
+	  {
+		 "name": "Essence Scatter",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "1U",
+		 "cmc": "2",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Counter target creature spell."
+	  },
+	  {
+		 "name": "Hawkeye Greatbow",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "1G",
+		 "cmc": "2",
+		 "type": "Legendary Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "Equipped creature gets +3/+0 and has reach.\nWhenever equipped creature deals combat damage to a creature, it deals that much damage to up to one other target creature.\nEquip 3"
+	  },
+	  {
+		 "name": "Deceitful Stab",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "B",
+		 "cmc": "1",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Target attacking or blocking creature gets -2/-2 until end of turn."
+	  },
+	  {
+		 "name": "Sin Caller",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "3B",
+		 "cmc": "4",
+		 "type": "Creature - Human Cleric",
+		 "pt": "4/3",
+		 "tablerow": "2",
+		 "text": "Whenever a creature you control dies, you draw a card and you lose 1 life.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Cleric. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Fall From Favor",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "B",
+		 "cmc": "1",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Exile target legendary creature."
+	  },
+	  {
+		 "name": "Astora Elite",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "1W",
+		 "cmc": "2",
+		 "type": "Creature - Human Knight",
+		 "pt": "2/1",
+		 "tablerow": "2",
+		 "text": "Astora Elite has first strike as long as it’s attacking."
+	  },
+	  {
+		 "name": "Nito's Miasma",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "1BB",
+		 "cmc": "3",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Target creature gets -4/-4 until end of turn. Each other creature gets -1/-1 until end of turn."
+	  },
+	  {
+		 "name": "Endless Encounters",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "2W",
+		 "cmc": "3",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Create two 1/1 white Zombie Soldier creature tokens.\nWhenever a Zombie you control deals combat damage to an opponent, if Endless Encounters is in your graveyard, you may return it to your hand."
+	  },
+	  {
+		 "name": "Dragon-Path Adept",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "3G",
+		 "cmc": "4",
+		 "type": "Creature - Human Dragon",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "Hexproof"
+	  },
+	  {
+		 "name": "Trusty Patches",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "BR",
+		 "manacost": "1BR",
+		 "cmc": "3",
+		 "type": "Legendary Planeswalker - Patches",
+		 "loyalty": "3",
+		 "tablerow": "1",
+		 "text": "[+1]: Each player discards a card unless they sacrifice a creature.\n[+1]: Exile target card from a graveyard. Trusty Patches deals 2 damage to each opponent.\n[-6]: For each player, choose at random two nonland cards from that player’s graveyard. For each card chosen this way, you may cast it without paying its mana cost."
+	  },
+	  {
+		 "name": "Bonfire Keeper",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "1W",
+		 "cmc": "2",
+		 "type": "Creature - Human Cleric",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": "When Bonfire Keeper enters the battlefield, you gain 2 life."
+	  },
+	  {
+		 "name": "Ring Collector",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "4UU",
+		 "cmc": "6",
+		 "type": "Creature - Human Rogue",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": "When Ring Collector enters the battlefield, search your library for up to three artifact cards with different names that each have converted mana cost 1 or less, reveal them, put them into your hand, then shuffle your library."
+	  },
+	  {
+		 "name": "Blight Hatching",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "2G",
+		 "cmc": "3",
+		 "type": "Enchantment",
+		 "tablerow": "1",
+		 "text": "Whenever a non-Spider creature token enters the battlefield under your control, you may exile it. If you do, create a number of 1/2 green Spider creature tokens with reach equal to that token’s toughness."
+	  },
+	  {
+		 "name": "Balder Knight",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "2W",
+		 "cmc": "3",
+		 "type": "Creature - Zombie Knight",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": "Whenever another Zombie enters the battlefield under your control, put a +1/+1 counter on Balder Knight."
+	  },
+	  {
+		 "name": "Rotting Hellhound",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "R",
+		 "cmc": "1",
+		 "type": "Creature - Zombie Hound",
+		 "pt": "1/1",
+		 "tablerow": "2",
+		 "text": "Haste\nDesperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Rotting Hellhound despairs, it deals 1 damage to any target."
+	  },
+	  {
+		 "name": "Crazed Butcher",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "2R",
+		 "cmc": "3",
+		 "type": "Creature - Zombie Warrior",
+		 "pt": "4/2",
+		 "tablerow": "2",
+		 "text": []
+	  },
+	  {
+		 "name": "Stranded Hydra",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "5GG",
+		 "cmc": "7",
+		 "type": "Creature - Hydra",
+		 "pt": "6/6",
+		 "tablerow": "2",
+		 "text": "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Stranded Hydra despairs, creatures you control get +3/+3 and gain trample until end of turn."
+	  },
+	  {
+		 "name": "Shrewd Collectors",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "UB",
+		 "manacost": "1UB",
+		 "cmc": "3",
+		 "type": "Creature - Human Samurai",
+		 "pt": "*/5",
+		 "tablerow": "2",
+		 "text": "Shrewd Collectors’s power is equal to the number of noncreature cards in your graveyard.\n2UB: Look at the top card of your library. You may put that card into your graveyard."
+	  },
+	  {
+		 "name": "Walking Woods",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "4G",
+		 "cmc": "5",
+		 "type": "Creature - Plant Horror",
+		 "pt": "4/5",
+		 "tablerow": "2",
+		 "text": "When Walking Woods enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Decaying Domain",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": [],
+		 "cmc": "0",
+		 "type": "Land",
+		 "tablerow": "0",
+		 "text": "T: Add C.\n2, T, Sacrifice Decaying Domain: Destroy target nonbasic land. Its controller may scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)"
+	  },
+	  {
+		 "name": "Gaping Dragon",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "2GG",
+		 "cmc": "4",
+		 "type": "Legendary Creature - Dragon Horror",
+		 "pt": "4/4",
+		 "tablerow": "2",
+		 "text": "Trample, haste\nAt the beginning of each end step, sacrifice a permanent and put a +1/+1 counter on Gaping Dragon."
+	  },
+	  {
+		 "name": "Firelink Shrine",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": [],
+		 "cmc": "0",
+		 "type": "Land",
+		 "tablerow": "0",
+		 "text": "T: Add C.\nT: Add one mana of any color. Spend this mana only to cast an artifact, enchantment, or creature spell with converted mana cost 2 or less."
+	  },
+	  {
+		 "name": "Pass On",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "WG",
+		 "manacost": "1GW",
+		 "cmc": "3",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Create a 2/2 green Wolf creature token. Attach any number of Auras and/or Equipment you control to that token."
+	  },
+	  {
+		 "name": "Velka's Missionary",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "3W",
+		 "cmc": "4",
+		 "type": "Creature - Human Cleric",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "When Velka’s Missionary enters the battlefield, create a 1/1 white Zombie Soldier creature token.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Cleric. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Sin Cultist",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "2B",
+		 "cmc": "3",
+		 "type": "Creature - Human Cleric",
+		 "pt": "3/1",
+		 "tablerow": "2",
+		 "text": "When Sin Cultist enters the battlefield, each player sacrifices a creature.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Cleric. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Sewer Nibbler",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "1B",
+		 "cmc": "2",
+		 "type": "Creature - Rat",
+		 "pt": "2/1",
+		 "tablerow": "2",
+		 "text": "When Sewer Nibbler enters the battlefield, put the top three cards of your library into your graveyard.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Rat. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Grim Mercenary",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "1RR",
+		 "cmc": "3",
+		 "type": "Creature - Human Soldier",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Grim Mercenary despairs, it gains double strike until end of turn."
+	  },
+	  {
+		 "name": "Priest of Velka",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "WB",
+		 "manacost": "2WB",
+		 "cmc": "4",
+		 "type": "Creature - Human Cleric",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "When Priest of Velka enters the battlefield, each opponent loses life equal to the number of Zombies you control and you gain that much life.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Cleric. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Havel, the Rock",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "1WW",
+		 "cmc": "3",
+		 "type": "Legendary Creature - Demigod Knight",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "Havel, the Rock gets +1/+1 for each nontoken Equipment you control.\nYou may pay 0 rather than pay equip costs."
+	  },
+	  {
+		 "name": "Hungering Knight",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "2B",
+		 "cmc": "3",
+		 "type": "Creature - Zombie Knight",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": "Sacrifice a creature: Hungering Knight gets +2/+2 until end of turn."
+	  },
+	  {
+		 "name": "Dour Vagrant",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "1U",
+		 "cmc": "2",
+		 "type": "Creature - Human Rogue",
+		 "pt": "2/1",
+		 "tablerow": "2",
+		 "text": "When Dour Vagrant enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Rogue. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Seeker of the Cure",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "2W",
+		 "cmc": "3",
+		 "type": "Creature - Human Knight",
+		 "pt": "3/2",
+		 "tablerow": "2",
+		 "text": "Hollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Knight. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Barbaric Cleric",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "4B",
+		 "cmc": "5",
+		 "type": "Creature - Human Cleric",
+		 "pt": "4/4",
+		 "tablerow": "2",
+		 "text": "When Barbaric Cleric enters the battlefield, each opponent loses 2 life and you gain 2 life.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Cleric. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Astora Outcast",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "3WW",
+		 "cmc": "5",
+		 "type": "Creature - Human Knight",
+		 "pt": "4/4",
+		 "tablerow": "2",
+		 "text": "Whenever Astora Outcast attacks, tap target creature an opponent controls.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Knight. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Deathless Commander",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "1B",
+		 "cmc": "2",
+		 "type": "Creature - Zombie Knight",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": "Other Zombies and Knights you control get +1/+1."
+	  },
+	  {
+		 "name": "Stalking Phantom",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "UR",
+		 "manacost": "UR",
+		 "cmc": "2",
+		 "type": "Creature - Spirit Wizard",
+		 "pt": "1/1",
+		 "tablerow": "2",
+		 "text": "Flying, haste\nWhenever you put a journeyed card into your hand, put a +1/+1 counter on Stalking Phantom."
+	  },
+	  {
+		 "name": "Path of Brilliance",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "2U",
+		 "cmc": "3",
+		 "type": "Enchantment",
+		 "tablerow": "1",
+		 "text": "When Path of Brilliance enters the battlefield, journey twice. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nAt the beginning of combat on your turn, if you own a journeyed card in exile, tap target creature an opponent controls."
+	  },
+	  {
+		 "name": "Sunlight Spear",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "4RR",
+		 "cmc": "6",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Sunlight Spear deals 6 damage to any target. This damage can’t be prevented."
+	  },
+	  {
+		 "name": "Ancient Extinction",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "3GG",
+		 "cmc": "5",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Choose one —\n• Destroy all artifacts.\n• Destroy all creatures with flying.\n• Destroy all lands with activated abilities that aren’t mana abilities."
+	  },
+	  {
+		 "name": "Hopeless Determination",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "2B",
+		 "cmc": "3",
+		 "type": "Enchantment",
+		 "tablerow": "1",
+		 "text": "At the beginning of your end step, each opponent loses 1 life and you gain 1 life.\nIf you would draw a card while your library has no cards in it, skip that draw instead."
+	  },
+	  {
+		 "name": "Darkbreaker Angel",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "3WW",
+		 "cmc": "5",
+		 "type": "Creature - Angel",
+		 "pt": "5/4",
+		 "tablerow": "2",
+		 "text": "Flying, vigilance, lifelink\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Angel. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Undead Steed",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "4W",
+		 "cmc": "5",
+		 "type": "Creature - Zombie Horse",
+		 "pt": "2/3",
+		 "tablerow": "2",
+		 "text": "When Undead Steed enters the battlefield, create a 2/2 white Knight creature token."
+	  },
+	  {
+		 "name": "Jolly Cooperation",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "1RR",
+		 "cmc": "3",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Untap up to two target creatures. After this main phase, there is an additional combat phase followed by an additional main phase.\nJourney twice. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Exiled Priestess",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "1W",
+		 "cmc": "2",
+		 "type": "Creature - Human Cleric",
+		 "pt": "2/1",
+		 "tablerow": "2",
+		 "text": "When Exiled Priestess dies, put a +1/+1 counter on up to one target creature.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Cleric. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Everlasting Dragon",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": "9",
+		 "cmc": "9",
+		 "type": "Artifact Creature - Dragon",
+		 "pt": "6/6",
+		 "tablerow": "2",
+		 "text": "Flying\nPrevent all damage that would be dealt to you or to Everlasting Dragon."
+	  },
+	  {
+		 "name": "Heavy Iron Armor",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "1W",
+		 "cmc": "2",
+		 "type": "Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "If a source would deal damage to equipped creature, prevent half that damage, rounded up.\nEquip 2"
+	  },
+	  {
+		 "name": "Power Within",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "1RRR",
+		 "cmc": "4",
+		 "type": "Enchantment",
+		 "tablerow": "1",
+		 "text": "Whenever you cast an instant or sorcery spell, copy that spell. You may choose new targets for the copy. Power Within deals damage to you equal to that spell’s converted mana cost."
+	  },
+	  {
+		 "name": "Flooding of New Londo",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "3UU",
+		 "cmc": "5",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Return all creatures to their owners’ hands. For each creature returned to its owner’s hand this way, its controller puts the top card of their library into their graveyard."
+	  },
+	  {
+		 "name": "Sen's Fortress Golem",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "4WW",
+		 "cmc": "6",
+		 "type": "Legendary Artifact Creature - Golem",
+		 "pt": "6/6",
+		 "tablerow": "2",
+		 "text": "Vigilance\nCreatures can’t attack you or a permanent you control unless their controller pays 3 for each of those creatures."
+	  },
+	  {
+		 "name": "Sunlight Paragon",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "2WW",
+		 "cmc": "4",
+		 "type": "Creature - Spirit Warrior",
+		 "pt": "4/4",
+		 "tablerow": "2",
+		 "text": "Flying\nCreatures can’t attack alone."
+	  },
+	  {
+		 "name": "Darkroot Diviner",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "UG",
+		 "manacost": "1GU",
+		 "cmc": "3",
+		 "type": "Creature - Human Shaman",
+		 "pt": "2/3",
+		 "tablerow": "2",
+		 "text": "Flash\nFlying\nWhenever you cast a spell during an opponent’s turn, scry 1."
+	  },
+	  {
+		 "name": "Manus, Father of the Abyss",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "BG",
+		 "manacost": "5BG",
+		 "cmc": "7",
+		 "type": "Legendary Creature - Human Horror",
+		 "pt": "7/7",
+		 "tablerow": "2",
+		 "text": "Trample\nWhen Manus, Father of the Abyss enters the battlefield, it fights target creature an opponent controls.\nIf a nontoken creature an opponent controls would die, instead exile it and you draw a card."
+	  },
+	  {
+		 "name": "Doomed Pilgrim",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "1W",
+		 "cmc": "2",
+		 "type": "Creature - Human Cleric",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": "When Doomed Pilgrim enters the battlefield, if an opponent controls more lands than you, you may search your library for up to two Plains cards, reveal them, put them into your hand, then shuffle your library.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Cleric. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Vinheim Handler",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "3U",
+		 "cmc": "4",
+		 "type": "Creature - Human Rogue",
+		 "pt": "1/4",
+		 "tablerow": "2",
+		 "text": "Whenever a creature you control attacks alone, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Eyes of the Darkmoon",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "U",
+		 "cmc": "1",
+		 "type": "Creature - Bird Illusion",
+		 "pt": "1/1",
+		 "tablerow": "2",
+		 "text": "Flash\nFlying\n2U, Exile a noncreature card from your graveyard: Put a +1/+1 counter on Eyes of the Darkmoon."
+	  },
+	  {
+		 "name": "Izalith Firesage",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "4RR",
+		 "cmc": "6",
+		 "type": "Creature - Beast Demon Shaman",
+		 "pt": "6/6",
+		 "tablerow": "2",
+		 "text": "Trample\nWhen Izalith Firesage enters the battlefield, scry 3, then reveal the top card of your library. When you do, Izalith Firesage deals X damage to any target, where X is the revealed card’s converted mana cost."
+	  },
+	  {
+		 "name": "Cruel Lunatic",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "1R",
+		 "cmc": "2",
+		 "type": "Creature - Human Berserker",
+		 "pt": "5/4",
+		 "tablerow": "2",
+		 "text": "When Cruel Lunatic enters the battlefield, any opponent may have it deal 5 damage to them. If a player does, sacrifice Cruel Lunatic.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Berserker. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Expendable's Vigil",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "1W",
+		 "cmc": "2",
+		 "type": "Enchantment - Aura",
+		 "tablerow": "1",
+		 "text": "Enchant creature\nEnchanted creature gets +2/+0 and has vigilance.\nWhenever a Zombie enters the battlefield under your control, you may pay W. If you do, return Expendable’s Vigil from your graveyard to your hand."
+	  },
+	  {
+		 "name": "Dull Defender",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "1W",
+		 "cmc": "2",
+		 "type": "Creature - Zombie Soldier",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "Defender\nDull Defender can attack as though it didn’t have defender as long as an opponent controls a tapped creature."
+	  },
+	  {
+		 "name": "Fallen Farmer",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "B",
+		 "cmc": "1",
+		 "type": "Creature - Zombie Farmer",
+		 "pt": "1/1",
+		 "tablerow": "2",
+		 "text": "1B: Return Fallen Farmer from your graveyard to your hand."
+	  },
+	  {
+		 "name": "Giant's Technique",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "2G",
+		 "cmc": "3",
+		 "type": "Enchantment - Aura",
+		 "tablerow": "1",
+		 "text": "Enchant creature\nEnchanted creature gets +2/+2.\nWhenever enchanted creature attacks, if it’s equipped, double its power and toughness until end of turn."
+	  },
+	  {
+		 "name": "Deluded Thrasher",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "2G",
+		 "cmc": "3",
+		 "type": "Creature - Human Dragon",
+		 "pt": "3/2",
+		 "tablerow": "2",
+		 "text": "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Deluded Thrasher despairs, it gets +2/+2 until end of turn and can’t be blocked by creatures with power 2 or less this turn."
+	  },
+	  {
+		 "name": "Dragon-Path Daredevil",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "2R",
+		 "cmc": "3",
+		 "type": "Creature - Human Dragon",
+		 "pt": "3/2",
+		 "tablerow": "2",
+		 "text": "Menace\nWhen Dragon-Path Daredevil enters the battlefield, you may discard a card. If you do, journey twice. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Batwing Demon",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "3R",
+		 "cmc": "4",
+		 "type": "Creature - Bat Demon",
+		 "pt": "3/2",
+		 "tablerow": "2",
+		 "text": "Flying\nWhen Batwing Demon enters the battlefield, another target creature you control gets +3/+0 and gains flying until end of turn. Sacrifice that creature at the beginning of the next end step."
+	  },
+	  {
+		 "name": "Heir of Chaos",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "1R",
+		 "cmc": "2",
+		 "type": "Creature - Human Wizard",
+		 "pt": "3/1",
+		 "tablerow": "2",
+		 "text": "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Heir of Chaos despairs, when you cast your next instant or sorcery spell this turn, copy it. You may choose new targets for the copy."
+	  },
+	  {
+		 "name": "Paragon Transformation",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "3R",
+		 "cmc": "4",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "As an additional cost to cast this spell, sacrifice a creature.\nCreate a 4/4 colorless Dragon artifact creature token with flying."
+	  },
+	  {
+		 "name": "Hero's Gamble",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "R",
+		 "cmc": "1",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Journey five times. At the beginning of the next end step, shuffle five journeyed cards you own in exile into your library. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Illusory Wall",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "1U",
+		 "cmc": "2",
+		 "type": "Creature - Illusion Wall",
+		 "pt": "0/10",
+		 "tablerow": "2",
+		 "text": "Defender\nWhen Illusory Wall becomes the target of a spell, sacrifice it."
+	  },
+	  {
+		 "name": "Darkroot Poisoner",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "2G",
+		 "cmc": "3",
+		 "type": "Creature - Human Warrior",
+		 "pt": "3/2",
+		 "tablerow": "2",
+		 "text": "Flash\n2G: Darkroot Poisoner gains deathtouch until end of turn."
+	  },
+	  {
+		 "name": "Lifehunt Boon",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "W",
+		 "cmc": "1",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Target creature gets +1/+0 and gains first strike and lifelink until end of turn."
+	  },
+	  {
+		 "name": "Titanite Demon",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "5B",
+		 "cmc": "6",
+		 "type": "Artifact Creature - Demon Construct",
+		 "pt": "4/5",
+		 "tablerow": "2",
+		 "text": "When Titanite Demon enters the battlefield, you draw a card and you lose 1 life."
+	  },
+	  {
+		 "name": "Darkwraith Warband",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "3B",
+		 "cmc": "4",
+		 "type": "Creature - Skeleton Knight",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "When Darkwraith Warband enters the battlefield, you may sacrifice another creature. If you do, put two +1/+1 counters on Darkwraith Warband and each opponent loses 2 life."
+	  },
+	  {
+		 "name": "Fallen Champion",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "3B",
+		 "cmc": "4",
+		 "type": "Creature - Human Knight",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhenever a creature you control despairs, target creature an opponent controls gets -2/-2 until end of turn."
+	  },
+	  {
+		 "name": "Key-Holder Demon",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "3BB",
+		 "cmc": "5",
+		 "type": "Creature - Beast Demon",
+		 "pt": "4/4",
+		 "tablerow": "2",
+		 "text": "Flying\nWhen Key-Holder Demon enters the battlefield, exile all cards from all opponents’ graveyards."
+	  },
+	  {
+		 "name": "Gwyndolin, the Darkmoon",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "WU",
+		 "manacost": "2WU",
+		 "cmc": "4",
+		 "type": "Legendary Creature - God",
+		 "pt": "4/3",
+		 "tablerow": "2",
+		 "text": "At the beginning of your upkeep, scry 2.\nWhenever an opponent casts a spell that targets you or a permanent you control, exile target permanent that player controls."
+	  },
+	  {
+		 "name": "Gwynevere, Bountiful Sun",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "WG",
+		 "manacost": "2GW",
+		 "cmc": "4",
+		 "type": "Legendary Creature - God",
+		 "pt": "2/5",
+		 "tablerow": "2",
+		 "text": "Lifelink\nWhenever an Aura enters the battlefield under your control, if it’s not a token, create a token that’s a copy of that Aura. (Attach that token to something it could legally enchant.)"
+	  },
+	  {
+		 "name": "Velka, Arbiter of Sin",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "WB",
+		 "manacost": "2WB",
+		 "cmc": "4",
+		 "type": "Legendary Creature - God",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "Deathtouch, lifelink\nWhenever Velka, Arbiter of Sin or another creature enters the battlefield under your control, choose one —\n• Each player gains 2 life.\n• Each player loses 2 life."
+	  },
+	  {
+		 "name": "Izalith, Great Flame Witch",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "BR",
+		 "manacost": "3BR",
+		 "cmc": "5",
+		 "type": "Legendary Creature - God",
+		 "pt": "6/4",
+		 "tablerow": "2",
+		 "text": "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Izalith, Great Flame Witch despairs, search your library for a Demon creature card, put it onto the battlefield tapped and attacking, then shuffle your library."
+	  },
+	  {
+		 "name": "The Furtive Pygmy",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "1BB",
+		 "cmc": "3",
+		 "type": "Legendary Creature - Human",
+		 "pt": "1/2",
+		 "tablerow": "2",
+		 "text": "At the beginning of your upkeep, put the top X cards of your library into your graveyard, where X is the number of cards in your graveyard. Create a 1/1 black Human creature token for each nonland card put into your graveyard this way."
+	  },
+	  {
+		 "name": "Everlasting Research",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "2U",
+		 "cmc": "3",
+		 "type": "Enchantment",
+		 "tablerow": "1",
+		 "text": "At the beginning of each player’s draw step, that player looks at the top two cards of their library, puts one of those cards into their hand and the other into their graveyard."
+	  },
+	  {
+		 "name": "Path of Strength",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "3G",
+		 "cmc": "4",
+		 "type": "Enchantment",
+		 "tablerow": "1",
+		 "text": "When Path of Strength enters the battlefield, journey twice. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nAt the beginning of combat on your turn, if you own a journeyed card in exile, target creature you control gets +2/+2 and gains trample until end of turn."
+	  },
+	  {
+		 "name": "Prized Drake",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "4UU",
+		 "cmc": "6",
+		 "type": "Creature - Drake",
+		 "pt": "4/4",
+		 "tablerow": "2",
+		 "text": "Flying\nWhen Prized Drake dies, you draw a card."
+	  },
+	  {
+		 "name": "Hunter's Savvy",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "2G",
+		 "cmc": "3",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Destroy target creature with flying. Put a +1/+1 counter on up to one target creature you control."
+	  },
+	  {
+		 "name": "Giant Spider",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "3G",
+		 "cmc": "4",
+		 "type": "Creature - Spider",
+		 "pt": "2/4",
+		 "tablerow": "2",
+		 "text": "Reach"
+	  },
+	  {
+		 "name": "Hunted Questant",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "1G",
+		 "cmc": "2",
+		 "type": "Creature - Human Knight",
+		 "pt": "3/2",
+		 "tablerow": "2",
+		 "text": "When Hunted Questant enters the battlefield, target opponent creates a 2/2 green Wolf creature token. You journey twice. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Rapid Rusting",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "2U",
+		 "cmc": "3",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Target creature gets -5/-0 until end of turn. Return all permanents attached to it to their owners’ hands.\nDraw a card."
+	  },
+	  {
+		 "name": "Grave-Guard Wolf",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "1G",
+		 "cmc": "2",
+		 "type": "Creature - Wolf",
+		 "pt": "3/1",
+		 "tablerow": "2",
+		 "text": "When Grave-Guard Wolf dies, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)"
+	  },
+	  {
+		 "name": "Raven Rider",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "4U",
+		 "cmc": "5",
+		 "type": "Creature - Human Knight",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "Flying\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Knight. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Sunset on a Dying World",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "3R",
+		 "cmc": "4",
+		 "type": "Enchantment",
+		 "tablerow": "1",
+		 "text": "At the beginning of your end step, each player sacrifices a nonland permanent. Sunset on a Dying World deals 3 damage to each player who can’t."
+	  },
+	  {
+		 "name": "Glory Chaser",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "1R",
+		 "cmc": "2",
+		 "type": "Creature - Human Knight",
+		 "pt": "2/1",
+		 "tablerow": "2",
+		 "text": "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Glory Chaser despairs, it gets +2/+0 and gains trample until end of turn."
+	  },
+	  {
+		 "name": "Lingering Animosity",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "R",
+		 "cmc": "1",
+		 "type": "Enchantment - Aura",
+		 "tablerow": "1",
+		 "text": "Enchant creature\nWhen Lingering Animosity enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nEnchanted creature attacks each combat if able."
+	  },
+	  {
+		 "name": "Dragon-Speaker Ascendant",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "1G",
+		 "cmc": "2",
+		 "type": "Creature - Human Dragon",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": "3, Sacrifice Dragon-Speaker Ascendant: Search your library for a Dragon creature card, reveal it, put it into your hand, then shuffle your library.\n6, Exile Dragon-Speaker Ascendant from your graveyard: Create a 4/4 colorless Dragon artifact creature token with flying."
+	  },
+	  {
+		 "name": "Blue Crystal Golem",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "5U",
+		 "cmc": "6",
+		 "type": "Artifact Creature - Golem",
+		 "pt": "6/6",
+		 "tablerow": "2",
+		 "text": "Blue Crystal Golem can’t attack unless there are four or more cards in your graveyard."
+	  },
+	  {
+		 "name": "Blighted Dragonoid",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "3G",
+		 "cmc": "4",
+		 "type": "Creature - Human Dragon",
+		 "pt": "4/3",
+		 "tablerow": "2",
+		 "text": "When Blighted Dragonoid dies, you may distribute two +1/+1 counters among one or two target creatures."
+	  },
+	  {
+		 "name": "The Moonlight Greatsword",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "2U",
+		 "cmc": "3",
+		 "type": "Legendary Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "Instant and sorcery spells you cast cost 1 less to cast.\nEquipped creature gets +X/+X, where X is the number of instant and sorcery cards in your graveyard.\nEquip 2"
+	  },
+	  {
+		 "name": "Excessive Moxie",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "2R",
+		 "cmc": "3",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Attacking creatures get +2/+0 until end of turn."
+	  },
+	  {
+		 "name": "Adorned Gargoyle",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "3W",
+		 "cmc": "4",
+		 "type": "Artifact Creature - Gargoyle",
+		 "pt": "3/2",
+		 "tablerow": "2",
+		 "text": "Flying\nEquip abilities you activate that target Adorned Gargoyle cost 2 less to activate.\nWhen Adorned Gargoyle dies, return up to one target Equipment card from your graveyard to your hand."
+	  },
+	  {
+		 "name": "Curse-Marked Crook",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "2U",
+		 "cmc": "3",
+		 "type": "Creature - Human Rogue",
+		 "pt": "2/3",
+		 "tablerow": "2",
+		 "text": "When Curse-Marked Crook enters the battlefield, scry 1.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Rogue. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Brand with Undeath",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "B",
+		 "cmc": "1",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "Until end of turn, target creature gets +2/+0 and gains “When this creature dies, return it to the battlefield tapped under its owner’s control.”"
+	  },
+	  {
+		 "name": "Brutal Incineration",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "3B",
+		 "cmc": "4",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Target creature gets -4/-4 until end of turn. Its controller loses 2 life."
+	  },
+	  {
+		 "name": "King of New Londo",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "UB",
+		 "manacost": "4UB",
+		 "cmc": "6",
+		 "type": "Legendary Creature - Human Horror",
+		 "pt": "5/4",
+		 "tablerow": "2",
+		 "text": "Flying, lifelink\nWhen King of New Londo enters the battlefield, you may search your library for a card named King of New Londo, reveal it, then shuffle your library and put that card on top of it."
+	  },
+	  {
+		 "name": "The Gods' Blacksmith",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "WG",
+		 "manacost": "3GW",
+		 "cmc": "5",
+		 "type": "Legendary Creature - Giant Artificer",
+		 "pt": "5/5",
+		 "tablerow": "2",
+		 "text": "T: Add WUBRG. Spend this mana only to cast Equipment spells or to activate abilities of Equipment.\nWhenever an equipped creature you control attacks, put a +1/+1 counter on it."
+	  },
+	  {
+		 "name": "Ornstein, Dragonslayer",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "2R",
+		 "cmc": "3",
+		 "type": "Legendary Creature - Demigod Knight",
+		 "pt": "3/2",
+		 "tablerow": "2",
+		 "text": "Haste\nOrnstein, Dragonslayer has first strike as long as it’s attacking.\nDamage can’t be prevented.\n2R: Ornstein, Dragonslayer gets +3/+0 until end of turn."
+	  },
+	  {
+		 "name": "Legacy of Knights",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "1W",
+		 "cmc": "2",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Search your library for up to one Knight card and up to one Equipment card and reveal them. Shuffle your library, then put those cards on top of it in any order."
+	  },
+	  {
+		 "name": "Pale-Drake's Pact",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "U",
+		 "manacost": "1UU",
+		 "cmc": "3",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Exchange control of target artifact or enchantment you control and target creature an opponent controls."
+	  },
+	  {
+		 "name": "Gwyn's Defeat",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "R",
+		 "manacost": "XRR",
+		 "cmc": "2",
+		 "type": "Instant",
+		 "tablerow": "3",
+		 "text": "This spell costs 4 less to cast if you control a creature with power 4 or greater.\nGwyn’s Defeat deals X damage to any target."
+	  },
+	  {
+		 "name": "Blackened Knight",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "1BB",
+		 "cmc": "3",
+		 "type": "Creature - Demigod Knight",
+		 "pt": "4/4",
+		 "tablerow": "2",
+		 "text": "Blackened Knight attacks an opponent who controls a Demon, a Dragon, or a Zombie each combat if able."
+	  },
+	  {
+		 "name": "Wayfinder's Landmark",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": "G",
+		 "manacost": "2G",
+		 "cmc": "3",
+		 "type": "Enchantment - Aura",
+		 "tablerow": "1",
+		 "text": "Enchant land\nEnchanted land has “2, T: Reveal the top four cards of your library. Put up to one land card from among them onto the battlefield and attach Wayfinder’s Landmark to it. Put the rest into your graveyard.”"
+	  },
+	  {
+		 "name": "Priscilla's Twinblade",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "WU",
+		 "manacost": "2WU",
+		 "cmc": "4",
+		 "type": "Creature - Human Knight",
+		 "pt": "2/4",
+		 "tablerow": "2",
+		 "text": "When Priscilla’s Twinblade enters the battlefield, draw a card.\nPriscilla’s Twinblade can block an additional creature each combat."
+	  },
+	  {
+		 "name": "Companion's Experience",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "2W",
+		 "cmc": "3",
+		 "type": "Enchantment",
+		 "tablerow": "1",
+		 "text": "Whenever exactly two creatures you control attack, put two +1/+1 counters on the creature with the least power among them. If they have equal power, instead put a +1/+1 counter on both of them."
+	  },
+	  {
+		 "name": "Dragon Tooth",
+		 "set": {
+			"@rarity": "rare",
+			"#text": "HLW"
+		 },
+		 "color": [],
+		 "manacost": "5",
+		 "cmc": "5",
+		 "type": "Artifact - Equipment",
+		 "tablerow": "1",
+		 "text": "Indestructible\nEquipped creature gets +5/+5 and has trample and hexproof.\nEquip 5"
+	  },
+	  {
+		 "name": "Mind Rot",
+		 "set": {
+			"@rarity": "common",
+			"#text": "HLW"
+		 },
+		 "color": "B",
+		 "manacost": "2B",
+		 "cmc": "3",
+		 "type": "Sorcery",
+		 "tablerow": "3",
+		 "text": "Target player discards two cards."
+	  },
+	  {
+		 "name": "Darkmoon Avenger",
+		 "set": {
+			"@rarity": "uncommon",
+			"#text": "HLW"
+		 },
+		 "color": "W",
+		 "manacost": "2W",
+		 "cmc": "3",
+		 "type": "Creature - Human Knight",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "When Darkmoon Avenger enters the battlefield, at the beginning of target opponent’s next end step, that player sacrifices a tapped creature.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Knight. Hollow only as a sorcery.)"
+	  },
+	  {
+		 "name": "Slaine, Fated Lord",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "UG",
+		 "manacost": "4GU",
+		 "cmc": "6",
+		 "type": "Legendary Planeswalker - Slaine",
+		 "loyalty": "4",
+		 "tablerow": "1",
+		 "text": "[+1]: You get an emblem with “At the beginning of your end step, create a 1/1 black Human creature token.”\n[-3]: You get an emblem with “At the beginning of your end step, draw a card.”\n[-8]: You get an emblem with “At the beginning of your end step, if it isn’t an extra turn, take an extra turn after this one.”"
+	  },
+	  {
+		 "name": "Evander, Sunlight Martyr",
+		 "set": {
+			"@rarity": "mythic",
+			"#text": "HLW"
+		 },
+		 "color": "WR",
+		 "manacost": "2RW",
+		 "cmc": "4",
+		 "type": "Legendary Planeswalker - Evander",
+		 "loyalty": "3",
+		 "tablerow": "1",
+		 "text": "Whenever one or more loyalty counters are removed from Evander, Sunlight Martyr, create a 2/2 white Knight creature token.\n[+1]: Evander, Sunlight Martyr deals 1 damage to any target.\n[-1]: Creatures you control get +1/+1 and gain haste until end of turn."
+	  },
+	  {
+		 "name": "HLW Spider",
+		 "set": "HLW",
+		 "color": "G",
+		 "type": "Token Creature - Spider",
+		 "pt": "1/2",
+		 "tablerow": "2",
+		 "text": "Reach",
+		 "token": "1",
+		 "reverse-related": [
+			"Servant of the Fair Lady",
+			"Blight Hatching"
+		 ]
+	  },
+	  {
+		 "name": "HLW Skeleton",
+		 "set": "HLW",
+		 "color": "B",
+		 "type": "Token Creature - Skeleton",
+		 "pt": "1/1",
+		 "tablerow": "2",
+		 "text": [],
+		 "token": "1",
+		 "reverse-related": [
+			"Nito, the Gravelord",
+			"Darkwraith Elite"
+		 ]
+	  },
+	  {
+		 "name": "HLW Wolf",
+		 "set": "HLW",
+		 "color": "G",
+		 "type": "Token Creature - Wolf",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": [],
+		 "token": "1",
+		 "reverse-related": [
+			"Pass On",
+			"Darkroot Hunt-Pack",
+			"Hunted Knight"
+		 ]
+	  },
+	  {
+		 "name": "HLW Dragon",
+		 "set": "HLW",
+		 "color": [],
+		 "type": "Token Artifact Creature - Dragon",
+		 "pt": "4/4",
+		 "tablerow": "2",
+		 "text": "Flying",
+		 "token": "1",
+		 "reverse-related": [
+			"Hawkeye Gough",
+			"Paragon Transformation",
+			"Dragon-Speaker Ascendant"
+		 ]
+	  },
+	  {
+		 "name": "HLW Knight",
+		 "set": "HLW",
+		 "color": "W",
+		 "type": "Token Creature - Knight",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": [],
+		 "token": "1",
+		 "reverse-related": "Undead Steed"
+	  },
+	  {
+		 "name": "HLW Zombie Soldier",
+		 "set": "HLW",
+		 "color": "W",
+		 "type": "Token Creature - Zombie Soldier",
+		 "pt": "1/1",
+		 "tablerow": "2",
+		 "text": [],
+		 "token": "1",
+		 "reverse-related": [
+			"Velka's Missionary",
+			"Velka's Missionary Hollow",
+			"Endless Encounters"
+		 ]
+	  },
+	  {
+		 "name": "Astora Outcast Hollow",
+		 "set": "HLW",
+		 "color": "WB",
+		 "type": "Token Creature - Zombie Human Knight",
+		 "pt": "4/4",
+		 "tablerow": "2",
+		 "text": "Whenever Astora Outcast attacks, tap target creature an opponent controls.",
+		 "token": "1",
+		 "reverse-related": "Astora Outcast"
+	  },
+	  {
+		 "name": "Priest of Velka Hollow",
+		 "set": "HLW",
+		 "color": "WB",
+		 "type": "Token Creature - Zombie Human Cleric",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "When Priest of Velka enters the battlefield, each opponent loses life equal to the number of Zombies you control and you gain that much life.",
+		 "token": "1",
+		 "reverse-related": "Priest of Velka"
+	  },
+	  {
+		 "name": "Seeker of the Cure Hollow",
+		 "set": "HLW",
+		 "color": "WB",
+		 "type": "Token Creature - Zombie Human Knight",
+		 "pt": "3/2",
+		 "tablerow": "2",
+		 "text": [],
+		 "token": "1",
+		 "reverse-related": "Seeker of the Cure"
+	  },
+	  {
+		 "name": "Sin Cultist Hollow",
+		 "set": "HLW",
+		 "color": "B",
+		 "type": "Token Creature - Zombie Human Cleric",
+		 "pt": "3/1",
+		 "tablerow": "2",
+		 "text": "When Sin Cultist enters the battlefield, each player sacrifices a creature.",
+		 "token": "1",
+		 "reverse-related": "Sin Cultist"
+	  },
+	  {
+		 "name": "Velka's Missionary Hollow",
+		 "set": "HLW",
+		 "color": "WB",
+		 "type": "Token Creature - Zombie Human Cleric",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "When Velka’s Missionary enters the battlefield, create a 1/1 white Zombie Soldier creature token.",
+		 "token": "1",
+		 "reverse-related": "Velka's Missionary"
+	  },
+	  {
+		 "name": "Dour Vagrant Hollow",
+		 "set": "HLW",
+		 "color": "UB",
+		 "type": "Token Creature - Zombie Human Rogue",
+		 "pt": "2/1",
+		 "tablerow": "2",
+		 "text": "When Dour Vagrant enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
+		 "token": "1",
+		 "reverse-related": "Dour Vagrant"
+	  },
+	  {
+		 "name": "Sewer Nibbler Hollow",
+		 "set": "HLW",
+		 "color": "B",
+		 "type": "Token Creature - Zombie Rat",
+		 "pt": "2/1",
+		 "tablerow": "2",
+		 "text": "When Sewer Nibbler enters the battlefield, put the top three cards of your library into your graveyard.",
+		 "token": "1",
+		 "reverse-related": "Sewer Nibbler"
+	  },
+	  {
+		 "name": "Cruel Lunatic Hollow",
+		 "set": "HLW",
+		 "color": "BR",
+		 "type": "Token Creature - Zombie Human Berserker",
+		 "pt": "5/4",
+		 "tablerow": "2",
+		 "text": "When Cruel Lunatic enters the battlefield, any opponent may have it deal 5 damage to them. If a player does, sacrifice Cruel Lunatic.",
+		 "token": "1",
+		 "reverse-related": "Cruel Lunatic"
+	  },
+	  {
+		 "name": "Barbaric Cleric Hollow",
+		 "set": "HLW",
+		 "color": "B",
+		 "type": "Token Creature - Zombie Human Cleric",
+		 "pt": "4/4",
+		 "tablerow": "2",
+		 "text": "When Barbaric Cleric enters the battlefield, each opponent loses 2 life and you gain 2 life.",
+		 "token": "1",
+		 "reverse-related": "Barbaric Cleric"
+	  },
+	  {
+		 "name": "Sin Caller Hollow",
+		 "set": "HLW",
+		 "color": "B",
+		 "type": "Token Creature - Zombie Human Cleric",
+		 "pt": "4/3",
+		 "tablerow": "2",
+		 "text": "Whenever a creature you control dies, you draw a card and you lose 1 life.",
+		 "token": "1",
+		 "reverse-related": "Sin Caller"
+	  },
+	  {
+		 "name": "Darkbreaker Angel Hollow",
+		 "set": "HLW",
+		 "color": "WB",
+		 "type": "Token Creature - Zombie Angel",
+		 "pt": "5/4",
+		 "tablerow": "2",
+		 "text": "Flying, vigilance, lifelink",
+		 "token": "1",
+		 "reverse-related": "Darkbreaker Angel"
+	  },
+	  {
+		 "name": "Doomed Pilgrim Hollow",
+		 "set": "HLW",
+		 "color": "WB",
+		 "type": "Token Creature - Zombie Human Cleric",
+		 "pt": "2/2",
+		 "tablerow": "2",
+		 "text": "When Doomed Pilgrim enters the battlefield, if an opponent controls more lands than you, you may search your library for up to two Plains cards, reveal them, put them into your hand, then shuffle your library.",
+		 "token": "1",
+		 "reverse-related": "Doomed Pilgrim"
+	  },
+	  {
+		 "name": "Journey Tracker with RT",
+		 "set": "HLW",
+		 "color": [],
+		 "type": "Tracker",
+		 "tablerow": "1",
+		 "text": "(Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
+		 "token": "1",
+		 "reverse-related": [
+			"Sorcerous Explorer",
+			"Absorbed in Thought",
+			"Crossing the Fog",
+			"Seek the Past",
+			"Sidetracked",
+			"Pyromancer's Wisdom",
+			"Jolly Cooperation",
+			"Adventurer's Enthusiasm",
+			"Alleyway Encounter",
+			"Quelana's Pupil",
+			"Path of Violence",
+			"Search for Dusk",
+			"Explorer's Reward",
+			"Walking Woods",
+			"Uncover the Lost",
+			"Gwynevere's Guidance",
+			"Crossing of Paths",
+			"The Road Ahead",
+			"Path of Brilliance",
+			"Dour Vagrant",
+			"Banish to the Painting",
+			"Traveler's Protection",
+			"Vinheim Handler",
+			"Path of Strength",
+			"Path of Brilliance",
+			"Reach the Bonfire",
+			"Dragon-Path Daredevil",
+			"Hero's Gamble",
+			"Grave-Guard Wolf",
+			"Hunted Questant"
+		 ]
+	  },
+	  {
+		 "name": "HLW Fungus",
+		 "set": "HLW",
+		 "color": "G",
+		 "type": "Token Creature - Fungus",
+		 "pt": "1/1",
+		 "tablerow": "2",
+		 "text": [],
+		 "token": "1",
+		 "reverse-related": {
+			"@count": "2",
+			"#text": "Mushroom Family"
+		 }
+	  },
+	  {
+		 "name": "HLW Human",
+		 "set": "HLW",
+		 "color": "B",
+		 "type": "Token Creature - Human",
+		 "pt": "1/1",
+		 "tablerow": "2",
+		 "text": [],
+		 "token": "1",
+		 "reverse-related": {
+			"@count": "x",
+			"#text": "The Furtive Pygmy"
+		 }
+	  },
+	  {
+		 "name": "Raven Rider Hollow",
+		 "set": "HLW",
+		 "color": "UB",
+		 "type": "Token Creature - Zombie Human Knight",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "Flying",
+		 "token": "1",
+		 "reverse-related": "Raven Rider"
+	  },
+	  {
+		 "name": "Exiled Priestess Hollow",
+		 "set": "HLW",
+		 "color": "WB",
+		 "type": "Token Creature - Zombie Human Cleric",
+		 "pt": "2/1",
+		 "tablerow": "2",
+		 "text": "When Exiled Priestess dies, put a +1/+1 counter on up to one target creature.",
+		 "token": "1",
+		 "reverse-related": "Exiled Priestess"
+	  },
+	  {
+		 "name": "Darkmoon Avenger Hollow",
+		 "set": "HLW",
+		 "color": "WB",
+		 "type": "Token Creature - Zombie Human Knight",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "When Darkmoon Avenger enters the battlefield, at the beginning of target opponent’s next end step, that player sacrifices a tapped creature.",
+		 "token": "1",
+		 "reverse-related": "Darkmoon Avenger"
+	  },
+	  {
+		 "name": "Curse-Marked Crook Hollow",
+		 "set": "HLW",
+		 "color": "UB",
+		 "type": "Token Creature - Zombie Human Rogue",
+		 "pt": "2/3",
+		 "tablerow": "2",
+		 "text": "When Curse-Marked Crook enters the battlefield, scry 1.",
+		 "token": "1",
+		 "reverse-related": "Curse-Marked Crook"
+	  },
+	  {
+		 "name": "Demented Sorcerer Hollow",
+		 "set": "HLW",
+		 "color": "UB",
+		 "type": "Token Creature - Zombie Human Wizard",
+		 "pt": "3/3",
+		 "tablerow": "2",
+		 "text": "When Demented Sorcerer enters the battlefield, look at the top four cards of your library. You may reveal an noncreature, nonland card from among them and put it into your hand. Put the rest into your graveyard.",
+		 "token": "1",
+		 "reverse-related": "Demented Sorcerer"
+	  },
+	  {
+		 "name": "Slaine Token Emblem",
+		 "set": "HLW",
+		 "color": [],
+		 "type": "Emblem - Slaine",
+		 "tablerow": "1",
+		 "text": "At the beginning of your end step, create a 1/1 black Human creature token.",
+		 "token": "1"
+	  },
+	  {
+		 "name": "Slaine Card Draw Emblem",
+		 "set": "HLW",
+		 "color": [],
+		 "type": "Emblem - Slaine",
+		 "tablerow": "1",
+		 "text": "At the beginning of your end step, draw a card.",
+		 "token": "1"
+	  },
+	  {
+		 "name": "Slaine Extra Turns Emblem",
+		 "set": "HLW",
+		 "color": [],
+		 "type": "Emblem - Slaine",
+		 "tablerow": "1",
+		 "text": "At the beginning of your end step, if it isn’t an extra turn, take an extra turn after this one.",
+		 "token": "1"
+	  }
+   ]
+}

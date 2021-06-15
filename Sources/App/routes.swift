@@ -48,4 +48,25 @@ public func routes(_ router: Router) throws {
 	let scryfallController = ScryfallBridgeController()
 	
 	router.post("sets", use: scryfallController.getSets)
+	
+//	do {
+//		let directory = DirectoryConfig.detect()
+//		let configDir = "Sources/App/Generation"
+//		let customsetcode = "HLW"
+//		let url = URL(fileURLWithPath: directory.workDir)
+//			.appendingPathComponent(configDir, isDirectory: true)
+//			.appendingPathComponent("\(customsetcode).json", isDirectory: false)
+//		let string = try String(contentsOf: url)
+//		let cards = try cardsFromCockatriceJSON(json: string)
+//
+//		let encoder = JSONEncoder()
+//		encoder.outputFormatting = .prettyPrinted
+//		let data = try encoder.encode(cards.cards)
+//		print("###START###")
+//		let outputString = String(data: data, encoding: .utf8)!
+//		print(outputString)
+//		print("###END###")
+//	} catch {
+//		print(error)
+//	}
 }

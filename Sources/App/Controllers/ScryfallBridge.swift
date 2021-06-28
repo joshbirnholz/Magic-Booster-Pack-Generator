@@ -34,7 +34,7 @@ final class ScryfallBridgeController {
 				]
 				
 				let disallowedSetCodes: Set<String> = [
-					"plist"
+					"plist", "h1r"
 				]
 				
 				var sets: [Swiftfall.ScryfallSet] = try Swiftfall.getSetList().data.compactMap {
@@ -59,6 +59,10 @@ final class ScryfallBridgeController {
 					}
 					
 					if set.code == "stx", set.cardCount < 275 {
+						return nil
+					}
+					
+					if set.code == "afr", set.cardCount < 281 {
 						return nil
 					}
 					

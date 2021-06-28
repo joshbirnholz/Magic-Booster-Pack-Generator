@@ -4601,6 +4601,8 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 	}
 	
 	let customOverrides: [CustomOverride] = customOverrides.compactMap { customOverrides in
+		guard !customOverrides.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
+		
 		if customOverrides.contains("http") {
 			guard let index = customOverrides.firstIndex(of: ":") else { return nil }
 			let name = String(customOverrides[..<index])

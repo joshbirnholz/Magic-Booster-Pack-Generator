@@ -2364,7 +2364,7 @@
 			"isPromo" : false,
 			"scryfallCardBackID" : "0AEEBAF5-8C7D-4636-9E82-8C27447861F7",
 			"set" : "HLW",
-			"name" : "HLW Plains",
+			"name" : "Plains",
 			"typeLine" : "Basic Land - Plains",
 			"isFullArt" : false,
 			"collectorNumber" : "63",
@@ -2380,7 +2380,7 @@
 			"allParts" : [
 				
 			],
-			"printedName" : "HLW Plains",
+			"printedName" : "Plains",
 			"isFoundInBoosters" : true,
 			"rarity" : "common",
 			"borderColor" : "black",
@@ -2401,7 +2401,7 @@
 			"isPromo" : false,
 			"scryfallCardBackID" : "0AEEBAF5-8C7D-4636-9E82-8C27447861F7",
 			"set" : "HLW",
-			"name" : "HLW Island",
+			"name" : "Island",
 			"typeLine" : "Basic Land - Island",
 			"isFullArt" : false,
 			"collectorNumber" : "64",
@@ -2417,7 +2417,7 @@
 			"allParts" : [
 				
 			],
-			"printedName" : "HLW Island",
+			"printedName" : "Island",
 			"isFoundInBoosters" : true,
 			"rarity" : "common",
 			"borderColor" : "black",
@@ -2438,7 +2438,7 @@
 			"isPromo" : false,
 			"scryfallCardBackID" : "0AEEBAF5-8C7D-4636-9E82-8C27447861F7",
 			"set" : "HLW",
-			"name" : "HLW Swamp",
+			"name" : "Swamp",
 			"typeLine" : "Basic Land - Swamp",
 			"isFullArt" : false,
 			"collectorNumber" : "65",
@@ -2454,7 +2454,7 @@
 			"allParts" : [
 				
 			],
-			"printedName" : "HLW Swamp",
+			"printedName" : "Swamp",
 			"isFoundInBoosters" : true,
 			"rarity" : "common",
 			"borderColor" : "black",
@@ -2475,7 +2475,7 @@
 			"isPromo" : false,
 			"scryfallCardBackID" : "0AEEBAF5-8C7D-4636-9E82-8C27447861F7",
 			"set" : "HLW",
-			"name" : "HLW Mountain",
+			"name" : "Mountain",
 			"typeLine" : "Basic Land - Mountain",
 			"isFullArt" : false,
 			"collectorNumber" : "66",
@@ -2491,7 +2491,7 @@
 			"allParts" : [
 				
 			],
-			"printedName" : "HLW Mountain",
+			"printedName" : "Mountain",
 			"isFoundInBoosters" : true,
 			"rarity" : "common",
 			"borderColor" : "black",
@@ -2512,7 +2512,7 @@
 			"isPromo" : false,
 			"scryfallCardBackID" : "0AEEBAF5-8C7D-4636-9E82-8C27447861F7",
 			"set" : "HLW",
-			"name" : "HLW Forest",
+			"name" : "Forest",
 			"typeLine" : "Basic Land - Forest",
 			"isFullArt" : false,
 			"collectorNumber" : "67",
@@ -2528,7 +2528,7 @@
 			"allParts" : [
 				
 			],
-			"printedName" : "HLW Forest",
+			"printedName" : "Forest",
 			"isFoundInBoosters" : true,
 			"rarity" : "common",
 			"borderColor" : "black",
@@ -9749,7 +9749,7 @@
 			"isPromo" : false,
 			"scryfallCardBackID" : "0AEEBAF5-8C7D-4636-9E82-8C27447861F7",
 			"set" : "THLW",
-			"name" : "HLW Spider",
+			"name" : "Spider",
 			"typeLine" : "Token Creature - Spider",
 			"isFullArt" : false,
 			"collectorNumber" : "257",
@@ -9771,7 +9771,7 @@
 				}
 			],
 			"printedTypeLine" : "Token Creature - Spider",
-			"printedName" : "HLW Spider",
+			"printedName" : "Spider",
 			"isFoundInBoosters" : true,
 			"imageUris" : {
 				"large" : "http:\/\/www.planesculptors.net\/upload\/174\/7235\/HLW%20Spider.full.png",
@@ -9797,7 +9797,7 @@
 			"isPromo" : false,
 			"scryfallCardBackID" : "0AEEBAF5-8C7D-4636-9E82-8C27447861F7",
 			"set" : "THLW",
-			"name" : "HLW Skeleton",
+			"name" : "Skeleton",
 			"typeLine" : "Token Creature - Skeleton",
 			"isFullArt" : false,
 			"collectorNumber" : "258",
@@ -9819,7 +9819,7 @@
 				}
 			],
 			"printedTypeLine" : "Token Creature - Skeleton",
-			"printedName" : "HLW Skeleton",
+			"printedName" : "Skeleton",
 			"isFoundInBoosters" : true,
 			"imageUris" : {
 				"large" : "http:\/\/www.planesculptors.net\/upload\/174\/7235\/HLW%20Skeleton.full.png",
@@ -9845,7 +9845,7 @@
 			"isPromo" : false,
 			"scryfallCardBackID" : "0AEEBAF5-8C7D-4636-9E82-8C27447861F7",
 			"set" : "THLW",
-			"name" : "HLW Wolf",
+			"name" : "Wolf",
 			"typeLine" : "Token Creature - Wolf",
 			"isFullArt" : false,
 			"collectorNumber" : "259",
@@ -9867,7 +9867,7 @@
 				}
 			],
 			"printedTypeLine" : "Token Creature - Wolf",
-			"printedName" : "HLW Wolf",
+			"printedName" : "Wolf",
 			"isFoundInBoosters" : true,
 			"imageUris" : {
 				"large" : "http:\/\/www.planesculptors.net\/upload\/174\/7235\/HLW%20Wolf.full.png",
@@ -9893,7 +9893,7 @@
 			"isPromo" : false,
 			"scryfallCardBackID" : "0AEEBAF5-8C7D-4636-9E82-8C27447861F7",
 			"set" : "THLW",
-			"name" : "HLW Dragon",
+			"name" : "Dragon",
 			"typeLine" : "Token Artifact Creature - Dragon",
 			"isFullArt" : false,
 			"collectorNumber" : "260",
@@ -9921,7 +9921,7 @@
 				}
 			],
 			"printedTypeLine" : "Token Artifact Creature - Dragon",
-			"printedName" : "HLW Dragon",
+			"printedName" : "Dragon",
 			"isFoundInBoosters" : true,
 			"imageUris" : {
 				"large" : "http:\/\/www.planesculptors.net\/upload\/174\/7235\/HLW%20Dragon.full.png",
@@ -9947,7 +9947,7 @@
 			"isPromo" : false,
 			"scryfallCardBackID" : "0AEEBAF5-8C7D-4636-9E82-8C27447861F7",
 			"set" : "THLW",
-			"name" : "HLW Knight",
+			"name" : "Knight",
 			"typeLine" : "Token Creature - Knight",
 			"isFullArt" : false,
 			"collectorNumber" : "261",
@@ -9963,7 +9963,7 @@
 				}
 			],
 			"printedTypeLine" : "Token Creature - Knight",
-			"printedName" : "HLW Knight",
+			"printedName" : "Knight",
 			"isFoundInBoosters" : true,
 			"imageUris" : {
 				"large" : "http:\/\/www.planesculptors.net\/upload\/174\/7235\/HLW%20Knight.full.png",
@@ -9989,7 +9989,7 @@
 			"isPromo" : false,
 			"scryfallCardBackID" : "0AEEBAF5-8C7D-4636-9E82-8C27447861F7",
 			"set" : "THLW",
-			"name" : "HLW Zombie Soldier",
+			"name" : "Zombie Soldier",
 			"typeLine" : "Token Creature - Zombie Soldier",
 			"isFullArt" : false,
 			"collectorNumber" : "262",
@@ -10017,7 +10017,7 @@
 				}
 			],
 			"printedTypeLine" : "Token Creature - Zombie Soldier",
-			"printedName" : "HLW Zombie Soldier",
+			"printedName" : "Zombie Soldier",
 			"isFoundInBoosters" : true,
 			"imageUris" : {
 				"large" : "http:\/\/www.planesculptors.net\/upload\/174\/7235\/HLW%20Zombie%20Soldier.full.png",
@@ -10743,7 +10743,7 @@
 			"isPromo" : false,
 			"scryfallCardBackID" : "0AEEBAF5-8C7D-4636-9E82-8C27447861F7",
 			"set" : "THLW",
-			"name" : "HLW Fungus",
+			"name" : "Fungus",
 			"typeLine" : "Token Creature - Fungus",
 			"isFullArt" : false,
 			"collectorNumber" : "276",
@@ -10759,7 +10759,7 @@
 				}
 			],
 			"printedTypeLine" : "Token Creature - Fungus",
-			"printedName" : "HLW Fungus",
+			"printedName" : "Fungus",
 			"isFoundInBoosters" : true,
 			"imageUris" : {
 				"large" : "http:\/\/www.planesculptors.net\/upload\/174\/7235\/HLW%20Fungus.full.png",
@@ -10785,7 +10785,7 @@
 			"isPromo" : false,
 			"scryfallCardBackID" : "0AEEBAF5-8C7D-4636-9E82-8C27447861F7",
 			"set" : "THLW",
-			"name" : "HLW Human",
+			"name" : "Human",
 			"typeLine" : "Token Creature - Human",
 			"isFullArt" : false,
 			"collectorNumber" : "277",
@@ -10801,7 +10801,7 @@
 				}
 			],
 			"printedTypeLine" : "Token Creature - Human",
-			"printedName" : "HLW Human",
+			"printedName" : "Human",
 			"isFoundInBoosters" : true,
 			"imageUris" : {
 				"large" : "http:\/\/www.planesculptors.net\/upload\/174\/7235\/HLW%20Human.full.png",

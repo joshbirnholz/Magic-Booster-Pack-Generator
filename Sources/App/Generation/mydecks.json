@@ -26,10 +26,22 @@
 	"ci": "UB"
   },
   {
+	  "url": "https://deckstats.net/decks/149419/2134546-breya-treasures",
+	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/2/1/2143f700-7311-46a4-ad9b-4e743a345785.jpg?1599707856",
+	  "ids": ["24"],
+	  "ci": "WUBR"
+  },
+  {
 	"url": "https://deckstats.net/decks/149419/1960862-crosis-discard",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/3/4/349e598a-aa12-44b7-b9de-067c9b85fcec.jpg?1562905628",
 	"ids": ["5"],
 	"ci": "UBR"
+  },
+  {
+	  "url": "https://deckstats.net/decks/149419/2133459-edgar-markov",
+	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/d/8d94b8ec-ecda-43c8-a60e-1ba33e6a54a4.jpg?1562616128",
+	  "ids": ["26"],
+	  "ci": "RWB"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1916347-the-prismatic-bridge",
@@ -56,6 +68,12 @@
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/3/7335e500-342d-476d-975c-817512e6e3d6.jpg?1562558022",
 	"ids": ["9"],
 	"ci": "RGW"
+  },
+  {
+	  "url": "https://deckstats.net/decks/149419/2135182-kardur-doomscourge",
+	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/f/bfc779ac-a418-4cd0-aa73-8d0d91d51f1c.jpg?1615605037",
+	  "ids": ["23"],
+	  "ci": "BR"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1901722-lathril-blade-of-the-elves",
@@ -100,6 +118,12 @@
 	"ci": "WB"
   },
   {
+	  "url": "https://deckstats.net/decks/149419/2116018-sythis-harvest-s-hand",
+	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/0/b/0babfe00-9bad-48fc-b3b1-df8280242fd2.jpg?1626098785",
+	  "ids": ["25"],
+	  "ci": "GW"
+  },
+  {
 	"url": "https://deckstats.net/decks/149419/1841034-thalisse-reverent-medium",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/e/4/e4899773-c501-45e5-bf1f-8d818788d61f.jpg?1610077290",
 	"ids": ["17"],
@@ -124,30 +148,6 @@
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/4/7/47edde50-81c8-4fe0-ae13-9a10171361bc.jpg?1562273842",
 	"ids": ["20"],
 	"ci": "GU"
-  },
-  {
-	  "url": "https://deckstats.net/decks/149419/2135182-kardur-doomscourge",
-	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/f/bfc779ac-a418-4cd0-aa73-8d0d91d51f1c.jpg?1615605037",
-	  "ids": ["23"],
-	  "ci": "BR"
-  },
-  {
-	  "url": "https://deckstats.net/decks/149419/2134546-breya-treasures",
-	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/2/1/2143f700-7311-46a4-ad9b-4e743a345785.jpg?1599707856",
-	  "ids": ["24"],
-	  "ci": "WUBR"
-  },
-  {
-	  "url": "https://deckstats.net/decks/149419/2116018-sythis-harvest-s-hand",
-	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/0/b/0babfe00-9bad-48fc-b3b1-df8280242fd2.jpg?1626098785",
-	  "ids": ["25"],
-	  "ci": "GW"
-  },
-  {
-	  "url": "https://deckstats.net/decks/149419/2133459-edgar-markov",
-	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/d/8d94b8ec-ecda-43c8-a60e-1ba33e6a54a4.jpg?1562616128",
-	  "ids": ["26"],
-	  "ci": "RWB"
   },
   {
 	"url": "https://deckstats.net/decks/149419/2076674-coin-flip-deck-gavin-verhey-mo",

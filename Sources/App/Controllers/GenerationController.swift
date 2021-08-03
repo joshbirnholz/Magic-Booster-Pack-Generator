@@ -152,7 +152,7 @@ final class GeneratorController {
 		}
 		
 		switch components.host {
-		case "archidekt.com":
+		case "www.archidekt.com", "archidekt.com":
 			guard deckURL.pathComponents.count >= 2, deckURL.pathComponents[1] == "decks", let decklistURL = URL(string: "https://archidekt.com/api/decks/\(deckURL.pathComponents[2])/") else { throw PackError.invalidURL }
 			
 			DispatchQueue.global(qos: .userInitiated).async {
@@ -265,7 +265,7 @@ final class GeneratorController {
 				}.resume()
 			}
 			
-		case "deckstats.net":
+		case "deckstats.net", "www.deckstats.net":
 			guard var components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else { throw PackError.invalidURL  }
 			
 			components.queryItems = [URLQueryItem(name: "export_mtgarena", value: "1")]
@@ -360,7 +360,7 @@ final class GeneratorController {
 					}
 				}.resume()
 			}
-		case "tappedout.net":
+		case "www.tappedout.net", "tappedout.net":
 			DispatchQueue.global().async {
 				let request = URLRequest(url: deckURL, cachePolicy: .reloadIgnoringLocalCacheData)
 				URLSession.shared.dataTask(with: request) { data, response, error in
@@ -419,7 +419,7 @@ final class GeneratorController {
 					}
 				}.resume()
 			}
-		case "www.mtggoldfish.com":
+		case "www.mtggoldfish.com", "mtggoldfish.com":
 			DispatchQueue.global().async {
 				let request = URLRequest(url: deckURL, cachePolicy: .reloadIgnoringLocalCacheData)
 				URLSession.shared.dataTask(with: request) { data, response, error in
@@ -533,7 +533,19 @@ final class GeneratorController {
 				}.resume()
 			}
 		default:
-			promise.fail(error: PackError.invalidURL)
+			struct ErrorMessage: Codable {
+				var error: String
+			}
+			
+			let encoder = JSONEncoder()
+			let errorMessage = ErrorMessage(error: PackError.invalidURL.reason)
+			do {
+				let data = try encoder.encode(errorMessage)
+				let string = String(data: data, encoding: .utf8)!
+				promise.succeed(result: string)
+			} catch {
+				promise.fail(error: error)
+			}
 		}
 		
 		return promise.futureResult

@@ -4642,37 +4642,44 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		var cardGroup = $0
 		
 		cardGroup.cardCounts = cardGroup.cardCounts.map { cardCount in
+			func fixDoubleFacedName(_ name: String) -> String {
+				guard let index = name.range(of: "//")?.lowerBound else { return name }
+				return String(name[..<index].trimmingCharacters(in: .whitespacesAndNewlines))
+			}
+			
 			let identifier: MTGCardIdentifier = {
 				let identifier = cardCount.identifier
 				
 				switch identifier {
 				case .nameSet(name: let name, set: let set):
+					let fixedName = fixDoubleFacedName(name)
 					if let fixedCode = fixedSetCodes[set.lowercased()] {
-						return .nameSet(name: name, set: fixedCode)
+						return .nameSet(name: fixedName, set: fixedCode)
 					} else if set.uppercased() == "MYSTOR" || set.uppercased() == "MYS1" {
-						return .name(name)
+						return .name(fixedName)
 					} else if autofix && !(3...6).contains(set.count) {
-						return .name(name)
+						return .name(fixedName)
 					} else {
-						break
+						return .nameSet(name: fixedName, set: set)
 					}
 				case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set, let name):
+					let fixedName = name.flatMap(fixDoubleFacedName(_:))
 					if let fixedCode = fixedSetCodes[set.lowercased()] {
-						return .collectorNumberSet(collectorNumber: collectorNumber, set: fixedCode, name: name)
-					} else if let name = name, set.uppercased() == "MYSTOR" {
+						return .collectorNumberSet(collectorNumber: collectorNumber, set: fixedCode, name: fixedName)
+					} else if let name = fixedName, set.uppercased() == "MYSTOR" {
 						return .nameSet(name: name, set: "fmb1")
-					} else if let name = name, set.uppercased() == "MYS1" {
+					} else if let name = fixedName, set.uppercased() == "MYS1" {
 						return .nameSet(name: name, set: "mb1")
-					} else if let name = name, autofix && !(3...6).contains(set.count) {
+					} else if let name = fixedName, autofix && !(3...6).contains(set.count) {
 						return .name(name)
 					} else {
-						break
+						return .collectorNumberSet(collectorNumber: collectorNumber, set: set, name: fixedName)
 					}
+				case .name(let name):
+					return .name(fixDoubleFacedName(name))
 				default:
-					break
+					return identifier
 				}
-				
-				return identifier
 			}()
 			
 			return DeckParser.CardCount(identifier: identifier, count: cardCount.count)

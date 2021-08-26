@@ -22,6 +22,7 @@ struct MyDeck: Codable, Content {
 	let type: DualType?
 	let ci: String
 	let theme: String?
+	let comment: String?
 }
 
 final class MyDecks {

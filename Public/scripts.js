@@ -644,6 +644,10 @@ function loadDecks() {
 					}
 				} else {
 					html += "</a></div>";
+					
+					if (element.comment !== undefined) {
+						html += "<div style='text-align:center;'>" + element.comment + "</div>";
+					}
 				}
 				
 				data.innerHTML = html;

@@ -67,7 +67,7 @@ struct Packet {
 	}
 }
 
-let packets = [
+let packets: [Packet] = [
 	Packet(name: "Above the Clouds", slots: [
 		"Spectral Sailor",
 		["Kitesail Corsair", "Keen Glidemaster", "Mentor of Evos Isle"],

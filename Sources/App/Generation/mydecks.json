@@ -100,10 +100,22 @@
 	"ci": "RW"
   },
   {
+	"url": "https://deckstats.net/decks/149419/2156914-prosper-tome-bound",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/d/7/d743336e-d5c7-4053-a23d-92ec7581f74e.jpg?1626031289",
+	"ids": ["29"],
+	"ci": "BR"
+  },
+  {
 	"url": "https://deckstats.net/decks/149419/1901692-ranar-the-ever-watchful",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/1/c/1c8c41dd-8551-4ce8-a9be-9b9f65718852.jpg?1611972933",
 	"ids": ["14"],
 	"ci": "WU"
+  },
+  {
+	"url": "https://deckstats.net/decks/149419/2185887-rayth",
+	"front": "https://i.imgur.com/btVWlvM.jpg",
+	"ids": ["28"],
+	"ci": "WUB"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1691052-sen-triplets",
@@ -156,5 +168,5 @@
 	"ids": ["13", "27"],
 	"type": "partners",
 	"ci": "UR"
-  },
+  }
 ]

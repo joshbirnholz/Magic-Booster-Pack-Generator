@@ -1,0 +1,6464 @@
+[
+  {
+    "name" : "Above the Clouds",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Spectral Sailor",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Kitesail Corsair",
+            "frequency" : 100
+          },
+          {
+            "name" : "Keen Glidemaster",
+            "frequency" : 100
+          },
+          {
+            "name" : "Mentor of Evos Isle",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Waterkin Shaman",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Ghost-Lit-Drifter",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Tide Skimmer",
+            "frequency" : 100
+          },
+          {
+            "name" : "Windstorm Drake",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Aeromoeba",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Wonder",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Roaming Ghostlight",
+            "frequency" : 100
+          },
+          {
+            "name" : "Windcaller Aven",
+            "frequency" : 100
+          },
+          {
+            "name" : "Ojutai's Summons",
+            "frequency" : 100
+          },
+          {
+            "name" : "Inniaz, the Gale Force",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Capture Sphere",
+            "frequency" : 60
+          },
+          {
+            "name" : "Tightening Coils",
+            "frequency" : 40
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Animated",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Floodhound",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Burdened Aerialist",
+            "frequency" : 50
+          },
+          {
+            "name" : "Sailor of Means",
+            "frequency" : 25
+          },
+          {
+            "name" : "Aviation Pioneer",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Animating Faerie",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Skilled Animator",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Hard Evidence",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Rise and Shine",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Resculpt",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Witching Well",
+            "frequency" : 100
+          },
+          {
+            "name" : "Weapon Rack",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Giant's Amulet",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Icy Manipulator",
+            "frequency" : 100
+          },
+          {
+            "name" : "Turn into a Pumpkin",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Ethereal Grasp",
+            "frequency" : 67
+          },
+          {
+            "name" : "Tome of the Infinite",
+            "frequency" : 33
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Bears",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Mother Bear",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Grizzly Bears",
+            "frequency" : 100
+          },
+          {
+            "name" : "Runeclaw Bear",
+            "frequency" : 100
+          },
+          {
+            "name" : "Bear Cub",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Vivien's Grizzly",
+            "frequency" : 50
+          },
+          {
+            "name" : "Awaken the Bear",
+            "frequency" : 25
+          },
+          {
+            "name" : "Titanic Growth",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Bloodline Pretender",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Professor of Zoomancy",
+            "frequency" : 100
+          },
+          {
+            "name" : "Striped Bears",
+            "frequency" : 100
+          },
+          {
+            "name" : "Owlbear",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Littjara Glade-Warden",
+            "frequency" : 100
+          },
+          {
+            "name" : "Exuberant Wolfbear",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Webweaver Changeling",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Ayula, Queen Among Bears",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Incremental Growth",
+            "frequency" : 75
+          },
+          {
+            "name" : "Enlarge",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Faceless Agent",
+            "frequency" : 100
+          },
+          {
+            "name" : "Veteran Charger",
+            "frequency" : 100
+          },
+          {
+            "name" : "Goreclaw, Terror of Qal Sisma",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Skyshroud Ambush",
+            "frequency" : 100
+          },
+          {
+            "name" : "Savage Swipe",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Cycling",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Flourishing Fox",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Drannith Healer",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Snare Tactician",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Oketra's Attendant",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Imposing Vantasaur",
+            "frequency" : 100
+          },
+          {
+            "name" : "Winged Shepherd",
+            "frequency" : 100
+          },
+          {
+            "name" : "Yoked Plowbeast",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Valiant Rescuer",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Forsake the Worldly",
+            "frequency" : 100
+          },
+          {
+            "name" : "Gilded Light",
+            "frequency" : 100
+          },
+          {
+            "name" : "Coordinated Charge",
+            "frequency" : 100
+          },
+          {
+            "name" : "Djeru's Renunciation",
+            "frequency" : 100
+          },
+          {
+            "name" : "EMPTY",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Pacifism",
+            "frequency" : 60
+          },
+          {
+            "name" : "Cast Out",
+            "frequency" : 30
+          },
+          {
+            "name" : "Radiant's Judgment",
+            "frequency" : 10
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Leonin Sanctifier",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Wingsteed Trainer",
+            "frequency" : 100
+          },
+          {
+            "name" : "Splendor Mare",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Benalish Partisan",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Davriel",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Davriel, Rogue Shadowmage",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Drainpipe Vermin",
+            "frequency" : 100
+          },
+          {
+            "name" : "Liliana's Steward",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Black Cat",
+            "frequency" : 100
+          },
+          {
+            "name" : "Burglar Rat",
+            "frequency" : 100
+          },
+          {
+            "name" : "Elderfang Disciple",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Fell Specter",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Goremand",
+            "frequency" : 75
+          },
+          {
+            "name" : "Urgoros, the Empty One",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Reaper of Night",
+            "frequency" : 40
+          },
+          {
+            "name" : "Davriel's Shadowfugue",
+            "frequency" : 20
+          },
+          {
+            "name" : "Tourach's Canticle",
+            "frequency" : 20
+          },
+          {
+            "name" : "Mind Rake",
+            "frequency" : 20
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Pelakka Predation",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Murder",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Plaguecrafter's Familiar",
+            "frequency" : 67
+          },
+          {
+            "name" : "Subversive Acolyte",
+            "frequency" : 33
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Manor Guardian",
+            "frequency" : 100
+          },
+          {
+            "name" : "Plaguecrafter",
+            "frequency" : 0
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Davriel's Withering",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Davriel, Soul Broker",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Delirium",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Foul Watcher",
+            "frequency" : 100
+          },
+          {
+            "name" : "Oraed of Mountain's Blaze",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Raving Visionary",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Gouged Zealot",
+            "frequency" : 100
+          },
+          {
+            "name" : "Storm-God's Oracle",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Dragon's Rage Channeler",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Bloodbraid Marauder",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Prophetic Titan",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Unholy Heat",
+            "frequency" : 75
+          },
+          {
+            "name" : "Omen of the Forge",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Thrill of Possibility",
+            "frequency" : 100
+          },
+          {
+            "name" : "Implement of Examination",
+            "frequency" : 100
+          },
+          {
+            "name" : "Omen of the Sea",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Chromatic Sphere",
+            "frequency" : 100
+          },
+          {
+            "name" : "Lightning Spear",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Scuttletide",
+            "frequency" : 50
+          },
+          {
+            "name" : "Scour the Laboratory",
+            "frequency" : 25
+          },
+          {
+            "name" : "Manic Scribe",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Sarkhan's Scorn",
+            "frequency" : 100
+          },
+          {
+            "name" : "Ethereal Grasp",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Enchanted",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Setessan Skirmisher",
+            "frequency" : 100
+          },
+          {
+            "name" : "Pious Wayfarer",
+            "frequency" : 100
+          },
+          {
+            "name" : "Starfield Mystic",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Destiny Spinner",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Lagonna-Band Storyteller",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Captivating Unicorn",
+            "frequency" : 100
+          },
+          {
+            "name" : "Nylea's Forerunner",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Sythis, Harvest's Hand",
+            "frequency" : 60
+          },
+          {
+            "name" : "Sanctum Weaver",
+            "frequency" : 30
+          },
+          {
+            "name" : "Sterling Grove",
+            "frequency" : 10
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Squirrel Sanctuary",
+            "frequency" : 100
+          },
+          {
+            "name" : "Skyblade's Boon",
+            "frequency" : 100
+          },
+          {
+            "name" : "Alseid of Life's Bounty",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Omen of the Sun",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Reprobation",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Captured by Lagacs",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Veteran Charger",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Fall of the Imposter",
+            "frequency" : 50
+          },
+          {
+            "name" : "Baffling End",
+            "frequency" : 25
+          },
+          {
+            "name" : "Seal Away",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Energy",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Servant of the Conduit",
+            "frequency" : 60
+          },
+          {
+            "name" : "Longtusk Cub",
+            "frequency" : 40
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Sage of Shaila's Claim",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Thriving Rhino",
+            "frequency" : 100
+          },
+          {
+            "name" : "Aetherstream Leopard",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Peema Aether-Seer",
+            "frequency" : 100
+          },
+          {
+            "name" : "Evolution Sage",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Urban Daggertooth",
+            "frequency" : 100
+          },
+          {
+            "name" : "Riparian Tiger",
+            "frequency" : 100
+          },
+          {
+            "name" : "Bloom Hulk",
+            "frequency" : 100
+          },
+          {
+            "name" : "Bristling Hydra",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Wren's Run Hydra",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Courage in Crisis",
+            "frequency" : 100
+          },
+          {
+            "name" : "Highspire Infusion",
+            "frequency" : 100
+          },
+          {
+            "name" : "Snakeskin Veil",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Smell Fear",
+            "frequency" : 60
+          },
+          {
+            "name" : "Skyshroud Ambush",
+            "frequency" : 40
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Longtusk Stalker",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Veteran Charger",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Pool of Vigorous Growth",
+            "frequency" : 80
+          },
+          {
+            "name" : "Sylvan Anthem",
+            "frequency" : 20
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Evolving",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Sauroform Hybrid",
+            "frequency" : 60
+          },
+          {
+            "name" : "Pool of Vigorous Growth",
+            "frequency" : 10
+          },
+          {
+            "name" : "Lonis, Cryptozoologist",
+            "frequency" : 30
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Shambleshark",
+            "frequency" : 50
+          },
+          {
+            "name" : "Bettering Krasis",
+            "frequency" : 25
+          },
+          {
+            "name" : "Crocanura",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Elusive Krasis",
+            "frequency" : 100
+          },
+          {
+            "name" : "Skatewing Spy",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Urban Daggertooth",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Sharktocrab",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Adaptive Snapjaw",
+            "frequency" : 100
+          },
+          {
+            "name" : "Scuttlegator",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Wren's Run Hydra",
+            "frequency" : 75
+          },
+          {
+            "name" : "Nimbus Swimmer",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Smell Fear",
+            "frequency" : 100
+          },
+          {
+            "name" : "Applied Biomancy",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Simic Ascendancy",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Bred for the Hunt",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Mentor of Evos Isle",
+            "frequency" : 100
+          },
+          {
+            "name" : "Aeromunculus",
+            "frequency" : 100
+          },
+          {
+            "name" : "Veteran Charger",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Flickering",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Restoration Angel",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Soulherder",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Vesperlark",
+            "frequency" : 100
+          },
+          {
+            "name" : "Wispweaver Angel",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Specimen Collector",
+            "frequency" : 100
+          },
+          {
+            "name" : "Aliros, Enraptured",
+            "frequency" : 100
+          },
+          {
+            "name" : "Spire Patrol",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Irregular Cohort",
+            "frequency" : 100
+          },
+          {
+            "name" : "Aven Eternal",
+            "frequency" : 100
+          },
+          {
+            "name" : "Aviation Pioneer",
+            "frequency" : 100
+          },
+          {
+            "name" : "Sandsteppe Outcast",
+            "frequency" : 100
+          },
+          {
+            "name" : "EMPTY",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Faerie Seer",
+            "frequency" : 100
+          },
+          {
+            "name" : "Thraben Inspector",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Monoskelion",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cloudshift",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Pacifism",
+            "frequency" : 100
+          },
+          {
+            "name" : "Ethereal Grasp",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Leonin Sanctifier",
+            "frequency" : 66
+          },
+          {
+            "name" : "Charming Prince",
+            "frequency" : 33
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Baffling Defenses",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Freyalise",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Llanowar Elves",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Paradise Druid",
+            "frequency" : 75
+          },
+          {
+            "name" : "Dwynen's Elite",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Ghirapur Guide",
+            "frequency" : 100
+          },
+          {
+            "name" : "Llanowar Tribe",
+            "frequency" : 100
+          },
+          {
+            "name" : "Taunting Arbormage",
+            "frequency" : 100
+          },
+          {
+            "name" : "Tireless Provisioner",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Wildheart Invoker",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Elderleaf Mentor",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Grizzled Outrider",
+            "frequency" : 50
+          },
+          {
+            "name" : "Lifecraft Cavalry",
+            "frequency" : 25
+          },
+          {
+            "name" : "Tajuru Pathwarden",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Arbor Armament",
+            "frequency" : 100
+          },
+          {
+            "name" : "Gift of Growth",
+            "frequency" : 100
+          },
+          {
+            "name" : "Titanic Growth",
+            "frequency" : 100
+          },
+          {
+            "name" : "Snakeskin Veil",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Song of Freyalise",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Skyshroud Lookout",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Faceless Agent",
+            "frequency" : 100
+          },
+          {
+            "name" : "Llanowar Visionary",
+            "frequency" : 100
+          },
+          {
+            "name" : "Veteran Charger",
+            "frequency" : 100
+          },
+          {
+            "name" : "Marwyn, the Nurturer",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Skyshroud Ambush",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Freyalise, Skyshroud Partisan",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Goblins",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Fissure Wizard",
+            "frequency" : 100
+          },
+          {
+            "name" : "Ornery Goblin",
+            "frequency" : 100
+          },
+          {
+            "name" : "Goblin Bird-Grabber",
+            "frequency" : 100
+          },
+          {
+            "name" : "Managorger Phoenix",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Gempalm Incinerator",
+            "frequency" : 100
+          },
+          {
+            "name" : "Volley Veteran",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Battle-Rattle Shaman",
+            "frequency" : 75
+          },
+          {
+            "name" : "Goblin Wizardry",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Battle Squadron",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Goblin Dark-Dwellers",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Dragon Fodder",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Krenko's Command",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Hordeling Outburst",
+            "frequency" : 100
+          },
+          {
+            "name" : "You See a Pair of Goblins",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Goblin Oriflamme",
+            "frequency" : 100
+          },
+          {
+            "name" : "Goblin Morningstar",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Reckless Ringleader",
+            "frequency" : 100
+          },
+          {
+            "name" : "Foundry Street Denizen",
+            "frequency" : 100
+          },
+          {
+            "name" : "Weaselback Redcap",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Sarkhan's Scorn",
+            "frequency" : 75
+          },
+          {
+            "name" : "Goblin Barrage",
+            "frequency" : 25
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Goblin Fodder",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Pashalik Mons",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Sling-Gang Lieutenant",
+            "frequency" : 100
+          },
+          {
+            "name" : "Beetleback Chief",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Munitions Expert",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Warteye Witch",
+            "frequency" : 50
+          },
+          {
+            "name" : "Facevaulter",
+            "frequency" : 25
+          },
+          {
+            "name" : "Dark-Dweller Oracle",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Goblin Rally",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Krenko's Command",
+            "frequency" : 50
+          },
+          {
+            "name" : "Goblin Arsonist",
+            "frequency" : 25
+          },
+          {
+            "name" : "Shambling Goblin",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Goatnap",
+            "frequency" : 100
+          },
+          {
+            "name" : "Shock",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Mob",
+            "frequency" : 100
+          },
+          {
+            "name" : "Bone Shards",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Raise the Draugr",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Sure Strike",
+            "frequency" : 100
+          },
+          {
+            "name" : "Barge In",
+            "frequency" : 100
+          },
+          {
+            "name" : "Burn Bright",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Reckless Ringleader",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Humans",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Anointed Chorister",
+            "frequency" : 100
+          },
+          {
+            "name" : "Thraben Inspector",
+            "frequency" : 100
+          },
+          {
+            "name" : "Star Pupil",
+            "frequency" : 100
+          },
+          {
+            "name" : "Codespell Cleric",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Thalia's Lieutenant",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Zhalfirin Decoy",
+            "frequency" : 100
+          },
+          {
+            "name" : "Fencing Ace",
+            "frequency" : 100
+          },
+          {
+            "name" : "Shepherd of the Flock",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Steadfast Sentry",
+            "frequency" : 50
+          },
+          {
+            "name" : "Makeshift Battalion",
+            "frequency" : 25
+          },
+          {
+            "name" : "Sandsteppe Outcast",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Dueling Coach",
+            "frequency" : 100
+          },
+          {
+            "name" : "Abzan Battle Priest",
+            "frequency" : 100
+          },
+          {
+            "name" : "Sigiled Contender",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Disciple of the Sun",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Battlefield Promotion",
+            "frequency" : 100
+          },
+          {
+            "name" : "Light of Hope",
+            "frequency" : 100
+          },
+          {
+            "name" : "Feat of Resistance",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Fight as One",
+            "frequency" : 40
+          },
+          {
+            "name" : "Gird for Battle",
+            "frequency" : 20
+          },
+          {
+            "name" : "Valorous Stance",
+            "frequency" : 20
+          },
+          {
+            "name" : "Triumph of Gerrard",
+            "frequency" : 20
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Bonds of Faith",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Faceless Agent",
+            "frequency" : 60
+          },
+          {
+            "name" : "Hanweir Militia Captain",
+            "frequency" : 20
+          },
+          {
+            "name" : "Elite Spellbinder",
+            "frequency" : 20
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Wingsteed Trainer",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "In the Machine",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Arcbound Mouser",
+            "frequency" : 50
+          },
+          {
+            "name" : "Sparring Construct",
+            "frequency" : 25
+          },
+          {
+            "name" : "Arcbound Prototype",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Fairgrounds Patrol",
+            "frequency" : 75
+          },
+          {
+            "name" : "Cogworker's Puzzleknot",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Chrome Courier",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Steelfin Whale",
+            "frequency" : 50
+          },
+          {
+            "name" : "Myr Enforcer",
+            "frequency" : 20
+          },
+          {
+            "name" : "Thought Monitor",
+            "frequency" : 30
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Etherium Spinner",
+            "frequency" : 100
+          },
+          {
+            "name" : "Parcel Myr",
+            "frequency" : 100
+          },
+          {
+            "name" : "Foundry Inspector",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Barbed Spike",
+            "frequency" : 67
+          },
+          {
+            "name" : "Batterbone",
+            "frequency" : 33
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Nettlecyst",
+            "frequency" : 60
+          },
+          {
+            "name" : "Esper Sentinel",
+            "frequency" : 40
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Glass Casket",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Icy Manipulator",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Baffling Defenses",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Filligree Attendent",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Junkyard",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Sparring Construct",
+            "frequency" : 50
+          },
+          {
+            "name" : "Lightning-Core Excavator",
+            "frequency" : 25
+          },
+          {
+            "name" : "Bonded Construct",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Ravenous Intruder",
+            "frequency" : 100
+          },
+          {
+            "name" : "Orcish Vandal",
+            "frequency" : 100
+          },
+          {
+            "name" : "Rust Monster",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Myr Sire",
+            "frequency" : 75
+          },
+          {
+            "name" : "Ornithopter of Paradise",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Breya's Apprentice",
+            "frequency" : 60
+          },
+          {
+            "name" : "Goblin Engineer",
+            "frequency" : 40
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Destructive Digger",
+            "frequency" : 67
+          },
+          {
+            "name" : "Scrap Trawler",
+            "frequency" : 33
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Treasure Keeper",
+            "frequency" : 100
+          },
+          {
+            "name" : "Arcbound Whelp",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Slag Strider",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Kuldotha Flamefiend",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Lightning Spear",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Ichor Wellspring",
+            "frequency" : 50
+          },
+          {
+            "name" : "Chromatic Sphere",
+            "frequency" : 25
+          },
+          {
+            "name" : "Implement of Combustion",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Sarkhan's Scorn",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Kiora",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Sigiled Starfish",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Coralhelm Guide",
+            "frequency" : 100
+          },
+          {
+            "name" : "Skyclave Squid",
+            "frequency" : 100
+          },
+          {
+            "name" : "Glimmerbell",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Man-o'-War",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Oneirophage",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Tolarian Kraken",
+            "frequency" : 40
+          },
+          {
+            "name" : "Waker of Waves",
+            "frequency" : 30
+          },
+          {
+            "name" : "Wormhole Serpent",
+            "frequency" : 30
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Waterknot",
+            "frequency" : 100
+          },
+          {
+            "name" : "Bubble Snare",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Tightening Coils",
+            "frequency" : 100
+          },
+          {
+            "name" : "Into the Roil",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Shoreline Scout",
+            "frequency" : 100
+          },
+          {
+            "name" : "Floodhound",
+            "frequency" : 100
+          },
+          {
+            "name" : "Hard Evidence",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Mentor of Evos Isle",
+            "frequency" : 100
+          },
+          {
+            "name" : "Mistwalker",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Kiora, the Tide's Fury",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Bounty of the Deep",
+            "frequency" : 67
+          },
+          {
+            "name" : "Tome of the Infinite",
+            "frequency" : 33
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Legion",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Thraben Inspector",
+            "frequency" : 40
+          },
+          {
+            "name" : "Doomed Traveler",
+            "frequency" : 20
+          },
+          {
+            "name" : "Codespell Cleric",
+            "frequency" : 20
+          },
+          {
+            "name" : "Selfless Cathar",
+            "frequency" : 20
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Selfless Savior",
+            "frequency" : 100
+          },
+          {
+            "name" : "Boros Elite",
+            "frequency" : 100
+          },
+          {
+            "name" : "Alseid of Life's Bounty",
+            "frequency" : 100
+          },
+          {
+            "name" : "Dauntless Bodyguard",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Anointed Chorister",
+            "frequency" : 100
+          },
+          {
+            "name" : "Sea Gate Banneret",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Healer's Hawk",
+            "frequency" : 100
+          },
+          {
+            "name" : "Segovian Angel",
+            "frequency" : 100
+          },
+          {
+            "name" : "Battlefield Raptor",
+            "frequency" : 100
+          },
+          {
+            "name" : "Faerie Guidemother",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Law-Rune Enforcer",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Ranger-Captain of Eos",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Thraben Watcher",
+            "frequency" : 60
+          },
+          {
+            "name" : "Battle Screech",
+            "frequency" : 20
+          },
+          {
+            "name" : "Healer's Flock",
+            "frequency" : 20
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Stirring Address",
+            "frequency" : 100
+          },
+          {
+            "name" : "Return to the Ranks",
+            "frequency" : 100
+          },
+          {
+            "name" : "Fortify",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Abiding Grace",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Conclave Tribunal",
+            "frequency" : 67
+          },
+          {
+            "name" : "Devouring Light",
+            "frequency" : 33
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Lumbering Lightshield",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Lost and Found",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Necrogoyf",
+            "frequency" : 100
+          },
+          {
+            "name" : "Bazaar Trademage",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cabal Initiate",
+            "frequency" : 75
+          },
+          {
+            "name" : "Miasmic Mummy",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Lazotep Chancellor",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Gilt-Blade Prowler",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Hell Mongrel",
+            "frequency" : 100
+          },
+          {
+            "name" : "Kitchen Imp",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Raving Visionary",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Necromancer's Familiar",
+            "frequency" : 100
+          },
+          {
+            "name" : "Stitchwing Skaab",
+            "frequency" : 100
+          },
+          {
+            "name" : "Haunted Dead",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Bone Shards",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Recalibrate",
+            "frequency" : 100
+          },
+          {
+            "name" : "Just the Wind",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Rain of Revelation",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Rousing Read",
+            "frequency" : 66
+          },
+          {
+            "name" : "Champion of Wits",
+            "frequency" : 34
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Madness",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Cabal Initiate",
+            "frequency" : 100
+          },
+          {
+            "name" : "Viashino Lashclaw",
+            "frequency" : 100
+          },
+          {
+            "name" : "Insolent Neonate",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Skophos Reaver",
+            "frequency" : 100
+          },
+          {
+            "name" : "Kitchen Imp",
+            "frequency" : 100
+          },
+          {
+            "name" : "Asylum Visitor",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Revolutionist",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Hell Mongrel",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Chainer, Nightmare Adept",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Blazing Rootwalla",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Rakdos Headliner",
+            "frequency" : 100
+          },
+          {
+            "name" : "Furyblade Vampire",
+            "frequency" : 100
+          },
+          {
+            "name" : "Heir of Falkenrath",
+            "frequency" : 100
+          },
+          {
+            "name" : "Ravenous Bloodseeker",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Macabre Waltz",
+            "frequency" : 100
+          },
+          {
+            "name" : "Faithless Salvaging",
+            "frequency" : 100
+          },
+          {
+            "name" : "Thrill of Possibility",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Terminal Agony",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Static Discharge",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Static Discharge",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Many Faced",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Irregular Cohort",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "King of the Pride",
+            "frequency" : 50
+          },
+          {
+            "name" : "Dregscape Sliver",
+            "frequency" : 25
+          },
+          {
+            "name" : "Throatseeker",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Graveshifter",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Venomous Changeling",
+            "frequency" : 100
+          },
+          {
+            "name" : "Faceless Agent",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Changeling Outcast",
+            "frequency" : 75
+          },
+          {
+            "name" : "Universal Automaton",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Blade Splicer",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Thwart the Grave",
+            "frequency" : 50
+          },
+          {
+            "name" : "Allied Assault",
+            "frequency" : 25
+          },
+          {
+            "name" : "Birthing Boughs",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Deadly Alliance",
+            "frequency" : 100
+          },
+          {
+            "name" : "Journey to Oblivion",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Etchings of the Chosen",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Imposter of the Sixth Pride",
+            "frequency" : 50
+          },
+          {
+            "name" : "Enduring Sliver",
+            "frequency" : 25
+          },
+          {
+            "name" : "Sentinel Sliver",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Davriel's Withering",
+            "frequency" : 67
+          },
+          {
+            "name" : "Dire Fleet Poisoner",
+            "frequency" : 33
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Merfolk",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Raving Visionary",
+            "frequency" : 40
+          },
+          {
+            "name" : "Merfolk Trickster",
+            "frequency" : 30
+          },
+          {
+            "name" : "Silvergill Adept",
+            "frequency" : 30
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Shaper Apprentice",
+            "frequency" : 100
+          },
+          {
+            "name" : "Tazeem Roilmage",
+            "frequency" : 100
+          },
+          {
+            "name" : "Master of the Pearl Trident",
+            "frequency" : 100
+          },
+          {
+            "name" : "Coralhelm Guilde",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Merrow Reejerey",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Expedition Diviner",
+            "frequency" : 100
+          },
+          {
+            "name" : "Storm Sculptor",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Merfolk Falconer",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Svyelun of Sea and Sky",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Phantasmal Form",
+            "frequency" : 50
+          },
+          {
+            "name" : "Choking Tethers",
+            "frequency" : 25
+          },
+          {
+            "name" : "Unsummon",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Into the Roil",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Shoreline Scout",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Faceless Agent",
+            "frequency" : 60
+          },
+          {
+            "name" : "Watertrap Weaver",
+            "frequency" : 40
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Ethereal Grasp",
+            "frequency" : 60
+          },
+          {
+            "name" : "Bubble Snare",
+            "frequency" : 40
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Modular",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Arcbound Mouser",
+            "frequency" : 100
+          },
+          {
+            "name" : "Myr Scrapling",
+            "frequency" : 100
+          },
+          {
+            "name" : "Sparring Construct",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Arcbound Prototype",
+            "frequency" : 100
+          },
+          {
+            "name" : "Ainok Bond-Kin",
+            "frequency" : 100
+          },
+          {
+            "name" : "Martyr for the Cause",
+            "frequency" : 100
+          },
+          {
+            "name" : "Hobblefiend",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Steadfast Sentry",
+            "frequency" : 100
+          },
+          {
+            "name" : "Arcbound Tracker",
+            "frequency" : 100
+          },
+          {
+            "name" : "Iron Bully",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Arcbound Slasher",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Dueling Coach",
+            "frequency" : 100
+          },
+          {
+            "name" : "Arcbound Whelp",
+            "frequency" : 100
+          },
+          {
+            "name" : "Aethershield Artificer",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Arcbound Shikari",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Zabaz, the Glimmerwasp",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Destructive Digger",
+            "frequency" : 66
+          },
+          {
+            "name" : "Gadrak, the Crown Scourge",
+            "frequency" : 34
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Battlefield Promotion",
+            "frequency" : 100
+          },
+          {
+            "name" : "Light of Hope",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Static Discharge",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Static Discharge",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Ninjas",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Faerie Seer",
+            "frequency" : 100
+          },
+          {
+            "name" : "Changeling Outcast",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Passwall Adept",
+            "frequency" : 80
+          },
+          {
+            "name" : "Phantom Ninja",
+            "frequency" : 20
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Throatseeker",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Venomous Changeling",
+            "frequency" : 100
+          },
+          {
+            "name" : "Azra Smokeshaper",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Moonblade Shinobi",
+            "frequency" : 100
+          },
+          {
+            "name" : "Ninja of the Deep Hours",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Ingenious Infiltrator",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Mist-Syndicate Naga",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Choking Tethers",
+            "frequency" : 75
+          },
+          {
+            "name" : "Ghostform",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Feed the Serpent",
+            "frequency" : 100
+          },
+          {
+            "name" : "Ethreal Grasp",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Sudden Edict",
+            "frequency" : 100
+          },
+          {
+            "name" : "Unsubstantiate",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Plaguecrafter's Familiar",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "On the Draw",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Faerie Vandal",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Pondering Mage",
+            "frequency" : 50
+          },
+          {
+            "name" : "Tome Anima",
+            "frequency" : 25
+          },
+          {
+            "name" : "Mulldrifter",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Oneirophage",
+            "frequency" : 100
+          },
+          {
+            "name" : "Mad Ratter",
+            "frequency" : 100
+          },
+          {
+            "name" : "Tolarian Kraken",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Seasoned Pyromancer",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Thundering Djinn",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Spinehorn Minotaur",
+            "frequency" : 100
+          },
+          {
+            "name" : "Merchant of the Vale",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Bloodhaze Wolverine",
+            "frequency" : 100
+          },
+          {
+            "name" : "Eyekite",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Scour All Possibilities",
+            "frequency" : 100
+          },
+          {
+            "name" : "Faithless Salvaging",
+            "frequency" : 100
+          },
+          {
+            "name" : "Parcel Myr",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Fists of Flame",
+            "frequency" : 100
+          },
+          {
+            "name" : "Mantle of Tides",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Fire Prophecy",
+            "frequency" : 75
+          },
+          {
+            "name" : "Irencrag Pyromancer",
+            "frequency" : 30
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Improbable Alliance",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Ethereal Grasp",
+            "frequency" : 75
+          },
+          {
+            "name" : "Sarkhan's Scorn",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Plague",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Shambling Goblin",
+            "frequency" : 100
+          },
+          {
+            "name" : "Typhoid Rats",
+            "frequency" : 100
+          },
+          {
+            "name" : "Blight Keeper",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Plague Wight",
+            "frequency" : 100
+          },
+          {
+            "name" : "Blighted Bat",
+            "frequency" : 100
+          },
+          {
+            "name" : "Deathbloom Thallid",
+            "frequency" : 100
+          },
+          {
+            "name" : "Eyeblight Assassin",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Plaguecrafter",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "First-Sphere Gargantua",
+            "frequency" : 100
+          },
+          {
+            "name" : "Blitz Leech",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Archfiend of Sorrows",
+            "frequency" : 100
+          },
+          {
+            "name" : "Kraul Swarm",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Yawgmoth, Thran Physician",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Ob Nixilis's Cruelty",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Plaguecrafter's Familiar",
+            "frequency" : 66
+          },
+          {
+            "name" : "Subversive Acolyte",
+            "frequency" : 34
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Manor Guardian",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Boneyard Aberration",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Davriel's Withering",
+            "frequency" : 50
+          },
+          {
+            "name" : "Death Wind",
+            "frequency" : 25
+          },
+          {
+            "name" : "Strangling Spores",
+            "frequency" : 25
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Pumped Up",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Rishkar, Peema Renegade",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Good-Fortune Unicorn",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Herd Baloth",
+            "frequency" : 100
+          },
+          {
+            "name" : "Armorcraft Judge",
+            "frequency" : 100
+          },
+          {
+            "name" : "Abzan Falconer",
+            "frequency" : 100
+          },
+          {
+            "name" : "Mowu, Loyal Companion",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Arcus Acolyte",
+            "frequency" : 50
+          },
+          {
+            "name" : "Nessian Hornbeetle",
+            "frequency" : 25
+          },
+          {
+            "name" : "Monoskelion",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Wildwood Scourge",
+            "frequency" : 75
+          },
+          {
+            "name" : "Wren's Run Hydra",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Knight of Autumn",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Pollenbright Druid",
+            "frequency" : 100
+          },
+          {
+            "name" : "Kujar Seedsculptor",
+            "frequency" : 100
+          },
+          {
+            "name" : "Duskshell Crawler",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Hunter's Edge",
+            "frequency" : 100
+          },
+          {
+            "name" : "Titanic Brawl",
+            "frequency" : 100
+          },
+          {
+            "name" : "Smell Fear",
+            "frequency" : 100
+          },
+          {
+            "name" : "Skyshroud Ambush",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Wild Onslaught",
+            "frequency" : 100
+          },
+          {
+            "name" : "Biogenic Upgrade",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Captured by Lagacs",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Leonin Sanctifier",
+            "frequency" : 100
+          },
+          {
+            "name" : "Veteran Charger",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Rats",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Drainpipe Vermin",
+            "frequency" : 100
+          },
+          {
+            "name" : "Typhoid Rats",
+            "frequency" : 100
+          },
+          {
+            "name" : "Rat Colony",
+            "frequency" : 100
+          },
+          {
+            "name" : "Ruin Rat",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Rat Colony",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Rat Colony",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Graveshifter",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Marrow-Gnawer",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Feed the Swarm",
+            "frequency" : 100
+          },
+          {
+            "name" : "Supernatural Stamina",
+            "frequency" : 100
+          },
+          {
+            "name" : "Piper of the Swarm",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Raise the Draugr",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Mob",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Plaguecrafter's Familiar",
+            "frequency" : 100
+          },
+          {
+            "name" : "Nezumi Cutthroat",
+            "frequency" : 100
+          },
+          {
+            "name" : "Skullsnatcher",
+            "frequency" : 100
+          },
+          {
+            "name" : "Rat Colony",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Faceless Agent",
+            "frequency" : 75
+          },
+          {
+            "name" : "Echoing Return",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Boneyard Aberration",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Reanimated",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Young Necromancer",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Archfiend of Sorrows",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Priest of Fell Rites",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Breathless Knight",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Void Beckoner",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Miasmic Mummy",
+            "frequency" : 100
+          },
+          {
+            "name" : "Cabal Initiate",
+            "frequency" : 100
+          },
+          {
+            "name" : "Thraben Standard Bearer",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Imposing Vantasaur",
+            "frequency" : 100
+          },
+          {
+            "name" : "Yoked Plowbeast",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Late to Dinner",
+            "frequency" : 66
+          },
+          {
+            "name" : "Nullpriest of Oblivion",
+            "frequency" : 34
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Graceful Restoration",
+            "frequency" : 40
+          },
+          {
+            "name" : "Bond of Revival",
+            "frequency" : 20
+          },
+          {
+            "name" : "Unbreakable Bond",
+            "frequency" : 20
+          },
+          {
+            "name" : "Ascent of the Worthy",
+            "frequency" : 20
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Bone Shards",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Baffling Defenses",
+            "frequency" : 100
+          },
+          {
+            "name" : "Davriel's Withering",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Relentless",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Excavating Anurid",
+            "frequency" : 100
+          },
+          {
+            "name" : "Murasa Behemoth",
+            "frequency" : 100
+          },
+          {
+            "name" : "Lord of Extinction",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Mother Bear",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Rotwidow Pack",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Jungle Creeper",
+            "frequency" : 100
+          },
+          {
+            "name" : "Glowspore Shaman",
+            "frequency" : 100
+          },
+          {
+            "name" : "Skull Prophet",
+            "frequency" : 100
+          },
+          {
+            "name" : "Clattering Augur",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cabal Initiate",
+            "frequency" : 100
+          },
+          {
+            "name" : "Sinister Starfish",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Timeless Witness",
+            "frequency" : 100
+          },
+          {
+            "name" : "Acolyte of Affliction",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Ransack the Lab",
+            "frequency" : 100
+          },
+          {
+            "name" : "Discerning Taste",
+            "frequency" : 100
+          },
+          {
+            "name" : "Corpse Churn",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Winding Way",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Feed the Serpent",
+            "frequency" : 100
+          },
+          {
+            "name" : "Skyshroud Ambush",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Altar of the Goyf",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Pool of Vigorous Growth",
+            "frequency" : 100
+          },
+          {
+            "name" : "Nether Spirit",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Sarkhan",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Kargan Dragonrider",
+            "frequency" : 100
+          },
+          {
+            "name" : "Dragon Hatchling",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Bogardan Dragonheart",
+            "frequency" : 100
+          },
+          {
+            "name" : "Thunderbreak Regent",
+            "frequency" : 100
+          },
+          {
+            "name" : "Sparktongue Dragon",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Dragon Egg",
+            "frequency" : 75
+          },
+          {
+            "name" : "Sarkhan's Whelp",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Rapacious Dragon",
+            "frequency" : 75
+          },
+          {
+            "name" : "Furnace Whelp",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Volcanic Dragon",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Hellkite Punisher",
+            "frequency" : 75
+          },
+          {
+            "name" : "Shiv's Embrace",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Dragon Fodder",
+            "frequency" : 50
+          },
+          {
+            "name" : "Tormenting Voice",
+            "frequency" : 25
+          },
+          {
+            "name" : "Dragon Mantle",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Scorching Dragonfire",
+            "frequency" : 100
+          },
+          {
+            "name" : "Flame Sweep",
+            "frequency" : 100
+          },
+          {
+            "name" : "Shivan Fire",
+            "frequency" : 100
+          },
+          {
+            "name" : "Sarkhan's Rage",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Scion of Shiv",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Sarkhan's Scorn",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Sarkhan, Wanderer to Shiv",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Scaled Up",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Myr Scrapling",
+            "frequency" : 100
+          },
+          {
+            "name" : "Servant of the Scale",
+            "frequency" : 100
+          },
+          {
+            "name" : "Snakeskin Veil",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Duskshell Crawler",
+            "frequency" : 100
+          },
+          {
+            "name" : "Gnarlid Colony",
+            "frequency" : 100
+          },
+          {
+            "name" : "Guardian Gladewalker",
+            "frequency" : 100
+          },
+          {
+            "name" : "Pollenbright Druid",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Deepwood Denizen",
+            "frequency" : 50
+          },
+          {
+            "name" : "Trufflesnout",
+            "frequency" : 20
+          },
+          {
+            "name" : "Oran-Rief Ooze",
+            "frequency" : 30
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Sabertooth Mauler",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Bannerhide Krushok",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Herd Baloth",
+            "frequency" : 100
+          },
+          {
+            "name" : "Iridescent Hornbeetle",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Wren's Run Hydra",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Smell Fear",
+            "frequency" : 100
+          },
+          {
+            "name" : "Titanic Brawl",
+            "frequency" : 100
+          },
+          {
+            "name" : "Hunter's Edge",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Scale Up",
+            "frequency" : 100
+          },
+          {
+            "name" : "Invigorating Surge",
+            "frequency" : 100
+          },
+          {
+            "name" : "Inspiring Call",
+            "frequency" : 100
+          },
+          {
+            "name" : "Wild Onslaught",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Vastwood Fortification",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Hardened Scales",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Veteran Charger",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Scavenger",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Blazing Rootwalla",
+            "frequency" : 50
+          },
+          {
+            "name" : "Flameblade Adept",
+            "frequency" : 25
+          },
+          {
+            "name" : "Furyblade Vampire",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Fissure Wizard",
+            "frequency" : 100
+          },
+          {
+            "name" : "Oread of Mountain's Blaze",
+            "frequency" : 100
+          },
+          {
+            "name" : "Insolent Neonate",
+            "frequency" : 100
+          },
+          {
+            "name" : "Conspiracy Theorist",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Hollowhead Sliver",
+            "frequency" : 60
+          },
+          {
+            "name" : "Reckless Racer",
+            "frequency" : 20
+          },
+          {
+            "name" : "Fast",
+            "frequency" : 20
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Merchant of the Vale",
+            "frequency" : 75
+          },
+          {
+            "name" : "Burning-Tree Vandal",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Mad Prophet",
+            "frequency" : 100
+          },
+          {
+            "name" : "Keldon Raider",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Incorrigible Youths",
+            "frequency" : 100
+          },
+          {
+            "name" : "Instatiable Gorgers",
+            "frequency" : 100
+          },
+          {
+            "name" : "Reckless Wurm",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Revolutionist",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Lightning Axe",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Fiery Temper",
+            "frequency" : 75
+          },
+          {
+            "name" : "Alchemist's Greeting",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Faithless Salvaging",
+            "frequency" : 50
+          },
+          {
+            "name" : "Thrill of Possibility",
+            "frequency" : 25
+          },
+          {
+            "name" : "Cathartic Reunion",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Managorger Phoenix",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Scorched Earth",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Ruination Rioter",
+            "frequency" : 75
+          },
+          {
+            "name" : "Nantuko Cultivator",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Territorial Kavu",
+            "frequency" : 75
+          },
+          {
+            "name" : "Reap the Past",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Springbloom Druid",
+            "frequency" : 60
+          },
+          {
+            "name" : "Skola Grovedancer",
+            "frequency" : 40
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Igneous Elemental",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Excavating Anurid",
+            "frequency" : 60
+          },
+          {
+            "name" : "Squirrel Wrangler",
+            "frequency" : 20
+          },
+          {
+            "name" : "Pool of Vigorous Growth",
+            "frequency" : 20
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Murasa Behemoth",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Timeless Witness",
+            "frequency" : 100
+          },
+          {
+            "name" : "Ore-Scale Guardian",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Throes of Chaos",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Harrow",
+            "frequency" : 50
+          },
+          {
+            "name" : "Geomancer's Gambit",
+            "frequency" : 25
+          },
+          {
+            "name" : "Winding Way",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Sarkhan's Scorn",
+            "frequency" : 100
+          },
+          {
+            "name" : "Skyshroud Ambush",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Fast \/\/ Furious",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Serra's Realm",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Segovian Angel",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Youthful Valkyrie",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Angelheart Protector",
+            "frequency" : 100
+          },
+          {
+            "name" : "Sandsteppe Outcast",
+            "frequency" : 100
+          },
+          {
+            "name" : "Celestial Enforcer",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Stalwart Valkyrie",
+            "frequency" : 40
+          },
+          {
+            "name" : "Seraph of Dawn",
+            "frequency" : 20
+          },
+          {
+            "name" : "Sustainer of the Realm",
+            "frequency" : 20
+          },
+          {
+            "name" : "Righteous Valkyrie",
+            "frequency" : 20
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Serra Angel",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Soul of Migration",
+            "frequency" : 100
+          },
+          {
+            "name" : "Winged Shepherd",
+            "frequency" : 100
+          },
+          {
+            "name" : "Angel of the Dawn",
+            "frequency" : 100
+          },
+          {
+            "name" : "Anoniter of Valor",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Valkyrie's Sword",
+            "frequency" : 40
+          },
+          {
+            "name" : "Herald of the Sun",
+            "frequency" : 20
+          },
+          {
+            "name" : "Glorious Enforcer",
+            "frequency" : 20
+          },
+          {
+            "name" : "Angel of the God-Pharoah",
+            "frequency" : 20
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Pacifism",
+            "frequency" : 50
+          },
+          {
+            "name" : "Angelic Purge",
+            "frequency" : 25
+          },
+          {
+            "name" : "Angelic Edict",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "On Serra's Wings",
+            "frequency" : 60
+          },
+          {
+            "name" : "Angelic Exaltation",
+            "frequency" : 40
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Leonin Sanctifier",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Serra, the Benevolent",
+            "frequency" : 70
+          },
+          {
+            "name" : "Serra's Emissary",
+            "frequency" : 30
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Sliver Assault",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Bladeback Sliver",
+            "frequency" : 100
+          },
+          {
+            "name" : "Striking Sliver",
+            "frequency" : 100
+          },
+          {
+            "name" : "Sentinel Sliver",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cleaving Sliver",
+            "frequency" : 100
+          },
+          {
+            "name" : "Bonescythe Sliver",
+            "frequency" : 100
+          },
+          {
+            "name" : "Spiteful Sliver",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cloudshredder Sliver",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Enduring Sliver",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "First Sliver's Chosen",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Hollowhead Sliver",
+            "frequency" : 100
+          },
+          {
+            "name" : "Steelform Sliver",
+            "frequency" : 100
+          },
+          {
+            "name" : "Belligerent Sliver",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Lancer Sliver",
+            "frequency" : 100
+          },
+          {
+            "name" : "Blur Sliver",
+            "frequency" : 100
+          },
+          {
+            "name" : "Hive Stirrings",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Lavabelly Sliver",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Rip Apart",
+            "frequency" : 100
+          },
+          {
+            "name" : "Justice Strike",
+            "frequency" : 100
+          },
+          {
+            "name" : "Integrity",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Pacifism",
+            "frequency" : 100
+          },
+          {
+            "name" : "Sarkhan's Scorn",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Baffling Defenses",
+            "frequency" : 100
+          },
+          {
+            "name" : "Amorphous Axe",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Sliver Hive",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Manaweft Sliver",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Diffusion Sliver",
+            "frequency" : 100
+          },
+          {
+            "name" : "Leeching Sliver",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Dregscape Sliver",
+            "frequency" : 100
+          },
+          {
+            "name" : "Predatory Sliver",
+            "frequency" : 100
+          },
+          {
+            "name" : "Enduring Sliver",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Hollowhead Sliver",
+            "frequency" : 100
+          },
+          {
+            "name" : "Tempered Sliver",
+            "frequency" : 100
+          },
+          {
+            "name" : "Scuttlign Sliver",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cleaving Sliver",
+            "frequency" : 100
+          },
+          {
+            "name" : "Blur Sliver",
+            "frequency" : 100
+          },
+          {
+            "name" : "Lancer Sliver",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "First Sliver's Chosen",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "The First Sliver",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Heartless Act",
+            "frequency" : 100
+          },
+          {
+            "name" : "Lava Coil",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Raise the Draugr",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Prophetic Prism",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Sliver Hive",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Evolving Wilds",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Unknown Shores",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Rupture Spire",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Plains",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Island",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Swamp",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Mountain",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Forest",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Faceless Agent",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Spellcasting",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Lightning Visionary",
+            "frequency" : 60
+          },
+          {
+            "name" : "Goblin Arsonist",
+            "frequency" : 40
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Thermo-Alchemist",
+            "frequency" : 50
+          },
+          {
+            "name" : "Young Pyromancer",
+            "frequency" : 25
+          },
+          {
+            "name" : "Incendiary Oracle",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Storm Caller",
+            "frequency" : 60
+          },
+          {
+            "name" : "Seasoned Pyromancer",
+            "frequency" : 20
+          },
+          {
+            "name" : "Blisterstick Shaman",
+            "frequency" : 20
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Rage Forger",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Living Lightning",
+            "frequency" : 100
+          },
+          {
+            "name" : "Guttersnipe",
+            "frequency" : 100
+          },
+          {
+            "name" : "Kinetic Augur",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Battle-Rattle Shaman",
+            "frequency" : 75
+          },
+          {
+            "name" : "Clamor Shaman",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Harmonic Prodigy",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Reckless Charge",
+            "frequency" : 100
+          },
+          {
+            "name" : "Sure Strike",
+            "frequency" : 100
+          },
+          {
+            "name" : "Fists of Flame",
+            "frequency" : 100
+          },
+          {
+            "name" : "Renegade Tactics",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Faithless Salvaging",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Static Discharge",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Squirrels",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Squirrel Sovereign",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Ravenous Squirrel",
+            "frequency" : 100
+          },
+          {
+            "name" : "Squirrel Sanctuary",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Nested Shambler",
+            "frequency" : 100
+          },
+          {
+            "name" : "Scurrid Colony",
+            "frequency" : 100
+          },
+          {
+            "name" : "Chatter of the Squirrel",
+            "frequency" : 100
+          },
+          {
+            "name" : "Verdant Command",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Scurry Oak",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Chatterfang, Squirrel General",
+            "frequency" : 100
+          },
+          {
+            "name" : "Chitterspitter",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Drey Keeper",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Webweaver Changeling",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Bone Shards",
+            "frequency" : 50
+          },
+          {
+            "name" : "Skyshroud Ambush",
+            "frequency" : 25
+          },
+          {
+            "name" : "Davriel's Withering",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Might of the Masses",
+            "frequency" : 100
+          },
+          {
+            "name" : "Squirrel Mob",
+            "frequency" : 100
+          },
+          {
+            "name" : "Pack's Favor",
+            "frequency" : 100
+          },
+          {
+            "name" : "Gift of Growth",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Mob",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Faceless Agent",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Storm",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Goblin Anarchomancer",
+            "frequency" : 67
+          },
+          {
+            "name" : "Birgi, God of Storytelling",
+            "frequency" : 33
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Captain Ripley Vance",
+            "frequency" : 60
+          },
+          {
+            "name" : "Grinning Ignus",
+            "frequency" : 20
+          },
+          {
+            "name" : "Storm-Kiln Artist",
+            "frequency" : 20
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Dragonsguard Elite",
+            "frequency" : 100
+          },
+          {
+            "name" : "Aeve, Progenitor Ooze",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Chatterstorm",
+            "frequency" : 75
+          },
+          {
+            "name" : "Galvanic Relay",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Trumpeting Herd",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Strike It Rich",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Spreading Insurrection",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Faithless Salvaging",
+            "frequency" : 100
+          },
+          {
+            "name" : "Charge Through",
+            "frequency" : 100
+          },
+          {
+            "name" : "Warlord's Fury",
+            "frequency" : 100
+          },
+          {
+            "name" : "EMPTY",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Hunting Pack",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Prey's Vengeance",
+            "frequency" : 100
+          },
+          {
+            "name" : "Shock",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Sarkhan's Scorn",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Teyo",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Teyo, the Shieldmage",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Thraben Inspector",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Kor Skyfisher",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Roc Egg",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Wall of One Thousand Cuts",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Scour the Desert",
+            "frequency" : 100
+          },
+          {
+            "name" : "Gauntlets of Light",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Pacifism",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Lumbering Lightshield",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Wingsteed Trainer",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Teyo, Aegis Adept",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Baffling Defenses",
+            "frequency" : 40
+          },
+          {
+            "name" : "Valorous Stance",
+            "frequency" : 20
+          },
+          {
+            "name" : "Moment of Heroism",
+            "frequency" : 20
+          },
+          {
+            "name" : "Shelter",
+            "frequency" : 20
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Tinkerer",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Mother Bear",
+            "frequency" : 100
+          },
+          {
+            "name" : "Jewel-Eyed Cobra",
+            "frequency" : 100
+          },
+          {
+            "name" : "Twin-Silk Spider",
+            "frequency" : 100
+          },
+          {
+            "name" : "Burdened Aerialist",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Lonis, Cryptozoologist",
+            "frequency" : 70
+          },
+          {
+            "name" : "Aeve, Progenitor Ooze",
+            "frequency" : 30
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Specimen Collector",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Junk Winder",
+            "frequency" : 100
+          },
+          {
+            "name" : "Combine Chrysalis",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Glimmer Bairn",
+            "frequency" : 100
+          },
+          {
+            "name" : "Floodhound",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Wavesifter",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Funnel-Web Recluse",
+            "frequency" : 100
+          },
+          {
+            "name" : "Trumpeting Herd",
+            "frequency" : 100
+          },
+          {
+            "name" : "Prosperous Pirates",
+            "frequency" : 100
+          },
+          {
+            "name" : "Fierce Witchstalker",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Tireless Provisioner",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Sanctuary Raptor",
+            "frequency" : 100
+          },
+          {
+            "name" : "Witch's Oven",
+            "frequency" : 100
+          },
+          {
+            "name" : "Ulvenwald Mysteries",
+            "frequency" : 100
+          },
+          {
+            "name" : "Birthing Sloughs",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Hard Evidence",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "So Shiny",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cycling Land",
+            "frequency" : 80
+          },
+          {
+            "name" : "Khalni Garden",
+            "frequency" : 20
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Skyshroud Ambush",
+            "frequency" : 80
+          },
+          {
+            "name" : "Pool of Vigorous Growth",
+            "frequency" : 20
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Undone",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Floodhound",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Burrog Befuddler",
+            "frequency" : 100
+          },
+          {
+            "name" : "Faerie Duelist",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Brineborn Cutthroat",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Exclusion Mage",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Vexing Gull",
+            "frequency" : 40
+          },
+          {
+            "name" : "Breaching Hippocamp",
+            "frequency" : 20
+          },
+          {
+            "name" : "Mentor of Evos Isle",
+            "frequency" : 100
+          },
+          {
+            "name" : "Crookclaw Transmuter",
+            "frequency" : 20
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Pondering Mage",
+            "frequency" : 100
+          },
+          {
+            "name" : "Living Tempest",
+            "frequency" : 100
+          },
+          {
+            "name" : "Windcaller Aven",
+            "frequency" : 100
+          },
+          {
+            "name" : "Voracious Greatshark",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Aeromoeba",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Archmage's Charm",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Supreme Will",
+            "frequency" : 100
+          },
+          {
+            "name" : "Hypnotic Sprite",
+            "frequency" : 100
+          },
+          {
+            "name" : "Censor",
+            "frequency" : 100
+          },
+          {
+            "name" : "Neutralize",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Exclude",
+            "frequency" : 100
+          },
+          {
+            "name" : "Essence Capture",
+            "frequency" : 100
+          },
+          {
+            "name" : "Dismiss",
+            "frequency" : 100
+          },
+          {
+            "name" : "Rewind",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Jwari Disruption",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Ethereal Grasp",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Vampire",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Vampire of the Dire Moon",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Blood Artist",
+            "frequency" : 100
+          },
+          {
+            "name" : "Carrier Thrall",
+            "frequency" : 100
+          },
+          {
+            "name" : "Legion Vanguard",
+            "frequency" : 100
+          },
+          {
+            "name" : "Indulgent Aristocrat",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Vermin Gorger",
+            "frequency" : 100
+          },
+          {
+            "name" : "Blood Burglar",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Skymarch Bloodletter",
+            "frequency" : 100
+          },
+          {
+            "name" : "Marauding Blight-Priest",
+            "frequency" : 100
+          },
+          {
+            "name" : "Callous Bloodmage",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Graveshifter",
+            "frequency" : 50
+          },
+          {
+            "name" : "Deathles Ancient",
+            "frequency" : 25
+          },
+          {
+            "name" : "Markov Crusader",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Blood Glutton",
+            "frequency" : 100
+          },
+          {
+            "name" : "Epicure of Blood",
+            "frequency" : 100
+          },
+          {
+            "name" : "Anointed Deacon",
+            "frequency" : 100
+          },
+          {
+            "name" : "Queen's Agent",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Cordial Vampire",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Bloodchief's Thirst",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Mark of the Vampire",
+            "frequency" : 100
+          },
+          {
+            "name" : "Abnormal Endurance",
+            "frequency" : 100
+          },
+          {
+            "name" : "Subtle Strike",
+            "frequency" : 100
+          },
+          {
+            "name" : "Unexpected Fangs",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Faceless Agent",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Davriel's Withering",
+            "frequency" : 75
+          },
+          {
+            "name" : "Moment of Craving",
+            "frequency" : 25
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Zombie",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Nested Shambler",
+            "frequency" : 40
+          },
+          {
+            "name" : "Grim Physician",
+            "frequency" : 20
+          },
+          {
+            "name" : "Shambling Goblin",
+            "frequency" : 20
+          },
+          {
+            "name" : "Liliana's Steward",
+            "frequency" : 20
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Putrid Goblin",
+            "frequency" : 50
+          },
+          {
+            "name" : "Maurading Boneslasher",
+            "frequency" : 25
+          },
+          {
+            "name" : "Plague Wight",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Undead Augur",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Mire Triton",
+            "frequency" : 50
+          },
+          {
+            "name" : "Eternal Taskmaster",
+            "frequency" : 25
+          },
+          {
+            "name" : "Liliana's Devotee",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Lord of the Accursed",
+            "frequency" : 100
+          },
+          {
+            "name" : "Accursed Horde",
+            "frequency" : 100
+          },
+          {
+            "name" : "Liliana's Elite",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Fleshbag Marauder",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Endling",
+            "frequency" : 50
+          },
+          {
+            "name" : "Diregraf Colossus",
+            "frequency" : 25
+          },
+          {
+            "name" : "Dark Salvation",
+            "frequency" : 25
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Karfell Kennel-Master",
+            "frequency" : 100
+          },
+          {
+            "name" : "Boneclad Necromancer",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Abnormal Endurance",
+            "frequency" : 100
+          },
+          {
+            "name" : "Village Rites",
+            "frequency" : 100
+          },
+          {
+            "name" : "Alchemist's Gift",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Raise the Draugr",
+            "frequency" : 100
+          },
+          {
+            "name" : "Cemetary Recruitment",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Davriel's Withering",
+            "frequency" : 100
+          },
+          {
+            "name" : "Mob",
+            "frequency" : 100
+          },
+          {
+            "name" : "Murderous Rider",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Zoologist",
+    "slots" : [
+      {
+        "cards" : [
+          {
+            "name" : "Glimmer Bairn",
+            "frequency" : 100
+          },
+          {
+            "name" : "Saproling Migration",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Mother Bear",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Woodland Champion",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Yavimaya Sapherd",
+            "frequency" : 100
+          },
+          {
+            "name" : "Ferocious Pup",
+            "frequency" : 100
+          },
+          {
+            "name" : "Jungleborn Pioneer",
+            "frequency" : 100
+          },
+          {
+            "name" : "Penumbra Bobcat",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Scurry Oak",
+            "frequency" : 100
+          },
+          {
+            "name" : "Sprouting Renewal",
+            "frequency" : 100
+          },
+          {
+            "name" : "Spore Swarm",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Trumpeting Herd",
+            "frequency" : 70
+          },
+          {
+            "name" : "Esika's Chariot",
+            "frequency" : 30
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Bestial Menace",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Overcome",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Chitterspitter",
+            "frequency" : 50
+          },
+          {
+            "name" : "Verdant Command",
+            "frequency" : 20
+          },
+          {
+            "name" : "Parallel Lives",
+            "frequency" : 30
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Squirrel Sanctuary",
+            "frequency" : 100
+          },
+          {
+            "name" : "Elven Bow",
+            "frequency" : 100
+          },
+          {
+            "name" : "Flaxen Intruder",
+            "frequency" : 100
+          }
+        ]
+      },
+      {
+        "cards" : [
+          {
+            "name" : "Skyshroud Ambush",
+            "frequency" : 100
+          }
+        ]
+      }
+    ]
+  }
+]

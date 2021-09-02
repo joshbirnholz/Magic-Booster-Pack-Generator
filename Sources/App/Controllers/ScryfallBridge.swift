@@ -66,6 +66,19 @@ final class ScryfallBridgeController {
 						return nil
 					}
 					
+					if set.code == "mid", set.cardCount < 277 {
+						return nil
+					}
+					
+					if set.code == "vow", set.cardCount < 277 {
+						// TODO: UPDATE WITH REAL CARD COUNT
+						return nil
+					}
+					
+					if set.code == "j21" {
+						return nil
+					}
+					
 					return set
 				}
 				

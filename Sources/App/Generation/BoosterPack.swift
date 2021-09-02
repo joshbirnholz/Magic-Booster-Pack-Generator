@@ -1635,11 +1635,11 @@ fileprivate struct CardInfo {
 			self.backIsHidden = true
 			
 			self.faceURL = faceURL
-		} else if let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"] {
+		} else if let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"] ?? card.cardFaces?.first?.imageUris?["normal"] ?? card.cardFaces?.first?.imageUris?["large"]  {
 			self.faceURL = faceURL
 			if card.layout == "double_faced_token", let faces = card.cardFaces, faces.count >= 2, let backFaceURL = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
 				self.backURL = backFaceURL
-				self.nickname = ""
+				self.nickname = "\(faces[0].name ?? "") // \(faces[1].name ?? "")"
 			} else {
 				self.backURL = backURL
 				self.nickname = card.printedName ?? card.name ?? ""
@@ -4997,8 +4997,13 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 	}
 	
 	if cards.contains(where: { $0.name == "Ophiomancer" }) {
-		let customSnakeToken = MTGCard(power: "1", toughness: "1", oracleText: "Deathtouch", name: "Snake", convertedManaCost: 0, layout: "token", frame: "2015", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: .black, isFullArt: false, allParts: [MTGCard.RelatedCard(scryfallID: UUID(uuidString: "66d80dd1-b944-4cb2-8578-b4dbcabbbc1e"), component: .token, name: "Ophiomancer", typeLine: "Creature — Human Shaman", url: URL(string: "https://scryfall.com/card/c13/84/ophiomancer"))], collectorNumber: "1", set: "TC13", colors: [.black], keywords: ["Deathtouch"], artist: "Maria Trepalina", watermark: nil, rarity: .common, scryfallCardBackID: UUID(uuidString: "0AEEBAF5-8C7D-4636-9E82-8C27447861F7")!, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, promoTypes: nil, language: .english, releaseDate: nil, imageUris: ["normal": URL(string: "http://josh.birnholz.com/tts/cards/custom/c13snakefixed.jpg")!])
+		let customSnakeToken = MTGCard(power: "1", toughness: "1", oracleText: "Deathtouch", name: "Snake", convertedManaCost: 0, layout: "token", frame: "2015", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: .black, isFullArt: false, allParts: [MTGCard.RelatedCard(scryfallID: UUID(uuidString: "66d80dd1-b944-4cb2-8578-b4dbcabbbc1e"), component: .token, name: "Ophiomancer", typeLine: "Creature — Human Shaman", url: URL(string: "https://scryfall.com/card/c13/84/ophiomancer"))], collectorNumber: "1", set: "TC13", colors: [.black], keywords: ["Deathtouch"], artist: "Maria Trepalina", watermark: nil, rarity: .common, scryfallCardBackID: UUID(uuidString: "0AEEBAF5-8C7D-4636-9E82-8C27447861F7")!, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, promoTypes: nil, language: .english, releaseDate: nil, imageUris: ["normal": URL(string: "https://i.imgur.com/Q2uGSvH.jpg")!])
 		tokens.append(customSnakeToken)
+	}
+	
+	if cards.contains(where: { $0.keywords.contains("Daybound") || $0.keywords.contains("Nightbound") || $0.oracleText?.lowercased().contains("it becomes day") == true || $0.oracleText?.lowercased().contains("it becomes night") == true }) && !tokens.contains(where: { $0.scryfallID?.uuidString == "9c0f7843-4cbb-4d0f-8887-ec823a9238da" }) {
+		let dayNightToken = try Swiftfall.getCard(id: "9c0f7843-4cbb-4d0f-8887-ec823a9238da")
+		tokens.append(MTGCard(dayNightToken))
 	}
 	
 	if cards.contains(where: { $0.oracleText?.lowercased().contains("the monarch") == true }) {

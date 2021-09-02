@@ -271,6 +271,22 @@
 		{
 			"name": "Enlightened Tutor",
 			"imageURL": "http://josh.birnholz.com/tts/cards/custom/STA%20Enlightened%20Tutor.jpg"
+		},
+		{
+			"name": "Consecrated Sphinx",
+			"imageURL": "https://i.imgur.com/dJW8eOR.jpg"
+		},
+		{
+			"name": "Lightning Bolt",
+			"imageURL": "https://i.imgur.com/XKxViS5.jpg"
+		},
+		{
+			"name": "Path to Exile",
+			"imageURL": "https://i.imgur.com/ozbzXjU.jpg"
+		},
+		{
+			"name": "Counterspell",
+			"imageURL": "https://i.imgur.com/dZPsgUj.jpg"
 		}
 	]
 }

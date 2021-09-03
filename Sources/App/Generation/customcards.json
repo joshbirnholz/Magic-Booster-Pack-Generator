@@ -287,6 +287,14 @@
 		{
 			"name": "Counterspell",
 			"imageURL": "https://i.imgur.com/dZPsgUj.jpg"
+		},
+		{
+			"name": "Elesh Norn, Grand Cenobite",
+			"imageURL": "https://i.imgur.com/JEDSsFY.png"
+		},
+		{
+			"name": "Sheoldred, Whispering One",
+			"imageURL": "https://i.imgur.com/63DRNTB.jpg"
 		}
 	]
 }

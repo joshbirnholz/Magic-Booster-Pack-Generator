@@ -88,6 +88,13 @@
 	  "comment": "Goad every turn"
   },
   {
+	  "url": "https://deckstats.net/decks/149419/2200931-kenrith-esper-reanimator",
+	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/6/56c1227e-bea7-47cb-bbec-389a3d585af5.jpg?1571282458",
+	  "ids": ["30"],
+	  "ci": "WUB",
+	  "comment": "Esper reanimator"
+  },
+  {
 	"url": "https://deckstats.net/decks/149419/1901722-lathril-blade-of-the-elves",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/4/547888c3-a9a6-4413-b29a-6bcd8a9279bf.jpg?1611972929",
 	"ids": ["10"],

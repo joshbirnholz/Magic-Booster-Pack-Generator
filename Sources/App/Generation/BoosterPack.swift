@@ -149,6 +149,8 @@ enum Mode {
 	case m21
 	/// Gauranteed modal double-faced card.
 	case zendikarRising
+	/// 1 Double-faced U/R/M, plus 1 double-card C.
+	case mid
 	
 	/// 2 rares in each pack, 2 guaranteed foils.
 	case doubleMasters
@@ -169,14 +171,14 @@ enum Mode {
 
 extension MTGCard {
 	func partner<S: Sequence>(from cards: S) -> MTGCard? where S.Element == MTGCard {
+		guard hasPartner else { return nil }
 		guard let allParts = allParts else { return nil }
-		guard oracleText?.lowercased().contains("partner with") == true else { return nil }
 		guard let part = allParts.first(where: { $0.component == .comboPiece }) else { return nil }
 		return cards.first(where: { $0.scryfallID == part.scryfallID })
 	}
 	
 	var hasPartner: Bool {
-		return oracleText?.lowercased().contains("partner with") == true
+		return keywords.contains("Partner with")
 	}
 }
 
@@ -453,6 +455,26 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		return allColorsCount == correctColorCount
 	}
 	
+	var midDFCOkay: Bool {
+		guard mode == .mid else {
+			return true
+		}
+		
+		let containedDoubleFacedCards = pack.cards.filter { $0.card.layout == "transform" && !$0.isFoil }
+		guard containedDoubleFacedCards.count == 2 else {
+			return false
+		}
+		
+		let commonCount = containedDoubleFacedCards.filter { $0.card.rarity == .common }.count
+		let uncommonRareMythicCount = containedDoubleFacedCards.filter { $0.card.rarity == .uncommon || $0.card.rarity == .rare || $0.card.rarity == .mythic }.count
+		
+		guard commonCount == 1 && uncommonRareMythicCount == 1
+			else {
+			return false
+		}
+		return true
+	}
+	
 	let landRarity: MTGCard.Rarity = {
 		if mode == .strixhaven || mode == .mh2 {
 			return includedStrixhavenArchiveRarity ?? .common
@@ -517,6 +539,12 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 	let shouldIncludeBorderlessPlaneswalker: Bool = {
 		guard !borderlessPlaneswalkers.isEmpty else { return false }
 		return (1...126).randomElement() == 1
+	}()
+	
+	let rareOrMythicShouldBeDoubleFaced: Bool = {
+		guard mode == .mid else { return false }
+		let doubleFacedRaresAndMythics: [MTGCard] = (rarities[.rare] ?? []) + (rarities[.mythic] ?? [])
+		return doubleFacedRaresAndMythics.randomElement()?.layout == "transform"
 	}()
 	
 	repeat {
@@ -606,10 +634,21 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			}
 			
 			var showcareRareOrMythic: MTGCard? {
-				let allShowcaseRaresAndMythics = [showcaseRarities[.rare], showcaseRarities[.mythic]].compactMap({ $0 }).joined()
+				var allShowcaseRaresAndMythics = Array([showcaseRarities[.rare], showcaseRarities[.mythic]].compactMap({ $0 }).joined())
+				if rareOrMythicShouldBeDoubleFaced {
+					allShowcaseRaresAndMythics = allShowcaseRaresAndMythics.filter { $0.layout == "transform" }
+				}
+				
 				let availableShowcaseRareAndMythicNames = Set(allShowcaseRaresAndMythics.compactMap { $0.name })
 				guard let chosenName = availableShowcaseRareAndMythicNames.randomElement() else { return nil }
 				return allShowcaseRaresAndMythics.filter { $0.name == chosenName }.randomElement()
+			}
+			
+			var rareSlotRarities = rareSlotRarities
+			if rareOrMythicShouldBeDoubleFaced {
+				rareSlotRarities = rareSlotRarities.mapValues { cards in
+					cards.filter { $0.layout == "transform" }
+				}
 			}
 			
 			if shouldIncludeShowcaseRareOrMythic, let card = showcareRareOrMythic {
@@ -617,19 +656,19 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 				
 				print("Including showcase \(card.rarity.rawValue): \(card.name ?? "")")
 				
-				if card.hasPartner, let partner = card.partner(from: rarities.values.joined()) {
+				if let partner = card.partner(from: rarities.values.joined()) {
 					pack.insert(partner, at: 0)
 				}
 			} else if includeMythic, let mythic = rareSlotRarities[.mythic]?.randomElement() {
 				pack.insert(mythic, at: 0)
 				
-				if mythic.hasPartner, let partner = mythic.partner(from: rarities.values.joined()) {
+				if let partner = mythic.partner(from: rarities.values.joined()) {
 					pack.insert(partner, at: 0)
 				}
 			} else if let rare = rareSlotRarities[.rare]?.randomElement() {
 				pack.insert(rare, at: 0)
 				
-				if rare.hasPartner, let partner = rare.partner(from: rarities.values.joined()) {
+				if let partner = rare.partner(from: rarities.values.joined()) {
 					pack.insert(partner, at: 0)
 				}
 			}
@@ -747,6 +786,11 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			uncommons[slot] = uncommonPlaneswalker
 		}
 		
+		if mode == .mid {
+			let doubleFaced = uncommons.separateAll { $0.layout == "transform" }
+			uncommons.append(contentsOf: doubleFaced)
+		}
+		
 		pack.insert(contentsOf: uncommons, at: 0)
 		
 		if mode == .innistradDoubleFaced, let doubleFaced = customSlotRarities.values.joined().randomElement() {
@@ -790,7 +834,15 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		if let chosenCommons = rarities[.common]?.choose(commonCount) {
 			commons.append(contentsOf: chosenCommons)
 		}
-		pack.insert(contentsOf: commons.shuffled(), at: 0)
+		
+		commons.shuffle()
+		
+		if mode == .mid {
+			let doubleFaced = commons.separateAll { $0.layout == "transform" }
+			commons.append(contentsOf: doubleFaced)
+		}
+		
+		pack.insert(contentsOf: commons, at: 0)
 		
 		// Tokens
 		
@@ -908,11 +960,15 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			problems.append("No legendary card")
 		}
 		
+		if !midDFCOkay {
+			problems.append("MID DFC is wrong")
+		}
+		
 		if !problems.isEmpty {
 			print(problems.joined(separator: ", "))
 		}
 		
-	} while !colorsOkay || uniqueCardCount != cardCount || !futureSightOkay /* || !showcaseOkay */ || !legendaryOkay
+	} while !colorsOkay || uniqueCardCount != cardCount || !futureSightOkay /* || !showcaseOkay */ || !legendaryOkay || !midDFCOkay
 	
 	print("Using pack")
 	
@@ -3514,6 +3570,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		case "tsr": return .timeSpiralRemastered
 		case "stx": return .strixhaven
 		case "mh2": return .mh2
+		case "mid": return .mid
 		default: return .default
 		}
 	}()
@@ -3730,7 +3787,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 //		case "cns", "cn2":
 //			return []
 //		// TODO: Find lands for conspiracy.
-		case "thb":
+		case "thb", "mid":
 			// Use regular, non-Nyx basic lands that aren't found in boosters for THB.
 			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true && !$0.isFoundInBoosters && !$0.isPromo }
 		case "tsp",

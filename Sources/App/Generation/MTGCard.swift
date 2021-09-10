@@ -96,6 +96,7 @@ public struct MTGCard: Codable, Equatable, Hashable {
 		case rare
 		case mythic
 		case special
+		case bonus
 		
 		private var compareValue: Int {
 			switch self {
@@ -104,6 +105,7 @@ public struct MTGCard: Codable, Equatable, Hashable {
 			case .rare: return 2
 			case .mythic: return 3
 			case .special: return 4
+			case .bonus: return 5
 			}
 		}
 	}

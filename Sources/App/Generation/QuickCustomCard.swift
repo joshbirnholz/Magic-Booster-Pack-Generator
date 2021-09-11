@@ -23,10 +23,12 @@ final class CustomCards {
 	static let shared = CustomCards()
 	
 	private init() {
-		do {
-			try load()
-		} catch {
-			print("Error loading custom cards", error)
+		DispatchQueue.global(qos: .background).async {
+			do {
+				try self.load()
+			} catch {
+				print("Error loading custom cards", error)
+			}
 		}
 	}
 	

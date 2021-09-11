@@ -3787,7 +3787,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 //		case "cns", "cn2":
 //			return []
 //		// TODO: Find lands for conspiracy.
-		case "thb", "mid":
+		case "thb":
 			// Use regular, non-Nyx basic lands that aren't found in boosters for THB.
 			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true && !$0.isFoundInBoosters && !$0.isPromo }
 		case "tsp",
@@ -3809,6 +3809,9 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
 			guard includeBasicLands else { return [] }
 			return basicLands
+		case "mid":
+			// Use regular, non-Eternal Night basic lands that aren't found in boosters for MID.
+			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.promoTypes.contains("bundle") }
 		case _ where Set(defaultBasicLands.compactMap { $0.name }).count == 5:
 			return defaultBasicLands
 		default:

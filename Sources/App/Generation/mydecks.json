@@ -172,13 +172,6 @@
 	"comment": "Tokens, aristocrats"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2233344-wilhelt-the-rotcleaver",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/2/5/2501a911-d072-436d-ae3b-a5164e3b30aa.jpg?1631659674",
-	"ids": ["31"],
-	"ci": "UB",
-	"comment": "Zombies"
-  },
-  {
 	"url": "https://deckstats.net/decks/149419/2027459-tymna-ikra-shidiqi",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/c/bc7cbe9b-324e-42b8-94e2-36e91cb32163.jpg?1606762188",
 	"back": "https://c1.scryfall.com/file/scryfall-cards/large/front/4/6/460165df-32db-4773-805e-edd6f18af5d6.jpg?1562397914",
@@ -200,6 +193,13 @@
 	"ids": ["20"],
 	"ci": "GU",
 	"comment": "+1/+1 counters"
+  },
+  {
+	"url": "https://deckstats.net/decks/149419/2233344-wilhelt-the-rotcleaver",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/2/5/2501a911-d072-436d-ae3b-a5164e3b30aa.jpg?1631659674",
+	"ids": ["31"],
+	"ci": "UB",
+	"comment": "Zombies"
   },
   {
 	"url": "https://deckstats.net/decks/149419/2076674-coin-flip-deck-gavin-verhey-mo",

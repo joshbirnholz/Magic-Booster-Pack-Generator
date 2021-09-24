@@ -165,11 +165,18 @@
 	  "comment": "Enchantress"
   },
   {
-	"url": "https://deckstats.net/decks/149419/1841034-thalisse-reverent-medium",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/e/4/e4899773-c501-45e5-bf1f-8d818788d61f.jpg?1610077290",
+	"url": "https://deckstats.net/decks/149419/1841034-teysa-karlov",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/c/bcfaa19e-995e-447d-a0a2-46e5d117d5ec.jpg?1584831914",
 	"ids": ["17"],
 	"ci": "WB",
 	"comment": "Tokens, aristocrats"
+  },
+  {
+	"url": "https://deckstats.net/decks/149419/2233344-wilhelt-the-rotcleaver",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/2/5/2501a911-d072-436d-ae3b-a5164e3b30aa.jpg?1631659674",
+	"ids": ["31"],
+	"ci": "UB",
+	"comment": "Zombies"
   },
   {
 	"url": "https://deckstats.net/decks/149419/2027459-tymna-ikra-shidiqi",

@@ -27,7 +27,7 @@
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/c/bca84fc4-4710-44c8-b90a-73ef888714d8.jpg",
 	"ids": ["4"],
 	"ci": "UB",
-	"comment": "Theft, mill"
+	"comment": "Rogues, theft, mill"
   },
   {
 	  "url": "https://deckstats.net/decks/149419/2134546-breya-treasures",
@@ -174,6 +174,8 @@
   {
 	"url": "https://deckstats.net/decks/149419/2270754-tovolar-dire-overlord",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/9/2/925dee92-9c8d-4eef-a326-2fdae72b4328.jpg",
+	"back": "https://c1.scryfall.com/file/scryfall-cards/large/back/9/2/925dee92-9c8d-4eef-a326-2fdae72b4328.jpg",
+	"type": "dfc",
 	"ids": ["32"],
 	"ci": "RG",
 	"comment": "Werewolves"

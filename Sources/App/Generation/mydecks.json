@@ -1,14 +1,14 @@
 [
   {
 	"url": "https://deckstats.net/decks/149419/1889023-aesi-tyrant-of-gyre-strait",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/d/6/d607b003-6b48-429c-a7fd-45b8dd1bb4f9.jpg?1610072986",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/d/6/d607b003-6b48-429c-a7fd-45b8dd1bb4f9.jpg",
 	"ids": ["1"],
 	"ci": "GU",
 	"comment": "Landfall"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1889069-akiri-fearless-voyager",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/2/52ec2a93-0708-498e-86f2-6f70d51ae4cd.jpg?1607365068",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/2/52ec2a93-0708-498e-86f2-6f70d51ae4cd.jpg",
 	"ids": ["2"],
 	"ci": "RW",
 	"comment": "Equipment"
@@ -16,7 +16,7 @@
   {
 	"url": "https://deckstats.net/decks/149419/1854884-akroma-sakashima",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/c/0/c0bdd07d-9fb9-4ee4-80db-494ee0cba58d.jpg?1608908641",
-	"back": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/1/714c3a1f-7b30-4ed8-8f38-6176758741fb.jpg?1608909400",
+	"back": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/1/714c3a1f-7b30-4ed8-8f38-6176758741fb.jpg",
 	"ids": ["3", "21"],
 	"type": "partners",
 	"ci": "WU",
@@ -24,28 +24,28 @@
   },
   {
 	"url": "https://deckstats.net/decks/149419/1971009-anowon-the-ruin-thief",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/c/bca84fc4-4710-44c8-b90a-73ef888714d8.jpg?1615171221",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/c/bca84fc4-4710-44c8-b90a-73ef888714d8.jpg",
 	"ids": ["4"],
 	"ci": "UB",
 	"comment": "Theft, mill"
   },
   {
 	  "url": "https://deckstats.net/decks/149419/2134546-breya-treasures",
-	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/2/1/2143f700-7311-46a4-ad9b-4e743a345785.jpg?1599707856",
+	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/2/1/2143f700-7311-46a4-ad9b-4e743a345785.jpg",
 	  "ids": ["24"],
 	  "ci": "WUBR",
 	  "comment": "Treasure"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1960862-crosis-discard",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/3/4/349e598a-aa12-44b7-b9de-067c9b85fcec.jpg?1562905628",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/3/4/349e598a-aa12-44b7-b9de-067c9b85fcec.jpg",
 	"ids": ["5"],
 	"ci": "UBR",
 	"comment": "Discard"
   },
   {
 	  "url": "https://deckstats.net/decks/149419/2133459-edgar-markov",
-	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/d/8d94b8ec-ecda-43c8-a60e-1ba33e6a54a4.jpg?1562616128",
+	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/d/8d94b8ec-ecda-43c8-a60e-1ba33e6a54a4.jpg",
 	  "ids": ["26"],
 	  "ci": "RWB",
 	  "comment": "Vampires"
@@ -53,7 +53,7 @@
   {
 	"url": "https://deckstats.net/decks/149419/1916347-the-prismatic-bridge",
 	"back": "https://c1.scryfall.com/file/scryfall-cards/large/back/f/6/f6cd7465-9dd0-473c-ac5e-dd9e2f22f5f6.jpg?1610295185",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/f/6/f6cd7465-9dd0-473c-ac5e-dd9e2f22f5f6.jpg?1610295185",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/f/6/f6cd7465-9dd0-473c-ac5e-dd9e2f22f5f6.jpg",
 	"ids": ["6"],
 	"type": "dfc",
 	"ci": "WUBRG",
@@ -61,77 +61,77 @@
   },
   {
 	"url": "https://deckstats.net/decks/149419/1744536-gavi-nest-warden",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/0/80bc07d5-bdbb-4a6d-8958-0c172ea80245.jpg?1591234237",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/0/80bc07d5-bdbb-4a6d-8958-0c172ea80245.jpg",
 	"ids": ["7"],
 	"ci": "URW",
 	"comment": "Cycling"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1876924-ghen-arcanum-weaver",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/0/804a7bac-0425-4cab-817a-5cb3686ef5bb.jpg?1613321508",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/0/804a7bac-0425-4cab-817a-5cb3686ef5bb.jpg",
 	"ids": ["8"],
 	"ci": "RWB",
 	"comment": "Mean enchantments"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1740765-gishath-sun-s-avatar",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/3/7335e500-342d-476d-975c-817512e6e3d6.jpg?1562558022",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/3/7335e500-342d-476d-975c-817512e6e3d6.jpg",
 	"ids": ["9"],
 	"ci": "RGW",
 	"comment": "Dinosaurs"
   },
   {
 	  "url": "https://deckstats.net/decks/149419/2135182-kardur-doomscourge",
-	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/f/bfc779ac-a418-4cd0-aa73-8d0d91d51f1c.jpg?1615605037",
+	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/f/bfc779ac-a418-4cd0-aa73-8d0d91d51f1c.jpg",
 	  "ids": ["23"],
 	  "ci": "BR",
 	  "comment": "Goad every turn"
   },
   {
 	  "url": "https://deckstats.net/decks/149419/2200931-kenrith-esper-reanimator",
-	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/6/56c1227e-bea7-47cb-bbec-389a3d585af5.jpg?1571282458",
+	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/6/56c1227e-bea7-47cb-bbec-389a3d585af5.jpg",
 	  "ids": ["30"],
 	  "ci": "WUB",
 	  "comment": "Esper reanimator"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1901722-lathril-blade-of-the-elves",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/4/547888c3-a9a6-4413-b29a-6bcd8a9279bf.jpg?1611972929",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/4/547888c3-a9a6-4413-b29a-6bcd8a9279bf.jpg",
 	"ids": ["10"],
 	"ci": "BG",
 	"comment": "Elves"
   },
   {
+	"url": "https://deckstats.net/decks/149419/2269144-leinore-autumn-soverign",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/d/bd7e1645-ea8f-41c4-b3ee-58f44fc5c574.jpg",
+	"ids": ["12"],
+	"ci": "GW",
+	"comment": "+1/+1 Counters, Humans"
+  },
+  {
 	"url": "https://deckstats.net/decks/149419/1909081-magda-brazen-outlaw",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/a/b/ab551f0e-7a9c-4c99-b199-042ab018dd9a.jpg?1615604831",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/a/b/ab551f0e-7a9c-4c99-b199-042ab018dd9a.jpg",
 	"ids": ["11"],
 	"ci": "R",
 	"comment": "Dragons, Artifacts"
   },
   {
-	"url": "https://deckstats.net/decks/149419/1891916-obuun-mul-daya-ancestor",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/3/8319b155-0fba-4d30-9481-bf01afbd3457.jpg?1617522154",
-	"ids": ["12"],
-	"ci": "RGW",
-	"comment": "Landfall"
-  },
-  {
 	"url": "https://deckstats.net/decks/149419/2043629-osgir-the-reconstructor",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/8/5815fe6e-e26b-4918-a090-55d6442722c1.jpg?1616838760",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/8/5815fe6e-e26b-4918-a090-55d6442722c1.jpg",
 	"ids": ["0"],
 	"ci": "RW",
 	"comment": "Double up artifacts"
   },
   {
 	"url": "https://deckstats.net/decks/149419/2156914-prosper-tome-bound",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/d/7/d743336e-d5c7-4053-a23d-92ec7581f74e.jpg?1626031289",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/d/7/d743336e-d5c7-4053-a23d-92ec7581f74e.jpg",
 	"ids": ["29"],
 	"ci": "BR",
 	"comment": "Play from exile"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1901692-ranar-the-ever-watchful",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/1/c/1c8c41dd-8551-4ce8-a9be-9b9f65718852.jpg?1611972933",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/1/c/1c8c41dd-8551-4ce8-a9be-9b9f65718852.jpg",
 	"ids": ["14"],
 	"ci": "WU",
 	"comment": "Fortell, blink, exile"
@@ -145,36 +145,43 @@
   },
   {
 	"url": "https://deckstats.net/decks/149419/1691052-sen-triplets",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/6/9/6917eb5b-a00c-4268-bc66-795fab2d227f.jpg?1583453957",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/6/9/6917eb5b-a00c-4268-bc66-795fab2d227f.jpg",
 	"ids": ["15"],
 	"ci": "WUB",
 	"comment": "Play opponents' decks"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1994671-shadrix-silverquill",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/a/b/ab701909-83d6-4d39-9a84-e6a9b2cb38d6.jpg?1624739966",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/a/b/ab701909-83d6-4d39-9a84-e6a9b2cb38d6.jpg",
 	"ids": ["16"],
 	"ci": "WB",
 	"comment": "-1/-1 effects"
   },
   {
 	  "url": "https://deckstats.net/decks/149419/2116018-sythis-harvest-s-hand",
-	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/0/b/0babfe00-9bad-48fc-b3b1-df8280242fd2.jpg?1626098785",
+	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/0/b/0babfe00-9bad-48fc-b3b1-df8280242fd2.jpg",
 	  "ids": ["25"],
 	  "ci": "GW",
 	  "comment": "Enchantress"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1841034-teysa-karlov",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/c/bcfaa19e-995e-447d-a0a2-46e5d117d5ec.jpg?1584831914",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/c/bcfaa19e-995e-447d-a0a2-46e5d117d5ec.jpg",
 	"ids": ["17"],
 	"ci": "WB",
 	"comment": "Tokens, aristocrats"
   },
   {
+	"url": "https://deckstats.net/decks/149419/2270754-tovolar-dire-overlord",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/9/2/925dee92-9c8d-4eef-a326-2fdae72b4328.jpg",
+	"ids": ["32"],
+	"ci": "RG",
+	"comment": "Werewolves"
+  },
+  {
 	"url": "https://deckstats.net/decks/149419/2027459-tymna-ikra-shidiqi",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/c/bc7cbe9b-324e-42b8-94e2-36e91cb32163.jpg?1606762188",
-	"back": "https://c1.scryfall.com/file/scryfall-cards/large/front/4/6/460165df-32db-4773-805e-edd6f18af5d6.jpg?1562397914",
+	"back": "https://c1.scryfall.com/file/scryfall-cards/large/front/4/6/460165df-32db-4773-805e-edd6f18af5d6.jpg",
 	"ids": ["18", "22"],
 	"type": "partners",
 	"ci": "WBG",
@@ -182,21 +189,21 @@
   },
   {
 	"url": "https://deckstats.net/decks/149419/1936713-tribal-tribal",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/e/a/ea949741-af94-47ae-a577-2953c69ab71d.jpg?1582068686",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/e/a/ea949741-af94-47ae-a577-2953c69ab71d.jpg",
 	"ids": ["19"],
 	"ci": "WUBRG",
 	"comment": "Changeling tribal"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1984546-vorel-of-the-hull-clade",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/4/7/47edde50-81c8-4fe0-ae13-9a10171361bc.jpg?1562273842",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/4/7/47edde50-81c8-4fe0-ae13-9a10171361bc.jpg",
 	"ids": ["20"],
 	"ci": "GU",
 	"comment": "+1/+1 counters"
   },
   {
 	"url": "https://deckstats.net/decks/149419/2233344-wilhelt-the-rotcleaver",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/2/5/2501a911-d072-436d-ae3b-a5164e3b30aa.jpg?1631659674",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/2/5/2501a911-d072-436d-ae3b-a5164e3b30aa.jpg",
 	"ids": ["31"],
 	"ci": "UB",
 	"comment": "Zombies"
@@ -204,7 +211,7 @@
   {
 	"url": "https://deckstats.net/decks/149419/2076674-coin-flip-deck-gavin-verhey-mo",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/6/76c33402-a022-4d2f-9a83-4b8ddc04e971.jpg?1562918785",
-	"back": "https://c1.scryfall.com/file/scryfall-cards/large/front/d/5/d53ee8c0-b27c-4556-b610-ff64edb7a18f.jpg?1562937757",
+	"back": "https://c1.scryfall.com/file/scryfall-cards/large/front/d/5/d53ee8c0-b27c-4556-b610-ff64edb7a18f.jpg",
 	"ids": ["13", "27"],
 	"type": "partners",
 	"ci": "UR",

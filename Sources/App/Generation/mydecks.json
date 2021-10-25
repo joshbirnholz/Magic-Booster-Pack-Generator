@@ -15,7 +15,7 @@
   },
   {
 	"url": "https://deckstats.net/decks/149419/1854884-akroma-sakashima",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/c/0/c0bdd07d-9fb9-4ee4-80db-494ee0cba58d.jpg?1608908641",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/c/0/c0bdd07d-9fb9-4ee4-80db-494ee0cba58d.jpg",
 	"back": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/1/714c3a1f-7b30-4ed8-8f38-6176758741fb.jpg",
 	"ids": ["3", "21"],
 	"type": "partners",
@@ -52,7 +52,7 @@
   },
   {
 	"url": "https://deckstats.net/decks/149419/1916347-the-prismatic-bridge",
-	"back": "https://c1.scryfall.com/file/scryfall-cards/large/back/f/6/f6cd7465-9dd0-473c-ac5e-dd9e2f22f5f6.jpg?1610295185",
+	"back": "https://c1.scryfall.com/file/scryfall-cards/large/back/f/6/f6cd7465-9dd0-473c-ac5e-dd9e2f22f5f6.jpg",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/f/6/f6cd7465-9dd0-473c-ac5e-dd9e2f22f5f6.jpg",
 	"ids": ["6"],
 	"type": "dfc",
@@ -93,6 +93,15 @@
 	  "ids": ["30"],
 	  "ci": "WUB",
 	  "comment": "Esper reanimator"
+  },
+  {
+	"url": "https://deckstats.net/decks/149419/1719895-krav-regna",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/6/7/67bd3c49-ff73-4630-a4ee-c782f03e511d.jpg",
+	"back": "https://c1.scryfall.com/file/scryfall-cards/large/front/0/c/0c2bf475-9845-40ed-9f55-669325fb6183.jpg",
+	"ids": ["18", "22"],
+	"type": "partners",
+	"ci": "WB",
+	"comment": "Lifegain, aristocrats"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1901722-lathril-blade-of-the-elves",
@@ -181,15 +190,6 @@
 	"comment": "Werewolves"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2027459-tymna-ikra-shidiqi",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/c/bc7cbe9b-324e-42b8-94e2-36e91cb32163.jpg?1606762188",
-	"back": "https://c1.scryfall.com/file/scryfall-cards/large/front/4/6/460165df-32db-4773-805e-edd6f18af5d6.jpg",
-	"ids": ["18", "22"],
-	"type": "partners",
-	"ci": "WBG",
-	"comment": "Lifegain"
-  },
-  {
 	"url": "https://deckstats.net/decks/149419/1936713-tribal-tribal",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/e/a/ea949741-af94-47ae-a577-2953c69ab71d.jpg",
 	"ids": ["19"],
@@ -212,7 +212,7 @@
   },
   {
 	"url": "https://deckstats.net/decks/149419/2076674-coin-flip-deck-gavin-verhey-mo",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/6/76c33402-a022-4d2f-9a83-4b8ddc04e971.jpg?1562918785",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/6/76c33402-a022-4d2f-9a83-4b8ddc04e971.jpg",
 	"back": "https://c1.scryfall.com/file/scryfall-cards/large/front/d/5/d53ee8c0-b27c-4556-b610-ff64edb7a18f.jpg",
 	"ids": ["13", "27"],
 	"type": "partners",

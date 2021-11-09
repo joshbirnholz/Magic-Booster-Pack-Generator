@@ -54,23 +54,11 @@ final class ScryfallBridgeController {
 						set.name = "Mystery Booster (Retail Edition)"
 					}
 					
-					if set.code == "tsr", set.cardCount < 289 {
-						return nil
-					}
-					
-					if set.code == "stx", set.cardCount < 275 {
-						return nil
-					}
-					
 					if set.code == "afr", set.cardCount < 281 {
 						return nil
 					}
 					
-					if set.code == "mid", set.cardCount < 277 {
-						return nil
-					}
-					
-					if set.code == "vow", set.cardCount < 277 {
+					if set.code == "dbl", set.cardCount < 398 {
 						// TODO: UPDATE WITH REAL CARD COUNT
 						return nil
 					}

@@ -3570,7 +3570,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		case "tsr": return .timeSpiralRemastered
 		case "stx": return .strixhaven
 		case "mh2": return .mh2
-		case "mid": return .mid
+		case "mid", "vow": return .mid
 		default: return .default
 		}
 	}()
@@ -3809,7 +3809,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
 			guard includeBasicLands else { return [] }
 			return basicLands
-		case "mid":
+		case "mid", "vow":
 			// Use regular, non-Eternal Night basic lands that aren't found in boosters for MID.
 			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.promoTypes.contains("bundle") }
 		case _ where Set(defaultBasicLands.compactMap { $0.name }).count == 5:

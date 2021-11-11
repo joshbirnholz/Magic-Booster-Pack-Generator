@@ -3868,9 +3868,12 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 	
 	switch setCode?.lowercased() {
 	case "iko" where !specialOptions.contains("godzilla"):
-		let godzillaSeriesCollectorNumbers = (364...387).map(String.init) + ["373A"]
 		mainCards.removeAll { card in
-			godzillaSeriesCollectorNumbers.contains(card.collectorNumber)
+			card.promoTypes.contains("godzillaseries")
+		}
+	case "vow":
+		mainCards.removeAll { card in
+			card.promoTypes.contains("draculaseries")
 		}
 	default:
 		break

@@ -3766,6 +3766,10 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				}
 		case "mh2":
 			return mainCards.separateAll(where: { $0.watermark == "set" })
+		case "vow":
+			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true && $0.isFullArt }
+			guard includeBasicLands else { return [] }
+			return basicLands
 		default:
 			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
 			guard includeBasicLands else { return [] }
@@ -3918,6 +3922,14 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				card.isFoundInBoosters = false
 			}
 			return card
+		}
+	} else if setCode?.lowercased() == "vow" {
+		mainCards = mainCards.map { card in
+			var card = card
+			if let number = card?.collectorNumber, let num = Int(number), (278...328).contains(num) {
+				card.isFoundInBoosters = true
+				return card
+			}
 		}
 	}
 	

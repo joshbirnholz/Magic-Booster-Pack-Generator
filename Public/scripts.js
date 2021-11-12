@@ -483,7 +483,7 @@ function loadCustomCards() {
 }
 
 function loadSetTest(setCode, seed) {
-	var url = "pack/" + setCode + "?outputformat=json";
+	var url = "pack/" + setCode + "?outputformat=json&extendedart=false";
 	
 	if (seed !== null && seed !== undefined) {
 		url += "&seed=" + seed;

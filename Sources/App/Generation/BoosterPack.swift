@@ -3926,10 +3926,10 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 	} else if setCode?.lowercased() == "vow" {
 		mainCards = mainCards.map { card in
 			var card = card
-			if let number = card?.collectorNumber, let num = Int(number), (278...328).contains(num) {
+			if let num = Int(card.collectorNumber), (278...328).contains(num) {
 				card.isFoundInBoosters = true
-				return card
 			}
+			return card
 		}
 	}
 	

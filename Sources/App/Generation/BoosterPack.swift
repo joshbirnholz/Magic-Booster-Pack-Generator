@@ -3767,9 +3767,9 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		case "mh2":
 			return mainCards.separateAll(where: { $0.watermark == "set" })
 		case "vow":
-			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true && $0.isFullArt }
+			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
 			guard includeBasicLands else { return [] }
-			return basicLands
+			return basicLands.filter { $0.isFullArt }
 		default:
 			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
 			guard includeBasicLands else { return [] }

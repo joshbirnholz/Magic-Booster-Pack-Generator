@@ -1619,7 +1619,12 @@ fileprivate struct CardInfo {
 	
 	// Uses the given number
 	init?(num: Int, card: MTGCard) {
-		let backURL = URL(string: "https://c1.scryfall.com/file/scryfall-card-backs/normal/\(card.scryfallCardBackID.uuidString.lowercased().prefix(2))/\(card.scryfallCardBackID.uuidString.lowercased()).jpg") ?? Self.defaultBack
+		let backURL: URL = {
+			guard let backID = card.scryfallCardBackID,
+			let url = URL(string: "https://c1.scryfall.com/file/scryfall-card-backs/normal/\(backID.uuidString.lowercased().prefix(2))/\(card.scryfallCardBackID.uuidString.lowercased()).jpg")
+			else { return Self.defaultBack }
+			return url
+		}()
 		
 		/* if card.layout == "transform", let faces = card.cardFaces, faces.count == 2,
 			let front = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"],

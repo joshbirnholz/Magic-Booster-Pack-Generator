@@ -142,7 +142,7 @@ public struct MTGCard: Codable, Equatable, Hashable {
 	public var watermark: String?
 	
 	public var rarity: Rarity
-	public var scryfallCardBackID: UUID
+	public var scryfallCardBackID: UUID?
 	
 	public var isFoilAvailable: Bool
 	public var isNonFoilAvailable: Bool

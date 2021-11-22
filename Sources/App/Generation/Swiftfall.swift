@@ -513,7 +513,7 @@ internal class Swiftfall {
         // This card's rarity. This is not the same for all versions of the card.
         public let rarity: String
 		
-		public let cardBackId: UUID
+		public let cardBackId: UUID?
         
         // This card's artist
         public let artist: String?

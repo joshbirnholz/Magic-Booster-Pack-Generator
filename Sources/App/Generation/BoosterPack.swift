@@ -1619,12 +1619,9 @@ fileprivate struct CardInfo {
 	
 	// Uses the given number
 	init?(num: Int, card: MTGCard) {
-		let backURL: URL = {
-			guard let backID = card.scryfallCardBackID,
-			let url = URL(string: "https://c1.scryfall.com/file/scryfall-card-backs/normal/\(backID.uuidString.lowercased().prefix(2))/\(card.scryfallCardBackID.uuidString.lowercased()).jpg")
-			else { return Self.defaultBack }
-			return url
-		}()
+		let backID = card.scryfallCardBackID ?? UUID(uuidString: "0AEEBAF5-8C7D-4636-9E82-8C27447861F7")!
+		
+		let backURL: URL = URL(string: "https://c1.scryfall.com/file/scryfall-card-backs/normal/\(backID.uuidString.lowercased().prefix(2))/\(backID.uuidString.lowercased()).jpg") ?? Self.defaultBack
 		
 		/* if card.layout == "transform", let faces = card.cardFaces, faces.count == 2,
 			let front = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"],
@@ -1679,7 +1676,7 @@ fileprivate struct CardInfo {
 			self.backIsHidden = true
 			
 			self.faceURL = faceURL
-		} else if let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"], card.layout == "meld", let result = card.allParts?.first(where: { $0.name != card.name && $0.component == .meldResult }), let backFaceURL = URL(string: "https://img.scryfall.com/card_backs/image/normal/\(card.scryfallCardBackID.uuidString.lowercased().prefix(2))/\(card.scryfallCardBackID.uuidString.lowercased()).jpg") {
+		} else if let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"], card.layout == "meld", let result = card.allParts?.first(where: { $0.name != card.name && $0.component == .meldResult }), let backFaceURL = URL(string: "https://img.scryfall.com/card_backs/image/normal/\(backID.uuidString.lowercased().prefix(2))/\(backID.uuidString.lowercased()).jpg") {
 			self.backURL = backURL
 			
 			let frontName = card.name ?? ""

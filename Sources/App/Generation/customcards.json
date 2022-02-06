@@ -295,6 +295,34 @@
 		{
 			"name": "Sheoldred, Whispering One",
 			"imageURL": "https://i.imgur.com/63DRNTB.jpg"
+		},
+		{
+			"name": "Snow-Covered Island",
+			"imageURL": "https://i.imgur.com/Iil0ZNg.png"
+		},
+		{
+			"name": "Snow-Covered Plains",
+			"imageURL": "https://i.imgur.com/W7r1t1J.png"
+		},
+		{
+			"name": "Snow-Covered Forest",
+			"imageURL": "https://i.imgur.com/wsMZHJ0.png"
+		},
+		{
+			"name": "Snow-Covered Mountain",
+			"imageURL": "https://i.imgur.com/N4cnDKf.png",
+		},
+		{
+			"name": "Snow-Covered Swamp",
+			"imageURL": "https://i.imgur.com/XQ9vkBU.png"
+		},
+		{
+			"name": "Snow-Covered Island",
+			"imageURL": "https://i.imgur.com/6V7Tv7X.png",
+		},
+		{
+			"name": "Snow-Covered Plains",
+			"imageURL": "https://i.imgur.com/gnPCMfN.png"
 		}
 	]
 }

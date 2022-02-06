@@ -18,6 +18,13 @@ public enum OutputFormat: String, CaseIterable {
 	}
 }
 
+extension URLQueryContainer {
+	func getBoolValue(at keyPath: CodingKeyRepresentable) -> Bool? {
+		guard let stringValue = try? get(String.self, at: keyPath) else { return nil }
+		return Bool(stringValue)
+	}
+}
+
 final class GeneratorController {
 	func boosterPack(_ req: Request) throws -> EventLoopFuture<String> {
 		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
@@ -26,15 +33,15 @@ final class GeneratorController {
 			return try boosterBox(req)
 		}
 
-		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
-		let includeExtendedArt: Bool = (try? req.query.get(Bool.self, at: "extendedart")) ?? true
+		let export: Bool = req.query.getBoolValue(at: "export") ?? true
+		let includeExtendedArt: Bool = req.query.getBoolValue(at: "extendedart") ?? true
 		guard let set = req.parameters.get("set") else {
 			promise.fail(PackError.missingSet)
 			return promise.futureResult
 		}
 		let specialOptions = (try? req.query.get(String.self, at: "special").components(separatedBy: ",")) ?? []
-		let includeBasicLands: Bool = (try? req.query.get(Bool.self, at: "lands")) ?? true
-		let includeTokens: Bool = (try? req.query.get(Bool.self, at: "tokens")) ?? true
+		let includeBasicLands = req.query.getBoolValue(at: "lands") ?? true
+		let includeTokens = req.query.getBoolValue(at: "tokens") ?? true
 		let outputFormat = (try? req.query.get(String.self, at: "outputformat")).flatMap(OutputFormat.init(rawValue:)) ?? .default
 		let seed: Seed? = (try? req.query.get(String.self, at: "seed")).flatMap { seed in
 			let components = seed.components(separatedBy: "-")
@@ -56,12 +63,12 @@ final class GeneratorController {
 	}
 	
 	func boosterBox(_ req: Request) throws -> EventLoopFuture<String> {
-		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
+		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let count = (try? req.query.get(Int.self, at: "count")) ?? (try? req.query.get(Int.self, at: "boosters"))
-		let includeExtendedArt: Bool = (try? req.query.get(Bool.self, at: "extendedart")) ?? true
+		let includeExtendedArt: Bool = req.query.getBoolValue(at: "extendedart") ?? true
 		let specialOptions = (try? req.query.get(String.self, at: "special").components(separatedBy: ",")) ?? []
-		let includeBasicLands: Bool = (try? req.query.get(Bool.self, at: "lands")) ?? true
-		let includeTokens: Bool = (try? req.query.get(Bool.self, at: "tokens")) ?? true
+		let includeBasicLands: Bool = req.query.getBoolValue(at: "lands") ?? true
+		let includeTokens: Bool = req.query.getBoolValue(at: "tokens") ?? true
 		let outputFormat = (try? req.query.get(String.self, at: "outputformat")).flatMap(OutputFormat.init(rawValue:)) ?? .default
 
 		if count == 1 {
@@ -89,9 +96,9 @@ final class GeneratorController {
 	}
 	
 //	func commanderBoxingLeagueBox(_ req: Request) throws -> EventLoopFuture<String> {
-//		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
+//		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 //		let count = (try? req.query.get(Int.self, at: "count")) ?? (try? req.query.get(Int.self, at: "boosters"))
-//		let includeExtendedArt: Bool = (try? req.query.get(Bool.self, at: "extendedart")) ?? true
+//		let includeExtendedArt: Bool = req.query.getBoolValue(at: "extendedart") ?? true
 //		let specialOptions = (try? req.query.get(String.self, at: "special").components(separatedBy: ",")) ?? []
 //		let outputFormat = (try? req.query.get(String.self, at: "outputformat")).flatMap(OutputFormat.init(rawValue:)) ?? .default
 //
@@ -112,8 +119,8 @@ final class GeneratorController {
 //	}
 	
 	func prereleasePack(_ req: Request) throws -> EventLoopFuture<String> {
-		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
-		let includeExtendedArt: Bool = (try? req.query.get(Bool.self, at: "extendedart")) ?? true
+		let export: Bool = req.query.getBoolValue(at: "export") ?? true
+		let includeExtendedArt: Bool = req.query.getBoolValue(at: "extendedart") ?? true
 		let count = try? req.query.get(Int.self, at: "count")
 		let specialOptions = (try? req.query.get(String.self, at: "special").components(separatedBy: ",")) ?? []
 		let seed: Seed? = (try? req.query.get(String.self, at: "seed")).flatMap { seed in
@@ -123,10 +130,10 @@ final class GeneratorController {
 			return SeedOptions.shared.seedOptions(forSetCode: code).first(where: { $0.name == name })
 		}
 
-		let includePromo: Bool = (try? req.query.get(Bool.self, at: "promo")) ?? true
-		let includeLands: Bool = (try? req.query.get(Bool.self, at: "lands")) ?? true
-		let includeSheet: Bool = (try? req.query.get(Bool.self, at: "sheet")) ?? true
-		let includeSpindown: Bool = (try? req.query.get(Bool.self, at: "spindown")) ?? true
+		let includePromo: Bool = req.query.getBoolValue(at: "promo") ?? true
+		let includeLands: Bool = req.query.getBoolValue(at: "lands") ?? true
+		let includeSheet: Bool = req.query.getBoolValue(at: "sheet") ?? true
+		let includeSpindown: Bool = req.query.getBoolValue(at: "spindown") ?? true
 		let boosterCount = try? req.query.get(Int.self, at: "boosters")
 
 		let outputFormat = (try? req.query.get(String.self, at: "outputformat")).flatMap(OutputFormat.init(rawValue:)) ?? .default
@@ -537,8 +544,8 @@ final class GeneratorController {
 	}
 	
 	func deckstatsDeck(_ req: Request) throws -> EventLoopFuture<String> {
-		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
-		let autofix: Bool = (try? req.query.get(Bool.self, at: "autofix")) ?? true
+		let export: Bool = req.query.getBoolValue(at: "export") ?? true
+		let autofix: Bool = req.query.getBoolValue(at: "autofix") ?? true
 		let cardBack: URL? = (try? req.query.get(String.self, at: "back")).flatMap(URL.init(string:))
 		let customOverrides: String = (try? req.query.get(String.self, at: "customoverrides")) ?? ""
 
@@ -552,8 +559,8 @@ final class GeneratorController {
 	}
 	
 	func fullDeck(_ req: Request) throws -> EventLoopFuture<String> {
-		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
-		let autofix: Bool = (try? req.query.get(Bool.self, at: "autofix")) ?? true
+		let export: Bool = req.query.getBoolValue(at: "export") ?? true
+		let autofix: Bool = req.query.getBoolValue(at: "autofix") ?? true
 		let cardBack: URL? = (try? req.query.get(String.self, at: "back")).flatMap(URL.init(string:))
 		let customOverrides: String = (try? req.query.get(String.self, at: "customoverrides")) ?? ""
 		
@@ -593,8 +600,8 @@ final class GeneratorController {
 	}
 	
 	func singleCardNamed(_ req: Request) throws -> EventLoopFuture<String> {
-		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
-		let facedown: Bool = (try? req.query.get(Bool.self, at: "facedown")) ?? false
+		let export: Bool = req.query.getBoolValue(at: "export") ?? true
+		let facedown: Bool = req.query.getBoolValue(at: "facedown") ?? false
 		
 		let fuzzy = try? req.query.get(String.self, at: "fuzzy")
 		let exact = try? req.query.get(String.self, at: "exact")
@@ -621,8 +628,8 @@ final class GeneratorController {
 	}
 	
 	func singleCard(_ req: Request) throws -> EventLoopFuture<String> {
-		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
-		let facedown: Bool = (try? req.query.get(Bool.self, at: "facedown")) ?? false
+		let export: Bool = req.query.getBoolValue(at: "export") ?? true
+		let facedown: Bool = req.query.getBoolValue(at: "facedown") ?? false
 
 		guard let code = req.parameters.get("code"), let number = req.parameters.get("number") else {
 			throw PackError.emptyInput
@@ -643,8 +650,8 @@ final class GeneratorController {
 	}
 	
 	func singleCardRandom(_ req: Request) throws -> EventLoopFuture<String> {
-		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
-		let facedown: Bool = (try? req.query.get(Bool.self, at: "facedown")) ?? false
+		let export: Bool = req.query.getBoolValue(at: "export") ?? true
+		let facedown: Bool = req.query.getBoolValue(at: "facedown") ?? false
 		
 		let query = try? req.query.get(String.self, at: "q")
 		
@@ -668,7 +675,7 @@ final class GeneratorController {
 	}
 	
 	func completeToken(_ req: Request) throws -> EventLoopFuture<String> {
-		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
+		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 
 		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
 		

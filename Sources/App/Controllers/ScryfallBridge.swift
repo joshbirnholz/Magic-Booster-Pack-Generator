@@ -58,8 +58,8 @@ final class ScryfallBridgeController {
 						return nil
 					}
 					
-					if set.code == "dbl", set.cardCount < 398 {
-						// TODO: UPDATE WITH REAL CARD COUNT
+					if set.code == "dbl" {
+						// TODO: SUPPORT DOUBLE FEATURE
 						return nil
 					}
 					

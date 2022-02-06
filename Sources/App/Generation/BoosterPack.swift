@@ -170,6 +170,9 @@ enum Mode {
 	case timeSpiralRemastered
 	case strixhaven
 	case mh2
+	
+	// Add 1 DFC U/C, normal slots for U/C are all single-faced.
+	case neo
 }
 
 extension MTGCard {
@@ -694,6 +697,15 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			addRareOrMythic()
 		}
 		
+		let neoDFC: MTGCard? = {
+			guard mode == .neo else { return nil }
+			return customSlotRarities.values.joined().randomElement()
+		}()
+		
+		if let card = neoDFC, card.rarity == .uncommon {
+			pack.insert(card, at: 0)
+		}
+		
 		let showcaseCommonOrUncommon: MTGCard? = {
 			guard shouldIncludeShowcaseCommonOrUncommon else { return nil }
 			
@@ -795,6 +807,10 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		}
 		
 		pack.insert(contentsOf: uncommons, at: 0)
+		
+		if let card = neoDFC, card.rarity == .common {
+			pack.insert(card, at: 0)
+		}
 		
 		if mode == .innistradDoubleFaced, let doubleFaced = customSlotRarities.values.joined().randomElement() {
 			pack.insert(doubleFaced, at: 0)
@@ -3581,6 +3597,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		case "stx": return .strixhaven
 		case "mh2": return .mh2
 		case "mid", "vow": return .mid
+		case "neo": return .neo
 		default: return .default
 		}
 	}()
@@ -3740,7 +3757,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
-		case "iko", "m21":
+		case "iko", "m21", "neo":
 			let basicLands = mainCards.separateAll { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true }
 			guard includeBasicLands else { return [] }
 			let dualLands = mainCards.separateAll { $0.typeLine?.lowercased().contains("land") == true && $0.oracleText?.contains("enters the battlefield tapped") == true && $0.oracleText?.contains("gain 1 life") == true }
@@ -3826,6 +3843,9 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		case "mid", "vow":
 			// Use regular, non-Eternal Night basic lands that aren't found in boosters for MID.
 			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.promoTypes.contains("bundle") }
+		case "neo":
+			// Use regular, non-ukiyo-e basic lands that aren't found in boosters for MID.
+			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && !$0.isFullArt }
 		case _ where Set(defaultBasicLands.compactMap { $0.name }).count == 5:
 			return defaultBasicLands
 		default:
@@ -3891,6 +3911,10 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		}
 	default:
 		break
+	}
+	
+	mainCards.removeAll { card in
+		card.promoTypes.contains("buyabox")
 	}
 	
 	func cardIsShowcase(_ card: MTGCard) -> Bool {
@@ -3973,6 +3997,8 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			return .init(grouping: mainCards.separateAll { (1...9).contains(Int($0.collectorNumber) ?? 0) }, by: \.rarity)
 		case "stx":
 			return .init(grouping: mainCards.separateAll(where: { $0.typeLine?.lowercased().contains("lesson") == true /* && $0.rarity != .uncommon */ }), by: \.rarity)
+		case "neo":
+			return .init(grouping: mainCards.separateAll(where: { ($0.rarity == .uncommon || $0.rarity == .common) && $0.layout == "transform" }), by: \.rarity)
 		default:
 			return [:]
 		}

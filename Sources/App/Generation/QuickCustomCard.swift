@@ -44,9 +44,9 @@ final class CustomCards {
 		return Result {
 			let url: URL = {
 				#if canImport(Vapor)
-				let directory = DirectoryConfig.detect()
+				let directory = DirectoryConfiguration.detect()
 				let configDir = "Sources/App/Generation"
-				return URL(fileURLWithPath: directory.workDir)
+				return URL(fileURLWithPath: directory.workingDirectory)
 					.appendingPathComponent(configDir, isDirectory: true)
 					.appendingPathComponent("customcards.json", isDirectory: false)
 				#else
@@ -139,15 +139,15 @@ final class CustomCards {
 	}
 	
 	func getCustomCards(_ req: Request) throws -> EventLoopFuture<[QuickCustomCard]> {
-		let promise: Promise<[QuickCustomCard]> = req.eventLoop.newPromise()
+		let promise: EventLoopPromise<[QuickCustomCard]> = req.eventLoop.makePromise()
 		
 		while !isFinishedLoading { }
 		
 		do {
 			let cardList = try self.cardList.get()
-			promise.succeed(result: cardList)
+			promise.succeed(cardList)
 		} catch {
-			promise.fail(error: error)
+			promise.fail(error)
 		}
 		
 		return promise.futureResult

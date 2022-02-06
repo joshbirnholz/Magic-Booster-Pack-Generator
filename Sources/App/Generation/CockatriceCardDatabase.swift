@@ -137,8 +137,8 @@ struct CockatriceCardDatabase: Decodable {
 			
 			if let reverseRelated = try? container.decodeIfPresent([ReverseRelated].self, forKey: .reverseRelated) {
 				self.reverseRelated = reverseRelated
-			} else if let single = try? container.decodeIfPresent(ReverseRelated.self, forKey: .reverseRelated), let card = single {
-				self.reverseRelated = [card]
+			} else if let single = try? container.decodeIfPresent(ReverseRelated.self, forKey: .reverseRelated) {
+				self.reverseRelated = [single]
 			}
 			
 		}

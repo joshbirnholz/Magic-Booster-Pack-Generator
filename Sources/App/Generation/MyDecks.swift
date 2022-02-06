@@ -33,9 +33,9 @@ final class MyDecks {
 	let deckURLs: Result<[MyDeck], Error> = Result {
 		let url: URL = {
 			   #if canImport(Vapor)
-			   let directory = DirectoryConfig.detect()
+			   let directory = DirectoryConfiguration.detect()
 			   let configDir = "Sources/App/Generation"
-			   return URL(fileURLWithPath: directory.workDir)
+			   return URL(fileURLWithPath: directory.workingDirectory)
 				   .appendingPathComponent(configDir, isDirectory: true)
 				   .appendingPathComponent("mydecks.json", isDirectory: false)
 			   #else
@@ -51,13 +51,13 @@ final class MyDecks {
 	   }
 	
 	func getDecks(_ req: Request) throws -> EventLoopFuture<[MyDeck]> {
-		let promise: Promise<[MyDeck]> = req.eventLoop.newPromise()
+		let promise: EventLoopPromise<[MyDeck]> = req.eventLoop.makePromise()
 
 		do {
 			let cardList = try self.deckURLs.get()
-			promise.succeed(result: cardList)
+			promise.succeed(cardList)
 		} catch {
-			promise.fail(error: error)
+			promise.fail(error)
 		}
 
 		return promise.futureResult

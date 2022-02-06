@@ -70,9 +70,9 @@ struct Packet: Codable {
 		do {
 			let url: URL = {
 				#if canImport(Vapor)
-				let directory = DirectoryConfig.detect()
+				let directory = DirectoryConfiguration.detect()
 				let configDir = "Sources/App/Generation"
-				return URL(fileURLWithPath: directory.workDir)
+				return URL(fileURLWithPath: directory.workingDirectory)
 					.appendingPathComponent(configDir, isDirectory: true)
 					.appendingPathComponent("j21packets.json", isDirectory: false)
 				#else

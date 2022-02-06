@@ -10,7 +10,7 @@ import Foundation
 import Vapor
 #endif
 
-extension Swiftfall.ScryfallError: Debuggable {
+extension Swiftfall.ScryfallError: DebuggableError {
 	var reason: String {
 		return self.details
 	}
@@ -20,7 +20,7 @@ extension Swiftfall.ScryfallError: Debuggable {
 	}
 }
 
-extension PackError: Debuggable {
+extension PackError: DebuggableError {
 	var identifier: String {
 		return String(code)
 	}
@@ -55,6 +55,8 @@ extension PackError: Debuggable {
 			return "There was an error loading the deck. Check that the deck is set to public."
 		case .couldNotLoadCards(let names):
 			return "An internal server error occurred while attempting to load the following cards: \(names)"
+		case .missingSet:
+			return "There was no specified set."
 		}
 	}
 	

@@ -1,72 +1,71 @@
 import Vapor
 
 /// Register your application's routes here.
-public func routes(_ router: Router) throws {
-	router.get { req -> Response in
-		return req.response(http: HTTPResponse(status: .movedPermanently,
-												   version: HTTPVersion(major: 1, minor: 1),
-												   headers: HTTPHeaders([("Location", "index.html")])))
+public func routes(_ app: Application) throws {
+	
+	app.get { req -> Response in
+		req.redirect(to: "index.html", type: .permanent)
 	}
 	
 	let generatorController = GeneratorController()
 	
-	router.post("card", "named", use: generatorController.singleCardNamed)
-	
-	router.post("card", String.parameter, String.parameter, use: generatorController.singleCard)
-	
-	router.post("card", "random", use: generatorController.singleCardRandom)
-	
-	router.post("landpacks", String.parameter, use: generatorController.landPacks)
-	router.post("landpacks", use: generatorController.landPacks)
-	
-	router.post(String.parameter, use: generatorController.boosterPack)
-	router.post("booster", String.parameter, use: generatorController.boosterPack)
-	router.post("boosterpack", String.parameter, use: generatorController.boosterPack)
-	router.post("pack", String.parameter, use: generatorController.boosterPack)
-	
-	router.post("boosterbox", String.parameter, use: generatorController.boosterBox)
-	router.post("box", String.parameter, use: generatorController.boosterBox)
-	
-	router.post("boxingleague", String.parameter, use: generatorController.commanderBoxingLeagueBox)
-	
-	router.post("prerelease", String.parameter, use: generatorController.prereleasePack)
-	router.post("pre", String.parameter, use: generatorController.prereleasePack)
-	
-	router.post("token", String.parameter, use: generatorController.completeToken)
-	
-	router.post("deck", use: generatorController.fullDeck)
-	
-	router.post("url", String.parameter, use: generatorController.deckstatsDeck)
-	
-	router.get("customcards", use: CustomCards.shared.getCustomCards)
-	router.get("seeds", use: SeedOptions.shared.getAllSeeds)
-	
-	router.get("decks", use: MyDecks.shared.getDecks(_:))
-	
+	app.post("card", "named", use: generatorController.singleCardNamed)
+
+	app.post("card", ":code", ":number", use: generatorController.singleCard)
+
+	app.post("card", "random", use: generatorController.singleCardRandom)
+
+	app.post("landpacks", ":set", use: generatorController.landPacks)
+	app.post("landpacks", use: generatorController.landPacks)
+
+	app.post(":set", use: generatorController.boosterPack)
+	app.post("booster", ":set", use: generatorController.boosterPack)
+	app.post("boosterpack", ":set", use: generatorController.boosterPack)
+	app.post("pack", ":set", use: generatorController.boosterPack)
+
+	app.post("boosterbox", ":set", use: generatorController.boosterBox)
+	app.post("box", ":set", use: generatorController.boosterBox)
+
+//	app.post("boxingleague", ":set", use: generatorController.commanderBoxingLeagueBox)
+
+	app.post("prerelease", ":set", use: generatorController.prereleasePack)
+	app.post("pre", ":set", use: generatorController.prereleasePack)
+
+	app.post("token", ":set", use: generatorController.completeToken)
+
+	app.post("deck", use: generatorController.fullDeck)
+
+	app.post("url", ":deck", use: generatorController.deckstatsDeck)
+
+	app.get("customcards", use: CustomCards.shared.getCustomCards)
+	app.get("seeds", use: SeedOptions.shared.getAllSeeds)
+
+	app.get("decks", use: MyDecks.shared.getDecks(_:))
+
 	// Scryfall
-	
+
 	let scryfallController = ScryfallBridgeController()
+
+	app.post("sets", use: scryfallController.getSets)
 	
-	router.post("sets", use: scryfallController.getSets)
-	
-//	do {
-//		let directory = DirectoryConfig.detect()
-//		let configDir = "Sources/App/Generation"
-//		let customsetcode = "HLW"
-//		let url = URL(fileURLWithPath: directory.workDir)
-//			.appendingPathComponent(configDir, isDirectory: true)
-//			.appendingPathComponent("\(customsetcode).json", isDirectory: false)
-//		let string = try String(contentsOf: url)
-//		let cards = try cardsFromCockatriceJSON(json: string)
-//
-//		let encoder = JSONEncoder()
-//		encoder.outputFormatting = .prettyPrinted
-//		let data = try encoder.encode(cards.cards)
-//		print("###START###")
-//		let outputString = String(data: data, encoding: .utf8)!
-//		print(outputString)
-//		print("###END###")
-//	} catch {
-//		print(error)
-//	}
+	do {
+		let directory = DirectoryConfiguration.detect()
+		let configDir = "Sources/App/Generation"
+		let customsetcode = "HLW"
+		let url = URL(fileURLWithPath: directory.workingDirectory)
+			.appendingPathComponent(configDir, isDirectory: true)
+			.appendingPathComponent("\(customsetcode).json", isDirectory: false)
+		let string = try String(contentsOf: url)
+		let cards = try cardsFromCockatriceJSON(json: string)
+
+		let encoder = JSONEncoder()
+		encoder.outputFormatting = .prettyPrinted
+		let data = try encoder.encode(cards.cards)
+		print("###START###")
+		let outputString = String(data: data, encoding: .utf8)!
+		print(outputString)
+		print("###END###")
+	} catch {
+		print(error)
+	}
 }

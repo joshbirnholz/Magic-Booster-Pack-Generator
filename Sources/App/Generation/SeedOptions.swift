@@ -41,9 +41,9 @@ final class SeedOptions {
 		do {
 			let url: URL = {
 				#if canImport(Vapor)
-				let directory = DirectoryConfig.detect()
+				let directory = DirectoryConfiguration.detect()
 				let configDir = "Sources/App/Generation"
-				return URL(fileURLWithPath: directory.workDir)
+				return URL(fileURLWithPath: directory.workingDirectory)
 					.appendingPathComponent(configDir, isDirectory: true)
 					.appendingPathComponent("seeds.json", isDirectory: false)
 				#else
@@ -74,7 +74,7 @@ final class SeedOptions {
 	}
 	
 	func getAllSeeds(_ req: Request) throws -> EventLoopFuture<[String: [Seed]]> {
-		let promise: Promise<[String: [Seed]]> = req.eventLoop.newPromise()
+		let promise: EventLoopPromise<[String: [Seed]]> = req.eventLoop.makePromise()
 		
 		var dict: [String: [Seed]] = [:]
 		
@@ -82,7 +82,7 @@ final class SeedOptions {
 			dict[setCode] = seedOptions(forSetCode: setCode)
 		}
 		
-		promise.succeed(result: dict)
+		promise.succeed(dict)
 		
 		return promise.futureResult
 	}

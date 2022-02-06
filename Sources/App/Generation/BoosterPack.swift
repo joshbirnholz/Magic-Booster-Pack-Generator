@@ -31,6 +31,7 @@ enum PackError: Error {
 	case privateDeck
 	case noCardFound(String)
 	case couldNotLoadCards(String)
+	case missingSet
 	
 	var code: Int {
 		switch self {
@@ -62,6 +63,8 @@ enum PackError: Error {
 			return 12
 		case .couldNotLoadCards(_):
 			return 13
+		case .missingSet:
+			return 14
 		}
 	}
 }
@@ -975,6 +978,11 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 	return pack
 }
 
+struct DoubleFeatureProcessed: Hashable, Equatable {
+	var midRarities: [MTGCard.Rarity: [MTGCard]] = [:]
+	var vowRarities: [MTGCard.Rarity: [MTGCard]] = [:]
+}
+
 struct CommanderLegendsProcessed: Hashable, Equatable {
 	var rarities: [MTGCard.Rarity: [MTGCard]] = [:]
 	var legendRarities: [MTGCard.Rarity: [MTGCard]] = [:]
@@ -1427,9 +1435,9 @@ func generatePlanarChaosPack(normalRarities: [MTGCard.Rarity: [MTGCard]], colors
 
 let jumpstartDeckListURLs: [URL] = try! {
 	#if canImport(Vapor)
-	let directory = DirectoryConfig.detect()
+	let directory = DirectoryConfiguration.detect()
 	let jumpstartDirectory = "Sources/App/Generation/JumpStart"
-	let jumpstartDirectoryURL = URL(fileURLWithPath: directory.workDir)
+	let jumpstartDirectoryURL = URL(fileURLWithPath: directory.workingDirectory)
 		.appendingPathComponent(jumpstartDirectory, isDirectory: true)
 	return try FileManager.default.contentsOfDirectory(at: jumpstartDirectoryURL, includingPropertiesForKeys: nil)
 	#else
@@ -3462,9 +3470,9 @@ fileprivate func customSetJSONURL(forSetCode inputString: String) -> URL? {
 	}
 	
 	#if canImport(Vapor)
-	let directory = DirectoryConfig.detect()
+	let directory = DirectoryConfiguration.detect()
 	let configDir = "Sources/App/Generation"
-	return URL(fileURLWithPath: directory.workDir)
+	return URL(fileURLWithPath: directory.workingDirectory)
 		.appendingPathComponent(configDir, isDirectory: true)
 		.appendingPathComponent("custommtg-\(customsetcode).json", isDirectory: false)
 	#else

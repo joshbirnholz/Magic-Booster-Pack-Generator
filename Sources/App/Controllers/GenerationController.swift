@@ -19,14 +19,19 @@ public enum OutputFormat: String, CaseIterable {
 }
 
 final class GeneratorController {
-	func boosterPack(_ req: Request) throws -> Future<String> {
+	func boosterPack(_ req: Request) throws -> EventLoopFuture<String> {
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
+		
 		if let count = (try? req.query.get(Int.self, at: "count")) ?? (try? req.query.get(Int.self, at: "boosters")), count > 1 {
 			return try boosterBox(req)
 		}
-		
+
 		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
 		let includeExtendedArt: Bool = (try? req.query.get(Bool.self, at: "extendedart")) ?? true
-		let set = try req.parameters.next(String.self)
+		guard let set = req.parameters.get("set") else {
+			promise.fail(PackError.missingSet)
+			return promise.futureResult
+		}
 		let specialOptions = (try? req.query.get(String.self, at: "special").components(separatedBy: ",")) ?? []
 		let includeBasicLands: Bool = (try? req.query.get(Bool.self, at: "lands")) ?? true
 		let includeTokens: Bool = (try? req.query.get(Bool.self, at: "tokens")) ?? true
@@ -37,22 +42,20 @@ final class GeneratorController {
 			let name = components[1]
 			return SeedOptions.shared.seedOptions(forSetCode: code).first(where: { $0.name == name })
 		}
-		
-		let promise: Promise<String> = req.eventLoop.newPromise()
-		
+
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
 				let result = try generate(input: .scryfallSetCode, inputString: set, output: .boosterPack, export: export, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, specialOptions: specialOptions, autofixDecklist: false, outputFormat: outputFormat, seed: seed)
-				promise.succeed(result: result)
+				promise.succeed(result)
 			} catch {
-				promise.fail(error: error)
+				promise.fail(error)
 			}
 		}
-		
+
 		return promise.futureResult
 	}
 	
-	func boosterBox(_ req: Request) throws -> Future<String> {
+	func boosterBox(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
 		let count = (try? req.query.get(Int.self, at: "count")) ?? (try? req.query.get(Int.self, at: "boosters"))
 		let includeExtendedArt: Bool = (try? req.query.get(Bool.self, at: "extendedart")) ?? true
@@ -60,51 +63,55 @@ final class GeneratorController {
 		let includeBasicLands: Bool = (try? req.query.get(Bool.self, at: "lands")) ?? true
 		let includeTokens: Bool = (try? req.query.get(Bool.self, at: "tokens")) ?? true
 		let outputFormat = (try? req.query.get(String.self, at: "outputformat")).flatMap(OutputFormat.init(rawValue:)) ?? .default
-		
+
 		if count == 1 {
 			return try boosterPack(req)
 		}
 		
-		let set = try req.parameters.next(String.self)
-		
-		let promise: Promise<String> = req.eventLoop.newPromise()
-		
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
+
+//		let set = try req.parameters.next(String.self)
+		guard let set = req.parameters.get("set") else {
+			promise.fail(PackError.missingSet)
+			return promise.futureResult
+		}
+
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
 				let result = try generate(input: .scryfallSetCode, inputString: set, output: .boosterBox, export: export, boxCount: count, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, specialOptions: specialOptions, autofixDecklist: false, outputFormat: outputFormat)
-				promise.succeed(result: result)
+				promise.succeed(result)
 			} catch {
-				promise.fail(error: error)
+				promise.fail(error)
 			}
 		}
-		
+
 		return promise.futureResult
 	}
 	
-	func commanderBoxingLeagueBox(_ req: Request) throws -> Future<String> {
-		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
-		let count = (try? req.query.get(Int.self, at: "count")) ?? (try? req.query.get(Int.self, at: "boosters"))
-		let includeExtendedArt: Bool = (try? req.query.get(Bool.self, at: "extendedart")) ?? true
-		let specialOptions = (try? req.query.get(String.self, at: "special").components(separatedBy: ",")) ?? []
-		let outputFormat = (try? req.query.get(String.self, at: "outputformat")).flatMap(OutputFormat.init(rawValue:)) ?? .default
-		
-		let set = try req.parameters.next(String.self)
-		
-		let promise: Promise<String> = req.eventLoop.newPromise()
-		
-		DispatchQueue.global(qos: .userInitiated).async {
-			do {
-				let result = try generate(input: .scryfallSetCode, inputString: set, output: .commanderBoxingLeagueBox, export: export, boxCount: count, includeExtendedArt: includeExtendedArt, includeBasicLands: false, includeTokens: false, specialOptions: specialOptions, autofixDecklist: false, outputFormat: outputFormat)
-				promise.succeed(result: result)
-			} catch {
-				promise.fail(error: error)
-			}
-		}
-		
-		return promise.futureResult
-	}
+//	func commanderBoxingLeagueBox(_ req: Request) throws -> EventLoopFuture<String> {
+//		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
+//		let count = (try? req.query.get(Int.self, at: "count")) ?? (try? req.query.get(Int.self, at: "boosters"))
+//		let includeExtendedArt: Bool = (try? req.query.get(Bool.self, at: "extendedart")) ?? true
+//		let specialOptions = (try? req.query.get(String.self, at: "special").components(separatedBy: ",")) ?? []
+//		let outputFormat = (try? req.query.get(String.self, at: "outputformat")).flatMap(OutputFormat.init(rawValue:)) ?? .default
+//
+//		let set = try req.parameters.next(String.self)
+//
+//		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
+//
+//		DispatchQueue.global(qos: .userInitiated).async {
+//			do {
+//				let result = try generate(input: .scryfallSetCode, inputString: set, output: .commanderBoxingLeagueBox, export: export, boxCount: count, includeExtendedArt: includeExtendedArt, includeBasicLands: false, includeTokens: false, specialOptions: specialOptions, autofixDecklist: false, outputFormat: outputFormat)
+//				promise.succeed(result)
+//			} catch {
+//				promise.fail(error)
+//			}
+//		}
+//
+//		return promise.futureResult
+//	}
 	
-	func prereleasePack(_ req: Request) throws -> Future<String> {
+	func prereleasePack(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
 		let includeExtendedArt: Bool = (try? req.query.get(Bool.self, at: "extendedart")) ?? true
 		let count = try? req.query.get(Int.self, at: "count")
@@ -115,28 +122,30 @@ final class GeneratorController {
 			let name = components[1]
 			return SeedOptions.shared.seedOptions(forSetCode: code).first(where: { $0.name == name })
 		}
-		
+
 		let includePromo: Bool = (try? req.query.get(Bool.self, at: "promo")) ?? true
 		let includeLands: Bool = (try? req.query.get(Bool.self, at: "lands")) ?? true
 		let includeSheet: Bool = (try? req.query.get(Bool.self, at: "sheet")) ?? true
 		let includeSpindown: Bool = (try? req.query.get(Bool.self, at: "spindown")) ?? true
 		let boosterCount = try? req.query.get(Int.self, at: "boosters")
-		
+
 		let outputFormat = (try? req.query.get(String.self, at: "outputformat")).flatMap(OutputFormat.init(rawValue:)) ?? .default
-		
-		let set = try req.parameters.next(String.self)
-		
-		let promise: Promise<String> = req.eventLoop.newPromise()
-		
+
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
+		guard let set = req.parameters.get("set") else {
+			promise.fail(PackError.missingSet)
+			return promise.futureResult
+		}
+
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
 				let result = try generate(input: .scryfallSetCode, inputString: set, output: .prereleaseKit, export: export, boxCount: count, prereleaseIncludePromoCard: includePromo, prereleaseIncludeLands: includeLands, prereleaseIncludeSheet: includeSheet, prereleaseIncludeSpindown: includeSpindown, prereleaseBoosterCount: boosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: true, includeTokens: true, specialOptions: specialOptions, autofixDecklist: false, outputFormat: outputFormat, seed: seed)
-				promise.succeed(result: result)
+				promise.succeed(result)
 			} catch {
-				promise.fail(error: error)
+				promise.fail(error)
 			}
 		}
-		
+
 		return promise.futureResult
 	}
 	
@@ -170,8 +179,8 @@ final class GeneratorController {
 							do {
 								let result: String = try deck(.archidekt(archidektDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: archidektDeck.name, customOverrides: [customOverrides])
 								print("Success")
-								promise.succeed(result: result)
-							} catch let error as Debuggable {
+								promise.succeed(result)
+							} catch let error as DebuggableError {
 								struct ErrorMessage: Codable {
 									var error: String
 								}
@@ -181,15 +190,15 @@ final class GeneratorController {
 								do {
 									let data = try encoder.encode(errorMessage)
 									let string = String(data: data, encoding: .utf8)!
-									promise.succeed(result: string)
+									promise.succeed(string)
 								} catch {
-									promise.fail(error: error)
+									promise.fail(error)
 								}
 							} catch {
-								promise.fail(error: error)
+								promise.fail(error)
 							}
 						}
-					} catch let error as Debuggable {
+					} catch let error as DebuggableError {
 						struct ErrorMessage: Codable {
 							var error: String
 						}
@@ -199,12 +208,12 @@ final class GeneratorController {
 						do {
 							let data = try encoder.encode(errorMessage)
 							let string = String(data: data, encoding: .utf8)!
-							promise.succeed(result: string)
+							promise.succeed(string)
 						} catch {
-							promise.fail(error: error)
+							promise.fail(error)
 						}
 					} catch {
-						promise.fail(error: error)
+						promise.fail(error)
 					}
 				}.resume()
 			}
@@ -226,8 +235,8 @@ final class GeneratorController {
 							do {
 								let result: String = try deck(.moxfield(moxfieldDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: moxfieldDeck.name, customOverrides: [customOverrides])
 								print("Success")
-								promise.succeed(result: result)
-							} catch let error as Debuggable {
+								promise.succeed(result)
+							} catch let error as DebuggableError {
 								struct ErrorMessage: Codable {
 									var error: String
 								}
@@ -237,15 +246,15 @@ final class GeneratorController {
 								do {
 									let data = try encoder.encode(errorMessage)
 									let string = String(data: data, encoding: .utf8)!
-									promise.succeed(result: string)
+									promise.succeed(string)
 								} catch {
-									promise.fail(error: error)
+									promise.fail(error)
 								}
 							} catch {
-								promise.fail(error: error)
+								promise.fail(error)
 							}
 						}
-					} catch let error as Debuggable {
+					} catch let error as DebuggableError {
 						struct ErrorMessage: Codable {
 							var error: String
 						}
@@ -255,12 +264,12 @@ final class GeneratorController {
 						do {
 							let data = try encoder.encode(errorMessage)
 							let string = String(data: data, encoding: .utf8)!
-							promise.succeed(result: string)
+							promise.succeed(string)
 						} catch {
-							promise.fail(error: error)
+							promise.fail(error)
 						}
 					} catch {
-						promise.fail(error: error)
+						promise.fail(error)
 					}
 				}.resume()
 			}
@@ -302,7 +311,7 @@ final class GeneratorController {
 						}
 						
 						guard let decklist = String(data: data, encoding: .utf8) else {
-							promise.fail(error: PackError.invalidURL)
+							promise.fail(PackError.invalidURL)
 							return
 						}
 						
@@ -322,8 +331,8 @@ final class GeneratorController {
 								
 								let result: String = try deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, customOverrides: [commentCustomOverrides ?? "", customOverrides] + alters)
 								print("Success")
-								promise.succeed(result: result)
-							} catch let error as Debuggable {
+								promise.succeed(result)
+							} catch let error as DebuggableError {
 								struct ErrorMessage: Codable {
 									var error: String
 								}
@@ -333,15 +342,15 @@ final class GeneratorController {
 								do {
 									let data = try encoder.encode(errorMessage)
 									let string = String(data: data, encoding: .utf8)!
-									promise.succeed(result: string)
+									promise.succeed(string)
 								} catch {
-									promise.fail(error: error)
+									promise.fail(error)
 								}
 							} catch {
-								promise.fail(error: error)
+								promise.fail(error)
 							}
 						}
-					} catch let error as Debuggable {
+					} catch let error as DebuggableError {
 						struct ErrorMessage: Codable {
 							var error: String
 						}
@@ -351,12 +360,12 @@ final class GeneratorController {
 						do {
 							let data = try encoder.encode(errorMessage)
 							let string = String(data: data, encoding: .utf8)!
-							promise.succeed(result: string)
+							promise.succeed(string)
 						} catch {
-							promise.fail(error: error)
+							promise.fail(error)
 						}
 					} catch {
-						promise.fail(error: error)
+						promise.fail(error)
 					}
 				}.resume()
 			}
@@ -381,8 +390,8 @@ final class GeneratorController {
 							do {
 								let result: String = try deck(.arena(arenaDecklist), export: export, cardBack: cardBack, autofix: autofix, customOverrides: [customOverrides])
 								print("Success")
-								promise.succeed(result: result)
-							} catch let error as Debuggable {
+								promise.succeed(result)
+							} catch let error as DebuggableError {
 								struct ErrorMessage: Codable {
 									var error: String
 								}
@@ -392,15 +401,15 @@ final class GeneratorController {
 								do {
 									let data = try encoder.encode(errorMessage)
 									let string = String(data: data, encoding: .utf8)!
-									promise.succeed(result: string)
+									promise.succeed(string)
 								} catch {
-									promise.fail(error: error)
+									promise.fail(error)
 								}
 							} catch {
-								promise.fail(error: error)
+								promise.fail(error)
 							}
 						}
-					} catch let error as Debuggable {
+					} catch let error as DebuggableError {
 						struct ErrorMessage: Codable {
 							var error: String
 						}
@@ -410,12 +419,12 @@ final class GeneratorController {
 						do {
 							let data = try encoder.encode(errorMessage)
 							let string = String(data: data, encoding: .utf8)!
-							promise.succeed(result: string)
+							promise.succeed(string)
 						} catch {
-							promise.fail(error: error)
+							promise.fail(error)
 						}
 					} catch {
-						promise.fail(error: error)
+						promise.fail(error)
 					}
 				}.resume()
 			}
@@ -451,8 +460,8 @@ final class GeneratorController {
 									do {
 										let result: String = try deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, customOverrides: [customOverrides])
 										print("Success")
-										promise.succeed(result: result)
-									} catch let error as Debuggable {
+										promise.succeed(result)
+									} catch let error as DebuggableError {
 										struct ErrorMessage: Codable {
 											var error: String
 										}
@@ -462,16 +471,16 @@ final class GeneratorController {
 										do {
 											let data = try encoder.encode(errorMessage)
 											let string = String(data: data, encoding: .utf8)!
-											promise.succeed(result: string)
+											promise.succeed(string)
 										} catch {
-											promise.fail(error: error)
+											promise.fail(error)
 										}
 									} catch {
-										promise.fail(error: error)
+										promise.fail(error)
 									}
 								}
 								
-							} catch let error as Debuggable {
+							} catch let error as DebuggableError {
 								struct ErrorMessage: Codable {
 									var error: String
 								}
@@ -481,39 +490,15 @@ final class GeneratorController {
 								do {
 									let data = try encoder.encode(errorMessage)
 									let string = String(data: data, encoding: .utf8)!
-									promise.succeed(result: string)
+									promise.succeed(string)
 								} catch {
-									promise.fail(error: error)
+									promise.fail(error)
 								}
 							} catch {
-								promise.fail(error: error)
+								promise.fail(error)
 							}
 						}.resume()
-//
-//						DispatchQueue(label: "decklist").async {
-//							do {
-//								let result: String = try deck(decklist: arenaDecklist, format: .arena, export: export, cardBack: cardBack, allowRetries: autofix)
-//								print("Success")
-//								promise.succeed(result: result)
-//							} catch let error as PackError {
-//								struct ErrorMessage: Codable {
-//									var error: String
-//								}
-//
-//								let encoder = JSONEncoder()
-//								let errorMessage = ErrorMessage(error: error.reason)
-//								do {
-//									let data = try encoder.encode(errorMessage)
-//									let string = String(data: data, encoding: .utf8)!
-//									promise.succeed(result: string)
-//								} catch {
-//									promise.fail(error: error)
-//								}
-//							} catch {
-//								promise.fail(error: error)
-//							}
-//						}
-					} catch let error as Debuggable {
+					} catch let error as DebuggableError {
 						struct ErrorMessage: Codable {
 							var error: String
 						}
@@ -523,12 +508,12 @@ final class GeneratorController {
 						do {
 							let data = try encoder.encode(errorMessage)
 							let string = String(data: data, encoding: .utf8)!
-							promise.succeed(result: string)
+							promise.succeed(string)
 						} catch {
-							promise.fail(error: error)
+							promise.fail(error)
 						}
 					} catch {
-						promise.fail(error: error)
+						promise.fail(error)
 					}
 				}.resume()
 			}
@@ -542,183 +527,188 @@ final class GeneratorController {
 			do {
 				let data = try encoder.encode(errorMessage)
 				let string = String(data: data, encoding: .utf8)!
-				promise.succeed(result: string)
+				promise.succeed(string)
 			} catch {
-				promise.fail(error: error)
+				promise.fail(error)
 			}
 		}
 		
 		return promise.futureResult
 	}
 	
-	func deckstatsDeck(_ req: Request) throws -> Future<String> {
+	func deckstatsDeck(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
 		let autofix: Bool = (try? req.query.get(Bool.self, at: "autofix")) ?? true
 		let cardBack: URL? = (try? req.query.get(String.self, at: "back")).flatMap(URL.init(string:))
 		let customOverrides: String = (try? req.query.get(String.self, at: "customoverrides")) ?? ""
+
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
 		
-		let deckURLString = try req.parameters.next(String.self)
-		guard let deckURL = URL(string: deckURLString) else {
+		guard let deckURLString = req.parameters.get("deck"), let deckURL = URL(string: deckURLString) else {
 			throw PackError.invalidURL
 		}
-		
-		let promise: Promise<String> = req.eventLoop.newPromise()
-		
+
 		return try deckFromURL(deckURL, export, cardBack, autofix: autofix, customOverrides: customOverrides, promise)
 	}
 	
-	func fullDeck(_ req: Request) throws -> Future<String> {
+	func fullDeck(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
 		let autofix: Bool = (try? req.query.get(Bool.self, at: "autofix")) ?? true
 		let cardBack: URL? = (try? req.query.get(String.self, at: "back")).flatMap(URL.init(string:))
 		let customOverrides: String = (try? req.query.get(String.self, at: "customoverrides")) ?? ""
 		
-		return try req.content.decode(DeckList.self).flatMap { decklist in
-			let promise: Promise<String> = req.eventLoop.newPromise()
-			
-			if let url = URL(string: decklist.deck) {
-				return try self.deckFromURL(url, export, cardBack, autofix: autofix, customOverrides: customOverrides, promise)
-			}
-			
-			DispatchQueue.global().async {
-				do {
-					let d: Deck = decklist.deck.contains("[") || decklist.deck.contains("]") ? .deckstats(decklist.deck) : .arena(decklist.deck)
-					let result: String = try deck(d, export: export, cardBack: cardBack, autofix: autofix, customOverrides: [customOverrides])
-					promise.succeed(result: result)
-				} catch let error as Debuggable {
-					struct ErrorMessage: Codable {
-						var error: String
-					}
-					
-					let encoder = JSONEncoder()
-					let errorMessage = ErrorMessage(error: error.reason)
-					do {
-						let data = try encoder.encode(errorMessage)
-						let string = String(data: data, encoding: .utf8)!
-						promise.succeed(result: string)
-					} catch {
-						promise.fail(error: error)
-					}
-				} catch {
-					promise.fail(error: error)
-				}
-			}
-			
-			return promise.futureResult
+		let decklist = try req.content.decode(DeckList.self)
+		
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
+		
+		if let url = URL(string: decklist.deck) {
+			return try self.deckFromURL(url, export, cardBack, autofix: autofix, customOverrides: customOverrides, promise)
 		}
+		
+		DispatchQueue.global().async {
+			do {
+				let d: Deck = decklist.deck.contains("[") || decklist.deck.contains("]") ? .deckstats(decklist.deck) : .arena(decklist.deck)
+				let result: String = try deck(d, export: export, cardBack: cardBack, autofix: autofix, customOverrides: [customOverrides])
+				promise.succeed(result)
+			} catch let error as DebuggableError {
+				struct ErrorMessage: Codable {
+					var error: String
+				}
+				
+				let encoder = JSONEncoder()
+				let errorMessage = ErrorMessage(error: error.reason)
+				do {
+					let data = try encoder.encode(errorMessage)
+					let string = String(data: data, encoding: .utf8)!
+					promise.succeed(string)
+				} catch {
+					promise.fail(error)
+				}
+			} catch {
+				promise.fail(error)
+			}
+		}
+		
+		return promise.futureResult
 	}
 	
-	func singleCardNamed(_ req: Request) throws -> Future<String> {
+	func singleCardNamed(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
 		let facedown: Bool = (try? req.query.get(Bool.self, at: "facedown")) ?? false
 		
 		let fuzzy = try? req.query.get(String.self, at: "fuzzy")
 		let exact = try? req.query.get(String.self, at: "exact")
 		
-		let promise: Promise<String> = req.eventLoop.newPromise()
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
 		
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
 				if let fuzzy = fuzzy {
 					let result = try singleCardFuzzy(name: fuzzy, facedown: facedown, export: export)
-					promise.succeed(result: result)
+					promise.succeed(result)
 				} else if let exact = exact {
 					let result = try singleCardExact(name: exact, facedown: facedown, export: export)
-					promise.succeed(result: result)
+					promise.succeed(result)
 				} else {
 					throw PackError.noName
 				}
 			} catch {
-				promise.fail(error: error)
+				promise.fail(error)
 			}
 		}
 		
 		return promise.futureResult
 	}
 	
-	func singleCard(_ req: Request) throws -> Future<String> {
+	func singleCard(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
 		let facedown: Bool = (try? req.query.get(Bool.self, at: "facedown")) ?? false
-		
-		let code = try req.parameters.next(String.self)
-		let number = try req.parameters.next(String.self)
-		
-		let promise: Promise<String> = req.eventLoop.newPromise()
-		
+
+		guard let code = req.parameters.get("code"), let number = req.parameters.get("number") else {
+			throw PackError.emptyInput
+		}
+
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
+
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
 				let result = try singleCardCodeNumber(code: code, number: number, facedown: facedown, export: export)
-				promise.succeed(result: result)
+				promise.succeed(result)
 			} catch {
-				promise.fail(error: error)
+				promise.fail(error)
 			}
 		}
-		
+
 		return promise.futureResult
 	}
 	
-	func singleCardRandom(_ req: Request) throws -> Future<String> {
+	func singleCardRandom(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
 		let facedown: Bool = (try? req.query.get(Bool.self, at: "facedown")) ?? false
 		
 		let query = try? req.query.get(String.self, at: "q")
 		
-		let promise: Promise<String> = req.eventLoop.newPromise()
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
 		
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
 				if let query = query {
 					let result = try singleCardScryfallQuery(query: query, facedown: facedown, export: export)
-					promise.succeed(result: result)
+					promise.succeed(result)
 				} else {
 					let result = try singleCardRand(facedown: facedown, export: export)
-					promise.succeed(result: result)
+					promise.succeed(result)
 				}
 			} catch {
-				promise.fail(error: error)
+				promise.fail(error)
 			}
 		}
 		
 		return promise.futureResult
 	}
 	
-	func completeToken(_ req: Request) throws -> Future<String> {
+	func completeToken(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = (try? req.query.get(Bool.self, at: "export")) ?? true
-		let set = try req.parameters.next(String.self)
+
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
 		
-		let promise: Promise<String> = req.eventLoop.newPromise()
-		
+		guard let set = req.parameters.get("set") else {
+			promise.fail(PackError.missingSet)
+			return promise.futureResult
+		}
+
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
 				let allTokens = try allTokensForSet(setCode: set)
 				let token = try singleCompleteToken(tokens: allTokens, export: export)
-				promise.succeed(result: token)
+				promise.succeed(token)
 			} catch {
-				promise.fail(error: error)
+				promise.fail(error)
 			}
-			
+
 		}
-		
+
 		return promise.futureResult
 	}
 	
-	func landPacks(_ req: Request) throws -> Future<String> {
+	func landPacks(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = false
-		let set: String? = try? req.query.get(String.self, at: "set")
+//		let set: String? = try? req.query.get(String.self, at: "set")
+		let set = req.parameters.get("set")
 		
-		let promise: Promise<String> = req.eventLoop.newPromise()
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
 		
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
 				if let set = set {
 					let packs = try generate(input: .scryfallSetCode, inputString: set, output: .landPack, export: export, boxCount: nil, prereleaseIncludePromoCard: nil, prereleaseIncludeLands: nil, prereleaseIncludeSheet: nil, prereleaseIncludeSpindown: nil, prereleaseBoosterCount: nil, includeExtendedArt: false, includeBasicLands: true, includeTokens: false, specialOptions: [], cardBack: nil, autofixDecklist: false, outputFormat: .default)
-					promise.succeed(result: packs)
+					promise.succeed(packs)
 				} else {
 					let packs = try allLandPacksSingleJSON(setCards: nil, specialOptions: [], export: export)
-					promise.succeed(result: packs)
+					promise.succeed(packs)
 				}
 			} catch {
-				promise.fail(error: error)
+				promise.fail(error)
 			}
 			
 		}

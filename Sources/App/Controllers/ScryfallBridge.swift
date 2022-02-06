@@ -22,7 +22,7 @@ final class ScryfallBridgeController {
 	]
 	
 	func getSets(_ req: Request) throws -> EventLoopFuture<[Swiftfall.ScryfallSet]> {
-		let promise: Promise<[Swiftfall.ScryfallSet]> = req.eventLoop.newPromise()
+		let promise: EventLoopPromise<[Swiftfall.ScryfallSet]> = req.eventLoop.makePromise()
 		
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
@@ -72,9 +72,9 @@ final class ScryfallBridgeController {
 				
 				sets.append(contentsOf: Self.customSets)
 				
-				promise.succeed(result: sets)
+				promise.succeed(sets)
 			} catch {
-				promise.fail(error: error)
+				promise.fail(error)
 			}
 		}
 		

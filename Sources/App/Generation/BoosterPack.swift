@@ -224,7 +224,7 @@ extension Dictionary where Key == MTGCard.Rarity, Value == [MTGCard] {
 		}
 	}
 	
-	init(groupingByRarity cards: [MTGCard], filteredFor seed: Seed?) {
+	init(groupingByRarity cards: [MTGCard], filteredFor seed: Seed? = nil) {
 		self.init(grouping: cards, by: \.rarity)
 		self = self.filtered(for: seed)
 	}
@@ -994,11 +994,6 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 	return pack
 }
 
-struct DoubleFeatureProcessed: Hashable, Equatable {
-	var midRarities: [MTGCard.Rarity: [MTGCard]] = [:]
-	var vowRarities: [MTGCard.Rarity: [MTGCard]] = [:]
-}
-
 struct CommanderLegendsProcessed: Hashable, Equatable {
 	var rarities: [MTGCard.Rarity: [MTGCard]] = [:]
 	var legendRarities: [MTGCard.Rarity: [MTGCard]] = [:]
@@ -1443,6 +1438,72 @@ func generatePlanarChaosPack(normalRarities: [MTGCard.Rarity: [MTGCard]], colors
 			if let colorshiftedUncommonOrRare = all.randomElement() {
 				pack.append(colorshiftedUncommonOrRare)
 			}
+		}
+	} while allColorsCount != 5 || uniqueCardCount != 15
+	
+	return pack
+}
+
+
+
+struct DoubleFeatureProcessed: Hashable, Equatable {
+	var midRarities: [MTGCard.Rarity: [MTGCard]] = [:]
+	var vowRarities: [MTGCard.Rarity: [MTGCard]] = [:]
+}
+
+func processDoubleFeatureCards(_ cards: [MTGCard]) -> DoubleFeatureProcessed {
+	var vowCards = cards
+	vowCards.removeAll { $0.isPromo }
+	let midCards = vowCards.separateAll { card in
+		guard let number = Int(card.collectorNumber) else { return false }
+		return (1...267).contains(number)
+	}
+	
+	return DoubleFeatureProcessed(
+		midRarities: .init(grouping: midCards, by: \.rarity),
+		vowRarities: .init(grouping: vowCards, by: \.rarity)
+	)
+}
+
+func generateDoubleFeaturePack(_ processed: DoubleFeatureProcessed) -> CardCollection {
+	var pack = CardCollection()
+	
+	var uniqueCardCount: Int { Set(pack.mtgCards.compactMap { $0.name }).count }
+	var allColorsCount: Int { Set(pack.mtgCards.compactMap { $0.colors }.joined()).count }
+	
+	repeat {
+		pack.removeAll()
+		
+		pack.append(contentsOf: processed.midRarities[.common]?.choose(4) ?? [])
+		pack.append(contentsOf: processed.vowRarities[.common]?.choose(4) ?? [])
+		
+		pack.append(contentsOf: processed.midRarities[.uncommon]?.choose(2) ?? [])
+		pack.append(contentsOf: processed.vowRarities[.uncommon]?.choose(2) ?? [])
+		
+		if (1...100).randomElement()! >= 74 {
+			pack.append(contentsOf: processed.midRarities[.mythic]?.choose(1) ?? [])
+		} else {
+			pack.append(contentsOf: processed.midRarities[.rare]?.choose(1) ?? [])
+		}
+		
+		if (1...100).randomElement()! >= 74 {
+			pack.append(contentsOf: processed.vowRarities[.mythic]?.choose(1) ?? [])
+		} else {
+			pack.append(contentsOf: processed.vowRarities[.rare]?.choose(1) ?? [])
+		}
+		
+		let includedFoilRarity: MTGCard.Rarity = {
+			let rarityValue = (1...1000).randomElement()!
+			switch rarityValue {
+			case 1...500: return .common
+			case 1...833: return .uncommon
+			case 1...979: return .rare
+			default: return .mythic
+			}
+		}()
+		
+		if let foilCard = ((processed.midRarities[includedFoilRarity] ?? []) + (processed.vowRarities[includedFoilRarity] ?? [])).randomElement() {
+			pack.append(foilCard, isFoil: true)
 		}
 	} while allColorsCount != 5 || uniqueCardCount != 15
 	
@@ -4175,7 +4236,7 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		}
 		
 		switch setCode {
-		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "cmr", "jmp":
+		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "cmr", "jmp", "dbl":
 			return 24
 		default:
 			return 36
@@ -4385,6 +4446,11 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
 	} else if setCode?.lowercased() == "jmp" {
 		let pack = try generateJumpStartPack()
+		
+		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+	} else if setCode?.lowercased() == "dbl" {
+		let processed = processDoubleFeatureCards(cards)
+		let pack = generateDoubleFeaturePack(processed)
 		
 		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
 	}

@@ -58,11 +58,6 @@ final class ScryfallBridgeController {
 						return nil
 					}
 					
-					if set.code == "dbl" {
-						// TODO: SUPPORT DOUBLE FEATURE
-						return nil
-					}
-					
 					if set.code == "j21" {
 						return nil
 					}

@@ -193,15 +193,14 @@ enum FoilPolicy {
 	case pre2020
 	/// Foil cards appear 1 in 45 cards, or 33.4% chance in any one booster pack
 	case modern
-	
-	/// Foil cards appear in 52/53 booster packs
-	case vintageMasters
+	/// Foil cards appear in all packs (100% chance)
+	case guaranteed
 	
 	fileprivate var limit: Int {
 		switch self {
 		case .pre2020: return 225
 		case .modern: return 334
-		case .vintageMasters: return 981
+		case .guaranteed: return 1000
 		}
 	}
 }
@@ -382,7 +381,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		}
 	}()
 	var includedFoilRarity: MTGCard.Rarity? {
-		guard mode == .doubleMasters || (1...1000).randomElement()! <= foilPolicy.limit else { return nil }
+		guard (1...1000).randomElement()! <= foilPolicy.limit else { return nil }
 		
 		let rarityValue = (1...1000).randomElement()!
 		switch rarityValue {
@@ -575,41 +574,31 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			pack.insert(card, at: 0, isFoil: true)
 		}
 		
-		if includeMasterpiece, let masterpiece = masterpieceCards.randomElement() {
+		var foilCommonCount = 0
+		
+		if mode == .vintageMasters, (1...53).randomElement() == 53, let powerNine = customSlotRarities.values.joined().randomElement() {
+			// 1 in 53 packs of vintage masters contain a power nine card. All other packs contain a foil.
+			pack.insert(powerNine, at: 0)
+		} else if includeMasterpiece, let masterpiece = masterpieceCards.randomElement() {
 			pack.insert(masterpiece, at: 0, isFoil: true)
-		} /*else if let rarity = includedShowcaseRarity {
-			let card: MTGCard? = {
-				switch rarity {
-				case .random:
-					return showcaseRarities.values.joined().randomElement()
-				case .commonUncommon:
-					return [(showcaseRarities[.common] ?? []), (showcaseRarities[.uncommon] ?? [])].joined().randomElement()
-				case .rareMythic:
-					return [(showcaseRarities[.rare] ?? []), (showcaseRarities[.mythic] ?? [])].joined().randomElement()
-				}
-			}()
-			if let showcase = card {
-				pack.insert(showcase, at: 0)
-			}
-		} else if shouldIncludeFoilBorderless, let borderlessFoil = borderlessCards.randomElement() {
-			pack.insert(borderlessFoil, at: 0)
-		} */else if let rarity = includedFoilRarity, let foil = [(allRarities[rarity] ?? []), (customSlotRarities[rarity] ?? [])].joined().filter(\.isFoilAvailable).randomElement() {
+		} else if let rarity = includedFoilRarity, let foil = [(allRarities[rarity] ?? []), (customSlotRarities[rarity] ?? [])].joined().filter(\.isFoilAvailable).randomElement() {
 			if includeExtendedArt, let extendedArtVersion = extendedArt.filter({ $0.name == foil.name }).randomElement() {
 				pack.insert(extendedArtVersion, at: 0, isFoil: true)
-			} else if rarity != .common {
+			} else if rarity != .common || foilPolicy == .guaranteed {
 				pack.insert(foil, at: 0, isFoil: true)
+			} else {
+				foilCommonCount += 1
 			}
-		} else if mode == .vintageMasters, let powerNine = customSlotRarities.values.joined().randomElement() {
-			// Vintage Masters packs that don't contain a foil card instead contain a Power Nine card.
-			pack.insert(powerNine, at: 0)
 		}
 		
 		// Add a second foil to double masters packs.
 		if mode == .doubleMasters, let rarity = includedFoilRarity, let foil = [(allRarities[rarity] ?? []), (customSlotRarities[rarity] ?? [])].joined().filter(\.isFoilAvailable).randomElement() {
 			if includeExtendedArt, let extendedArtVersion = extendedArt.filter({ $0.name == foil.name }).randomElement() {
 				pack.insert(extendedArtVersion, at: 0, isFoil: true)
-			} else if rarity != .common {
+			} else if rarity != .common || foilPolicy == .guaranteed {
 				pack.insert(foil, at: 0, isFoil: true)
+			} else {
+				foilCommonCount += 1
 			}
 		}
 		
@@ -862,6 +851,18 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		}
 		
 		pack.insert(contentsOf: commons, at: 0)
+		
+		if foilCommonCount > 0 {
+			let foilCardIndices: [Int] = pack.cards.enumerated().compactMap {
+				guard $0.element.card.rarity == .common && $0.element.card.isFoilAvailable else {
+					return nil
+				}
+				return $0.offset
+			}
+			for index in foilCardIndices.choose(foilCommonCount) {
+				pack.cards[index].isFoil = true
+			}
+		}
 		
 		// Tokens
 		
@@ -3616,8 +3617,8 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			tokens = []
 		}
 		
-		if setCode?.lowercased() == "vma" {
-			foilPolicy = .vintageMasters
+		if setCode?.lowercased() == "vma" || setCode?.lowercased() == "2xm" {
+			foilPolicy = .guaranteed
 		} else {
 			let foilCutoff = Date(timeIntervalSince1970: 1562889600) // Sets released after this date use the modern foil policy.
 			if let releaseDate = set.releasedAt, releaseDate < foilCutoff {

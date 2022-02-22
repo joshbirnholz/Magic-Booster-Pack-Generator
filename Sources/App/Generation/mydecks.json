@@ -74,6 +74,13 @@
 	"comment": "Dinosaurs"
   },
   {
+	"url": "https://deckstats.net/decks/149419/2420753-isshin-two-heavens-as-one",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/1/b/1bf8b008-3a7c-4b6d-8c18-263a576f0d64.jpg",
+	"ids": ["38"],
+	"ci": "RWB",
+	"comment": "Attack triggers"
+  },
+  {
 	  "url": "https://deckstats.net/decks/149419/2135182-kardur-doomscourge",
 	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/f/bfc779ac-a418-4cd0-aa73-8d0d91d51f1c.jpg",
 	  "ids": ["23"],
@@ -158,6 +165,14 @@
 	"ids": ["28"],
 	"ci": "WUB",
 	"comment": "Spirits, reanimator"
+  },
+  {
+	"url": "https://deckstats.net/decks/149419/2295269-runo-stromkirk-krothuss-lord-o",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/1/2/12c50b51-776c-472b-bda3-f7b82eebe2f4.jpg",
+	"back": "https://c1.scryfall.com/file/scryfall-cards/large/back/1/2/12c50b51-776c-472b-bda3-f7b82eebe2f4.jpg",
+	"ids": ["37"],
+	"ci": "UB",
+	"comment": "Sea monsters"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1691052-sen-triplets",

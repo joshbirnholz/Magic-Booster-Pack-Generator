@@ -1,0 +1,14 @@
+1 Animate Dead (EMA) 78
+1 Archfiend of Ifnir (AKH) 78
+1 Discerning Taste (MH2) 82
+1 Entomb (UMA) 94
+1 Exhume (JMP) 230
+1 Griselbrand (MM3) 72
+1 Necromancy (VIS) 64
+1 Oona's Prowler (LRW) 133
+1 Prismatic Vista (MH1) 244
+1 Putrid Imp (VMA) 135
+1 Reanimate (CC2) 5
+1 Rune-Scarred Demon (IMA) 106
+1 Sheoldred, Whispering One (JMP) 278
+7 Swamp (MH2) 485

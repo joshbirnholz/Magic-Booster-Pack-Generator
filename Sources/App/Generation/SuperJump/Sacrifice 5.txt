@@ -1,0 +1,16 @@
+1 Badlands (VMA) 291
+1 Blood Crypt (RNA) 245
+1 Bone Splinters (JMP) 213
+1 Cabal Therapist (MH1) 80
+1 Daretti, Ingenious Iconoclast (CN2) 74
+1 Footlight Fiend (RNA) 216
+1 Immersturm Predator (KHM) 214
+1 Kolaghan's Command (DTK) 224
+1 Mask of Immolation (M20) 151
+1 Mayhem Devil (WAR) 204
+3 Mountain (MH2) 487
+1 Ophiomancer (CC2) 3
+1 Parasitic Implant (JMP) 262
+1 Prismatic Vista (MH1) 244
+1 Rakdos Signet (VOC) 166
+3 Swamp (MH2) 485

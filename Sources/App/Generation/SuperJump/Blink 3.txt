@@ -1,0 +1,17 @@
+1 Azorius Signet (NEC) 145
+1 Baffling End (RIX) 1
+1 Deputy of Detention (RNA) 165
+1 Felidar Guardian (AER) 19
+1 Hallowed Fountain (RNA) 251
+1 Hero of Bretagard (KHC) 4
+3 Island (MH2) 483
+1 Momentary Blink (KHC) 30
+2 Plains (MH2) 481
+1 Prismatic Vista (MH1) 244
+1 Solitude (MH2) 32
+1 Soulherder (MH1) 214
+1 Spark Double (WAR) 68
+1 Suspend (MH2) 68
+1 Tundra (VMA) 322
+1 Venser, the Sojourner (SOM) 135
+1 Watcher for Tomorrow (MH1) 76

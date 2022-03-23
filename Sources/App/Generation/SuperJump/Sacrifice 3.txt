@@ -1,0 +1,14 @@
+1 Blood Artist (VOC) 119
+1 Bloodghast (IMA) 82
+1 Bloodthrone Vampire (MM2) 72
+1 Callous Bloodmage (STX) 66
+1 Falkenrath Noble (VOC) 128
+1 Kalastria Highborn (WWK) 59
+1 Killing Wave (AVR) 111
+1 Oathsworn Vampire (RIX) 80
+1 Pawn of Ulamog (C17) 120
+1 Prismatic Vista (MH1) 244
+1 Spark Harvest (CMR) 150
+7 Swamp (MH2) 485
+1 Viscera Seer (CMR) 158
+1 Voldaren Pariah (EMN) 111

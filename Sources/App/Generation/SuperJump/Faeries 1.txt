@@ -1,0 +1,13 @@
+1 Brazen Borrower (ELD) 39
+1 Faerie Seer (MH1) 51
+1 Glen Elendra Archmage (UMA) 58
+1 Hypnotic Sprite (ELD) 49
+8 Island (MH2) 483
+1 Mana Leak (IMA) 66
+1 Mistbind Clique (LRW) 75
+1 Pestermite (MMA) 59
+1 Prismatic Vista (MH1) 244
+1 Quickling (M15) 76
+1 Sower of Temptation (BBD) 131
+1 Spellstutter Sprite (MMA) 65
+1 Vendilion Clique (A25) 76

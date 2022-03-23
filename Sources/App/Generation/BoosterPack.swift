@@ -1526,8 +1526,31 @@ let jumpstartDeckListURLs: [URL] = try! {
 	#endif
 }()
 
+let superJumpDeckListURLs: [URL] = try! {
+	#if canImport(Vapor)
+	let directory = DirectoryConfiguration.detect()
+	let jumpstartDirectory = "Sources/App/Generation/SuperJump"
+	let jumpstartDirectoryURL = URL(fileURLWithPath: directory.workingDirectory)
+		.appendingPathComponent(jumpstartDirectory, isDirectory: true)
+	return try FileManager.default.contentsOfDirectory(at: jumpstartDirectoryURL, includingPropertiesForKeys: nil)
+	#else
+	guard let urls = Bundle.main.urls(forResourcesWithExtension: "txt", subdirectory: "SuperJump") else {
+		throw PackError.unsupported
+	}
+	return urls
+	#endif
+}()
+
 func jumpstartDeckList() throws -> String {
 	guard let deckListURL = jumpstartDeckListURLs.randomElement() else {
+		throw PackError.unsupported
+	}
+	
+	return try String(contentsOf: deckListURL)
+}
+
+func superjumpDeckList() throws -> String {
+	guard let deckListURL = superJumpDeckListURLs.randomElement() else {
 		throw PackError.unsupported
 	}
 	
@@ -1553,6 +1576,37 @@ func generateJumpStartPack() throws -> CardCollection {
 		let mtgCard = MTGCard(faceCard)
 		collection.append(mtgCard)
 	}
+	
+	for cardCount in cardCounts.reversed() {
+		guard let card = cards[cardCount.identifier] else { continue }
+		let mtgCard = MTGCard(card)
+		for _ in 0 ..< cardCount.count {
+			collection.append(mtgCard)
+		}
+	}
+	
+	return collection
+}
+
+func generateSuperJumpPack() throws -> CardCollection {
+	guard let deckListURL = superJumpDeckListURLs.randomElement() else {
+		throw PackError.unsupported
+	}
+	
+	let name = String(deckListURL.lastPathComponent.prefix(while: { !$0.isNumber && $0 != "." }).trimmingCharacters(in: .whitespacesAndNewlines))
+	
+//	let faceCardIdentifier: MTGCardIdentifier = .nameSet(name: name, set: "fjmp")
+	
+	let contents = try String(contentsOf: deckListURL)
+	let cardCounts = DeckParser.parse(deckList: contents, autofix: true).first?.cardCounts ?? []
+	let identifiers: [MTGCardIdentifier] = /*[faceCardIdentifier] + */cardCounts.map(\.identifier)
+	let cards = try Swiftfall.getCollection(identifiers: identifiers).data
+	
+	var collection = CardCollection()
+//	if let faceCard = cards.first(where: { $0.set.lowercased() == "fjmp" }) {
+//		let mtgCard = MTGCard(faceCard)
+//		collection.append(mtgCard)
+//	}
 	
 	for cardCount in cardCounts.reversed() {
 		guard let card = cards[cardCount.identifier] else { continue }
@@ -3566,7 +3620,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 	var foilPolicy: FoilPolicy = .modern
 	var mythicPolicy: MythicPolicy = .postM21
 	
-	switch input {
+	checkInput: switch input {
 	case .mtgCardJSON:
 		var allCards: [MTGCard]
 		
@@ -3603,6 +3657,13 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 	case .scryfallSetCode:
 		if let url = customSetJSONURL(forSetCode: inputString), let data = try? Data(contentsOf: url), let string = String(data: data, encoding: .utf8) {
 			return try generate(input: .mtgCardJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, autofixDecklist: autofixDecklist, outputFormat: outputFormat, seed: seed)
+		}
+		if inputString.lowercased() == "sjm" {
+			mtgCards = [MTGCard.init(layout: "", frame: "", isFullArt: false, collectorNumber: "", set: "", rarity: .common, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, language: .english)]
+			setName = "SuperJump!"
+			setCode = "SJM"
+			tokens = []
+			break
 		}
 		
 		let set = try Swiftfall.getSet(code: inputString)
@@ -4237,7 +4298,7 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		}
 		
 		switch setCode {
-		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "cmr", "jmp", "dbl":
+		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "cmr", "jmp", "dbl", "sjm":
 			return 24
 		default:
 			return 36
@@ -4273,6 +4334,10 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
 	} else if setCode?.lowercased() == "jmp" {
 		let packs: [CardCollection] = (1...count).compactMap { _ in try? generateJumpStartPack() }
+		
+		return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
+	} else if setCode?.lowercased() == "sjm" {
+		let packs: [CardCollection] = (1...count).compactMap { _ in try? generateSuperJumpPack() }
 		
 		return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
 	}
@@ -4449,6 +4514,10 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 		let pack = try generateJumpStartPack()
 		
 		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+	} else if setCode?.lowercased() == "sjm" {
+		let pack = try generateSuperJumpPack()
+		
+		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
 	} else if setCode?.lowercased() == "dbl" {
 		let processed = processDoubleFeatureCards(cards)
 		let pack = generateDoubleFeaturePack(processed)
@@ -4480,7 +4549,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 	let boosterCount = boosterCount ?? 6
 	let packCount = packCount ?? 1
 	let prereleasePacks: [String] = try (0 ..< (packCount)).map { _ in
-		if setCode.lowercased() == "mb1" || setCode.lowercased() == "fmb1" || setCode.lowercased() == "cmb1" || setCode.lowercased() == "jmp" {
+		if setCode.lowercased() == "mb1" || setCode.lowercased() == "fmb1" || setCode.lowercased() == "cmb1" || setCode.lowercased() == "jmp" || setCode.lowercased() == "sjm" {
 			throw PackError.unsupported
 		} else if setCode.lowercased() == "plc" {
 			let cards = processPlanarChaosCards(cards: cards)

@@ -1593,16 +1593,20 @@ func generateSuperJumpPack() throws -> CardCollection {
 		throw PackError.unsupported
 	}
 	
-	let name = String(deckListURL.lastPathComponent.prefix(while: { !$0.isNumber && $0 != "." }).trimmingCharacters(in: .whitespacesAndNewlines))
-	
-//	let faceCardIdentifier: MTGCardIdentifier = .nameSet(name: name, set: "fjmp")
+	let name = deckListURL.deletingPathExtension().lastPathComponent.trimmingCharacters(in: .whitespacesAndNewlines)
+	print(name)
 	
 	let contents = try String(contentsOf: deckListURL)
 	let cardCounts = DeckParser.parse(deckList: contents, autofix: true).first?.cardCounts ?? []
 	let identifiers: [MTGCardIdentifier] = /*[faceCardIdentifier] + */cardCounts.map(\.identifier)
 	let cards = try Swiftfall.getCollection(identifiers: identifiers).data
 	
+	let frontURL = URL(string: "http://josh.birnholz.com/tts/resources/superjump/\(name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!).jpg")!
+	print(frontURL)
+	
 	var collection = CardCollection()
+	let faceCard = MTGCard(name: name, layout: "normal", frame: "", isFullArt: true, collectorNumber: "", set: "", rarity: .common, scryfallCardBackID: nil, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, language: .english, imageUris: ["normal": frontURL])
+	collection.append(faceCard)
 //	if let faceCard = cards.first(where: { $0.set.lowercased() == "fjmp" }) {
 //		let mtgCard = MTGCard(faceCard)
 //		collection.append(mtgCard)

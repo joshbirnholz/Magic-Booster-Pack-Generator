@@ -18,7 +18,8 @@ final class ScryfallBridgeController {
 	
 	static let customSets = [
 	Swiftfall.ScryfallSet(code: "net", mtgo: nil, name: "Netropolis (Custom Set)", uri: "", scryfallUri: "", searchUri: "", releasedAt: nil, setType: "expansion", cardCount: 0, digital: true, foilOnly: false, blockCode: "net", block: "net", iconSvgUri: nil),
-	Swiftfall.ScryfallSet(code: "hlw", mtgo: nil, name: "Hollows of Lordran (Custom Set)", uri: "", scryfallUri: "", searchUri: "", releasedAt: nil, setType: "expansion", cardCount: 0, digital: true, foilOnly: false, blockCode: "hlw", block: "hlw", iconSvgUri: nil)
+//	Swiftfall.ScryfallSet(code: "hlw", mtgo: nil, name: "Hollows of Lordran (Custom Set)", uri: "", scryfallUri: "", searchUri: "", releasedAt: nil, setType: "expansion", cardCount: 0, digital: true, foilOnly: false, blockCode: "hlw", block: "hlw", iconSvgUri: nil),
+	Swiftfall.ScryfallSet(code: "sjm", mtgo: nil, name: "SuperJump! (Magic Online)", uri: "", scryfallUri: "", searchUri: "", releasedAt: nil, setType: "expansion", cardCount: 0, digital: true, foilOnly: false, blockCode: "sjm", block: "sjm", iconSvgUri: nil),
 	]
 	
 	func getSets(_ req: Request) throws -> EventLoopFuture<[Swiftfall.ScryfallSet]> {
@@ -34,7 +35,7 @@ final class ScryfallBridgeController {
 				]
 				
 				let disallowedSetCodes: Set<String> = [
-					"plist", "h1r"
+					"plist", "h1r", "j21", "slx"
 				]
 				
 				var sets: [Swiftfall.ScryfallSet] = try Swiftfall.getSetList().data.compactMap {
@@ -52,14 +53,6 @@ final class ScryfallBridgeController {
 					
 					if set.code == "fmb1" {
 						set.name = "Mystery Booster (Retail Edition)"
-					}
-					
-					if set.code == "afr", set.cardCount < 281 {
-						return nil
-					}
-					
-					if set.code == "j21" {
-						return nil
 					}
 					
 					return set

@@ -1605,12 +1605,16 @@ func generateSuperJumpPack() throws -> CardCollection {
 	print(frontURL)
 	
 	var collection = CardCollection()
-	let faceCard = MTGCard(name: name, layout: "normal", frame: "", isFullArt: true, collectorNumber: "", set: "", rarity: .common, scryfallCardBackID: nil, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, language: .english, imageUris: ["normal": frontURL])
+	let number = superJumpDeckListURLs.firstIndex(of: deckListURL) ?? 0
+	let frontCardName = name
+		.replacingOccurrences(of: "6", with: "VI")
+		.replacingOccurrences(of: "5", with: "V")
+		.replacingOccurrences(of: "4", with: "IV")
+		.replacingOccurrences(of: "3", with: "III")
+		.replacingOccurrences(of: "2", with: "II")
+		.replacingOccurrences(of: "1", with: "I")
+	let faceCard = MTGCard(name: frontCardName, layout: "normal", frame: "", isFullArt: true, collectorNumber: "\(number)", set: "fsjm", rarity: .common, scryfallCardBackID: nil, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, language: .english, imageUris: ["normal": frontURL])
 	collection.append(faceCard)
-//	if let faceCard = cards.first(where: { $0.set.lowercased() == "fjmp" }) {
-//		let mtgCard = MTGCard(faceCard)
-//		collection.append(mtgCard)
-//	}
 	
 	for cardCount in cardCounts.reversed() {
 		guard let card = cards[cardCount.identifier] else { continue }

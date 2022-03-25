@@ -1825,6 +1825,25 @@ fileprivate struct CardInfo {
 			
 			self.faceURL = faceURL
 		} else if let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"], card.layout == "meld", let result = card.allParts?.first(where: { $0.name != card.name && $0.component == .meldResult }), let backFaceURL = URL(string: "https://img.scryfall.com/card_backs/image/normal/\(backID.uuidString.lowercased().prefix(2))/\(backID.uuidString.lowercased()).jpg") {
+			
+			self.backURL = Self.defaultBack
+			
+			let frontName = card.name ?? ""
+			let backName = result.name
+			
+			self.nickname = frontName
+			self.description = "// \(backName)"
+			
+			var backState = CardInfo(faceURL: backFaceURL, backURL: Self.defaultBack, nickname: backName, description: "// \(frontName)", sideways: false)
+			backState.state = 2
+			otherStates = [backState]
+			self.state = 1
+			self.sideways = false
+			self.backIsHidden = true
+			
+			self.faceURL = faceURL
+			
+		}/* else if let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"], card.layout == "meld", let result = card.allParts?.first(where: { $0.name != card.name && $0.component == .meldResult }), let backFaceURL = URL(string: "https://img.scryfall.com/card_backs/image/normal/\(backID.uuidString.lowercased().prefix(2))/\(backID.uuidString.lowercased()).jpg") {
 			self.backURL = backURL
 			
 			let frontName = card.name ?? ""
@@ -1841,7 +1860,7 @@ fileprivate struct CardInfo {
 			self.backIsHidden = true
 			
 			self.faceURL = faceURL
-		} else if let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"] ?? card.cardFaces?.first?.imageUris?["normal"] ?? card.cardFaces?.first?.imageUris?["large"]  {
+		}*/ else if let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"] ?? card.cardFaces?.first?.imageUris?["normal"] ?? card.cardFaces?.first?.imageUris?["large"]  {
 			self.faceURL = faceURL
 			if card.layout == "double_faced_token", let faces = card.cardFaces, faces.count >= 2, let backFaceURL = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
 				self.backURL = backFaceURL
@@ -1856,7 +1875,17 @@ fileprivate struct CardInfo {
 			self.state = 1
 			self.backIsHidden = !(card.layout.contains("token") || card.layout == "emblem")
 			
-			self.sideways = card.layout == "split" && (card.set != "cmb1" && (card.oracleText?.lowercased().contains("aftermath") == false))
+			if card.layout == "split" {
+				if card.keywords.contains("Aftermath") {
+					self.sideways = false
+				} else if card.set == "cmb1" || card.set == "cmb2" {
+					self.sideways = false
+				} else {
+					self.sideways = true
+				}
+			} else {
+				self.sideways = false
+			}
 		} else {
 			return nil
 		}
@@ -5271,7 +5300,20 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		tokens.append(MTGCard(foretellToken))
 	}
 	
-	tokens = tokens.sorted {
+	if cards.contains(where: { $0.name == "Inkshield" }) {
+		let inklingToken = try Swiftfall.getCard(id: "c9deae5c-80d4-4701-b425-91853b7ee03b")
+		tokens.append(MTGCard(inklingToken))
+	}
+	
+	var alreadyThere: Set<MTGCard> = []
+	let uniqueTokens = tokens.compactMap { token -> MTGCard? in
+		guard let id = token.scryfallID else { return token }
+		guard !alreadyThere.contains(where: { $0.scryfallID == id }) else { return nil }
+		alreadyThere.insert(token)
+		return token
+	}
+	
+	tokens = uniqueTokens.sorted {
 		($0.name ?? "") < ($1.name ?? "")
 	}
 	

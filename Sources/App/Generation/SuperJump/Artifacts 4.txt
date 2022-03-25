@@ -8,7 +8,7 @@
 1 Sai, Master Thopterist (NEC) 97
 1 Silver Myr (NEC) 158
 1 Sword of Sinew and Steel (MH1) 228
-1 The Antiquities War (DAR) 42
+1 The Antiquities War (DOM) 42
 1 Thopter Spy Network (NEC) 98
 1 Trading Post (CM2) 225
-1 Traxos, Scourge of Kroog (DAR) 234
+1 Traxos, Scourge of Kroog (DOM) 234

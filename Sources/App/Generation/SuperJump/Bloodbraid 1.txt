@@ -1,7 +1,7 @@
 1 Bloodbraid Elf (C16) 184
 1 Crashing Footfalls (MH1) 160
 1 Dead /// Gone (TSR) 161
-1 Fight with Fire (DAR) 119
+1 Fight with Fire (DOM) 119
 3 Forest (MH2) 489
 1 Ground Assault (ZNC) 91
 1 Gruul Signet (AFC) 207

@@ -7,7 +7,7 @@
 7 Plains (MH2) 481
 1 Prismatic Vista (MH1) 244
 1 Quarantine Field (BFZ) 43
-1 Seal Away (DAR) 31
+1 Seal Away (DOM) 31
 1 Soul Snare (MH2) 266
 1 Starfield Mystic (M20) 39
 1 Starfield of Nyx (ORI) 33

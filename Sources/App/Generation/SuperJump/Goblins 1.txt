@@ -7,7 +7,7 @@
 1 Krenko, Mob Boss (JMP) 339
 8 Mountain (MH2) 487
 1 Prismatic Vista (MH1) 244
-1 Siege-Gang Commander (DAR) 143
+1 Siege-Gang Commander (DOM) 143
 1 Skirk Commando (A25) 150
 1 Squee, Goblin Nabob (C19) 152
 1 Tarfire (DDT) 55

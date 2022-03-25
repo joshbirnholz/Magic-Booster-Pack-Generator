@@ -3,7 +3,7 @@
 1 Duplicant (C21) 242
 7 Island (MH2) 483
 1 Kaldra Compleat (MH2) 227
-1 Karn, Scion of Urza (DAR) 1
+1 Karn, Scion of Urza (DOM) 1
 1 Metallic Rebuke (2XM) 59
 1 Mind Stone (AFC) 211
 1 Phyrexian Metamorph (2XM) 61

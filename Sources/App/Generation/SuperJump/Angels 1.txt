@@ -2,7 +2,7 @@
 1 Crib Swap (2XM) 12
 1 Emancipation Angel (JMP) 102
 1 Impostor of the Sixth Pride (MH1) 14
-1 Lyra Dawnbringer (DAR) 26
+1 Lyra Dawnbringer (DOM) 26
 1 Path to Exile (JMP) 127
 8 Plains (MH2) 481
 1 Prismatic Vista (MH1) 244

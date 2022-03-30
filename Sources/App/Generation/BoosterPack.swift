@@ -1875,17 +1875,19 @@ fileprivate struct CardInfo {
 			self.state = 1
 			self.backIsHidden = !(card.layout.contains("token") || card.layout == "emblem")
 			
-			if card.layout == "split" {
-				if card.keywords.contains("Aftermath") {
-					self.sideways = false
-				} else if card.set == "cmb1" || card.set == "cmb2" {
-					self.sideways = false
-				} else {
-					self.sideways = true
-				}
-			} else {
-				self.sideways = false
-			}
+			self.sideways = false
+			
+//			if card.layout == "split" {
+//				if card.keywords.contains("Aftermath") {
+//					self.sideways = false
+//				} else if card.set == "cmb1" || card.set == "cmb2" {
+//					self.sideways = false
+//				} else {
+//					self.sideways = true
+//				}
+//			} else {
+//				self.sideways = false
+//			}
 		} else {
 			return nil
 		}

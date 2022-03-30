@@ -9,6 +9,6 @@
 1 Pawn of Ulamog (C17) 120
 1 Prismatic Vista (MH1) 244
 1 Spark Harvest (CMR) 150
-7 Swamp (MH2) 485
+7 Swamp (THB) 252
 1 Viscera Seer (CMR) 158
 1 Voldaren Pariah (EMN) 111

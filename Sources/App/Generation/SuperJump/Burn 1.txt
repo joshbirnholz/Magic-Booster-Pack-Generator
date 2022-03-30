@@ -5,7 +5,7 @@
 1 Lightning Bolt (JMP) 342
 1 Magma Jet (JMP) 346
 1 Monastery Swiftspear (IMA) 140
-7 Mountain (MH2) 487
+7 Mountain (THB) 253
 1 Prismatic Vista (MH1) 244
 1 Rift Bolt (TSR) 184
 1 Satyr Firedancer (BNG) 108

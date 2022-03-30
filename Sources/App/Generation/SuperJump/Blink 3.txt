@@ -4,9 +4,9 @@
 1 Felidar Guardian (AER) 19
 1 Hallowed Fountain (RNA) 251
 1 Hero of Bretagard (KHC) 4
-3 Island (MH2) 483
+3 Island (THB) 251
 1 Momentary Blink (KHC) 30
-2 Plains (MH2) 481
+2 Plains (THB) 250
 1 Prismatic Vista (MH1) 244
 1 Solitude (MH2) 32
 1 Soulherder (MH1) 214

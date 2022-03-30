@@ -2,7 +2,7 @@
 1 Courser of Kruphix (A25) 164
 1 Court of Bounty (CMR) 220
 1 Destiny Spinner (THB) 168
-8 Forest (MH2) 489
+8 Forest (THB) 254
 1 Lignify (GVL) 16
 1 Nylea's Colossus (C18) 33
 1 Oath of Nissa (OGW) 140

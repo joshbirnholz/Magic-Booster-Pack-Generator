@@ -5,7 +5,7 @@
 1 Felidar Sovereign (BFZ) 26
 1 Healer's Hawk (JMP) 107
 1 Path of Bravery (JMP) 126
-7 Plains (MH2) 481
+7 Plains (THB) 250
 1 Prismatic Vista (MH1) 244
 1 Proclamation of Rebirth (DIS) 15
 1 Ranger of Eos (MM3) 19

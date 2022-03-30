@@ -7,7 +7,7 @@
 1 Hanweir Militia Captain (SOI) 21
 1 Kytheon, Hero of Akros (ORI) 23
 1 Legion's Landing (XLN) 22
-7 Plains (MH2) 481
+7 Plains (THB) 250
 1 Prismatic Vista (MH1) 244
 1 Raise the Alarm (CMR) 41
 1 Unbreakable Formation (MIC) 95

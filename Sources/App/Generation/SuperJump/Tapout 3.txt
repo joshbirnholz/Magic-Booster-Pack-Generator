@@ -3,7 +3,7 @@
 1 Giant Killer (ELD) 14
 1 God-Eternal Oketra (WAR) 16
 1 Mikaeus, the Lunarch (MIC) 89
-8 Plains (MH2) 481
+8 Plains (THB) 250
 1 Prismatic Vista (MH1) 244
 1 Ranger-Captain of Eos (MH1) 21
 1 Seasoned Hallowblade (M21) 34

@@ -3,7 +3,7 @@
 1 Curate (STX) 40
 1 Delver of Secrets (MID) 47
 1 Force of Will (2XM) 51
-7 Island (MH2) 483
+7 Island (THB) 251
 1 Prismatic Vista (MH1) 244
 1 Reject (STX) 50
 1 Repulse (CN2) 119

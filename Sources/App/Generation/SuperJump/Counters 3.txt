@@ -5,7 +5,7 @@
 1 Decoction Module (KLD) 205
 1 Dynavolt Tower (KLD) 208
 1 Glimmer of Genius (KLD) 49
-8 Island (MH2) 483
+8 Island (THB) 251
 1 Prismatic Vista (MH1) 244
 1 Shark Typhoon (IKO) 67
 1 Shielded Aether Thief (AER) 44

@@ -3,7 +3,7 @@
 1 Elvish Archdruid (KHC) 57
 1 Elvish Warmaster (KHM) 167
 1 Finale of Devastation (WAR) 160
-8 Forest (MH2) 489
+8 Forest (THB) 254
 1 Joraga Treespeaker (ROE) 190
 1 Llanowar Visionary (M21) 193
 1 Mercy Killing (SHM) 231

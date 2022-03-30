@@ -8,7 +8,7 @@
 1 Karmic Guide (VOC) 90
 1 Militia Bugler (M19) 29
 1 Parallax Wave (VMA) 37
-7 Plains (MH2) 481
+7 Plains (THB) 250
 1 Prismatic Vista (MH1) 244
 1 Skyclave Apparition (ZNR) 39
 1 Wall of Omens (AFC) 77

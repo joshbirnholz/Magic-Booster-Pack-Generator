@@ -6,7 +6,7 @@
 1 Hidden Dragonslayer (DTK) 23
 1 Kinjalli's Sunwing (XLN) 19
 1 Luminarch Aspirant (ZNR) 24
-7 Plains (MH2) 481
+7 Plains (THB) 250
 1 Prismatic Vista (MH1) 244
 1 Spear of Heliod (THS) 33
 1 Student of Warfare (ROE) 47

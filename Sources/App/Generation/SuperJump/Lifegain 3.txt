@@ -4,8 +4,8 @@
 1 Enlightened Tutor (EMA) 9
 1 Firemane Angel (GK1) 88
 1 Lorehold Command (STX) 199
-3 Mountain (MH2) 487
-3 Plains (MH2) 481
+3 Mountain (THB) 253
+3 Plains (THB) 250
 1 Plargg, Dean of Chaos (STX) 155
 1 Plateau (VMA) 308
 1 Prismatic Vista (MH1) 244

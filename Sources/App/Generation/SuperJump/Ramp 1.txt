@@ -1,6 +1,6 @@
 1 Beast Within (NEC) 114
 1 Craterhoof Behemoth (JMP) 385
-9 Forest (MH2) 489
+9 Forest (THB) 254
 1 Kodama's Reach (NEC) 120
 1 Llanowar Elves (M19) 314
 1 Lovestruck Beast (ELD) 165

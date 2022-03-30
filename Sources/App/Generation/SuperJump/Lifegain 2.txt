@@ -5,7 +5,7 @@
 1 Force of Virtue (MH1) 10
 1 Gideon Blackblade (WAR) 13
 1 Lone Rider (EMN) 33
-7 Plains (MH2) 481
+7 Plains (THB) 250
 1 Prismatic Vista (MH1) 244
 1 Resplendent Angel (M19) 34
 1 Selfless Spirit (EMN) 40

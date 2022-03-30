@@ -2,7 +2,7 @@
 1 Faerie Seer (MH1) 51
 1 Glen Elendra Archmage (UMA) 58
 1 Hypnotic Sprite (ELD) 49
-8 Island (MH2) 483
+8 Island (THB) 251
 1 Mana Leak (IMA) 66
 1 Mistbind Clique (LRW) 75
 1 Pestermite (MMA) 59

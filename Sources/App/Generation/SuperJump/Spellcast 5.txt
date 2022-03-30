@@ -4,9 +4,9 @@
 1 Electrostatic Field (GRN) 97
 1 Enigma Drake (M19) 216
 1 Fire /// Ice (MH2) 290
-3 Island (MH2) 483
+3 Island (THB) 251
 1 Izzet Signet (C21) 247
-2 Mountain (MH2) 487
+2 Mountain (THB) 253
 1 Prismatic Vista (MH1) 244
 1 Prophetic Bolt (C20) 227
 1 Silent Departure (EMA) 72

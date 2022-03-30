@@ -1,7 +1,7 @@
 1 Acidic Slime (NEC) 112
 1 Elvish Rejuvenator (KHC) 60
 1 Evolutionary Leap (ORI) 176
-7 Forest (MH2) 489
+7 Forest (THB) 254
 1 Gilded Goose (ELD) 160
 1 Kitchen Finks (UMA) 216
 1 Kogla, the Titan Ape (IKO) 162

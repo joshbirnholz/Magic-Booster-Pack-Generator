@@ -4,7 +4,7 @@
 1 Citadel Siege (MIC) 81
 1 Court of Grace (CMR) 16
 1 Mesa Enchantress (EMA) 19
-7 Plains (MH2) 481
+7 Plains (THB) 250
 1 Prismatic Vista (MH1) 244
 1 Quarantine Field (BFZ) 43
 1 Seal Away (DOM) 31

@@ -6,7 +6,7 @@
 1 Goldspan Dragon (KHM) 139
 1 Lava Coil (GRN) 108
 1 Leyline Tyrant (ZNR) 147
-8 Mountain (MH2) 487
+8 Mountain (THB) 253
 1 Prismatic Vista (MH1) 244
 1 Spit Flame (AFC) 142
 1 Terror of the Peaks (M21) 164

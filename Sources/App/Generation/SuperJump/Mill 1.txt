@@ -6,7 +6,7 @@
 1 Prismatic Vista (MH1) 244
 1 Relic Golem (ZNR) 249
 1 Sewer Nemesis (CM2) 75
-8 Swamp (MH2) 485
+8 Swamp (THB) 252
 1 Syr Konrad, the Grim (ZNC) 56
 1 The Haunt of Hightower (RNA) 273
 1 Thieves' Guild Enforcer (M21) 125

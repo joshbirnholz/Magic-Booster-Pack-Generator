@@ -2,11 +2,11 @@
 1 Crashing Footfalls (MH1) 160
 1 Dead /// Gone (TSR) 161
 1 Fight with Fire (DOM) 119
-3 Forest (MH2) 489
+3 Forest (THB) 254
 1 Ground Assault (ZNC) 91
 1 Gruul Signet (AFC) 207
 1 Mindclaw Shaman (M13) 142
-2 Mountain (MH2) 487
+2 Mountain (THB) 253
 1 Nissa, Vastwood Seer (ORI) 189
 1 Phylath, World Sculptor (ZNR) 234
 1 Prismatic Vista (MH1) 244

@@ -9,8 +9,8 @@
 1 Kaya the Inexorable (KHM) 218
 1 Orzhov Signet (C21) 254
 1 Plaguecrafter (AFC) 107
-3 Plains (MH2) 481
+3 Plains (THB) 250
 1 Prismatic Vista (MH1) 244
 1 Scrubland (VMA) 313
 1 Sorin the Mirthless (VOW) 131
-3 Swamp (MH2) 485
+3 Swamp (THB) 252

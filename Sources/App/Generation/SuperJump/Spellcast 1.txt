@@ -5,7 +5,7 @@
 1 Fiery Confluence (CM2) 98
 1 Firebolt (MH1) 122
 1 Ghitu Chronicler (DOM) 125
-8 Mountain (MH2) 487
+8 Mountain (THB) 253
 1 Prismatic Vista (MH1) 244
 1 Pyromancer's Goggles (C21) 259
 1 Thermo-Alchemist (MID) 164

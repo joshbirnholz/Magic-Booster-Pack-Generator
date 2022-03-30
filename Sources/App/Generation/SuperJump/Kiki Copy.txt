@@ -4,7 +4,7 @@
 1 Goblin Matron (MH1) 129
 1 Goblin Settler (VMA) 172
 1 Kiki-Jiki, Mirror Breaker (IMA) 136
-8 Mountain (MH2) 487
+8 Mountain (THB) 253
 1 Mudbutton Torchrunner (MM3) 104
 1 Murderous Redcap (UMA) 217
 1 Prismatic Vista (MH1) 244

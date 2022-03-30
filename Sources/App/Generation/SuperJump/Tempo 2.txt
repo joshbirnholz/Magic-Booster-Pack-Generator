@@ -3,7 +3,7 @@
 1 Ethereal Forager (C20) 34
 1 Ghostly Pilferer (VOC) 105
 1 Hullbreacher (CMR) 74
-7 Island (MH2) 483
+7 Island (THB) 251
 1 Miscalculation (ULG) 36
 1 Niblis of Frost (C20) 120
 1 Preordain (CMR) 84

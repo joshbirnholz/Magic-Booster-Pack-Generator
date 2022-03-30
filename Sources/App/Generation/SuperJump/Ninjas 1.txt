@@ -2,7 +2,7 @@
 1 Fallen Shinobi (MH1) 199
 1 Higure, the Still Wind (BOK) 37
 1 Ingenious Infiltrator (MH1) 204
-4 Island (MH2) 483
+4 Island (THB) 251
 1 Judge's Familiar (GK2) 14
 1 Mausoleum Wanderer (EMN) 69
 1 Mist-Syndicate Naga (MH1) 58
@@ -10,7 +10,7 @@
 1 Prismatic Vista (MH1) 244
 1 Sakashima's Student (PC2) 24
 1 Spectral Sailor (VOC) 114
-1 Swamp (MH2) 485
+1 Swamp (THB) 252
 1 Throat Slitter (BOK) 88
 1 Underground Sea (VMA) 323
 1 Watery Grave (GRN) 259

@@ -3,7 +3,7 @@
 1 Goblin Welder (CM2) 101
 1 Lesser Masticore (MH1) 225
 1 Lightning Axe (TSR) 174
-7 Mountain (MH2) 487
+7 Mountain (THB) 253
 1 Mycosynth Wellspring (C21) 252
 1 Precursor Golem (MM2) 225
 1 Prismatic Vista (MH1) 244

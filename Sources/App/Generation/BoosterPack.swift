@@ -4554,9 +4554,13 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 		
 		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
 	} else if setCode?.lowercased() == "sjm" {
-		let pack = try generateSuperJumpPack()
+		var pack = try generateSuperJumpPack()
+		let tokens = getAllTokens(for: pack.mtgCards)
+		if let token = tokens.first {
+			pack.append(token)
+		}
 		
-		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens)
 	} else if setCode?.lowercased() == "dbl" {
 		let processed = processDoubleFeatureCards(cards)
 		let pack = generateDoubleFeaturePack(processed)
@@ -4880,6 +4884,63 @@ let fixedSetCodes: [String: String] = [
 	"uz": "usg"
 ]
 
+fileprivate func getAllTokens(_ cards: [Swiftfall.Card], _ tokens: inout [MTGCard]) {
+	let tokenIdentifiers: [MTGCardIdentifier] = {
+		return Set(cards.compactMap { $0.allParts?.compactMap { $0.component == "token" ? $0.id : nil } }.joined()).map { MTGCardIdentifier.id($0) }
+	}()
+	
+	if !tokenIdentifiers.isEmpty {
+		do {
+			let collection = try Swiftfall.getCollection(identifiers: tokenIdentifiers)
+			tokens.append(contentsOf: collection.data.map(MTGCard.init).filter { card in card.oracleID != nil && !tokens.contains(where: { manualToken in manualToken.oracleID == card.oracleID }) })
+			
+			let cards: [UUID?: [MTGCard]] = .init(grouping: tokens, by: \.oracleID)
+			
+			tokens = cards.compactMap { oracleID, cards in
+				let cards = cards.sorted {
+					($0.releaseDate ?? Date()) > ($1.releaseDate ?? Date())
+				}
+				
+				return cards.first
+			}
+		} catch {
+			
+		}
+	}
+}
+
+fileprivate func getAllTokens(for cards: [MTGCard]) -> [MTGCard] {
+	var tokens: [MTGCard] = []
+	
+	let tokenIdentifiers: [MTGCardIdentifier] = {
+		return Set(cards.compactMap { $0.allParts?.compactMap { $0.component == .token ? $0.scryfallID : nil } }.joined()).map { MTGCardIdentifier.id($0) }
+	}()
+	
+	guard !tokenIdentifiers.isEmpty else {
+		return tokens
+	}
+	
+	do {
+		let collection = try Swiftfall.getCollection(identifiers: tokenIdentifiers)
+		tokens.append(contentsOf: collection.data.map(MTGCard.init).filter { card in card.oracleID != nil && !tokens.contains(where: { manualToken in manualToken.oracleID == card.oracleID }) })
+		
+		let cards: [UUID?: [MTGCard]] = .init(grouping: tokens, by: \.oracleID)
+		
+		tokens = cards.compactMap { oracleID, cards in
+			let cards = cards.sorted {
+				($0.releaseDate ?? Date()) > ($1.releaseDate ?? Date())
+			}
+			
+			return cards.first
+		}
+		
+		return tokens
+	} catch {
+		print(error)
+		return tokens
+	}
+}
+
 func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil, customOverrides: [String]) throws -> String {
 	enum CustomOverride {
 		case identifiers(String)
@@ -4996,7 +5057,7 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 			throw error
 		}
 	}
-	var cards = Array(collections.map(\.data).joined())
+	var cards: [Swiftfall.Card] = Array(collections.map(\.data).joined())
 	var notFound: [MTGCardIdentifier] = Array(collections.compactMap(\.notFound).joined())
 	
 	// First round of retries: Remove incorrect collector numbers
@@ -5258,28 +5319,8 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		}
 	}
 	
-	let tokenIdentifiers: [MTGCardIdentifier] = {
-		guard includeTokens else { return [] }
-		return Set(cards.compactMap { $0.allParts?.compactMap { $0.component == "token" ? $0.id : nil } }.joined()).map { MTGCardIdentifier.id($0) }
-	}()
-	
-	if !tokenIdentifiers.isEmpty {
-		do {
-			let collection = try Swiftfall.getCollection(identifiers: tokenIdentifiers)
-			tokens.append(contentsOf: collection.data.map(MTGCard.init).filter { card in card.oracleID != nil && !tokens.contains(where: { manualToken in manualToken.oracleID == card.oracleID }) })
-			
-			let cards: [UUID?: [MTGCard]] = .init(grouping: tokens, by: \.oracleID)
-			
-			tokens = cards.compactMap { oracleID, cards in
-				let cards = cards.sorted {
-					($0.releaseDate ?? Date()) > ($1.releaseDate ?? Date())
-				}
-				
-				return cards.first
-			}
-		} catch {
-			
-		}
+	if includeTokens {
+		getAllTokens(cards, &tokens)
 	}
 	
 	if cards.contains(where: { $0.name == "Ophiomancer" }) {

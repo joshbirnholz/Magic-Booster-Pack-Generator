@@ -1075,6 +1075,11 @@ struct CardCollection {
 		cards.removeAll()
 	}
 	
+	@discardableResult mutating func remove(at index: Int) -> MTGCard  {
+		let selection = cards.remove(at: index)
+		return selection.card
+	}
+	
 	var count: Int {
 		cards.count
 	}
@@ -1613,7 +1618,7 @@ func generateSuperJumpPack() throws -> CardCollection {
 		.replacingOccurrences(of: "3", with: "III")
 		.replacingOccurrences(of: "2", with: "II")
 		.replacingOccurrences(of: "1", with: "I")
-	let faceCard = MTGCard(name: frontCardName, layout: "normal", frame: "", isFullArt: true, collectorNumber: "\(number)", set: "fsjm", rarity: .common, scryfallCardBackID: nil, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, language: .english, imageUris: ["normal": frontURL])
+	let faceCard = MTGCard(name: frontCardName, layout: "token", frame: "", isFullArt: true, collectorNumber: "\(number)", set: "fsjm", rarity: .common, scryfallCardBackID: nil, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, language: .english, imageUris: ["normal": frontURL])
 	collection.append(faceCard)
 	
 	for cardCount in cardCounts.reversed() {
@@ -4554,11 +4559,9 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 		
 		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
 	} else if setCode?.lowercased() == "sjm" {
-		var pack = try generateSuperJumpPack()
-		let tokens = getAllTokens(for: pack.mtgCards)
-		if let token = tokens.first {
-			pack.append(token)
-		}
+		let pack = try generateSuperJumpPack()
+		let frontCard = pack[0]
+		let tokens = getAllTokens(for: pack.mtgCards) + [frontCard]
 		
 		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens)
 	} else if setCode?.lowercased() == "dbl" {

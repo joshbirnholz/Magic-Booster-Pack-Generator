@@ -22,5 +22,13 @@
 		"gu": "Quandrix",
 		"wb": "Silverquill",
 		"bg": "Witherbloom"
+	},
+	"snc": {
+		"type": "snc",
+		"gwu": "Brokers",
+		"wub": "Obscura",
+		"ubr": "Maestros",
+		"brg": "Riveteers",
+		"rgw": "Cabaretti"
 	}
 }

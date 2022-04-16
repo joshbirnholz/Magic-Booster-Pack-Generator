@@ -560,6 +560,8 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 				return guildgates.choose(landCount)
 			} else if let seed = seed, seed.packtype == .stx, let campuses = rarities[.common]?.filter({ $0.name == "\(seed.name) Campus" }) {
 				return campuses.choose(landCount)
+			} else if let seed = seed, seed.packtype == .snc, let lands = rarities[.common]?.filter({ $0.typeLine?.lowercased().contains("land") == true && $0.name?.lowercased().hasPrefix(seed.name.lowercased()) == true }) {
+				return lands.choose(landCount)
 			}
 			
 			var lands = landRarities?[landRarity] ?? basicLands

@@ -5142,7 +5142,11 @@ let fixedSetCodes: [String: String] = [
 	"ul": "ulg",
 	"od": "ody",
 	"wl": "wth",
-	"uz": "usg"
+	"uz": "usg",
+	"nms": "nem",
+	"ne": "nem",
+	"6e": "6ed",
+	"pwp21": "pw21"
 ]
 
 fileprivate func getAllTokens(_ cards: [Swiftfall.Card], _ tokens: inout [MTGCard]) {

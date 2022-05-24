@@ -269,14 +269,13 @@ public struct DeckParser {
 		
 		let cardInfos = Array(moxfieldDeck.mainboard.values).sorted(by: { $0.card.name < $1.card.name })
 		
-		var counts: [CardCount] = cardInfos.map(\.cardCount)
+		let counts: [CardCount] = cardInfos.map(\.cardCount)
+		groups.append(CardGroup(name: CardGroup.GroupName.deck.rawValue, cardCounts: counts))
 		
 		if let commanders = moxfieldDeck.commanders {
 			let commanderCardCounts = commanders.values.map(\.cardCount)
-			counts.insert(contentsOf: commanderCardCounts, at: 0)
+			groups.append(CardGroup(name: CardGroup.GroupName.command.rawValue, cardCounts: commanderCardCounts))
 		}
-		
-		groups.append(CardGroup(name: CardGroup.GroupName.deck.rawValue, cardCounts: counts))
 		
 		if let sideboard = moxfieldDeck.sideboard {
 			let counts: [CardCount] = sideboard.values.map(\.cardCount)

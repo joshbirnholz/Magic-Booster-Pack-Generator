@@ -1062,7 +1062,7 @@ func processBaldursGateCards(_ cards: [MTGCard], tokens: [MTGCard]) -> BaldursGa
 	processed.extendedArt = cards.separateAll(where: { $0.frameEffects.contains("extendedart") })
 	processed.borderlessCards = cards.separateAll(where: { $0.borderColor == .borderless })
 	
-	cards.removeAll(where: { !$0.isFoundInBoosters })
+	cards.removeAll(where: { !$0.isFoundInBoosters || (Int($0.collectorNumber) ?? 0) > 361 })
 	
 	let legends = cards.separateAll {
 		guard let typeLine = $0.typeLine?.lowercased() else { return false }
@@ -1361,7 +1361,9 @@ func generateBaldursGatePack(_ processed: BaldursGateProcessed) -> CardCollectio
 			cards.append(contentsOf: processed.rarities[rarity] ?? [])
 			cards.append(contentsOf: processed.legendRarities[rarity] ?? [])
 			cards.append(contentsOf: processed.backgroundRarities[rarity] ?? [])
-			// TODO: Figure out borderless foils
+			if rarity == .common, let facelessOne = processed.facelessOne {
+				cards.append(facelessOne)
+			}
 			rarities[rarity] = cards
 		}
 		
@@ -1414,8 +1416,6 @@ func generateBaldursGatePack(_ processed: BaldursGateProcessed) -> CardCollectio
 		pack.insert(contentsOf: uncommons, at: 0)
 		
 		if let foil = foilRarities[includedFoilRarity]?.randomElement() {
-			// New legendary creature foils have a 50% chance to be etched foil.
-			// If a new legendary creature is chosen, 50% chance to add its etched foil version instead.
 			if let extendedArt = processed.extendedArt.first(where: { $0.name == foil.name }) {
 				pack.insert(extendedArt, at: 0, isFoil: true)
 			} else {
@@ -1462,7 +1462,7 @@ func generateBaldursGatePack(_ processed: BaldursGateProcessed) -> CardCollectio
 		if .random(),
 		   let borderlessCardIndex = pack.mtgCards.firstIndex(where: { cardInPack in processed.borderlessCards.contains(where: { borderlessCard in borderlessCard.oracleID == cardInPack.oracleID }) }),
 		   let borderlessCard = processed.borderlessCards.first(where: { $0.oracleID == pack[borderlessCardIndex].oracleID }) {
-			pack.replace(at: borderlessCardIndex, with: borderlessCard)
+			pack.replace(at: borderlessCardIndex, with: borderlessCard, isFoil: pack.cards[borderlessCardIndex].isFoil)
 		}
 		
 	} while !packOkay

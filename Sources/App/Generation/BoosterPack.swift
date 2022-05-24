@@ -165,7 +165,7 @@ enum Mode {
 	/// Basic land is replaced with a foil of any rarity, OR, except 1/53 packs, a Power Nine card
 	case vintageMasters
 	
-	case commanderLegends
+//	case commanderLegends
 	case originalShowcase
 	case timeSpiralRemastered
 	case strixhaven
@@ -173,6 +173,8 @@ enum Mode {
 	
 	// Add 1 DFC U/C, normal slots for U/C are all single-faced.
 	case neo
+	
+	case clb
 }
 
 extension MTGCard {
@@ -1036,6 +1038,51 @@ func processCommanderLegendsCards(_ cards: [MTGCard], tokens: [MTGCard]) -> Comm
 	return processed
 }
 
+struct BaldursGateProcessed: Hashable, Equatable {
+	var rarities: [MTGCard.Rarity: [MTGCard]] = [:]
+	var legendRarities: [MTGCard.Rarity: [MTGCard]] = [:]
+	var backgroundRarities: [MTGCard.Rarity: [MTGCard]] = [:]
+	var borderlessCards: [MTGCard] = []
+	var extendedArt: [MTGCard] = []
+	var tokens: [MTGCard] = []
+	var facelessOne: MTGCard?
+}
+
+func processBaldursGateCards(_ cards: [MTGCard], tokens: [MTGCard]) -> BaldursGateProcessed {
+	var processed = BaldursGateProcessed()
+	
+	var cards = cards
+	
+	if let facelessOneID = UUID(uuidString: "25564fba-5765-457b-8dd3-f26b877221b8"),
+	   let index = cards.firstIndex(where: { $0.scryfallID == facelessOneID }) {
+		processed.facelessOne = cards.remove(at: index)
+	}
+	
+	cards.removeAll(where: { $0.frameEffects.contains("etched") || $0.typeLine?.hasPrefix("Basic Land") == true })
+	processed.extendedArt = cards.separateAll(where: { $0.frameEffects.contains("extendedart") })
+	processed.borderlessCards = cards.separateAll(where: { $0.borderColor == .borderless })
+	
+	cards.removeAll(where: { !$0.isFoundInBoosters })
+	
+	let legends = cards.separateAll {
+		guard let typeLine = $0.typeLine?.lowercased() else { return false }
+		return typeLine.contains("legendary") && (typeLine.contains("creature") || typeLine.contains("planeswalker"))
+	}
+	
+	let backgrounds = cards.separateAll {
+		guard let typeLine = $0.typeLine?.lowercased() else { return false }
+		return typeLine.contains("background")
+	}
+	
+	processed.rarities = .init(grouping: cards, by: \.rarity)
+	processed.legendRarities = .init(grouping: legends, by: \.rarity)
+	processed.backgroundRarities = .init(grouping: backgrounds, by: \.rarity)
+	
+	processed.tokens = tokens
+	
+	return processed
+}
+
 struct CardCollection {
 	struct CardSelection {
 		var card: MTGCard
@@ -1225,6 +1272,197 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> Car
 			} else {
 				pack.insert(foil, at: 0, isFoil: true)
 			}
+		}
+		
+	} while !packOkay
+	
+	pack.reverse()
+	
+	// Add token
+	
+	func tokensAreEqual(_ first: MTGCard, _ second: MTGCard) -> Bool {
+		if first.oracleID == second.oracleID && first.oracleID != nil {
+			return true
+		}
+		if first == second {
+			return true
+		}
+		if first.name == second.name && first.typeLine == second.typeLine && first.colors == second.colors && first.oracleText == second.oracleText && first.power == second.power && first.toughness == second.toughness {
+			return true
+		}
+		
+		return false
+	}
+	
+	guard !processed.tokens.isEmpty else {
+		return pack
+	}
+	
+	var availableTokens: [MTGCard] = []
+	
+	let uniqueTokens: [MTGCard] = {
+		var uniqueTokens: [MTGCard] = []
+		
+		for token in processed.tokens {
+			if !uniqueTokens.contains(where: { tokensAreEqual(token, $0) }) {
+				uniqueTokens.append(token)
+			}
+		}
+		
+		return uniqueTokens
+	}()
+	
+	for token in uniqueTokens {
+		let cardsToLookAt: [MTGCard] = pack.mtgCards
+		
+		for card in cardsToLookAt {
+			if card.allParts?.contains(where: { $0.scryfallID == token.scryfallID }) == true
+				|| token.allParts?.contains(where: { $0.scryfallID == card.scryfallID }) == true {
+				availableTokens.append(token)
+			} /*else if token.name?.lowercased() == "on an adventure" && card.layout == "adventure" {
+				availableTokens.append(token)
+			} else if token.name?.lowercased() == "the monarch" && card.oracleText?.lowercased().contains("monarch") == true {
+				availableTokens.append(token)
+			} */else if let name = token.name?.lowercased(), card.oracleText?.contains(name) == true {
+				availableTokens.append(token)
+			} else if card.allParts?.contains(where: { $0.name == token.name }) == true {
+				availableTokens.append(token)
+			} else if token.allParts?.contains(where: { $0.name == card.name }) == true {
+				availableTokens.append(token)
+			}
+		}
+	}
+	
+	if availableTokens.isEmpty {
+		availableTokens = processed.tokens
+	}
+	
+	if var token = availableTokens.randomElement() {
+		token = processed.tokens.shuffled().first(where: { tokensAreEqual(token, $0) })!
+		
+		pack.append(token)
+	}
+	
+	return pack
+}
+
+func generateBaldursGatePack(_ processed: BaldursGateProcessed) -> CardCollection {
+	var pack = CardCollection()
+	
+	let shouldIncludeRareOrMythicLegend = (1...100).randomElement()! <= 31
+	let shouldIncludeRareBackground = (1...12).randomElement() == 12
+	
+	let shouldIncludeMythic = (1...100).randomElement()! >= 74
+	let foilRarities: [MTGCard.Rarity: [MTGCard]] = {
+		var rarities: [MTGCard.Rarity: [MTGCard]] = [:]
+		
+		for rarity in MTGCard.Rarity.allCases {
+			var cards: [MTGCard] = []
+			cards.append(contentsOf: processed.rarities[rarity] ?? [])
+			cards.append(contentsOf: processed.legendRarities[rarity] ?? [])
+			cards.append(contentsOf: processed.backgroundRarities[rarity] ?? [])
+			// TODO: Figure out borderless foils
+			rarities[rarity] = cards
+		}
+		
+		return rarities
+	}()
+	let includedFoilRarity: MTGCard.Rarity = {
+		let rarityValue = (1...1000).randomElement()!
+		switch rarityValue {
+		case 1...500: return .common
+		case 1...833: return .uncommon
+		case 1...979: return .rare
+		default: return .mythic
+		}
+	}()
+	let shouldIncludeFacelessOne = (1...6).randomElement() == 6
+	var packOkay: Bool {
+		var problems: [String] = []
+		
+		let cardCount = 20
+		var uniqueCardCount: Int { Set(pack.mtgCards.compactMap { $0.name }).count }
+		var allColorsCount: Int { Set(pack.mtgCards.compactMap { $0.colors }.joined()).count }
+		
+		if allColorsCount != 5 {
+			problems.append("Pack doesn't have 5 colors")
+		}
+		if uniqueCardCount != cardCount {
+			problems.append("Unique card is wrong; Should be \(cardCount), was \(uniqueCardCount)")
+		}
+		
+		if !problems.isEmpty {
+			print(problems.joined(separator: ", "))
+		}
+		
+		return problems.isEmpty
+	}
+	
+	// Generate
+	
+	repeat {
+		pack.removeAll()
+		
+		if shouldIncludeFacelessOne, let facelessOne = processed.facelessOne {
+			pack.insert(facelessOne, at: 0)
+		}
+		
+		let commons = processed.rarities[.common]?.choose(13-pack.count) ?? []
+		pack.insert(contentsOf: commons, at: 0)
+		
+		let uncommons = processed.rarities[.uncommon]?.choose(3) ?? []
+		pack.insert(contentsOf: uncommons, at: 0)
+		
+		if let foil = foilRarities[includedFoilRarity]?.randomElement() {
+			// New legendary creature foils have a 50% chance to be etched foil.
+			// If a new legendary creature is chosen, 50% chance to add its etched foil version instead.
+			if let extendedArt = processed.extendedArt.first(where: { $0.name == foil.name }) {
+				pack.insert(extendedArt, at: 0, isFoil: true)
+			} else {
+				pack.insert(foil, at: 0, isFoil: true)
+			}
+		}
+		
+		let background: MTGCard? = {
+			var cards: [MTGCard] = []
+			
+			if shouldIncludeRareBackground {
+				cards.append(contentsOf: processed.backgroundRarities[.rare] ?? [])
+			} else {
+				cards.append(contentsOf: processed.backgroundRarities[.common] ?? [])
+				cards.append(contentsOf: processed.backgroundRarities[.uncommon] ?? [])
+			}
+			
+			return cards.randomElement()
+		}()
+		if let background = background {
+			pack.insert(background, at: 0)
+		}
+		
+		let legend: MTGCard? = {
+			var cards: [MTGCard] = []
+			
+			if shouldIncludeRareOrMythicLegend {
+				cards.append(contentsOf: processed.legendRarities[.rare] ?? [])
+				cards.append(contentsOf: processed.legendRarities[.mythic] ?? [])
+			} else {
+				cards.append(contentsOf: processed.legendRarities[.uncommon] ?? [])
+			}
+			
+			return cards.randomElement()
+		}()
+		if let legend = legend {
+			pack.insert(legend, at: 0)
+		}
+		
+		if let rare = processed.rarities[shouldIncludeMythic ? .mythic : .rare]?.randomElement() {
+			pack.insert(rare, at: 0)
+		}
+		
+		if .random(),
+		   let borderlessCardIndex = pack.mtgCards.firstIndex(where: { cardInPack in processed.borderlessCards.contains(where: { borderlessCard in borderlessCard.oracleID == cardInPack.oracleID }) }),
+		   let borderlessCard = processed.borderlessCards.first(where: { $0.oracleID == pack[borderlessCardIndex].oracleID }) {
+			pack.replace(at: borderlessCardIndex, with: borderlessCard)
 		}
 		
 	} while !packOkay
@@ -4386,6 +4624,12 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		let packs: [CardCollection] = (1...count).compactMap { _ in try? generateSuperJumpPack() }
 		
 		return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
+	} else if setCode?.lowercased() == "clb" {
+		let cards = processBaldursGateCards(cards, tokens: tokens)
+		
+		let packs: [CardCollection] = (1...count).map { _ in generateBaldursGatePack(cards) }
+		
+		return try output(setName: "Commander Legends: Battle for Baldur's Gate", setCode: setCode ?? "", packs: packs, tokens: cards.tokens)
 	}
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
@@ -4437,6 +4681,12 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 		let packs: [CardCollection] = (1...count).map { _ in generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities) }
 		
 		return try boosterBag(setName: setName, setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: [], export: export)
+	} else if setCode?.lowercased() == "clb" {
+		let cards = processBaldursGateCards(cards, tokens: tokens)
+		
+		let packs: [CardCollection] = (1...count).map { _ in generateBaldursGatePack(cards) }
+		
+		return try boosterBag(setName: "Commander Legends: Battle for Baldur's Gate", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: cards.tokens, export: export)
 	}
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
@@ -4571,6 +4821,12 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 		let pack = generateDoubleFeaturePack(processed)
 		
 		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+	} else if setCode?.lowercased() == "clb" {
+		let cards = processBaldursGateCards(cards, tokens: tokens)
+		
+		let pack = generateBaldursGatePack(cards)
+		
+		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: cards.tokens)
 	}
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)

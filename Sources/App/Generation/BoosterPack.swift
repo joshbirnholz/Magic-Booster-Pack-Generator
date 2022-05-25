@@ -239,6 +239,14 @@ extension Array where Element == MTGCard {
 	}
 }
 
+extension Array {
+	func randomIndex(where predicate: (Self.Element) throws -> Bool) rethrows -> Int? {
+		try enumerated().filter { _, element in
+			try predicate(element)
+		}.randomElement()?.offset
+	}
+}
+
 func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MTGCard.Rarity: [MTGCard]], basicLands: [MTGCard], tokens: [MTGCard], showcaseRarities: [MTGCard.Rarity: [MTGCard]], borderless: [MTGCard], extendedArt: [MTGCard], meldResults: [MTGCard], mode: Mode, includeExtendedArt: Bool, masterpieceCards: [MTGCard], foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, seed: Seed? = nil) -> CardCollection {
 	let customSlotRarities = customSlotRarities.filtered(for: seed)
 	let basicLands = basicLands.filtered(for: seed)
@@ -1042,7 +1050,7 @@ struct BaldursGateProcessed: Hashable, Equatable {
 	var rarities: [MTGCard.Rarity: [MTGCard]] = [:]
 	var legendRarities: [MTGCard.Rarity: [MTGCard]] = [:]
 	var backgroundRarities: [MTGCard.Rarity: [MTGCard]] = [:]
-	var borderlessCards: [MTGCard] = []
+	var boosterFunCards: [MTGCard] = []
 	var extendedArt: [MTGCard] = []
 	var tokens: [MTGCard] = []
 	var facelessOne: MTGCard?
@@ -1060,7 +1068,7 @@ func processBaldursGateCards(_ cards: [MTGCard], tokens: [MTGCard]) -> BaldursGa
 	
 	cards.removeAll(where: { $0.frameEffects.contains("etched") || $0.typeLine?.hasPrefix("Basic Land") == true })
 	processed.extendedArt = cards.separateAll(where: { $0.frameEffects.contains("extendedart") })
-	processed.borderlessCards = cards.separateAll(where: { $0.borderColor == .borderless })
+	processed.boosterFunCards = cards.separateAll(where: { $0.borderColor == .borderless || $0.frameEffects.contains("showcase") })
 	
 	cards.removeAll(where: { !$0.isFoundInBoosters || (Int($0.collectorNumber) ?? 0) > 361 })
 	
@@ -1346,7 +1354,7 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> Car
 	return pack
 }
 
-func generateBaldursGatePack(_ processed: BaldursGateProcessed) -> CardCollection {
+func generateBaldursGatePack(_ processed: BaldursGateProcessed, includeExtendedArt: Bool) -> CardCollection {
 	var pack = CardCollection()
 	
 	let shouldIncludeRareOrMythicLegend = (1...100).randomElement()! <= 31
@@ -1416,7 +1424,7 @@ func generateBaldursGatePack(_ processed: BaldursGateProcessed) -> CardCollectio
 		pack.insert(contentsOf: uncommons, at: 0)
 		
 		if let foil = foilRarities[includedFoilRarity]?.randomElement() {
-			if let extendedArt = processed.extendedArt.first(where: { $0.name == foil.name }) {
+			if includeExtendedArt, let extendedArt = processed.extendedArt.first(where: { $0.name == foil.name }) {
 				pack.insert(extendedArt, at: 0, isFoil: true)
 			} else {
 				pack.insert(foil, at: 0, isFoil: true)
@@ -1460,8 +1468,8 @@ func generateBaldursGatePack(_ processed: BaldursGateProcessed) -> CardCollectio
 		}
 		
 		if .random(),
-		   let borderlessCardIndex = pack.mtgCards.firstIndex(where: { cardInPack in processed.borderlessCards.contains(where: { borderlessCard in borderlessCard.oracleID == cardInPack.oracleID }) }),
-		   let borderlessCard = processed.borderlessCards.first(where: { $0.oracleID == pack[borderlessCardIndex].oracleID }) {
+		   let borderlessCardIndex = pack.mtgCards.randomIndex(where: { cardInPack in processed.boosterFunCards.contains(where: { borderlessCard in borderlessCard.oracleID == cardInPack.oracleID }) }),
+		   let borderlessCard = processed.boosterFunCards.first(where: { $0.oracleID == pack[borderlessCardIndex].oracleID }) {
 			pack.replace(at: borderlessCardIndex, with: borderlessCard, isFoil: pack.cards[borderlessCardIndex].isFoil)
 		}
 		
@@ -4184,7 +4192,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			guard includeBasicLands else { return [] }
 			let snowLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Snow") == true && ($0.typeLine ?? "").contains("Land") == true && !($0.colorIdentity ?? []).isEmpty }
 			return snowLands
-		case "mir", "vis", "5ed", "por", "wth", "tmp", "sth", "exo", "p02", "usg", "ulg", "6ed", "ptk", "uds", "mmq", "nem", "pcy", "inv", "pls", "7ed", "csp", "dis", "gpt", "rav", "9ed", "lrw", "mor", "shm", "eve", "apc", "ody", "tor", "jud", "ons", "lgn", "scg", "mrd", "dst", "5dn", "chk", "bok", "sok", "plc", "2xm":
+		case "mir", "vis", "5ed", "por", "wth", "tmp", "sth", "exo", "p02", "usg", "ulg", "6ed", "ptk", "uds", "mmq", "nem", "pcy", "inv", "pls", "7ed", "csp", "dis", "gpt", "rav", "9ed", "lrw", "mor", "shm", "eve", "apc", "ody", "tor", "jud", "ons", "lgn", "scg", "mrd", "dst", "5dn", "chk", "bok", "sok", "plc", "2xm", "2x2":
 			return []
 		case "tsr":
 			return mainCards.separateAll(where: { $0.rarity == .special })
@@ -4582,7 +4590,7 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		}
 		
 		switch setCode {
-		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "cmr", "jmp", "dbl", "sjm":
+		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "cmr", "jmp", "dbl", "sjm", "2x2", "clb":
 			return 24
 		default:
 			return 36
@@ -4627,7 +4635,7 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 	} else if setCode?.lowercased() == "clb" {
 		let cards = processBaldursGateCards(cards, tokens: tokens)
 		
-		let packs: [CardCollection] = (1...count).map { _ in generateBaldursGatePack(cards) }
+		let packs: [CardCollection] = (1...count).map { _ in generateBaldursGatePack(cards, includeExtendedArt: includeExtendedArt) }
 		
 		return try output(setName: "Commander Legends: Battle for Baldur's Gate", setCode: setCode ?? "", packs: packs, tokens: cards.tokens)
 	}
@@ -4658,7 +4666,7 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 		}
 		
 		switch setCode {
-		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm":
+		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "2x2", "clb":
 			return 24
 		default:
 			return 36
@@ -4684,7 +4692,7 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 	} else if setCode?.lowercased() == "clb" {
 		let cards = processBaldursGateCards(cards, tokens: tokens)
 		
-		let packs: [CardCollection] = (1...count).map { _ in generateBaldursGatePack(cards) }
+		let packs: [CardCollection] = (1...count).map { _ in generateBaldursGatePack(cards, includeExtendedArt: includeExtendedArt) }
 		
 		return try boosterBag(setName: "Commander Legends: Battle for Baldur's Gate", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: cards.tokens, export: export)
 	}
@@ -4824,7 +4832,7 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 	} else if setCode?.lowercased() == "clb" {
 		let cards = processBaldursGateCards(cards, tokens: tokens)
 		
-		let pack = generateBaldursGatePack(cards)
+		let pack = generateBaldursGatePack(cards, includeExtendedArt: includeExtendedArt)
 		
 		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: cards.tokens)
 	}

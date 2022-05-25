@@ -290,6 +290,17 @@ final class GeneratorController {
 			
 			let page = (try? Data(contentsOf: deckURL)).flatMap { String(data: $0, encoding: .utf8) }
 			
+//			if let page = page,
+//			   let deckInfoStartRange = page.range(of: "init_deck_data"),
+//			   let deckInfoEndRange = page.range(of: "deck_display();") {
+//
+//				let range = deckInfoStartRange.lowerBound..<deckInfoEndRange.upperBound
+//				var substring = page.substring(with: range)
+//				substring = substring
+//					.replacingOccurrences(of: "init_deck_data(", with: "")
+//					.replacingOccurrences(of: ", false);deck_display();", with: "")
+//			}
+			
 			let commentCustomOverrides: String? = {
 				guard let page = page else { return nil }
 				

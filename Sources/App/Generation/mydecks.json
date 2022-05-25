@@ -74,6 +74,13 @@
 	"comment": "Dinosaurs"
   },
   {
+	"url": "https://deckstats.net/decks/149419/2550606-riveteers-rampage",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/6/86cf1196-cf25-49cf-9fed-98f7dcd56c06.jpg",
+	"ids": ["39"],
+	"ci": "BRG",
+	"comment": "Blitz"
+  },
+  {
 	"url": "https://deckstats.net/decks/149419/2420753-isshin-two-heavens-as-one",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/1/b/1bf8b008-3a7c-4b6d-8c18-263a576f0d64.jpg",
 	"ids": ["38"],
@@ -86,6 +93,13 @@
 	  "ids": ["23"],
 	  "ci": "BR",
 	  "comment": "Goad every turn"
+  },
+  {
+	"url": "https://deckstats.net/decks/149419/2493499-katilda-humans-counters",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/3/e/3ef98a2c-4b48-45e3-bbcb-9fd338f5a05a.jpg",
+	"ids": ["12"],
+	"ci": "GW",
+	"comment": "+1/+1 Counters, Humans"
   },
   {
 	  "url": "https://deckstats.net/decks/149419/2200931-kenrith-esper-reanimator",
@@ -109,13 +123,6 @@
 	"ids": ["10"],
 	"ci": "BG",
 	"comment": "Elves"
-  },
-  {
-	"url": "https://deckstats.net/decks/149419/2269144-leinore-autumn-soverign",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/d/bd7e1645-ea8f-41c4-b3ee-58f44fc5c574.jpg",
-	"ids": ["12"],
-	"ci": "GW",
-	"comment": "+1/+1 Counters, Humans"
   },
   {
 	"url": "https://deckstats.net/decks/149419/2223243-liesa-forgotten-archangel",
@@ -161,7 +168,7 @@
   },
   {
 	"url": "https://deckstats.net/decks/149419/2185887-rayth",
-	"front": "https://i.imgur.com/btVWlvM.jpg",
+	"front": "https://i.imgur.com/Y4YEJoJ.jpg",
 	"ids": ["28"],
 	"ci": "WUB",
 	"comment": "Spirits, reanimator"

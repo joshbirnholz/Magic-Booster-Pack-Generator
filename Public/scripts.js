@@ -90,7 +90,7 @@ function doDownloadBoxList() {
 	
 	$("#boxprogress").html("Working…");
 	
-	var url = "box" + "/" + setCode + "?outputformat=cardlist";
+	var url = "box" + "/" + setCode + "?outputformat=cardlist&tokens=false";
 	
 	$.ajax({
 		url: url,
@@ -135,7 +135,7 @@ function doDownloadCustomNumPacksList(packCount) {
 	
 	$("#boxprogress").html("Working…");
 	
-	var url = "box" + "/" + setCode + "?outputformat=cardlist&boosters=" + packCount;
+	var url = "box" + "/" + setCode + "?outputformat=cardlist&tokens=false&boosters=" + packCount;
 	
 	$.ajax({
 		url: url,
@@ -275,7 +275,7 @@ function doDownloadPrereleasePackList() {
 	
 	$("#boxprogress").html("Working…");
 	
-	var url = "pre/" + setCode + "?outputformat=cardlist&extendedart=false";
+	var url = "pre/" + setCode + "?outputformat=cardlist&tokens=false&extendedart=false";
 	
 	var seed = $("#seedlist").val();
 	if (seed !== null) {

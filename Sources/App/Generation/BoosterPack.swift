@@ -1155,7 +1155,7 @@ struct CardCollection {
 	}
 }
 
-func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> CardCollection {
+func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed, includeTokens: Bool) -> CardCollection {
 	var pack = CardCollection()
 	
 	let selectedLegendRarities: [MTGCard.Rarity: Int] = {
@@ -1302,7 +1302,7 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> Car
 		return false
 	}
 	
-	guard !processed.tokens.isEmpty else {
+	guard includeTokens && !processed.tokens.isEmpty else {
 		return pack
 	}
 	
@@ -1354,7 +1354,7 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed) -> Car
 	return pack
 }
 
-func generateBaldursGatePack(_ processed: BaldursGateProcessed, includeExtendedArt: Bool) -> CardCollection {
+func generateBaldursGatePack(_ processed: BaldursGateProcessed, includeExtendedArt: Bool, includeTokens: Bool) -> CardCollection {
 	var pack = CardCollection()
 	
 	let shouldIncludeRareOrMythicLegend = (1...100).randomElement()! <= 31
@@ -1493,7 +1493,7 @@ func generateBaldursGatePack(_ processed: BaldursGateProcessed, includeExtendedA
 		return false
 	}
 	
-	guard !processed.tokens.isEmpty else {
+	guard includeTokens && !processed.tokens.isEmpty else {
 		return pack
 	}
 	
@@ -3886,6 +3886,7 @@ fileprivate func customSetJSONURL(forSetCode inputString: String) -> URL? {
 	let customSets = [
 		"netropolis": "net",
 		"amonkhet remastered": "akr",
+		"kaladesh remastered": "klr",
 		"hollows of lordran": "hlw"
 	]
 	
@@ -4181,6 +4182,13 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			guard includeBasicLands else { return [] }
 			return Swiftfall
 				.getCards(query: "set:akh,hou type:'basic land'", unique: true)
+				.compactMap { $0?.data }
+				.joined()
+				.compactMap(MTGCard.init)
+		case "klr":
+			guard includeBasicLands else { return [] }
+			return Swiftfall
+				.getCards(query: "set:kld,aer type:'basic land'", unique: true)
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
@@ -4611,7 +4619,7 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 	if setCode?.lowercased() == "cmr" {
 		let cards = processCommanderLegendsCards(cards, tokens: tokens)
 		
-		let packs: [CardCollection] = (1...count).map { _ in generateCommanderLegendsPack(cards) }
+		let packs: [CardCollection] = (1...count).map { _ in generateCommanderLegendsPack(cards, includeTokens: includeTokens) }
 		
 		return try output(setName: "Commander Legends", setCode: setCode ?? "", packs: packs, tokens: cards.tokens)
 	} else if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
@@ -4635,7 +4643,7 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 	} else if setCode?.lowercased() == "clb" {
 		let cards = processBaldursGateCards(cards, tokens: tokens)
 		
-		let packs: [CardCollection] = (1...count).map { _ in generateBaldursGatePack(cards, includeExtendedArt: includeExtendedArt) }
+		let packs: [CardCollection] = (1...count).map { _ in generateBaldursGatePack(cards, includeExtendedArt: includeExtendedArt, includeTokens: includeTokens) }
 		
 		return try output(setName: "Commander Legends: Battle for Baldur's Gate", setCode: setCode ?? "", packs: packs, tokens: cards.tokens)
 	}
@@ -4676,7 +4684,7 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 	if setCode?.lowercased() == "cmr" {
 		let cards = processCommanderLegendsCards(cards, tokens: tokens)
 		
-		let packs: [CardCollection] = (1...count).map { _ in generateCommanderLegendsPack(cards) }
+		let packs: [CardCollection] = (1...count).map { _ in generateCommanderLegendsPack(cards, includeTokens: includeTokens) }
 		
 		return try boosterBag(setName: "Commander Legends", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: cards.tokens, export: export)
 	} else if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
@@ -4692,7 +4700,7 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 	} else if setCode?.lowercased() == "clb" {
 		let cards = processBaldursGateCards(cards, tokens: tokens)
 		
-		let packs: [CardCollection] = (1...count).map { _ in generateBaldursGatePack(cards, includeExtendedArt: includeExtendedArt) }
+		let packs: [CardCollection] = (1...count).map { _ in generateBaldursGatePack(cards, includeExtendedArt: includeExtendedArt, includeTokens: includeTokens) }
 		
 		return try boosterBag(setName: "Commander Legends: Battle for Baldur's Gate", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: cards.tokens, export: export)
 	}
@@ -4801,7 +4809,7 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 	if setCode?.lowercased() == "cmr" {
 		let cards = processCommanderLegendsCards(cards, tokens: tokens)
 		
-		let pack = generateCommanderLegendsPack(cards)
+		let pack = generateCommanderLegendsPack(cards, includeTokens: includeTokens)
 		
 		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: cards.tokens)
 	} else if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
@@ -4832,7 +4840,7 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 	} else if setCode?.lowercased() == "clb" {
 		let cards = processBaldursGateCards(cards, tokens: tokens)
 		
-		let pack = generateBaldursGatePack(cards, includeExtendedArt: includeExtendedArt)
+		let pack = generateBaldursGatePack(cards, includeExtendedArt: includeExtendedArt, includeTokens: includeTokens)
 		
 		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: cards.tokens)
 	}
@@ -4858,7 +4866,15 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 }
 
 fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard], tokens: [MTGCard], mode: Mode, export: Bool, packCount: Int? = nil, includePromoCard: Bool?, includeLands: Bool?, includeSheet: Bool?, includeSpindown: Bool?, boosterCount: Int?, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], outputFormat: OutputFormat, seed: Seed? = nil) throws -> String {
-	let boosterCount = boosterCount ?? 6
+	let boosterCount: Int = {
+		if let boosterCount = boosterCount {
+			return boosterCount
+		}
+		if setCode.lowercased() == "clb" {
+			return 3
+		}
+		return 6
+	}()
 	let packCount = packCount ?? 1
 	let prereleasePacks: [String] = try (0 ..< (packCount)).map { _ in
 		if setCode.lowercased() == "mb1" || setCode.lowercased() == "fmb1" || setCode.lowercased() == "cmb1" || setCode.lowercased() == "jmp" || setCode.lowercased() == "sjm" {
@@ -5447,7 +5463,7 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 	if autofix {
 		// Set codes for arena-only sets whose images should be changed to use versions listed in a custom set file.
 		let customSets: Set<String> = [
-			"akr"
+			"akr", "klr"
 		]
 		
 		for customSetCode in customSets {

@@ -4730,6 +4730,8 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 	
 	let commanders = cards.separateAll(where: { $0.typeLine?.lowercased().contains("legendary") == true && $0.typeLine?.lowercased().contains("creature") == true })
 	
+	let backgrounds = cards.separateAll(where: { $0.typeLine?.lowercased().contains("legendary") == true && $0.typeLine?.lowercased().contains("background") == true })
+	
 	let rares = cards.separateAll(where: { $0.rarity == .rare || $0.rarity == .mythic })
 	
 	func colors(for card: MTGCard) -> Set<MTGColor> {
@@ -4764,6 +4766,7 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 	
 	let namesAndPacks = Array([
 		("Commanders", commanders),
+		("Backgrounds", backgrounds),
 		("Rares", rares),
 		("White Commons & Uncommons", white),
 		("Blue Commons & Uncommons", blue),

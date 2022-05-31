@@ -8,6 +8,7 @@
 import Vapor
 #if canImport(FoundationNetworking)
 import FoundationNetworking
+import Foundation
 #endif
 
 public enum OutputFormat: String, CaseIterable {
@@ -283,8 +284,11 @@ final class GeneratorController {
 			
 		case "deckstats.net", "www.deckstats.net":
 			guard var components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else { throw PackError.invalidURL  }
-			
-			components.queryItems = [URLQueryItem(name: "export_mtgarena", value: "1")]
+			components.queryItems = [
+				URLQueryItem(name: "export_dec", value: "1"),
+				URLQueryItem(name: "include_comments", value: "1"),
+				URLQueryItem(name: "include_collector_numbers", value: "1")
+			]
 			
 			guard let decklistURL = components.url else { throw PackError.invalidURL }
 			
@@ -347,7 +351,7 @@ final class GeneratorController {
 						DispatchQueue(label: "decklist").async {
 							do {
 								
-								let result: String = try deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, customOverrides: [commentCustomOverrides ?? "", customOverrides] + alters)
+								let result: String = try deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, customOverrides: [commentCustomOverrides ?? "", customOverrides] + alters)
 								print("Success")
 								promise.succeed(result)
 							} catch let error as DebuggableError {

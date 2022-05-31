@@ -18,13 +18,14 @@ public struct DeckParser {
 			case maybeboard = "Maybeboard"
 		}
 		
-		public static func name(for line: String) -> String {
+		public static func name(for line: String, defaultToMain: Bool = false) -> String {
 			switch line.lowercased() {
 			case "deck", "main deck", "maindeck", "main", "creatures", "creature", "instant", "instants", "land", "lands", "sorceries", "sorcery", "spell", "spells", "enchantment", "enchantments", "artifact", "artifacts": return GroupName.deck.rawValue
 			case "sideboard", "", "\n": return GroupName.sideboard.rawValue
 			case "commander", "command": return GroupName.command.rawValue
 			case "companion": return GroupName.companion.rawValue
 			case "maybe", "maybeboard": return GroupName.maybeboard.rawValue
+			case _ where defaultToMain: return GroupName.deck.rawValue
 			default:
 				return line
 			}
@@ -85,7 +86,7 @@ public struct DeckParser {
 			switch groups.count {
 			case 1:
 				let value = groups[0].value.trimmingCharacters(in: .whitespacesAndNewlines)
-				let newGroup = CardGroup(name: CardGroup.name(for: value), cardCounts: [])
+				let newGroup = CardGroup(name: CardGroup.name(for: value, defaultToMain: true), cardCounts: [])
 				cardGroups.append(newGroup)
 			case 2:
 				if cardGroups.isEmpty {
@@ -163,7 +164,22 @@ public struct DeckParser {
 			}
 		}
 		
-		return cardGroups.filter { !$0.cardCounts.isEmpty }
+		// Merge groups with the same names
+		cardGroups = cardGroups.reduce([], { partialResult, currentGroup in
+			guard !currentGroup.cardCounts.isEmpty else { return partialResult }
+			
+			var partialResult = partialResult
+			
+			if let existingGroupIndex = partialResult.firstIndex(where: { $0.name == currentGroup.name }) {
+				partialResult[existingGroupIndex].cardCounts.append(contentsOf: currentGroup.cardCounts)
+			} else {
+				partialResult.append(currentGroup)
+			}
+			
+			return partialResult
+		})
+		
+		return cardGroups
 	}
 	
 	public static func parse(deckstatsDecklist: String) -> [CardGroup] {
@@ -176,6 +192,10 @@ public struct DeckParser {
 			.compactMap {
 				var line = $0
 				if line.hasPrefix("//"), let range = line.range(of: "//") {
+					line.removeSubrange(range)
+				}
+				
+				if line.hasPrefix("SB: "), let range = line.range(of: "SB: ") {
 					line.removeSubrange(range)
 				}
 				
@@ -206,7 +226,7 @@ public struct DeckParser {
 			switch groups.count {
 			case 1:
 				let value = groups[0].value.trimmingCharacters(in: .whitespacesAndNewlines)
-				let newGroup = CardGroup(name: CardGroup.name(for: value), cardCounts: [])
+				let newGroup = CardGroup(name: CardGroup.name(for: value, defaultToMain: true), cardCounts: [])
 				cardGroups.append(newGroup)
 			case 2:
 				if cardGroups.isEmpty {
@@ -261,7 +281,22 @@ public struct DeckParser {
 			}
 		}
 		
-		return cardGroups.filter { !$0.cardCounts.isEmpty }
+		// Merge groups with the same names
+		cardGroups = cardGroups.reduce([], { partialResult, currentGroup in
+			guard !currentGroup.cardCounts.isEmpty else { return partialResult }
+			
+			var partialResult = partialResult
+			
+			if let existingGroupIndex = partialResult.firstIndex(where: { $0.name == currentGroup.name }) {
+				partialResult[existingGroupIndex].cardCounts.append(contentsOf: currentGroup.cardCounts)
+			} else {
+				partialResult.append(currentGroup)
+			}
+			
+			return partialResult
+		})
+		
+		return cardGroups
 	}
 	
 	public static func parse(moxfieldDeck: MoxfieldDeck) -> [CardGroup] {

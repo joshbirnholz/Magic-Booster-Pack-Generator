@@ -1400,6 +1400,9 @@ func generateBaldursGatePack(_ processed: BaldursGateProcessed, includeExtendedA
 		if uniqueCardCount != cardCount {
 			problems.append("Unique card is wrong; Should be \(cardCount), was \(uniqueCardCount)")
 		}
+		if pack.mtgCards.filter({ $0.typeLine.contains("Creature") }).count < 10 {
+			problems.append("Not enough creatures")
+		}
 		
 		if !problems.isEmpty {
 			print(problems.joined(separator: ", "))

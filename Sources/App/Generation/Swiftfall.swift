@@ -208,6 +208,9 @@ internal class Swiftfall {
         
         // The block or group name code for this set, if any.
         public let block: String?
+		
+		// The denominator for the set’s printed collector numbers.
+		public let printedSize: Int?
         
         //A URI to an SVG file for this set’s icon on Scryfall’s CDN. Hotlinking this image isn’t recommended, because it may change slightly over time. You should download it and use it locally for your particular user interface needs.
         public let iconSvgUri: String?

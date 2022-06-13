@@ -35,7 +35,7 @@ final class GeneratorController {
 		}
 
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
-		let includeExtendedArt: Bool = req.query.getBoolValue(at: "extendedart") ?? true
+		let includeExtendedArt: Bool = req.query.getBoolValue(at: "extendedart") ?? false
 		guard let set = req.parameters.get("set") else {
 			promise.fail(PackError.missingSet)
 			return promise.futureResult
@@ -66,7 +66,7 @@ final class GeneratorController {
 	func boosterBox(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let count = (try? req.query.get(Int.self, at: "count")) ?? (try? req.query.get(Int.self, at: "boosters"))
-		let includeExtendedArt: Bool = req.query.getBoolValue(at: "extendedart") ?? true
+		let includeExtendedArt: Bool = req.query.getBoolValue(at: "extendedart") ?? false
 		let specialOptions = (try? req.query.get(String.self, at: "special").components(separatedBy: ",")) ?? []
 		let includeBasicLands: Bool = req.query.getBoolValue(at: "lands") ?? true
 		let includeTokens: Bool = req.query.getBoolValue(at: "tokens") ?? true
@@ -121,7 +121,7 @@ final class GeneratorController {
 	
 	func prereleasePack(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
-		let includeExtendedArt: Bool = req.query.getBoolValue(at: "extendedart") ?? true
+		let includeExtendedArt: Bool = req.query.getBoolValue(at: "extendedart") ?? false
 		let count = try? req.query.get(Int.self, at: "count")
 		let specialOptions = (try? req.query.get(String.self, at: "special").components(separatedBy: ",")) ?? []
 		let seed: Seed? = (try? req.query.get(String.self, at: "seed")).flatMap { seed in

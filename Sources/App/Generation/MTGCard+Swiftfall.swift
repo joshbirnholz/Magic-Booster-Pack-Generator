@@ -14,10 +14,56 @@ fileprivate let dateFormatter: DateFormatter = {
 	return formatter
 }()
 
+fileprivate func newImageURIs(cardID: UUID, back: Bool = false) -> [String: URL] {
+	var imageURIs: [String: URL] = [:]
+	
+	for version in ["small", "medium", "large", "png", "art_crop", "border_crop"] {
+		var components = URLComponents()
+		components.scheme = "https"
+		components.host = "api.scryfall.com"
+		components.path = "/cards/\(cardID.uuidString)"
+		
+		var items: [URLQueryItem] = [
+			URLQueryItem(name: "format", value: "image"),
+			URLQueryItem(name: "version", value: version)
+		]
+		
+		if back {
+			items.append(URLQueryItem(name: "face", value: "back"))
+		}
+		
+		components.queryItems = items
+		
+		imageURIs[version] = components.url
+	}
+	
+	return imageURIs
+}
+
+fileprivate func layoutIsDFC(_ layout: String) -> Bool {
+	let dfcLayouts: [String] = [
+		"transform", "double_faced_token", "modal_dfc"
+	]
+	
+	return dfcLayouts.contains(layout.lowercased())
+}
+
+
 extension MTGCard {
 	init(_ scryfallCard: Swiftfall.Card) {
-		let faces = scryfallCard.cardFaces?.map { face in
-			MTGCard.Face(typeLine: face.typeLine,
+		let faces: [MTGCard.Face]? = scryfallCard.cardFaces?.enumerated().map { arg -> MTGCard.Face in
+			let (index, face) = arg
+			var imageURIs = face.imageUris
+			// This code constructs API links to new images. Should work, but may hit an API rate limit?
+//			if layoutIsDFC(scryfallCard.layout) {
+//				if index == 0 {
+//					imageURIs = newImageURIs(cardID: scryfallCard.id)
+//				} else if index == 1 {
+//					imageURIs = newImageURIs(cardID: scryfallCard.id, back: true)
+//				}
+//			}
+			
+			return MTGCard.Face(typeLine: face.typeLine,
 						 power: face.power,
 						 toughness: face.toughness,
 						 oracleText: face.oracleText,
@@ -27,7 +73,7 @@ extension MTGCard {
 						 manaCost: face.manaCost,
 						 colors: face.colors?.compactMap(MTGColor.init(rawValue:)),
 						 watermark: face.watermark,
-						 imageUris: face.imageUris)
+						 imageUris: imageURIs)
 		}
 		
 		let relatedCards: [MTGCard.RelatedCard]? = scryfallCard.allParts?.compactMap { part in
@@ -79,5 +125,6 @@ extension MTGCard {
 				  language: Language(rawValue: scryfallCard.lang.rawValue)!,
 				  releaseDate: date,
 				  imageUris: scryfallCard.imageUris?.compactMapValues(URL.init(string:)))
+//				  imageUris: scryfallCard.imageUris != nil ? newImageURIs(cardID: scryfallCard.id) : nil)
 	}
 }

@@ -3730,7 +3730,7 @@ func allLandPacksSingleJSON(setCards: (cards: [MTGCard], setCode: String)?, spec
 			return processed.basicLands
 		} else {
 			return Swiftfall
-			.getCards(query: "type='basic land –' is:highres", unique: false)
+			.getCards(query: "type='basic land –'", unique: false)
 			.compactMap { $0?.data }
 			.joined()
 			.compactMap(MTGCard.init)
@@ -4648,7 +4648,9 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		
 		let packs: [CardCollection] = (1...count).map { _ in generateBaldursGatePack(cards, includeExtendedArt: includeExtendedArt, includeTokens: includeTokens) }
 		
-		return try output(setName: "Commander Legends: Battle for Baldur's Gate", setCode: setCode ?? "", packs: packs, tokens: cards.tokens)
+		let tokens = try allTokensForSet(setCode: setCode!)
+		
+		return try output(setName: "Commander Legends: Battle for Baldur's Gate", setCode: setCode ?? "", packs: packs, tokens: tokens)
 	}
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
@@ -4705,7 +4707,9 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 		
 		let packs: [CardCollection] = (1...count).map { _ in generateBaldursGatePack(cards, includeExtendedArt: includeExtendedArt, includeTokens: includeTokens) }
 		
-		return try boosterBag(setName: "Commander Legends: Battle for Baldur's Gate", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: cards.tokens, export: export)
+		let tokens = try allTokensForSet(setCode: setCode!)
+		
+		return try boosterBag(setName: "Commander Legends: Battle for Baldur's Gate", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: tokens, export: export)
 	}
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
@@ -4848,7 +4852,9 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 		
 		let pack = generateBaldursGatePack(cards, includeExtendedArt: includeExtendedArt, includeTokens: includeTokens)
 		
-		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: cards.tokens)
+		let tokens = try allTokensForSet(setCode: setCode!)
+		
+		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens)
 	}
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)

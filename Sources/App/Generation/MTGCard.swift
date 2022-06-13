@@ -156,6 +156,22 @@ public struct MTGCard: Codable, Equatable, Hashable {
 	
 	var imageUris: [String: URL]?
 	
+	var faceURL: URL? {
+		guard let scryfallID = scryfallID?.uuidString.lowercased() else {
+			return nil
+		}
+
+		return URL(string: "https://api.scryfall.com/cards/\(scryfallID)?format=image&version=normal")
+	}
+	
+	var backURL: URL? {
+		guard let scryfallID = scryfallID?.uuidString.lowercased() else {
+			return nil
+		}
+
+		return URL(string: "https://api.scryfall.com/cards/\(scryfallID)?format=image&version=normal&face=back")
+	}
+	
 }
 
 public extension MTGCard {

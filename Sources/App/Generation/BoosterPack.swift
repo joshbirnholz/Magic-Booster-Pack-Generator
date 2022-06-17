@@ -1224,11 +1224,20 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed, includ
 		
 		let cardCount = 20
 		var uniqueCardCount: Int { Set(pack.mtgCards.compactMap { $0.name }).count }
-		var allColorsCount: Int { Set(pack.mtgCards.compactMap { $0.colors }.joined()).count }
+//		var allColorsCount: Int { Set(pack.mtgCards.compactMap { $0.colors }.joined()).count }
 		
-		if allColorsCount != 5 {
-			problems.append("Pack doesn't have 5 colors")
+		// Color smoothing
+		for color: [MTGColor] in [[.white], [.blue], [.black], [.red], [.green], []] {
+			let colorCards = pack.mtgCards.filter { $0.colors == color || ($0.producedMana != nil && $0.producedMana == color) }
+			if colorCards.count < (.random() ? 2 : 1) {
+				problems.append("Pack doesn't have enough \(color.first?.name ?? "colorless") cards")
+			}
 		}
+		
+		if pack.mtgCards.filter({ $0.typeLine.contains("Creature") }).count < 12 {
+			problems.append("Not enough creatures")
+		}
+		
 		if uniqueCardCount != cardCount {
 			problems.append("Unique card is wrong; Should be \(cardCount), was \(uniqueCardCount)")
 		}
@@ -1394,13 +1403,18 @@ func generateBaldursGatePack(_ processed: BaldursGateProcessed, includeExtendedA
 		var uniqueCardCount: Int { Set(pack.mtgCards.compactMap { $0.name }).count }
 		var allColorsCount: Int { Set(pack.mtgCards.compactMap { $0.colors }.joined()).count }
 		
-		if allColorsCount != 5 {
-			problems.append("Pack doesn't have 5 colors")
+		// Color smoothing
+		for color: [MTGColor] in [[.white], [.blue], [.black], [.red], [.green], []] {
+			let colorCards = pack.mtgCards.filter { $0.colors == color || ($0.producedMana != nil && $0.producedMana == color) }
+			if colorCards.count < (.random() ? 2 : 1) {
+				problems.append("Pack doesn't have enough \(color.first?.name ?? "colorless") cards")
+			}
 		}
+		
 		if uniqueCardCount != cardCount {
 			problems.append("Unique card is wrong; Should be \(cardCount), was \(uniqueCardCount)")
 		}
-		if pack.mtgCards.filter({ $0.typeLine.contains("Creature") }).count < 10 {
+		if pack.mtgCards.filter({ $0.typeLine.contains("Creature") }).count < 12 {
 			problems.append("Not enough creatures")
 		}
 		
@@ -1416,22 +1430,32 @@ func generateBaldursGatePack(_ processed: BaldursGateProcessed, includeExtendedA
 	repeat {
 		pack.removeAll()
 		
+		let commonCount = shouldIncludeFacelessOne ? 12 : 13
+		
+		let commons = processed.rarities[.common]?.choose(commonCount-pack.count) ?? []
+		pack.insert(contentsOf: commons, at: 0)
+		
 		if shouldIncludeFacelessOne, let facelessOne = processed.facelessOne {
 			pack.insert(facelessOne, at: 0)
 		}
 		
-		let commons = processed.rarities[.common]?.choose(13-pack.count) ?? []
-		pack.insert(contentsOf: commons, at: 0)
-		
 		let uncommons = processed.rarities[.uncommon]?.choose(3) ?? []
 		pack.insert(contentsOf: uncommons, at: 0)
 		
-		if let foil = foilRarities[includedFoilRarity]?.randomElement() {
-			if includeExtendedArt, let extendedArt = processed.extendedArt.first(where: { $0.name == foil.name }) {
-				pack.insert(extendedArt, at: 0, isFoil: true)
+		let legend: MTGCard? = {
+			var cards: [MTGCard] = []
+			
+			if shouldIncludeRareOrMythicLegend {
+				cards.append(contentsOf: processed.legendRarities[.rare] ?? [])
+				cards.append(contentsOf: processed.legendRarities[.mythic] ?? [])
 			} else {
-				pack.insert(foil, at: 0, isFoil: true)
+				cards.append(contentsOf: processed.legendRarities[.uncommon] ?? [])
 			}
+			
+			return cards.randomElement()
+		}()
+		if let legend = legend {
+			pack.insert(legend, at: 0)
 		}
 		
 		let background: MTGCard? = {
@@ -1450,24 +1474,16 @@ func generateBaldursGatePack(_ processed: BaldursGateProcessed, includeExtendedA
 			pack.insert(background, at: 0)
 		}
 		
-		let legend: MTGCard? = {
-			var cards: [MTGCard] = []
-			
-			if shouldIncludeRareOrMythicLegend {
-				cards.append(contentsOf: processed.legendRarities[.rare] ?? [])
-				cards.append(contentsOf: processed.legendRarities[.mythic] ?? [])
-			} else {
-				cards.append(contentsOf: processed.legendRarities[.uncommon] ?? [])
-			}
-			
-			return cards.randomElement()
-		}()
-		if let legend = legend {
-			pack.insert(legend, at: 0)
-		}
-		
 		if let rare = processed.rarities[shouldIncludeMythic ? .mythic : .rare]?.randomElement() {
 			pack.insert(rare, at: 0)
+		}
+		
+		if let foil = foilRarities[includedFoilRarity]?.randomElement() {
+			if includeExtendedArt, let extendedArt = processed.extendedArt.first(where: { $0.name == foil.name }) {
+				pack.insert(extendedArt, at: 0, isFoil: true)
+			} else {
+				pack.insert(foil, at: 0, isFoil: true)
+			}
 		}
 		
 		if .random(),
@@ -4009,7 +4025,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		case "kld", "aer": return .kaladeshInventions
 		case "vma": return .vintageMasters
 		case "m21": return .m21
-		case "2xm": return .doubleMasters
+		case "2xm", "2x2": return .doubleMasters
 		case "znr": return .zendikarRising
 		case "eld", "thb": return .originalShowcase
 		case "tsr": return .timeSpiralRemastered
@@ -4203,8 +4219,10 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			guard includeBasicLands else { return [] }
 			let snowLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Snow") == true && ($0.typeLine ?? "").contains("Land") == true && !($0.colorIdentity ?? []).isEmpty }
 			return snowLands
-		case "mir", "vis", "5ed", "por", "wth", "tmp", "sth", "exo", "p02", "usg", "ulg", "6ed", "ptk", "uds", "mmq", "nem", "pcy", "inv", "pls", "7ed", "csp", "dis", "gpt", "rav", "9ed", "lrw", "mor", "shm", "eve", "apc", "ody", "tor", "jud", "ons", "lgn", "scg", "mrd", "dst", "5dn", "chk", "bok", "sok", "plc", "2xm", "2x2":
+		case "mir", "vis", "5ed", "por", "wth", "tmp", "sth", "exo", "p02", "usg", "ulg", "6ed", "ptk", "uds", "mmq", "nem", "pcy", "inv", "pls", "7ed", "csp", "dis", "gpt", "rav", "9ed", "lrw", "mor", "shm", "eve", "apc", "ody", "tor", "jud", "ons", "lgn", "scg", "mrd", "dst", "5dn", "chk", "bok", "sok", "plc", "2xm":
 			return []
+		case "2x2":
+			return mainCards.separateAll(where: { $0.oracleID == UUID(uuidString: "6d6a25fb-0432-4c7d-b0e6-e787ddc71218") })
 		case "tsr":
 			return mainCards.separateAll(where: { $0.rarity == .special })
 		case "stx":

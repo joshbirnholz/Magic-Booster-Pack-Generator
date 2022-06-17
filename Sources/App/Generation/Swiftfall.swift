@@ -477,6 +477,9 @@ internal class Swiftfall {
         // This card’s colors.
         public let colors: [String]?
 		
+		// This card’s colors.
+		public let producedMana: [String]?
+		
 		// This card’s color identity.
 		public let colorIdentity: [String]?
 		

@@ -108,6 +108,7 @@ extension MTGCard {
 				  collectorNumber: scryfallCard.collectorNumber,
 				  set: scryfallCard.set,
 				  colors: scryfallCard.colors?.compactMap(MTGColor.init(rawValue:)),
+				  producedMana: scryfallCard.producedMana?.compactMap(MTGColor.init(rawValue:)),
 				  colorIdentity: scryfallCard.colorIdentity?.compactMap(MTGColor.init(rawValue:)),
 				  keywords: scryfallCard.keywords,
 				  printedName: scryfallCard.printedName,

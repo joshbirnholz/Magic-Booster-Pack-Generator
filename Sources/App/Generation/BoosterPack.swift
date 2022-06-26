@@ -158,6 +158,9 @@ enum Mode {
 	/// 2 rares in each pack, 2 guaranteed foils.
 	case doubleMasters
 	
+	/// 2 rares in each pack, 2 guaranteed foils. Packs always include cryptic spires
+	case doubleMasters2022
+	
 	case zendikarExpeditions
 	case amonkhetInvocations
 	case kaladeshInventions
@@ -540,7 +543,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			nonTokenCount -= 1
 		}
 		
-		if mode == .vintageMasters || mode == .doubleMasters {
+		if mode == .vintageMasters || mode == .doubleMasters || mode == .doubleMasters2022 {
 			nonTokenCount += 1
 		}
 		
@@ -604,7 +607,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		}
 		
 		// Add a second foil to double masters packs.
-		if mode == .doubleMasters, let rarity = includedFoilRarity, let foil = [(allRarities[rarity] ?? []), (customSlotRarities[rarity] ?? [])].joined().filter(\.isFoilAvailable).randomElement() {
+		if (mode == .doubleMasters || mode == .doubleMasters2022), let rarity = includedFoilRarity, let foil = [(allRarities[rarity] ?? []), (customSlotRarities[rarity] ?? [])].joined().filter(\.isFoilAvailable).randomElement() {
 			if includeExtendedArt, let extendedArtVersion = extendedArt.filter({ $0.name == foil.name }).randomElement() {
 				pack.insert(extendedArtVersion, at: 0, isFoil: true)
 			} else if rarity != .common || foilPolicy == .guaranteed {
@@ -694,7 +697,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		addRareOrMythic()
 		
 		// Add a second rare or mythic to double masters packs
-		if mode == .doubleMasters {
+		if mode == .doubleMasters || mode == .doubleMasters2022 {
 			addRareOrMythic()
 		}
 		
@@ -3990,7 +3993,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			tokens = []
 		}
 		
-		if setCode?.lowercased() == "vma" || setCode?.lowercased() == "2xm" {
+		if setCode?.lowercased() == "vma" || setCode?.lowercased() == "2xm" || setCode?.lowercased() == "2x2" {
 			foilPolicy = .guaranteed
 		} else {
 			let foilCutoff = Date(timeIntervalSince1970: 1562889600) // Sets released after this date use the modern foil policy.
@@ -4025,7 +4028,8 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		case "kld", "aer": return .kaladeshInventions
 		case "vma": return .vintageMasters
 		case "m21": return .m21
-		case "2xm", "2x2": return .doubleMasters
+		case "2xm": return .doubleMasters
+		case "2x2": return .doubleMasters2022
 		case "znr": return .zendikarRising
 		case "eld", "thb": return .originalShowcase
 		case "tsr": return .timeSpiralRemastered
@@ -4222,7 +4226,8 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		case "mir", "vis", "5ed", "por", "wth", "tmp", "sth", "exo", "p02", "usg", "ulg", "6ed", "ptk", "uds", "mmq", "nem", "pcy", "inv", "pls", "7ed", "csp", "dis", "gpt", "rav", "9ed", "lrw", "mor", "shm", "eve", "apc", "ody", "tor", "jud", "ons", "lgn", "scg", "mrd", "dst", "5dn", "chk", "bok", "sok", "plc", "2xm":
 			return []
 		case "2x2":
-			return mainCards.separateAll(where: { $0.oracleID == UUID(uuidString: "6d6a25fb-0432-4c7d-b0e6-e787ddc71218") })
+//			return mainCards.separateAll(where: { $0.oracleID == UUID(uuidString: "6d6a25fb-0432-4c7d-b0e6-e787ddc71218") })
+			return mainCards.separateAll(where: { $0.name == "Cryptic Spires" })
 		case "tsr":
 			return mainCards.separateAll(where: { $0.rarity == .special })
 		case "stx":
@@ -4373,7 +4378,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		}
 	}
 	
-	if setCode?.lowercased() != "2xm" {
+	if setCode?.lowercased() != "2xm" || setCode?.lowercased() != "2x2" {
 		mainCards = mainCards.map { card in
 			var card = card
 			if cardIsShowcase(card) {

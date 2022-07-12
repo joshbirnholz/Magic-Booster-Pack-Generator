@@ -23,6 +23,13 @@
 	"comment": "Rogues, theft, mill"
   },
   {
+	"url": "https://deckstats.net/decks/149419/2594486-bladewing-2-0",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/2/7/27ce43cb-44f4-4d94-8700-d9f3cc043989.jpg",
+	"ids": ["40"],
+	"ci": "BR",
+	"comment": "Dragons, reanimator"
+  },
+  {
 	  "url": "https://deckstats.net/decks/149419/2134546-breya-treasures",
 	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/2/1/2143f700-7311-46a4-ad9b-4e743a345785.jpg",
 	  "ids": ["24"],
@@ -74,7 +81,7 @@
 	"comment": "Dinosaurs"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2550606-riveteers-rampage",
+	"url": "https://deckstats.net/decks/149419/2550617-henzie-toolbox-torre",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/6/86cf1196-cf25-49cf-9fed-98f7dcd56c06.jpg",
 	"ids": ["39"],
 	"ci": "BRG",
@@ -139,11 +146,25 @@
 	"comment": "Dragons, Artifacts"
   },
   {
+	"url": "https://deckstats.net/decks/149419/2559235-mahadi-emporium-master",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/c/7c502480-111e-46a3-9f2f-9c4901d88323.jpg",
+	"ids": ["42"],
+	"ci": "BR",
+	"comment": "Treasure, Aristocrats"
+  },
+  {
 	"url": "https://deckstats.net/decks/149419/2308978-millicent-restless-revenant",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/2/b/2b86b538-0766-440d-a2cd-f5d5bfcfb010.jpg",
 	"ids": ["34"],
 	"ci": "WU",
 	"comment": "Spirit tribal"
+  },
+  {
+	"url": "https://deckstats.net/decks/149419/2556615-myrkul-landfall",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/d/bd790307-9926-4b7c-a90d-ca844adbe0ba.jpg",
+	"ids": ["43"],
+	"ci": "WBG",
+	"comment": "Landfall"
   },
   {
 	"url": "https://deckstats.net/decks/149419/2043629-osgir-the-reconstructor",
@@ -181,6 +202,13 @@
 	"ci": "UB",
   	"type": "dfc",
 	"comment": "Sea monsters"
+  },
+  {
+	"url": "https://deckstats.net/decks/149419/2499707-ruric-thar-the-unbowed",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/4/846b7039-9449-4064-8101-1260c59872a5.jpg",
+	"ids": ["41"],
+	"ci": "RG",
+	"comment": "Gruul Creatures"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1691052-sen-triplets",

@@ -117,8 +117,8 @@
   },
   {
 	"url": "https://deckstats.net/decks/149419/1719895-krav-regna",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/6/7/67bd3c49-ff73-4630-a4ee-c782f03e511d.jpg",
-	"back": "https://c1.scryfall.com/file/scryfall-cards/large/front/0/c/0c2bf475-9845-40ed-9f55-669325fb6183.jpg",
+	"front": "https://i.imgur.com/JlBWy89.jpg",
+	"back": "https://i.imgur.com/GrdVW3E.jpg",
 	"ids": ["18", "22"],
 	"type": "partners",
 	"ci": "WB",
@@ -175,20 +175,20 @@
   },
   {
 	"url": "https://deckstats.net/decks/149419/2156914-prosper-tome-bound",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/d/7/d743336e-d5c7-4053-a23d-92ec7581f74e.jpg",
+	"front": "https://i.imgur.com/V7nWuIX.jpg",
 	"ids": ["29"],
 	"ci": "BR",
 	"comment": "Play from exile"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1901692-ranar-the-ever-watchful",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/1/c/1c8c41dd-8551-4ce8-a9be-9b9f65718852.jpg",
+	"front": "https://i.imgur.com/1NNE7TU.jpg",
 	"ids": ["14"],
 	"ci": "WU",
 	"comment": "Fortell, blink, exile"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2185887-rayth",
+	"url": "https://deckstats.net/decks/149419/2585800-rayth-2-0",
 	"front": "https://i.imgur.com/Y4YEJoJ.jpg",
 	"ids": ["28"],
 	"ci": "WUB",
@@ -205,7 +205,7 @@
   },
   {
 	"url": "https://deckstats.net/decks/149419/2499707-ruric-thar-the-unbowed",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/4/846b7039-9449-4064-8101-1260c59872a5.jpg",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/2/1/21a0966f-622c-47d6-a383-f1db19dfb01c.jpg",
 	"ids": ["41"],
 	"ci": "RG",
 	"comment": "Gruul Creatures"

@@ -38,6 +38,7 @@ public struct DeckParser {
 	public struct CardCount: Hashable, Equatable {
 		public var identifier: MTGCardIdentifier
 		public var count: Int
+		public var alter: URL?
 	}
 	
 	public static func parse(deckList: String, autofix: Bool) -> [CardGroup] {
@@ -235,16 +236,27 @@ public struct DeckParser {
 				}
 				
 				let count = groups[0].value
+				var alterURL: URL?
 				let name: String = {
 					let value = groups[1].value
 					if let index = value.lastIndex(of: "#") {
+						let commentIndex = value.index(after: index)
+						if value.indices.contains(commentIndex) {
+							let comment = String(value.suffix(from: commentIndex)).trimmingCharacters(in: .whitespacesAndNewlines)
+							let commentComponents = comment.components(separatedBy: .whitespacesAndNewlines)
+							alterURL = commentComponents.first(where: {
+								guard let url = URL(string: $0), ["jpg", "jpeg", "png"].contains(url.pathExtension.lowercased()) else { return false }
+								return true
+							}).flatMap(URL.init(string:))
+						}
 						return String(value.prefix(upTo: index)).trimmingCharacters(in: .whitespacesAndNewlines)
 					} else {
 						return value
 					}
 				}()
 				guard let number = Int(count) else { continue }
-				let cardCount = CardCount(identifier: .name(name), count: number)
+				var cardCount = CardCount(identifier: .name(name), count: number)
+				cardCount.alter = alterURL
 				cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
 			case 3:
 				if cardGroups.isEmpty {
@@ -253,9 +265,19 @@ public struct DeckParser {
 				}
 				
 				let count = groups[0].value
+				var alterURL: URL?
 				let name: String = {
 					let value = groups[2].value
 					if let index = value.lastIndex(of: "#") {
+						let commentIndex = value.index(after: index)
+						if value.indices.contains(commentIndex) {
+							let comment = String(value.suffix(from: commentIndex)).trimmingCharacters(in: .whitespacesAndNewlines)
+							let commentComponents = comment.components(separatedBy: .whitespacesAndNewlines)
+							alterURL = commentComponents.first(where: {
+								guard let url = URL(string: $0), ["jpg", "jpeg", "png"].contains(url.pathExtension.lowercased()) else { return false }
+								return true
+							}).flatMap(URL.init(string:))
+						}
 						return String(value.prefix(upTo: index)).trimmingCharacters(in: .whitespacesAndNewlines)
 					} else {
 						return value
@@ -267,7 +289,7 @@ public struct DeckParser {
 				let set = setComponents[0]
 				
 				guard let number = Int(count) else { continue }
-				let cardCount: CardCount
+				var cardCount: CardCount
 				
 				if setComponents.count > 1, let collectorNumber = setComponents.last {
 					cardCount = CardCount(identifier: .collectorNumberSet(collectorNumber: collectorNumber, set: set, name: name), count: number)
@@ -275,6 +297,7 @@ public struct DeckParser {
 					cardCount = CardCount(identifier: .nameSet(name: name, set: set), count: number)
 				}
 				
+				cardCount.alter = alterURL
 				cardGroups[cardGroups.count-1].cardCounts.append(cardCount)
 			default:
 				break

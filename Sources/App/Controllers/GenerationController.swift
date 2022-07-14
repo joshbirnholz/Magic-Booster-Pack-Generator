@@ -292,34 +292,6 @@ final class GeneratorController {
 			
 			guard let decklistURL = components.url else { throw PackError.invalidURL }
 			
-			let page = (try? Data(contentsOf: deckURL)).flatMap { String(data: $0, encoding: .utf8) }
-			
-//			if let page = page,
-//			   let deckInfoStartRange = page.range(of: "init_deck_data"),
-//			   let deckInfoEndRange = page.range(of: "deck_display();") {
-//
-//				let range = deckInfoStartRange.lowerBound..<deckInfoEndRange.upperBound
-//				var substring = page.substring(with: range)
-//				substring = substring
-//					.replacingOccurrences(of: "init_deck_data(", with: "")
-//					.replacingOccurrences(of: ", false);deck_display();", with: "")
-//			}
-			
-			let commentCustomOverrides: String? = {
-				guard let page = page else { return nil }
-				
-				if let comment = page.matches(forRegex: #"<p>!custom=(.+)<\/p>"#).first?.groups.first?.value.trimmingCharacters(in: .whitespacesAndNewlines), !comment.isEmpty {
-					return comment
-				}
-				
-				return nil
-			}()
-			
-			let alters: [String] = page?.matches(forRegex: #"<a href="(.+)">alter:(.+)<\/a>"#).compactMap { match -> (String, URL)? in
-				guard match.groups.count == 2, let url = URL(string: match.groups[0].value) else { return nil }
-				return (match.groups[1].value, url)
-			}.compactMap { "\($0.0):\($0.1.absoluteString)" } ?? []
-			
 			DispatchQueue.global(qos: .userInitiated).async {
 				let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
 				URLSession.shared.dataTask(with: request) { data, response, error in
@@ -351,7 +323,7 @@ final class GeneratorController {
 						DispatchQueue(label: "decklist").async {
 							do {
 								
-								let result: String = try deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, customOverrides: [commentCustomOverrides ?? "", customOverrides] + alters)
+								let result: String = try deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, customOverrides: [customOverrides])
 								print("Success")
 								promise.succeed(result)
 							} catch let error as DebuggableError {

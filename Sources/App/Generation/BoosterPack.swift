@@ -5566,6 +5566,44 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		
 	}
 	
+	for group in parsed {
+		for cardCount in group.cardCounts {
+			guard let alterURL = cardCount.alter else { continue }
+			let indices: [Int] = mtgCards.enumerated().compactMap { index, card in
+				switch cardCount.identifier {
+				case .id(let id):
+					if card.scryfallID == id {
+						return index
+					}
+				case .name(let name):
+					let name = name.lowercased()
+					if card.name?.lowercased() == name || card.cardFaces?.contains(where: { $0.name?.lowercased() == name }) == true {
+						return index
+					}
+				case .nameSet(name: let name, set: let set):
+					let name = name.lowercased()
+					if (card.name?.lowercased() == name || card.cardFaces?.contains(where: { $0.name?.lowercased() == name }) == true) && card.set.lowercased() == set.lowercased() {
+						return index
+					}
+				case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set, _):
+					if card.collectorNumber.lowercased() == collectorNumber.lowercased() && card.set.lowercased() == set.lowercased() {
+						return index
+					}
+				default:
+					break
+				}
+				return nil
+			}
+			
+			for index in indices {
+				var imageURIs = mtgCards[index].imageUris ?? [:]
+				imageURIs["normal"] = alterURL
+				imageURIs["large"] = alterURL
+				mtgCards[index].imageUris = imageURIs
+			}
+		}
+	}
+	
 	for identifier in customIdentifiers {
 		guard let card = CustomCards.shared.card(with: identifier) else {
 			notFound.append(identifier)
@@ -5741,6 +5779,45 @@ extension Collection where Element == Swiftfall.Card {
 				return (card.name?.lowercased() == name || card.cardFaces?.contains(where: { $0.name?.lowercased() == name }) == true) && card.set.lowercased() == set.lowercased()
 			case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set, _):
 				return card.collectorNumber.lowercased() == collectorNumber.lowercased() && card.set.lowercased() == set.lowercased()
+			}
+		}
+		
+		if let result = foundCard {
+			return result
+		} else if case .nameSet(let name, let set) = identifier, set.lowercased() == "dar" {
+			return self[.nameSet(name: name, set: "dom")]
+		} else if case .collectorNumberSet(let collectorNumber, let set, let name) = identifier, let fixedSet = fixedSetCodes[set.lowercased()] {
+			return self[.collectorNumberSet(collectorNumber: collectorNumber, set: fixedSet, name: name)]
+		} else {
+			return nil
+		}
+	}
+}
+
+extension Collection where Element == MTGCard {
+	subscript(_ identifier: MTGCardIdentifier) -> MTGCard? {
+		let foundCard = first { (card) -> Bool in
+			switch identifier {
+			case .id(let id):
+				return card.scryfallID == id
+//			case .mtgoID(let id):
+//				return card.mtgoID == id
+//			case .multiverseID(let id):
+//				return card.multiverseIds.contains(id)
+//			case .oracleID(let id):
+//				return card.oracleId == id
+//			case .illustrationID(let id):
+//				return card.illustrationId == id.uuidString
+			case .name(let name):
+				let name = name.lowercased()
+				return card.name?.lowercased() == name || card.cardFaces?.contains(where: { $0.name?.lowercased() == name }) == true
+			case .nameSet(name: let name, set: let set):
+				let name = name.lowercased()
+				return (card.name?.lowercased() == name || card.cardFaces?.contains(where: { $0.name?.lowercased() == name }) == true) && card.set.lowercased() == set.lowercased()
+			case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set, _):
+				return card.collectorNumber.lowercased() == collectorNumber.lowercased() && card.set.lowercased() == set.lowercased()
+			default:
+				return false
 			}
 		}
 		

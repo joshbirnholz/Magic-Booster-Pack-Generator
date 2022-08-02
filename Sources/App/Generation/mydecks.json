@@ -37,6 +37,13 @@
 	  "comment": "Treasure"
   },
   {
+	"url": "https://deckstats.net/decks/149419/2656416-captain-n-ghathrod",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/a/7aa652e2-caa6-4b48-bd04-67354380a761.jpg",
+	"ids": ["44"],
+	"ci": "UB",
+	"comment": "Mill, reanimation"
+  },
+  {
 	"url": "https://deckstats.net/decks/149419/1960862-crosis-discard",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/3/4/349e598a-aa12-44b7-b9de-067c9b85fcec.jpg",
 	"ids": ["5"],

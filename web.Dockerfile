@@ -1,5 +1,5 @@
 # You can set the Swift version to what you need for your app. Versions can be found here: https://hub.docker.com/_/swift
-FROM swift:5.1.1 as builder
+FROM swift:5.2 as builder
 
 # For local build, add `--build-arg env=docker`
 # In your application, you can use `Environment.custom(name: "docker")` to check if you're in this env
@@ -24,9 +24,13 @@ WORKDIR /app
 COPY --from=builder /build/bin/Run .
 COPY --from=builder /build/lib/* /usr/lib/
 # Uncomment the next line if you need to load resources from the `Public` directory
-#COPY --from=builder /app/Public ./Public
+COPY --from=builder /app/Public ./Public
+COPY --from=builder /app/Sources ./Sources
 # Uncomment the next line if you are using Leaf
 #COPY --from=builder /app/Resources ./Resources
 ENV ENVIRONMENT=$env
 
-ENTRYPOINT ./Run serve --env $ENVIRONMENT --hostname 0.0.0.0 --port 80
+#ENTRYPOINT ./Run serve --env $ENVIRONMENT --hostname 0.0.0.0 --port 80
+EXPOSE 8080
+ENTRYPOINT ["./Run"]
+CMD ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "8080"]

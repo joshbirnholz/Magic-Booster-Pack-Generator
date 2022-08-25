@@ -569,6 +569,25 @@ internal class Swiftfall {
 		
 		public let lang: Language
 		
+		public enum Finish: String, Codable, Equatable, Hashable, CaseIterable, Comparable {
+			public static func < (lhs: Swiftfall.Card.Finish, rhs: Swiftfall.Card.Finish) -> Bool {
+				return lhs.value < rhs.value
+			}
+			
+			case nonfoil, foil, etched, glossy
+			
+			public var value: Int {
+				switch self {
+				case .nonfoil: return 0
+				case .foil: return 1
+				case .etched: return 2
+				case .glossy: return 3
+				}
+			}
+		}
+		
+		public let finishes: [Finish]
+		
 		/// True if this printing exists in a foil version.
 		public let foil: Bool
 		

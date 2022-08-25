@@ -122,6 +122,7 @@ extension MTGCard {
 				  isNonFoilAvailable: scryfallCard.nonfoil,
 				  isPromo: scryfallCard.promo,
 				  isFoundInBoosters: scryfallCard.booster,
+				  finishes: scryfallCard.finishes,
 				  promoTypes: scryfallCard.promoTypes,
 				  language: Language(rawValue: scryfallCard.lang.rawValue)!,
 				  releaseDate: date,

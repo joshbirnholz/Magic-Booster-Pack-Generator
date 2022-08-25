@@ -149,6 +149,7 @@ public struct MTGCard: Codable, Equatable, Hashable {
 	public var isNonFoilAvailable: Bool
 	public var isPromo: Bool
 	public var isFoundInBoosters: Bool
+	var finishes: [Swiftfall.Card.Finish]
 	
 	public var promoTypes: [String]?
 	

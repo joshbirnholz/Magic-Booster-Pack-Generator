@@ -52,6 +52,7 @@ extension MTGCard {
 				  isNonFoilAvailable: true,
 				  isPromo: false,
 				  isFoundInBoosters: true,
+				  finishes: [.nonfoil],
 				  language: .english,
 				  releaseDate: nil,
 				  imageUris: imageUris)

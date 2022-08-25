@@ -1888,7 +1888,7 @@ func generateSuperJumpPack() throws -> CardCollection {
 		.replacingOccurrences(of: "3", with: "III")
 		.replacingOccurrences(of: "2", with: "II")
 		.replacingOccurrences(of: "1", with: "I")
-	let faceCard = MTGCard(name: frontCardName, layout: "token", frame: "", isFullArt: true, collectorNumber: "\(number)", set: "fsjm", rarity: .common, scryfallCardBackID: nil, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, language: .english, imageUris: ["normal": frontURL])
+	let faceCard = MTGCard(name: frontCardName, layout: "token", frame: "", isFullArt: true, collectorNumber: "\(number)", set: "fsjm", rarity: .common, scryfallCardBackID: nil, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], language: .english, imageUris: ["normal": frontURL])
 	collection.append(faceCard)
 	
 	for cardCount in cardCounts.reversed() {
@@ -3974,7 +3974,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			return try generate(input: .mtgCardJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, autofixDecklist: autofixDecklist, outputFormat: outputFormat, seed: seed)
 		}
 		if inputString.lowercased() == "sjm" {
-			mtgCards = [MTGCard.init(layout: "", frame: "", isFullArt: false, collectorNumber: "", set: "", rarity: .common, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, language: .english)]
+			mtgCards = [MTGCard.init(layout: "", frame: "", isFullArt: false, collectorNumber: "", set: "", rarity: .common, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], language: .english)]
 			setName = "SuperJump!"
 			setCode = "SJM"
 			tokens = []
@@ -4014,7 +4014,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 	
 	let mode: Mode = {
 		switch setCode?.lowercased() {
-		case "dom": return .dominaria
+		case "dom", "dmu": return .dominaria
 		case "war": return .warOfTheSpark
 		case "s99": return .twoLands
 		case "fut": return .futureSight
@@ -4383,6 +4383,16 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			var card = card
 			if cardIsShowcase(card) {
 				card.isFoundInBoosters = true
+			}
+			return card
+		}
+	}
+	
+	if setCode == "2x2" {
+		mainCards = mainCards.map { card in
+			var card = card
+			if card.finishes == [.etched] {
+				card.isFoundInBoosters = false
 			}
 			return card
 		}
@@ -5686,7 +5696,7 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 	}
 	
 	if cards.contains(where: { $0.name == "Ophiomancer" }) {
-		let customSnakeToken = MTGCard(power: "1", toughness: "1", oracleText: "Deathtouch", name: "Snake", convertedManaCost: 0, layout: "token", frame: "2015", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: .black, isFullArt: false, allParts: [MTGCard.RelatedCard(scryfallID: UUID(uuidString: "66d80dd1-b944-4cb2-8578-b4dbcabbbc1e"), component: .token, name: "Ophiomancer", typeLine: "Creature — Human Shaman", url: URL(string: "https://scryfall.com/card/c13/84/ophiomancer"))], collectorNumber: "1", set: "TC13", colors: [.black], keywords: ["Deathtouch"], artist: "Maria Trepalina", watermark: nil, rarity: .common, scryfallCardBackID: UUID(uuidString: "0AEEBAF5-8C7D-4636-9E82-8C27447861F7")!, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, promoTypes: nil, language: .english, releaseDate: nil, imageUris: ["normal": URL(string: "https://i.imgur.com/Q2uGSvH.jpg")!])
+		let customSnakeToken = MTGCard(power: "1", toughness: "1", oracleText: "Deathtouch", name: "Snake", convertedManaCost: 0, layout: "token", frame: "2015", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: .black, isFullArt: false, allParts: [MTGCard.RelatedCard(scryfallID: UUID(uuidString: "66d80dd1-b944-4cb2-8578-b4dbcabbbc1e"), component: .token, name: "Ophiomancer", typeLine: "Creature — Human Shaman", url: URL(string: "https://scryfall.com/card/c13/84/ophiomancer"))], collectorNumber: "1", set: "TC13", colors: [.black], keywords: ["Deathtouch"], artist: "Maria Trepalina", watermark: nil, rarity: .common, scryfallCardBackID: UUID(uuidString: "0AEEBAF5-8C7D-4636-9E82-8C27447861F7")!, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], promoTypes: nil, language: .english, releaseDate: nil, imageUris: ["normal": URL(string: "https://i.imgur.com/Q2uGSvH.jpg")!])
 		tokens.append(customSnakeToken)
 	}
 	

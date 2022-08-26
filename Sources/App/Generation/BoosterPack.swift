@@ -451,7 +451,8 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 //	}
 	var legendaryOkay: Bool {
 		guard mode == .dominaria else { return true }
-		return pack.mtgCards.contains { $0.typeLine?.lowercased().contains("legendary") == true && $0.typeLine?.lowercased().contains("creature") == true }
+		let legendCount = pack.mtgCards.filter { $0.typeLine?.lowercased().contains("legendary") == true && $0.typeLine?.lowercased().contains("creature") == true }.count
+		return legendCount == 1
 	}
 	var futureSightOkay: Bool {
 		guard mode == .futureSight else { return true }
@@ -4292,7 +4293,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		case "mid", "vow":
 			// Use regular, non-Eternal Night basic lands that aren't found in boosters for MID.
 			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.promoTypes.contains("bundle") }
-		case "neo":
+		case "neo", "dmu":
 			// Use regular, non-ukiyo-e basic lands that aren't found in boosters for MID.
 			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && !$0.isFullArt }
 		case _ where Set(defaultBasicLands.compactMap { $0.name }).count == 5:

@@ -47,25 +47,4 @@ public func routes(_ app: Application) throws {
 	let scryfallController = ScryfallBridgeController()
 
 	app.post("sets", use: scryfallController.getSets)
-	
-	do {
-		let directory = DirectoryConfiguration.detect()
-		let configDir = "Sources/App/Generation"
-		let customsetcode = "HLW"
-		let url = URL(fileURLWithPath: directory.workingDirectory)
-			.appendingPathComponent(configDir, isDirectory: true)
-			.appendingPathComponent("\(customsetcode).json", isDirectory: false)
-		let string = try String(contentsOf: url)
-		let cards = try cardsFromCockatriceJSON(json: string)
-
-		let encoder = JSONEncoder()
-		encoder.outputFormatting = .prettyPrinted
-		let data = try encoder.encode(cards.cards)
-		print("###START###")
-		let outputString = String(data: data, encoding: .utf8)!
-		print(outputString)
-		print("###END###")
-	} catch {
-		print(error)
-	}
 }

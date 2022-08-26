@@ -343,21 +343,21 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		}
 	}
 	
-	let shouldIncludeShowcaseCommonOrUncommon: Bool = {
-		if mode == .originalShowcase {
-			return (1...9).randomElement() == 1
-		} else {
-			return (1...3).randomElement() == 1
-		}
-	}()
-	
-	let shouldIncludeShowcaseRareOrMythic: Bool = {
-		if mode == .originalShowcase {
-			return (1...27).randomElement() == 1
-		} else {
-			return (1...29).randomElement()! <= 2
-		}
-	}()
+//	let shouldIncludeShowcaseCommonOrUncommon: Bool = {
+//		if mode == .originalShowcase {
+//			return (1...9).randomElement() == 1
+//		} else {
+//			return (1...3).randomElement() == 1
+//		}
+//	}()
+//
+//	let shouldIncludeShowcaseRareOrMythic: Bool = {
+//		if mode == .originalShowcase {
+//			return (1...27).randomElement() == 1
+//		} else {
+//			return (1...29).randomElement()! <= 2
+//		}
+//	}()
 	
 //	let includedShowcaseRarity: ShowcaseRarity? = {
 //		guard showcaseRarities.values.joined().contains(where: \.isFoundInBoosters) else { return nil }
@@ -451,8 +451,8 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 //	}
 	var legendaryOkay: Bool {
 		guard mode == .dominaria else { return true }
-		let legendCount = pack.mtgCards.filter { $0.typeLine?.lowercased().contains("legendary") == true && $0.typeLine?.lowercased().contains("creature") == true }.count
-		return legendCount == 1
+		let nonfoilLegendCount = pack.cards.filter { !$0.isFoil && $0.card.typeLine?.lowercased().contains("legendary") == true && $0.card.typeLine?.lowercased().contains("creature") == true }.count
+		return nonfoilLegendCount == 1
 	}
 	var futureSightOkay: Bool {
 		guard mode == .futureSight else { return true }
@@ -662,7 +662,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 				}
 			}
 			
-			if shouldIncludeShowcaseRareOrMythic, let card = showcareRareOrMythic {
+			/* if shouldIncludeShowcaseRareOrMythic, let card = showcareRareOrMythic {
 				pack.insert(card, at: 0)
 				
 				print("Including showcase \(card.rarity.rawValue): \(card.name ?? "")")
@@ -670,7 +670,8 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 				if let partner = card.partner(from: rarities.values.joined()) {
 					pack.insert(partner, at: 0)
 				}
-			} else if includeMythic, let mythic = rareSlotRarities[.mythic]?.randomElement() {
+			} else */
+			if includeMythic, let mythic = rareSlotRarities[.mythic]?.randomElement() {
 				pack.insert(mythic, at: 0)
 				
 				if let partner = mythic.partner(from: rarities.values.joined()) {
@@ -711,15 +712,15 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			pack.insert(card, at: 0)
 		}
 		
-		let showcaseCommonOrUncommon: MTGCard? = {
-			guard shouldIncludeShowcaseCommonOrUncommon else { return nil }
-			
-			let allShowcaseCommonsAndUncommons = [showcaseRarities[.common], showcaseRarities[.uncommon]].compactMap { $0 }.joined()
-			let availableShowcaseCommonAndUncommonNames = Set(allShowcaseCommonsAndUncommons.compactMap { $0.name }) // This makes cards with multiple showcase styles equally likely to appear. Then, a random showcase card with the chosen name is selected.
-			
-			guard let chosenName = availableShowcaseCommonAndUncommonNames.randomElement() else { return nil }
-			return allShowcaseCommonsAndUncommons.filter { $0.name == chosenName }.randomElement()
-		}()
+//		let showcaseCommonOrUncommon: MTGCard? = {
+//			guard shouldIncludeShowcaseCommonOrUncommon else { return nil }
+//
+//			let allShowcaseCommonsAndUncommons = [showcaseRarities[.common], showcaseRarities[.uncommon]].compactMap { $0 }.joined()
+//			let availableShowcaseCommonAndUncommonNames = Set(allShowcaseCommonsAndUncommons.compactMap { $0.oracleID }) // This makes cards with multiple showcase styles equally likely to appear. Then, a random showcase card with the chosen name is selected.
+//
+//			guard let chosenName = availableShowcaseCommonAndUncommonNames.randomElement() else { return nil }
+//			return allShowcaseCommonsAndUncommons.filter { $0.name == chosenName }.randomElement()
+//		}()
 		
 		// TODO: Check actual distribution of lessons in the lesson slot. Does each lesson card appear as frequently as the others, or does the rarity matter?
 		if mode == .strixhaven {
@@ -767,9 +768,9 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		var uncommons: [MTGCard] = {
 			var uncommons: [MTGCard] = []
 			
-			if let showcaseCommonOrUncommon = showcaseCommonOrUncommon, showcaseCommonOrUncommon.rarity == .uncommon {
-				uncommons.append(showcaseCommonOrUncommon)
-			}
+//			if let showcaseCommonOrUncommon = showcaseCommonOrUncommon, showcaseCommonOrUncommon.rarity == .uncommon {
+//				uncommons.append(showcaseCommonOrUncommon)
+//			}
 			
 			while uncommons.count < uncommonCount {
 				var card: MTGCard
@@ -846,15 +847,15 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			if !tokens.isEmpty {
 				count -= 1
 			}
-			if showcaseCommonOrUncommon?.rarity == .common {
-				count -= 1
-			}
+//			if showcaseCommonOrUncommon?.rarity == .common {
+//				count -= 1
+//			}
 			return count
 		}()
 		var commons: [MTGCard] = []
-		if let showcaseCommonOrUncommon = showcaseCommonOrUncommon, showcaseCommonOrUncommon.rarity == .common {
-			commons.append(showcaseCommonOrUncommon)
-		}
+//		if let showcaseCommonOrUncommon = showcaseCommonOrUncommon, showcaseCommonOrUncommon.rarity == .common {
+//			commons.append(showcaseCommonOrUncommon)
+//		}
 		if let chosenCommons = rarities[.common]?.choose(commonCount) {
 			commons.append(contentsOf: chosenCommons)
 		}
@@ -965,7 +966,24 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 //			}
 //		}
 		
-		// TODO: Move gauranteed legendary to the back of the pack for Dominaria. (Currently it just checks if at least one card in the pack is legendary.)
+		// Move gauranteed legendary to the back of the pack for Dominaria and Dominaria United
+		if mode == .dominaria && pack.count >= 2, let legendaryIndex = pack.cards.firstIndex(where:{
+			!$0.isFoil && $0.card.typeLine?.lowercased().contains("legendary") == true && $0.card.typeLine?.lowercased().contains("creature") == true }) {
+			let selection = pack.cards.remove(at: legendaryIndex)
+			pack.insert(selection, at: pack.count-2)
+		}
+		
+		// Showcases 1/3 of the time
+		pack.cards = pack.cards.map { selection in
+			var selection = selection
+			let showcaseVariants = showcaseRarities.values.joined().filter {
+				$0.oracleID != nil && $0.oracleID == selection.card.oracleID
+			}
+			if !showcaseVariants.isEmpty && (1...3).randomElement()! == 1, let variant = showcaseVariants.randomElement() {
+				selection.card = variant
+			}
+			return selection
+		}
 		
 //		if includeExendedArt && !extendedArt.isEmpty {
 //			let extendedArtCards: [(Int, MTGCard)] = pack.enumerated().compactMap { (index, card) in
@@ -993,7 +1011,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 //			problems.append("No showcase card")
 //		}
 		if !legendaryOkay {
-			problems.append("No legendary card")
+			problems.append("Incorrect number of legendary creatures")
 		}
 		
 		if !midDFCOkay {
@@ -1110,6 +1128,10 @@ struct CardCollection {
 	
 	var mtgCards: [MTGCard] {
 		cards.map(\.card)
+	}
+	
+	mutating func insert(_ selection: CardSelection, at index: Int) {
+		cards.insert(selection, at: index)
 	}
 	
 	mutating func insert(_ card: MTGCard, at index: Int, isFoil: Bool = false) {
@@ -4769,7 +4791,7 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 	
 	cards.removeAll(where: { $0.typeLine?.lowercased().contains("basic") == true || $0.layout == "token" || $0.layout == "double_faced_token" })
 	
-	let commanders = cards.separateAll(where: { $0.typeLine?.lowercased().contains("legendary") == true && $0.typeLine?.lowercased().contains("creature") == true })
+	let commanders = cards.separateAll(where: { $0.typeLine?.lowercased().contains("legendary") == true && ($0.typeLine?.lowercased().contains("creature") == true || $0.typeLine?.lowercased().contains("planeswalker") == true) })
 	
 	let backgrounds = cards.separateAll(where: { $0.typeLine?.lowercased().contains("legendary") == true && $0.typeLine?.lowercased().contains("background") == true })
 	

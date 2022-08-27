@@ -57,6 +57,8 @@ extension PackError: DebuggableError {
 			return "An internal server error occurred while attempting to load the following cards: \(names)"
 		case .missingSet:
 			return "There was no specified set."
+		case .failedToBuildPack:
+			return "A problem occured trying to select cards for the pack."
 		}
 	}
 	

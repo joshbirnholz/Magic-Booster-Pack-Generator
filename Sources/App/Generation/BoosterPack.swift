@@ -32,6 +32,7 @@ enum PackError: Error {
 	case noCardFound(String)
 	case couldNotLoadCards(String)
 	case missingSet
+	case failedToBuildPack
 	
 	var code: Int {
 		switch self {
@@ -65,6 +66,8 @@ enum PackError: Error {
 			return 13
 		case .missingSet:
 			return 14
+		case .failedToBuildPack:
+			return 15
 		}
 	}
 }
@@ -250,7 +253,7 @@ extension Array {
 	}
 }
 
-func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MTGCard.Rarity: [MTGCard]], basicLands: [MTGCard], tokens: [MTGCard], showcaseRarities: [MTGCard.Rarity: [MTGCard]], borderless: [MTGCard], extendedArt: [MTGCard], meldResults: [MTGCard], mode: Mode, includeExtendedArt: Bool, masterpieceCards: [MTGCard], foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, seed: Seed? = nil) -> CardCollection {
+func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MTGCard.Rarity: [MTGCard]], basicLands: [MTGCard], tokens: [MTGCard], showcaseRarities: [MTGCard.Rarity: [MTGCard]], borderless: [MTGCard], extendedArt: [MTGCard], meldResults: [MTGCard], mode: Mode, includeExtendedArt: Bool, masterpieceCards: [MTGCard], foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, seed: Seed? = nil) throws -> CardCollection {
 	let customSlotRarities = customSlotRarities.filtered(for: seed)
 	let basicLands = basicLands.filtered(for: seed)
 	let borderless = borderless.filtered(for: seed)
@@ -566,7 +569,14 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		return doubleFacedRaresAndMythics.randomElement()?.layout == "transform"
 	}()
 	
+	var tries = 0
+	
 	repeat {
+		if tries >= 200 {
+			throw PackError.failedToBuildPack
+		}
+		
+		tries += 1
 		pack.removeAll()
 		
 		let lands: ArraySlice<MTGCard> = {
@@ -4711,7 +4721,7 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
 	
-	let packs: [CardCollection] = (1...count).map { _ in generatePack(rarities: processed.rarities,
+	let packs: [CardCollection] = try (1...count).map { _ in try generatePack(rarities: processed.rarities,
 																 customSlotRarities: processed.customSlotRarities,
 																 basicLands: processed.basicLandsSlotCards,
 																 tokens: includeTokens ? tokens + processed.tokens : [],
@@ -4770,7 +4780,7 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
 	
-	var cards: [MTGCard] = Array((1...count).map { _ in generatePack(rarities: processed.rarities,
+	var cards: [MTGCard] = try Array((1...count).map { _ in try generatePack(rarities: processed.rarities,
 													customSlotRarities: processed.customSlotRarities,
 													basicLands: processed.basicLandsSlotCards,
 													tokens: includeTokens ? tokens + processed.tokens : [],
@@ -4915,7 +4925,7 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
 	
-	let pack = generatePack(rarities: processed.rarities,
+	let pack = try generatePack(rarities: processed.rarities,
 							customSlotRarities: processed.customSlotRarities,
 							basicLands: processed.basicLandsSlotCards,
 							tokens: includeTokens ? tokens + processed.tokens : [],
@@ -4979,7 +4989,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 		
 		let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: true)
 		
-		let packs: [CardCollection] = (1...boosterCount).map { value in generatePack(
+		let packs: [CardCollection] = try (1...boosterCount).map { value in try generatePack(
 			rarities: processed.rarities,
 			customSlotRarities: processed.customSlotRarities,
 			basicLands: processed.basicLandsSlotCards,

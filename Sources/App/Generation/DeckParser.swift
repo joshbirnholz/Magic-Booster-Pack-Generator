@@ -238,7 +238,12 @@ public struct DeckParser {
 				let count = groups[0].value
 				var alterURL: URL?
 				let name: String = {
-					let value = groups[1].value
+					var value = groups[1].value
+					if let index = value.firstIndex(of: "<") {
+						value.removeSubrange(index...)
+						value = value.trimmingCharacters(in: .whitespacesAndNewlines)
+					}
+					
 					if let index = value.lastIndex(of: "#") {
 						let commentIndex = value.index(after: index)
 						if value.indices.contains(commentIndex) {
@@ -267,7 +272,12 @@ public struct DeckParser {
 				let count = groups[0].value
 				var alterURL: URL?
 				let name: String = {
-					let value = groups[2].value
+					var value = groups[2].value
+					if let index = value.firstIndex(of: "<") {
+						value.removeSubrange(index...)
+						value = value.trimmingCharacters(in: .whitespacesAndNewlines)
+					}
+					
 					if let index = value.lastIndex(of: "#") {
 						let commentIndex = value.index(after: index)
 						if value.indices.contains(commentIndex) {

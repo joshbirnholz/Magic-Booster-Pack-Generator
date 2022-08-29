@@ -564,6 +564,9 @@ function locationForDeck(deck) {
 	return location;
 }
 
+var deckResponse;
+var deckFilter = [];
+
 function loadDecks() {
 	var url = "decks";
 	
@@ -575,8 +578,8 @@ function loadDecks() {
 		processData: false,
 		method: "GET",
 		success: function(response) {
-			console.log("success");
 			
+			deckResponse = response;
 			var booster = response;
 			console.log(booster);
 			const urlSuffix = "#show__spoiler";
@@ -592,82 +595,7 @@ function loadDecks() {
 				}
 			}
 			
-			var table = document.getElementById("cardtable");
-			
-			var dataCount = 0;
-			var colCount = 2;
-			var row = document.createElement("tr");
-			table.appendChild(row);
-			table.style.borderSpacing = "10px";
-			
-			var decks = booster.filter(deck => deck.type === undefined);
-			var duals = booster.filter(deck => deck.type !== undefined);
-			decks.push(...duals);
-			
-			for(var i=0; i < decks.length; i++) {
-				var element = decks[i];
-				
-				var data = document.createElement("td");
-				var location = locationForDeck(element);
-				
-				var html = "<div class='container'><a style='text-decoration: none;' href='" + location + "'>";
-				
-				html += "<img src='" + element.front + "' style='";
-				
-				if (element.back !== undefined) {
-					html += "width:49%;";
-				}
-				
-				html += "border-radius:10px;max-width:189px;max-height:264px' class='image'>";
-				
-				if (element.back !== undefined) {
-					if (dataCount > 0) {
-						table.appendChild(row);
-						row = document.createElement("tr");
-						table.appendChild(row);
-						dataCount = 0;
-					}
-					
-					data.colSpan = 2;
-					dataCount += 1;
-					data.style.padding = "8px";
-					data.style.borderRadius = "10px";
-					data.style.backgroundColor = "lightGray";
-					data.style.border = "2px solid #BBBBBB";
-					html += " <img src='" + element.back + "' style='width:49%;border-radius:10px;max-width:189px;max-height:264px' class='image'>";
-					html += "</a></div>";
-					
-					if (element.type == "partners") {
-						html += "<div style='text-align:center;font-style:italic;'>Partners</div>";
-					} else if (element.type == "dfc") {
-						html += "<div style='width:50%; display:inline-block;text-align:center;font-style: italic;'>Front</div><div style='width:50%; display:inline-block;text-align:center;font-style:italic;'>Back</div>";
-					}
-				} else {
-					html += "</a></div>";
-					
-					if (element.comment !== undefined) {
-						html += "<div style='text-align:center;'>" + element.comment + "</div>";
-					}
-				}
-				
-				data.innerHTML = html;
-				
-				row.appendChild(data);
-				dataCount += 1;
-				
-				if (dataCount >= colCount) {
-					table.appendChild(row);
-					row = document.createElement("tr");
-					table.appendChild(row);
-					dataCount = 0;
-				}
-			}
-			
-			while (dataCount < colCount) {
-				var data = document.createElement("td");
-				row.appendChild(data);
-				dataCount += 1;
-			}
+			setupDecksTable();
 		},
 		error: function(xhr, status, error) {
 			console.log("error");
@@ -678,6 +606,140 @@ function loadDecks() {
 			alert(error);
 		}
 	})
+}
+
+function setupDecksTable() {
+	updateChecks();
+	
+	var exact = document.getElementById("exactCheck").checked;
+	
+	var booster = deckResponse.filter((deck) => {
+		
+		if (!exact && deckFilter.length == 0) {
+			return true;
+		}
+		
+		var containedCount = 0;
+		
+		for (var i = 0; i < deck.ci.length; i++) {
+			var char = deck.ci[i];
+			if (deckFilter.includes(char)) {
+				containedCount += 1;
+			} else if (exact) {
+				return false;
+			}
+		}
+		
+		return containedCount >= deckFilter.length;
+	});
+	
+	var table = document.getElementById("cardtable");
+	
+	table.innerHTML = "";
+	
+	var dataCount = 0;
+	var colCount = 2;
+	var row = document.createElement("tr");
+	table.appendChild(row);
+	table.style.borderSpacing = "10px";
+	
+	var decks = booster.filter(deck => deck.type === undefined);
+	var duals = booster.filter(deck => deck.type !== undefined);
+	decks.push(...duals);
+	
+	for(var i=0; i < decks.length; i++) {
+		var element = decks[i];
+		
+		var data = document.createElement("td");
+		var location = locationForDeck(element);
+		
+		var html = "<div class='container'><a style='text-decoration: none;' href='" + location + "'>";
+		
+		html += "<img src='" + element.front + "' style='";
+		
+		if (element.back !== undefined) {
+			html += "width:49%;";
+		}
+		
+		html += "border-radius:10px;max-width:189px;max-height:264px' class='image'>";
+		
+		if (element.back !== undefined) {
+			if (dataCount > 0) {
+				table.appendChild(row);
+				row = document.createElement("tr");
+				table.appendChild(row);
+				dataCount = 0;
+			}
+			
+			data.colSpan = 2;
+			dataCount += 1;
+			data.style.padding = "8px";
+			data.style.borderRadius = "10px";
+			data.style.backgroundColor = "lightGray";
+			data.style.border = "2px solid #BBBBBB";
+			html += " <img src='" + element.back + "' style='width:49%;border-radius:10px;max-width:189px;max-height:264px' class='image'>";
+			html += "</a></div>";
+			
+			if (element.type == "partners") {
+				html += "<div style='text-align:center;font-style:italic;'>Partners</div>";
+			} else if (element.type == "dfc") {
+				html += "<div style='width:50%; display:inline-block;text-align:center;font-style: italic;'>Front</div><div style='width:50%; display:inline-block;text-align:center;font-style:italic;'>Back</div>";
+			}
+		} else {
+			html += "</a></div>";
+			
+			if (element.comment !== undefined) {
+				html += "<div style='text-align:center;'>" + element.comment + "</div>";
+			}
+		}
+		
+		data.innerHTML = html;
+		
+		row.appendChild(data);
+		dataCount += 1;
+		
+		if (dataCount >= colCount) {
+			table.appendChild(row);
+			row = document.createElement("tr");
+			table.appendChild(row);
+			dataCount = 0;
+		}
+	}
+	
+	while (dataCount < colCount) {
+		var data = document.createElement("td");
+		row.appendChild(data);
+		dataCount += 1;
+	}
+}
+
+function filterToggle(color) {
+	var index = deckFilter.indexOf(color);
+	
+	if (index == -1) {
+		deckFilter.push(color);
+	} else {
+		deckFilter.splice(index, 1);
+	}
+	
+	setupDecksTable();
+}
+
+function updateChecks() {
+	var colors = ["W", "U", "B", "R", "G"];
+	
+	for (var i = 0; i < colors.length; i++) {
+		var color = colors[i];
+		var id = "check" + color;
+		var element = document.getElementById(id);
+		console.log(id);
+		
+		if (deckFilter.includes(color)) {
+			element.style.opacity = 1;
+		} else {
+			element.style.opacity = 0.3;
+		}
+	}
 }
 
 function addCustomCard(number) {

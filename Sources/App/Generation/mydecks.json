@@ -23,13 +23,6 @@
 	"comment": "Rogues, theft, mill"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2594486-bladewing-2-0",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/2/7/27ce43cb-44f4-4d94-8700-d9f3cc043989.jpg",
-	"ids": ["40"],
-	"ci": "BR",
-	"comment": "Dragons, reanimator"
-  },
-  {
 	  "url": "https://deckstats.net/decks/149419/2134546-breya-treasures",
 	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/8/581591f0-b3c7-4fca-b4b9-1d1d098ca7fb.jpg",
 	  "ids": ["24"],
@@ -200,6 +193,13 @@
 	"ids": ["28"],
 	"ci": "WUB",
 	"comment": "Spirits, reanimator"
+  },
+  {
+	"url": "https://deckstats.net/decks/149419/2594486-rivaz-of-the-claw/en",
+	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/0/a/0a8218a4-1861-4ac6-9e36-4d6ff4199f55.jpg",
+	"ids": ["40"],
+	"ci": "BR",
+	"comment": "Dragons, reanimator"
   },
   {
 	"url": "https://deckstats.net/decks/149419/2295269-runo-stromkirk-krothuss-lord-o",

@@ -2207,6 +2207,62 @@ fileprivate struct CardInfo {
 		self.num = num
 	}
 	
+	enum Difference {
+		case powerToughness
+		case color
+		case oracle
+		case keyword
+	}
+	
+	private static func adjustName(of card: inout MTGCard, accordingTo differences: [Difference]) {
+		if let subtypes = card.typeLine?.components(separatedBy: " — ").last, let name = card.name, subtypes != name {
+			return
+		}
+		
+		var nameParts: [String] = []
+		
+		if let power = card.power, let toughness = card.toughness {
+			let pt = [power, toughness].joined(separator: "/")
+			nameParts.append(pt)
+		}
+		
+		if let colors = card.colors {
+			let colors = colors.map { $0.name.capitalized }.sorted().joined(separator: "/")
+			nameParts.append(colors)
+		}
+		
+		nameParts.append(card.name ?? "")
+		
+		if differences.contains(.oracle) {
+			// Do nothing. future: maybe put "(1)" or something.
+		}
+		
+		if differences.contains(.keyword), let keywords = card.keywords {
+			if keywords.count == 1, let first = keywords.first {
+				nameParts.append("with \(first)")
+			} else if keywords.count == 2 {
+				nameParts.append("with \(keywords.joined(separator: " and "))")
+			}
+		}
+		
+		card.name = nameParts.joined(separator: " ")
+	}
+	
+	private static func backURL(for card: MTGCard) -> URL {
+		guard card.scryfallCardBackID != UUID(uuidString: "0aeebaf5-8c7d-4636-9e82-8c27447861f7")! &&
+			  (card.layout.contains("double_faced") || (card.cardFaces != nil && card.cardFaces?.count != 1))
+		else {
+			return Self.tokenBack
+		}
+		
+		if let scryfallID = card.scryfallID {
+			let backImageURIs = newImageURIs(cardID: scryfallID, back: true)
+			return backImageURIs["normal"] ?? backImageURIs["large"] ?? Self.tokenBack
+		} else {
+			return Self.tokenBack
+		}
+	}
+	
 	/// frontState should be contained in allStates.
 	init?(offset: Int, currentState: MTGCard, allStates: [MTGCard]) {
 		var allStates = allStates.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
@@ -2215,12 +2271,6 @@ fileprivate struct CardInfo {
 		
 		// fix names
 		allStates = allStates.map { card in
-			enum Difference {
-				case powerToughness
-				case color
-				case oracle
-				case keyword
-			}
 			var differences: [Difference] = []
 			for otherCard in allStates where otherCard.name == card.name && otherCard != card {
 				if otherCard.power != card.power || otherCard.toughness != card.toughness {
@@ -2237,43 +2287,13 @@ fileprivate struct CardInfo {
 				}
 			}
 			
-			if differences.isEmpty {
-				return card
-			} else {
-				if let subtypes = card.typeLine?.components(separatedBy: " — ").last, let name = card.name, subtypes != name {
-					return card
-				}
-				
-				var nameParts: [String] = []
-				
-				if let power = card.power, let toughness = card.toughness {
-					let pt = [power, toughness].joined(separator: "/")
-					nameParts.append(pt)
-				}
-				
-				if let colors = card.colors {
-					let colors = colors.map { $0.name.capitalized }.sorted().joined(separator: "/")
-					nameParts.append(colors)
-				}
-				
-				nameParts.append(card.name ?? "")
-				
-				if differences.contains(.oracle) {
-					// Do nothing. future: maybe put "(1)" or something.
-				}
-				
-				if differences.contains(.keyword), let keywords = card.keywords {
-					if keywords.count == 1, let first = keywords.first {
-						nameParts.append("with \(first)")
-					} else if keywords.count == 2 {
-						nameParts.append("with \(keywords.joined(separator: " and "))")
-					}
-				}
-				
-				var newCard = card
-				newCard.name = nameParts.joined(separator: " ")
-				return newCard
+			var card = card
+			
+			if !differences.isEmpty {
+				Self.adjustName(of: &card, accordingTo: differences)
 			}
+			
+			return card
 		}
 		
 		let renamedCurrentState = allStates[currentStateIndex]
@@ -2281,13 +2301,15 @@ fileprivate struct CardInfo {
 		self.init(offset: offset, card: renamedCurrentState)
 		
 		self.state = currentStateIndex + 1
-		self.backURL = Self.tokenBack
+		
+		self.backURL = Self.backURL(for: renamedCurrentState)
 		
 		self.otherStates = allStates.enumerated().compactMap(CardInfo.init(offset:card:)).enumerated().compactMap { index, otherStateCardInfo in
 			guard index != currentStateIndex else { return nil }
 			var other = otherStateCardInfo
 			other.state = index + 1
-			other.backURL = Self.tokenBack
+//			other.backURL = Self.tokenBack
+			other.backURL = Self.backURL(for: allStates[index])
 			return other
 		}
 		
@@ -5728,11 +5750,6 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		getAllTokens(cards, &tokens)
 	}
 	
-	if cards.contains(where: { $0.name == "Ophiomancer" }) {
-		let customSnakeToken = MTGCard(power: "1", toughness: "1", oracleText: "Deathtouch", name: "Snake", convertedManaCost: 0, layout: "token", frame: "2015", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: .black, isFullArt: false, allParts: [MTGCard.RelatedCard(scryfallID: UUID(uuidString: "66d80dd1-b944-4cb2-8578-b4dbcabbbc1e"), component: .token, name: "Ophiomancer", typeLine: "Creature — Human Shaman", url: URL(string: "https://scryfall.com/card/c13/84/ophiomancer"))], collectorNumber: "1", set: "TC13", colors: [.black], keywords: ["Deathtouch"], artist: "Maria Trepalina", watermark: nil, rarity: .common, scryfallCardBackID: UUID(uuidString: "0AEEBAF5-8C7D-4636-9E82-8C27447861F7")!, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], promoTypes: nil, language: .english, releaseDate: nil, imageUris: ["normal": URL(string: "https://i.imgur.com/Q2uGSvH.jpg")!])
-		tokens.append(customSnakeToken)
-	}
-	
 	if cards.contains(where: { $0.keywords.contains("Daybound") || $0.keywords.contains("Nightbound") || $0.oracleText?.lowercased().contains("it becomes day") == true || $0.oracleText?.lowercased().contains("it becomes night") == true }) && !tokens.contains(where: { $0.scryfallID?.uuidString == "9c0f7843-4cbb-4d0f-8887-ec823a9238da" }) {
 		let dayNightToken = try Swiftfall.getCard(id: "9c0f7843-4cbb-4d0f-8887-ec823a9238da")
 		tokens.append(MTGCard(dayNightToken))
@@ -5748,9 +5765,21 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		tokens.append(MTGCard(foretellToken))
 	}
 	
-	if cards.contains(where: { $0.name == "Inkshield" }) {
-		let inklingToken = try Swiftfall.getCard(id: "c9deae5c-80d4-4701-b425-91853b7ee03b")
-		tokens.append(MTGCard(inklingToken))
+	if cards.contains(where: { $0.oracleText?.lowercased().contains("venture into the dungeon") == true }) {
+		let dungeonIdentifiers = [
+			"6f509dbe-6ec7-4438-ab36-e20be46c9922", // Dungeon of the Mad Mage
+			"59b11ff8-f118-4978-87dd-509dc0c8c932", // Lost Mine of Phandelver
+			"70b284bd-7a8f-4b60-8238-f746bdc5b236" // Tomb of Annihilation
+		].compactMap(UUID.init(uuidString:)).map { MTGCardIdentifier.id($0) }
+		
+		let dungeons = try Swiftfall.getCollection(identifiers: dungeonIdentifiers).data.map(MTGCard.init)
+		
+		tokens.append(contentsOf: dungeons)
+	}
+	
+	if cards.contains(where: { $0.oracleText?.lowercased().contains("take the initiative") == true }) {
+		let initative = try Swiftfall.getCard(id: "2c65185b-6cf0-451d-985e-56aa45d9a57d")
+		tokens.append(MTGCard(initative))
 	}
 	
 	var alreadyThere: Set<MTGCard> = []

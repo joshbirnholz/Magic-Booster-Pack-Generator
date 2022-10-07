@@ -47,4 +47,23 @@ public func routes(_ app: Application) throws {
 	let scryfallController = ScryfallBridgeController()
 
 	app.post("sets", use: scryfallController.getSets)
+	
+	do {
+		
+	}
+	
+//	do {
+//		let file = URL(fileURLWithPath: "/Users/compc/iCloud Drive (Archive) - 1/Documents/Xcode/TabletopSimulatorMagicBoosterPackServer/Sources/App/Generation/xmltojson.json")
+//		let json = try String(contentsOf: file)
+//		let cards = try cardsFromCockatriceJSON(json: json)
+//		let set = MTGSet(cards: cards.cards, name: cards.setName, code: cards.setCode ?? "")
+//		let encoder = JSONEncoder()
+//		encoder.outputFormatting = .prettyPrinted
+//		let data = try encoder.encode(set)
+//		if let string = String(data: data, encoding: .utf8) {
+//			print(string)
+//		}
+//	} catch {
+//		print(error)
+//	}
 }

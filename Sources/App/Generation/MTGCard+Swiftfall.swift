@@ -14,14 +14,14 @@ fileprivate let dateFormatter: DateFormatter = {
 	return formatter
 }()
 
-fileprivate func newImageURIs(cardID: UUID, back: Bool = false) -> [String: URL] {
+public func newImageURIs(cardID: UUID, back: Bool = false) -> [String: URL] {
 	var imageURIs: [String: URL] = [:]
 	
-	for version in ["small", "medium", "large", "png", "art_crop", "border_crop"] {
+	for version in ["small", "normal", "large", "png", "art_crop", "border_crop"] {
 		var components = URLComponents()
 		components.scheme = "https"
 		components.host = "api.scryfall.com"
-		components.path = "/cards/\(cardID.uuidString)"
+		components.path = "/cards/\(cardID.uuidString.lowercased())"
 		
 		var items: [URLQueryItem] = [
 			URLQueryItem(name: "format", value: "image"),

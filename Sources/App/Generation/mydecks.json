@@ -16,6 +16,13 @@
 	"comment": "Buff keywords"
   },
   {
+	"url": "https://deckstats.net/decks/149419/2637687-alela-artful-provocateur",
+	"front": "https://cards.scryfall.io/large/front/7/2/726e7dc5-2089-4758-93e1-79212aedf75f.jpg",
+	"ids": ["45"],
+	"ci": "WUB",
+	"comment": "Artifacts, enchantments, faeries"
+  },
+  {
 	"url": "https://deckstats.net/decks/149419/1971009-anowon-the-ruin-thief",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/c/bca84fc4-4710-44c8-b90a-73ef888714d8.jpg",
 	"ids": ["4"],
@@ -146,6 +153,13 @@
 	"comment": "Dragons, Artifacts"
   },
   {
+	"url": "https://deckstats.net/decks/149419/2732863-magus-lucea-kane",
+	"front": "https://cards.scryfall.io/large/front/4/1/419ac203-d8b9-46df-99a8-65dfcea07ff5.jpg",
+	"ids": ["46"],
+	"ci": "GUR",
+	"comment": "X spells, hydras"
+  },
+  {
 	"url": "https://deckstats.net/decks/149419/2559235-mahadi-emporium-master",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/c/7c502480-111e-46a3-9f2f-9c4901d88323.jpg",
 	"ids": ["42"],
@@ -179,6 +193,13 @@
 	"ids": ["29"],
 	"ci": "BR",
 	"comment": "Play from exile"
+  },
+  {
+	"url": "https://deckstats.net/decks/149419/2401892-queen-marchesa",
+	"front": "https://cards.scryfall.io/large/front/a/1/a15bebe2-ae6a-48b4-b203-5ab78996b86f.jpg",
+	"ids": ["47"],
+	"ci": "RWB",
+	"comment": "Monarch"
   },
   {
 	"url": "https://deckstats.net/decks/149419/1901692-ranar-the-ever-watchful",

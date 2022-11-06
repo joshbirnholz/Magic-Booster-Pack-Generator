@@ -181,6 +181,8 @@ enum Mode {
 	case neo
 	
 	case clb
+	
+	case bro
 }
 
 extension MTGCard {
@@ -420,6 +422,18 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		}
 	}
 	
+	// used for STX mystical archive and MH2 new-to-modern reprint
+	var includedRetroFrameArtifactRarity: MTGCard.Rarity? {
+		guard mode == .bro else { return nil }
+		
+		let value = (1...100).randomElement()!
+		switch value {
+		case 1...7: return .mythic
+		case 1...34: return .rare
+		default: return .uncommon
+		}
+	}
+	
 	var shouldIncludeTimeshiftedFoil: Bool {
 		return mode == .timeSpiralRemastered && (1...27).randomElement() == 1
 	}
@@ -500,6 +514,8 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 	let landRarity: MTGCard.Rarity = {
 		if mode == .strixhaven || mode == .mh2 {
 			return includedStrixhavenArchiveRarity ?? .common
+		} else if mode == .bro {
+			return includedRetroFrameArtifactRarity ?? .common
 		}
 		
 		switch (1...13).randomElement()! {
@@ -555,6 +571,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 	}()
 	
 	let shouldIncludeShowcaseLand = mode == .m21 && (1...7).randomElement() == 1 && basicLands.contains(where: { $0.isShowcase })
+	let shouldIncludeSchematicRetroArtifact = mode == .bro && (1...6).randomElement() == 1
 	
 //	let shouldIncludeFoilBorderless = mode == .m21 && (1...35).randomElement() == 35 && !borderless.isEmpty
 	
@@ -579,6 +596,10 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		tries += 1
 		pack.removeAll()
 		
+		if mode == .bro, (1...4).randomElement() == 4, let mechBasic = customSlotRarities.values.joined().randomElement() {
+			pack.insert(mechBasic, at: 0, isFoil: false)
+		}
+		
 		let lands: ArraySlice<MTGCard> = {
 			if let seed = seed, seed.packtype == .grnRna, let guildgates = rarities[.common]?.filter({ $0.name == "\(seed.name) Guildgate" }) {
 				return guildgates.choose(landCount)
@@ -589,7 +610,18 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			}
 			
 			var lands = landRarities?[landRarity] ?? basicLands
-			if shouldIncludeShowcaseLand {
+			
+			if mode == .bro {
+				if shouldIncludeSchematicRetroArtifact {
+					lands = lands.filter {
+						(Int($0.collectorNumber) ?? 0) > 63
+					}
+				} else {
+					lands = lands.filter {
+						(Int($0.collectorNumber) ?? 0) <= 63
+					}
+				}
+			} else if shouldIncludeShowcaseLand {
 				lands = lands.filter { $0.isShowcase }
 			}
 			return lands.choose(landCount)
@@ -4092,6 +4124,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		case "mh2": return .mh2
 		case "mid", "vow": return .mid
 		case "neo": return .neo
+		case "bro": return .bro
 		default: return .default
 		}
 	}()
@@ -4295,6 +4328,16 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 					card.isFoundInBoosters = true
 					return card
 				}
+		case "bro":
+			return Swiftfall
+				.getCards(query: "set:brr lang:en", unique: true)
+				.compactMap { $0?.data }
+				.joined()
+				.map {
+					var card = MTGCard($0)
+					card.isFoundInBoosters = true
+					return card
+				}
 		case "mh2":
 			return mainCards.separateAll(where: { $0.watermark == "set" })
 		case "vow":
@@ -4350,6 +4393,10 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		case "neo", "dmu":
 			// Use regular, non-ukiyo-e basic lands that aren't found in boosters for MID.
 			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && !$0.isFullArt }
+		case "bro":
+			let basicLands = mainCards.filter { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true && !$0.isFullArt }
+			guard includeBasicLands else { return [] }
+			return basicLands
 		case _ where Set(defaultBasicLands.compactMap { $0.name }).count == 5:
 			return defaultBasicLands
 		default:
@@ -4513,6 +4560,10 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			return .init(grouping: mainCards.separateAll(where: { $0.typeLine?.lowercased().contains("lesson") == true /* && $0.rarity != .uncommon */ }), by: \.rarity)
 		case "neo":
 			return .init(grouping: mainCards.separateAll(where: { ($0.rarity == .uncommon || $0.rarity == .common) && $0.layout == "transform" }), by: \.rarity)
+		case "bro":
+			let basics = mainCards.separateAll(where: { $0.typeLine?.lowercased().hasPrefix("basic") == true })
+				.filter { $0.isFullArt }
+			return .init(grouping: basics, by: \.rarity)
 		default:
 			return [:]
 		}

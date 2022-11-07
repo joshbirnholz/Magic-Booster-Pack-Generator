@@ -1968,7 +1968,7 @@ func generateSuperJumpPack() throws -> CardCollection {
 }
 
 fileprivate struct CardInfo {
-	private static let defaultBack = URL(string: "https://img.scryfall.com/card_backs/image/normal/0a/0aeebaf5-8c7d-4636-9e82-8c27447861f7.jpg")!
+	private static let defaultBack = URL(string: "https://backs.scryfall.io/normal/0/a/0aeebaf5-8c7d-4636-9e82-8c27447861f7.jpg")!
 	private static let tokenBack = URL(string: "http://josh.birnholz.com/tts/tback.jpg")!
 	private static let jumpstartBack = URL(string: "http://josh.birnholz.com/tts/resources/jumpstartback.jpg")!
 	
@@ -2105,6 +2105,15 @@ fileprivate struct CardInfo {
 		return altFaceCustomObject
 	}
 	
+	
+	fileprivate static func cardBackURL(for backID: UUID) -> URL? {
+	//https://backs.scryfall.io/large/e/9/e962ce76-2a5d-4173-a5ee-9b01b6c57fe8.jpg?1665006297
+		let idString = backID.uuidString.lowercased()
+		let first = idString[idString.startIndex]
+		let second = idString[idString.index(after: idString.startIndex)]
+		return URL(string: "https://backs.scryfall.io/normal/\(first)/\(second)/\(idString).jpg")
+	}
+	
 	// Uses the given number
 	init?(num: Int, card: MTGCard) {
 		let backID = card.scryfallCardBackID ?? UUID(uuidString: "0AEEBAF5-8C7D-4636-9E82-8C27447861F7")!
@@ -2164,7 +2173,7 @@ fileprivate struct CardInfo {
 			self.backIsHidden = true
 			
 			self.faceURL = faceURL
-		} else if let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"], card.layout == "meld", let result = card.allParts?.first(where: { $0.name != card.name && $0.component == .meldResult }), let backFaceURL = URL(string: "https://img.scryfall.com/card_backs/image/normal/\(backID.uuidString.lowercased().prefix(2))/\(backID.uuidString.lowercased()).jpg") {
+		} else if let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"], card.layout == "meld", let result = card.allParts?.first(where: { $0.name != card.name && $0.component == .meldResult }), let backFaceURL = CardInfo.cardBackURL(for: backID) {
 			
 			self.backURL = Self.defaultBack
 			

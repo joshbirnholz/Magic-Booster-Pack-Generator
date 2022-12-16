@@ -2175,9 +2175,21 @@ fileprivate struct CardInfo {
 	
 	// Uses the given number
 	init?(num: Int, card: MTGCard) {
-		let backID = card.scryfallCardBackID ?? UUID(uuidString: "0AEEBAF5-8C7D-4636-9E82-8C27447861F7")!
+		let backID: UUID = {
+			let id = card.scryfallCardBackID ?? UUID(uuidString: "0AEEBAF5-8C7D-4636-9E82-8C27447861F7")!
+			
+			if card.scryfallCardBackID == UUID(uuidString: "049a6229-ace9-4363-816a-60cb8773e95d") {
+				return UUID(uuidString: "0aeebaf5-8c7d-4636-9e82-8c27447861f7")!
+			}
+			
+			return id
+		}()
 		
-		let backURL: URL = URL(string: "https://c1.scryfall.com/file/scryfall-card-backs/normal/\(backID.uuidString.lowercased().prefix(2))/\(backID.uuidString.lowercased()).jpg") ?? Self.defaultBack
+		let backIDString = backID.uuidString.lowercased()
+		
+		let first = backIDString[backIDString.startIndex]
+		let second = backIDString[backIDString.index(after: backIDString.startIndex)]
+		let backURL: URL = URL(string: "https://backs.scryfall.io/normal/\(first)/\(second)/\(backIDString).jpg")!
 		
 		/* if card.layout == "transform", let faces = card.cardFaces, faces.count == 2,
 			let front = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"],

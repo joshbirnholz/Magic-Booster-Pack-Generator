@@ -35,7 +35,7 @@ final class ScryfallBridgeController {
 				]
 				
 				let disallowedSetCodes: Set<String> = [
-					"plist", "h1r", "j21", "j22", "slx", "dmr", "uplist", "scd", "tscd", "one"
+					"plist", "h1r", "j21", "slx", "dmr", "uplist", "scd", "tscd", "one"
 				]
 				
 				var sets: [Swiftfall.ScryfallSet] = try Swiftfall.getSetList().data.compactMap {

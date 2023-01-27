@@ -4424,6 +4424,12 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
 			guard includeBasicLands else { return [] }
 			return basicLands.filter { $0.isFullArt }
+        case "one":
+            let lands = mainCards.separateAll {
+                guard let num = Int($0.collectorNumber) else { return false }
+                return (262...271).contains(num)
+            }
+            return lands
 		default:
 			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
 			guard includeBasicLands else { return [] }
@@ -4477,6 +4483,11 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			let basicLands = mainCards.filter { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true && !$0.isFullArt }
 			guard includeBasicLands else { return [] }
 			return basicLands
+        case "one":
+            return mainCards.separateAll {
+                guard let num = Int($0.collectorNumber) else { return false }
+                return (272...276).contains(num)
+            }
 		case _ where Set(defaultBasicLands.compactMap { $0.name }).count == 5:
 			return defaultBasicLands
 		default:
@@ -4579,6 +4590,20 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			return card
 		}
 	}
+    
+    if setCode == "one" {
+        mainCards = mainCards.filter { card in
+            guard let number = Int(card.collectorNumber) else { return true }
+            
+            var invalidNumbers: Set<Int> = Set((277...284))
+            invalidNumbers.formUnion((345...369))
+            
+            if invalidNumbers.contains(number) {
+                return false
+            }
+            return true
+        }
+    }
 	
 	if setCode == "iko" {
 		mainCards.removeAll(where: { $0.name == "Zilortha, Strength Incarnate" })

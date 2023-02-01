@@ -359,6 +359,34 @@
         {
             "name": "Ashcoat of the Shadow Swarm",
             "imageURL": "https://i.imgur.com/7Ol2ixb.png"
+        },
+		{
+            "name": "Terror of the Peaks",
+            "imageURL": "https://i.imgur.com/qv0Hdhe.png"
+        },
+		{
+            "name": "Shirei, Shizo's Caretaker",
+            "imageURL": "https://i.imgur.com/mjiyxZK.png"
+        },
+		{
+            "name": "Yawgmoth, Thran Physician",
+            "imageURL": "https://i.imgur.com/TJjJvca.png"
+        },
+		{
+            "name": "Vorinclex, Monstrous Raider",
+            "imageURL": "https://i.imgur.com/zZzs9Al.png"
+        },
+		{
+            "name": "Kardur, Doomscourge",
+            "imageURL": "https://i.imgur.com/STfj295.png"
+        },
+		{
+            "name": "Orvar, the All-Form",
+            "imageURL": "https://i.imgur.com/fbjBUja.png"
+        },
+		{
+            "name": "Tosi, Bearer of Secrets",
+            "imageURL": "https://i.imgur.com/lJM7jaY.png"
         }
 	]
 }

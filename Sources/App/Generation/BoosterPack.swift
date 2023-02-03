@@ -2248,7 +2248,13 @@ fileprivate struct CardInfo {
 			
 			self.backURL = Self.defaultBack
 			
-			let frontName = card.name ?? ""
+            let frontName = {
+                if card.language == .phyrexian {
+                    return card.name ?? ""
+                } else {
+                    return card.printedName ?? card.name ?? ""
+                }
+            }()
 			let backName = result.name
 			
 			self.nickname = frontName
@@ -2287,7 +2293,13 @@ fileprivate struct CardInfo {
 				self.nickname = "\(faces[0].name ?? "") // \(faces[1].name ?? "")"
 			} else {
 				self.backURL = backURL
-				self.nickname = card.printedName ?? card.name ?? ""
+				self.nickname = {
+                    if card.language == .phyrexian {
+                        return card.name ?? ""
+                    } else {
+                        return card.printedName ?? card.name ?? ""
+                    }
+                }()
 				self.backIsHidden = true
 			}
 			self.description = ""

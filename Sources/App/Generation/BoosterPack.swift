@@ -2248,7 +2248,7 @@ fileprivate struct CardInfo {
 			
 			self.backURL = Self.defaultBack
 			
-            let frontName = {
+            let frontName: String = {
                 if card.language == .phyrexian {
                     return card.name ?? ""
                 } else {

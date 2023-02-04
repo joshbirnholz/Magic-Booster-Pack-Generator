@@ -2190,6 +2190,8 @@ fileprivate struct CardInfo {
 		let first = backIDString[backIDString.startIndex]
 		let second = backIDString[backIDString.index(after: backIDString.startIndex)]
 		let backURL: URL = URL(string: "https://backs.scryfall.io/normal/\(first)/\(second)/\(backIDString).jpg")!
+        
+        var description = ""
 		
 		/* if card.layout == "transform", let faces = card.cardFaces, faces.count == 2,
 			let front = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"],
@@ -2234,7 +2236,7 @@ fileprivate struct CardInfo {
 			let backName = faces[1].name ?? ""
 			
 			self.nickname = frontName
-			self.description = "// \(backName)"
+			description = "// \(backName)"
 			
 			var backState = CardInfo(faceURL: backFaceURL, backURL: Self.defaultBack, nickname: backName, description: "// \(frontName)", sideways: false)
 			backState.state = 2
@@ -2258,7 +2260,7 @@ fileprivate struct CardInfo {
 			let backName = result.name
 			
 			self.nickname = frontName
-			self.description = "// \(backName)"
+			description = "// \(backName)"
 			
 			var backState = CardInfo(faceURL: backFaceURL, backURL: Self.defaultBack, nickname: backName, description: "// \(frontName)", sideways: false)
 			backState.state = 2
@@ -2302,7 +2304,6 @@ fileprivate struct CardInfo {
                 }()
 				self.backIsHidden = true
 			}
-			self.description = ""
 			self.otherStates = []
 			self.state = 1
 			self.backIsHidden = !(card.layout.contains("token") || card.layout == "emblem")
@@ -2329,6 +2330,31 @@ fileprivate struct CardInfo {
 		}
 		
 		self.num = num
+        
+        if card.language != .english, let typeLine = card.typeLine, let oracleText = card.oracleText {
+            if !description.isEmpty {
+                description += "\n\n"
+            }
+            
+            description += "\(typeLine)\n\n\(oracleText)"
+            
+            if let power = card.power, let toughness = card.toughness {
+                if !oracleText.isEmpty {
+                    description += "\n\n"
+                }
+                description += "\(power)/\(toughness)"
+            }
+            
+            if let loyalty = card.loyalty {
+                if !oracleText.isEmpty {
+                    description += "\n\n"
+                }
+                description += "Loyalty: \(loyalty)"
+            }
+        }
+        
+        description = description.replacingOccurrences(of: "\n", with: "\\n")
+        self.description = description
 	}
 	
 	enum Difference {

@@ -2228,8 +2228,24 @@ fileprivate struct CardInfo {
 			self.state = 1
 			
 		} else */
-		
-		if (card.layout == "transform" || card.layout == "modal_dfc"), let faces = card.cardFaces, faces.count >= 2, let faceURL = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"], let backFaceURL = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
+        
+        if (card.layout == "reversible_card"), let faces = card.cardFaces, faces.count >= 2, let faceURL = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"], let backFaceURL = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
+            self.backURL = backURL
+            
+            let frontName = faces[0].name ?? ""
+            let backName = faces[1].name ?? ""
+            
+            self.nickname = frontName
+            
+            var backState = CardInfo(faceURL: backFaceURL, backURL: Self.defaultBack, nickname: backName, description: "", sideways: false)
+            backState.state = 2
+            otherStates = [backState]
+            self.state = 1
+            self.sideways = false
+            self.backIsHidden = true
+            
+            self.faceURL = faceURL
+        } else if (card.layout == "transform" || card.layout == "modal_dfc"), let faces = card.cardFaces, faces.count >= 2, let faceURL = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"], let backFaceURL = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
 			self.backURL = backURL
 			
 			let frontName = faces[0].name ?? ""

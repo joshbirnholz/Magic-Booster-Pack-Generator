@@ -320,6 +320,8 @@ internal class Swiftfall {
             
             public let name: String?
             
+            public let oracleId: UUID?
+            
             public let manaCost: String?
             
             public let typeLine: String?
@@ -421,7 +423,7 @@ internal class Swiftfall {
         public let id: UUID
         
         // A unique ID for this card’s oracle identity. This value is consistent across reprinted card editions, and unique among different cards with the same name (tokens, Unstable variants, etc).
-        public let oracleId: UUID
+        public let oracleId: UUID?
         
         // This card’s multiverse IDs on Gatherer, if any, as an array of integers. Note that Scryfall includes many promo cards, tokens, and other esoteric objects that do not have these identifiers.
         public let multiverseIds: [Int]

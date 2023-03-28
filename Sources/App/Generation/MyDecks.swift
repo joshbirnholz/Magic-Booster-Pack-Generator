@@ -26,7 +26,7 @@ struct MyDeck: Codable, Content {
     let hide: Bool?
     
     var isVisible: Bool {
-        if let hide {
+        if let hide = hide {
             return !hide
         }
         return true

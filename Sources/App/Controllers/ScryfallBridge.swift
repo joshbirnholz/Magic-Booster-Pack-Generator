@@ -35,16 +35,24 @@ final class ScryfallBridgeController {
 				]
 				
 				let disallowedSetCodes: Set<String> = [
-					"plist", "h1r", "j21", "slx", "dmr", "uplist", "scd", "tscd"
+					"plist", "h1r", "j21", "slx", "uplist", "scd", "tscd", "ltr", "sis", "cmm", "mat", "mom"
 				]
 				
-				var sets: [Swiftfall.ScryfallSet] = try Swiftfall.getSetList().data.compactMap {
+				let setsFromScryfall: [[Swiftfall.ScryfallSet]] = try Swiftfall.getSetList().data.compactMap {
 					guard allowedSetTypes.contains($0.setType),
 						  let code = $0.code,
 						  !disallowedSetCodes.contains(code)
-					else { return nil }
+					else { return [] }
 					
 					var set = $0
+                    
+                    if $0.code == "sir" {
+                        set.name += " (Weekly)"
+                        
+                        return [set] + (1...4).compactMap {
+                            customSet(forSetCode: "sir\($0)")
+                        }
+                    }
 					
 					if set.code == "mb1" {
 						set.code = "cmb1"
@@ -59,8 +67,10 @@ final class ScryfallBridgeController {
 						return nil
 					}
 					
-					return set
-				}
+					return [set]
+                }
+                
+                var sets = Array(setsFromScryfall.joined())
 				
 				sets.append(contentsOf: Self.customSets)
 				

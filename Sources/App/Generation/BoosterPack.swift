@@ -183,6 +183,8 @@ enum Mode {
 	case clb
 	
 	case bro
+    
+    case sir
 }
 
 extension MTGCard {
@@ -412,7 +414,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 	
 	// used for STX mystical archive and MH2 new-to-modern reprint
 	var includedStrixhavenArchiveRarity: MTGCard.Rarity? {
-		guard mode == .strixhaven || mode == .mh2 else { return nil }
+        guard mode == .strixhaven || mode == .mh2 || mode == .sir else { return nil }
 		
 		let value = (1...1000).randomElement()!
 		switch value {
@@ -512,7 +514,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 	}
 	
 	let landRarity: MTGCard.Rarity = {
-		if mode == .strixhaven || mode == .mh2 {
+        if mode == .strixhaven || mode == .mh2 || mode == .sir {
 			return includedStrixhavenArchiveRarity ?? .common
 		} else if mode == .bro {
 			return includedRetroFrameArtifactRarity ?? .common
@@ -536,7 +538,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 	let landCount: Int = {
 		if mode == .twoLands {
 			return 2
-		} else if mode == .doubleMasters {
+        } else if mode == .doubleMasters || mode == .sir {
 			return 0
 		} else {
 			return 1
@@ -922,6 +924,19 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 				pack.cards[index].isFoil = true
 			}
 		}
+        
+        if mode == .sir, let pastCard = customSlotRarities.values.joined().randomElement() {
+            let index: Int = {
+                switch pastCard.rarity {
+                case .mythic, .rare:
+                    return pack.cards.randomIndex(where: { $0.card.rarity < .rare })
+                default:
+                    return pack.cards.randomIndex(where: { $0.card.rarity == pastCard.rarity })
+                }
+            }() ?? pack.cards.indices.randomElement() ?? 0
+            
+            pack.cards[index].card = pastCard
+        }
 		
 		// Tokens
 		
@@ -4123,7 +4138,148 @@ fileprivate let prereleaseSheet = """
 }
 """
 
-
+func customSet(forSetCode inputString: String) -> Swiftfall.ScryfallSet? {
+    switch inputString.lowercased() {
+    case "sir":
+        let value = (Calendar.current.component(.weekOfYear, from: Date()) % 4)
+        return customSet(forSetCode: "sir\(value+1)")
+    case "sir1", "sir2", "sir3", "sir4":
+        let cardNames = [
+            "sir1": [
+                "Angel of Flight Alabaster",
+                "Avacyn's Collar",
+                "Battleground Geist",
+                "Bloodline Keeper",
+                "Butcher's Cleaver",
+                "Diregraf Captain",
+                "Drogskol Captain",
+                "Elder Cathar",
+                "Ghoulraiser",
+                "Haunted Fengraf",
+                "Havengul Runebinder",
+                "Immerwolf",
+                "Kruin Outlaw",
+                "Mayor of Avabruck",
+                "Moonmist",
+                "Stromkirk Captain",
+                "Traveler's Amulet",
+                "Vampiric Fury"
+            ],
+            "sir2": [
+                "Bump in the Night",
+                "Cackling Counterpart",
+                "Devil's Play",
+                "Divine Reckoning",
+                "Faithless Looting",
+                "Feeling of Dread",
+                "Forbidden Alchemy",
+                "Gnaw to the Bone",
+                "Increasing Ambition",
+                "Lingering Souls",
+                "Mystic Retrieval",
+                "Past in Flames",
+                "Rally the Peasants",
+                "Sever the Bloodline",
+                "Silent Departure",
+                "Spider Spawning",
+                "Travel Preparations",
+                "Unburial Rites"
+            ],
+            "sir3": [
+                "Bloodflow Connoisseur",
+                "Demonmail Hauberk",
+                "Doomed Traveler",
+                "Falkenrath Aristocrat",
+                "Falkenrath Noble",
+                "Galvanic Juggernaut",
+                "Gutter Grime",
+                "Hollowhenge Scavenger",
+                "Murder of Crows",
+                "Requiem Angel",
+                "Séance",
+                "Selhoff Occultist",
+                "Skirsdag Cultist",
+                "Skirsdag High Priest",
+                "Stitcher's Apprentice",
+                "Traitorous Blood",
+                "Young Wolf",
+                "Zealous Conscripts"
+            ],
+            "sir4": [
+                "Avacyn, Angel of Hope",
+                "Avacyn's Pilgrim",
+                "Balefire Dragon",
+                "Barter in Blood",
+                "Blazing Torch",
+                "Bonds of Faith",
+                "Brimstone Volley",
+                "Evolving Wilds",
+                "Fiend Hunter",
+                "Forge Devil",
+                "Garruk Relentless",
+                "Geist of Saint Traft",
+                "Griselbrand",
+                "Havengul Lich",
+                "Huntmaster of the Fells",
+                "Invisible Stalker",
+                "Mist Raven",
+                "Sigarda, Host of Herons",
+                "Snapcaster Mage",
+                "Somberwald Sage",
+                "Tragic Slip",
+                "Vessel of Endless Rest",
+            ]
+        ]
+        
+        let setNames = [
+            "sir1": "Creature Type Terror!",
+            "sir2": "Fatal Flashback!",
+            "sir3": "Morbid and Macabre!",
+            "sir4": "Abominable All Stars!"
+        ]
+        
+        let names = (cardNames[inputString.lowercased()] ?? []).map {
+            "!\"\($0)\""
+        }.joined(separator: " or ")
+        
+        var query = "(in:sir block:soi)"
+        
+        if !names.isEmpty {
+            query += " or (in:sis block:innistrad (\(names)))"
+        }
+        
+        query = "not:promo " + query
+        print(query)
+        query = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        
+        var name = "Shadows over Innistrad Remastered"
+        
+        if let subtitle = setNames[inputString.lowercased()] {
+            name += ": " + subtitle
+        }
+        print(name)
+        
+        return Swiftfall.ScryfallSet(
+            code: inputString,
+            mtgo: nil,
+            name: name,
+            uri: "",
+            scryfallUri: "",
+            searchUri: "https://api.scryfall.com/cards/search?unique=prints&q=\(query)",
+            releasedAt: Date(rfc1123: "Tue, 21 Mar 2023 00:00:00 GMT"),
+            setType: "masters",
+            cardCount: 281 + (cardNames[inputString.lowercased()] ?? []).count,
+            digital: false,
+            foilOnly: false,
+            blockCode: nil,
+            block: nil,
+            printedSize: nil,
+            iconSvgUri: nil
+        )
+    default:
+        return nil
+    }
+}
 
 fileprivate func customSetJSONURL(forSetCode inputString: String) -> URL? {
 	let customSets = [
@@ -4201,8 +4357,16 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			tokens = []
 			break
 		}
+        
+        let set: Swiftfall.ScryfallSet = try {
+            if let customSet = customSet(forSetCode: inputString) {
+                return customSet
+            } else {
+                return try Swiftfall.getSet(code: inputString)
+            }
+        }()
+        
 		
-		let set = try Swiftfall.getSet(code: inputString)
 		mtgCards = set.getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init)
 		setName = set.name
 		setCode = set.code
@@ -4259,6 +4423,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		case "mid", "vow": return .mid
 		case "neo": return .neo
 		case "bro": return .bro
+        case "sir", "sir1", "sir2", "sir3", "sir4": return .sir
 		default: return .default
 		}
 	}()
@@ -4332,7 +4497,8 @@ struct ProcessedCards {
 	var basicLands: [MTGCard]
 }
 
-fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBasicLands: Bool) throws -> ProcessedCards {
+fileprivate func
+process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBasicLands: Bool) throws -> ProcessedCards {
 	var mainCards = cards
 	
 	let basicLandSlotCards: [MTGCard] = { () -> [MTGCard] in
@@ -4723,6 +4889,8 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			let basics = mainCards.separateAll(where: { $0.typeLine?.lowercased().hasPrefix("basic") == true })
 				.filter { $0.isFullArt }
 			return .init(grouping: basics, by: \.rarity)
+        case "sir", "sir1", "sir2", "sir3", "sir4":
+            return .init(grouping: mainCards.separateAll(where: { $0.frame == "2003" }), by: \.rarity)
 		default:
 			return [:]
 		}

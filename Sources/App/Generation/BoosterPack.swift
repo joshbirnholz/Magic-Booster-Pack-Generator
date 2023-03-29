@@ -4851,7 +4851,111 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 			}
 			return card
 		}
-	}
+	} else if (setCode?.lowercased() ?? "").hasPrefix("sir") {
+        let newRarities: [MTGCard.Rarity: [String]] = [
+            .common: [
+                "Bound by Moonsilver",
+                "Drogskol Shieldmate",
+                "Essence Flux",
+                "Geist of the Archives",
+                "Gisa's Bidding",
+                "Liliana's Elite",
+                "Morkrut Necropod",
+                "Conduit of Storms",
+                "Deranged Whelp",
+                "Incendiary Flow",
+                "Insatiable Gorgers",
+                "Ravenous Bloodseeker",
+                "Briarbridge Patrol",
+                "Gnarlwood Dryad",
+                "Moonlight Hunt",
+                "Obsessive Skinner",
+                "Weirding Wood",
+                "Epitaph Golem",
+                "Magnifying Glass",
+                "Wild-Field Scarecrow",
+                "Imprisoned in the Moon",
+                "Bloodbriar",
+                "Crow of Dark Tidings",
+                "Drag Under",
+                "Galvanic Bombardment",
+                "Guardian of Pilgrims",
+                "Sigardian Priest"
+            ],
+            .uncommon: [
+                "Fiery Temper",
+                "Ironclad Slayer",
+                "Pieces of the Puzzle",
+                "Midnight Scavengers",
+                "Thermo-Alchemist",
+                "Uncaged Fury",
+                "Vessel of Nascency",
+                "Geier Reach Bandit",
+                "Scourge Wolf",
+                "Stromkirk Occultist",
+                "Deathcap Cultivator",
+                "Anguished Unmaking",
+                "Brain in a Jar",
+                "Lupine Prototype",
+                "Soul Separator",
+                "Choked Estuary",
+                "Foreboding Ruins",
+                "Fortified Village",
+                "Game Trail",
+                "Port Town",
+                "Immerwolf",
+                "Ulvenwald Mysteries"
+            ],
+            .rare: [
+                "Geralf's Masterpiece",
+                "Grim Flayer",
+                "Tree of Perdition",
+                "Ulrich of the Krallenhorde",
+                "Ulvenwald Hydra"
+            ]
+        ]
+        
+        mainCards = mainCards.map { card in
+            var card = card
+            let front = card.cardFaces?.first?.name
+            let back = card.cardFaces?.last?.name
+            
+            if let name = front ?? card.name,
+               let rarity = newRarities.first(where: { $0.value.contains(name) }) {
+                card.rarity = rarity.key
+                
+                func url(for name: String) -> URL? {
+                    guard let file = name.replacingOccurrences(of: "'", with: "").replacingOccurrences(of: "’", with: "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+                        return nil
+                    }
+                    return URL(string: "http://josh.birnholz.com/tts/cards/sir/\(file).jpg")
+                }
+                
+                if let front = front, let back = back,
+                   let frontURL = url(for: front), let backURL = url(for: back) {
+                    card.cardFaces?[0].imageUris = [
+                        "normal": frontURL,
+                        "large": frontURL
+                    ]
+                    card.cardFaces?[1].imageUris = [
+                        "normal": backURL,
+                        "large": backURL
+                    ]
+                    
+                    print(frontURL)
+                    print(backURL)
+                } else if let name = card.name, let url = url(for: name) {
+                    card.imageUris = [
+                        "normal": url,
+                        "large": url
+                    ]
+                    
+                    print(url)
+                }
+            }
+            return card
+        }
+    }
 	
 	let borderless: [MTGCard] = mainCards.separateAll { $0.borderColor == .borderless }
 	let showcases: [MTGCard.Rarity: [MTGCard]] = .init(grouping: mainCards.separateAll(where: cardIsShowcase), by: \.rarity)

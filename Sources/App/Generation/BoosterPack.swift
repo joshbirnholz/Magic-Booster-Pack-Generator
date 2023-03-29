@@ -4904,7 +4904,8 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
                 "Game Trail",
                 "Port Town",
                 "Immerwolf",
-                "Ulvenwald Mysteries"
+                "Ulvenwald Mysteries",
+                "Drogskol Captain"
             ],
             .rare: [
                 "Geralf's Masterpiece",

@@ -2,7 +2,7 @@
   {
 	"url": "https://deckstats.net/decks/149419/1889069-akiri-fearless-voyager",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/2/52ec2a93-0708-498e-86f2-6f70d51ae4cd.jpg",
-	"ids": ["2"],
+	"ids": ["51"],
 	"ci": "RW",
 	"comment": "Equipment",
     "name": "Akiri, Fearless Voyager",
@@ -394,7 +394,7 @@
   {
       "url": "https://deckstats.net/decks/149419/2928038-goro-goro-and-satoru",
       "front": "https://cards.scryfall.io/large/front/8/4/841e14a3-abb9-4a2d-a21b-273307825e02.jpg",
-      "ids": ["51"],
+      "ids": ["2"],
       "ci": "UBR",
       "comment": "Haste",
       "name": "Goro-Goro and Satoru"

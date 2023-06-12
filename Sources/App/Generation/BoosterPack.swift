@@ -185,6 +185,10 @@ enum Mode {
 	case bro
     
     case sir
+    
+    case mom
+    
+    case ltr
 }
 
 extension MTGCard {
@@ -257,8 +261,10 @@ extension Array {
 	}
 }
 
-func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MTGCard.Rarity: [MTGCard]], basicLands: [MTGCard], tokens: [MTGCard], showcaseRarities: [MTGCard.Rarity: [MTGCard]], borderless: [MTGCard], extendedArt: [MTGCard], meldResults: [MTGCard], mode: Mode, includeExtendedArt: Bool, masterpieceCards: [MTGCard], foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, seed: Seed? = nil) throws -> CardCollection {
+func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MTGCard.Rarity: [MTGCard]], customSlot2Rarities: [MTGCard.Rarity: [MTGCard]], customSlot3Rarities: [MTGCard.Rarity: [MTGCard]], basicLands: [MTGCard], tokens: [MTGCard], showcaseRarities: [MTGCard.Rarity: [MTGCard]], borderless: [MTGCard], extendedArt: [MTGCard], meldResults: [MTGCard], mode: Mode, includeExtendedArt: Bool, masterpieceCards: [MTGCard], foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, seed: Seed? = nil) throws -> CardCollection {
 	let customSlotRarities = customSlotRarities.filtered(for: seed)
+    let customSlot2Rarities = customSlot2Rarities.filtered(for: seed)
+    let customSlot3Rarities = customSlot3Rarities.filtered(for: seed)
 	let basicLands = basicLands.filtered(for: seed)
 	let borderless = borderless.filtered(for: seed)
 	let extendedArt = extendedArt.filtered(for: seed)
@@ -284,17 +290,16 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 	let showcaseRarities: [MTGCard.Rarity: [MTGCard]] = {
 		var showcaseRarities = showcaseRarities
 		
-		if mode == .m21 {
-			var mythics = showcaseRarities[.mythic] ?? []
-			
-			// M21 has four alt-art normal and four alt-art showcase versions of Teferi, Master of Time. Remove all but one of them in each slot, so he isn't 4x as likely to appear in the mythic slot.
-			if let teferi = mythics.separateAll(where: { $0.name == "Teferi, Master of Time" && $0.borderColor != .borderless }).randomElement() {
-				mythics.append(teferi)
-			}
-			
-			showcaseRarities[.mythic] = mythics
-			
-		}
+        if mode == .m21 {
+            var mythics = showcaseRarities[.mythic] ?? []
+            
+            // M21 has four alt-art normal and four alt-art showcase versions of Teferi, Master of Time. Remove all but one of them in each slot, so he isn't 4x as likely to appear in the mythic slot.
+            if let teferi = mythics.separateAll(where: { $0.name == "Teferi, Master of Time" && $0.borderColor != .borderless }).randomElement() {
+                mythics.append(teferi)
+            }
+            
+            showcaseRarities[.mythic] = mythics
+        }
 		
 		// Add borderless non-planeswalkers to showcases. This makes borderless planeswalkers appear 1 in 3-4 boxes, but non-Planeswalkers appear as often as other showcase cards of their rarity.
 		for rarity in MTGCard.Rarity.allCases {
@@ -320,6 +325,17 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			
 			rarities[.mythic] = mythics
 		}
+        
+        if mode == .ltr, let nazgulID = UUID(uuidString: "48a62778-7c11-486f-a0e1-020c283a7ef9") {
+            var uncommons = rarities[.uncommon] ?? []
+            
+            // LTR has nine alt-arts of Nazgûl. Remove all but one of them in each slot, so it isn't 9x as likely to appear in the mythic slot.
+            if let nazgul = uncommons.separateAll(where: { $0.oracleID == nazgulID }).randomElement() {
+                uncommons.append(nazgul)
+            }
+            
+            rarities[.uncommon] = uncommons
+        }
 		
 		allRarities = rarities.filtered(for: seed)
 		
@@ -435,6 +451,39 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		default: return .uncommon
 		}
 	}
+    
+    var includedMultiverseLegendsRarity: MTGCard.Rarity? {
+        guard mode == .mom else { return nil }
+        
+        let value = (1...100).randomElement()!
+        switch value {
+        case 1...7: return .mythic
+        case 1...34: return .rare
+        default: return .uncommon
+        }
+    }
+    
+    var includedBattleRarity: MTGCard.Rarity? {
+        guard mode == .mom else { return nil }
+        
+        let value = (1...100).randomElement()!
+        switch value {
+        case 1...7: return .mythic
+        case 1...34: return .rare
+        default: return .uncommon
+        }
+    }
+    
+    var includedDFCRarity: MTGCard.Rarity? {
+        guard mode == .mom else { return nil }
+        
+        let value = (1...100).randomElement()!
+        switch value {
+        case 1...7: return .mythic
+        case 1...34: return .rare
+        default: return .uncommon
+        }
+    }
 	
 	var shouldIncludeTimeshiftedFoil: Bool {
 		return mode == .timeSpiralRemastered && (1...27).randomElement() == 1
@@ -470,7 +519,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 //	}
 	var legendaryOkay: Bool {
 		guard mode == .dominaria else { return true }
-		let nonfoilLegendCount = pack.cards.filter { !$0.isFoil && $0.card.typeLine?.lowercased().contains("legendary") == true && $0.card.typeLine?.lowercased().contains("creature") == true }.count
+		let nonfoilLegendCount = pack.cards.filter { !$0.isFoil && $0.card.hasType("legendary", "creature") }.count
 		return nonfoilLegendCount == 1
 	}
 	var futureSightOkay: Bool {
@@ -492,13 +541,33 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 	var colorsOkay: Bool {
 		return allColorsCount == correctColorCount
 	}
+    
+    var momDFCOkay: Bool {
+        guard mode == .mom else {
+            return true
+        }
+        
+        let containedDoubleFacedCards = pack.cards.filter { ($0.card.layout == "transform") && !$0.isFoil && !$0.card.hasType("battle") }
+        guard containedDoubleFacedCards.count == 1 else {
+            return false
+        }
+        
+//        let commonCount = containedDoubleFacedCards.filter { $0.card.rarity == .common }.count
+//        let uncommonRareMythicCount = containedDoubleFacedCards.filter { $0.card.rarity == .uncommon || $0.card.rarity == .rare || $0.card.rarity == .mythic }.count
+//
+//        guard commonCount == 1 && uncommonRareMythicCount == 1
+//            else {
+//            return false
+//        }
+        return true
+    }
 	
 	var midDFCOkay: Bool {
 		guard mode == .mid else {
 			return true
 		}
 		
-		let containedDoubleFacedCards = pack.cards.filter { $0.card.layout == "transform" && !$0.isFoil }
+		let containedDoubleFacedCards = pack.cards.filter { ($0.card.layout == "transform") && !$0.isFoil }
 		guard containedDoubleFacedCards.count == 2 else {
 			return false
 		}
@@ -607,7 +676,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 				return guildgates.choose(landCount)
 			} else if let seed = seed, seed.packtype == .stx, let campuses = rarities[.common]?.filter({ $0.name == "\(seed.name) Campus" }) {
 				return campuses.choose(landCount)
-			} else if let seed = seed, seed.packtype == .snc, let lands = rarities[.common]?.filter({ $0.typeLine?.lowercased().contains("land") == true && $0.name?.lowercased().hasPrefix(seed.name.lowercased()) == true }) {
+			} else if let seed = seed, seed.packtype == .snc, let lands = rarities[.common]?.filter({ $0.hasType("land") && $0.nameHasPrefix(seed.name.lowercased()) }) {
 				return lands.choose(landCount)
 			}
 			
@@ -616,11 +685,11 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			if mode == .bro {
 				if shouldIncludeSchematicRetroArtifact {
 					lands = lands.filter {
-						(Int($0.collectorNumber) ?? 0) > 63
+                        ($0.numericCollectorNumber ?? 0) > 63
 					}
 				} else {
 					lands = lands.filter {
-						(Int($0.collectorNumber) ?? 0) <= 63
+						($0.numericCollectorNumber ?? 0) <= 63
 					}
 				}
 			} else if shouldIncludeShowcaseLand {
@@ -629,6 +698,14 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 			return lands.choose(landCount)
 		}()
 		pack.insert(contentsOf: lands, at: 0)
+        
+        if let rarity = includedMultiverseLegendsRarity, let card = customSlotRarities[rarity]?.randomElement() {
+            pack.insert(card, at: 0, isFoil: false)
+        }
+        
+        if let rarity = includedBattleRarity, let card = customSlot2Rarities[rarity]?.randomElement() {
+            pack.insert(card, at: 0, isFoil: false)
+        }
 		
 		if shouldIncludeTimeshiftedFoil, let card = basicLands.randomElement() {
 			pack.insert(card, at: 0, isFoil: true)
@@ -1025,7 +1102,7 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		
 		// Move gauranteed legendary to the back of the pack for Dominaria and Dominaria United
 		if mode == .dominaria && pack.count >= 2, let legendaryIndex = pack.cards.firstIndex(where:{
-			!$0.isFoil && $0.card.typeLine?.lowercased().contains("legendary") == true && $0.card.typeLine?.lowercased().contains("creature") == true }) {
+			!$0.isFoil && $0.card.hasType("legendary", "creature") }) {
 			let selection = pack.cards.remove(at: legendaryIndex)
 			pack.insert(selection, at: pack.count-2)
 		}
@@ -1074,12 +1151,16 @@ func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MT
 		if !midDFCOkay {
 			problems.append("MID DFC is wrong")
 		}
+        
+        if !momDFCOkay {
+            problems.append("MOM DFC is wrong")
+        }
 		
 		if !problems.isEmpty {
 			print(problems.joined(separator: ", "))
 		}
 		
-	} while !colorsOkay || uniqueCardCount != cardCount || !futureSightOkay /* || !showcaseOkay */ || !legendaryOkay || !midDFCOkay
+	} while !colorsOkay || uniqueCardCount != cardCount || !futureSightOkay /* || !showcaseOkay */ || !legendaryOkay || !midDFCOkay || !momDFCOkay
 	
 	print("Using pack")
 	
@@ -1145,20 +1226,18 @@ func processBaldursGateCards(_ cards: [MTGCard], tokens: [MTGCard]) -> BaldursGa
 		processed.facelessOne = cards.remove(at: index)
 	}
 	
-	cards.removeAll(where: { $0.frameEffects.contains("etched") || $0.typeLine?.hasPrefix("Basic Land") == true })
-	processed.extendedArt = cards.separateAll(where: { $0.frameEffects.contains("extendedart") })
-	processed.boosterFunCards = cards.separateAll(where: { $0.borderColor == .borderless || $0.frameEffects.contains("showcase") })
+    cards.removeAll(where: { $0.hasFrameEffects("etched") || $0.isBasicLand })
+	processed.extendedArt = cards.separateAll(where: { $0.hasFrameEffects("extendedart") })
+	processed.boosterFunCards = cards.separateAll(where: { $0.borderColor == .borderless || $0.hasFrameEffects("showcase") })
 	
-	cards.removeAll(where: { !$0.isFoundInBoosters || (Int($0.collectorNumber) ?? 0) > 361 })
+	cards.removeAll(where: { !$0.isFoundInBoosters || ($0.numericCollectorNumber ?? 0) > 361 })
 	
 	let legends = cards.separateAll {
-		guard let typeLine = $0.typeLine?.lowercased() else { return false }
-		return typeLine.contains("legendary") && (typeLine.contains("creature") || typeLine.contains("planeswalker"))
+        return $0.hasType("legendary", "creature") || $0.hasType("planeswalker")
 	}
 	
 	let backgrounds = cards.separateAll {
-		guard let typeLine = $0.typeLine?.lowercased() else { return false }
-		return typeLine.contains("background")
+        return $0.hasType("background")
 	}
 	
 	processed.rarities = .init(grouping: cards, by: \.rarity)
@@ -1265,7 +1344,7 @@ func generateCommanderLegendsPack(_ processed: CommanderLegendsProcessed, includ
 	let shouldIncludeMythic = (1...100).randomElement()! >= 74
 	let foilRarities: [MTGCard.Rarity: [MTGCard]] = {
 		let foilEtchedReprints = processed.etchedFoils.filter {
-			guard let number = Int($0.collectorNumber) else {
+			guard let number = $0.numericCollectorNumber else {
 				return false
 			}
 			
@@ -1690,7 +1769,7 @@ func processMysteryBoosterCards(_ cards: [MTGCard]) -> [MysterBoosterSlot: [MTGC
 			return .preM15card
 		}
 		
-		if (card.typeLine?.lowercased().contains("land") == true || card.typeLine?.lowercased().contains("artifact") == true) && (card.rarity == .common || card.rarity == .uncommon) {
+		if (card.hasType("land") || card.hasType("artifact")) && (card.rarity == .common || card.rarity == .uncommon) {
 			return .artifactLandCommonUncommon
 		}
 		
@@ -1754,7 +1833,7 @@ func processPlanarChaosCards(cards: [MTGCard]) -> (normalRarities: [MTGCard.Rari
 	var normal: [MTGCard] = []
 	
 	for card in cards {
-		if card.frameEffects?.contains("colorshifted") == true {
+		if card.hasFrameEffects("colorshifted") {
 			colorshifted.append(card)
 		} else {
 			normal.append(card)
@@ -1811,7 +1890,7 @@ func processDoubleFeatureCards(_ cards: [MTGCard]) -> DoubleFeatureProcessed {
 	var vowCards = cards
 	vowCards.removeAll { $0.isPromo }
 	let midCards = vowCards.separateAll { card in
-		guard let number = Int(card.collectorNumber) else { return false }
+        guard let number = card.numericCollectorNumber else { return false }
 		return (1...267).contains(number)
 	}
 	
@@ -4330,7 +4409,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		}
 		
 		if includeTokens {
-			tokens = allCards.separateAll { $0.layout == "token" || $0.typeLine?.lowercased().contains("emblem") == true || $0.typeLine?.lowercased().contains("token") == true }
+			tokens = allCards.separateAll { $0.layout == "token" || $0.hasType("emblem") || $0.hasType("token") }
 		} else {
 			tokens = []
 		}
@@ -4424,6 +4503,8 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 		case "neo": return .neo
 		case "bro": return .bro
         case "sir", "sir1", "sir2", "sir3", "sir4": return .sir
+        case "mom": return .mom
+        case "ltr": return .ltr
 		default: return .default
 		}
 	}()
@@ -4457,7 +4538,7 @@ func cardsFromCockatriceJSON(json: String) throws -> (cards: [MTGCard], setName:
 			reverseRelated.append(contentsOf: ["Weapon (Bow)", "Weapon (Katana)", "Weapon (Pistol)", "Weapon (Rifle)"].map(CockatriceCardDatabase.Card.ReverseRelated.init))
 		}
 		
-		if mtgCard.typeLine?.lowercased().contains("basic") == true && mtgCard.typeLine?.lowercased().contains("land") == true && mtgCard.name?.hasPrefix("NET") == true {
+        if mtgCard.isBasicLand && mtgCard.nameHasPrefix("NET", caseSensitive: true) {
 			mtgCard.name = mtgCard.name?.replacingOccurrences(of: "NET ", with: "")
 		}
 		
@@ -4471,7 +4552,7 @@ func cardsFromCockatriceJSON(json: String) throws -> (cards: [MTGCard], setName:
 									   url: relatedCard.scryfallURL)
 		}
 		
-		if mtgCard.name?.hasPrefix("Weapon") == true && mtgCard.layout == "token" {
+		if mtgCard.nameHasPrefix("Weapon", caseSensitive: true) && mtgCard.layout == "token" {
 			mtgCard.name = "Weapon"
 		}
 			
@@ -4485,6 +4566,8 @@ func cardsFromCockatriceJSON(json: String) throws -> (cards: [MTGCard], setName:
 struct ProcessedCards {
 	var rarities: [MTGCard.Rarity: [MTGCard]]
 	var customSlotRarities: [MTGCard.Rarity: [MTGCard]]
+    var customSlot2Rarities: [MTGCard.Rarity: [MTGCard]]
+    var customSlot3Rarities: [MTGCard.Rarity: [MTGCard]]
 	/// The cards that should go into the basic land slot. Usually just basic lands, but not always.
 	var basicLandsSlotCards: [MTGCard]
 	var tokens: [MTGCard]
@@ -4497,14 +4580,13 @@ struct ProcessedCards {
 	var basicLands: [MTGCard]
 }
 
-fileprivate func
-process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBasicLands: Bool) throws -> ProcessedCards {
+fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBasicLands: Bool) throws -> ProcessedCards {
 	var mainCards = cards
 	
 	let basicLandSlotCards: [MTGCard] = { () -> [MTGCard] in
 		switch setCode?.lowercased() {
 		case "grn", "rna":
-			return cards.filter { $0.typeLine?.lowercased().contains("gate") == true }
+			return cards.filter { $0.hasType("gate") }
 		case "dgm":
 			guard includeBasicLands else { return [] }
 			return Swiftfall
@@ -4548,7 +4630,7 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
-				+ cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true && $0.typeLine?.lowercased().contains("—") == true }
+				+ cards.filter { $0.hasType("basic", "—", "land") }
 		case "bng", "jou":
 			guard includeBasicLands else { return [] }
 			return Swiftfall
@@ -4585,9 +4667,9 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 				.joined()
 				.compactMap(MTGCard.init)
 		case "iko", "m21", "neo":
-			let basicLands = mainCards.separateAll { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true }
+			let basicLands = mainCards.separateAll { $0.hasType("basic", "land") }
 			guard includeBasicLands else { return [] }
-			let dualLands = mainCards.separateAll { $0.typeLine?.lowercased().contains("land") == true && $0.oracleText?.contains("enters the battlefield tapped") == true && $0.oracleText?.contains("gain 1 life") == true }
+			let dualLands = mainCards.separateAll { $0.hasType("land") && $0.oracleText?.contains("enters the battlefield tapped") == true && $0.oracleText?.contains("gain 1 life") == true }
 			return basicLands + dualLands
 		case "akr":
 			guard includeBasicLands else { return [] }
@@ -4604,12 +4686,12 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 				.joined()
 				.compactMap(MTGCard.init)
 		case "znr":
-			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
+            let basicLands = mainCards.separateAll { $0.isBasicLand }
 			guard includeBasicLands else { return [] }
 			return basicLands.filter { $0.isFullArt }
 		case "khm":
 			guard includeBasicLands else { return [] }
-			let snowLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Snow") == true && ($0.typeLine ?? "").contains("Land") == true && !($0.colorIdentity ?? []).isEmpty }
+            let snowLands = mainCards.separateAll { $0.hasType("snow") && $0.hasType("land") && !($0.colorIdentity ?? []).isEmpty }
 			return snowLands
 		case "mir", "vis", "5ed", "por", "wth", "tmp", "sth", "exo", "p02", "usg", "ulg", "6ed", "ptk", "uds", "mmq", "nem", "pcy", "inv", "pls", "7ed", "csp", "dis", "gpt", "rav", "9ed", "lrw", "mor", "shm", "eve", "apc", "ody", "tor", "jud", "ons", "lgn", "scg", "mrd", "dst", "5dn", "chk", "bok", "sok", "plc", "2xm":
 			return []
@@ -4641,17 +4723,23 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 		case "mh2":
 			return mainCards.separateAll(where: { $0.watermark == "set" })
 		case "vow":
-			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
+            let basicLands = mainCards.separateAll { $0.isBasicLand }
 			guard includeBasicLands else { return [] }
 			return basicLands.filter { $0.isFullArt }
         case "one":
             let lands = mainCards.separateAll {
-                guard let num = Int($0.collectorNumber) else { return false }
+                guard let num = $0.numericCollectorNumber else { return false }
                 return (262...271).contains(num)
             }
             return lands
+        case "mom":
+            let lands = mainCards.separateAll {
+                guard let num = $0.numericCollectorNumber else { return false }
+                return Set((282...291)).union((267...276)).contains(num)
+            }
+            return lands
 		default:
-			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
+            let basicLands = mainCards.separateAll { $0.isBasicLand }
 			guard includeBasicLands else { return [] }
 			return basicLands
 		}
@@ -4659,7 +4747,7 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 	
 	// Actual basic lands. Used when creating land packs
 	let basicLands: [MTGCard] = {
-		let defaultBasicLands = { basicLandSlotCards.filter { $0.typeLine?.contains("Basic") == true && $0.typeLine?.contains("Land") == true && $0.typeLine?.contains("—") == true && $0.frameEffects?.contains("showcase") != true } }() // Get basic lands with a type. This will find normal basic lands and basic snow lands, but not Wastes, which appears at Common rarity, not land rarity.
+		let defaultBasicLands = { basicLandSlotCards.filter { $0.hasType("basic", "—", "land") && !$0.hasFrameEffects("showcase") } }() // Get basic lands with a type. This will find normal basic lands and basic snow lands, but not Wastes, which appears at Common rarity, not land rarity.
 		
 		switch setCode?.lowercased() ?? "" {
 		case "dgm":
@@ -4673,16 +4761,16 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 //		// TODO: Find lands for conspiracy.
 		case "thb":
 			// Use regular, non-Nyx basic lands that aren't found in boosters for THB.
-			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true && !$0.isFoundInBoosters && !$0.isPromo }
+			return cards.filter { $0.hasType("basic", "land") && !$0.isFoundInBoosters && !$0.isPromo }
 		case "tsp",
 			 _ where basicLandSlotCards.isEmpty:
-			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.typeLine?.lowercased().contains("land") == true && $0.isFoundInBoosters && !$0.isPromo }
+			return cards.filter { $0.hasType("basic") && $0.hasType("land") && $0.isFoundInBoosters && !$0.isPromo }
 		case "ogw":
 			return basicLandSlotCards.filter { $0.name != "Wastes" }
 		case "znr":
 			return basicLandSlotCards.filter { $0.isFullArt }
 		case "khm":
-			return cards.filter { $0.typeLine.contains("Basic") && !$0.typeLine.contains("Snow") }
+            return cards.filter { $0.hasType("basic") && !$0.hasType("snow") }
 		case "tsr":
 			return Swiftfall
 				.getCards(query: "set:tsp t:basic", unique: true)
@@ -4690,24 +4778,31 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 				.joined()
 				.compactMap(MTGCard.init)
 		case "stx", "mh2":
-			let basicLands = mainCards.separateAll { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true }
+            let basicLands = mainCards.separateAll { $0.hasType("basic", "land") }
 			guard includeBasicLands else { return [] }
 			return basicLands
 		case "mid", "vow":
 			// Use regular, non-Eternal Night basic lands that aren't found in boosters for MID.
-			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && $0.promoTypes.contains("bundle") }
+			return cards.filter { $0.hasType("basic") && $0.promoTypes.contains("bundle") }
 		case "neo", "dmu":
 			// Use regular, non-ukiyo-e basic lands that aren't found in boosters for MID.
-			return cards.filter { $0.typeLine?.lowercased().contains("basic") == true && !$0.isFullArt }
+			return cards.filter { $0.hasType("basic") && !$0.isFullArt }
 		case "bro":
-			let basicLands = mainCards.filter { ($0.typeLine ?? "").contains("Basic") == true && ($0.typeLine ?? "").contains("Land") == true && !$0.isFullArt }
+            let basicLands = mainCards.filter { $0.isBasicLand && !$0.isFullArt }
 			guard includeBasicLands else { return [] }
 			return basicLands
         case "one":
             return mainCards.separateAll {
-                guard let num = Int($0.collectorNumber) else { return false }
+                guard let num = $0.numericCollectorNumber else { return false }
                 return (272...276).contains(num)
             }
+        case "mom":
+            return mainCards.separateAll {
+                guard let num = $0.numericCollectorNumber else { return false }
+                return (277...281).contains(num)
+            }
+        case "ltr":
+            return cards.filter { $0.hasType("basic") && !$0.isFullArt }
 		case _ where Set(defaultBasicLands.compactMap { $0.name }).count == 5:
 			return defaultBasicLands
 		default:
@@ -4776,25 +4871,31 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 	}
 	
 	mainCards.removeAll { card in
-		card.promoTypes.contains("buyabox")
+		card.hasPromoType("buyabox") ||
+        card.hasPromoType("bundle")
 	}
 	
-	func cardIsShowcase(_ card: MTGCard) -> Bool {
+    func cardIsShowcase(_ card: MTGCard, fromAmong mainCards: [MTGCard]) -> Bool {
 		if setCode?.lowercased() == "mh2" && card.frame == "1997" {
 			return true
 		}
+        
+        if setCode?.lowercased() == "ltr" && card.borderColor == .borderless {
+            return true
+        }
 		
-		if (card.frameEffects?.contains("showcase") == true || card.borderColor == .borderless) {
-			return card.promoTypes?.contains("boosterfun") == true || mainCards.contains(where: { $0.name == card.name && $0.isFoundInBoosters })
+		if (card.hasFrameEffects("showcase") || card.borderColor == .borderless) {
+            return card.hasPromoType("boosterfun") || mainCards.contains(where: { $0.name == card.name && $0.isFoundInBoosters })
 		} else {
 			return false
 		}
 	}
 	
 	if setCode?.lowercased() != "2xm" || setCode?.lowercased() != "2x2" {
+        let all = mainCards
 		mainCards = mainCards.map { card in
 			var card = card
-			if cardIsShowcase(card) {
+            if cardIsShowcase(card, fromAmong: all) {
 				card.isFoundInBoosters = true
 			}
 			return card
@@ -4813,7 +4914,7 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
     
     if setCode == "one" {
         mainCards = mainCards.filter { card in
-            guard let number = Int(card.collectorNumber) else { return true }
+            guard let number = card.numericCollectorNumber else { return true }
             
             var invalidNumbers: Set<Int> = Set((277...284))
             invalidNumbers.formUnion((345...369))
@@ -4824,21 +4925,35 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
             return true
         }
     }
-	
+    
+    // Special-edition holiday collector boosters have a new showcase treatment that does not appear in draft boosters
+    if setCode == "ltr" {
+        mainCards = mainCards.filter { card in
+            guard let number = card.numericCollectorNumber else { return true }
+            
+            let invalidNumbers: Set<Int> = Set((452...752))
+            
+            if invalidNumbers.contains(number) {
+                return false
+            }
+            return true
+        }
+    }
+    
 	if setCode == "iko" {
 		mainCards.removeAll(where: { $0.name == "Zilortha, Strength Incarnate" })
 	} else if setCode?.lowercased() == "khm" {
 		mainCards = mainCards.map { card in
 			var card = card
-			if card.typeLine?.lowercased().contains("basic") == true {
-				card.isFoundInBoosters = card.typeLine?.lowercased().contains("snow") == true
+            if card.hasType("basic") {
+                card.isFoundInBoosters = card.hasType("snow")
 			}
 			return card
 		}
 	} else if setCode?.lowercased() == "stx" {
 		mainCards = mainCards.map { card in
 			var card = card
-			if card.typeLine?.contains("Basic") == true {
+			if card.hasType("basic") {
 				card.isFoundInBoosters = false
 			}
 			return card
@@ -4846,7 +4961,7 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 	} else if setCode?.lowercased() == "vow" {
 		mainCards = mainCards.map { card in
 			var card = card
-			if let num = Int(card.collectorNumber), (278...328).contains(num) {
+			if let num = card.numericCollectorNumber, (278...328).contains(num) {
 				card.isFoundInBoosters = true
 			}
 			return card
@@ -4959,12 +5074,15 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
     }
 	
 	let borderless: [MTGCard] = mainCards.separateAll { $0.borderColor == .borderless }
-	let showcases: [MTGCard.Rarity: [MTGCard]] = .init(grouping: mainCards.separateAll(where: cardIsShowcase), by: \.rarity)
+    let showcases: [MTGCard.Rarity: [MTGCard]] = {
+        let all = mainCards
+        return .init(grouping: mainCards.separateAll(where: { cardIsShowcase($0, fromAmong: all) }), by: \.rarity)
+    }()
 	
-	let extendedArt = mainCards.separateAll { $0.frameEffects?.contains("extendedart") == true }
+	let extendedArt = mainCards.separateAll { $0.hasFrameEffects("extendedart") }
 	
 	let tokensAndEmblems = mainCards.separateAll {
-		$0.typeLine?.lowercased().contains("token") == true || $0.typeLine?.lowercased().contains("emblem") == true
+		$0.hasType("token") || $0.hasType("emblem")
 	}
 	
 	mainCards = mainCards.filter { $0.isFoundInBoosters && $0.language == .english && !$0.isPromo }
@@ -4983,23 +5101,52 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 		case "isd", "dka", "soi", "emn":
 			return .init(grouping: mainCards.separateAll(where: { $0.layout == "transform" || $0.layout == "meld" }), by: \.rarity)
 		case "war":
-			return .init(grouping: mainCards.separateAll(where: { $0.typeLine?.lowercased().contains("planeswalker") == true }), by: \.rarity)
+			return .init(grouping: mainCards.separateAll(where: { $0.hasType("planeswalker") }), by: \.rarity)
 		case "vma":
-			return .init(grouping: mainCards.separateAll { (1...9).contains(Int($0.collectorNumber) ?? 0) }, by: \.rarity)
+			return .init(grouping: mainCards.separateAll { (1...9).contains($0.numericCollectorNumber ?? 0) }, by: \.rarity)
 		case "stx":
-			return .init(grouping: mainCards.separateAll(where: { $0.typeLine?.lowercased().contains("lesson") == true /* && $0.rarity != .uncommon */ }), by: \.rarity)
+			return .init(grouping: mainCards.separateAll(where: { $0.hasType("lesson") /* && $0.rarity != .uncommon */ }), by: \.rarity)
 		case "neo":
 			return .init(grouping: mainCards.separateAll(where: { ($0.rarity == .uncommon || $0.rarity == .common) && $0.layout == "transform" }), by: \.rarity)
 		case "bro":
-			let basics = mainCards.separateAll(where: { $0.typeLine?.lowercased().hasPrefix("basic") == true })
+            let basics = mainCards.separateAll(where: { $0.hasType("basic") })
 				.filter { $0.isFullArt }
 			return .init(grouping: basics, by: \.rarity)
         case "sir", "sir1", "sir2", "sir3", "sir4":
             return .init(grouping: mainCards.separateAll(where: { $0.frame == "2003" }), by: \.rarity)
+        case "mom":
+            let multiverseLegends = Swiftfall
+                .getCards(query: "set:mul lang:en not:etched", unique: true)
+                .compactMap { $0?.data }
+                .joined()
+                .map {
+                    var card = MTGCard($0)
+                    card.isFoundInBoosters = true
+                    return card
+                }
+            return .init(grouping: multiverseLegends, by: \.rarity)
 		default:
 			return [:]
 		}
 	}()
+    
+    let customSlot2Rarities: [MTGCard.Rarity: [MTGCard]] = {
+        switch setCode?.lowercased() {
+        case "mom":
+            return .init(grouping: mainCards.separateAll(where: { $0.hasType("battle") == true }), by: \.rarity)
+        default:
+            return [:]
+        }
+    }()
+    
+    let customSlot3Rarities: [MTGCard.Rarity: [MTGCard]] = {
+        switch setCode?.lowercased() {
+        case "mom":
+            return .init(grouping: mainCards.separateAll(where: { $0.layout.lowercased() == "transform" }), by: \.rarity)
+        default:
+            return [:]
+        }
+    }()
 	
 	let masterpieces: [MTGCard] = try {
 		switch setCode?.lowercased() {
@@ -5010,7 +5157,7 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
-				.filter { (1...25).contains(Int($0.collectorNumber) ?? 0) }
+				.filter { (1...25).contains($0.numericCollectorNumber ?? 0) }
 		case "ogw":
 			return try Swiftfall
 				.getSet(code: "exp")
@@ -5018,7 +5165,7 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
-				.filter { (26...45).contains(Int($0.collectorNumber) ?? 0) }
+				.filter { (26...45).contains($0.numericCollectorNumber ?? 0) }
 		case "kld":
 			return try Swiftfall
 				.getSet(code: "mps")
@@ -5026,7 +5173,7 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
-				.filter { (1...30).contains(Int($0.collectorNumber) ?? 0) }
+				.filter { (1...30).contains($0.numericCollectorNumber ?? 0) }
 		case "aer":
 			return try Swiftfall
 				.getSet(code: "mps")
@@ -5034,7 +5181,7 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
-				.filter { (31...54).contains(Int($0.collectorNumber) ?? 0) }
+				.filter { (31...54).contains($0.numericCollectorNumber ?? 0) }
 		case "akh":
 			return try Swiftfall
 				.getSet(code: "mp2")
@@ -5042,7 +5189,7 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
-				.filter { (1...30).contains(Int($0.collectorNumber) ?? 0) }
+				.filter { (1...30).contains($0.numericCollectorNumber ?? 0) }
 		case "hou":
 			return try Swiftfall
 				.getSet(code: "mp2")
@@ -5050,7 +5197,7 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
-				.filter { (31...54).contains(Int($0.collectorNumber) ?? 0) }
+				.filter { (31...54).contains($0.numericCollectorNumber ?? 0) }
 		default:
 			return []
 		}
@@ -5058,16 +5205,20 @@ process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBas
 	
 	let rarities: [MTGCard.Rarity: [MTGCard]] = .init(grouping: mainCards, by: \.rarity)
 	
-	return ProcessedCards(rarities: rarities,
-						  customSlotRarities: customSlotRarities,
-						  basicLandsSlotCards: basicLandSlotCards,
-						  tokens: tokensAndEmblems,
-						  meldResults: meldResults,
-						  showcaseRarities: showcases,
-						  borderlessCards: borderless,
-						  extendedArtCards: extendedArt,
-						  masterpieces: masterpieces,
-						  basicLands: basicLands)
+    return ProcessedCards(
+        rarities: rarities,
+        customSlotRarities: customSlotRarities,
+        customSlot2Rarities: customSlot2Rarities,
+        customSlot3Rarities: customSlot3Rarities,
+        basicLandsSlotCards: basicLandSlotCards,
+        tokens: tokensAndEmblems,
+        meldResults: meldResults,
+        showcaseRarities: showcases,
+        borderlessCards: borderless,
+        extendedArtCards: extendedArt,
+        masterpieces: masterpieces,
+        basicLands: basicLands
+    )
 }
 
 struct CardLine: CustomStringConvertible {
@@ -5230,20 +5381,24 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
 	
-	let packs: [CardCollection] = try (1...count).map { _ in try generatePack(rarities: processed.rarities,
-																 customSlotRarities: processed.customSlotRarities,
-																 basicLands: processed.basicLandsSlotCards,
-																 tokens: includeTokens ? tokens + processed.tokens : [],
-																 showcaseRarities: processed.showcaseRarities,
-																 borderless: processed.borderlessCards,
-																 extendedArt: processed.extendedArtCards,
-																 meldResults: processed.meldResults,
-																 mode: mode,
-																 includeExtendedArt: includeExtendedArt,
-																 masterpieceCards: processed.masterpieces,
-																 foilPolicy: foilPolicy,
-																 mythicPolicy: mythicPolicy) }
-	
+    let packs: [CardCollection] = try (1...count).map { _ in try generatePack(
+        rarities: processed.rarities,
+        customSlotRarities: processed.customSlotRarities,
+        customSlot2Rarities: processed.customSlot2Rarities,
+        customSlot3Rarities: processed.customSlot3Rarities,
+        basicLands: processed.basicLandsSlotCards,
+        tokens: includeTokens ? tokens + processed.tokens : [],
+        showcaseRarities: processed.showcaseRarities,
+        borderless: processed.borderlessCards,
+        extendedArt: processed.extendedArtCards,
+        meldResults: processed.meldResults,
+        mode: mode,
+        includeExtendedArt: includeExtendedArt,
+        masterpieceCards: processed.masterpieces,
+        foilPolicy: foilPolicy,
+        mythicPolicy: mythicPolicy
+    ) }
+    
 	return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: tokens + processed.tokens)
 }
 
@@ -5289,30 +5444,34 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
 	
-	var cards: [MTGCard] = try Array((1...count).map { _ in try generatePack(rarities: processed.rarities,
-													customSlotRarities: processed.customSlotRarities,
-													basicLands: processed.basicLandsSlotCards,
-													tokens: includeTokens ? tokens + processed.tokens : [],
-													showcaseRarities: processed.showcaseRarities,
-													borderless: processed.borderlessCards,
-													extendedArt: processed.extendedArtCards,
-													meldResults: processed.meldResults,
-													mode: mode,
-													includeExtendedArt: includeExtendedArt,
-													masterpieceCards: processed.masterpieces,
-													foilPolicy: foilPolicy,
-													mythicPolicy: mythicPolicy).mtgCards }.joined()).sorted(by: { $0.name ?? "" < $1.name ?? "" })
+    var cards: [MTGCard] = try Array((1...count).map { _ in try generatePack(
+        rarities: processed.rarities,
+        customSlotRarities: processed.customSlotRarities,
+        customSlot2Rarities: processed.customSlot2Rarities,
+        customSlot3Rarities: processed.customSlot3Rarities,
+        basicLands: processed.basicLandsSlotCards,
+        tokens: includeTokens ? tokens + processed.tokens : [],
+        showcaseRarities: processed.showcaseRarities,
+        borderless: processed.borderlessCards,
+        extendedArt: processed.extendedArtCards,
+        meldResults: processed.meldResults,
+        mode: mode,
+        includeExtendedArt: includeExtendedArt,
+        masterpieceCards: processed.masterpieces,
+        foilPolicy: foilPolicy,
+        mythicPolicy: mythicPolicy
+    ).mtgCards }.joined()).sorted(by: { $0.name ?? "" < $1.name ?? "" })
 	
 	let code = setCode ?? cards.first?.set ?? ""
 	
 	let tokens = try allTokensForSet(setCode: code)
 	let token = try singleCompleteToken(tokens: tokens, export: false)
 	
-	cards.removeAll(where: { $0.typeLine?.lowercased().contains("basic") == true || $0.layout == "token" || $0.layout == "double_faced_token" })
+	cards.removeAll(where: { $0.hasType("basic") || $0.layout == "token" || $0.layout == "double_faced_token" })
 	
-	let commanders = cards.separateAll(where: { $0.typeLine?.lowercased().contains("legendary") == true && ($0.typeLine?.lowercased().contains("creature") == true || $0.typeLine?.lowercased().contains("planeswalker") == true) })
+	let commanders = cards.separateAll(where: { $0.hasType("legendary", "creature") || $0.hasType("planeswalker") })
 	
-	let backgrounds = cards.separateAll(where: { $0.typeLine?.lowercased().contains("legendary") == true && $0.typeLine?.lowercased().contains("background") == true })
+	let backgrounds = cards.separateAll(where: { $0.hasType("legendary", "background") })
 	
 	let rares = cards.separateAll(where: { $0.rarity == .rare || $0.rarity == .mythic })
 	
@@ -5438,20 +5597,24 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
 	
-	let pack = try generatePack(rarities: processed.rarities,
-							customSlotRarities: processed.customSlotRarities,
-							basicLands: processed.basicLandsSlotCards,
-							tokens: includeTokens ? tokens + processed.tokens : [],
-							showcaseRarities: processed.showcaseRarities,
-							borderless: processed.borderlessCards,
-							extendedArt: processed.extendedArtCards,
-							meldResults: processed.meldResults,
-							mode: mode,
-							includeExtendedArt: includeExtendedArt,
-							masterpieceCards: processed.masterpieces,
-							foilPolicy: foilPolicy,
-							mythicPolicy: mythicPolicy,
-							seed: seed)
+    let pack = try generatePack(
+        rarities: processed.rarities,
+        customSlotRarities: processed.customSlotRarities,
+        customSlot2Rarities: processed.customSlot2Rarities,
+        customSlot3Rarities: processed.customSlot3Rarities,
+        basicLands: processed.basicLandsSlotCards,
+        tokens: includeTokens ? tokens + processed.tokens : [],
+        showcaseRarities: processed.showcaseRarities,
+        borderless: processed.borderlessCards,
+        extendedArt: processed.extendedArtCards,
+        meldResults: processed.meldResults,
+        mode: mode,
+        includeExtendedArt: includeExtendedArt,
+        masterpieceCards: processed.masterpieces,
+        foilPolicy: foilPolicy,
+        mythicPolicy: mythicPolicy,
+        seed: seed
+    )
 	
 	return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens + processed.tokens)
 }
@@ -5505,6 +5668,8 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 		let packs: [CardCollection] = try (1...boosterCount).map { value in try generatePack(
 			rarities: processed.rarities,
 			customSlotRarities: processed.customSlotRarities,
+            customSlot2Rarities: processed.customSlot2Rarities,
+            customSlot3Rarities: processed.customSlot3Rarities,
 			basicLands: processed.basicLandsSlotCards,
 			tokens: tokens + processed.tokens,
 			showcaseRarities: processed.showcaseRarities,
@@ -6272,6 +6437,11 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		let initative = try Swiftfall.getCard(id: "2c65185b-6cf0-451d-985e-56aa45d9a57d")
 		tokens.append(MTGCard(initative))
 	}
+    
+    if cards.contains(where: { $0.oracleText?.lowercased().contains("the ring tempts you") == true }) {
+        let ringToken = try Swiftfall.getCard(id: "7215460e-8c06-47d0-94e5-d1832d0218af")
+        tokens.append(MTGCard(ringToken))
+    }
 	
 	var alreadyThere: Set<MTGCard> = []
 	let uniqueTokens = tokens.compactMap { token -> MTGCard? in

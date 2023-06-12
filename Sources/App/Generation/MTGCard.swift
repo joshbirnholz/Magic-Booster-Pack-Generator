@@ -152,6 +152,38 @@ public struct MTGCard: Codable, Equatable, Hashable {
 	var finishes: [Swiftfall.Card.Finish]
 	
 	public var promoTypes: [String]?
+    
+    /// Returns true if the card has the given promo type
+    public func hasPromoType(_ promoType: String) -> Bool {
+        guard let promoTypes = promoTypes?.map ({ $0.lowercased() }) else { return false }
+        
+        return promoTypes.contains(promoType.lowercased())
+    }
+    
+    /// Returns true if the card has all of the given types (case-insensitive)
+    public func hasType(_ types: String...) -> Bool {
+        guard let typeLine = typeLine?.lowercased() else { return false }
+        
+        return types.allSatisfy {
+            typeLine.contains($0.lowercased())
+        }
+    }
+    
+    /// Returns true if the card has all of the given promo types (case-insensitive)
+    public func hasFrameEffects(_ frameEffects: String...) -> Bool {
+        guard let effects = self.frameEffects?.map({ $0.lowercased() }) else { return false }
+        
+        return Set(frameEffects.map { $0.lowercased() }).isSubset(of: Set(effects))
+    }
+    
+    /// Returns true if the card's name has the given prefix. Case-insensitive by default.
+    public func nameHasPrefix(_ prefix: String, caseSensitive: Bool = false) -> Bool {
+        return (caseSensitive ? name : name?.lowercased())?.hasPrefix((caseSensitive ? prefix : prefix.lowercased())) ?? false
+    }
+    
+    public var numericCollectorNumber: Int? {
+        Int(collectorNumber)
+    }
 	
 	public var language: Language
 	public var releaseDate: Date?
@@ -178,11 +210,11 @@ public struct MTGCard: Codable, Equatable, Hashable {
 
 public extension MTGCard {
 	var isBasicLand: Bool {
-		(typeLine?.lowercased().contains("basic") == true) && (typeLine?.lowercased().contains("land") == true)
+		hasType("basic", "land")
 	}
 	
 	var isLand: Bool {
-		typeLine?.lowercased().contains("land") == true
+		hasType("land")
 	}
 	
 	var isFoil: Bool {
@@ -192,7 +224,7 @@ public extension MTGCard {
 	}
 	
 	var isShowcase: Bool {
-		frameEffects?.contains("showcase") == true
+        hasFrameEffects("showcase")
 	}
 }
 

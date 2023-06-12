@@ -5115,7 +5115,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
         case "sir", "sir1", "sir2", "sir3", "sir4":
             return .init(grouping: mainCards.separateAll(where: { $0.frame == "2003" }), by: \.rarity)
         case "mom":
-            let multiverseLegends = Swiftfall
+            let multiverseLegends: [MTGCard] = Swiftfall
                 .getCards(query: "set:mul lang:en not:etched", unique: true)
                 .compactMap { $0?.data }
                 .joined()

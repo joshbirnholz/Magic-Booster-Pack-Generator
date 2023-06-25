@@ -1,12 +1,12 @@
 [
   {
-	"url": "https://deckstats.net/decks/149419/1889069-akiri-fearless-voyager",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/2/52ec2a93-0708-498e-86f2-6f70d51ae4cd.jpg",
+	"url": "https://deckstats.net/decks/149419/2915362-perrie-proliferate"
+	"front": "https://cards.scryfall.io/large/front/d/4/d438237b-c6f7-44d0-a3e6-6ec7d7465d33.jpg",
 	"ids": ["51"],
-	"ci": "RW",
-	"comment": "Equipment",
-    "name": "Akiri, Fearless Voyager",
-    "hide": true
+	"ci": "WUG",
+	"comment": "Counters",
+    "name": "Perrie, the Pulverizer",
+    "hide": false
   },
   {
 	"url": "https://deckstats.net/decks/149419/1854884-akroma-sakashima",

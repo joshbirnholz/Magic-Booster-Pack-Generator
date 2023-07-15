@@ -409,4 +409,14 @@
       "type": "dfc",
       "name": "Extus, Oriq Overlord // Awaken the Blood Avatar"
   },
+  {
+      "url": "https://deckstats.net/decks/149419/3082375-food-and-fellowship-upgraded-",
+      "front": "https://cards.scryfall.io/large/front/3/2/328df403-7428-4b17-bdd1-9759fc0f32d8.jpg",
+      "back": "https://cards.scryfall.io/large/front/6/8/687a2b76-3f05-4732-bd9b-513d06d16300.jpg",
+      "ids": ["53, 54"],
+      "ci": "WBG",
+      "comment": "Food, Lifegain",
+      "type": "partners",
+      "name": "Frodo, Adventurous Hobbit // Sam, Loyal Attendant"
+  },
 ]

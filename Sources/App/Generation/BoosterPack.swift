@@ -6290,6 +6290,14 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 	for group in parsed {
 		for cardCount in group.cardCounts {
 			guard let alterURL = cardCount.alter else { continue }
+      
+      if let notFoundIndex = notFound.firstIndex(of: cardCount.identifier), let index = identifiers.firstIndex(of: cardCount.identifier) {
+        // The user is supplying a custom image for a card that doesn't exist. Most likely a custom card
+        notFound.remove(at: notFoundIndex)
+        let newCard = MTGCard.init(name: cardCount.identifier.name, layout: "normal", frame: "2015", isFullArt: false, collectorNumber: "0", set: "custom", rarity: .rare, isFoilAvailable: true, isNonFoilAvailable: true, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil, .foil], language: .english)
+        mtgCards.insert(newCard, at: index)
+      }
+      
 			let indices: [Int] = mtgCards.enumerated().compactMap { index, card in
 				switch cardCount.identifier {
 				case .id(let id):

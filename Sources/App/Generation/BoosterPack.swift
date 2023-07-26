@@ -6243,6 +6243,141 @@ fileprivate func getAllTokens(for cards: [MTGCard]) -> [MTGCard] {
 	}
 }
 
+extension MTGCard {
+  func isIdentified(by identifier: MTGCardIdentifier) -> Bool {
+    switch identifier {
+    case .id(let id):
+      return scryfallID == id
+//    case .mtgoID(let id):
+//      return mtgoID == id
+//    case .multiverseID(let id):
+//      return multiverseIds.contains(id)
+//    case .oracleID(let id):
+//      return oracleId == id
+//    case .illustrationID(let id):
+//      return illustrationId == id.uuidString
+    case .name(let name):
+      let names: [String] = Array([[self.name], cardFaces?.map(\.name) ?? []].joined()).compactMap { $0?.lowercased() }
+      return names.contains(name.lowercased())
+    case .nameSet(name: let name, set: let set):
+      let names: [String] = Array([[self.name], cardFaces?.map(\.name) ?? []].joined()).compactMap { $0?.lowercased() }
+      let nameMatches = names.contains(name.lowercased())
+      if nameMatches && self.set.lowercased() == set.lowercased() {
+        return true
+      } else if !nameMatches && set.lowercased() == "dar" && nameMatches && self.set.lowercased() == "dom" {
+        return true
+      } else if let fixedSet = fixedSetCodes[set.lowercased()], nameMatches && self.set.lowercased() == fixedSet {
+        return true
+      } else {
+        return false
+      }
+    case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set, _):
+      let collectorNumberMatches = collectorNumber.lowercased() == self.collectorNumber.lowercased()
+      if collectorNumberMatches && set.lowercased() == self.set.lowercased() {
+        return true
+      } else if set.lowercased() == "dar" && collectorNumberMatches && self.set.lowercased() == "dom" {
+        return true
+      } else if let fixedSet = fixedSetCodes[set.lowercased()], collectorNumberMatches && self.set.lowercased() == fixedSet  {
+        return true
+      } else {
+        return false
+      }
+    default:
+      return false
+    }
+  }
+}
+
+//func newDeck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil) throws -> String {
+//  let cardGroups: [DeckParser.CardGroup] = {
+//    var parsed: [DeckParser.CardGroup]
+//    switch deck {
+//    case .arena(let decklist):
+//      parsed = DeckParser.parse(deckList: decklist, autofix: autofix)
+//    case .deckstats(let decklist):
+//      parsed = DeckParser.parse(deckstatsDecklist: decklist)
+//    case .moxfield(let moxfieldDeck):
+//      parsed = DeckParser.parse(moxfieldDeck: moxfieldDeck)
+//    case .archidekt(let archidektDeck):
+//      parsed = DeckParser.parse(archidektDeck: archidektDeck)
+//    }
+//    parsed.removeAll(where: { $0.name == DeckParser.CardGroup.GroupName.maybeboard.rawValue })
+//    return parsed.filter { !$0.cardCounts.isEmpty }.map {
+//      var cardGroup = $0
+//      
+//      cardGroup.cardCounts = cardGroup.cardCounts.map { cardCount in
+//        func fixDoubleFacedName(_ name: String) -> String {
+//          guard let index = name.range(of: "//")?.lowerBound else { return name }
+//          return String(name[..<index].trimmingCharacters(in: .whitespacesAndNewlines))
+//        }
+//        
+//        let identifier: MTGCardIdentifier = {
+//          let identifier = cardCount.identifier
+//          
+//          switch identifier {
+//          case .nameSet(name: let name, set: let set):
+//            let fixedName = fixDoubleFacedName(name)
+//            if let fixedCode = fixedSetCodes[set.lowercased()] {
+//              return .nameSet(name: fixedName, set: fixedCode)
+//            } else if set.uppercased() == "MYSTOR" || set.uppercased() == "MYS1" {
+//              return .name(fixedName)
+//            } else if autofix && !(3...6).contains(set.count) {
+//              return .name(fixedName)
+//            } else {
+//              return .nameSet(name: fixedName, set: set)
+//            }
+//          case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set, let name):
+//            let fixedName = name.flatMap(fixDoubleFacedName(_:))
+//            if let fixedCode = fixedSetCodes[set.lowercased()] {
+//              return .collectorNumberSet(collectorNumber: collectorNumber, set: fixedCode, name: fixedName)
+//            } else if let name = fixedName, set.uppercased() == "MYSTOR" {
+//              return .nameSet(name: name, set: "fmb1")
+//            } else if let name = fixedName, set.uppercased() == "MYS1" {
+//              return .nameSet(name: name, set: "mb1")
+//            } else if let name = fixedName, autofix && !(3...6).contains(set.count) {
+//              return .name(name)
+//            } else {
+//              return .collectorNumberSet(collectorNumber: collectorNumber, set: set, name: fixedName)
+//            }
+//          case .name(let name):
+//            return .name(fixDoubleFacedName(name))
+//          default:
+//            return identifier
+//          }
+//        }()
+//        
+//        return DeckParser.CardCount(identifier: identifier, count: cardCount.count)
+//      }
+//      
+//      return cardGroup
+//    }
+//  }()
+//  
+//  let identifiersToFetch: [MTGCardIdentifier] = Array(Set(cardGroups.map { $0.cardCounts }.joined().map { $0.identifier }))
+//  
+//  guard !identifiersToFetch.isEmpty else {
+//    throw PackError.emptyInput
+//  }
+//  
+//  let collections: [Swiftfall.CardCollectionList] = try identifiersToFetch.chunked(by: 75).compactMap {
+//    do {
+//      return try Swiftfall.getCollection(identifiers: $0)
+//    } catch {
+//      print(error)
+//      throw error
+//    }
+//  }
+//  
+//  var cardsForIdentifiers: [MTGCardIdentifier: MTGCard] = [:]
+//  
+//  let foundCards: [MTGCard] = Array(collections.map(\.data).joined()).map(MTGCard.init)
+//  let notFound: [MTGCardIdentifier] = Array(collections.compactMap(\.notFound).joined())
+//  
+//  
+//  
+//  return ""
+//}
+
 func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil, customOverrides: [String]) throws -> String {
 	enum CustomOverride {
 		case identifiers(String)

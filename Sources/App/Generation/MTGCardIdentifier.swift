@@ -195,4 +195,72 @@ public enum MTGCardIdentifier: Codable, Hashable, CustomStringConvertible {
 			return desc
 		}
 	}
+  
+  public func isMoreSpecificThan(_ other: MTGCardIdentifier) -> Bool {
+    switch self {
+    case .id(_):
+      return true
+    case .mtgoID(_):
+      return true
+    case .multiverseID(_):
+      return true
+    case .oracleID(_):
+      return true
+    case .illustrationID(_):
+      return true
+    case .name(_):
+      return false
+    case .nameSet(_, _):
+      switch other {
+      case .id(_):
+        return false
+      case .mtgoID(_):
+        return false
+      case .multiverseID(_):
+        return false
+      case .oracleID(_):
+        return false
+      case .illustrationID(_):
+        return false
+      case .name(_):
+        return true
+      case .nameSet(_, _):
+        return false
+      case .collectorNumberSet(_, _, _):
+        return false
+      }
+    case .collectorNumberSet(_, _, _):
+      switch other {
+      case .id(_):
+        return false
+      case .mtgoID(_):
+        return false
+      case .multiverseID(_):
+        return false
+      case .oracleID(_):
+        return false
+      case .illustrationID(_):
+        return false
+      case .name(_):
+        return true
+      case .nameSet(_, _):
+        return true
+      case .collectorNumberSet(_, _, _):
+        return false
+      }
+    }
+  }
+}
+
+public extension Collection where Element == MTGCardIdentifier {
+  var mostSpecific: MTGCardIdentifier? {
+    guard !isEmpty else { return nil }
+    
+    return self.max(by: { first, second in
+      // are first and second in increasing order of specificity?
+//      is first less specific than second?
+//      is second more specific than first?
+      return second.isMoreSpecificThan(first)
+    })
+  }
 }

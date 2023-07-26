@@ -1206,6 +1206,53 @@ func processCommanderLegendsCards(_ cards: [MTGCard], tokens: [MTGCard]) -> Comm
 	return processed
 }
 
+struct CommanderMastersProcessed {
+  var rarities: [MTGCard.Rarity: [MTGCard]] = [:]
+  var legendRarities: [MTGCard.Rarity: [MTGCard]] = [:]
+  var borderlessCardsForUUIDs: [UUID: MTGCard] = [:]
+  var tokens: [MTGCard] = []
+  var prismaticPiper: MTGCard?
+  
+  var combinedRarities: [MTGCard.Rarity: [MTGCard]] = [:]
+}
+
+func processCommanderMastersCards(_ cards: [MTGCard], tokens: [MTGCard]) -> CommanderMastersProcessed {
+  var processed = CommanderMastersProcessed()
+  
+  var cards = cards
+  
+  if let piperID = UUID(uuidString: "b2aeee90-7b8d-47a6-9167-cc21f7fbfd43"),
+     let index = cards.firstIndex(where: { $0.oracleID == piperID }) {
+    processed.prismaticPiper = cards.remove(at: index)
+  }
+  
+  cards.removeAll(where: { $0.frameEffects.contains("extendedart") || !$0.isFoundInBoosters || $0.promoTypes.contains("textured") || $0.finishes == [.etched] || $0.typeLine.contains("Basic")})
+  
+  let borderlessCards = cards.separateAll(where: { $0.borderColor == .borderless })
+  for card in borderlessCards {
+    guard let id = card.oracleID else { continue }
+    processed.borderlessCardsForUUIDs[id] = card
+  }
+
+  let legends = cards.separateAll {
+    guard let typeLine = $0.typeLine?.lowercased() else { return false }
+    return (typeLine.contains("legendary") && (typeLine.contains("creature")) || ($0.oracleText?.lowercased().contains("can be your commander")) == true)
+  }
+
+  processed.rarities = .init(grouping: cards, by: \.rarity)
+  processed.legendRarities = .init(grouping: legends, by: \.rarity)
+
+  processed.tokens = tokens
+  
+  processed.combinedRarities = processed.rarities.merging(processed.legendRarities, uniquingKeysWith: {
+    var array = $0
+    array.append(contentsOf: $1)
+    return array
+  })
+  
+  return processed
+}
+
 struct BaldursGateProcessed: Hashable, Equatable {
 	var rarities: [MTGCard.Rarity: [MTGCard]] = [:]
 	var legendRarities: [MTGCard.Rarity: [MTGCard]] = [:]
@@ -1724,6 +1771,192 @@ func generateBaldursGatePack(_ processed: BaldursGateProcessed, includeExtendedA
 	}
 	
 	return pack
+}
+
+func generateCommanderMastersPack(_ processed: CommanderMastersProcessed, includeTokens: Bool) -> CardCollection {
+  
+  var pack = CardCollection()
+  
+  let includedFoilRarity: MTGCard.Rarity = {
+    let rarityValue = (1...1000).randomElement()!
+    switch rarityValue {
+    case 1...500: return .common
+    case 1...833: return .uncommon
+    case 1...979: return .rare
+    default: return .mythic
+    }
+  }()
+  
+  var shouldLegendaryRareBeMythic: Bool {
+    (1...100).randomElement()! <= 31
+  }
+  var shouldNonlegendaryRareBeMythic: Bool {
+    (1...100).randomElement()! >= 74
+  }
+  let shouldIncludeExtraNonlegendaryRare = (1...3).randomElement() == 3
+  let shouldIncludePrismaticPiper: Bool = (1...6).randomElement() == 6
+  
+  var packOkay: Bool {
+    var problems: [String] = []
+    
+    let cardCount = 20
+    let allowedNumberOfDuplicates = 1
+    var uniqueCardCount: Int { Set(pack.mtgCards.compactMap { $0.name }).count }
+    var allColorsCount: Int { Set(pack.mtgCards.compactMap { $0.colors }.joined()).count }
+    
+    // Color smoothing
+    for color: Set<MTGColor> in [[.white], [.blue], [.black], [.red], [.green], []] {
+      let colorCards = pack.mtgCards.filter { card in
+        if let colors = card.colors, colors.count >= 3 {
+          return false // Don't count colors of 3+ color cards, sinec they aren't always playable
+        }
+        let cardColors: Set<MTGColor> = {
+          let colors = card.colors ?? []
+          var cardColors = Set(colors)
+          if let produced = card.producedMana {
+            cardColors.formUnion(Set(produced))
+          }
+          return cardColors
+        }()
+        
+        return color.isSubset(of: cardColors)
+      }
+      if colorCards.count < (.random() ? 2 : 1) {
+        problems.append("Pack doesn't have enough \(color.first?.name ?? "colorless") cards")
+      }
+    }
+    
+    if uniqueCardCount < cardCount - allowedNumberOfDuplicates {
+      problems.append("Unique card is wrong; Should be \(cardCount), was \(uniqueCardCount)")
+    }
+    if pack.mtgCards.filter({ $0.typeLine.contains("Creature") }).count < 10 {
+      problems.append("Not enough creatures")
+    }
+    
+    if !problems.isEmpty {
+      print(problems.joined(separator: ", "))
+    }
+    
+    return problems.isEmpty
+  }
+  
+  repeat {
+    pack.removeAll()
+    
+    if shouldIncludePrismaticPiper, let piper = processed.prismaticPiper {
+      pack.insert(piper, at: 0)
+    }
+    
+    let commonCount = 11-pack.count
+    let commons = processed.rarities[.common]?.choose(commonCount) ?? []
+    pack.insert(contentsOf: commons, at: 0)
+    
+    let uncommonCount = shouldIncludeExtraNonlegendaryRare ? 3 : 4
+    let uncommons = processed.rarities[.uncommon]?.choose(uncommonCount) ?? []
+    pack.insert(contentsOf: uncommons, at: 0)
+    
+    let uncommonLegends = processed.legendRarities[.uncommon]?.choose(2) ?? []
+    pack.insert(contentsOf: uncommonLegends, at: 0)
+    
+    if let rareLegend = processed.legendRarities[shouldLegendaryRareBeMythic ? .mythic : .rare]?.randomElement() {
+      pack.insert(rareLegend, at: 0)
+    }
+    
+    if let rare = processed.rarities[shouldNonlegendaryRareBeMythic ? .mythic : .rare]?.randomElement() {
+      pack.insert(rare, at: 0)
+    }
+    
+    if shouldIncludeExtraNonlegendaryRare,
+       let rare = processed.rarities[shouldNonlegendaryRareBeMythic ? .mythic : .rare]?.randomElement() {
+      pack.insert(rare, at: 0)
+    }
+    
+    if let foil = processed.combinedRarities[includedFoilRarity]?.randomElement() {
+      pack.insert(foil, at: 0, isFoil: true)
+    }
+    
+  } while !packOkay
+  
+  // TODO: Borderless cards
+  // For each borderless card in the pack, give it a 1/3 chance of replacing it with the borderless version.
+  
+  let allowedBorderlessCount = .random() ? 1 : 2
+  for (index, card) in pack.cards.enumerated().shuffled() {
+    guard (1...3).randomElement() == 3 && pack.mtgCards.filter({ $0.borderColor == .borderless }).count < allowedBorderlessCount else { continue }
+    guard let oracleID = card.card.oracleID else { continue }
+    if let borderlessVersion = processed.borderlessCardsForUUIDs[oracleID] {
+      pack.cards[index].card = borderlessVersion
+    }
+  }
+  
+  pack.reverse()
+  
+  // Add token
+  
+  func tokensAreEqual(_ first: MTGCard, _ second: MTGCard) -> Bool {
+    if first.oracleID == second.oracleID && first.oracleID != nil {
+      return true
+    }
+    if first == second {
+      return true
+    }
+    if first.name == second.name && first.typeLine == second.typeLine && first.colors == second.colors && first.oracleText == second.oracleText && first.power == second.power && first.toughness == second.toughness {
+      return true
+    }
+    
+    return false
+  }
+  
+  guard includeTokens && !processed.tokens.isEmpty else {
+    return pack
+  }
+  
+  var availableTokens: [MTGCard] = []
+  
+  let uniqueTokens: [MTGCard] = {
+    var uniqueTokens: [MTGCard] = []
+    
+    for token in processed.tokens {
+      if !uniqueTokens.contains(where: { tokensAreEqual(token, $0) }) {
+        uniqueTokens.append(token)
+      }
+    }
+    
+    return uniqueTokens
+  }()
+  
+  for token in uniqueTokens {
+    let cardsToLookAt: [MTGCard] = pack.mtgCards
+    
+    for card in cardsToLookAt {
+      if card.allParts?.contains(where: { $0.scryfallID == token.scryfallID }) == true
+        || token.allParts?.contains(where: { $0.scryfallID == card.scryfallID }) == true {
+        availableTokens.append(token)
+      } else if token.name?.lowercased() == "on an adventure" && card.layout == "adventure" {
+        availableTokens.append(token)
+      } else if token.name?.lowercased() == "the monarch" && card.oracleText?.lowercased().contains("monarch") == true {
+        availableTokens.append(token)
+      } else if let name = token.name?.lowercased(), card.oracleText?.contains(name) == true {
+        availableTokens.append(token)
+      } else if card.allParts?.contains(where: { $0.name == token.name }) == true {
+        availableTokens.append(token)
+      } else if token.allParts?.contains(where: { $0.name == card.name }) == true {
+        availableTokens.append(token)
+      }
+    }
+  }
+  
+  if availableTokens.isEmpty {
+    availableTokens = processed.tokens
+  }
+  
+  if var token = availableTokens.randomElement() {
+    token = processed.tokens.shuffled().first(where: { tokensAreEqual(token, $0) })!
+    
+    pack.append(token)
+  }
+  
+  return pack
 }
 
 enum MysterBoosterSlot: Hashable, Equatable {
@@ -5377,7 +5610,15 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		let tokens = try allTokensForSet(setCode: setCode!)
 		
 		return try output(setName: "Commander Legends: Battle for Baldur's Gate", setCode: setCode ?? "", packs: packs, tokens: tokens)
-	}
+	} else if setCode?.lowercased() == "cmm" {
+    let cards = processCommanderMastersCards(cards, tokens: tokens)
+    
+    let packs: [CardCollection] = (1...count).map { _ in generateCommanderMastersPack(cards, includeTokens: includeTokens) }
+    
+    let tokens = try allTokensForSet(setCode: setCode!)
+    
+    return try output(setName: "Commander Masters", setCode: setCode ?? "", packs: packs, tokens: tokens)
+  }
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
 	
@@ -5440,7 +5681,15 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 		let tokens = try allTokensForSet(setCode: setCode!)
 		
 		return try boosterBag(setName: "Commander Legends: Battle for Baldur's Gate", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: tokens, export: export)
-	}
+	} else if setCode?.lowercased() == "cmm" {
+    let cards = processCommanderMastersCards(cards, tokens: tokens)
+    
+    let packs: [CardCollection] = (1...count).map { _ in generateCommanderMastersPack(cards, includeTokens: includeTokens) }
+    
+    let tokens = try allTokensForSet(setCode: setCode!)
+    
+    return try boosterBag(setName: "Commander Masters", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: tokens, export: export)
+  }
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
 	
@@ -5593,7 +5842,15 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 		let tokens = try allTokensForSet(setCode: setCode!)
 		
 		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens)
-	}
+	} else if setCode?.lowercased() == "cmm" {
+    let cards = processCommanderMastersCards(cards, tokens: tokens)
+    
+    let pack = generateCommanderMastersPack(cards, includeTokens: includeTokens)
+    
+    let tokens = try allTokensForSet(setCode: setCode!)
+    
+    return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens)
+  }
 	
 	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
 	
@@ -6537,40 +6794,7 @@ extension Collection where Element == Swiftfall.Card {
 
 extension Collection where Element == MTGCard {
 	subscript(_ identifier: MTGCardIdentifier) -> MTGCard? {
-		let foundCard = first { (card) -> Bool in
-			switch identifier {
-			case .id(let id):
-				return card.scryfallID == id
-//			case .mtgoID(let id):
-//				return card.mtgoID == id
-//			case .multiverseID(let id):
-//				return card.multiverseIds.contains(id)
-//			case .oracleID(let id):
-//				return card.oracleId == id
-//			case .illustrationID(let id):
-//				return card.illustrationId == id.uuidString
-			case .name(let name):
-				let name = name.lowercased()
-				return card.name?.lowercased() == name || card.cardFaces?.contains(where: { $0.name?.lowercased() == name }) == true
-			case .nameSet(name: let name, set: let set):
-				let name = name.lowercased()
-				return (card.name?.lowercased() == name || card.cardFaces?.contains(where: { $0.name?.lowercased() == name }) == true) && card.set.lowercased() == set.lowercased()
-			case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set, _):
-				return card.collectorNumber.lowercased() == collectorNumber.lowercased() && card.set.lowercased() == set.lowercased()
-			default:
-				return false
-			}
-		}
-		
-		if let result = foundCard {
-			return result
-		} else if case .nameSet(let name, let set) = identifier, set.lowercased() == "dar" {
-			return self[.nameSet(name: name, set: "dom")]
-		} else if case .collectorNumberSet(let collectorNumber, let set, let name) = identifier, let fixedSet = fixedSetCodes[set.lowercased()] {
-			return self[.collectorNumberSet(collectorNumber: collectorNumber, set: fixedSet, name: name)]
-		} else {
-			return nil
-		}
+    return first(where: { $0.isIdentified(by: identifier) })
 	}
 }
 

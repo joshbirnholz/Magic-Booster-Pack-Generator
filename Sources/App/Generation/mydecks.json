@@ -76,8 +76,8 @@
   },
   {
 	"url": "https://deckstats.net/decks/149419/1916347-the-prismatic-bridge",
-	"back": "https://c1.scryfall.com/file/scryfall-cards/large/back/f/6/f6cd7465-9dd0-473c-ac5e-dd9e2f22f5f6.jpg",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/f/6/f6cd7465-9dd0-473c-ac5e-dd9e2f22f5f6.jpg",
+	"front": "https://cards.scryfall.io/large/front/4/6/46d43696-3c63-4c55-bc61-e1560c8b8201.jpg?1683383495",
+	"back": "https://cards.scryfall.io/large/back/4/6/46d43696-3c63-4c55-bc61-e1560c8b8201.jpg?1683383495",
 	"ids": ["6"],
 	"type": "dfc",
 	"ci": "WUBRG",
@@ -413,10 +413,52 @@
       "url": "https://deckstats.net/decks/149419/3082375-food-and-fellowship-upgraded-",
       "front": "https://cards.scryfall.io/large/front/3/2/328df403-7428-4b17-bdd1-9759fc0f32d8.jpg",
       "back": "https://cards.scryfall.io/large/front/6/8/687a2b76-3f05-4732-bd9b-513d06d16300.jpg",
-      "ids": ["53, 54"],
+      "ids": ["53", "54"],
       "ci": "WBG",
       "comment": "Food, Lifegain",
       "type": "partners",
       "name": "Frodo, Adventurous Hobbit // Sam, Loyal Attendant"
+  },
+  {
+      "url": "https://deckstats.net/decks/149419/3114577-auriel-peaceful-sentinel",
+      "front": "https://i.imgur.com/3EexxTT.png",
+      "ids": ["55"],
+      "ci": "W",
+      "comment": "Vehicles, Convoke",
+      "name": "Auriel, the Peaceful Sentinel"
+  },
+  {
+      "url": "https://deckstats.net/decks/149419/3158769-zhulodok-void-gorger",
+      "front": "https://cards.scryfall.io/large/front/4/4/4424b9ec-70d8-4b32-931f-fac1516f8472.jpg",
+      "ids": ["56"],
+      "ci": "",
+      "comment": "Eldrazi, Cascade",
+      "name": "Zhulodok, Void Gorger"
+  },
+  {
+      "url": "https://deckstats.net/decks/149419/3161582-anikthea-hand-of-erebos",
+      "front": "https://cards.scryfall.io/large/front/8/b/8b796a56-1611-4835-ac5b-48b4e9263685.jpg",
+      "ids": ["57"],
+      "ci": "WBG",
+      "comment": "Enchantment Reanimator",
+      "name": "Anikthea, Hand of Erebos"
+  },
+  {
+      "url": "https://deckstats.net/decks/149419/3008818-sheoldred",
+      "front": "https://cards.scryfall.io/large/front/7/3/7367ddfd-508e-49de-9428-3384bbe80b55.jpg",
+      "back": "https://cards.scryfall.io/large/back/7/3/7367ddfd-508e-49de-9428-3384bbe80b55.jpg",
+      "ids": ["58"],
+      "ci": "B",
+      "comment": "Sacrifice, Reanimator",
+      "type": "dfc",
+      "name": "Sheoldred"
+  },
+  {
+      "url": "https://deckstats.net/decks/149419/3101990-lord-of-the-nazg-l",
+      "front": "https://cards.scryfall.io/large/front/4/1/41e3d118-8f97-4c68-acff-2f90a055af5b.jpg",
+      "ids": ["59"],
+      "ci": "UB",
+      "comment": "Wraiths",
+      "name": "Lord of hte Nazgûl"
   },
 ]

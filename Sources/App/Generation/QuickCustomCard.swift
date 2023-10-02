@@ -48,11 +48,9 @@ final class CustomCards {
 	}
   
   var draftMancerOutput: String? {
-    let cards = cards.values.sorted(on: \.collectorNumber) {
+    let draftmancerCards: [DraftmancerCard] = cards.values.sorted(on: \.collectorNumber) {
       $0.compare($1, options: .numeric) == .orderedDescending
-    }
-    
-    let draftmancerCards = cards.map(DraftmancerCard.init(mtgCard:))
+    }.map(DraftmancerCard.init(mtgCard:))
     
     let encoder = JSONEncoder()
     encoder.outputFormatting = .prettyPrinted
@@ -169,7 +167,7 @@ final class CustomCards {
   }
 	
 	func getCustomCards(_ req: Request) throws -> EventLoopFuture<CustomCardListResponse> {
-    return req.eventLoop.completeWithTask {
+    return req.eventLoop.makeCompletedFuture {
       while !self.isFinishedLoading { }
       
       let cardList = try self.cardList.get()

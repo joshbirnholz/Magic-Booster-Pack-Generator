@@ -5484,7 +5484,7 @@ struct CardLine: CustomStringConvertible {
 	}
 }
 
-struct DownloadOutput: Codable {
+struct DownloadOutput: Codable, JSONResponseEncodable {
 	var downloadOutput: String
 	var filename: String?
 }

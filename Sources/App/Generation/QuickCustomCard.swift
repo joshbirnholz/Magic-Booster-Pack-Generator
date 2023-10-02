@@ -250,7 +250,7 @@ fileprivate struct DraftmancerCard: Codable {
       var types = (mtgCard.typeLine ?? "").components(separatedBy: " — ")
       let type = types.removeFirst()
       let subtypes = types.first?.components(separatedBy: " ")
-      let imageUris = {
+      let imageUris: [String: URL] = {
         if let url = mtgCard.imageUris?["large"] {
           return ["en": url]
         } else {

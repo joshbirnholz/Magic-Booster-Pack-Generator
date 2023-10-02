@@ -67,13 +67,3 @@ public func routes(_ app: Application) throws {
 //		print(error)
 //	}
 }
-
-extension EventLoop {
-  func completeWithTask<T>(_ task: @Sendable @escaping () async throws -> T) -> EventLoopFuture<T> {
-    let promise: EventLoopPromise<T> = makePromise()
-    
-    promise.completeWithTask(task)
-    
-    return promise.futureResult
-  }
-}

@@ -41,8 +41,6 @@ public func routes(_ app: Application) throws {
 	app.get("seeds", use: SeedOptions.shared.getAllSeeds)
 
 	app.get("decks", use: MyDecks.shared.getDecks(_:))
-  
-  app.post("cube", use: generatorController.cubePacks(_:))
 
 	// Scryfall
 

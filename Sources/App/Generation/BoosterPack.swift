@@ -4593,7 +4593,7 @@ func customSet(forSetCode inputString: String) -> Swiftfall.ScryfallSet? {
     }
 }
 
-fileprivate func customSetJSONURL(forSetCode inputString: String) -> URL? {
+func customSetJSONURL(forSetCode inputString: String) -> URL? {
 	let customSets = [
 		"netropolis": "net",
 		"amonkhet remastered": "akr",

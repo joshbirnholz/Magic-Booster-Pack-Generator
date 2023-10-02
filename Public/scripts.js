@@ -439,7 +439,8 @@ function loadCustomCards() {
 		processData: false,
 		method: "GET",
 		success: function(response) {
-			console.log("success");
+			console.log("success:");
+      console.log(response);
 			
 			var table = document.getElementById("cardtable");
 			
@@ -447,9 +448,10 @@ function loadCustomCards() {
 			var rowCount = 6;
 			var row = document.createElement("tr");
 			table.appendChild(row);
+      var cards = response.cards;
 			
-			for(var i=response.length-1; i >=0; i--) {
-				var element = response[i];
+			for(var i=cards.length-1; i >=0; i--) {
+				var element = cards[i];
 				
 				var data = document.createElement("td");
 				var num = i+1;
@@ -470,6 +472,21 @@ function loadCustomCards() {
 				row.appendChild(data);
 				dataCount += 1;
 			}
+      
+      // Copy draftmancer output
+      var button = document.createElement("button");
+      button.innerHTML = "Copy Draftmancer Custom Cards"
+      button.onclick = function() {
+        navigator.clipboard.writeText(response.draftmancerOutput);
+        
+        var notification = document.getElementById("copyresult");
+        if (notification.innerHTML == "") {
+          notification.innerHTML = "Copied to clipboard. Paste it at the beginning of your Draftmancer custom list, then identify your cards with the set code CUSTOM and optionally specify the collector number."
+        }
+      };
+      
+      document.getElementById("draftmanceroutput").appendChild(button);
+      
 		},
 		error: function(xhr, status, error) {
 			console.log("error");

@@ -41,6 +41,8 @@ public func routes(_ app: Application) throws {
 	app.get("seeds", use: SeedOptions.shared.getAllSeeds)
 
 	app.get("decks", use: MyDecks.shared.getDecks(_:))
+  
+  app.post("cube", use: generatorController.cubePacks(_:))
 
 	// Scryfall
 
@@ -66,4 +68,14 @@ public func routes(_ app: Application) throws {
 //	} catch {
 //		print(error)
 //	}
+}
+
+extension EventLoop {
+  func completeWithTask<T>(_ task: @Sendable @escaping () async throws -> T) -> EventLoopFuture<T> {
+    let promise: EventLoopPromise<T> = makePromise()
+    
+    promise.completeWithTask(task)
+    
+    return promise.futureResult
+  }
 }

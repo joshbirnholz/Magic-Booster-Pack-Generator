@@ -35,10 +35,35 @@ final class CustomCards {
 	private var cards: [String: MTGCard] = [:]
 	
 	var isFinishedLoading = false {
-		didSet {
-			print("Loaded \(cards.count) custom cards")
-		}
+    didSet {
+      print("Loaded \(cards.count) custom cards")
+      
+      DispatchQueue.global(qos: .background).async {
+        if let draftMancerOutput = self.draftMancerOutput {
+          print("Draftmancer input:")
+          print(draftMancerOutput)
+        }
+      }
+    }
 	}
+  
+  var draftMancerOutput: String? {
+    let cards = cards.values.sorted(on: \.collectorNumber) {
+      $0.compare($1, options: .numeric) == .orderedDescending
+    }
+    
+    let draftmancerCards = cards.map(DraftmancerCard.init(mtgCard:))
+    
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = .prettyPrinted
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    
+    if let data = try? encoder.encode(draftmancerCards), let string = String(data: data, encoding: .utf8) {
+      return "[CustomCards]\n" + string + "\n[DefaultSlot]\n"
+    }
+    
+    return nil
+  }
 	
 	let cardList: Result<[QuickCustomCard], Error> = {
 		return Result {
@@ -137,19 +162,142 @@ final class CustomCards {
 			return nil
 		}
 	}
+  
+  struct CustomCardListResponse: JSONResponseEncodable {
+    let cards: [QuickCustomCard]
+    let draftmancerOutput: String?
+  }
 	
-	func getCustomCards(_ req: Request) throws -> EventLoopFuture<[QuickCustomCard]> {
-		let promise: EventLoopPromise<[QuickCustomCard]> = req.eventLoop.makePromise()
-		
-		while !isFinishedLoading { }
-		
-		do {
-			let cardList = try self.cardList.get()
-			promise.succeed(cardList)
-		} catch {
-			promise.fail(error)
-		}
-		
-		return promise.futureResult
+	func getCustomCards(_ req: Request) throws -> EventLoopFuture<CustomCardListResponse> {
+    return req.eventLoop.completeWithTask {
+      while !self.isFinishedLoading { }
+      
+      let cardList = try self.cardList.get()
+      let draftMancerOutput = self.draftMancerOutput
+      
+      return CustomCardListResponse(
+        cards: cardList,
+        draftmancerOutput: draftMancerOutput
+      )
+    }
 	}
+}
+
+fileprivate struct DraftmancerCard: Codable {
+  struct Face: Codable {
+    var name: String
+    var imageUris: [String: URL]
+    var type: String
+    var subtypes: [String]?
+  }
+  
+  enum DraftEffect: String, Codable {
+    case FaceUp              // Reveal the card to other players and mark the card as face up. Important note: Necessary for most 'UsableEffects" to function correctly!.
+    case Reveal              // Reveal the card to other players
+    case NotePassingPlayer   // Note the previous player's name on the card.
+    case NoteDraftedCards    // Note the number of cards drafted this round, including this card.
+    case ChooseColors        // Note colors chosen by your neighbors and you.
+    case AetherSearcher      // Reveal and note the next drafted card.
+    case CanalDredger        // The last card of each booster is passed to you.
+    case ArchdemonOfPaliano  // Pick the next 3 cards randomly.
+    
+    // Optional on pick effects:
+    case LoreSeeker          // "You may add a booster pack to the draft".
+    
+    // Usable effects (when the card is already in the player's pool):
+    case RemoveDraftCard     // Remove the picked card(s) from the draft and associate them with the card.
+    case CogworkLibrarian    // Replace this card in a pack for an additional pick.
+    case AgentOfAcquisitions // Pick the whole booster, skip until next round.
+    case LeovoldsOperative   // Pick an additional card, skip the next booster.
+    case NoteCardName        // Note the picked card's name on the card.
+    case NoteCreatureName    // Note the picked creature's name on the card.
+    case NoteCreatureTypes   // Note the picked creature's types on the card.
+  }
+  
+  var name: String
+  var manaCost: String
+  var type: String
+  var imageUris: [String: URL]
+  var colors: [String]?
+  var printedNames: [String: URL]?
+  var set: String?
+  var collectorNumber: String?
+  var rarity: String?
+  var subtypes: [String]?
+  var rating: Int?
+  var layout: String?
+  var back: Face?
+  var relatedCards: [Face]?
+  var draftEffects: [DraftEffect]?
+  
+  init(mtgCard: MTGCard) {
+    self.name = mtgCard.name ?? ""
+    self.manaCost = mtgCard.manaCost ?? ""
+    var types = (mtgCard.typeLine ?? "").components(separatedBy: " — ")
+    self.type = types.removeFirst()
+    self.subtypes = types.first?.components(separatedBy: " ")
+    self.set = mtgCard.set
+    self.collectorNumber = mtgCard.collectorNumber
+    self.rarity = nil
+    self.layout = mtgCard.layout
+    self.back = nil
+    self.relatedCards = mtgCard.allParts?.compactMap {
+      guard
+        $0.name != mtgCard.name,
+        let id = $0.scryfallID,
+        let card = try? Swiftfall.getCard(id: id.uuidString)
+      else { return nil }
+      
+      let mtgCard = MTGCard(card)
+      var types = (mtgCard.typeLine ?? "").components(separatedBy: " — ")
+      let type = types.removeFirst()
+      let subtypes = types.first?.components(separatedBy: " ")
+      let imageUris = {
+        if let url = mtgCard.imageUris?["large"] {
+          return ["en": url]
+        } else {
+          return [:]
+        }
+      }()
+      
+      return Face(
+        name: mtgCard.name ?? "",
+        imageUris: imageUris,
+        type: type,
+        subtypes: subtypes
+      )
+    }
+    self.draftEffects = nil
+    
+    if let url = mtgCard.imageUris?["large"] {
+      self.imageUris = ["en": url]
+    } else {
+      self.imageUris = [:]
+    }
+    
+    self.colors = mtgCard.colors?.compactMap { $0.rawValue }
+    self.printedNames = nil
+    self.rating = nil
+  }
+}
+
+extension Encodable {
+  func encodeResponse(for request: Vapor.Request) -> NIOCore.EventLoopFuture<Vapor.Response> {
+    return request.eventLoop.makeCompletedFuture {
+      var headers = HTTPHeaders()
+      headers.add(name: .contentType, value: "application/json")
+      
+      let encoder = JSONEncoder()
+      let data = try encoder.encode(self)
+      let string = String.init(data: data, encoding: .utf8) ?? ""
+      
+      return .init(
+        status: .ok, headers: headers, body: .init(string: string)
+      )
+    }
+  }
+}
+
+protocol JSONResponseEncodable: Encodable, ResponseEncodable {
+  
 }

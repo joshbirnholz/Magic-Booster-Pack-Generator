@@ -2416,6 +2416,10 @@ fileprivate struct CardInfo {
 		}
 		"""
 	}
+  
+  struct CardCustom: JSONResponseEncodable {
+    
+  }
 	
 	fileprivate var cardCustomObject: String {
 		return """

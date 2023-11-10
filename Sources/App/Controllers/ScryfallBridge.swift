@@ -33,42 +33,47 @@ final class ScryfallBridgeController {
 					"masters",
 					"draft_innovation"
 				]
-				
-				let disallowedSetCodes: Set<String> = [
-					"plist", "h1r", "j21", "slx", "uplist", "scd", "tscd", "sis", "mat", "mom", "who", "rvr", "lci"
-				]
-				
-				let setsFromScryfall: [[Swiftfall.ScryfallSet]] = try Swiftfall.getSetList().data.compactMap {
-					guard allowedSetTypes.contains($0.setType),
-						  let code = $0.code,
-						  !disallowedSetCodes.contains(code)
-					else { return [] }
-					
-					var set = $0
-                    
-                    if $0.code == "sir" {
-                        set.name += " (Weekly)"
-                        
-                        return [set] + (1...4).compactMap {
-                            customSet(forSetCode: "sir\($0)")
-                        }
-                    }
-					
-					if set.code == "mb1" {
-						set.code = "cmb1"
-						set.name = "Mystery Booster (Convention Edition)"
-					}
-					
-					if set.code == "fmb1" {
-						set.name = "Mystery Booster (Retail Edition)"
-					}
-					
-					if let size = set.printedSize, set.cardCount < size {
-						return nil
-					}
-					
-					return [set]
-                }
+        
+        let disallowedSetCodes: Set<String> = [
+          "plist", "h1r", "j21", "slx", "uplist", "scd", "tscd", "sis", "mat", "mom", "who", "rvr", "lci"
+        ]
+        
+        let setsFromScryfall: [[Swiftfall.ScryfallSet]] = try Swiftfall.getSetList().data.compactMap {
+          guard allowedSetTypes.contains($0.setType),
+                let code = $0.code,
+                !disallowedSetCodes.contains(code)
+          else { return [] }
+          
+          var set = $0
+          
+          if $0.code == "sir" {
+            set.name += " (Weekly)"
+            
+            return [set] + (1...4).compactMap {
+              customSet(forSetCode: "sir\($0)")
+            }
+          }
+          
+          if set.code == "mb1" {
+            set.code = "cmb1"
+            set.name = "Mystery Booster (Convention Edition)"
+          }
+          
+          if set.code == "fmb1" {
+            set.name = "Mystery Booster (Retail Edition)"
+          }
+          
+          if let size = set.printedSize, set.cardCount < size {
+            return nil
+          }
+          
+          let cutoff = Date(timeIntervalSince1970: 1677646800)
+          if let date = set.releasedAt, date > cutoff {
+            return nil
+          }
+          
+          return [set]
+        }
                 
                 var sets = Array(setsFromScryfall.joined())
 				

@@ -359,7 +359,7 @@
   },
   {
 	"url": "https://deckstats.net/decks/149419/2376890-yarok-the-desecrated",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/a/1/a1001d43-e11b-4e5e-acd4-4a50ef89977f.jpg",
+	"front": "https://cards.scryfall.io/large/front/e/5/e56ba25b-1803-4e1a-b7cf-c2c873159010.jpg",
 	"ids": ["1"],
 	"ci": "BGU",
 	"comment": "Landfall",
@@ -461,4 +461,60 @@
       "comment": "Wraiths",
       "name": "Lord of hte Nazgûl"
   },
+  {
+      "url": "https://deckstats.net/decks/149419/3244174-timey-wimey-upgraded-",
+      "front": "https://cards.scryfall.io/large/front/f/1/f1499f49-793b-4265-9ad0-883a431941ab.jpg",
+      "back": "https://cards.scryfall.io/large/front/3/a/3aa8d034-f98c-4e27-b6af-850eadf59941.jpg",
+      "ids": ["60", "61"],
+      "ci": "URW",
+      "comment": "Timey-Wimey",
+      "name": "Timey-Wimey",
+      "type": "partners"
+  },
+  {
+      "url": "https://deckstats.net/decks/149419/3244174-timey-wimey-upgraded-",
+      "front": "https://cards.scryfall.io/large/front/d/d/ddf2d71d-f662-470d-bd99-68e69ea516d5.jpg",
+      "back": "https://cards.scryfall.io/large/front/5/0/50c0b868-a688-4ccb-97b7-58fd424a7864.jpg",
+      "ids": ["62", "63"],
+      "ci": "RWB",
+      "comment": "Time Counters",
+      "name": "The War Doctor & Clara",
+      "type": "partners"
+  },
+  {
+      "url": "https://deckstats.net/decks/149419/3208317-the-hosts-of-mordor-upgraded-",
+      "front": "https://cards.scryfall.io/large/front/b/8/b83261ba-c239-4b6a-88eb-bdfc411916b3.jpg",
+      "ids": ["64"],
+      "ci": "UBR",
+      "comment": "The Hosts of Mordor",
+      "name": "The Hosts of Mordor"
+  },
+  {
+      "url": "https://deckstats.net/decks/149419/3269939-paradox-power-upgraded-",
+      "front": "https://cards.scryfall.io/large/front/0/d/0dc4ec90-1650-4b98-9350-66341394cf0b.jpg",
+      "back": "https://cards.scryfall.io/large/front/1/2/12b09a4f-bb62-4766-8115-cae4d5cc4c12.jpg",
+      "ids": ["65", "66"],
+      "ci": "GUR",
+      "comment": "Paradox",
+      "name": "Paradox Power",
+      "type": "partners"
+  },
+  {
+      "url": "https://deckstats.net/decks/149419/3270805-blast-from-the-past-upgraded-",
+      "front": "https://cards.scryfall.io/large/front/1/0/10414d81-177d-43f4-9381-0d10ac51507f.jpg",
+      "back": "https://cards.scryfall.io/large/front/1/b/1ba76f68-e647-4786-903c-92dbd3cef05d.jpg",
+      "ids": ["67", "68"],
+      "ci": "GUW",
+      "comment": "Historic, Tokens",
+      "name": "Blast from the Past",
+      "type": "partners"
+  },
+  {
+      "url": "https://deckstats.net/decks/149419/3270700-masters-of-evil-upgraded-",
+      "front": "https://cards.scryfall.io/large/front/5/9/59c5bd2b-cf68-4e5e-819d-53917a6c5275.jpg",
+      "ids": ["69"],
+      "ci": "UBR",
+      "comment": "Masters of Evil",
+      "name": "Masters of Evil"
+  }
 ]

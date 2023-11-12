@@ -1,0 +1,27 @@
+<!-- Created by Josh Birnholz on 5/12/18. -->
+<head>
+  <meta charset="utf-8"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="scripts.js"></script>
+  
+  <link rel="stylesheet" href="style.css"></style>
+</head>
+<body>
+  <p><b>Collection Editor</b></p>
+  
+  <form id="mainform" enctype="multipart/form-data">
+    <table>
+      <tr>
+        <td>Original</td>
+        <td><input type="file" name="original" id="original"/></td>
+      </tr>
+      <tr>
+        <td>Remove</td>
+        <td><input type="file" name="remove" id="remove"/></td>
+      </tr>
+    </table>
+    
+  </form>
+  
+  <p><input type="button" value="Remove" onclick="doRemoveEditor()"> <span id="progress"></span></p>
+</body>

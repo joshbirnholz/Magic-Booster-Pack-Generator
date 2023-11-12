@@ -28,6 +28,45 @@ function downloadFromURL(filename, fromURL) {
 	}
 }
 
+function doRemoveEditor() {
+  $("#progress").html("Working…");
+  
+  var data = new FormData($("#mainform")[0]);
+  
+  for (const file of document.getElementById("original").files) {
+    data.append("original", file);
+  }
+  for (const file of document.getElementById("remove").files) {
+    data.append("remove", file);
+  }
+  
+  var url = "collectionremove";
+  
+  $.ajax({
+    url: url,
+    data: data,
+    cache: false,
+    contentType: false,
+    processData: false,
+    method: "POST",
+    success: function(response) {
+      console.log("success");
+      
+      download("collection-removed.csv", response.output, "text/csv");
+      $("#progress").html(('<br>' + response.status + "\n\n" + response.notFoundOutput).replace(/(?:\r\n|\r|\n)/g, '<br>'));
+    },
+    error: function(xhr, status, error) {
+      console.log("error");
+      console.log(xhr);
+      console.log(status);
+      console.log(error);
+      
+      alert(error);
+      $("#progress").html("");
+    }
+  })
+}
+
 function doDownloadBox(sorted) {
 	var setCode = $("#setlist option:selected").val();
 	

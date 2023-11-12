@@ -47,10 +47,10 @@ public func routes(_ app: Application) throws {
 	let scryfallController = ScryfallBridgeController()
 
 	app.post("sets", use: scryfallController.getSets)
-	
-	do {
-		
-	}
+  
+  app.post("collectionremove", use: collectionRemove(_:))
+  
+  app.routes.defaultMaxBodySize = .init(stringLiteral: "4mb")
 	
 //	do {
 //		let file = URL(fileURLWithPath: "/Users/compc/iCloud Drive (Archive) - 1/Documents/Xcode/TabletopSimulatorMagicBoosterPackServer/Sources/App/Generation/xmltojson.json")

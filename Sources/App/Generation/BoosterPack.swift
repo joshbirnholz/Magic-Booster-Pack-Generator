@@ -6153,6 +6153,12 @@ public struct MoxfieldDeck: Decodable {
 			let scryfallID: UUID?
 			let set: String
 			let name: String
+      
+      enum CodingKeys: String, CodingKey {
+        case scryfallID = "scryfall_id"
+        case set
+        case name
+      }
 		}
 		let quantity: Int
 		let card: Card

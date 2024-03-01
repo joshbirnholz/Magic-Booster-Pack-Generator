@@ -63,6 +63,10 @@ final class ScryfallBridgeController {
             set.name = "Mystery Booster (Retail Edition)"
           }
           
+          if set.code == "clu" {
+            return [set]
+          }
+          
           if let size = set.printedSize, set.cardCount < size {
             return nil
           }

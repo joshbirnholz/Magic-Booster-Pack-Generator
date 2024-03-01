@@ -1,0 +1,16 @@
+1 Basilica Screecher (CLU) 105
+1 Orzhov Guildmage (CLU) 201
+1 Fleshbag Marauder (CLU) 111
+1 Syndicate Enforcer (CLU) 123
+1 Orzhov Racketeers (CLU) 117
+1 Seraph of the Scales (CLU) 208
+1 Leering Onlooker (MKM) 91
+1 Afterlife Insurance (CLU) 23
+1 Murder (CLU)
+1 Covetous Elegy (CLU) 29
+1 Parasitic Impetus (CLU) 118
+1 Orzhov Signet (CLU) 225
+1 Orzhov Basilica (CLU) 241
+1 Orzhov Guildgate (CLU) 242
+1 Thriving Moor (CLU) 253
+5 Swamp (CLU) 265

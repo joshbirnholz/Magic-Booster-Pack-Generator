@@ -1,0 +1,16 @@
+1 Golgari Guildmage (CLU) 194
+1 Gorging Vulture (CLU) 112
+1 Pitiless Gorgon (CLU) 203
+1 Tribune of Rot (CLU) 48
+1 Venomous Hierophant (CLU) 125
+1 Amzu, Swarm's Hunger (CLU) 24
+1 Leering Onlooker (MKM) 91
+1 Status /// Statue (CLU) 210
+1 Corpse Churn (CLU) 107
+1 Deal Gone Bad (CLU) 110
+1 Deadbridge Chant (CLU) 184
+1 Golgari Signet (CLU) 222
+1 Golgari Rot Farm (CLU) 236
+1 Golgari Guildgate (CLU) 235
+1 Thriving Moor (CLU) 253
+5 Swamp (CLU) 262

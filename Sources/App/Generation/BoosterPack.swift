@@ -2223,6 +2223,21 @@ let superJumpDeckListURLs: [URL] = try! {
 	#endif
 }()
 
+let ravnicaClueEditionDeckListURLs: [URL] = try! {
+  #if canImport(Vapor)
+  let directory = DirectoryConfiguration.detect()
+  let jumpstartDirectory = "Sources/App/Generation/Ravnica Clue Edition"
+  let jumpstartDirectoryURL = URL(fileURLWithPath: directory.workingDirectory)
+    .appendingPathComponent(jumpstartDirectory, isDirectory: true)
+  return try FileManager.default.contentsOfDirectory(at: jumpstartDirectoryURL, includingPropertiesForKeys: nil)
+  #else
+  guard let urls = Bundle.main.urls(forResourcesWithExtension: "txt", subdirectory: "Ravnica Clue Edition") else {
+    throw PackError.unsupported
+  }
+  return urls
+  #endif
+}()
+
 func jumpstartDeckList() throws -> String {
 	guard let deckListURL = jumpstartDeckListURLs.randomElement() else {
 		throw PackError.unsupported
@@ -2245,6 +2260,14 @@ func superjumpDeckList() throws -> String {
 	}
 	
 	return try String(contentsOf: deckListURL)
+}
+
+func ravnicaClueEditionDeckList() throws -> String {
+  guard let deckListURL = ravnicaClueEditionDeckListURLs.randomElement() else {
+    throw PackError.unsupported
+  }
+  
+  return try String(contentsOf: deckListURL)
 }
 
 func generateJumpStartPack() throws -> CardCollection {
@@ -2351,6 +2374,37 @@ func generateSuperJumpPack() throws -> CardCollection {
 	}
 	
 	return collection
+}
+
+func generateRavnicaClueEditionPack() throws -> CardCollection {
+  guard let deckListURL = ravnicaClueEditionDeckListURLs.randomElement() else {
+    throw PackError.unsupported
+  }
+  
+  let name = String(deckListURL.lastPathComponent.prefix(while: { !$0.isNumber && $0 != "." }).trimmingCharacters(in: .whitespacesAndNewlines))
+  
+  let faceCardIdentifier: MTGCardIdentifier = .nameSet(name: name, set: "fclu")
+  
+  let contents = try String(contentsOf: deckListURL)
+  let cardCounts = DeckParser.parse(deckList: contents, autofix: true).first?.cardCounts ?? []
+  let identifiers: [MTGCardIdentifier] = [faceCardIdentifier] + cardCounts.map(\.identifier)
+  let cards = try Swiftfall.getCollection(identifiers: identifiers).data
+  
+  var collection = CardCollection()
+  if let faceCard = cards.first(where: { $0.set.lowercased() == "fclu" }) {
+    let mtgCard = MTGCard(faceCard)
+    collection.append(mtgCard)
+  }
+  
+  for cardCount in cardCounts.reversed() {
+    guard let card = cards[cardCount.identifier] else { continue }
+    let mtgCard = MTGCard(card)
+    for _ in 0 ..< cardCount.count {
+      collection.append(mtgCard)
+    }
+  }
+  
+  return collection
 }
 
 fileprivate struct CardInfo {
@@ -5599,10 +5653,14 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		
 		return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
 	} else if setCode?.lowercased() == "j22" {
-		let packs: [CardCollection] = (1...count).compactMap { _ in try? generateJumpStart2022Pack() }
-		
-		return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
-	} else if setCode?.lowercased() == "sjm" {
+    let packs: [CardCollection] = (1...count).compactMap { _ in try? generateJumpStart2022Pack() }
+    
+    return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
+  } else if setCode?.lowercased() == "clu" {
+    let packs: [CardCollection] = (1...count).compactMap { _ in try? generateRavnicaClueEditionPack() }
+    
+    return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
+  } else if setCode?.lowercased() == "sjm" {
 		let packs: [CardCollection] = (1...count).compactMap { _ in try? generateSuperJumpPack() }
 		
 		return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
@@ -5824,10 +5882,14 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 		
 		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
 	} else if setCode?.lowercased() == "j22" {
-		let pack = try generateJumpStart2022Pack()
-		
-		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
-	} else if setCode?.lowercased() == "sjm" {
+    let pack = try generateJumpStart2022Pack()
+    
+    return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+  } else if setCode?.lowercased() == "clu" {
+    let pack = try generateRavnicaClueEditionPack()
+    
+    return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+  } else if setCode?.lowercased() == "sjm" {
 		let pack = try generateSuperJumpPack()
 		let frontCard = pack[0]
 		let tokens = getAllTokens(for: pack.mtgCards) + [frontCard]
@@ -5892,7 +5954,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 	}()
 	let packCount = packCount ?? 1
 	let prereleasePacks: [String] = try (0 ..< (packCount)).map { _ in
-		if setCode.lowercased() == "mb1" || setCode.lowercased() == "fmb1" || setCode.lowercased() == "cmb1" || setCode.lowercased() == "jmp" || setCode.lowercased() == "sjm" || setCode.lowercased() == "j22" {
+    if setCode.lowercased() == "mb1" || setCode.lowercased() == "fmb1" || setCode.lowercased() == "cmb1" || setCode.lowercased() == "jmp" || setCode.lowercased() == "sjm" || setCode.lowercased() == "j22" || setCode.lowercased() == "clu" {
 			throw PackError.unsupported
 		} else if setCode.lowercased() == "plc" {
 			let cards = processPlanarChaosCards(cards: cards)

@@ -1,0 +1,16 @@
+1 Fire Urchin (CLU) 133
+1 Frostburn Weird (CLU) 193
+1 Spellgorger Weird (CLU) 148
+1 Ecstatic Electromancer (CLU) 31
+1 Living Lightning (CLU) 142
+1 Hypersonic Dragon (CLU) 196
+1 Lightning Bolt (CLU) 141
+1 Goblin Wizardry (CLU) 136
+1 Street Spasm (CLU) 150
+1 Corporeal Projection (CLU) 28
+1 Direct Current (CLU) 132
+1 Izzet Signet (CLU) 224
+1 Izzet Boilerworks (CLU) 239
+1 Izzet Guildgate (CLU) 240
+1 Thriving Bluff (CLU) 249
+5 Mountain (CLU) 268

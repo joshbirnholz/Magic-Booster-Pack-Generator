@@ -6914,6 +6914,11 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
         let ringToken = try Swiftfall.getCard(id: "7215460e-8c06-47d0-94e5-d1832d0218af")
         tokens.append(MTGCard(ringToken))
     }
+  
+  if cards.contains(where: { $0.oracleText?.lowercased().contains("rad counter") == true }) {
+      let radCounter = try Swiftfall.getCard(id: "0886657d-afb0-4f1f-9af7-960724793077")
+      tokens.append(MTGCard(radCounter))
+  }
 	
 	var alreadyThere: Set<MTGCard> = []
 	let uniqueTokens = tokens.compactMap { token -> MTGCard? in

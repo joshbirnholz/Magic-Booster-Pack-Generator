@@ -364,64 +364,84 @@ final class GeneratorController {
 				}.resume()
 			}
 		case "www.tappedout.net", "tappedout.net":
-			DispatchQueue.global().async {
-				let request = URLRequest(url: deckURL, cachePolicy: .reloadIgnoringLocalCacheData)
-				URLSession.shared.dataTask(with: request) { data, response, error in
-					do {
-						if let response = response as? HTTPURLResponse, response.statusCode == 404 {
-							throw PackError.privateDeck
-						}
-						
-						guard let data = data, let page = String(data: data, encoding: .utf8) else {
-							throw PackError.invalidURL
-						}
-						
-						guard let arenaDecklist = page.matches(forRegex: #"<textarea id="mtga-textarea">(.*)<\/textarea>"#, options: .dotMatchesLineSeparators).first?.groups.first?.value else {
-							throw PackError.invalidURL
-						}
-						
-						DispatchQueue(label: "decklist").async {
-							do {
-								let result: String = try deck(.arena(arenaDecklist), export: export, cardBack: cardBack, autofix: autofix, customOverrides: [customOverrides])
-								print("Success")
-								promise.succeed(result)
-							} catch let error as DebuggableError {
-								struct ErrorMessage: Codable {
-									var error: String
-								}
-								
-								let encoder = JSONEncoder()
-								let errorMessage = ErrorMessage(error: error.reason)
-								do {
-									let data = try encoder.encode(errorMessage)
-									let string = String(data: data, encoding: .utf8)!
-									promise.succeed(string)
-								} catch {
-									promise.fail(error)
-								}
-							} catch {
-								promise.fail(error)
-							}
-						}
-					} catch let error as DebuggableError {
-						struct ErrorMessage: Codable {
-							var error: String
-						}
-						
-						let encoder = JSONEncoder()
-						let errorMessage = ErrorMessage(error: error.reason)
-						do {
-							let data = try encoder.encode(errorMessage)
-							let string = String(data: data, encoding: .utf8)!
-							promise.succeed(string)
-						} catch {
-							promise.fail(error)
-						}
-					} catch {
-						promise.fail(error)
-					}
-				}.resume()
-			}
+      var newComponents = components
+      var queryItems = newComponents.queryItems ?? []
+      queryItems.append(.init(name: "fmt", value: "txt"))
+      newComponents.queryItems = queryItems
+      
+      guard let decklistURL = newComponents.url else { throw PackError.invalidURL }
+      
+      DispatchQueue.global(qos: .userInitiated).async {
+        let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+          do {
+            guard let data = data else {
+              throw error!
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 400 {
+              throw PackError.privateDeck
+            }
+            
+            guard let decklist = String(data: data, encoding: .utf8) else {
+              promise.fail(PackError.invalidURL)
+              return
+            }
+            
+            let deckName: String?
+            
+            if let response = response as? HTTPURLResponse, let disposition: String = response.allHeaderFields["Content-Disposition"] as? String, let range = disposition.range(of: "attachment;filename=") {
+              print(disposition)
+              var name: String = disposition
+              name.replaceSubrange(range, with: "")
+              deckName = String(name.dropLast(4))
+            } else {
+              deckName = nil
+            }
+            
+            DispatchQueue(label: "decklist").async {
+              do {
+                
+                let result: String = try deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, customOverrides: [customOverrides])
+                print("Success")
+                promise.succeed(result)
+              } catch let error as DebuggableError {
+                struct ErrorMessage: Codable {
+                  var error: String
+                }
+                
+                let encoder = JSONEncoder()
+                let errorMessage = ErrorMessage(error: error.reason)
+                do {
+                  let data = try encoder.encode(errorMessage)
+                  let string = String(data: data, encoding: .utf8)!
+                  promise.succeed(string)
+                } catch {
+                  promise.fail(error)
+                }
+              } catch {
+                promise.fail(error)
+              }
+            }
+          } catch let error as DebuggableError {
+            struct ErrorMessage: Codable {
+              var error: String
+            }
+            
+            let encoder = JSONEncoder()
+            let errorMessage = ErrorMessage(error: error.reason)
+            do {
+              let data = try encoder.encode(errorMessage)
+              let string = String(data: data, encoding: .utf8)!
+              promise.succeed(string)
+            } catch {
+              promise.fail(error)
+            }
+          } catch {
+            promise.fail(error)
+          }
+        }.resume()
+      }
 		case "www.mtggoldfish.com", "mtggoldfish.com":
 			DispatchQueue.global().async {
 				let request = URLRequest(url: deckURL, cachePolicy: .reloadIgnoringLocalCacheData)

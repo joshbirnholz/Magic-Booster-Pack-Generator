@@ -6227,7 +6227,7 @@ public struct MoxfieldDeck: Decodable {
 		
 		var cardCount: DeckParser.CardCount {
 			if let id = card.scryfallID {
-				return DeckParser.CardCount(identifier: .id(id), count: quantity)
+        return DeckParser.CardCount(identifier: .idName(id, card.name), count: quantity)
 			} else {
 				return DeckParser.CardCount(identifier: .nameSet(name: card.name, set: card.set), count: quantity)
 			}
@@ -6630,7 +6630,9 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		let newIdentifiers: [MTGCardIdentifier] = identifiers.map { identifier in
 			if let name = identifier.name, notFound.contains(where: { $0.name == name }) {
 				return .name(name)
-			}
+      } else if case .idName(let id, let name) = identifier, notFound.contains(where: { $0.id == id }) {
+        return .name(name)
+      }
 			
 			return identifier
 		}
@@ -6971,7 +6973,7 @@ extension Collection where Element == Swiftfall.Card {
 	subscript(_ identifier: MTGCardIdentifier) -> Swiftfall.Card? {
 		let foundCard = first { (card) -> Bool in
 			switch identifier {
-			case .id(let id):
+			case .id(let id), .idName(let id, _):
 				return card.id == id
 			case .mtgoID(let id):
 				return card.mtgoId == id

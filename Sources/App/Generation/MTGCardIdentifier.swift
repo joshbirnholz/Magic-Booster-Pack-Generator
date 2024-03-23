@@ -21,6 +21,7 @@ public enum MTGCardIdentifier: Codable, Hashable, CustomStringConvertible {
 	}
 	
 	case id(UUID)
+  case idName(UUID, String)
 	case mtgoID(Int)
 	case multiverseID(Int)
 	case oracleID(UUID)
@@ -30,11 +31,12 @@ public enum MTGCardIdentifier: Codable, Hashable, CustomStringConvertible {
 	case collectorNumberSet(collectorNumber: String, set: String, name: String?)
 	
 	var id: UUID? {
-		if case .id(let id) = self {
-			return id
-		} else {
-			return nil
-		}
+    switch self {
+    case .id(let id), .idName(let id, _):
+      return id
+    default:
+      return nil
+    }
 	}
 
 	var mtgoID: Int? {
@@ -71,7 +73,7 @@ public enum MTGCardIdentifier: Codable, Hashable, CustomStringConvertible {
 	
 	var name: String? {
 		switch self {
-		case .name(let name), .nameSet(name: let name, set: _), .collectorNumberSet(collectorNumber: _, set: _, name: let name?):
+    case .name(let name), .nameSet(name: let name, set: _), .collectorNumberSet(collectorNumber: _, set: _, name: let name?), .idName(_, let name):
 			return name
 		default:
 			return nil
@@ -99,7 +101,7 @@ public enum MTGCardIdentifier: Codable, Hashable, CustomStringConvertible {
 		var container = coder.container(keyedBy: CodingKeys.self)
 	
 		switch self {
-		case .id(let id):
+    case .id(let id), .idName(let id, _):
 			try container.encode(id.uuidString.lowercased(), forKey: .id)
 		case .mtgoID(let id):
 			try container.encode(id, forKey: .mtgoId)
@@ -175,6 +177,8 @@ public enum MTGCardIdentifier: Codable, Hashable, CustomStringConvertible {
 			
 		case .id(let id):
 			return "Scryfall ID \(id)"
+    case .idName(let id, let name):
+      return "Scryfall ID \(id) (\(name))"
 		case .mtgoID(let id):
 			return "MTGO ID \(id)"
 		case .multiverseID(let id):
@@ -198,8 +202,14 @@ public enum MTGCardIdentifier: Codable, Hashable, CustomStringConvertible {
   
   public func isMoreSpecificThan(_ other: MTGCardIdentifier) -> Bool {
     switch self {
-    case .id(_):
+    case .idName(_, _):
       return true
+    case .id(_):
+      if case .idName(let uUID, let string) = other {
+        return false
+      } else {
+        return true
+      }
     case .mtgoID(_):
       return true
     case .multiverseID(_):
@@ -212,6 +222,8 @@ public enum MTGCardIdentifier: Codable, Hashable, CustomStringConvertible {
       return false
     case .nameSet(_, _):
       switch other {
+      case .idName(_, _):
+        return false
       case .id(_):
         return false
       case .mtgoID(_):
@@ -232,6 +244,8 @@ public enum MTGCardIdentifier: Codable, Hashable, CustomStringConvertible {
     case .collectorNumberSet(_, _, _):
       switch other {
       case .id(_):
+        return false
+      case .idName(_, _):
         return false
       case .mtgoID(_):
         return false

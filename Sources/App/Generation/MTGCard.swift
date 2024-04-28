@@ -187,6 +187,8 @@ public struct MTGCard: Codable, Equatable, Hashable {
 	
 	public var language: Language
 	public var releaseDate: Date?
+  
+  public var isTextless: Bool
 	
 	var imageUris: [String: URL]?
 	

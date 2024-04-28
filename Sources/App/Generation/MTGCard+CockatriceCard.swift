@@ -55,6 +55,7 @@ extension MTGCard {
 				  finishes: [.nonfoil],
 				  language: .english,
 				  releaseDate: nil,
-				  imageUris: imageUris)
+          isTextless: false,
+          imageUris: imageUris)
 	}
 }

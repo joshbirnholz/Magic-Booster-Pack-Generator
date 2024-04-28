@@ -125,7 +125,8 @@ extension MTGCard {
 				  finishes: scryfallCard.finishes,
 				  promoTypes: scryfallCard.promoTypes,
 				  language: Language(rawValue: scryfallCard.lang.rawValue)!,
-				  releaseDate: date,
+          releaseDate: date,
+          isTextless: scryfallCard.textless,
 				  imageUris: scryfallCard.imageUris?.compactMapValues(URL.init(string:)))
 //				  imageUris: scryfallCard.imageUris != nil ? newImageURIs(cardID: scryfallCard.id) : nil)
 	}

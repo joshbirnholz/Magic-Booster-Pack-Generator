@@ -570,6 +570,8 @@ internal class Swiftfall {
 		public let printedTypeLine: String?
 		
 		public let lang: Language
+      
+    public let textless: Bool
 		
 		public enum Finish: String, Codable, Equatable, Hashable, CaseIterable, Comparable {
 			public static func < (lhs: Swiftfall.Card.Finish, rhs: Swiftfall.Card.Finish) -> Bool {

@@ -2322,7 +2322,7 @@ func generateJumpStart2022Pack() throws -> CardCollection {
 	} else {
 		let frontURL = URL(string: "http://josh.birnholz.com/tts/resources/fj22/\(name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!).png")!
 		let number = superJumpDeckListURLs.firstIndex(of: deckListURL) ?? 0
-		let faceCard = MTGCard(name: name, layout: "token", frame: "", isFullArt: true, collectorNumber: "\(number)", set: "fj22", rarity: .common, scryfallCardBackID: nil, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], language: .english, imageUris: ["normal": frontURL])
+    let faceCard = MTGCard(name: name, layout: "token", frame: "", isFullArt: true, collectorNumber: "\(number)", set: "fj22", rarity: .common, scryfallCardBackID: nil, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], language: .english, isTextless: false, imageUris: ["normal": frontURL])
 		collection.append(faceCard)
 	}
 	
@@ -2362,7 +2362,7 @@ func generateSuperJumpPack() throws -> CardCollection {
 		.replacingOccurrences(of: "3", with: "III")
 		.replacingOccurrences(of: "2", with: "II")
 		.replacingOccurrences(of: "1", with: "I")
-	let faceCard = MTGCard(name: frontCardName, layout: "token", frame: "", isFullArt: true, collectorNumber: "\(number)", set: "fsjm", rarity: .common, scryfallCardBackID: nil, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], language: .english, imageUris: ["normal": frontURL])
+  let faceCard = MTGCard(name: frontCardName, layout: "token", frame: "", isFullArt: true, collectorNumber: "\(number)", set: "fsjm", rarity: .common, scryfallCardBackID: nil, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], language: .english, isTextless: false, imageUris: ["normal": frontURL])
 	collection.append(faceCard)
 	
 	for cardCount in cardCounts.reversed() {
@@ -2732,7 +2732,7 @@ fileprivate struct CardInfo {
 		
 		self.num = num
         
-        if card.language != .english, let typeLine = card.typeLine, let oracleText = card.oracleText {
+    if card.language != .english || card.isTextless, let typeLine = card.typeLine, let oracleText = card.oracleText {
             if !description.isEmpty {
                 description += "\n\n"
             }
@@ -4721,7 +4721,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			return try generate(input: .mtgCardJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, autofixDecklist: autofixDecklist, outputFormat: outputFormat, seed: seed)
 		}
 		if inputString.lowercased() == "sjm" {
-			mtgCards = [MTGCard.init(layout: "", frame: "", isFullArt: false, collectorNumber: "", set: "", rarity: .common, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], language: .english)]
+      mtgCards = [MTGCard.init(layout: "", frame: "", isFullArt: false, collectorNumber: "", set: "", rarity: .common, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], language: .english, isTextless: false)]
 			setName = "SuperJump!"
 			setCode = "SJM"
 			tokens = []
@@ -6760,7 +6760,7 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
       if let notFoundIndex = notFound.firstIndex(of: cardCount.identifier), let index = identifiers.firstIndex(of: cardCount.identifier) {
         // The user is supplying a custom image for a card that doesn't exist. Most likely a custom card
         notFound.remove(at: notFoundIndex)
-        let newCard = MTGCard.init(name: cardCount.identifier.name, layout: "normal", frame: "2015", isFullArt: false, collectorNumber: "0", set: "custom", rarity: .rare, isFoilAvailable: true, isNonFoilAvailable: true, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil, .foil], language: .english)
+        let newCard = MTGCard.init(name: cardCount.identifier.name, layout: "normal", frame: "2015", isFullArt: false, collectorNumber: "0", set: "custom", rarity: .rare, isFoilAvailable: true, isNonFoilAvailable: true, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil, .foil], language: .english, isTextless: false)
         mtgCards.insert(newCard, at: index)
       }
       

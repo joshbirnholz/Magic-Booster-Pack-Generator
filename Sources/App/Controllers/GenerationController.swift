@@ -575,7 +575,7 @@ final class GeneratorController {
 		
 		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
 		
-		if let url = URL(string: decklist.deck) {
+    if let url = URL(string: decklist.deck), url.absoluteString.lowercased().hasPrefix("http") {
 			return try self.deckFromURL(url, export, cardBack, autofix: autofix, customOverrides: customOverrides, promise)
 		}
 		

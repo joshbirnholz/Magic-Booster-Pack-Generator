@@ -137,31 +137,24 @@ fileprivate struct CollectionRemover {
     var notFound: [CollectionItem] = []
     
     outer: for item in itemsToRemove {
-      var removedCount = 0
+      var amountLeftToRemove = item.amount
+      var amountRemoved = 0
       
-      while removedCount < item.amount {
-        
+      while amountLeftToRemove > 0 {
         guard let index = indexOfItem(matching: item, inCollection: collection) else {
           notFound.append(item)
           continue outer
         }
         
-        var match: CollectionItem {
-          get {
-            return collection[index]
-          }
-          set {
-            collection[index] = newValue
-          }
-        }
+        let amountToRemoveFromThisRow = min(amountLeftToRemove, collection[index].amount)
         
-        let amountToRemove = min(item.amount, match.amount)
+        collection[index].amount -= amountToRemoveFromThisRow
         
-        match.amount -= amountToRemove
+        amountRemoved += amountToRemoveFromThisRow
         
-        removedCount += amountToRemove
+        amountLeftToRemove -= amountRemoved
         
-        if match.amount <= 0 {
+        if collection[index].amount <= 0 {
           collection.remove(at: index)
         }
       }

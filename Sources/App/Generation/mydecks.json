@@ -220,7 +220,8 @@
 	"ids": ["0"],
 	"ci": "RW",
 	"comment": "Double up artifacts",
-    "name": "Osgir, the Reconstructed"
+    "name": "Osgir, the Reconstructed",
+    "hide": true
   },
   {
 	"url": "https://deckstats.net/decks/149419/2156914-prosper-tome-bound",
@@ -516,5 +517,63 @@
       "ci": "UBR",
       "comment": "Masters of Evil",
       "name": "Masters of Evil"
+  },
+  {
+      "url": "https://deckstats.net/decks/149419/3343411-beledros-dragons",
+      "front": "https://cards.scryfall.io/large/front/e/3/e34dd2ef-a52d-48b6-becc-825f0e78eb75.jpg?1627001361",
+      "ids": ["70"],
+      "ci": "GB",
+      "comment": "Witherbloom Dragons",
+      "name": "Beledros Dragons"
+  },
+  {
+      "url": "https://deckstats.net/decks/149419/3452993-copy-of-revenant-recon",
+      "front": "https://cards.scryfall.io/large/front/0/4/043c7b0e-2f7b-4936-88fe-84d8022ffb51.jpg?1706240534",
+      "ids": ["71"],
+      "ci": "UB",
+      "comment": "Surveil, Reanimator",
+      "name": "Revenant Recon"
+  },
+  {
+      "url": "https://deckstats.net/decks/149419/3284244-elenda-vampire-aristocrats",
+      "front": "https://cards.scryfall.io/large/front/4/1/41c42be7-84fe-4d9d-bf5c-e75e4d5635fa.jpg?1700490606",
+      "ids": ["72"],
+      "ci": "WB",
+      "comment": "Vampires, Aristocrats",
+      "name": "Elenda Vampire Aristocrats"
+  },
+  {
+      "url": "https://deckstats.net/decks/149419/3511418-teysa-of-the-ghost-council",
+      "front": "https://i.imgur.com/xcOid8F.jpeg",
+      "ids": ["73"],
+      "ci": "WB",
+      "comment": "Orzhov Spirits",
+      "name": "Teysa of the Ghost Council"
+  },
+  {
+      "url": "https://deckstats.net/decks/149419/3473474-vihaan-treasure",
+      "front": "https://cards.scryfall.io/large/front/7/b/7b09ab3a-344c-42d0-9f71-e8374214cda1.jpg",
+      "ids": ["74"],
+      "ci": "WBR",
+      "comment": "Treasure",
+      "name": "Vihaan Treasure"
+  },
+  {
+      "url": "https://deckstats.net/decks/149419/3483355-roxanne-starfall-savant",
+      "front": "https://cards.scryfall.io/large/front/1/1/11fbe52f-febd-49fc-8391-28d3efe9c3eb.jpg",
+      "ids": ["75"],
+      "ci": "GR",
+      "comment": "Mana Rocks, Big Mana",
+      "name": "Roxanne, Starfall Savant"
+  },
+  {
+    "url": "https://deckstats.net/decks/149419/3502208-gisa-geralf",
+    "front": "https://cards.scryfall.io/large/front/d/b/db7c07b2-02b2-4e62-bf1b-4848e06eec28.jpg",
+    "back": "https://cards.scryfall.io/large/front/a/f/afe3b678-b340-4c53-bbf6-19252a809d73.jpg",
+    "ids": ["76", "77"],
+    "type": "partners",
+    "ci": "UB",
+    "comment": "Rule 0 Zombies",
+    "name": "Gisa + Geralf"
   }
 ]

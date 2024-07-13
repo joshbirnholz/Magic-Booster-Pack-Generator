@@ -126,14 +126,14 @@ fileprivate struct CollectionRemover {
       let signedMatch = item.isSigned == itemToRemove.isSigned
       let setMatch = item.setCode.lowercased() == itemToRemove.setCode.lowercased() || (item.setID.lowercased() == itemToRemove.setID.lowercased() && !item.setID.isEmpty)
       let collectorNumberMatch = item.collectorNumber.lowercased() == itemToRemove.collectorNumber.lowercased()
-      let languageMatch = {
+      let languageMatch: Bool = {
         if item.language.isEmpty != itemToRemove.language.isEmpty {
           return true
         } else {
           return item.language.lowercased() == itemToRemove.language.lowercased()
         }
       }()
-      let conditionMatch = {
+      let conditionMatch: Bool = {
         if item.condition.isEmpty != itemToRemove.condition.isEmpty {
           return true
         } else {

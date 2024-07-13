@@ -121,13 +121,27 @@ fileprivate struct CollectionRemover {
 
   private func indexOfItem(matching itemToRemove: CollectionItem, inCollection collection: [CollectionItem]) -> Int? {
     return collection.firstIndex { item in
-      item.cardName.lowercased() == itemToRemove.cardName.lowercased() &&
-      item.isFoil == itemToRemove.isFoil &&
-      item.isSigned == itemToRemove.isSigned &&
-      (item.setCode.lowercased() == itemToRemove.setCode.lowercased() || (item.setID.lowercased() == itemToRemove.setID.lowercased() && !item.setID.isEmpty)) &&
-      item.collectorNumber.lowercased() == itemToRemove.collectorNumber.lowercased() &&
-      ((item.language.lowercased() == itemToRemove.language.lowercased()) || Set([item.language.lowercased(), itemToRemove.language.lowercased()]) == ["en", ""]) &&
-      item.condition.lowercased() == itemToRemove.condition.lowercased()
+      let nameMatch = item.cardName.lowercased() == itemToRemove.cardName.lowercased()
+      let foilMatch = item.isFoil == itemToRemove.isFoil
+      let signedMatch = item.isSigned == itemToRemove.isSigned
+      let setMatch = item.setCode.lowercased() == itemToRemove.setCode.lowercased() || (item.setID.lowercased() == itemToRemove.setID.lowercased() && !item.setID.isEmpty)
+      let collectorNumberMatch = item.collectorNumber.lowercased() == itemToRemove.collectorNumber.lowercased()
+      let languageMatch = {
+        if item.language.isEmpty != itemToRemove.language.isEmpty {
+          return true
+        } else {
+          return item.language.lowercased() == itemToRemove.language.lowercased()
+        }
+      }()
+      let conditionMatch = {
+        if item.condition.isEmpty != itemToRemove.condition.isEmpty {
+          return true
+        } else {
+          return item.condition.lowercased() == itemToRemove.condition.lowercased()
+        }
+      }()
+      
+      return nameMatch && foilMatch && signedMatch && setMatch && collectorNumberMatch && languageMatch && conditionMatch
     }
   }
 

@@ -165,7 +165,10 @@
     "rarity" : "rare",
     "collector_number" : "15",
     "mana_cost" : "{2}{W}{W}",
-    "name" : "Endless Encounters"
+    "name" : "Endless Encounters",
+    "related_cards": [
+      "Zombie Soldier (THLW)"
+    ]
   },
   {
     "subtypes" : [
@@ -426,7 +429,10 @@
     ],
     "name" : "Undead Steed",
     "rarity" : "common",
-    "collector_number" : "38"
+    "collector_number" : "38",
+    "related_cards": [
+      "Knight (THLW)"
+    ]
   },
   {
     "rarity" : "uncommon",
@@ -468,7 +474,10 @@
     "name" : "Velka's Missionary",
     "mana_cost" : "{3}{W}",
     "set" : "hlw",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Velka%E2%80%99s%20Missionary.jpeg"
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Velka%E2%80%99s%20Missionary.jpeg",
+    "related_cards": [
+      "Zombie Soldier (THLW)"
+    ]
   },
   {
     "rarity" : "rare",
@@ -1086,7 +1095,10 @@
     ],
     "set" : "hlw",
     "collector_number" : "99",
-    "type" : "Creature"
+    "type" : "Creature",
+    "related_cards": [
+      "Skeleton (THLW)"
+    ]
   },
   {
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkwraith%20Warband.jpeg",
@@ -1275,7 +1287,10 @@
       "Skeleton God"
     ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Nito%2C%20the%20Gravelord.jpeg",
-    "name" : "Nito, the Gravelord"
+    "name" : "Nito, the Gravelord",
+    "related_cards": [
+      "Skeleton (THLW)"
+    ]
   },
   {
     "collector_number" : "118",
@@ -1374,7 +1389,10 @@
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/The%20Furtive%20Pygmy.jpeg",
     "name" : "The Furtive Pygmy",
     "collector_number" : "126",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "related_cards": [
+      "Human (THLW)"
+    ]
   },
   {
     "subtypes" : [
@@ -1698,7 +1716,10 @@
     "set" : "hlw",
     "rarity" : "uncommon",
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Paragon%20Transformation.jpeg",
-    "name" : "Paragon Transformation"
+    "name" : "Paragon Transformation",
+    "related_cards": [
+      "Dragon (THLW)"
+    ]
   },
   {
     "type" : "Enchantment",
@@ -1902,7 +1923,10 @@
     "collector_number" : "176",
     "type" : "Enchantment",
     "rarity" : "uncommon",
-    "mana_cost" : "{2}{G}"
+    "mana_cost" : "{2}{G}",
+    "related_cards": [
+      "Spider (THLW)"
+    ]
   },
   {
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Blight%20Slime.jpeg",
@@ -1959,7 +1983,10 @@
     ],
     "collector_number" : "181",
     "type" : "Creature",
-    "rarity" : "rare"
+    "rarity" : "rare",
+    "related_cards": [
+      "Wolf (THLW)"
+    ]
   },
   {
     "rarity" : "common",
@@ -2019,6 +2046,9 @@
     "collector_number" : "186",
     "subtypes" : [
       "Human Dragon"
+    ],
+    "related_cards": [
+      "Dragon (THLW)"
     ]
   },
   {
@@ -2124,7 +2154,10 @@
     ],
     "collector_number" : "195",
     "type" : "Legendary Creature",
-    "rarity" : "rare"
+    "rarity" : "rare",
+    "related_cards": [
+      "Dragon (THLW)"
+    ]
   },
   {
     "mana_cost" : "{1}{G}",
@@ -2148,7 +2181,10 @@
     "rarity" : "uncommon",
     "name" : "Hunted Questant",
     "set" : "hlw",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hunted%20Questant.jpeg"
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hunted%20Questant.jpeg",
+    "related_cards": [
+      "Wolf (THLW)"
+    ]
   },
   {
     "collector_number" : "198",
@@ -2217,7 +2253,10 @@
     "subtypes" : [
       "Fungus"
     ],
-    "set" : "hlw"
+    "set" : "hlw",
+    "related_cards": [
+      "Fungus (THLW)"
+    ]
   },
   {
     "name" : "Path of Strength",
@@ -2286,7 +2325,10 @@
     "set" : "hlw",
     "rarity" : "common",
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Servant%20of%20the%20Fair%20Lady.jpeg",
-    "mana_cost" : "{G}"
+    "mana_cost" : "{G}",
+    "related_cards": [
+      "Spider (THLW)"
+    ]
   },
   {
     "name" : "Soul Infusion",
@@ -2388,7 +2430,10 @@
       "Evander"
     ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Evander%2C%20Sunlight%20Martyr.jpeg",
-    "name" : "Evander, Sunlight Martyr"
+    "name" : "Evander, Sunlight Martyr",
+    "related_cards": [
+      "Knight (THLW)"
+    ]
   },
   {
     "subtypes" : [
@@ -2481,7 +2526,10 @@
     "collector_number" : "227",
     "mana_cost" : "{1}{G}{W}",
     "rarity" : "uncommon",
-    "type" : "Instant"
+    "type" : "Instant",
+    "related_cards": [
+      "Wolf (THLW)"
+    ]
   },
   {
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Priest%20of%20Velka.jpeg",
@@ -2541,7 +2589,10 @@
     ],
     "mana_cost" : "{4}{G}{U}",
     "set" : "hlw",
-    "rarity" : "mythic"
+    "rarity" : "mythic",
+    "related_cards": [
+      "Human (THLW)"
+    ]
   },
   {
     "subtypes" : [
@@ -2800,5 +2851,154 @@
     "collector_number" : "256",
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Forest.jpeg",
     "mana_cost" : ""
+  },
+  {
+    "name": "Spider",
+    "mana_cost": "",
+    "type": "Token Creature",
+    "image": "https://darksoulsmtg.com/hlw_card_images/HLW%20Spider.full.png",
+    "colors": [
+      "G"
+    ],
+    "set": "thlw",
+    "collector_number": "22",
+    "rarity": "common",
+    "subtypes": [
+      "Spider"
+    ],
+    "keywords": [
+      "Reach"
+    ],
+    "power": "1",
+    "toughness": "2",
+    "layout": "token"
+  },
+  {
+    "name": "Skeleton",
+    "mana_cost": "",
+    "type": "Token Creature",
+    "image": "https://darksoulsmtg.com/hlw_card_images/HLW%20Skeleton.full.png",
+    "colors": [
+      "B"
+    ],
+    "set": "thlw",
+    "collector_number": "19",
+    "rarity": "common",
+    "subtypes": [
+      "Skeleton"
+    ],
+    "power": "1",
+    "toughness": "2",
+    "layout": "token"
+  },
+  {
+    "name": "Wolf",
+    "mana_cost": "",
+    "type": "Token Creature",
+    "image": "https://darksoulsmtg.com/hlw_card_images/HLW%20Wolf.full.png",
+    "colors": [
+      "G"
+    ],
+    "set": "thlw",
+    "collector_number": "23",
+    "rarity": "common",
+    "subtypes": [
+      "Wolf"
+    ],
+    "power": "2",
+    "toughness": "2",
+    "layout": "token"
+  },
+  {
+    "name": "Dragon",
+    "mana_cost": "",
+    "type": "Token Artifact Creature",
+    "image": "https://darksoulsmtg.com/hlw_card_images/HLW%20Dragon.full.png",
+    "colors": [
+    ],
+    "set": "thlw",
+    "collector_number": "26",
+    "rarity": "common",
+    "subtypes": [
+      "Dragon"
+    ],
+    "power": "4",
+    "toughness": "4",
+    "keywords": [
+      "Flying"
+    ],
+    "layout": "token"
+  },
+  {
+    "name": "Knight",
+    "mana_cost": "",
+    "type": "Token Creature",
+    "image": "https://darksoulsmtg.com/hlw_card_images/HLW%20Knight.full.png",
+    "colors": [
+      "W"
+    ],
+    "set": "thlw",
+    "collector_number": "6",
+    "rarity": "common",
+    "subtypes": [
+      "Knight"
+    ],
+    "power": "2",
+    "toughness": "2",
+    "layout": "token"
+  },
+  {
+    "name": "Zombie Soldier",
+    "mana_cost": "",
+    "type": "Token Creature",
+    "image": "https://darksoulsmtg.com/hlw_card_images/HLW%20Zombie%20Soldier.full.png",
+    "colors": [
+      "W"
+    ],
+    "set": "thlw",
+    "collector_number": "9",
+    "rarity": "common",
+    "subtypes": [
+      "Zombie Soldier"
+    ],
+    "power": "1",
+    "toughness": "1",
+    "layout": "token"
+  },
+  {
+    "name": "Fungus",
+    "mana_cost": "",
+    "type": "Token Creature",
+    "image": "https://darksoulsmtg.com/hlw_card_images/HLW%20Fungus.full.png",
+    "colors": [
+      "G"
+    ],
+    "set": "thlw",
+    "collector_number": "21",
+    "rarity": "common",
+    "subtypes": [
+      "Fungus"
+    ],
+    "power": "1",
+    "toughness": "1",
+    "layout": "token"
+  },
+  {
+    "name": "Human",
+    "mana_cost": "",
+    "type": "Token Creature",
+    "image": "https://darksoulsmtg.com/hlw_card_images/HLW%20Human.full.png",
+    "colors": [
+      "G"
+    ],
+    "set": "thlw",
+    "collector_number": "15",
+    "rarity": "common",
+    "subtypes": [
+      "Human"
+    ],
+    "power": "1",
+    "toughness": "1",
+    "layout": "token"
   }
 ]

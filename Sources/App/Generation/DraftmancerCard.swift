@@ -20,13 +20,45 @@ import Foundation
 public struct DraftmancerCard: Codable {
   public struct Face: Codable, Hashable, Equatable {
     var name: String
-    var imageUris: [String: URL]
+    var imageUris: [String: URL]?
+    var image: URL?
     var type: String
     var subtypes: [String]?
     var oracleText: String?
     var power: String?
     var toughness: String?
     var loyalty: String?
+    
+    init(name: String, imageUris: [String : URL]? = nil, image: URL? = nil, type: String, subtypes: [String]? = nil, oracleText: String? = nil, power: String? = nil, toughness: String? = nil, loyalty: String? = nil) {
+      self.name = name
+      self.imageUris = imageUris
+      self.image = image
+      self.type = type
+      self.subtypes = subtypes
+      self.oracleText = oracleText
+      self.power = power
+      self.toughness = toughness
+      self.loyalty = loyalty
+    }
+    
+    public init(from decoder: any Decoder) throws {
+      let container: KeyedDecodingContainer<DraftmancerCard.Face.CodingKeys> = try decoder.container(keyedBy: DraftmancerCard.Face.CodingKeys.self)
+      self.name = try container.decode(String.self, forKey: DraftmancerCard.Face.CodingKeys.name)
+      
+      if let image = try container.decodeIfPresent(URL.self, forKey: .image) {
+        self.image = image
+        self.imageUris = ["en":image]
+      } else {
+        self.imageUris = try container.decodeIfPresent([String: URL].self, forKey: .imageUris)
+      }
+      
+      self.type = try container.decode(String.self, forKey: DraftmancerCard.Face.CodingKeys.type)
+      self.subtypes = try container.decodeIfPresent([String].self, forKey: DraftmancerCard.Face.CodingKeys.subtypes)
+      self.oracleText = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.oracleText)
+      self.power = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.power)
+      self.toughness = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.toughness)
+      self.loyalty = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.loyalty)
+    }
   }
   
   public enum DraftEffect: String, Codable {
@@ -67,12 +99,14 @@ public struct DraftmancerCard: Codable {
   var layout: String?
   var back: Face?
   var relatedCards: [Face]?
+  var relatedCardIdentifiers: [MTGCardIdentifier]?
   var draftEffects: [DraftEffect]?
   
   var power: String?
   var toughness: String?
   var oracleText: String?
   var loyalty: String?
+  var keywords: [String]?
   
   init(mtgCard: MTGCard) {
     self.name = mtgCard.name ?? ""
@@ -123,10 +157,13 @@ public struct DraftmancerCard: Codable {
     self.printedNames = nil
     self.rating = nil
     
+    self.relatedCardIdentifiers = nil
+    
     self.power = mtgCard.power
     self.toughness = mtgCard.toughness
     self.loyalty = mtgCard.loyalty
     self.oracleText = mtgCard.oracleText
+    self.keywords = mtgCard.keywords
   }
   
   public func encode(to encoder: any Encoder) throws {
@@ -135,7 +172,7 @@ public struct DraftmancerCard: Codable {
     try container.encode(self.manaCost, forKey: .manaCost)
     try container.encode(self.type, forKey: .type)
     
-    if let imageUris {
+    if let imageUris = imageUris {
       try container.encode(imageUris, forKey: .imageUris)
     } else {
       try container.encodeIfPresent(self.image, forKey: .image)
@@ -157,44 +194,118 @@ public struct DraftmancerCard: Codable {
     try container.encodeIfPresent(self.toughness, forKey: .toughness)
     try container.encodeIfPresent(self.oracleText, forKey: .oracleText)
     try container.encodeIfPresent(self.layout, forKey: .loyalty)
+    try container.encodeIfPresent(self.keywords, forKey: .keywords)
+  }
+  
+  enum CodingKeys: CodingKey {
+    case name
+    case manaCost
+    case type
+    case imageUris
+    case colors
+    case printedNames
+    case image
+    case set
+    case collectorNumber
+    case rarity
+    case subtypes
+    case rating
+    case layout
+    case back
+    case relatedCards
+    case relatedCardIdentifiers
+    case draftEffects
+    case power
+    case toughness
+    case oracleText
+    case loyalty
+    case keywords
+  }
+  
+  public init(from decoder: any Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.name = try container.decode(String.self, forKey: .name)
+    self.manaCost = try container.decode(String.self, forKey: .manaCost)
+    self.type = try container.decode(String.self, forKey: .type)
+    self.imageUris = try container.decodeIfPresent([String : URL].self, forKey: .imageUris)
+    self.colors = try container.decodeIfPresent([String].self, forKey: .colors)
+    self.printedNames = try container.decodeIfPresent([String : URL].self, forKey: .printedNames)
+    self.image = try container.decodeIfPresent(URL.self, forKey: .image)
+    self.set = try container.decodeIfPresent(String.self, forKey: .set)
+    self.collectorNumber = try container.decodeIfPresent(String.self, forKey: .collectorNumber)
+    self.rarity = try container.decodeIfPresent(String.self, forKey: .rarity)
+    self.subtypes = try container.decodeIfPresent([String].self, forKey: .subtypes)
+    self.rating = try container.decodeIfPresent(Int.self, forKey: .rating)
+    self.layout = try container.decodeIfPresent(String.self, forKey: .layout)
+    self.back = try container.decodeIfPresent(DraftmancerCard.Face.self, forKey: .back)
+    
+    if let relatedCardIdentifiers = try container.decodeIfPresent([String].self, forKey: .relatedCards) {
+      self.relatedCardIdentifiers = relatedCardIdentifiers.compactMap { string in
+        let groups = DeckParser.parse(deckList: "1 \(string)", autofix: false)
+        return groups.first?.cardCounts.first?.identifier
+      }
+      
+      self.relatedCards = nil
+    } else {
+      self.relatedCards = try container.decodeIfPresent([DraftmancerCard.Face].self, forKey: .relatedCards)
+    }
+    
+    self.draftEffects = try container.decodeIfPresent([DraftmancerCard.DraftEffect].self, forKey: .draftEffects)
+    self.power = try container.decodeIfPresent(String.self, forKey: .power)
+    self.toughness = try container.decodeIfPresent(String.self, forKey: .toughness)
+    self.oracleText = try container.decodeIfPresent(String.self, forKey: .oracleText)
+    self.loyalty = try container.decodeIfPresent(String.self, forKey: .loyalty)
+    self.keywords = try container.decodeIfPresent([String].self, forKey: .keywords)
   }
 }
 
 extension DraftmancerCard {
   var mtgCard: MTGCard? {
     var typeLine = type
-    if let subtypes {
+    if let subtypes = subtypes {
       typeLine += " – \(subtypes.joined(separator: " "))"
     }
     guard let rarity = self.rarity.flatMap(MTGCard.Rarity.init(rawValue:)) else { return nil }
     
     var imageURIs = self.imageUris ?? [:]
     
-    if let image, imageURIs.isEmpty {
+    if let image = image, imageURIs.isEmpty {
       imageURIs["normal"] = image
       imageURIs["large"] = image
     }
     
-    let relatedCards: [MTGCard.RelatedCard]? = self.relatedCards?.compactMap { face in
-      guard face.type.hasPrefix("Token") else { return nil }
-      
-      var typeLine = face.type
-      if let subtypes = face.subtypes {
-        typeLine += " – \(subtypes.joined(separator: " "))"
-      }
-      
+    let relatedCards: [MTGCard.RelatedCard]? = self.relatedCardIdentifiers?.compactMap { identifier -> MTGCard.RelatedCard? in
       return .init(
         scryfallID: nil,
         component: MTGCard.RelatedCard.Component.token,
-        name: face.name,
-        typeLine: typeLine,
+        name: name,
+        typeLine: nil,
         url: nil,
-        draftmancerFace: face
+        draftmancerIdentifier: identifier
       )
+        
     }
     
+//    let relatedCards: [MTGCard.RelatedCard]? = self.relatedCards?.compactMap { face in
+//      guard face.type.hasPrefix("Token") else { return nil }
+//      
+//      var typeLine = face.type
+//      if let subtypes = face.subtypes {
+//        typeLine += " – \(subtypes.joined(separator: " "))"
+//      }
+//      
+//      return .init(
+//        scryfallID: nil,
+//        component: MTGCard.RelatedCard.Component.token,
+//        name: face.name,
+//        typeLine: typeLine,
+//        url: nil,
+//        loadedMTGCard: <#T##MTGCard?#>
+//      )
+//    }
+    
     return .init(
-      scryfallID: nil,
+      scryfallID: UUID(),
       oracleID: nil,
       typeLine: typeLine,
       power: self.power,
@@ -205,7 +316,7 @@ extension DraftmancerCard {
       loyalty: self.loyalty,
       cardFaces: nil, // Back faces and split cards not supported yet
       convertedManaCost: nil,
-      layout: "",
+      layout: self.layout ?? "normal",
       frame: "",
       frameEffects: nil,
       manaCost: self.manaCost,

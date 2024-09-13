@@ -4674,7 +4674,7 @@ func customSetJSONURL(forSetCode inputString: String) -> URL? {
 	#endif
 }
 
-func draftmancerCards() -> [DraftmancerCard]? {
+let loadedDraftmancerCards: [MTGCard]? = {
   let jsonURL: URL = {
     #if canImport(Vapor)
     let directory = DirectoryConfiguration.detect()
@@ -4692,12 +4692,13 @@ func draftmancerCards() -> [DraftmancerCard]? {
   decoder.keyDecodingStrategy = .convertFromSnakeCase
   
   do {
-    return try decoder.decode([DraftmancerCard].self, from: data)
+    let draftmancerCards = try decoder.decode([DraftmancerCard].self, from: data)
+    return draftmancerCards.compactMap(\.mtgCard)
   } catch {
     print(error)
     return nil
   }
-}
+}()
 
 public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, includeBasicLands: Bool, includeTokens: Bool, specialOptions: [String] = [], cardBack: URL? = nil, autofixDecklist: Bool, outputFormat: OutputFormat, seed: Seed? = nil) throws -> String {
 	let mtgCards: [MTGCard]
@@ -6284,9 +6285,17 @@ let fixedSetCodes: [String: String] = [
 ]
 
 fileprivate func getAllTokens(_ cards: [MTGCard], _ tokens: inout [MTGCard]) {
-	let tokenIdentifiers: [MTGCardIdentifier] = {
-    return Set(cards.compactMap { $0.allParts?.compactMap { $0.component == .token ? $0.scryfallID : nil } }.joined()).map { MTGCardIdentifier.id($0) }
-	}()
+	let tokenIdentifiers: [MTGCardIdentifier] = Array(Set(cards.compactMap { card in
+    return card.allParts?.compactMap { part -> MTGCardIdentifier? in
+      guard part.component == .token else { return nil }
+      
+      if let id = part.scryfallID {
+        return MTGCardIdentifier.id(id)
+      } else {
+        return part.draftmancerIdentifier
+      }
+    }
+  }.joined()))
 	
 	if !tokenIdentifiers.isEmpty {
 		do {
@@ -6305,6 +6314,12 @@ fileprivate func getAllTokens(_ cards: [MTGCard], _ tokens: inout [MTGCard]) {
 		} catch {
 			
 		}
+    
+    for tokenIdentifier in tokenIdentifiers {
+      if let card = loadedDraftmancerCards?[tokenIdentifier] {
+        tokens.append(card)
+      }
+    }
 	}
 }
 
@@ -6595,10 +6610,10 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 	var notFound: [MTGCardIdentifier] = Array(collections.compactMap(\.notFound).joined())
   
   // Custom cards from Draftmancer
-  if !notFound.isEmpty, let draftmancerCards = draftmancerCards()?.compactMap(\.mtgCard) {
+  if !notFound.isEmpty, let draftmancerCards = loadedDraftmancerCards {
     let identifiersToTry = notFound
     for identifier in identifiersToTry {
-      if let card = draftmancerCards[identifier] {
+      func handle(card: MTGCard) {
         mtgCards.append(card)
         
         if let index = notFound.firstIndex(of: identifier) {
@@ -6607,6 +6622,20 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
         if let index = identifiers.firstIndex(of: identifier) {
           identifiers.remove(at: index)
           identifiers.append(identifier)
+        }
+      }
+      
+      if let card = draftmancerCards[identifier] {
+        guard autofix else {
+          handle(card: card)
+          continue
+        }
+        if case .collectorNumberSet(let collectorNumber, let set, let name) = identifier, name == nil, let originalIdentifier = identifiers.first(where: { $0.collectorNumber == collectorNumber && $0.set == set }), let name = originalIdentifier.name, card.name != name, let card = draftmancerCards[.nameSet(name: name, set: set)] {
+          // Fix for cards from draftmancer with valid set code but incorrect collector number.
+          // Eg turns "Plains (HLW) 1" into "Plains (HLW)"
+          handle(card: card)
+        } else {
+          handle(card: card)
         }
       }
     }
@@ -6962,32 +6991,32 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
       let radCounter = try Swiftfall.getCard(id: "0886657d-afb0-4f1f-9af7-960724793077")
       tokens.append(MTGCard(radCounter))
   }
-	
-	var alreadyThere: Set<MTGCard> = []
-	let uniqueTokens = tokens.compactMap { token -> MTGCard? in
-		guard let id = token.scryfallID else { return token }
-		guard !alreadyThere.contains(where: { $0.scryfallID == id }) else { return nil }
-		alreadyThere.insert(token)
-		return token
-	}
-	
-	tokens = uniqueTokens.sorted {
-		($0.name ?? "") < ($1.name ?? "")
-	}
-	
-  	if packs.count == 1 {
-		var pack = Array(packs.joined())
-		
-		if let token = tokens.first {
-			pack.insert(token, at: 0)
-		}
-		
-		pack.insert(contentsOf: faceCards, at: 0)
-		
-		let output = try singleBoosterPack(setName: "", setCode: "", boosterPack: pack, tokens: tokens, inPack: false, export: export, cardBack: cardBack/*, nickname: outputName*/)
-		let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: output, filename: outputName ?? fileName))
-		return String(data: data, encoding: .utf8) ?? ""
-	} else {
+  
+  var alreadyThere: Set<MTGCard> = []
+  let uniqueTokens = tokens.compactMap { token -> MTGCard? in
+    guard let id = token.scryfallID else { return token }
+    guard !alreadyThere.contains(where: { $0.scryfallID == id }) else { return nil }
+    alreadyThere.insert(token)
+    return token
+  }
+  
+  tokens = uniqueTokens.sorted {
+    ($0.name ?? "") < ($1.name ?? "")
+  }
+  
+  if packs.count == 1 {
+    var pack = Array(packs.joined())
+    
+    if let token = tokens.first {
+      pack.insert(token, at: 0)
+    }
+    
+    pack.insert(contentsOf: faceCards, at: 0)
+    
+    let output = try singleBoosterPack(setName: "", setCode: "", boosterPack: pack, tokens: tokens, inPack: false, export: export, cardBack: cardBack/*, nickname: outputName*/)
+    let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: output, filename: outputName ?? fileName))
+    return String(data: data, encoding: .utf8) ?? ""
+  } else {
 //		if let name = outputName, let index = groups.firstIndex(where: { $0.name == DeckParser.CardGroup.GroupName.deck.rawValue }) {
 //			groups[index].name = name
 //		}

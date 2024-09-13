@@ -41,7 +41,7 @@ public struct DraftmancerCard: Codable {
       self.loyalty = loyalty
     }
     
-    public init(from decoder: any Decoder) throws {
+    public init(from decoder: Decoder) throws {
       let container: KeyedDecodingContainer<DraftmancerCard.Face.CodingKeys> = try decoder.container(keyedBy: DraftmancerCard.Face.CodingKeys.self)
       self.name = try container.decode(String.self, forKey: DraftmancerCard.Face.CodingKeys.name)
       
@@ -166,7 +166,7 @@ public struct DraftmancerCard: Codable {
     self.keywords = mtgCard.keywords
   }
   
-  public func encode(to encoder: any Encoder) throws {
+  public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.manaCost, forKey: .manaCost)
@@ -222,7 +222,7 @@ public struct DraftmancerCard: Codable {
     case keywords
   }
   
-  public init(from decoder: any Decoder) throws {
+  public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.name = try container.decode(String.self, forKey: .name)
     self.manaCost = try container.decode(String.self, forKey: .manaCost)

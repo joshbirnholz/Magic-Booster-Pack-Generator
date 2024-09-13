@@ -4674,6 +4674,31 @@ func customSetJSONURL(forSetCode inputString: String) -> URL? {
 	#endif
 }
 
+func draftmancerCards() -> [DraftmancerCard]? {
+  let jsonURL: URL = {
+    #if canImport(Vapor)
+    let directory = DirectoryConfiguration.detect()
+    let configDir = "Sources/App/Generation"
+    return URL(fileURLWithPath: directory.workingDirectory)
+      .appendingPathComponent(configDir, isDirectory: true)
+      .appendingPathComponent("draftmancer.json", isDirectory: false)
+    #else
+    return Bundle.main.url(forResource: "draftmancer", withExtension: "json")
+    #endif
+  }()
+  
+  guard let data = try? Data(contentsOf: jsonURL) else { return nil }
+  let decoder = JSONDecoder()
+  decoder.keyDecodingStrategy = .convertFromSnakeCase
+  
+  do {
+    return try decoder.decode([DraftmancerCard].self, from: data)
+  } catch {
+    print(error)
+    return nil
+  }
+}
+
 public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, includeBasicLands: Bool, includeTokens: Bool, specialOptions: [String] = [], cardBack: URL? = nil, autofixDecklist: Bool, outputFormat: OutputFormat, seed: Seed? = nil) throws -> String {
 	let mtgCards: [MTGCard]
 	let setName: String
@@ -6258,9 +6283,9 @@ let fixedSetCodes: [String: String] = [
 	"pwp21": "pw21"
 ]
 
-fileprivate func getAllTokens(_ cards: [Swiftfall.Card], _ tokens: inout [MTGCard]) {
+fileprivate func getAllTokens(_ cards: [MTGCard], _ tokens: inout [MTGCard]) {
 	let tokenIdentifiers: [MTGCardIdentifier] = {
-		return Set(cards.compactMap { $0.allParts?.compactMap { $0.component == "token" ? $0.id : nil } }.joined()).map { MTGCardIdentifier.id($0) }
+    return Set(cards.compactMap { $0.allParts?.compactMap { $0.component == .token ? $0.scryfallID : nil } }.joined()).map { MTGCardIdentifier.id($0) }
 	}()
 	
 	if !tokenIdentifiers.isEmpty {
@@ -6566,8 +6591,26 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 			throw error
 		}
 	}
-	var cards: [Swiftfall.Card] = Array(collections.map(\.data).joined())
+  var mtgCards: [MTGCard] = Array(collections.map(\.data).joined()).map(MTGCard.init)
 	var notFound: [MTGCardIdentifier] = Array(collections.compactMap(\.notFound).joined())
+  
+  // Custom cards from Draftmancer
+  if !notFound.isEmpty, let draftmancerCards = draftmancerCards()?.compactMap(\.mtgCard) {
+    let identifiersToTry = notFound
+    for identifier in identifiersToTry {
+      if let card = draftmancerCards[identifier] {
+        mtgCards.append(card)
+        
+        if let index = notFound.firstIndex(of: identifier) {
+          notFound.remove(at: index)
+        }
+        if let index = identifiers.firstIndex(of: identifier) {
+          identifiers.remove(at: index)
+          identifiers.append(identifier)
+        }
+      }
+    }
+  }
 	
 	// First round of retries: Remove incorrect collector numbers
 	
@@ -6621,7 +6664,7 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 			}
 		}
 		
-		cards += Array(collections.map(\.data).joined())
+    mtgCards += Array(collections.map(\.data).joined()).map(MTGCard.init)
 	}
 	
 	// Second round of retries: Remove incorrect set codes
@@ -6677,10 +6720,8 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 			}
 		}
 		
-		cards += Array(collections.map(\.data).joined())
+    mtgCards += Array(collections.map(\.data).joined()).map(MTGCard.init)
 	}
-	
-	var mtgCards = cards.map(MTGCard.init)
 	
 	if autofix {
 		// Set codes for arena-only sets whose images should be changed to use versions listed in a custom set file.
@@ -6817,7 +6858,7 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 	}
 	
 	guard mtgCards.count == identifiers.count else {
-		let missingIdentifiers = identifiers.filter { cards[$0] == nil }
+		let missingIdentifiers = identifiers.filter { mtgCards[$0] == nil }
 		
 		throw PackError.couldNotLoadCards(String(describing: missingIdentifiers.map { String(describing: $0) }.joined(separator: ", ")))
 	}
@@ -6877,25 +6918,25 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 	}
 	
 	if includeTokens {
-		getAllTokens(cards, &tokens)
+		getAllTokens(mtgCards, &tokens)
 	}
 	
-	if cards.contains(where: { $0.keywords.contains("Daybound") || $0.keywords.contains("Nightbound") || $0.oracleText?.lowercased().contains("it becomes day") == true || $0.oracleText?.lowercased().contains("it becomes night") == true }) && !tokens.contains(where: { $0.scryfallID?.uuidString == "9c0f7843-4cbb-4d0f-8887-ec823a9238da" }) {
+	if mtgCards.contains(where: { $0.keywords.contains("Daybound") || $0.keywords.contains("Nightbound") || $0.oracleText?.lowercased().contains("it becomes day") == true || $0.oracleText?.lowercased().contains("it becomes night") == true }) && !tokens.contains(where: { $0.scryfallID?.uuidString == "9c0f7843-4cbb-4d0f-8887-ec823a9238da" }) {
 		let dayNightToken = try Swiftfall.getCard(id: "9c0f7843-4cbb-4d0f-8887-ec823a9238da")
 		tokens.append(MTGCard(dayNightToken))
 	}
 	
-	if cards.contains(where: { $0.oracleText?.lowercased().contains("the monarch") == true }) {
+	if mtgCards.contains(where: { $0.oracleText?.lowercased().contains("the monarch") == true }) {
 		let monarchToken = try Swiftfall.getCard(id: "bf7f3fc9-35f1-4b8c-b02b-494c71f31107")
 		tokens.append(MTGCard(monarchToken))
 	}
 	
-	if cards.contains(where: { $0.oracleText?.lowercased().contains("foretell") == true }) {
+	if mtgCards.contains(where: { $0.oracleText?.lowercased().contains("foretell") == true }) {
 		let foretellToken = try Swiftfall.getCard(id: "fb02637f-1385-4d3d-8dc0-de513db7633a")
 		tokens.append(MTGCard(foretellToken))
 	}
 	
-	if cards.contains(where: { $0.oracleText?.lowercased().contains("venture into the dungeon") == true }) {
+	if mtgCards.contains(where: { $0.oracleText?.lowercased().contains("venture into the dungeon") == true }) {
 		let dungeonIdentifiers = [
 			"6f509dbe-6ec7-4438-ab36-e20be46c9922", // Dungeon of the Mad Mage
 			"59b11ff8-f118-4978-87dd-509dc0c8c932", // Lost Mine of Phandelver
@@ -6907,17 +6948,17 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		tokens.append(contentsOf: dungeons)
 	}
 	
-	if cards.contains(where: { $0.oracleText?.lowercased().contains("take the initiative") == true }) {
+	if mtgCards.contains(where: { $0.oracleText?.lowercased().contains("take the initiative") == true }) {
 		let initative = try Swiftfall.getCard(id: "2c65185b-6cf0-451d-985e-56aa45d9a57d")
 		tokens.append(MTGCard(initative))
 	}
     
-    if cards.contains(where: { $0.oracleText?.lowercased().contains("the ring tempts you") == true }) {
+    if mtgCards.contains(where: { $0.oracleText?.lowercased().contains("the ring tempts you") == true }) {
         let ringToken = try Swiftfall.getCard(id: "7215460e-8c06-47d0-94e5-d1832d0218af")
         tokens.append(MTGCard(ringToken))
     }
   
-  if cards.contains(where: { $0.oracleText?.lowercased().contains("rad counter") == true }) {
+  if mtgCards.contains(where: { $0.oracleText?.lowercased().contains("rad counter") == true }) {
       let radCounter = try Swiftfall.getCard(id: "0886657d-afb0-4f1f-9af7-960724793077")
       tokens.append(MTGCard(radCounter))
   }

@@ -1,0 +1,2804 @@
+[
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Adorned%20Gargoyle.jpeg",
+    "subtypes" : [
+      "Gargoyle"
+    ],
+    "name" : "Adorned Gargoyle",
+    "mana_cost" : "{3}{W}",
+    "collector_number" : "1",
+    "set" : "hlw",
+    "rarity" : "uncommon",
+    "type" : "Artifact Creature"
+  },
+  {
+    "name" : "Arrest",
+    "type" : "Enchantment",
+    "rarity" : "common",
+    "collector_number" : "2",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Arrest.jpeg",
+    "subtypes" : [
+      "Aura"
+    ],
+    "mana_cost" : "{2}{W}"
+  },
+  {
+    "name" : "Chosen by the Lords",
+    "rarity" : "rare",
+    "type" : "Sorcery",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Chosen%20by%20the%20Lords.jpeg",
+    "collector_number" : "3",
+    "mana_cost" : "{2}{W}{W}",
+    "set" : "hlw"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkbreaker%20Angel.jpeg",
+    "name" : "Darkbreaker Angel",
+    "type" : "Creature",
+    "mana_cost" : "{3}{W}{W}",
+    "set" : "hlw",
+    "collector_number" : "4",
+    "subtypes" : [
+      "Angel"
+    ],
+    "rarity" : "mythic"
+  },
+  {
+    "name" : "Astora Elite",
+    "mana_cost" : "{1}{W}",
+    "collector_number" : "5",
+    "set" : "hlw",
+    "rarity" : "common",
+    "type" : "Creature",
+    "subtypes" : [
+      "Human Knight"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Astora%20Elite.jpeg"
+  },
+  {
+    "mana_cost" : "{3}{W}{W}",
+    "collector_number" : "6",
+    "rarity" : "uncommon",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Astora%20Outcast.jpeg",
+    "set" : "hlw",
+    "name" : "Astora Outcast",
+    "subtypes" : [
+      "Human Knight"
+    ],
+    "type" : "Creature"
+  },
+  {
+    "collector_number" : "7",
+    "name" : "Balder Knight",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Balder%20Knight.jpeg",
+    "type" : "Creature",
+    "subtypes" : [
+      "Zombie Knight"
+    ],
+    "mana_cost" : "{2}{W}",
+    "set" : "hlw",
+    "rarity" : "common"
+  },
+  {
+    "mana_cost" : "{4}{W}",
+    "set" : "hlw",
+    "collector_number" : "8",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Bell%20Gargoyles.jpeg",
+    "rarity" : "common",
+    "type" : "Artifact Creature",
+    "subtypes" : [
+      "Gargoyle"
+    ],
+    "name" : "Bell Gargoyles"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Bonfire%20Keeper.jpeg",
+    "name" : "Bonfire Keeper",
+    "subtypes" : [
+      "Human Cleric"
+    ],
+    "mana_cost" : "{1}{W}",
+    "set" : "hlw",
+    "collector_number" : "9",
+    "rarity" : "common",
+    "type" : "Creature"
+  },
+  {
+    "set" : "hlw",
+    "mana_cost" : "{2}{W}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Companion%E2%80%99s%20Experience.jpeg",
+    "rarity" : "uncommon",
+    "name" : "Companion's Experience",
+    "type" : "Enchantment",
+    "collector_number" : "10"
+  },
+  {
+    "rarity" : "uncommon",
+    "mana_cost" : "{2}{W}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkmoon%20Avenger.jpeg",
+    "name" : "Darkmoon Avenger",
+    "type" : "Creature",
+    "set" : "hlw",
+    "subtypes" : [
+      "Human Knight"
+    ],
+    "collector_number" : "11"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkmoon%20Deterrence.jpeg",
+    "type" : "Instant",
+    "collector_number" : "12",
+    "mana_cost" : "{2}{W}",
+    "rarity" : "uncommon",
+    "set" : "hlw",
+    "name" : "Darkmoon Deterrence"
+  },
+  {
+    "subtypes" : [
+      "Human Cleric"
+    ],
+    "rarity" : "rare",
+    "mana_cost" : "{1}{W}",
+    "set" : "hlw",
+    "name" : "Doomed Pilgrim",
+    "collector_number" : "13",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Doomed%20Pilgrim.jpeg",
+    "type" : "Creature"
+  },
+  {
+    "type" : "Creature",
+    "subtypes" : [
+      "Zombie Soldier"
+    ],
+    "mana_cost" : "{1}{W}",
+    "rarity" : "uncommon",
+    "set" : "hlw",
+    "collector_number" : "14",
+    "name" : "Dull Defender",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dull%20Defender.jpeg"
+  },
+  {
+    "type" : "Sorcery",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Endless%20Encounters.jpeg",
+    "set" : "hlw",
+    "rarity" : "rare",
+    "collector_number" : "15",
+    "mana_cost" : "{2}{W}{W}",
+    "name" : "Endless Encounters"
+  },
+  {
+    "subtypes" : [
+      "Spirit Warrior"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Evander%E2%80%99s%20Phantom.jpeg",
+    "type" : "Creature",
+    "rarity" : "common",
+    "mana_cost" : "{2}{W}",
+    "name" : "Evander's Phantom",
+    "collector_number" : "16",
+    "set" : "hlw"
+  },
+  {
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Exiled%20Priestess.jpeg",
+    "rarity" : "common",
+    "collector_number" : "17",
+    "name" : "Exiled Priestess",
+    "subtypes" : [
+      "Human Cleric"
+    ],
+    "mana_cost" : "{1}{W}",
+    "type" : "Creature"
+  },
+  {
+    "collector_number" : "18",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Expendable%E2%80%99s%20Vigil.jpeg",
+    "name" : "Expendable's Vigil",
+    "type" : "Enchantment",
+    "subtypes" : [
+      "Aura"
+    ],
+    "set" : "hlw",
+    "rarity" : "uncommon",
+    "mana_cost" : "{1}{W}"
+  },
+  {
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Fade%20to%20Ash.jpeg",
+    "mana_cost" : "{2}{W}",
+    "set" : "hlw",
+    "name" : "Fade to Ash",
+    "collector_number" : "19",
+    "type" : "Instant"
+  },
+  {
+    "name" : "Gargoyle Helm",
+    "collector_number" : "20",
+    "subtypes" : [
+      "Equipment"
+    ],
+    "mana_cost" : "{W}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gargoyle%20Helm.jpeg",
+    "rarity" : "common",
+    "set" : "hlw",
+    "type" : "Artifact"
+  },
+  {
+    "name" : "Gwyn's Last Hope",
+    "mana_cost" : "{1}{W}{W}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwyn%E2%80%99s%20Last%20Hope.jpeg",
+    "rarity" : "rare",
+    "collector_number" : "21",
+    "set" : "hlw",
+    "type" : "Sorcery"
+  },
+  {
+    "type" : "Legendary Artifact",
+    "collector_number" : "22",
+    "name" : "Gwyndolin's Bow",
+    "mana_cost" : "{1}{W}",
+    "subtypes" : [
+      "Equipment"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwyndolin%E2%80%99s%20Bow.jpeg",
+    "rarity" : "rare",
+    "set" : "hlw"
+  },
+  {
+    "set" : "hlw",
+    "mana_cost" : "{W}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwynevere%E2%80%99s%20Benediction.jpeg",
+    "name" : "Gwynevere's Benediction",
+    "subtypes" : [
+      "Aura"
+    ],
+    "type" : "Enchantment",
+    "rarity" : "uncommon",
+    "collector_number" : "23"
+  },
+  {
+    "name" : "Havel, the Rock",
+    "type" : "Legendary Creature",
+    "collector_number" : "24",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Havel%2C%20the%20Rock.jpeg",
+    "set" : "hlw",
+    "mana_cost" : "{1}{W}{W}",
+    "rarity" : "rare",
+    "subtypes" : [
+      "Demigod Knight"
+    ]
+  },
+  {
+    "name" : "Heavy Iron Armor",
+    "subtypes" : [
+      "Equipment"
+    ],
+    "collector_number" : "25",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Heavy%20Iron%20Armor.jpeg",
+    "mana_cost" : "{1}{W}",
+    "type" : "Artifact",
+    "rarity" : "uncommon",
+    "set" : "hlw"
+  },
+  {
+    "name" : "Hollowed Hero",
+    "type" : "Creature",
+    "rarity" : "common",
+    "mana_cost" : "{1}{W}",
+    "subtypes" : [
+      "Zombie Soldier"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hollowed%20Hero.jpeg",
+    "set" : "hlw",
+    "collector_number" : "26"
+  },
+  {
+    "mana_cost" : "{W}",
+    "type" : "Creature",
+    "rarity" : "common",
+    "collector_number" : "27",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Imprisoned%20Hollow.jpeg",
+    "subtypes" : [
+      "Zombie Soldier"
+    ],
+    "set" : "hlw",
+    "name" : "Imprisoned Hollow"
+  },
+  {
+    "mana_cost" : "{1}{W}",
+    "type" : "Sorcery",
+    "collector_number" : "28",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Legacy%20of%20Knights.jpeg",
+    "rarity" : "rare",
+    "name" : "Legacy of Knights",
+    "set" : "hlw"
+  },
+  {
+    "rarity" : "common",
+    "name" : "Lifehunt Boon",
+    "type" : "Instant",
+    "collector_number" : "29",
+    "mana_cost" : "{W}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Lifehunt%20Boon.jpeg",
+    "set" : "hlw"
+  },
+  {
+    "type" : "Instant",
+    "set" : "hlw",
+    "rarity" : "uncommon",
+    "collector_number" : "30",
+    "mana_cost" : "{3}{W}",
+    "name" : "Overcome the Odds",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Overcome%20the%20Odds.jpeg"
+  },
+  {
+    "name" : "Paladin of Holy Relics",
+    "rarity" : "uncommon",
+    "mana_cost" : "{2}{W}",
+    "collector_number" : "31",
+    "set" : "hlw",
+    "subtypes" : [
+      "Human Knight"
+    ],
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Paladin%20of%20Holy%20Relics.jpeg"
+  },
+  {
+    "type" : "Creature",
+    "subtypes" : [
+      "Spirit Knight"
+    ],
+    "rarity" : "common",
+    "collector_number" : "32",
+    "mana_cost" : "{3}{W}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Pilgrim%20Phantom.jpeg",
+    "name" : "Pilgrim Phantom",
+    "set" : "hlw"
+  },
+  {
+    "type" : "Creature",
+    "mana_cost" : "{4}{W}{W}",
+    "subtypes" : [
+      "Manticore"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sanctuary%20Manticore.jpeg",
+    "rarity" : "uncommon",
+    "collector_number" : "33",
+    "name" : "Sanctuary Manticore",
+    "set" : "hlw"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Seeker%20of%20the%20Cure.jpeg",
+    "name" : "Seeker of the Cure",
+    "subtypes" : [
+      "Human Knight"
+    ],
+    "set" : "hlw",
+    "rarity" : "common",
+    "collector_number" : "34",
+    "type" : "Creature",
+    "mana_cost" : "{2}{W}"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sen%E2%80%99s%20Fortress%20Golem.jpeg",
+    "mana_cost" : "{4}{W}{W}",
+    "collector_number" : "35",
+    "name" : "Sen's Fortress Golem",
+    "rarity" : "mythic",
+    "type" : "Legendary Artifact Creature",
+    "subtypes" : [
+      "Golem"
+    ],
+    "set" : "hlw"
+  },
+  {
+    "name" : "Soothing Sunlight",
+    "collector_number" : "36",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Soothing%20Sunlight.jpeg",
+    "type" : "Enchantment",
+    "set" : "hlw",
+    "rarity" : "common",
+    "subtypes" : [
+      "Aura"
+    ],
+    "mana_cost" : "{1}{W}"
+  },
+  {
+    "set" : "hlw",
+    "name" : "Sunlight Paragon",
+    "mana_cost" : "{2}{W}{W}",
+    "collector_number" : "37",
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sunlight%20Paragon.jpeg",
+    "rarity" : "rare",
+    "subtypes" : [
+      "Spirit Warrior"
+    ]
+  },
+  {
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Undead%20Steed.jpeg",
+    "mana_cost" : "{4}{W}",
+    "set" : "hlw",
+    "subtypes" : [
+      "Zombie Horse"
+    ],
+    "name" : "Undead Steed",
+    "rarity" : "common",
+    "collector_number" : "38"
+  },
+  {
+    "rarity" : "uncommon",
+    "collector_number" : "39",
+    "set" : "hlw",
+    "type" : "Creature",
+    "mana_cost" : "{W}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Undead-Burg%20Captain.jpeg",
+    "name" : "Undead-Burg Captain",
+    "subtypes" : [
+      "Zombie Soldier"
+    ]
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/United%20in%20Victory.jpeg",
+    "set" : "hlw",
+    "rarity" : "common",
+    "collector_number" : "40",
+    "name" : "United in Victory",
+    "type" : "Sorcery",
+    "mana_cost" : "{3}{W}"
+  },
+  {
+    "type" : "Instant",
+    "name" : "Velka's Justice",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Velka%E2%80%99s%20Justice.jpeg",
+    "set" : "hlw",
+    "rarity" : "common",
+    "mana_cost" : "{1}{W}",
+    "collector_number" : "41"
+  },
+  {
+    "subtypes" : [
+      "Human Cleric"
+    ],
+    "rarity" : "common",
+    "collector_number" : "42",
+    "type" : "Creature",
+    "name" : "Velka's Missionary",
+    "mana_cost" : "{3}{W}",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Velka%E2%80%99s%20Missionary.jpeg"
+  },
+  {
+    "rarity" : "rare",
+    "mana_cost" : "1WW",
+    "type" : "Enchantment",
+    "name" : "Wondrous Incandescence",
+    "collector_number" : "43",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Wondrous%20Incandescence.jpeg",
+    "set" : "hlw"
+  },
+  {
+    "rarity" : "uncommon",
+    "name" : "A Cold and Gentle Place",
+    "collector_number" : "44",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/A%20Cold%20and%20Gentle%20Place.jpeg",
+    "type" : "Enchantment",
+    "mana_cost" : "{2}{U}"
+  },
+  {
+    "name" : "Absorbed in Thought",
+    "rarity" : "common",
+    "collector_number" : "45",
+    "set" : "hlw",
+    "type" : "Sorcery",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Absorbed%20in%20Thought.jpeg",
+    "mana_cost" : "{1}{U}"
+  },
+  {
+    "set" : "hlw",
+    "mana_cost" : "{4}{U}",
+    "collector_number" : "46",
+    "name" : "Banish to the Painting",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Banish%20to%20the%20Painting.jpeg",
+    "type" : "Sorcery"
+  },
+  {
+    "name" : "Blue Crystal Golem",
+    "rarity" : "common",
+    "collector_number" : "47",
+    "set" : "hlw",
+    "subtypes" : [
+      "Golem"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Blue%20Crystal%20Golem.jpeg",
+    "mana_cost" : "{5}{U}",
+    "type" : "Artifact Creature"
+  },
+  {
+    "name" : "Cancel",
+    "rarity" : "common",
+    "set" : "hlw",
+    "mana_cost" : "{1}{U}{U}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Cancel.jpeg",
+    "type" : "Instant",
+    "collector_number" : "48"
+  },
+  {
+    "collector_number" : "49",
+    "subtypes" : [
+      "Demigod Assassin"
+    ],
+    "name" : "Ciaran, Blade of the Lords",
+    "rarity" : "rare",
+    "mana_cost" : "{1}{U}{U}",
+    "type" : "Legendary Creature",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ciaran%2C%20Blade%20of%20the%20Lords.jpeg"
+  },
+  {
+    "mana_cost" : "{4}{U}",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ciaran%E2%80%99s%20Obsession.jpeg",
+    "type" : "Instant",
+    "set" : "hlw",
+    "name" : "Ciaran's Obsession",
+    "collector_number" : "50"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Crossing%20the%20Fog.jpeg",
+    "type" : "Sorcery",
+    "set" : "hlw",
+    "rarity" : "rare",
+    "name" : "Crossing the Fog",
+    "collector_number" : "51",
+    "mana_cost" : "{U}"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Crystalline%20Armor.jpeg",
+    "subtypes" : [
+      "Equipment"
+    ],
+    "name" : "Crystalline Armor",
+    "type" : "Artifact",
+    "mana_cost" : "{U}",
+    "rarity" : "uncommon",
+    "set" : "hlw",
+    "collector_number" : "52"
+  },
+  {
+    "collector_number" : "53",
+    "rarity" : "common",
+    "set" : "hlw",
+    "name" : "Curse-Marked Crook",
+    "subtypes" : [
+      "Human Rogue"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Curse-Marked%20Crook.jpeg",
+    "type" : "Creature",
+    "mana_cost" : "{2}{U}"
+  },
+  {
+    "name" : "Darkmoon Favor",
+    "mana_cost" : "{3}{U}",
+    "type" : "Sorcery",
+    "collector_number" : "54",
+    "rarity" : "uncommon",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkmoon%20Favor.jpeg",
+    "set" : "hlw"
+  },
+  {
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkroot%20Sorcerer.jpeg",
+    "subtypes" : [
+      "Human Wizard"
+    ],
+    "type" : "Creature",
+    "mana_cost" : "{1}{U}",
+    "collector_number" : "55",
+    "set" : "hlw",
+    "name" : "Darkroot Sorcerer"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkroot%20Spellguard.jpeg",
+    "rarity" : "uncommon",
+    "type" : "Creature",
+    "collector_number" : "56",
+    "name" : "Darkroot Spellguard",
+    "subtypes" : [
+      "Human Knight"
+    ],
+    "mana_cost" : "{3}{U}",
+    "set" : "hlw"
+  },
+  {
+    "subtypes" : [
+      "Human Wizard"
+    ],
+    "set" : "hlw",
+    "name" : "Demented Sorcerer",
+    "collector_number" : "57",
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Demented%20Sorcerer.jpeg",
+    "rarity" : "uncommon",
+    "mana_cost" : "{3}{U}"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dour%20Vagrant.jpeg",
+    "name" : "Dour Vagrant",
+    "type" : "Creature",
+    "rarity" : "rare",
+    "subtypes" : [
+      "Human Rogue"
+    ],
+    "mana_cost" : "{1}{U}",
+    "collector_number" : "58",
+    "set" : "hlw"
+  },
+  {
+    "name" : "Essence Scatter",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Essence%20Scatter.jpeg",
+    "set" : "hlw",
+    "mana_cost" : "{1}{U}",
+    "rarity" : "common",
+    "collector_number" : "59",
+    "type" : "Instant"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Everlasting%20Research.jpeg",
+    "rarity" : "rare",
+    "collector_number" : "60",
+    "set" : "hlw",
+    "name" : "Everlasting Research",
+    "mana_cost" : "{2}{U}",
+    "type" : "Enchantment"
+  },
+  {
+    "mana_cost" : "{U}",
+    "type" : "Creature",
+    "rarity" : "uncommon",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Eyes%20of%20the%20Darkmoon.jpeg",
+    "subtypes" : [
+      "Bird Illusion"
+    ],
+    "set" : "hlw",
+    "collector_number" : "61",
+    "name" : "Eyes of the Darkmoon"
+  },
+  {
+    "name" : "Flooding of New Londo",
+    "collector_number" : "62",
+    "rarity" : "rare",
+    "set" : "hlw",
+    "mana_cost" : "{3}{U}{U}",
+    "type" : "Sorcery",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Flooding%20of%20New%20Londo.jpeg"
+  },
+  {
+    "name" : "Illusory Wall",
+    "subtypes" : [
+      "Illusion Wall"
+    ],
+    "type" : "Creature",
+    "collector_number" : "63",
+    "rarity" : "uncommon",
+    "mana_cost" : "{1}{U}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Illusory%20Wall.jpeg",
+    "set" : "hlw"
+  },
+  {
+    "subtypes" : [
+      "Aura"
+    ],
+    "collector_number" : "64",
+    "type" : "Enchantment",
+    "set" : "hlw",
+    "mana_cost" : "{2}{U}",
+    "name" : "Instant Petrification",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Instant%20Petrification.jpeg",
+    "rarity" : "uncommon"
+  },
+  {
+    "name" : "Moonlight Butterfly",
+    "type" : "Creature",
+    "rarity" : "rare",
+    "subtypes" : [
+      "Insect"
+    ],
+    "collector_number" : "65",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Moonlight%20Butterfly.jpeg",
+    "mana_cost" : "{2}{U}{U}"
+  },
+  {
+    "name" : "New Londo Drowned",
+    "collector_number" : "66",
+    "subtypes" : [
+      "Zombie"
+    ],
+    "rarity" : "common",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/New%20Londo%20Drowned.jpeg",
+    "mana_cost" : "{4}{U}",
+    "type" : "Creature"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Overwhelming%20Burden.jpeg",
+    "type" : "Enchantment",
+    "set" : "hlw",
+    "collector_number" : "67",
+    "rarity" : "common",
+    "subtypes" : [
+      "Aura"
+    ],
+    "mana_cost" : "{1}{U}",
+    "name" : "Overwhelming Burden"
+  },
+  {
+    "mana_cost" : "{1}{U}{U}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Pale-Drake%E2%80%99s%20Pact.jpeg",
+    "name" : "Pale-Drake's Pact",
+    "set" : "hlw",
+    "type" : "Sorcery",
+    "collector_number" : "68",
+    "rarity" : "rare"
+  },
+  {
+    "rarity" : "uncommon",
+    "collector_number" : "69",
+    "set" : "hlw",
+    "name" : "Path of Brilliance",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Path%20of%20Brilliance.jpeg",
+    "mana_cost" : "{2}{U}",
+    "type" : "Enchantment"
+  },
+  {
+    "subtypes" : [
+      "Drake"
+    ],
+    "name" : "Prized Drake",
+    "collector_number" : "70",
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Prized%20Drake.jpeg",
+    "mana_cost" : "{4}{U}{U}",
+    "set" : "hlw",
+    "rarity" : "uncommon"
+  },
+  {
+    "collector_number" : "71",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Rapid%20Rusting.jpeg",
+    "set" : "hlw",
+    "type" : "Instant",
+    "rarity" : "uncommon",
+    "mana_cost" : "{2}{U}",
+    "name" : "Rapid Rusting"
+  },
+  {
+    "subtypes" : [
+      "Human Knight"
+    ],
+    "rarity" : "common",
+    "mana_cost" : "{4}{U}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Raven%20Rider.jpeg",
+    "type" : "Creature",
+    "name" : "Raven Rider",
+    "set" : "hlw",
+    "collector_number" : "72"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ring%20Collector.jpeg",
+    "rarity" : "rare",
+    "subtypes" : [
+      "Human Rogue"
+    ],
+    "collector_number" : "73",
+    "name" : "Ring Collector",
+    "set" : "hlw",
+    "type" : "Creature",
+    "mana_cost" : "{4}{U}{U}"
+  },
+  {
+    "type" : "Creature",
+    "mana_cost" : "{3}{U}",
+    "subtypes" : [
+      "Spirit"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ruin%20Haunt.jpeg",
+    "rarity" : "common",
+    "collector_number" : "74",
+    "set" : "hlw",
+    "name" : "Ruin Haunt"
+  },
+  {
+    "name" : "Scholar's Catalyst",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Scholar%E2%80%99s%20Catalyst.jpeg",
+    "mana_cost" : "{U}",
+    "set" : "hlw",
+    "rarity" : "common",
+    "subtypes" : [
+      "Equipment"
+    ],
+    "type" : "Artifact",
+    "collector_number" : "75"
+  },
+  {
+    "rarity" : "mythic",
+    "name" : "Seath, Scaleless Betrayer",
+    "type" : "Legendary Creature",
+    "set" : "hlw",
+    "collector_number" : "76",
+    "subtypes" : [
+      "Dragon Wizard"
+    ],
+    "mana_cost" : "{3}{U}{U}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Seath%2C%20Scaleless%20Betrayer.jpeg"
+  },
+  {
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Seek%20the%20Past.jpeg",
+    "name" : "Seek the Past",
+    "type" : "Sorcery",
+    "mana_cost" : "{2}{U}",
+    "collector_number" : "77",
+    "rarity" : "common"
+  },
+  {
+    "name" : "Sidetracked",
+    "type" : "Sorcery",
+    "set" : "hlw",
+    "mana_cost" : "{1}{U}",
+    "collector_number" : "78",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sidetracked.jpeg",
+    "rarity" : "uncommon"
+  },
+  {
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Slaine%E2%80%99s%20Ally.jpeg",
+    "mana_cost" : "{3}{U}",
+    "rarity" : "common",
+    "subtypes" : [
+      "Human Wizard"
+    ],
+    "name" : "Slaine's Ally",
+    "collector_number" : "79",
+    "set" : "hlw"
+  },
+  {
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sorcerous%20Explorer.jpeg",
+    "name" : "Sorcerous Explorer",
+    "type" : "Creature",
+    "mana_cost" : "{2}{U}",
+    "collector_number" : "80",
+    "rarity" : "common",
+    "subtypes" : [
+      "Human Wizard"
+    ]
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Soul%20Confluence.jpeg",
+    "set" : "hlw",
+    "collector_number" : "81",
+    "type" : "Sorcery",
+    "mana_cost" : "{3}{U}{U}{U}",
+    "rarity" : "mythic",
+    "name" : "Soul Confluence"
+  },
+  {
+    "rarity" : "rare",
+    "name" : "The Moonlight Greatsword",
+    "subtypes" : [
+      "Equipment"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/The%20Moonlight%20Greatsword.jpeg",
+    "type" : "Legendary Artifact",
+    "set" : "hlw",
+    "collector_number" : "82",
+    "mana_cost" : "{2}{U}"
+  },
+  {
+    "name" : "Traveler's Protection",
+    "mana_cost" : "{U}",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Traveler%E2%80%99s%20Protection.jpeg",
+    "set" : "hlw",
+    "type" : "Instant",
+    "collector_number" : "83"
+  },
+  {
+    "mana_cost" : "{2}{U}",
+    "set" : "hlw",
+    "collector_number" : "84",
+    "rarity" : "common",
+    "name" : "Valley Drake",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Valley%20Drake.jpeg",
+    "type" : "Creature",
+    "subtypes" : [
+      "Drake"
+    ]
+  },
+  {
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Vinheim%20Agent.jpeg",
+    "name" : "Vinheim Agent",
+    "set" : "hlw",
+    "type" : "Creature",
+    "collector_number" : "85",
+    "mana_cost" : "{1}{U}",
+    "subtypes" : [
+      "Human Rogue"
+    ]
+  },
+  {
+    "name" : "Vinheim Handler",
+    "type" : "Creature",
+    "set" : "hlw",
+    "subtypes" : [
+      "Human Rogue"
+    ],
+    "mana_cost" : "3U",
+    "rarity" : "uncommon",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Vinheim%20Handler.jpeg",
+    "collector_number" : "86"
+  },
+  {
+    "collector_number" : "87",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Abyssal%20Adventurer.jpeg",
+    "rarity" : "common",
+    "type" : "Creature",
+    "mana_cost" : "{B}",
+    "subtypes" : [
+      "Human Knight"
+    ],
+    "set" : "hlw",
+    "name" : "Abyssal Adventurer"
+  },
+  {
+    "collector_number" : "88",
+    "mana_cost" : "{2}{B}{B}",
+    "set" : "hlw",
+    "subtypes" : [
+      "Demigod Knight"
+    ],
+    "type" : "Legendary Creature",
+    "rarity" : "rare",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Artorias%2C%20Abyss-Stricken.jpeg",
+    "name" : "Artorias, Abyss-Stricken"
+  },
+  {
+    "subtypes" : [
+      "Equipment"
+    ],
+    "name" : "Artorias's Cursed Greatsword",
+    "rarity" : "rare",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Artorias%E2%80%99s%20Cursed%20Greatsword.jpeg",
+    "mana_cost" : "{2}{B}",
+    "set" : "hlw",
+    "type" : "Legendary Artifact",
+    "collector_number" : "89"
+  },
+  {
+    "name" : "Barbaric Cleric",
+    "type" : "Creature",
+    "rarity" : "common",
+    "collector_number" : "90",
+    "mana_cost" : "{4}{B}",
+    "set" : "hlw",
+    "subtypes" : [
+      "Human Cleric"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Barbaric%20Cleric.jpeg"
+  },
+  {
+    "name" : "Barbed Blade",
+    "subtypes" : [
+      "Equipment"
+    ],
+    "set" : "hlw",
+    "collector_number" : "91",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Barbed%20Blade.jpeg",
+    "type" : "Artifact",
+    "mana_cost" : "{1}{B}"
+  },
+  {
+    "mana_cost" : "{2}{B}",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Behold%20the%20Soul.jpeg",
+    "name" : "Behold the Soul",
+    "type" : "Sorcery",
+    "set" : "hlw",
+    "collector_number" : "92"
+  },
+  {
+    "set" : "hlw",
+    "subtypes" : [
+      "Equipment"
+    ],
+    "collector_number" : "93",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Black%20Knight%20Armor.jpeg",
+    "type" : "Artifact",
+    "name" : "Black Knight Armor",
+    "mana_cost" : "{1}{B}",
+    "rarity" : "uncommon"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Blackened%20Knight.jpeg",
+    "subtypes" : [
+      "Demigod Knight"
+    ],
+    "name" : "Blackened Knight",
+    "mana_cost" : "{1}{B}{B}",
+    "type" : "Creature",
+    "set" : "hlw",
+    "rarity" : "uncommon",
+    "collector_number" : "94"
+  },
+  {
+    "mana_cost" : "{B}",
+    "collector_number" : "95",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Brand%20with%20Undeath.jpeg",
+    "rarity" : "common",
+    "type" : "Instant",
+    "name" : "Brand with Undeath"
+  },
+  {
+    "collector_number" : "96",
+    "type" : "Sorcery",
+    "set" : "hlw",
+    "name" : "Brutal Incineration",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Brutal%20Incineration.jpeg",
+    "mana_cost" : "{3}{B}"
+  },
+  {
+    "subtypes" : [
+      "Insect Demon"
+    ],
+    "type" : "Creature",
+    "mana_cost" : "{5}{B}{B}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Centipede%20Demon.jpeg",
+    "name" : "Centipede Demon",
+    "collector_number" : "97",
+    "set" : "hlw",
+    "rarity" : "rare"
+  },
+  {
+    "mana_cost" : "{4}{B}",
+    "set" : "hlw",
+    "collector_number" : "98",
+    "rarity" : "common",
+    "type" : "Instant",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Consumed%20by%20the%20Abyss.jpeg",
+    "name" : "Consumed by the Abyss"
+  },
+  {
+    "rarity" : "rare",
+    "name" : "Darkwraith Elite",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkwraith%20Elite.jpeg",
+    "mana_cost" : "{2}{B}",
+    "subtypes" : [
+      "Skeleton Knight"
+    ],
+    "set" : "hlw",
+    "collector_number" : "99",
+    "type" : "Creature"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkwraith%20Warband.jpeg",
+    "set" : "hlw",
+    "name" : "Darkwraith Warband",
+    "rarity" : "common",
+    "mana_cost" : "{3}{B}",
+    "type" : "Creature",
+    "subtypes" : [
+      "Skeleton Knight"
+    ],
+    "collector_number" : "100"
+  },
+  {
+    "name" : "Deathless Commander",
+    "collector_number" : "101",
+    "mana_cost" : "{1}{B}",
+    "set" : "hlw",
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Deathless%20Commander.jpeg",
+    "rarity" : "rare",
+    "subtypes" : [
+      "Zombie Knight"
+    ]
+  },
+  {
+    "rarity" : "common",
+    "mana_cost" : "{B}",
+    "collector_number" : "102",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Deceitful%20Stab.jpeg",
+    "type" : "Instant",
+    "set" : "hlw",
+    "name" : "Deceitful Stab"
+  },
+  {
+    "rarity" : "common",
+    "name" : "Duress",
+    "collector_number" : "103",
+    "set" : "hlw",
+    "type" : "Sorcery",
+    "mana_cost" : "{B}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Duress.jpeg"
+  },
+  {
+    "type" : "Instant",
+    "set" : "hlw",
+    "name" : "Fall From Favor",
+    "mana_cost" : "{B}",
+    "collector_number" : "104",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Fall%20From%20Favor.jpeg",
+    "rarity" : "rare"
+  },
+  {
+    "subtypes" : [
+      "Human Knight"
+    ],
+    "rarity" : "uncommon",
+    "set" : "hlw",
+    "collector_number" : "105",
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Fallen%20Champion.jpeg",
+    "mana_cost" : "{3}{B}",
+    "name" : "Fallen Champion"
+  },
+  {
+    "subtypes" : [
+      "Zombie Farmer"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Fallen%20Farmer.jpeg",
+    "type" : "Creature",
+    "rarity" : "uncommon",
+    "mana_cost" : "{B}",
+    "set" : "hlw",
+    "collector_number" : "106",
+    "name" : "Fallen Farmer"
+  },
+  {
+    "rarity" : "rare",
+    "mana_cost" : "{2}{B}",
+    "set" : "hlw",
+    "name" : "Futile Pursuit",
+    "collector_number" : "107",
+    "type" : "Sorcery",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Futile%20Pursuit.jpeg"
+  },
+  {
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hollow%20Victory.jpeg",
+    "type" : "Sorcery",
+    "mana_cost" : "{5}{B}",
+    "name" : "Hollow Victory",
+    "collector_number" : "108",
+    "rarity" : "uncommon"
+  },
+  {
+    "rarity" : "uncommon",
+    "mana_cost" : "{2}{B}",
+    "collector_number" : "109",
+    "type" : "Enchantment",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hopeless%20Determination.jpeg",
+    "name" : "Hopeless Determination"
+  },
+  {
+    "name" : "Humanity Hunter",
+    "set" : "hlw",
+    "rarity" : "common",
+    "collector_number" : "110",
+    "subtypes" : [
+      "Human Rogue"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Humanity%20Hunter.jpeg",
+    "type" : "Creature",
+    "mana_cost" : "{2}{B}"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hungering%20Knight.jpeg",
+    "rarity" : "common",
+    "subtypes" : [
+      "Zombie Knight"
+    ],
+    "name" : "Hungering Knight",
+    "type" : "Creature",
+    "collector_number" : "111",
+    "set" : "hlw",
+    "mana_cost" : "{2}{B}"
+  },
+  {
+    "set" : "hlw",
+    "name" : "Izalith's Ruination",
+    "type" : "Sorcery",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Izalith%E2%80%99s%20Ruination.jpeg",
+    "mana_cost" : "{3}{B}",
+    "collector_number" : "112",
+    "rarity" : "uncommon"
+  },
+  {
+    "collector_number" : "113",
+    "rarity" : "uncommon",
+    "type" : "Instant",
+    "set" : "hlw",
+    "name" : "Journey's End",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Journey%E2%80%99s%20End.jpeg",
+    "mana_cost" : "{1}{B}"
+  },
+  {
+    "type" : "Creature",
+    "rarity" : "uncommon",
+    "mana_cost" : "{3}{B}{B}",
+    "collector_number" : "114",
+    "subtypes" : [
+      "Beast Demon"
+    ],
+    "set" : "hlw",
+    "name" : "Key-Holder Demon",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Key-Holder%20Demon.jpeg"
+  },
+  {
+    "mana_cost" : "{2}{B}",
+    "set" : "hlw",
+    "collector_number" : "115",
+    "rarity" : "common",
+    "name" : "Mind Rot",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Mind%20Rot.jpeg",
+    "type" : "Sorcery"
+  },
+  {
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Mindless%20Hollow.jpeg",
+    "rarity" : "common",
+    "collector_number" : "116",
+    "subtypes" : [
+      "Zombie"
+    ],
+    "mana_cost" : "{1}{B}",
+    "type" : "Creature",
+    "name" : "Mindless Hollow"
+  },
+  {
+    "type" : "Legendary Creature",
+    "mana_cost" : "{3}{B}{B}{B}",
+    "set" : "hlw",
+    "collector_number" : "117",
+    "rarity" : "mythic",
+    "subtypes" : [
+      "Skeleton God"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Nito%2C%20the%20Gravelord.jpeg",
+    "name" : "Nito, the Gravelord"
+  },
+  {
+    "collector_number" : "118",
+    "mana_cost" : "{1}{B}{B}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Nito%E2%80%99s%20Miasma.jpeg",
+    "set" : "hlw",
+    "type" : "Sorcery",
+    "name" : "Nito's Miasma",
+    "rarity" : "uncommon"
+  },
+  {
+    "type" : "Instant",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Offering%20of%20Humanity.jpeg",
+    "name" : "Offering of Humanity",
+    "rarity" : "common",
+    "mana_cost" : "{1}{B}",
+    "collector_number" : "119",
+    "set" : "hlw"
+  },
+  {
+    "set" : "hlw",
+    "collector_number" : "120",
+    "rarity" : "uncommon",
+    "name" : "Parasitic Wallhugger",
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Parasitic%20Wallhugger.jpeg",
+    "subtypes" : [
+      "Insect Horror"
+    ],
+    "mana_cost" : "{1}{B}"
+  },
+  {
+    "type" : "Legendary Enchantment",
+    "name" : "Reign of the Dark Lord",
+    "mana_cost" : "{3}{B}{B}",
+    "rarity" : "rare",
+    "collector_number" : "121",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Reign%20of%20the%20Dark%20Lord.jpeg"
+  },
+  {
+    "type" : "Creature",
+    "rarity" : "common",
+    "set" : "hlw",
+    "collector_number" : "122",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ruin%20Delver.jpeg",
+    "mana_cost" : "{1}{B}",
+    "name" : "Ruin Delver",
+    "subtypes" : [
+      "Human Rogue"
+    ]
+  },
+  {
+    "subtypes" : [
+      "Rat"
+    ],
+    "set" : "hlw",
+    "mana_cost" : "{1}{B}",
+    "rarity" : "common",
+    "name" : "Sewer Nibbler",
+    "collector_number" : "123",
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sewer%20Nibbler.jpeg"
+  },
+  {
+    "set" : "hlw",
+    "rarity" : "rare",
+    "mana_cost" : "{3}{B}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sin%20Caller.jpeg",
+    "type" : "Creature",
+    "collector_number" : "124",
+    "subtypes" : [
+      "Human Cleric"
+    ],
+    "name" : "Sin Caller"
+  },
+  {
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sin%20Cultist.jpeg",
+    "name" : "Sin Cultist",
+    "mana_cost" : "{2}{B}",
+    "collector_number" : "125",
+    "subtypes" : [
+      "Human Cleric"
+    ],
+    "rarity" : "uncommon",
+    "type" : "Creature"
+  },
+  {
+    "set" : "hlw",
+    "subtypes" : [
+      "Human"
+    ],
+    "rarity" : "mythic",
+    "mana_cost" : "{1}{B}{B}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/The%20Furtive%20Pygmy.jpeg",
+    "name" : "The Furtive Pygmy",
+    "collector_number" : "126",
+    "type" : "Legendary Creature"
+  },
+  {
+    "subtypes" : [
+      "Demon Construct"
+    ],
+    "mana_cost" : "{5}{B}",
+    "set" : "hlw",
+    "collector_number" : "127",
+    "type" : "Artifact Creature",
+    "rarity" : "common",
+    "name" : "Titanite Demon",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Titanite%20Demon.jpeg"
+  },
+  {
+    "subtypes" : [
+      "Bird"
+    ],
+    "rarity" : "common",
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Velka%E2%80%99s%20Crow.jpeg",
+    "mana_cost" : "{3}{B}",
+    "set" : "hlw",
+    "collector_number" : "128",
+    "name" : "Velka's Crow"
+  },
+  {
+    "collector_number" : "129",
+    "set" : "hlw",
+    "subtypes" : [
+      "Human Rogue"
+    ],
+    "name" : "Venomous Bandit",
+    "mana_cost" : "B",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Venomous%20Bandit.jpeg",
+    "type" : "Creature",
+    "rarity" : "uncommon"
+  },
+  {
+    "collector_number" : "130",
+    "name" : "Batwing Demon",
+    "mana_cost" : "3R",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Batwing%20Demon.jpeg",
+    "subtypes" : [
+      "Bat Demon"
+    ],
+    "set" : "hlw",
+    "type" : "Creature",
+    "rarity" : "uncommon"
+  },
+  {
+    "subtypes" : [
+      "Equipment"
+    ],
+    "type" : "Artifact",
+    "name" : "Bloodied Shotel",
+    "rarity" : "uncommon",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Bloodied%20Shotel.jpeg",
+    "mana_cost" : "{1}{R}",
+    "collector_number" : "131"
+  },
+  {
+    "type" : "Creature",
+    "name" : "Capra Demon",
+    "rarity" : "common",
+    "mana_cost" : "{3}{R}",
+    "collector_number" : "132",
+    "subtypes" : [
+      "Goat Demon"
+    ],
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Capra%20Demon.jpeg"
+  },
+  {
+    "collector_number" : "133",
+    "type" : "Sorcery",
+    "mana_cost" : "{1}{R}",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ceaseless%20Destruction.jpeg",
+    "rarity" : "common",
+    "name" : "Ceaseless Destruction"
+  },
+  {
+    "mana_cost" : "{4}{R}{R}{R}{R}",
+    "name" : "Ceaseless Discharge",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ceaseless%20Discharge.jpeg",
+    "set" : "hlw",
+    "subtypes" : [
+      "Elemental Demon"
+    ],
+    "rarity" : "mythic",
+    "type" : "Legendary Creature",
+    "collector_number" : "134"
+  },
+  {
+    "set" : "hlw",
+    "collector_number" : "135",
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Crazed%20Butcher.jpeg",
+    "name" : "Crazed Butcher",
+    "rarity" : "common",
+    "subtypes" : [
+      "Zombie Warrior"
+    ],
+    "mana_cost" : "{2}{R}"
+  },
+  {
+    "type" : "Creature",
+    "name" : "Cruel Lunatic",
+    "rarity" : "rare",
+    "set" : "hlw",
+    "collector_number" : "136",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Cruel%20Lunatic.jpeg",
+    "mana_cost" : "{1}{R}",
+    "subtypes" : [
+      "Human Berserker"
+    ]
+  },
+  {
+    "mana_cost" : "{1}{R}",
+    "set" : "hlw",
+    "collector_number" : "137",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Doomsayer%20Sage.jpeg",
+    "subtypes" : [
+      "Human Shaman"
+    ],
+    "type" : "Creature",
+    "name" : "Doomsayer Sage",
+    "rarity" : "common"
+  },
+  {
+    "mana_cost" : "{2}{R}",
+    "type" : "Creature",
+    "collector_number" : "138",
+    "set" : "hlw",
+    "name" : "Dragon-Path Daredevil",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dragon-Path%20Daredevil.jpeg",
+    "subtypes" : [
+      "Human Dragon"
+    ],
+    "rarity" : "uncommon"
+  },
+  {
+    "name" : "Excessive Moxie",
+    "collector_number" : "139",
+    "type" : "Instant",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Excessive%20Moxie.jpeg",
+    "mana_cost" : "{2}{R}",
+    "set" : "hlw"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Lightning%20Spear.jpeg",
+    "collector_number" : "140",
+    "name" : "Lightning Spear",
+    "rarity" : "common",
+    "set" : "hlw",
+    "type" : "Instant",
+    "mana_cost" : "{2}{R}"
+  },
+  {
+    "set" : "hlw",
+    "rarity" : "rare",
+    "collector_number" : "141",
+    "mana_cost" : "{1}{R}{R}",
+    "type" : "Sorcery",
+    "name" : "Flame Storm",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Flame%20Storm.jpeg"
+  },
+  {
+    "mana_cost" : "{1}{R}",
+    "name" : "Glory Chaser",
+    "set" : "hlw",
+    "collector_number" : "142",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Glory%20Chaser.jpeg",
+    "type" : "Creature",
+    "subtypes" : [
+      "Human Knight"
+    ]
+  },
+  {
+    "rarity" : "common",
+    "name" : "Grand Fire Orb",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Grand%20Fire%20Orb.jpeg",
+    "type" : "Sorcery",
+    "mana_cost" : "{2}{R}{R}",
+    "collector_number" : "143",
+    "set" : "hlw"
+  },
+  {
+    "name" : "Grim Mercenary",
+    "subtypes" : [
+      "Human Soldier"
+    ],
+    "rarity" : "uncommon",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Grim%20Mercenary.jpeg",
+    "type" : "Creature",
+    "collector_number" : "144",
+    "mana_cost" : "{1}{R}{R}"
+  },
+  {
+    "type" : "Instant",
+    "collector_number" : "145",
+    "set" : "hlw",
+    "name" : "Gwyn's Defeat",
+    "rarity" : "rare",
+    "mana_cost" : "{X}{R}{R}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwyn%E2%80%99s%20Defeat.jpeg"
+  },
+  {
+    "set" : "hlw",
+    "collector_number" : "146",
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Heir%20of%20Chaos.jpeg",
+    "name" : "Heir of Chaos",
+    "subtypes" : [
+      "Human Wizard"
+    ],
+    "rarity" : "uncommon",
+    "mana_cost" : "{1}{R}"
+  },
+  {
+    "collector_number" : "147",
+    "name" : "Hero's Gamble",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hero%E2%80%99s%20Gamble.jpeg",
+    "mana_cost" : "{R}",
+    "type" : "Sorcery",
+    "rarity" : "uncommon"
+  },
+  {
+    "subtypes" : [
+      "Beast Demon Shaman"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Izalith%20Firesage.jpeg",
+    "set" : "hlw",
+    "rarity" : "rare",
+    "mana_cost" : "{4}{R}{R}",
+    "collector_number" : "148",
+    "name" : "Izalith Firesage",
+    "type" : "Creature"
+  },
+  {
+    "rarity" : "rare",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Jolly%20Cooperation.jpeg",
+    "name" : "Jolly Cooperation",
+    "type" : "Sorcery",
+    "mana_cost" : "{1}{R}{R}",
+    "set" : "hlw",
+    "collector_number" : "149"
+  },
+  {
+    "name" : "Kalameet's Gaze",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Kalameet%E2%80%99s%20Gaze.jpeg",
+    "set" : "hlw",
+    "collector_number" : "150",
+    "type" : "Sorcery",
+    "mana_cost" : "{1}{R}",
+    "rarity" : "uncommon"
+  },
+  {
+    "type" : "Enchantment",
+    "mana_cost" : "{R}",
+    "collector_number" : "151",
+    "subtypes" : [
+      "Aura"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Lingering%20Animosity.jpeg",
+    "rarity" : "common",
+    "set" : "hlw",
+    "name" : "Lingering Animosity"
+  },
+  {
+    "name" : "Linking the Flame",
+    "collector_number" : "152",
+    "rarity" : "rare",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Linking%20the%20Flame.jpeg",
+    "set" : "hlw",
+    "type" : "Enchantment",
+    "mana_cost" : "{2}{R}"
+  },
+  {
+    "type" : "Instant",
+    "name" : "Mad Prayer",
+    "rarity" : "common",
+    "set" : "hlw",
+    "collector_number" : "153",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Mad%20Prayer.jpeg",
+    "mana_cost" : "{2}{R}"
+  },
+  {
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Magma%20Spider.jpeg",
+    "mana_cost" : "{2}{R}",
+    "collector_number" : "154",
+    "name" : "Magma Spider",
+    "subtypes" : [
+      "Spider"
+    ],
+    "set" : "hlw",
+    "rarity" : "common"
+  },
+  {
+    "rarity" : "rare",
+    "set" : "hlw",
+    "name" : "Ornstein, Dragonslayer",
+    "type" : "Legendary Creature",
+    "collector_number" : "155",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ornstein%2C%20Dragonslayer.jpeg",
+    "mana_cost" : "{2}{R}",
+    "subtypes" : [
+      "Demigod Knight"
+    ]
+  },
+  {
+    "mana_cost" : "{3}{R}",
+    "type" : "Instant",
+    "collector_number" : "156",
+    "set" : "hlw",
+    "rarity" : "uncommon",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Paragon%20Transformation.jpeg",
+    "name" : "Paragon Transformation"
+  },
+  {
+    "type" : "Enchantment",
+    "mana_cost" : "{1}{R}",
+    "collector_number" : "157",
+    "rarity" : "uncommon",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Path%20of%20Violence.jpeg",
+    "name" : "Path of Violence",
+    "set" : "hlw"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Power%20Within.jpeg",
+    "set" : "hlw",
+    "name" : "Power Within",
+    "type" : "Enchantment",
+    "mana_cost" : "{1}{R}{R}{R}",
+    "collector_number" : "158",
+    "rarity" : "rare"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Pyromancer%E2%80%99s%20Flame.jpeg",
+    "set" : "hlw",
+    "rarity" : "common",
+    "name" : "Pyromancer's Flame",
+    "type" : "Artifact",
+    "mana_cost" : "{R}",
+    "subtypes" : [
+      "Equipment"
+    ],
+    "collector_number" : "159"
+  },
+  {
+    "name" : "Pyromancer's Wisdom",
+    "mana_cost" : "{1}{R}",
+    "set" : "hlw",
+    "collector_number" : "160",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Pyromancer%E2%80%99s%20Wisdom.jpeg",
+    "rarity" : "common",
+    "type" : "Sorcery"
+  },
+  {
+    "rarity" : "common",
+    "collector_number" : "161",
+    "mana_cost" : "{1}{R}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Quelaag%E2%80%99s%20Ferocity.jpeg",
+    "set" : "hlw",
+    "type" : "Instant",
+    "name" : "Quelaag's Ferocity"
+  },
+  {
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Quelaag%E2%80%99s%20Furysword.jpeg",
+    "rarity" : "rare",
+    "collector_number" : "162",
+    "subtypes" : [
+      "Equipment"
+    ],
+    "type" : "Legendary Artifact",
+    "name" : "Quelaag's Furysword",
+    "mana_cost" : "{1}{R}{R}"
+  },
+  {
+    "collector_number" : "163",
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Quelana%E2%80%99s%20Pupil.jpeg",
+    "rarity" : "common",
+    "mana_cost" : "{3}{R}",
+    "name" : "Quelana's Pupil",
+    "set" : "hlw",
+    "subtypes" : [
+      "Human Shaman"
+    ]
+  },
+  {
+    "type" : "Creature",
+    "collector_number" : "164",
+    "subtypes" : [
+      "Zombie Dog"
+    ],
+    "mana_cost" : "{R}",
+    "rarity" : "common",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Rotting%20Hellhound.jpeg",
+    "name" : "Rotting Hellhound"
+  },
+  {
+    "set" : "hlw",
+    "mana_cost" : "{2}{R}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Solaire%E2%80%99s%20Madness.jpeg",
+    "collector_number" : "165",
+    "name" : "Solaire's Madness",
+    "type" : "Sorcery",
+    "rarity" : "uncommon"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Student%20of%20the%20Dragon-Path.jpeg",
+    "rarity" : "common",
+    "mana_cost" : "{2}{R}",
+    "name" : "Student of the Dragon-Path",
+    "type" : "Creature",
+    "subtypes" : [
+      "Human Dragon"
+    ],
+    "collector_number" : "166",
+    "set" : "hlw"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sunlight%20Apostate.jpeg",
+    "name" : "Sunlight Apostate",
+    "type" : "Creature",
+    "rarity" : "uncommon",
+    "collector_number" : "167",
+    "subtypes" : [
+      "Human Dragon"
+    ],
+    "set" : "hlw",
+    "mana_cost" : "{3}{R}"
+  },
+  {
+    "name" : "Sunlight Spear",
+    "set" : "hlw",
+    "type" : "Instant",
+    "collector_number" : "168",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sunlight%20Spear.jpeg",
+    "mana_cost" : "{4}{R}{R}",
+    "rarity" : "uncommon"
+  },
+  {
+    "name" : "Sunset on a Dying World",
+    "rarity" : "uncommon",
+    "mana_cost" : "{3}{R}",
+    "set" : "hlw",
+    "type" : "Enchantment",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sunset%20on%20a%20Dying%20World.jpeg",
+    "collector_number" : "169"
+  },
+  {
+    "type" : "Creature",
+    "set" : "hlw",
+    "name" : "Taurus Demon",
+    "subtypes" : [
+      "Ox Demon"
+    ],
+    "rarity" : "common",
+    "collector_number" : "170",
+    "mana_cost" : "4R",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Taurus%20Demon.jpeg"
+  },
+  {
+    "rarity" : "mythic",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/The%20First%20Flame.jpeg",
+    "type" : "Sorcery",
+    "set" : "hlw",
+    "name" : "The First Flame",
+    "mana_cost" : "{R}",
+    "collector_number" : "171"
+  },
+  {
+    "subtypes" : [
+      "Human Knight"
+    ],
+    "name" : "Warrior of Sunlight",
+    "mana_cost" : "1R",
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Warrior%20of%20Sunlight.jpeg",
+    "rarity" : "common",
+    "set" : "hlw",
+    "collector_number" : "172"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Adventurer%E2%80%99s%20Rest.jpeg",
+    "rarity" : "uncommon",
+    "set" : "hlw",
+    "mana_cost" : "{1}{G}",
+    "collector_number" : "173",
+    "name" : "Adventurer's Rest",
+    "type" : "Sorcery"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ambuscade.jpeg",
+    "name" : "Ambuscade",
+    "collector_number" : "174",
+    "type" : "Instant",
+    "set" : "hlw",
+    "mana_cost" : "{2}{G}",
+    "rarity" : "common"
+  },
+  {
+    "set" : "hlw",
+    "name" : "Ancient Extinction",
+    "collector_number" : "175",
+    "type" : "Sorcery",
+    "rarity" : "rare",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ancient%20Extinction.jpeg",
+    "mana_cost" : "{3}{G}{G}"
+  },
+  {
+    "name" : "Blight Hatching",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Blight%20Hatching.jpeg",
+    "set" : "hlw",
+    "collector_number" : "176",
+    "type" : "Enchantment",
+    "rarity" : "uncommon",
+    "mana_cost" : "{2}{G}"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Blight%20Slime.jpeg",
+    "set" : "hlw",
+    "mana_cost" : "{2}{G}",
+    "type" : "Creature",
+    "subtypes" : [
+      "Ooze"
+    ],
+    "name" : "Blight Slime",
+    "collector_number" : "177",
+    "rarity" : "uncommon"
+  },
+  {
+    "mana_cost" : "{3}{G}",
+    "collector_number" : "178",
+    "rarity" : "uncommon",
+    "set" : "hlw",
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Blighted%20Dragonoid.jpeg",
+    "name" : "Blighted Dragonoid",
+    "subtypes" : [
+      "Human Dragon"
+    ]
+  },
+  {
+    "set" : "hlw",
+    "rarity" : "uncommon",
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Burrowing%20Rockwurm.jpeg",
+    "collector_number" : "179",
+    "name" : "Burrowing Rockwurm",
+    "subtypes" : [
+      "Wurm"
+    ],
+    "mana_cost" : "{4}{G}{G}"
+  },
+  {
+    "collector_number" : "180",
+    "rarity" : "uncommon",
+    "name" : "Crossing of Paths",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Crossing%20of%20Paths.jpeg",
+    "mana_cost" : "{1}{G}",
+    "type" : "Sorcery"
+  },
+  {
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkroot%20Hunt-Pack.jpeg",
+    "name" : "Darkroot Hunt-Pack",
+    "mana_cost" : "{2}{G}",
+    "subtypes" : [
+      "Human Archer"
+    ],
+    "collector_number" : "181",
+    "type" : "Creature",
+    "rarity" : "rare"
+  },
+  {
+    "rarity" : "common",
+    "type" : "Creature",
+    "mana_cost" : "{2}{G}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkroot%20Poisoner.jpeg",
+    "name" : "Darkroot Poisoner",
+    "collector_number" : "182",
+    "subtypes" : [
+      "Human Warrior"
+    ],
+    "set" : "hlw"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkroot%20Tracker.jpeg",
+    "type" : "Creature",
+    "rarity" : "uncommon",
+    "set" : "hlw",
+    "subtypes" : [
+      "Human Archer Scout"
+    ],
+    "name" : "Darkroot Tracker",
+    "collector_number" : "183",
+    "mana_cost" : "{3}{G}"
+  },
+  {
+    "set" : "hlw",
+    "name" : "Deluded Thrasher",
+    "collector_number" : "184",
+    "subtypes" : [
+      "Human Dragon"
+    ],
+    "type" : "Creature",
+    "mana_cost" : "{2}{G}",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Deluded%20Thrasher.jpeg"
+  },
+  {
+    "set" : "hlw",
+    "collector_number" : "185",
+    "subtypes" : [
+      "Human Dragon"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dragon-Path%20Adept.jpeg",
+    "mana_cost" : "{3}{G}",
+    "name" : "Dragon-Path Adept",
+    "type" : "Creature",
+    "rarity" : "common"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dragon-Speaker%20Ascendant.jpeg",
+    "name" : "Dragon-Speaker Ascendant",
+    "rarity" : "rare",
+    "set" : "hlw",
+    "type" : "Creature",
+    "mana_cost" : "{1}{G}",
+    "collector_number" : "186",
+    "subtypes" : [
+      "Human Dragon"
+    ]
+  },
+  {
+    "rarity" : "mythic",
+    "name" : "Explorer's Reward",
+    "collector_number" : "187",
+    "mana_cost" : "{X}{G}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Explorer%E2%80%99s%20Reward.jpeg",
+    "set" : "hlw",
+    "type" : "Sorcery"
+  },
+  {
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Fading%20Sage.jpeg",
+    "subtypes" : [
+      "Human Shaman"
+    ],
+    "mana_cost" : "{1}{G}",
+    "set" : "hlw",
+    "rarity" : "common",
+    "name" : "Fading Sage",
+    "collector_number" : "188"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gaping%20Dragon.jpeg",
+    "set" : "hlw",
+    "name" : "Gaping Dragon",
+    "type" : "Legendary Creature",
+    "rarity" : "mythic",
+    "subtypes" : [
+      "Dragon Horror"
+    ],
+    "mana_cost" : "{2}{G}{G}",
+    "collector_number" : "189"
+  },
+  {
+    "type" : "Creature",
+    "rarity" : "common",
+    "mana_cost" : "{3}{G}",
+    "name" : "Giant Spider",
+    "set" : "hlw",
+    "collector_number" : "190",
+    "subtypes" : [
+      "Spider"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Giant%20Spider.jpeg"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Giant%E2%80%99s%20Technique.jpeg",
+    "name" : "Giant's Technique",
+    "subtypes" : [
+      "Aura"
+    ],
+    "rarity" : "uncommon",
+    "mana_cost" : "{2}{G}",
+    "set" : "hlw",
+    "type" : "Enchantment",
+    "collector_number" : "191"
+  },
+  {
+    "subtypes" : [
+      "Wolf"
+    ],
+    "rarity" : "common",
+    "mana_cost" : "{1}{G}",
+    "type" : "Creature",
+    "set" : "hlw",
+    "name" : "Grave-Guard Wolf",
+    "collector_number" : "192",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Grave-Guard%20Wolf.jpeg"
+  },
+  {
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Great%20Hammer.jpeg",
+    "mana_cost" : "{1}{G}",
+    "type" : "Artifact",
+    "subtypes" : [
+      "Equipment"
+    ],
+    "collector_number" : "193",
+    "name" : "Great Hammer",
+    "rarity" : "common"
+  },
+  {
+    "name" : "Gwynevere's Guidance",
+    "type" : "Enchantment",
+    "set" : "hlw",
+    "collector_number" : "194",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwynevere%E2%80%99s%20Guidance.jpeg",
+    "rarity" : "common",
+    "mana_cost" : "{1}{G}",
+    "subtypes" : [
+      "Aura"
+    ]
+  },
+  {
+    "name" : "Hawkeye Gough",
+    "set" : "hlw",
+    "mana_cost" : "{2}{G}{G}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hawkeye%20Gough.jpeg",
+    "subtypes" : [
+      "Giant Archer"
+    ],
+    "collector_number" : "195",
+    "type" : "Legendary Creature",
+    "rarity" : "rare"
+  },
+  {
+    "mana_cost" : "{1}{G}",
+    "set" : "hlw",
+    "collector_number" : "196",
+    "rarity" : "rare",
+    "subtypes" : [
+      "Equipment"
+    ],
+    "name" : "Hawkeye Greatbow",
+    "type" : "Legendary Artifact",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hawkeye%20Greatbow.jpeg"
+  },
+  {
+    "collector_number" : "197",
+    "subtypes" : [
+      "Human Knight"
+    ],
+    "type" : "Creature",
+    "mana_cost" : "{1}{G}",
+    "rarity" : "uncommon",
+    "name" : "Hunted Questant",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hunted%20Questant.jpeg"
+  },
+  {
+    "collector_number" : "198",
+    "name" : "Hunter Hydra",
+    "subtypes" : [
+      "Hydra"
+    ],
+    "rarity" : "rare",
+    "type" : "Creature",
+    "mana_cost" : "{X}{G}",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hunter%20Hydra.jpeg"
+  },
+  {
+    "set" : "hlw",
+    "rarity" : "common",
+    "name" : "Hunter's Savvy",
+    "mana_cost" : "{1}{G}",
+    "collector_number" : "199",
+    "type" : "Instant",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hunter%E2%80%99s%20Savvy.jpeg"
+  },
+  {
+    "rarity" : "rare",
+    "collector_number" : "200",
+    "subtypes" : [
+      "Human Shaman"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Keeper%20of%20the%20Dead-Woods.jpeg",
+    "mana_cost" : "{1}{G}{G}",
+    "set" : "hlw",
+    "name" : "Keeper of the Dead-Woods",
+    "type" : "Creature"
+  },
+  {
+    "subtypes" : [
+      "Zombie Giant"
+    ],
+    "collector_number" : "201",
+    "set" : "hlw",
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Lurching%20Giant.jpeg",
+    "name" : "Lurching Giant",
+    "mana_cost" : "{5}{G}",
+    "rarity" : "common"
+  },
+  {
+    "type" : "Artifact",
+    "set" : "hlw",
+    "collector_number" : "202",
+    "name" : "Murakumo",
+    "rarity" : "uncommon",
+    "mana_cost" : "{3}{G}",
+    "subtypes" : [
+      "Equipment"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Murakumo.jpeg"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Mushroom%20Family.jpeg",
+    "rarity" : "common",
+    "mana_cost" : "{4}{G}",
+    "collector_number" : "203",
+    "type" : "Creature",
+    "name" : "Mushroom Family",
+    "subtypes" : [
+      "Fungus"
+    ],
+    "set" : "hlw"
+  },
+  {
+    "name" : "Path of Strength",
+    "collector_number" : "204",
+    "type" : "Enchantment",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Path%20of%20Strength.jpeg",
+    "set" : "hlw",
+    "mana_cost" : "{3}{G}",
+    "rarity" : "uncommon"
+  },
+  {
+    "collector_number" : "205",
+    "set" : "hlw",
+    "type" : "Instant",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Provoke%20the%20Primeval.jpeg",
+    "name" : "Provoke the Primeval",
+    "mana_cost" : "{G}"
+  },
+  {
+    "subtypes" : [
+      "Human Shaman"
+    ],
+    "type" : "Creature",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Pyromantic%20Shaman.jpeg",
+    "name" : "Pyromantic Shaman",
+    "collector_number" : "206",
+    "set" : "hlw",
+    "mana_cost" : "{1}{G}",
+    "rarity" : "common"
+  },
+  {
+    "collector_number" : "207",
+    "name" : "Reach the Bonfire",
+    "set" : "hlw",
+    "type" : "Sorcery",
+    "mana_cost" : "{2}{G}",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Reach%20the%20Bonfire.jpeg"
+  },
+  {
+    "collector_number" : "208",
+    "type" : "Instant",
+    "name" : "Return to Nature",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Return%20to%20Nature.jpeg",
+    "set" : "hlw",
+    "mana_cost" : "{1}{G}"
+  },
+  {
+    "name" : "Search for Dusk",
+    "rarity" : "uncommon",
+    "mana_cost" : "{1}{G}",
+    "set" : "hlw",
+    "type" : "Sorcery",
+    "collector_number" : "209",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Search%20for%20Dusk.jpeg"
+  },
+  {
+    "name" : "Servant of the Fair Lady",
+    "collector_number" : "210",
+    "subtypes" : [
+      "Zombie Horror"
+    ],
+    "type" : "Creature",
+    "set" : "hlw",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Servant%20of%20the%20Fair%20Lady.jpeg",
+    "mana_cost" : "{G}"
+  },
+  {
+    "name" : "Soul Infusion",
+    "rarity" : "common",
+    "mana_cost" : "{1}{G}",
+    "type" : "Instant",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Soul%20Infusion.jpeg",
+    "set" : "hlw",
+    "collector_number" : "211"
+  },
+  {
+    "rarity" : "uncommon",
+    "subtypes" : [
+      "Hydra"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Stranded%20Hydra.jpeg",
+    "collector_number" : "212",
+    "set" : "hlw",
+    "name" : "Stranded Hydra",
+    "type" : "Creature",
+    "mana_cost" : "{5}{G}{G}"
+  },
+  {
+    "set" : "hlw",
+    "rarity" : "rare",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/The%20Road%20Ahead.jpeg",
+    "name" : "The Road Ahead",
+    "type" : "Enchantment",
+    "mana_cost" : "{2}{G}",
+    "collector_number" : "213"
+  },
+  {
+    "collector_number" : "214",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Walking%20Woods.jpeg",
+    "type" : "Creature",
+    "subtypes" : [
+      "Plant Horror"
+    ],
+    "mana_cost" : "4G",
+    "set" : "hlw",
+    "rarity" : "common",
+    "name" : "Walking Woods"
+  },
+  {
+    "mana_cost" : "2G",
+    "set" : "hlw",
+    "collector_number" : "215",
+    "name" : "Wayfinder's Landmark",
+    "subtypes" : [
+      "Aura"
+    ],
+    "type" : "Enchantment",
+    "rarity" : "rare",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Wayfinder%E2%80%99s%20Landmark.jpeg"
+  },
+  {
+    "rarity" : "uncommon",
+    "mana_cost" : "{2}{R}{W}",
+    "collector_number" : "216",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Brilliant%20Phantom.jpeg",
+    "subtypes" : [
+      "Spirit Warrior"
+    ],
+    "type" : "Creature",
+    "name" : "Brilliant Phantom",
+    "set" : "hlw"
+  },
+  {
+    "rarity" : "uncommon",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkroot%20Diviner.jpeg",
+    "subtypes" : [
+      "Human Shaman"
+    ],
+    "mana_cost" : "{1}{G}{U}",
+    "name" : "Darkroot Diviner",
+    "type" : "Creature",
+    "collector_number" : "217"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dragon-Path%20Traveler.jpeg",
+    "type" : "Creature",
+    "set" : "hlw",
+    "collector_number" : "218",
+    "rarity" : "uncommon",
+    "mana_cost" : "{1}{R}{G}",
+    "name" : "Dragon-Path Traveler",
+    "subtypes" : [
+      "Human Dragon"
+    ]
+  },
+  {
+    "rarity" : "mythic",
+    "set" : "hlw",
+    "collector_number" : "219",
+    "type" : "Legendary Planeswalker",
+    "mana_cost" : "{2}{R}{W}",
+    "subtypes" : [
+      "Evander"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Evander%2C%20Sunlight%20Martyr.jpeg",
+    "name" : "Evander, Sunlight Martyr"
+  },
+  {
+    "subtypes" : [
+      "God"
+    ],
+    "rarity" : "mythic",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwyn%2C%20Lord%20of%20Sunlight.jpeg",
+    "type" : "Legendary Creature",
+    "name" : "Gwyn, Lord of Sunlight",
+    "collector_number" : "220",
+    "set" : "hlw",
+    "mana_cost" : "{3}{R}{R}{W}{W}"
+  },
+  {
+    "subtypes" : [
+      "God"
+    ],
+    "rarity" : "mythic",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwyndolin%2C%20the%20Darkmoon.jpeg",
+    "mana_cost" : "{2}{W}{U}",
+    "type" : "Legendary Creature",
+    "set" : "hlw",
+    "name" : "Gwyndolin, the Darkmoon",
+    "collector_number" : "221"
+  },
+  {
+    "name" : "Gwynevere, Bountiful Sun",
+    "collector_number" : "222",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwynevere%2C%20Bountiful%20Sun.jpeg",
+    "subtypes" : [
+      "God"
+    ],
+    "set" : "hlw",
+    "rarity" : "mythic",
+    "type" : "Legendary Creature",
+    "mana_cost" : "{2}{G}{W}"
+  },
+  {
+    "set" : "hlw",
+    "type" : "Legendary Creature",
+    "name" : "Izalith, Great Flame Witch",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Izalith%2C%20Great%20Flame%20Witch.jpeg",
+    "mana_cost" : "{3}{B}{R}",
+    "collector_number" : "223",
+    "subtypes" : [
+      "God"
+    ],
+    "rarity" : "mythic"
+  },
+  {
+    "mana_cost" : "{4}{U}{B}",
+    "type" : "Legendary Creature",
+    "subtypes" : [
+      "Human Horror"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/King%20of%20New%20Londo.jpeg",
+    "name" : "King of New Londo",
+    "rarity" : "rare",
+    "set" : "hlw",
+    "collector_number" : "224"
+  },
+  {
+    "rarity" : "rare",
+    "set" : "hlw",
+    "mana_cost" : "{1}{B}{R}",
+    "subtypes" : [
+      "Human Knight"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Lautrec%2C%20the%20Embraced.jpeg",
+    "collector_number" : "225",
+    "name" : "Lautrec, the Embraced",
+    "type" : "Legendary Creature"
+  },
+  {
+    "rarity" : "mythic",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Manus%2C%20Father%20of%20the%20Abyss.jpeg",
+    "mana_cost" : "{5}{B}{G}",
+    "collector_number" : "226",
+    "type" : "Legendary Creature",
+    "name" : "Manus, Father of the Abyss",
+    "set" : "hlw",
+    "subtypes" : [
+      "Human Horror"
+    ]
+  },
+  {
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Pass%20On.jpeg",
+    "name" : "Pass On",
+    "collector_number" : "227",
+    "mana_cost" : "{1}{G}{W}",
+    "rarity" : "uncommon",
+    "type" : "Instant"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Priest%20of%20Velka.jpeg",
+    "set" : "hlw",
+    "mana_cost" : "{2}{W}{B}",
+    "rarity" : "uncommon",
+    "name" : "Priest of Velka",
+    "subtypes" : [
+      "Human Cleric"
+    ],
+    "collector_number" : "228",
+    "type" : "Creature"
+  },
+  {
+    "subtypes" : [
+      "Human Knight"
+    ],
+    "mana_cost" : "{2}{W}{U}",
+    "type" : "Creature",
+    "rarity" : "uncommon",
+    "name" : "Priscilla's Twinblade",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Priscilla%E2%80%99s%20Twinblade.jpeg",
+    "set" : "hlw",
+    "collector_number" : "229"
+  },
+  {
+    "rarity" : "uncommon",
+    "collector_number" : "230",
+    "subtypes" : [
+      "Zombie Berserker"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Relentless%20Marauder.jpeg",
+    "mana_cost" : "{B}{R}",
+    "type" : "Creature",
+    "set" : "hlw",
+    "name" : "Relentless Marauder"
+  },
+  {
+    "name" : "Shrewd Collectors",
+    "collector_number" : "231",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Shrewd%20Collectors.jpeg",
+    "type" : "Creature",
+    "mana_cost" : "{1}{U}{B}",
+    "rarity" : "uncommon",
+    "set" : "hlw",
+    "subtypes" : [
+      "Human Samurai"
+    ]
+  },
+  {
+    "type" : "Legendary Planeswalker",
+    "collector_number" : "232",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Slaine%2C%20Fated%20Lord.jpeg",
+    "name" : "Slaine, Fated Lord",
+    "subtypes" : [
+      "Slaine"
+    ],
+    "mana_cost" : "{4}{G}{U}",
+    "set" : "hlw",
+    "rarity" : "mythic"
+  },
+  {
+    "subtypes" : [
+      "Spirit Wizard"
+    ],
+    "set" : "hlw",
+    "name" : "Stalking Phantom",
+    "mana_cost" : "{U}{R}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Stalking%20Phantom.jpeg",
+    "rarity" : "uncommon",
+    "collector_number" : "233",
+    "type" : "Creature"
+  },
+  {
+    "mana_cost" : "{3}{G}{W}",
+    "type" : "Legendary Creature",
+    "subtypes" : [
+      "Giant Artificer"
+    ],
+    "set" : "hlw",
+    "collector_number" : "234",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/The%20Gods%E2%80%99%20Blacksmith.jpeg",
+    "name" : "The Gods' Blacksmith",
+    "rarity" : "rare"
+  },
+  {
+    "name" : "Thorned Slayer",
+    "subtypes" : [
+      "Human Knight"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Thorned%20Slayer.jpeg",
+    "collector_number" : "235",
+    "type" : "Creature",
+    "rarity" : "uncommon",
+    "mana_cost" : "{B}{G}",
+    "set" : "hlw"
+  },
+  {
+    "rarity" : "mythic",
+    "collector_number" : "236",
+    "mana_cost" : "{1}{B}{R}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Trusty%20Patches.jpeg",
+    "set" : "hlw",
+    "type" : "Legendary Planeswalker",
+    "subtypes" : [
+      "Patches"
+    ],
+    "name" : "Trusty Patches"
+  },
+  {
+    "mana_cost" : "2WB",
+    "name" : "Velka, Arbiter of Sin",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Velka%2C%20Arbiter%20of%20Sin.jpeg",
+    "type" : "Legendary Creature",
+    "rarity" : "mythic",
+    "subtypes" : [
+      "God"
+    ],
+    "collector_number" : "237",
+    "set" : "hlw"
+  },
+  {
+    "name" : "Crystal Lizard",
+    "mana_cost" : "{2}",
+    "rarity" : "common",
+    "subtypes" : [
+      "Lizard"
+    ],
+    "collector_number" : "238",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Crystal%20Lizard.jpeg",
+    "type" : "Artifact Creature"
+  },
+  {
+    "set" : "hlw",
+    "rarity" : "rare",
+    "collector_number" : "239",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dragon%20Tooth.jpeg",
+    "mana_cost" : "{5}",
+    "subtypes" : [
+      "Equipment"
+    ],
+    "type" : "Artifact",
+    "name" : "Dragon Tooth"
+  },
+  {
+    "mana_cost" : "{2}",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Estus%20Flask.jpeg",
+    "set" : "hlw",
+    "rarity" : "common",
+    "collector_number" : "240",
+    "name" : "Estus Flask",
+    "type" : "Artifact"
+  },
+  {
+    "type" : "Artifact Creature",
+    "name" : "Everlasting Dragon",
+    "set" : "hlw",
+    "subtypes" : [
+      "Dragon"
+    ],
+    "collector_number" : "241",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Everlasting%20Dragon.jpeg",
+    "rarity" : "mythic",
+    "mana_cost" : "{9}"
+  },
+  {
+    "type" : "Artifact",
+    "collector_number" : "242",
+    "name" : "Zweihander",
+    "rarity" : "common",
+    "set" : "hlw",
+    "mana_cost" : "{3}",
+    "subtypes" : [
+      "Equipment"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Zweihander.jpeg"
+  },
+  {
+    "type" : "Land",
+    "collector_number" : "243",
+    "mana_cost" : "",
+    "name" : "Abandoned Bonfire",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Abandoned%20Bonfire.jpeg",
+    "rarity" : "common"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Decaying%20Domain.jpeg",
+    "name" : "Decaying Domain",
+    "set" : "hlw",
+    "mana_cost" : "",
+    "collector_number" : "244",
+    "rarity" : "uncommon",
+    "type" : "Land"
+  },
+  {
+    "set" : "hlw",
+    "type" : "Land",
+    "mana_cost" : "",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Evolving%20Wilds.jpeg",
+    "name" : "Evolving Wilds",
+    "collector_number" : "245",
+    "rarity" : "common"
+  },
+  {
+    "collector_number" : "246",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Firelink%20Shrine.jpeg",
+    "set" : "hlw",
+    "mana_cost" : "",
+    "rarity" : "rare",
+    "name" : "Firelink Shrine",
+    "type" : "Land"
+  },
+  {
+    "set" : "hlw",
+    "type" : "Land",
+    "mana_cost" : "",
+    "collector_number" : "247",
+    "name" : "Frosted Sanctuary",
+    "rarity" : "uncommon",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Frosted%20Sanctuary.jpeg"
+  },
+  {
+    "name" : "Hero's Rest",
+    "collector_number" : "248",
+    "set" : "hlw",
+    "rarity" : "uncommon",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hero%E2%80%99s%20Rest.jpeg",
+    "type" : "Land",
+    "mana_cost" : ""
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Lava%20Roots.jpeg",
+    "mana_cost" : "",
+    "name" : "Lava Roots",
+    "type" : "Land",
+    "set" : "hlw",
+    "rarity" : "uncommon",
+    "collector_number" : "249"
+  },
+  {
+    "type" : "Land",
+    "rarity" : "uncommon",
+    "collector_number" : "250",
+    "mana_cost" : "",
+    "name" : "Sinister Ruins",
+    "set" : "hlw",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sinister%20Ruins.jpeg"
+  },
+  {
+    "set" : "hlw",
+    "type" : "Land",
+    "name" : "Watery Depths",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Watery%20Depths.jpeg",
+    "mana_cost" : "",
+    "collector_number" : "251",
+    "rarity" : "uncommon"
+  },
+  {
+    "mana_cost" : "",
+    "set" : "hlw",
+    "name" : "Plains",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Plains.jpeg",
+    "subtypes" : [
+      "Plains"
+    ],
+    "type" : "Basic Land",
+    "rarity" : "common",
+    "collector_number" : "252"
+  },
+  {
+    "rarity" : "common",
+    "type" : "Basic Land",
+    "collector_number" : "253",
+    "mana_cost" : "",
+    "subtypes" : [
+      "Island"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Island.jpeg",
+    "name" : "Island",
+    "set" : "hlw"
+  },
+  {
+    "rarity" : "common",
+    "type" : "Basic Land",
+    "subtypes" : [
+      "Swamp"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Swamp.jpeg",
+    "collector_number" : "254",
+    "name" : "Swamp",
+    "mana_cost" : "",
+    "set" : "hlw"
+  },
+  {
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Mountain.jpeg",
+    "name" : "Mountain",
+    "subtypes" : [
+      "Mountain"
+    ],
+    "type" : "Basic Land",
+    "rarity" : "common",
+    "set" : "hlw",
+    "mana_cost" : "",
+    "collector_number" : "255"
+  },
+  {
+    "type" : "Basic Land",
+    "rarity" : "common",
+    "name" : "Forest",
+    "set" : "hlw",
+    "subtypes" : [
+      "Forest"
+    ],
+    "collector_number" : "256",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Forest.jpeg",
+    "mana_cost" : ""
+  }
+]

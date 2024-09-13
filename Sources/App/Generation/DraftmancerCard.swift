@@ -5,6 +5,7 @@
 //  Created by Josh Birnholz on 9/12/24.
 //
 import Foundation
+import CryptoKit
 
 //struct DraftmancerCard: Codable {
 //  var name: String
@@ -263,7 +264,7 @@ extension DraftmancerCard {
   var mtgCard: MTGCard? {
     var typeLine = type
     if let subtypes = subtypes {
-      typeLine += " – \(subtypes.joined(separator: " "))"
+      typeLine += " — \(subtypes.joined(separator: " "))"
     }
     guard let rarity = self.rarity.flatMap(MTGCard.Rarity.init(rawValue:)) else { return nil }
     
@@ -286,24 +287,6 @@ extension DraftmancerCard {
         
     }
     
-//    let relatedCards: [MTGCard.RelatedCard]? = self.relatedCards?.compactMap { face in
-//      guard face.type.hasPrefix("Token") else { return nil }
-//      
-//      var typeLine = face.type
-//      if let subtypes = face.subtypes {
-//        typeLine += " – \(subtypes.joined(separator: " "))"
-//      }
-//      
-//      return .init(
-//        scryfallID: nil,
-//        component: MTGCard.RelatedCard.Component.token,
-//        name: face.name,
-//        typeLine: typeLine,
-//        url: nil,
-//        loadedMTGCard: <#T##MTGCard?#>
-//      )
-//    }
-    
     return .init(
       scryfallID: UUID(),
       oracleID: nil,
@@ -316,7 +299,7 @@ extension DraftmancerCard {
       loyalty: self.loyalty,
       cardFaces: nil, // Back faces and split cards not supported yet
       convertedManaCost: nil,
-      layout: self.layout ?? "normal",
+      layout: self.layout ?? (self.type.lowercased().contains("token") ? "token" : self.type.lowercased().contains("emblem") ? "emblem" : "normal"),
       frame: "",
       frameEffects: nil,
       manaCost: self.manaCost,
@@ -329,7 +312,7 @@ extension DraftmancerCard {
       colors: self.colors?.compactMap(MTGColor.init(rawValue:)),
       producedMana: nil,
       colorIdentity: nil,
-      keywords: nil,
+      keywords: self.keywords,
       printedName: nil,
       printedText: nil,
       printedTypeLine: nil,

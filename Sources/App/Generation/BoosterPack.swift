@@ -2778,8 +2778,12 @@ fileprivate struct CardInfo {
 		}
 		
 		if let colors = card.colors {
-			let colors = colors.map { $0.name.capitalized }.sorted().joined(separator: "/")
-			nameParts.append(colors)
+      if colors.isEmpty && card.typeLine?.lowercased().contains("creature") == true {
+        nameParts.append("Colorless")
+      } else {
+        let colors = colors.map { $0.name.capitalized }.sorted().joined(separator: "/")
+        nameParts.append(colors)
+      }
 		}
 		
 		nameParts.append(card.name ?? "")

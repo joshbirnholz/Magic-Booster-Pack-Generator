@@ -6630,10 +6630,10 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
           handle(card: card)
           continue
         }
-        if case .collectorNumberSet(let collectorNumber, let set, let name) = identifier, name == nil, let originalIdentifier = identifiers.first(where: { $0.collectorNumber == collectorNumber && $0.set == set }), let name = originalIdentifier.name, card.name != name, let card = draftmancerCards[.nameSet(name: name, set: set)] {
+        if case .collectorNumberSet(let collectorNumber, let set, let name) = identifier, name == nil, let originalIdentifier = identifiers.first(where: { $0.collectorNumber == collectorNumber && $0.set == set }), let originalName = originalIdentifier.name, card.name != originalName, let replacementCard = draftmancerCards[.nameSet(name: originalName, set: set)] {
           // Fix for cards from draftmancer with valid set code but incorrect collector number.
           // Eg turns "Plains (HLW) 1" into "Plains (HLW)"
-          handle(card: card)
+          handle(card: replacementCard)
         } else {
           handle(card: card)
         }

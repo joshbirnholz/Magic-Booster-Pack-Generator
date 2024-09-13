@@ -1,3 +1,4 @@
+[CustomCards]
 [
   {
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Adorned%20Gargoyle.jpeg",
@@ -3002,3 +3003,300 @@
     "layout": "token"
   }
 ]
+
+[Settings]
+{
+  "withReplacement": true,
+  "layouts": {
+    "Rare": {
+      "weight": 7,
+      "slots": {
+          "Land": 1,
+        "Rare": 1,
+        "Uncommon": 3,
+        "Common": 10
+          
+          
+        
+      }
+    },
+    "Mythic": {
+      "weight": 1,
+      "slots": {
+          "Land": 1,
+        "Mythic": 1,
+        "Uncommon": 3,
+        "Common": 10
+      }
+    }
+  }
+}
+[Common]
+Arrest
+Astora Elite
+Balder Knight
+Bell Gargoyles
+Bonfire Keeper
+Evander's Phantom
+Exiled Priestess
+Fade to Ash
+Gargoyle Helm
+Hollowed Hero
+Imprisoned Hollow
+Lifehunt Boon
+Pilgrim Phantom
+Seeker of the Cure
+Soothing Sunlight
+Undead Steed
+United in Victory
+Velka's Justice
+Velka's Missionary
+Absorbed in Thought
+Banish to the Painting
+Blue Crystal Golem
+Cancel
+Ciaran's Obsession
+Curse-Marked Crook
+Darkroot Sorcerer
+Essence Scatter
+New Londo Drowned
+Overwhelming Burden
+Raven Rider
+Ruin Haunt
+Scholar's Catalyst
+Seek the Past
+Slaine's Ally
+Sorcerous Explorer
+Traveler's Protection
+Valley Drake
+Vinheim Agent
+Abyssal Adventurer
+Barbaric Cleric
+Barbed Blade
+Behold the Soul
+Brand with Undeath
+Brutal Incineration
+Consumed by the Abyss
+Darkwraith Warband
+Deceitful Stab
+Duress
+Humanity Hunter
+Hungering Knight
+Mind Rot
+Mindless Hollow
+Offering of Humanity
+Ruin Delver
+Sewer Nibbler
+Titanite Demon
+Velka's Crow
+Capra Demon
+Ceaseless Destruction
+Crazed Butcher
+Doomsayer Sage
+Excessive Moxie
+Lightning Spear
+Glory Chaser
+Grand Fire Orb
+Lingering Animosity
+Mad Prayer
+Magma Spider
+Pyromancer's Flame
+Pyromancer's Wisdom
+Quelaag's Ferocity
+Quelana's Pupil
+Rotting Hellhound
+Student of the Dragon-Path
+Taurus Demon
+Warrior of Sunlight
+Ambuscade
+Darkroot Poisoner
+Deluded Thrasher
+Dragon-Path Adept
+Fading Sage
+Giant Spider
+Grave-Guard Wolf
+Great Hammer
+Gwynevere's Guidance
+Hunter's Savvy
+Lurching Giant
+Mushroom Family
+Provoke the Primeval
+Pyromantic Shaman
+Reach the Bonfire
+Return to Nature
+Servant of the Fair Lady
+Soul Infusion
+Walking Woods
+Crystal Lizard
+Estus Flask
+Zweihander
+Abandoned Bonfire
+Evolving Wilds
+[Uncommon]
+Adorned Gargoyle
+Astora Outcast
+Companion's Experience
+Darkmoon Avenger
+Darkmoon Deterrence
+Dull Defender
+Expendable's Vigil
+Gwynevere's Benediction
+Heavy Iron Armor
+Overcome the Odds
+Paladin of Holy Relics
+Sanctuary Manticore
+Undead-Burg Captain
+A Cold and Gentle Place
+Crystalline Armor
+Darkmoon Favor
+Darkroot Spellguard
+Demented Sorcerer
+Eyes of the Darkmoon
+Illusory Wall
+Instant Petrification
+Path of Brilliance
+Prized Drake
+Rapid Rusting
+Sidetracked
+Vinheim Handler
+Black Knight Armor
+Blackened Knight
+Fallen Champion
+Fallen Farmer
+Hollow Victory
+Hopeless Determination
+Izalith's Ruination
+Journey's End
+Key-Holder Demon
+Nito's Miasma
+Parasitic Wallhugger
+Sin Cultist
+Venomous Bandit
+Batwing Demon
+Bloodied Shotel
+Dragon-Path Daredevil
+Grim Mercenary
+Heir of Chaos
+Hero's Gamble
+Kalameet's Gaze
+Paragon Transformation
+Path of Violence
+Solaire's Madness
+Sunlight Apostate
+Sunlight Spear
+Sunset on a Dying World
+Adventurer's Rest
+Blight Hatching
+Blight Slime
+Blighted Dragonoid
+Burrowing Rockwurm
+Crossing of Paths
+Darkroot Tracker
+Giant's Technique
+Hunted Questant
+Murakumo
+Path of Strength
+Search for Dusk
+Stranded Hydra
+Brilliant Phantom
+Darkroot Diviner
+Dragon-Path Traveler
+Pass On
+Priest of Velka
+Priscilla's Twinblade
+Relentless Marauder
+Shrewd Collectors
+Stalking Phantom
+Thorned Slayer
+Decaying Domain
+Frosted Sanctuary
+Hero's Rest
+Lava Roots
+Sinister Ruins
+Watery Depths
+[Rare]
+Chosen by the Lords
+Doomed Pilgrim
+Endless Encounters
+Gwyn's Last Hope
+Gwyndolin's Bow
+Havel, the Rock
+Legacy of Knights
+Sunlight Paragon
+Wondrous Incandescence
+Ciaran, Blade of the Lords
+Crossing the Fog
+Dour Vagrant
+Everlasting Research
+Flooding of New Londo
+Moonlight Butterfly
+Pale-Drake's Pact
+Ring Collector
+The Moonlight Greatsword
+Artorias, Abyss-Stricken
+Artorias's Cursed Greatsword
+Centipede Demon
+Darkwraith Elite
+Deathless Commander
+Fall From Favor
+Futile Pursuit
+Reign of the Dark Lord
+Sin Caller
+Cruel Lunatic
+Flame Storm
+Gwyn's Defeat
+Izalith Firesage
+Jolly Cooperation
+Linking the Flame
+Ornstein, Dragonslayer
+Power Within
+Quelaag's Furysword
+Ancient Extinction
+Darkroot Hunt-Pack
+Dragon-Speaker Ascendant
+Hawkeye Gough
+Hawkeye Greatbow
+Hunter Hydra
+Keeper of the Dead-Woods
+The Road Ahead
+Wayfinder's Landmark
+King of New Londo
+Lautrec, the Embraced
+The Gods' Blacksmith
+Dragon Tooth
+Firelink Shrine
+[Mythic]
+Darkbreaker Angel
+Sen's Fortress Golem
+Seath, Scaleless Betrayer
+Soul Confluence
+Nito, the Gravelord
+The Furtive Pygmy
+Ceaseless Discharge
+The First Flame
+Explorer's Reward
+Gaping Dragon
+Evander, Sunlight Martyr
+Gwyn, Lord of Sunlight
+Gwyndolin, the Darkmoon
+Gwynevere, Bountiful Sun
+Izalith, Great Flame Witch
+Manus, Father of the Abyss
+Slaine, Fated Lord
+Trusty Patches
+Velka, Arbiter of Sin
+Everlasting Dragon
+[Land]
+Plains
+Island
+Swamp
+Mountain
+Forest
+[Tokens]
+Skeleton (THLW)
+Wolf (THLW)
+Dragon (THLW)
+Knight (THLW)
+Zombie Soldier (THLW)
+Fungus (THLW)
+Human (THLW)

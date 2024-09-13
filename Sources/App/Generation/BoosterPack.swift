@@ -2223,20 +2223,27 @@ let superJumpDeckListURLs: [URL] = try! {
 	#endif
 }()
 
-let ravnicaClueEditionDeckListURLs: [URL] = try! {
+let ravnicaClueEditionDeckListURLs: [URL] = try! urlsForResources(withExtension: "txt", subdirectory: "Ravnica Clue Edition")
+
+func urlsForResources(withExtension ext: String? = nil, subdirectory: String) throws -> [URL] {
   #if canImport(Vapor)
   let directory = DirectoryConfiguration.detect()
-  let jumpstartDirectory = "Sources/App/Generation/Ravnica Clue Edition"
-  let jumpstartDirectoryURL = URL(fileURLWithPath: directory.workingDirectory)
-    .appendingPathComponent(jumpstartDirectory, isDirectory: true)
-  return try FileManager.default.contentsOfDirectory(at: jumpstartDirectoryURL, includingPropertiesForKeys: nil)
+  let subdirectory = "Sources/App/Generation/\(subdirectory)"
+  let subdirectoryURL = URL(fileURLWithPath: directory.workingDirectory)
+    .appendingPathComponent(subdirectory, isDirectory: true)
+  let contents = try FileManager.default.contentsOfDirectory(at: subdirectoryURL, includingPropertiesForKeys: nil)
+  if let ext = ext?.lowercased() {
+    return contents.filter { $0.pathExtension.lowercased() == ext }
+  } else {
+    return contents
+  }
   #else
-  guard let urls = Bundle.main.urls(forResourcesWithExtension: "txt", subdirectory: "Ravnica Clue Edition") else {
+  guard let urls = Bundle.main.urls(forResourcesWithExtension: ext, subdirectory: subdirectory) else {
     throw PackError.unsupported
   }
   return urls
   #endif
-}()
+}
 
 func jumpstartDeckList() throws -> String {
 	guard let deckListURL = jumpstartDeckListURLs.randomElement() else {
@@ -4678,30 +4685,46 @@ func customSetJSONURL(forSetCode inputString: String) -> URL? {
 	#endif
 }
 
-let loadedDraftmancerCards: [MTGCard]? = {
-  let jsonURL: URL = {
-    #if canImport(Vapor)
-    let directory = DirectoryConfiguration.detect()
-    let configDir = "Sources/App/Generation"
-    return URL(fileURLWithPath: directory.workingDirectory)
-      .appendingPathComponent(configDir, isDirectory: true)
-      .appendingPathComponent("draftmancer.json", isDirectory: false)
-    #else
-    return Bundle.main.url(forResource: "draftmancer", withExtension: "json")
-    #endif
-  }()
+func customCardsStringFromDraftmancer(_ string: String) -> String? {
+  let matches = string.matches(forRegex: #"^\[(.+)\]"#, options: .anchorsMatchLines)
+  guard let firstSection = matches.first, firstSection.groups.first?.value == "CustomCards" else {
+    return nil
+  }
   
-  guard let data = try? Data(contentsOf: jsonURL) else { return nil }
+  if matches.count > 1 {
+    let secondSection = matches[1]
+    return String(string[firstSection.fullMatch.range.upperBound ..< secondSection.fullMatch.range.lowerBound])
+  } else {
+    return String(string[firstSection.fullMatch.range.upperBound...])
+  }
+}
+
+let loadedDraftmancerCards: [MTGCard]? = {
+  let urls = try? urlsForResources(subdirectory: "Draftmancer")
+  
   let decoder = JSONDecoder()
   decoder.keyDecodingStrategy = .convertFromSnakeCase
   
-  do {
-    let draftmancerCards = try decoder.decode([DraftmancerCard].self, from: data)
-    return draftmancerCards.compactMap(\.mtgCard)
-  } catch {
-    print(error)
-    return nil
-  }
+  let mtgCards: [[MTGCard]] = urls?.compactMap { url -> [MTGCard] in
+    guard let rawData = try? Data(contentsOf: url),
+          let rawString = String(data: rawData, encoding: .utf8),
+          let customCardsString = customCardsStringFromDraftmancer(rawString),
+          let data = customCardsString.data(using: .utf8)else {
+      print("‼️ Error reading Draftmancer cards from \(url.lastPathComponent)")
+      return []
+    }
+    
+    do {
+      let cards = try decoder.decode([DraftmancerCard].self, from: data).compactMap(\.mtgCard)
+      print("Loaded \(cards.count) Draftmancer cards from \(url.lastPathComponent)")
+      return cards
+    } catch {
+      print("‼️ Error loading Draftmancer cards from \(url.lastPathComponent):", error)
+      return []
+    }
+  } ?? []
+  
+  return Array(mtgCards.joined())
 }()
 
 public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, includeBasicLands: Bool, includeTokens: Bool, specialOptions: [String] = [], cardBack: URL? = nil, autofixDecklist: Bool, outputFormat: OutputFormat, seed: Seed? = nil) throws -> String {

@@ -538,6 +538,98 @@ function loadCustomCards() {
 	})
 }
 
+function loadDraftmancerCards() {
+  $.ajax({
+    url: "draftmancercards",
+    data: null,
+    cache: false,
+    contentType: false,
+    processData: false,
+    method: "GET",
+    success: function(response) {
+      console.log("success:");
+      console.log(response);
+      
+      var tabs = document.getElementById('tabs');
+      for(var i = 0; i<response.length; i++) {
+        const cardset = response[i];
+        
+        var button = document.createElement('button');
+        button.innerHTML = cardset.name;
+        button.onclick = function() {
+          setDraftmancerCardSet(cardset);
+        };
+        tabs.appendChild(button);
+      }
+      
+      setDraftmancerCardSet(response[0])
+      
+    },
+    error: function(xhr, status, error) {
+      console.log("error");
+      console.log(xhr);
+      console.log(status);
+      console.log(error);
+      
+      alert(error);
+    }
+  })
+}
+
+function setDraftmancerCardSet(cardset) {
+  document.getElementById("cardset-title").innerHTML = cardset.name;
+  
+  var p = document.getElementById("download-button");
+  
+  // Download button
+  if (cardset.string) {
+    var button = document.createElement("button");
+    button.innerHTML = "Download Draftmancer File"
+    button.onclick = function() {
+      download(cardset.name + ".txt", cardset.string, "text/plain");
+    };
+    p.appendChild(button);
+  } else {
+    p.innerHTML = "";
+  }
+  
+  // Setup table
+  
+  var table = document.getElementById("cardtable");
+  table.innerHTML = "";
+  
+  var dataCount = 0;
+  var rowCount = 6;
+  var row = document.createElement("tr");
+  table.appendChild(row);
+  
+  var cards = cardset.cards;
+  
+  for(var i=0; i <cards.length; i++) {
+    var element = cards[i];
+    
+    var data = document.createElement("td");
+    var imageURL = element.image || element.image_uris["en"];
+    data.innerHTML = "<center><div><a href='" + imageURL + "'><img src='" + imageURL + "' height=264 width=189 style='border-radius:10px;'></a></div><p>" + element.name + "<br>" + element.set.toUpperCase() + " #" + element.collector_number + "</p><br></center>";
+    
+    row.appendChild(data);
+    dataCount += 1;
+    if (dataCount >= rowCount) {
+      table.appendChild(row);
+      row = document.createElement("tr");
+      table.appendChild(row);
+      dataCount = 0;
+    }
+  }
+  
+  while (dataCount < rowCount) {
+    var data = document.createElement("td");
+    row.appendChild(data);
+    dataCount += 1;
+  }
+  
+}
+
 function loadSetTest(setCode, seed) {
 	var url = "pack/" + setCode + "?outputformat=json&extendedart=false";
 	

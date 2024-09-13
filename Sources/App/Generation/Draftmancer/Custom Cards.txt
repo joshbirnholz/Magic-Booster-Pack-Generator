@@ -1,0 +1,18 @@
+[CustomCards]
+[
+    {
+    "type" : "Legendary Creature",
+    "subtypes": [
+      "Angel"
+    ],
+    "image" : "https://i.imgur.com/bscLbpK.jpg",
+    "set" : "cgpt",
+    "rarity" : "rare",
+    "collector_number" : "1",
+    "mana_cost" : "{3}{W}{W}",
+    "name" : "Auriel, Vigilant Sentinel",
+    "related_cards": [
+      "Knight (TWOE)"
+    ]
+  }
+]

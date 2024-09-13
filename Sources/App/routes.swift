@@ -39,6 +39,8 @@ public func routes(_ app: Application) throws {
 
 	app.get("customcards", use: CustomCards.shared.getCustomCards)
 	app.get("seeds", use: SeedOptions.shared.getAllSeeds)
+  
+  app.get("draftmancercards", use: getBuiltinDraftmancerCards)
 
 	app.get("decks", use: MyDecks.shared.getDecks(_:))
 

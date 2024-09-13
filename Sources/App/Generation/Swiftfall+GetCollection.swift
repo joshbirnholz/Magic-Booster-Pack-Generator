@@ -83,13 +83,13 @@ extension Swiftfall {
 		let data = try encoder.encode(["identifiers": identifiers])
 		let string = String(data: data, encoding: .utf8)!
 		
-		print(string)
-		
 		let call = "cards/collection"
         
 		var cardlist: Swift.Result<CardCollectionList, Error>?
 		let semaphore = DispatchSemaphore(value: 0)
 		
+    print("Requesting:", identifiers)
+    
 		parseResource(call: call, body: string.data(using: .utf8), method: "POST") {
 			(newcardlist: Swift.Result<CardCollectionList, Error>) in
             cardlist = newcardlist

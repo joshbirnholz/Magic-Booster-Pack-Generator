@@ -193,7 +193,7 @@ public struct DraftmancerCard: Codable {
     try container.encodeIfPresent(self.power, forKey: .power)
     try container.encodeIfPresent(self.toughness, forKey: .toughness)
     try container.encodeIfPresent(self.oracleText, forKey: .oracleText)
-    try container.encodeIfPresent(self.layout, forKey: .loyalty)
+    try container.encodeIfPresent(self.loyalty, forKey: .loyalty)
     try container.encodeIfPresent(self.keywords, forKey: .keywords)
   }
   

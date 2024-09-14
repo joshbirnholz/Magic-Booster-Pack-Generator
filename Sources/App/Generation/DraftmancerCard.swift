@@ -20,15 +20,15 @@ public struct DraftmancerCard: Codable {
     private var intValue: Int {
       switch self {
       case .common:
-        0
+        return 0
       case .uncommon:
-        1
+        return 1
       case .rare:
-        2
+        return 2
       case .mythic:
-        3
+        return 3
       case .special:
-        4
+        return 4
       }
     }
     
@@ -637,7 +637,7 @@ extension DraftmancerSet {
     
     // TODO: Add relationships
     
-    enum Slot: String, CaseIterable {
+    enum Slot: String, CaseIterable, Hashable, Equatable {
       case common
       case uncommon
       case rare
@@ -664,6 +664,10 @@ extension DraftmancerSet {
     })
     
     let draftmancerString: String? = {
+      guard Set<Slot>([.common, .uncommon, .rare]).isSubset(of: Set(slots.keys.compactMap({ $0 }))) else {
+        return nil
+      }
+      
       let encoder = JSONEncoder()
       encoder.keyEncodingStrategy = .convertToSnakeCase
       encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
@@ -675,7 +679,7 @@ extension DraftmancerSet {
         draftmancerString += string
         
         struct Settings: Encodable {
-          struct Layout: Encodable {
+          struct Layout: Encodable, Equatable {
             var weight: Int
             var slots: [String: Int]
           }
@@ -723,12 +727,42 @@ extension DraftmancerSet {
           layouts["Mythic"] = mythicLayout
         }
         
-        let settings = Settings(
-          withReplacement: true,
-          layouts: layouts
-        )
-        
-        draftmancerString += String(data: try! encoder.encode(settings), encoding: .utf8)! + "\n"
+        if layouts == ["Rare": Settings.Layout(weight: 7, slots: [Slot.common.name: 10, Slot.uncommon.name: 3, Slot.rare.name: 1, Slot.land.name: 1]), "Mythic": Settings.Layout(weight: 1, slots: [Slot.common.name: 10, Slot.uncommon.name: 3, Slot.mythic.name: 1, Slot.land.name: 1])] {
+          // If the standard slots are being used, then encode it manually to keep order
+          draftmancerString += """
+          {
+            "layouts" : {
+              "Mythic" : {
+                "slots" : {
+                  "Land" : 1,
+                  "Mythic" : 1,
+                  "Uncommon" : 3,
+                  "Common" : 10
+                },
+                "weight" : 1
+              },
+              "Rare" : {
+                "slots" : {
+                  "Land" : 1,
+                  "Rare" : 1,
+                  "Uncommon" : 3,
+                  "Common" : 10
+                },
+                "weight" : 7
+              }
+            },
+            "withReplacement" : true
+          }
+          
+          """
+        } else {
+          let settings = Settings(
+            withReplacement: true,
+            layouts: layouts
+          )
+          
+          draftmancerString += String(data: try! encoder.encode(settings), encoding: .utf8)! + "\n"
+        }
         
         for slot in Slot.allCases {
           guard let cards = slots[slot] else { continue }

@@ -2857,7 +2857,7 @@
     "name": "Spider",
     "mana_cost": "",
     "type": "Token Creature",
-    "image": "https://darksoulsmtg.com/hlw_card_images/HLW%20Spider.full.png",
+    "image": "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Spider.jpeg",
     "colors": [
       "G"
     ],
@@ -2878,7 +2878,7 @@
     "name": "Skeleton",
     "mana_cost": "",
     "type": "Token Creature",
-    "image": "https://darksoulsmtg.com/hlw_card_images/HLW%20Skeleton.full.png",
+    "image": "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Skeleton.jpeg",
     "colors": [
       "B"
     ],
@@ -2896,7 +2896,7 @@
     "name": "Wolf",
     "mana_cost": "",
     "type": "Token Creature",
-    "image": "https://darksoulsmtg.com/hlw_card_images/HLW%20Wolf.full.png",
+    "image": "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Wolf.jpeg",
     "colors": [
       "G"
     ],
@@ -2914,7 +2914,7 @@
     "name": "Dragon",
     "mana_cost": "",
     "type": "Token Artifact Creature",
-    "image": "https://darksoulsmtg.com/hlw_card_images/HLW%20Dragon.full.png",
+    "image": "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dragon.jpeg",
     "colors": [
     ],
     "set": "thlw",
@@ -2934,7 +2934,7 @@
     "name": "Knight",
     "mana_cost": "",
     "type": "Token Creature",
-    "image": "https://darksoulsmtg.com/hlw_card_images/HLW%20Knight.full.png",
+    "image": "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Knight.jpeg",
     "colors": [
       "W"
     ],
@@ -2952,7 +2952,7 @@
     "name": "Zombie Soldier",
     "mana_cost": "",
     "type": "Token Creature",
-    "image": "https://darksoulsmtg.com/hlw_card_images/HLW%20Zombie%20Soldier.full.png",
+    "image": "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Zombie%20Soldier.jpeg",
     "colors": [
       "W"
     ],
@@ -2970,7 +2970,7 @@
     "name": "Fungus",
     "mana_cost": "",
     "type": "Token Creature",
-    "image": "https://darksoulsmtg.com/hlw_card_images/HLW%20Fungus.full.png",
+    "image": "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Fungus.jpeg",
     "colors": [
       "G"
     ],
@@ -2988,7 +2988,7 @@
     "name": "Human",
     "mana_cost": "",
     "type": "Token Creature",
-    "image": "https://darksoulsmtg.com/hlw_card_images/HLW%20Human.full.png",
+    "image": "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Human.jpeg",
     "colors": [
       "G"
     ],

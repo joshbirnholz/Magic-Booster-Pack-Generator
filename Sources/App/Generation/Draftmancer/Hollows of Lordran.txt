@@ -2990,7 +2990,7 @@
     "type": "Token Creature",
     "image": "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Human.jpeg",
     "colors": [
-      "G"
+      "B"
     ],
     "set": "thlw",
     "collector_number": "15",

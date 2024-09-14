@@ -43,7 +43,10 @@
     "subtypes" : [
       "Angel"
     ],
-    "rarity" : "mythic"
+    "rarity" : "mythic",
+    "related_cards": [
+      "Darkbreaker Angel Hollow (THLW)"
+    ]
   },
   {
     "name" : "Astora Elite",
@@ -67,7 +70,10 @@
     "subtypes" : [
       "Human Knight"
     ],
-    "type" : "Creature"
+    "type" : "Creature",
+    "related_cards": [
+      "Astora Outcast Hollow (THLW)"
+    ]
   },
   {
     "collector_number" : "7",
@@ -124,7 +130,10 @@
     "subtypes" : [
       "Human Knight"
     ],
-    "collector_number" : "11"
+    "collector_number" : "11",
+    "related_cards": [
+      "Darkmoon Avenger Hollow (THLW)"
+    ]
   },
   {
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkmoon%20Deterrence.jpeg",
@@ -145,7 +154,11 @@
     "name" : "Doomed Pilgrim",
     "collector_number" : "13",
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Doomed%20Pilgrim.jpeg",
-    "type" : "Creature"
+    "type" : "Creature",
+    "related_cards": [
+      "Doomed Pilgrim Hollow (THLW)"
+    ]
+
   },
   {
     "type" : "Creature",
@@ -193,7 +206,10 @@
       "Human Cleric"
     ],
     "mana_cost" : "{1}{W}",
-    "type" : "Creature"
+    "type" : "Creature",
+    "related_cards": [
+      "Exiled Priestess Hollow (THLW)"
+    ]
   },
   {
     "collector_number" : "18",
@@ -382,7 +398,10 @@
     "rarity" : "common",
     "collector_number" : "34",
     "type" : "Creature",
-    "mana_cost" : "{2}{W}"
+    "mana_cost" : "{2}{W}",
+    "related_cards": [
+      "Seeker of the Cure Hollow (THLW)"
+    ]
   },
   {
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sen%E2%80%99s%20Fortress%20Golem.jpeg",
@@ -478,6 +497,9 @@
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Velka%E2%80%99s%20Missionary.jpeg",
     "related_cards": [
       "Zombie Soldier (THLW)"
+    ],
+    "related_cards": [
+      "Velka's Missionary Hollow (THLW)"
     ]
   },
   {
@@ -589,7 +611,10 @@
     ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Curse-Marked%20Crook.jpeg",
     "type" : "Creature",
-    "mana_cost" : "{2}{U}"
+    "mana_cost" : "{2}{U}",
+    "related_cards": [
+      "Curse-Marked Crook Hollow (THLW)"
+    ]
   },
   {
     "name" : "Darkmoon Favor",
@@ -634,7 +659,10 @@
     "type" : "Creature",
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Demented%20Sorcerer.jpeg",
     "rarity" : "uncommon",
-    "mana_cost" : "{3}{U}"
+    "mana_cost" : "{3}{U}",
+    "related_cards": [
+      "Demented Sorcerer Hollow (THLW)"
+    ]
   },
   {
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dour%20Vagrant.jpeg",
@@ -646,7 +674,10 @@
     ],
     "mana_cost" : "{1}{U}",
     "collector_number" : "58",
-    "set" : "hlw"
+    "set" : "hlw",
+    "related_cards": [
+      "Dour Vagrant Hollow (THLW)"
+    ]
   },
   {
     "name" : "Essence Scatter",
@@ -796,7 +827,10 @@
     "type" : "Creature",
     "name" : "Raven Rider",
     "set" : "hlw",
-    "collector_number" : "72"
+    "collector_number" : "72",
+    "related_cards": [
+      "Raven Rider Hollow (THLW)"
+    ]
   },
   {
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ring%20Collector.jpeg",
@@ -1000,7 +1034,10 @@
     "subtypes" : [
       "Human Cleric"
     ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Barbaric%20Cleric.jpeg"
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Barbaric%20Cleric.jpeg",
+    "related_cards": [
+      "Barbaric Cleric Hollow (THLW)"
+    ]
   },
   {
     "name" : "Barbed Blade",
@@ -1354,7 +1391,10 @@
     "name" : "Sewer Nibbler",
     "collector_number" : "123",
     "type" : "Creature",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sewer%20Nibbler.jpeg"
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sewer%20Nibbler.jpeg",
+    "related_cards": [
+      "Sewer Nibbler Hollow (THLW)"
+    ]
   },
   {
     "set" : "hlw",
@@ -1366,7 +1406,10 @@
     "subtypes" : [
       "Human Cleric"
     ],
-    "name" : "Sin Caller"
+    "name" : "Sin Caller",
+    "related_cards": [
+      "Sin Caller Hollow (THLW)"
+    ]
   },
   {
     "set" : "hlw",
@@ -1378,7 +1421,10 @@
       "Human Cleric"
     ],
     "rarity" : "uncommon",
-    "type" : "Creature"
+    "type" : "Creature",
+    "related_cards": [
+      "Sin Cultist Hollow (THLW)"
+    ]
   },
   {
     "set" : "hlw",
@@ -1510,6 +1556,9 @@
     "mana_cost" : "{1}{R}",
     "subtypes" : [
       "Human Berserker"
+    ],
+    "related_cards": [
+      "Cruel Lunatic Hollow (THLW)"
     ]
   },
   {
@@ -2542,7 +2591,10 @@
       "Human Cleric"
     ],
     "collector_number" : "228",
-    "type" : "Creature"
+    "type" : "Creature",
+    "related_cards": [
+      "Priest of Velka Hollow (THLW)"
+    ]
   },
   {
     "subtypes" : [
@@ -3001,6 +3053,278 @@
     "power": "1",
     "toughness": "1",
     "layout": "token"
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "1",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Astora%20Outcast%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Astora Outcast Hollow",
+    "subtypes" : [
+      "Zombie Human Knight"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "25",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Priest%20of%20Velka%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Priest of Velka Hollow",
+    "subtypes" : [
+      "Zombie Human Cleric"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "7",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Seeker%20of%20the%20Cure%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Seeker of the Cure Hollow",
+    "subtypes" : [
+      "Zombie Human Knight"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "18",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sin%20Cultist%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Sin Cultist Hollow",
+    "subtypes" : [
+      "Zombie Human Cleric"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "8",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Velka%E2%80%99s%20Missionary%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Velka's Missionary Hollow",
+    "subtypes" : [
+      "Zombie Human Cleric"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "12",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dour%20Vagrant%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Dour Vagrant Hollow",
+    "subtypes" : [
+      "Zombie Human Rogue"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "16",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sewer%20Nibbler%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Sewer Nibbler Hollow",
+    "subtypes" : [
+      "Zombie Rat"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "20",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Cruel%20Lunatic%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Cruel Lunatic Hollow",
+    "subtypes" : [
+      "Zombie Human Berserker"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "14",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Barbaric%20Cleric%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Barbaric Cleric Hollow",
+    "subtypes" : [
+      "Zombie Human Cleric"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "17",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sin%20Caller%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Sin Caller Hollow",
+    "subtypes" : [
+      "Zombie Human Cleric"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "2",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkbreaker%20Angel%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Darkbreaker Angel Hollow",
+    "subtypes" : [
+      "Zombie Angel"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "4",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Doomed%20Pilgrim%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Doomed Pilgrim Hollow",
+    "subtypes" : [
+      "Zombie Human Cleric"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "13",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Raven%20Rider%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Raven Rider Hollow",
+    "subtypes" : [
+      "Zombie Human Knight"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "5",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Exiled%20Priestess%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Exiled Priestess Hollow",
+    "subtypes" : [
+      "Zombie Human Cleric"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "3",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkmoon%20Avenger%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Darkmoon Avenger Hollow",
+    "subtypes" : [
+      "Zombie Human Knight"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "10",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Curse-Marked%20Crook%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Curse-Marked Crook Hollow",
+    "subtypes" : [
+      "Zombie Human Rogue"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "11",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Demented%20Sorcerer%20Hollow.jpeg",
+    "set" : "thlw",
+    "name" : "Demented Sorcerer Hollow",
+    "subtypes" : [
+      "Zombie Human Wizard"
+    ],
+    "type" : "Token Creature",
+    "layout": "token",
+    "colors": [
+      "B"
+    ]
   }
 ]
 
@@ -3293,10 +3617,28 @@ Swamp
 Mountain
 Forest
 [Tokens]
+Spider (THLW)
 Skeleton (THLW)
 Wolf (THLW)
 Dragon (THLW)
 Knight (THLW)
 Zombie Soldier (THLW)
+Astora Outcast Hollow (THLW)
+Priest of Velka Hollow (THLW)
+Seeker of the Cure Hollow (THLW)
+Sin Cultist Hollow (THLW)
+Velka's Missionary Hollow (THLW)
+Dour Vagrant Hollow (THLW)
+Sewer Nibbler Hollow (THLW)
+Cruel Lunatic Hollow (THLW)
+Barbaric Cleric Hollow (THLW)
+Sin Caller Hollow (THLW)
+Darkbreaker Angel Hollow (THLW)
+Doomed Pilgrim Hollow (THLW)
 Fungus (THLW)
 Human (THLW)
+Raven Rider Hollow (THLW)
+Exiled Priestess Hollow (THLW)
+Darkmoon Avenger Hollow (THLW)
+Curse-Marked Crook Hollow (THLW)
+Demented Sorcerer Hollow (THLW)

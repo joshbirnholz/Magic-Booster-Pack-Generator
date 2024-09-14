@@ -5,17 +5,12 @@
 //  Created by Josh Birnholz on 9/12/24.
 //
 import Foundation
-
-//struct DraftmancerCard: Codable {
-//  var name: String
-//  var rarity: String
-//  var manaCost: String
-//  var type: String
-//  var subtypes: [String]?
-//  var image: URL
-//  var set: String
-//  var collectorNumber: String?
-//}
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
+#if canImport(Vapor)
+import Vapor
+#endif
 
 public struct DraftmancerCard: Codable {
   public struct Face: Codable, Hashable, Equatable {
@@ -332,3 +327,84 @@ extension DraftmancerCard {
     )
   }
 }
+
+func customCardsStringFromDraftmancer(_ string: String) -> String? {
+  let matches = string.matches(forRegex: #"^\[(.+)\]"#, options: .anchorsMatchLines)
+  guard let firstSection = matches.first, firstSection.groups.first?.value == "CustomCards" else {
+    return nil
+  }
+  
+  if matches.count > 1 {
+    let secondSection = matches[1]
+    return String(string[firstSection.fullMatch.range.upperBound ..< secondSection.fullMatch.range.lowerBound])
+  } else {
+    return String(string[firstSection.fullMatch.range.upperBound...])
+  }
+}
+
+struct DraftmancerSet: Encodable {
+  let cards: [DraftmancerCard]
+  let name: String
+  let string: String?
+}
+
+let draftmancerSets: [DraftmancerSet]? = {
+  do {
+    let urls = try urlsForResources(subdirectory: "Draftmancer")
+    
+    let decoder = JSONDecoder()
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
+    
+    return urls.compactMap { url in
+      guard let rawData = try? Data(contentsOf: url), let rawString = String(data: rawData, encoding: .utf8) else { return nil }
+      let string = customCardsStringFromDraftmancer(rawString)
+      guard let data = string?.data(using: .utf8) else { return nil }
+      
+      do {
+        let cards = try decoder.decode([DraftmancerCard].self, from: data)
+        
+        return DraftmancerSet(
+          cards: cards,
+          name: url.deletingPathExtension().lastPathComponent,
+          string: rawString.contains("[Settings]") || rawString.contains("[Layouts]") ? rawString : nil
+        )
+      } catch {
+        print("‼️ Error loading cards from \(url.deletingPathExtension().lastPathComponent):", error)
+        return nil
+      }
+    }.sorted { $0.name < $1.name }
+  } catch {
+    print("Error loading Draftmancer sets:", error)
+    return nil
+  }
+}()
+
+func getBuiltinDraftmancerCards(_ req: Request) throws -> NIOCore.EventLoopFuture<Vapor.Response> {
+  return req.eventLoop.makeCompletedFuture {
+    var headers = HTTPHeaders()
+    headers.add(name: .contentType, value: "application/json")
+    
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    
+    guard let responses = draftmancerSets else {
+      return .init(
+        status: .internalServerError, headers: headers
+      )
+    }
+    
+    let data = try encoder.encode(responses)
+    let string = String.init(data: data, encoding: .utf8) ?? ""
+    
+    return .init(
+      status: .ok, headers: headers, body: .init(string: string)
+    )
+  }
+}
+
+let loadedDraftmancerCards: [MTGCard]? = {
+  guard let sets = draftmancerSets else { return nil }
+  
+  return Array(sets.map { $0.cards.compactMap(\.mtgCard) }.joined())
+}()

@@ -1,0 +1,3120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cockatrice_carddatabase version="3">
+  <sets>
+    <set>
+      <name>NET</name>
+      <longname>Netropolis</longname>
+      <settype>Custom</settype>
+    </set>
+  </sets>
+  <cards>
+    
+    <card>
+      <name>Sting Droid</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>W</manacost>
+      <cmc>1</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>1/2</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        W, Sacrifice Sting Droid: Tap target creature.</text>
+    </card>
+    <card>
+      <name>Battle Ready</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>W</manacost>
+      <cmc>1</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Arm target creature. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)</text>
+    </card>
+    <card>
+      <name>Battle Tested</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>1W</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Target creature gets +2/+2 until end of turn. If it’s equipped, draw a card.</text>
+    </card>
+    <card>
+      <name>Citizen Programming</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>W</manacost>
+      <cmc>1</cmc>
+      <type>Enchantment - Aura </type>
+      <tablerow>1</tablerow>
+      <text>Enchant creature
+        Enchanted creature can’t attack and is an artifact in addition to its other types.</text>
+    </card>
+    <card>
+      <name>Council Attendants</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>2W</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Advisor </type>
+      <pt>1/4</pt>
+      <tablerow>2</tablerow>
+      <text>3W: Tap target creature.</text>
+    </card>
+    <card>
+      <name>Rocketeer</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>1W</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Pilot </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>Whenever an artifact enters the battlefield under your control, Rocketeer gains flying until end of turn.</text>
+    </card>
+    <card>
+      <name>District Raid</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>2W</manacost>
+      <cmc>3</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Creatures you control get +2/+1 until end of turn.</text>
+    </card>
+    <card>
+      <name>Force Deployment</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>3W</manacost>
+      <cmc>4</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Create three 1/1 white Soldier creature tokens.
+        Superiority — If you have more life than an opponent, target player skips their next combat phase.</text>
+    </card>
+    <card>
+      <name>Mecha Technician</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>1W</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Artificer </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>Whenever Mecha Technician becomes tapped, you gain 2 life.</text>
+    </card>
+    <card>
+      <name>Rooftop Rebel</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>1W</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Rebel </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>When Rooftop Rebel enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+    </card>
+    <card>
+      <name>Freedom Fighters</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>4W</manacost>
+      <cmc>5</cmc>
+      <type>Creature - Human Rebel </type>
+      <pt>1/3</pt>
+      <tablerow>2</tablerow>
+      <text>When Freedom Fighters enters the battlefield, arm it twice. (Create two colorless Equipment artifact tokens named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+    </card>
+    <card>
+      <name>Overwatch Droid</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>3W</manacost>
+      <cmc>4</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>3/2</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        Whenever another artifact enters the battlefield under your control, Overwatch Droid gains indestructible until end of turn.</text>
+    </card>
+    <card>
+      <name>Peacekeeper Droid</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>2W</manacost>
+      <cmc>3</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>3/2</pt>
+      <tablerow>2</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>NET Plains</name>
+      <set rarity="">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Basic Land - Plains </type>
+      <tablerow>0</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>Public Broadcast</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>1W</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>You gain 4 life.
+        Superiority — Then if you have more life than an opponent, draw a card.</text>
+    </card>
+    <card>
+      <name>Scion Mark IV</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>2WW</manacost>
+      <cmc>4</cmc>
+      <type>Artifact - Vehicle </type>
+      <tablerow>1</tablerow>
+      <text>Vigilance
+        Crew 2 (Tap any number of creatures you control with total power 2 or greater: This Vehicle becomes an artifact creature until end of turn.)</text>
+    </card>
+    <card>
+      <name>Skilled Protector</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>1W</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Ninja </type>
+      <pt>1/3</pt>
+      <tablerow>2</tablerow>
+      <text>Lifelink</text>
+    </card>
+    <card>
+      <name>Sonic Scream</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>W</manacost>
+      <cmc>1</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Destroy target artifact or enchantment with mana value 3 or less.</text>
+    </card>
+    <card>
+      <name>N-FORCE Trooper</name>
+      <set rarity="common">NET</set>
+      <color>W</color>
+      <manacost>2W</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Soldier </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>Superiority — At the beginning of combat on your turn, N-FORCE Trooper gets +2/+2 until end of turn if you have more life than an opponent.</text>
+    </card>
+    <card>
+      <name>Torrent Seed</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>4U</manacost>
+      <cmc>5</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Draw three cards, then upload a card from your hand. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Colossal Construct</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>5U</manacost>
+      <cmc>6</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>6/6</pt>
+      <tablerow>2</tablerow>
+      <text>Defender
+        Colossal Construct can attack as though it didn’t have defender if an artifact entered the battlefield under your control this turn.</text>
+    </card>
+    <card>
+      <name>Cryo Cell</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>U</manacost>
+      <cmc>1</cmc>
+      <type>Enchantment - Aura </type>
+      <tablerow>1</tablerow>
+      <text>Enchant creature
+        When Cryo Cell enters the battlefield, tap enchanted creature.
+        Enchanted creature doesn’t untap during its controller’s untap step.
+        Enchanted creature has “4: Destroy Cryo Cell and untap this creature.”</text>
+    </card>
+    <card>
+      <name>Silicon Drake</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>2U</manacost>
+      <cmc>3</cmc>
+      <type>Artifact Creature - Drake Construct </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        When Silicon Drake enters the battlefield, scry 1.</text>
+    </card>
+    <card>
+      <name>CyCorp Engineer</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>1U</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Advisor </type>
+      <pt>1/3</pt>
+      <tablerow>2</tablerow>
+      <text>T: Add C. Spend this mana only to cast an artifact spell or to pay an upload cost.</text>
+    </card>
+    <card>
+      <name>Cyber Savant</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>1U</manacost>
+      <cmc>2</cmc>
+      <type>Artifact Creature - Construct Advisor </type>
+      <pt>1/3</pt>
+      <tablerow>2</tablerow>
+      <text>When Cyber Savant enters the battlefield, upload the top card of your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Digiblade Shinobi</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>3U</manacost>
+      <cmc>4</cmc>
+      <type>Artifact Creature - Construct Ninja </type>
+      <pt>3/3</pt>
+      <tablerow>2</tablerow>
+      <text>Whenever you put an uploaded card into your hand, Digiblade Shinobi can’t be blocked until end of turn.</text>
+    </card>
+    <card>
+      <name>Hacker Prodigy</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>1U</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Rogue </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>Hacker Prodigy can’t be blocked unless defending player controls an untapped land.</text>
+    </card>
+    <card>
+      <name>Automatic Override</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>2U</manacost>
+      <cmc>3</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Counter target spell unless its controller pays 1 for each artifact you control.
+        Draw a card.</text>
+    </card>
+    <card>
+      <name>NET Island</name>
+      <set rarity="">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Basic Land - Island </type>
+      <tablerow>0</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>Net Run</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>1U</manacost>
+      <cmc>2</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Until end of turn, whenever target creature deals combat damage to an opponent, draw a card.
+        Draw a card.</text>
+    </card>
+    <card>
+      <name>NuGolem</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>3U</manacost>
+      <cmc>4</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>3/4</pt>
+      <tablerow>2</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>Minimize</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>1U</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Target creature gets -4/-0 until end of turn.
+        Upload the top card of your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Private Eye</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>2U</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Scout </type>
+      <pt>2/3</pt>
+      <tablerow>2</tablerow>
+      <text>Hexproof</text>
+    </card>
+    <card>
+      <name>Reprogram</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>3U</manacost>
+      <cmc>4</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Put target creature or artifact on top of its owner’s library.</text>
+    </card>
+    <card>
+      <name>Skyguard Droid</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>4U</manacost>
+      <cmc>5</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>3/4</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        Whenever another artifact enters the battlefield under your control, untap Skyguard Droid.</text>
+    </card>
+    <card>
+      <name>Skyguard Officer</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>1U</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Soldier </type>
+      <pt>0/1</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        When Skyguard Officer enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+    </card>
+    <card>
+      <name>Steel Sabotage</name>
+      <set rarity="uncommon">NET</set>
+      <color>U</color>
+      <manacost>U</manacost>
+      <cmc>1</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Choose one —
+        • Counter target artifact spell.
+        • Return target artifact to its owner’s hand.</text>
+    </card>
+    <card>
+      <name>Virtual Reality</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>2U</manacost>
+      <cmc>3</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Upload target creature. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Abuse of Power</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>B</manacost>
+      <cmc>1</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Target creature gets +3/+0 until end of turn.
+        Superiority — That creature also gains indestructible until end of turn if you have more life than an opponent.</text>
+    </card>
+    <card>
+      <name>Blackwatch Assassin</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>1BB</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Rogue </type>
+      <pt>1/2</pt>
+      <tablerow>2</tablerow>
+      <text>Deathtouch
+        When Blackwatch Assassin enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+    </card>
+    <card>
+      <name>Blackwatch Intimidator</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>3B</manacost>
+      <cmc>4</cmc>
+      <type>Creature - Human Ninja </type>
+      <pt>4/2</pt>
+      <tablerow>2</tablerow>
+      <text>Sacrifice an artifact or creature: Blackwatch Intimidator gains lifelink until end of turn.</text>
+    </card>
+    <card>
+      <name>Info Dump</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>1BB</manacost>
+      <cmc>3</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Look at the top four cards of your library. Put two of them into your hand and the rest into your graveyard. You lose 2 life.</text>
+    </card>
+    <card>
+      <name>Dreadmoth</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>4B</manacost>
+      <cmc>5</cmc>
+      <type>Artifact Creature - Faerie Construct </type>
+      <pt>3/3</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        When Dreadmoth enters the battlefield, you may sacrifice an artifact. If you do, target player loses 2 life and you gain 2 life.</text>
+    </card>
+    <card>
+      <name>Failed Creation</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>1B</manacost>
+      <cmc>2</cmc>
+      <type>Enchantment - Aura </type>
+      <tablerow>1</tablerow>
+      <text>Enchant artifact or creature
+        Enchanted permanent can’t block and has “At the beginning of your upkeep, you lose 1 life.”</text>
+    </card>
+    <card>
+      <name>Malware</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>3BB</manacost>
+      <cmc>5</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Destroy target creature. Its controller loses 2 life.</text>
+    </card>
+    <card>
+      <name>Masq Hacker</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>2B</manacost>
+      <cmc>3</cmc>
+      <type>Artifact Creature - Construct Rogue </type>
+      <pt>2/3</pt>
+      <tablerow>2</tablerow>
+      <text>When Masq Hacker enters the battlefield, target player uploads a card from their hand. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>MX Dreadnought</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>2B</manacost>
+      <cmc>3</cmc>
+      <type>Artifact - Vehicle </type>
+      <tablerow>1</tablerow>
+      <text>Flying, haste
+        Crew 1 (Tap any number of creatures you control with total power 1 or greater: This Vehicle becomes an artifact creature until end of turn.)</text>
+    </card>
+    <card>
+      <name>Reassembler</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>1B</manacost>
+      <cmc>2</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>When Reassembler dies, create a 2/2 colorless Construct artifact creature token.</text>
+    </card>
+    <card>
+      <name>Robo Rodent</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>2B</manacost>
+      <cmc>3</cmc>
+      <type>Artifact Creature - Rat Construct </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>When Robo Rodent enters the battlefield, you may sacrifice an artifact. If you do, target creature gets -2/-2 until end of turn.</text>
+    </card>
+    <card>
+      <name>Salvage Slasher</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>1B</manacost>
+      <cmc>2</cmc>
+      <type>Artifact Creature - Human Rogue </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>Salvage Slasher gets +1/+0 for each artifact card in your graveyard.</text>
+    </card>
+    <card>
+      <name>Sky Prowler</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>1B</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Rogue </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        Sky Prowler can’t block.</text>
+    </card>
+    <card>
+      <name>NET Swamp</name>
+      <set rarity="">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Basic Land - Swamp </type>
+      <tablerow>0</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>Turf Killing</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>4B</manacost>
+      <cmc>5</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Superiority — This spell costs 3 less to cast if you have more life than an opponent.
+        Target creature gets -4/-4 until end of turn.</text>
+    </card>
+    <card>
+      <name>Vainglorious Pilot</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>2B</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Pilot </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>Whenever Vainglorious Pilot becomes tapped, each opponent loses 2 life.</text>
+    </card>
+    <card>
+      <name>Vape Fiend</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>3B</manacost>
+      <cmc>4</cmc>
+      <type>Creature - Mutant </type>
+      <pt>2/3</pt>
+      <tablerow>2</tablerow>
+      <text>Superiority — When Vape Fiend enters the battlefield, if you have more life than an opponent, you may return a creature card from your graveyard to your hand.</text>
+    </card>
+    <card>
+      <name>Out for Blood</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>1RR</manacost>
+      <cmc>3</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Arm target creature. It gains double strike until end of turn. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)</text>
+    </card>
+    <card>
+      <name>Cyber Courier</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>R</manacost>
+      <cmc>1</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>0/0</pt>
+      <tablerow>2</tablerow>
+      <text>Haste
+        Cyber Courier enters the battlefield armed. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+    </card>
+    <card>
+      <name>Junkyard Boss</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>3R</manacost>
+      <cmc>4</cmc>
+      <type>Creature - Human </type>
+      <pt>3/3</pt>
+      <tablerow>2</tablerow>
+      <text>Sacrifice an artifact: Junkyard Boss gets +2/+2 until end of turn.</text>
+    </card>
+    <card>
+      <name>Lizardman Outbreak</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>1R</manacost>
+      <cmc>2</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Create two 1/1 red Lizard Mutant creature tokens.</text>
+    </card>
+    <card>
+      <name>NET Mountain</name>
+      <set rarity="">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Basic Land - Mountain </type>
+      <tablerow>0</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>Road Rebel</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>3R</manacost>
+      <cmc>4</cmc>
+      <type>Creature - Human Rebel </type>
+      <pt>3/2</pt>
+      <tablerow>2</tablerow>
+      <text>When Road Rebel enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+    </card>
+    <card>
+      <name>Robotic Revolutionary</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>2R</manacost>
+      <cmc>3</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>2/3</pt>
+      <tablerow>2</tablerow>
+      <text>Whenever you put an uploaded card into your hand, Robotic Revolutionary gets +2/+0 and gains trample until end of turn.</text>
+    </card>
+    <card>
+      <name>Rogue Prototype</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>1R</manacost>
+      <cmc>2</cmc>
+      <type>Artifact Creature - Construct Rogue </type>
+      <pt>3/1</pt>
+      <tablerow>2</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>Gun Runner</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>2R</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Lizard Mutant </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>When Gun Runner enters the battlefield, arm target creature you control. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)</text>
+    </card>
+    <card>
+      <name>Saurian Striker</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>1R</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Lizard Mutant </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>Saurian Striker has first strike as long as it’s attacking.</text>
+    </card>
+    <card>
+      <name>Smash Droid</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>4R</manacost>
+      <cmc>5</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>5/4</pt>
+      <tablerow>2</tablerow>
+      <text>Trample</text>
+    </card>
+    <card>
+      <name>Quick Draw</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>R</manacost>
+      <cmc>1</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Target creature gains haste and first strike until end of turn. If it’s equipped, it also gets +2/+0 until end of turn.</text>
+    </card>
+    <card>
+      <name>Street Thief</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>1R</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Rogue </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>When Street Thief enters the battlefield, you may discard an artifact card. If you do, draw a card.</text>
+    </card>
+    <card>
+      <name>Thrill Seekers</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>2R</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Rogue </type>
+      <pt>3/2</pt>
+      <tablerow>2</tablerow>
+      <text>Menace
+        Thrill Seekers attacks each combat if able.</text>
+    </card>
+    <card>
+      <name>Torrent Feed</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>1R</manacost>
+      <cmc>2</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>As an additional cost to cast Torrent Feed, upload a card from your hand. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)
+        Draw two cards.</text>
+    </card>
+    <card>
+      <name>Turn to Slag</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>3RR</manacost>
+      <cmc>5</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Turn to Slag deals 5 damage to target creature. Destroy all Equipment attached to that creature.</text>
+    </card>
+    <card>
+      <name>Commune Colossus</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>4GG</manacost>
+      <cmc>6</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>6/4</pt>
+      <tablerow>2</tablerow>
+      <text>When Commune Colossus enters the battlefield, upload the top card of your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>NET Forest</name>
+      <set rarity="">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Basic Land - Forest </type>
+      <tablerow>0</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>Hulk Droid</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>2GG</manacost>
+      <cmc>4</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>4/4</pt>
+      <tablerow>2</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>City Councilman</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>2G</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Advisor </type>
+      <pt>2/3</pt>
+      <tablerow>2</tablerow>
+      <text>Superiority — When City Councilman enters the battlefield, if you have more life than an opponent, create a 1/1 white Soldier creature token.</text>
+    </card>
+    <card>
+      <name>Nano Field</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>1G</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Target creature gets +2/+2 and gains hexproof until end of turn.</text>
+    </card>
+    <card>
+      <name>Natural End</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>2G</manacost>
+      <cmc>3</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Destroy target artifact or enchantment. You gain 3 life.</text>
+    </card>
+    <card>
+      <name>Plummet</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>1G</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Destroy target creature with flying.</text>
+    </card>
+    <card>
+      <name>Refuge Warden</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>1G</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Mutant </type>
+      <pt>1/3</pt>
+      <tablerow>2</tablerow>
+      <text>When Refuge Warden enters the battlefield, you gain 3 life.</text>
+    </card>
+    <card>
+      <name>Resilient Recluse</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>2G</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Spider Mutant </type>
+      <pt>1/5</pt>
+      <tablerow>2</tablerow>
+      <text>Reach</text>
+    </card>
+    <card>
+      <name>Secret Keeper</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>2G</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Rogue </type>
+      <pt>3/2</pt>
+      <tablerow>2</tablerow>
+      <text>When Secret Keeper dies, upload the top card of your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Showmatch</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>1GG</manacost>
+      <cmc>3</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Arm target creature you control. Then that creature fights target creature you don’t control. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)</text>
+    </card>
+    <card>
+      <name>Soylent Soaker</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>3G</manacost>
+      <cmc>4</cmc>
+      <type>Creature - Mutant </type>
+      <pt>2/4</pt>
+      <tablerow>2</tablerow>
+      <text>T: Add GG.</text>
+    </card>
+    <card>
+      <name>Splice Thug</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>3GG</manacost>
+      <cmc>5</cmc>
+      <type>Creature - Mutant Warrior </type>
+      <pt>4/4</pt>
+      <tablerow>2</tablerow>
+      <text>Trample
+        Superiority — At the beginning of combat on your turn, Splice Thug gets +2/+2 until end of turn if you have more life than an opponent.</text>
+    </card>
+    <card>
+      <name>Streetwise Saurian</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>1G</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Lizard Mutant </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>Vigilance</text>
+    </card>
+    <card>
+      <name>Substantial Upgrade</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>G</manacost>
+      <cmc>1</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Target creature gets +2/+2 until end of turn.
+        Superiority — If you have more life than an opponent, it gets +4/+4 until end of turn instead.</text>
+    </card>
+    <card>
+      <name>Toxic Leper</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>1G</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Mutant </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>Deathtouch</text>
+    </card>
+    <card>
+      <name>Urban Sprawl</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>2G</manacost>
+      <cmc>3</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Search your library for a basic land card, put it onto the battlefield tapped, then shuffle.
+        You gain 3 life.</text>
+    </card>
+    <card>
+      <name>Web Crawler</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>4G</manacost>
+      <cmc>5</cmc>
+      <type>Artifact Creature - Spider Construct </type>
+      <pt>3/5</pt>
+      <tablerow>2</tablerow>
+      <text>Reach</text>
+    </card>
+    <card>
+      <name>Combat Droid</name>
+      <set rarity="common">NET</set>
+      <color></color>
+      <manacost>3</manacost>
+      <cmc>3</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>When Combat Droid enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+    </card>
+    <card>
+      <name>Citizen Droid</name>
+      <set rarity="common">NET</set>
+      <color></color>
+      <manacost>2</manacost>
+      <cmc>2</cmc>
+      <type>Artifact Creature - Construct Citizen </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>Neural Nanotech</name>
+      <set rarity="common">NET</set>
+      <color></color>
+      <manacost>1</manacost>
+      <cmc>1</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>When Neural Nanotech enters or leaves the battlefield, scry 1. (To scry 1, look at the top card of your library. You may put that card on the bottom of your library.)
+        U, Sacrifice Neural Nanotech: Draw a card.</text>
+    </card>
+    <card>
+      <name>Malign Nanotech</name>
+      <set rarity="common">NET</set>
+      <color></color>
+      <manacost>1</manacost>
+      <cmc>1</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>When Malign Nanotech enters or leaves the battlefield, scry 1. (To scry 1, look at the top card of your library. You may put that card on the bottom of your library.)
+        B, Sacrifice Malign Nanotech: Target player discards a card. Activate this ability only any time you could cast a sorcery.</text>
+    </card>
+    <card>
+      <name>Rebel Cocktail</name>
+      <set rarity="common">NET</set>
+      <color></color>
+      <manacost>1</manacost>
+      <cmc>1</cmc>
+      <type>Artifact - Equipment </type>
+      <tablerow>1</tablerow>
+      <text>Equipped creature has “T, Sacrifice Rebel Cocktail: Rebel Cocktail deals 2 damage to any target.”
+        Equip 1 (1: Attach to target creature you control. Equip only as a sorcery.)</text>
+    </card>
+    <card>
+      <name>Medicinal Nanotech</name>
+      <set rarity="common">NET</set>
+      <color></color>
+      <manacost>1</manacost>
+      <cmc>1</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>When Medicinal Nanotech enters or leaves the battlefield, scry 1. (To scry 1, look at the top card of your library. You may put that card on the bottom of your library.)
+        W, Sacrifice Medicinal Nanotech: You gain 3 life.</text>
+    </card>
+    <card>
+      <name>Security Drone</name>
+      <set rarity="common">NET</set>
+      <color></color>
+      <manacost>3</manacost>
+      <cmc>3</cmc>
+      <type>Artifact Creature - Drone </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        Deathtouch</text>
+    </card>
+    <card>
+      <name>Server Farm</name>
+      <set rarity="common">NET</set>
+      <color></color>
+      <manacost>3</manacost>
+      <cmc>3</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>When Server Farm enters the battlefield, you may search your library for a card named Server Farm, upload it, then shuffle. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)
+        T: Add one mana of any color.</text>
+    </card>
+    <card>
+      <name>Cultivation Nanotech</name>
+      <set rarity="common">NET</set>
+      <color></color>
+      <manacost>1</manacost>
+      <cmc>1</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>When Cultivation Nanotech enters or leaves the battlefield, scry 1. (To scry 1, look at the top card of your library. You may put that card on the bottom of your library.)
+        G, Sacrifice Cultivation Nanotech: You may put a land card from your hand onto the battlefield.</text>
+    </card>
+    <card>
+      <name>Invasive Nanotech</name>
+      <set rarity="common">NET</set>
+      <color></color>
+      <manacost>1</manacost>
+      <cmc>1</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>When Invasive Nanotech enters or leaves the battlefield, scry 1. (To scry 1, look at the top card of your library. You may put that card on the bottom of your library.)
+        R, Sacrifice Invasive Nanotech: Target creature can’t block this turn.</text>
+    </card>
+    <card>
+      <name>Holo-Den</name>
+      <set rarity="common">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Land</type>
+      <tablerow>0</tablerow>
+      <text>T: Add C.
+        1: Holo-Den becomes the basic land type of your choice until end of turn. (You may tap it to add mana that the chosen basic land type produces.)</text>
+    </card>
+    <card>
+      <name>Robo Boxer</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>1B</manacost>
+      <cmc>2</cmc>
+      <type>Artifact Creature - Human </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>Viral Fame</name>
+      <set rarity="uncommon">NET</set>
+      <color>W</color>
+      <manacost>W</manacost>
+      <cmc>1</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Upload target creature. Its controller gains life equal to its toughness. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Arcologize</name>
+      <set rarity="uncommon">NET</set>
+      <color>G</color>
+      <manacost>1G</manacost>
+      <cmc>2</cmc>
+      <type>Enchantment - Aura </type>
+      <tablerow>1</tablerow>
+      <text>Enchant noncreature permanent
+        Enchanted permanent is a colorless Forest land.</text>
+    </card>
+    <card>
+      <name>Tempest Droid</name>
+      <set rarity="uncommon">NET</set>
+      <color>U</color>
+      <manacost>3UU</manacost>
+      <cmc>5</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>4/4</pt>
+      <tablerow>2</tablerow>
+      <text>Flying</text>
+    </card>
+    <card>
+      <name>Underworld Deeds</name>
+      <set rarity="uncommon">NET</set>
+      <color>BG</color>
+      <manacost>1BG</manacost>
+      <cmc>3</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Superiority — If you have more life than an opponent, you may choose both. Otherwise, choose one —
+        • Destroy target artifact or creature.
+        • Return target artifact or creature card from your graveyard to your hand.</text>
+    </card>
+    <card>
+      <name>Deadeye Shinobi</name>
+      <set rarity="uncommon">NET</set>
+      <color>R</color>
+      <manacost>1RR</manacost>
+      <cmc>3</cmc>
+      <type>Artifact Creature - Construct Ninja </type>
+      <pt>3/2</pt>
+      <tablerow>2</tablerow>
+      <text>When Deadeye Shinobi enters the battlefield, you may sacrifice an artifact. If you do, Deadeye Shinobi deals 3 damage to any target.</text>
+    </card>
+    <card>
+      <name>TR-12 Deliverer</name>
+      <set rarity="uncommon">NET</set>
+      <color>W</color>
+      <manacost>3WW</manacost>
+      <cmc>5</cmc>
+      <type>Artifact - Vehicle </type>
+      <tablerow>1</tablerow>
+      <text>Flying
+        When TR-12 Deliverer enters the battlefield, you gain 6 life.
+        Crew 2 (Tap any number of creatures you control with total power 2 or greater: This Vehicle becomes an artifact creature until end of turn.)</text>
+    </card>
+    <card>
+      <name>TC-7 Titan</name>
+      <set rarity="uncommon">NET</set>
+      <color>G</color>
+      <manacost>4GG</manacost>
+      <cmc>6</cmc>
+      <type>Artifact - Vehicle </type>
+      <tablerow>1</tablerow>
+      <text>Trample
+        When TC-7 Titan enters the battlefield, you may destroy target artifact or enchantment.
+        Crew 3 (Tap any number of creatures you control with total power 3 or greater: This Vehicle becomes an artifact creature until end of turn.)</text>
+    </card>
+    <card>
+      <name>Awakened Droid</name>
+      <set rarity="uncommon">NET</set>
+      <color></color>
+      <manacost>6</manacost>
+      <cmc>6</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>4/4</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        When Awakened Droid enters the battlefield, scry 2.</text>
+    </card>
+    <card>
+      <name>Sovereign Droid</name>
+      <set rarity="uncommon">NET</set>
+      <color>W</color>
+      <manacost>4WW</manacost>
+      <cmc>6</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>3/6</pt>
+      <tablerow>2</tablerow>
+      <text>Flying, lifelink</text>
+    </card>
+    <card>
+      <name>Skyguard Ascendant</name>
+      <set rarity="uncommon">NET</set>
+      <color>WU</color>
+      <manacost>WU</manacost>
+      <cmc>2</cmc>
+      <type>Artifact Creature - Human Pilot </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        Whenever an artifact enters the battlefield under your control, Skyguard Ascendant gets +1/+1 until end of turn.</text>
+    </card>
+    <card>
+      <name>Shrieking Affliction</name>
+      <set rarity="uncommon">NET</set>
+      <color>B</color>
+      <manacost>B</manacost>
+      <cmc>1</cmc>
+      <type>Enchantment</type>
+      <tablerow>1</tablerow>
+      <text>At the beginning of each opponent’s upkeep, if that player has one or fewer cards in hand, they lose 3 life.</text>
+    </card>
+    <card>
+      <name>Shark Splice</name>
+      <set rarity="uncommon">NET</set>
+      <color>G</color>
+      <manacost>XG</manacost>
+      <cmc>1</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>This spell costs 1 less to cast for each Mutant you control and for each Mutant card in your graveyard.
+        Create an X/X blue Shark Mutant creature token.</text>
+    </card>
+    <card>
+      <name>Sewer Skinner</name>
+      <set rarity="uncommon">NET</set>
+      <color>G</color>
+      <manacost>1G</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Rogue </type>
+      <pt>2/3</pt>
+      <tablerow>2</tablerow>
+      <text>Superiority — Sewer Skinner has vigilance and deathtouch as long as you have more life than an opponent.</text>
+    </card>
+    <card>
+      <name>Server Wipe</name>
+      <set rarity="common">NET</set>
+      <color>B</color>
+      <manacost>1B</manacost>
+      <cmc>2</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Target player discards a card, then uploads a card from their hand. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Flutter Droid</name>
+      <set rarity="uncommon">NET</set>
+      <color>U</color>
+      <manacost>U</manacost>
+      <cmc>1</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        At the beginning of combat on your turn, if an artifact entered the battlefield under your control this turn, Flutter Droid gets +1/+1 until end of turn.</text>
+    </card>
+    <card>
+      <name>Scythe VII</name>
+      <set rarity="uncommon">NET</set>
+      <color>B</color>
+      <manacost>4BB</manacost>
+      <cmc>6</cmc>
+      <type>Artifact - Vehicle </type>
+      <tablerow>1</tablerow>
+      <text>When Scythe VII enters the battlefield, you may destroy target creature.
+        Crew 3 (Tap any number of creatures you control with total power 3 or greater: This Vehicle becomes an artifact creature until end of turn.)</text>
+    </card>
+    <card>
+      <name>Rebel Sniper</name>
+      <set rarity="uncommon">NET</set>
+      <color>W</color>
+      <manacost>W</manacost>
+      <cmc>1</cmc>
+      <type>Creature - Human Rebel </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>As long as Rebel Sniper is equipped, it has first strike.</text>
+    </card>
+    <card>
+      <name>Redistricting</name>
+      <set rarity="uncommon">NET</set>
+      <color>G</color>
+      <manacost>G</manacost>
+      <cmc>1</cmc>
+      <type>Enchantment</type>
+      <tablerow>1</tablerow>
+      <text>At the beginning of your upkeep, mill two cards.
+        3G, Sacrifice Redistricting: Return up to two target land cards from your graveyard to the battlefield tapped.</text>
+    </card>
+    <card>
+      <name>Redeploy</name>
+      <set rarity="uncommon">NET</set>
+      <color>B</color>
+      <manacost>2BB</manacost>
+      <cmc>4</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Return target creature card from your graveyard to the battlefield. That creature is an artifact in addition to its other types.</text>
+    </card>
+    <card>
+      <name>Reboot Droid</name>
+      <set rarity="uncommon">NET</set>
+      <color>B</color>
+      <manacost>1B</manacost>
+      <cmc>2</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>2/3</pt>
+      <tablerow>2</tablerow>
+      <cipt>1</cipt>
+      <text>Reboot Droid enters the battlefield tapped.
+        Superiority — 1B: Return Reboot Droid from your graveyard to the battlefield. Activate this ability only if you have more life than an opponent.</text>
+    </card>
+    <card>
+      <name>Rabid Tri-Limb</name>
+      <set rarity="uncommon">NET</set>
+      <color>R</color>
+      <manacost>2R</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Lizard Mutant </type>
+      <pt>3/2</pt>
+      <tablerow>2</tablerow>
+      <text>Menace (This creature can’t be blocked except by two or more creatures.)
+        Other Mutants you control have menace.</text>
+    </card>
+    <card>
+      <name>Police Discretion</name>
+      <set rarity="uncommon">NET</set>
+      <color>W</color>
+      <manacost>1W</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Choose one —
+        • Prevent all damage that would be dealt to you this turn.
+        • Destroy target creature that dealt damage to you or to a permanent you controlled this turn.</text>
+    </card>
+    <card>
+      <name>Plugged In</name>
+      <set rarity="uncommon">NET</set>
+      <color>B</color>
+      <manacost>1BB</manacost>
+      <cmc>3</cmc>
+      <type>Enchantment - Aura </type>
+      <tablerow>1</tablerow>
+      <text>Enchant creature
+        Enchanted creature gets +2/+2 and has lifelink.</text>
+    </card>
+    <card>
+      <name>Parameter Halo</name>
+      <set rarity="uncommon">NET</set>
+      <color>W</color>
+      <manacost>2W</manacost>
+      <cmc>3</cmc>
+      <type>Enchantment - Aura </type>
+      <tablerow>1</tablerow>
+      <text>Enchant artifact or creature
+        Enchanted permanent can’t attack or block, and its activated abilities can’t be activated.</text>
+    </card>
+    <card>
+      <name>Cybersmith</name>
+      <set rarity="uncommon">NET</set>
+      <color></color>
+      <manacost>3</manacost>
+      <cmc>3</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>Other Constructs you control get +1/+1.
+        When Cybersmith dies, create a 2/2 colorless Construct artifact creature token.</text>
+    </card>
+    <card>
+      <name>Online Tutor</name>
+      <set rarity="uncommon">NET</set>
+      <color>B</color>
+      <manacost>BB</manacost>
+      <cmc>2</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Search your library for a card and upload it, then shuffle. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Night Hacker</name>
+      <set rarity="uncommon">NET</set>
+      <color>UB</color>
+      <manacost>2UB</manacost>
+      <cmc>4</cmc>
+      <type>Creature - Human Rogue </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>When Night Hacker enters the battlefield, you may upload another target creature. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)
+        Whenever a creature enters the battlefield under an opponent’s control, they lose 1 life and you gain 1 life.</text>
+    </card>
+    <card>
+      <name>Blackwatch Ace</name>
+      <set rarity="uncommon">NET</set>
+      <color>B</color>
+      <manacost>B</manacost>
+      <cmc>1</cmc>
+      <type>Creature - Human Pilot </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>Blackwatch Ace can’t block.
+        As long as you control a Vehicle, Blackwatch Ace gets +2/+1.</text>
+    </card>
+    <card>
+      <name>N-FORCE Station</name>
+      <set rarity="uncommon">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Land</type>
+      <tablerow>0</tablerow>
+      <cipt>1</cipt>
+      <text>N-FORCE Station enters the battlefield tapped.
+        T: Add W or B.</text>
+    </card>
+    <card>
+      <name>N-FORCE Ranger</name>
+      <set rarity="uncommon">NET</set>
+      <color>G</color>
+      <manacost>G</manacost>
+      <cmc>1</cmc>
+      <type>Creature - Human Scout </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>N-FORCE Ranger can’t be blocked by creatures with power 2 or less.
+        Superiority — As long as you have more life than an opponent, N-FORCE Ranger has hexproof.</text>
+    </card>
+    <card>
+      <name>MX Juggernaut</name>
+      <set rarity="rare">NET</set>
+      <color>R</color>
+      <manacost>3RR</manacost>
+      <cmc>5</cmc>
+      <type>Artifact - Vehicle </type>
+      <tablerow>1</tablerow>
+      <text>Trample, haste
+        When MX Juggernaut enters the battlefield, gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn.
+        Crew 3 (Tap any number of creatures you control with total power 3 or greater: This Vehicle becomes an artifact creature until end of turn.)</text>
+    </card>
+    <card>
+      <name>Moderator's Discretion</name>
+      <set rarity="uncommon">NET</set>
+      <color>U</color>
+      <manacost>1U</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Choose one —
+        • Counter target spell unless its controller pays 1.
+        • Return target spell to its owner’s hand.</text>
+    </card>
+    <card>
+      <name>MekLab Factory</name>
+      <set rarity="uncommon">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Land</type>
+      <tablerow>0</tablerow>
+      <cipt>1</cipt>
+      <text>MekLab Factory enters the battlefield tapped.
+        T: Add R or W.</text>
+    </card>
+    <card>
+      <name>Masq Agent</name>
+      <set rarity="uncommon">NET</set>
+      <color>U</color>
+      <manacost>2U</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Rogue </type>
+      <pt>3/2</pt>
+      <tablerow>2</tablerow>
+      <text>When Masq Agent becomes the target of a spell, sacrifice it.
+        Masq Agent can’t be blocked except by Rogues.</text>
+    </card>
+    <card>
+      <name>Lab Wrecker</name>
+      <set rarity="uncommon">NET</set>
+      <color>R</color>
+      <manacost>2RR</manacost>
+      <cmc>4</cmc>
+      <type>Creature - Mutant </type>
+      <pt>3/3</pt>
+      <tablerow>2</tablerow>
+      <text>When Lab Wrecker enters the battlefield, choose up to one —
+        • Destroy target artifact you don’t control.
+        • Tap target nonbasic land you don’t control. It doesn’t untap during its controller’s next untap step.</text>
+    </card>
+    <card>
+      <name>JMD Dome</name>
+      <set rarity="uncommon">NET</set>
+      <color></color>
+      <manacost>3</manacost>
+      <cmc>3</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>2, T: Upload the top card of your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Unfettered Lusus</name>
+      <set rarity="uncommon">NET</set>
+      <color>G</color>
+      <manacost>2GG</manacost>
+      <cmc>4</cmc>
+      <type>Creature - Mutant </type>
+      <pt>3/4</pt>
+      <tablerow>2</tablerow>
+      <text>Reach
+        Whenever Unfettered Lusus blocks or becomes blocked by an equipped creature, destroy all Equipment attached to that creature at end of combat.</text>
+    </card>
+    <card>
+      <name>Quarantine</name>
+      <set rarity="uncommon">NET</set>
+      <color>U</color>
+      <manacost>2U</manacost>
+      <cmc>3</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Return target nonland permanent to its owner’s hand. If it was tapped, draw a card.</text>
+    </card>
+    <card>
+      <name>Aggressive Demining</name>
+      <set rarity="uncommon">NET</set>
+      <color>R</color>
+      <manacost>2R</manacost>
+      <cmc>3</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Destroy all artifact tokens. Aggressive Demining deals 2 damage to each creature.</text>
+    </card>
+    <card>
+      <name>Hunter's Discretion</name>
+      <set rarity="uncommon">NET</set>
+      <color>G</color>
+      <manacost>1G</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Choose one —
+        • Target creature you control fights target creature you don’t control.
+        • Untap target creature. It gets +0/+4 and gains deathtouch until end of turn.</text>
+    </card>
+    <card>
+      <name>Hunter-Seeker</name>
+      <set rarity="uncommon">NET</set>
+      <color>R</color>
+      <manacost>1R</manacost>
+      <cmc>2</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>Menace
+        Whenever Hunter-Seeker deals combat damage to a player, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+    </card>
+    <card>
+      <name>Hitman's Discretion</name>
+      <set rarity="uncommon">NET</set>
+      <color>B</color>
+      <manacost>2B</manacost>
+      <cmc>3</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Choose one —
+        • Target player sacrifices a tapped creature.
+        • Target player sacrifices an untapped creature.</text>
+    </card>
+    <card>
+      <name>Heaps Baron</name>
+      <set rarity="uncommon">NET</set>
+      <color>B</color>
+      <manacost>2BB</manacost>
+      <cmc>4</cmc>
+      <type>Artifact Creature - Construct Advisor </type>
+      <pt>2/4</pt>
+      <tablerow>2</tablerow>
+      <text>B, Sacrifice another artifact: Each opponent loses 1 life and you gain 1 life.</text>
+    </card>
+    <card>
+      <name>Hard Crash</name>
+      <set rarity="uncommon">NET</set>
+      <color>R</color>
+      <manacost>1R</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>All permanents lose indestructible until end of turn.
+        Destroy target artifact.</text>
+    </card>
+    <card>
+      <name>Gun Collector</name>
+      <set rarity="uncommon">NET</set>
+      <color>BR</color>
+      <manacost>1BR</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Rebel </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>1, Sacrifice another creature: Arm Gun Collector. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+    </card>
+    <card>
+      <name>Garden Grafter</name>
+      <set rarity="uncommon">NET</set>
+      <color>G</color>
+      <manacost>2G</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Plant Mutant </type>
+      <pt>1/4</pt>
+      <tablerow>2</tablerow>
+      <text>When Garden Grafter enters the battlefield, upload the top card of your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)
+        Whenever a land enters the battlefield under your control, you may put an uploaded card you own into your hand.</text>
+    </card>
+    <card>
+      <name>Rebel Advance</name>
+      <set rarity="uncommon">NET</set>
+      <color>W</color>
+      <manacost>1WW</manacost>
+      <cmc>3</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Arm each creature you control. They gain vigilance until end of turn. (Create colorless Equipment artifact tokens named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to those creatures.)</text>
+    </card>
+    <card>
+      <name>Extremist's Discretion</name>
+      <set rarity="uncommon">NET</set>
+      <color>R</color>
+      <manacost>3R</manacost>
+      <cmc>4</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Choose one —
+        • Extremist’s Discretion deals damage to target creature equal to that creature’s power.
+        • Extremist’s Discretion deals damage to target player equal to the number of cards in their hand.</text>
+    </card>
+    <card>
+      <name>Expansion Plans</name>
+      <set rarity="uncommon">NET</set>
+      <color>UG</color>
+      <manacost>2GU</manacost>
+      <cmc>4</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Upload the top three cards of your library, then put any number of uploaded land cards you own onto the battlefield tapped. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Escaped Specimen</name>
+      <set rarity="uncommon">NET</set>
+      <color>RG</color>
+      <manacost>3RG</manacost>
+      <cmc>5</cmc>
+      <type>Creature - Lizard Mutant </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>Other Mutants you control get +1/+1.
+        When Escaped Specimen enters the battlefield, create two 1/1 red Lizard Mutant creature tokens with haste.</text>
+    </card>
+    <card>
+      <name>Digital Witness</name>
+      <set rarity="uncommon">NET</set>
+      <color>G</color>
+      <manacost>1G</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Mutant </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>When Digital Witness enters the battlefield, you may upload target card in your graveyard. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>N-FORCE Captain</name>
+      <set rarity="uncommon">NET</set>
+      <color>W</color>
+      <manacost>2WW</manacost>
+      <cmc>4</cmc>
+      <type>Creature - Human Soldier </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>When N-FORCE Captain enters the battlefield, create two 1/1 white Soldier creature tokens.
+        Superiority — At the beginning of combat on your turn, creatures you control get +1/+1 until end of turn if you have more life than an opponent.</text>
+    </card>
+    <card>
+      <name>Vat-Grown Infiltrator</name>
+      <set rarity="uncommon">NET</set>
+      <color>U</color>
+      <manacost>1U</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Mutant Rogue </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>As Vat-Grown Infiltrator enters the battlefield, choose a creature type.
+        Vat-Grown Infiltrator is the chosen type in addition to its other types.
+        Whenever a creature you control of the chosen type deals combat damage to an opponent, upload the top card of your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Data Petal</name>
+      <set rarity="uncommon">NET</set>
+      <color></color>
+      <manacost>0</manacost>
+      <cmc>0</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>T, Sacrifice Data Petal: Upload the top card of your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Data Dig</name>
+      <set rarity="common">NET</set>
+      <color>U</color>
+      <manacost>U</manacost>
+      <cmc>1</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Reveal the top four cards of your library. Upload one and put the rest into your graveyard. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>CyCorp Research Facility</name>
+      <set rarity="uncommon">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Land</type>
+      <tablerow>0</tablerow>
+      <cipt>1</cipt>
+      <text>CyCorp Research Facility enters the battlefield tapped.
+        T: Add U or R.</text>
+    </card>
+    <card>
+      <name>Psychic Obligator</name>
+      <set rarity="uncommon">NET</set>
+      <color>W</color>
+      <manacost>2W</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human </type>
+      <pt>2/3</pt>
+      <tablerow>2</tablerow>
+      <text>Whenever an artifact enters the battlefield under your control, you may tap target creature.</text>
+    </card>
+    <card>
+      <name>Corporate Infiltrator</name>
+      <set rarity="uncommon">NET</set>
+      <color>B</color>
+      <manacost>1B</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Rogue </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>When Corporate Infiltrator enters the battlefield, look at target opponent’s hand and choose a nonland card from it. They upload that card. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Butler Droid</name>
+      <set rarity="uncommon">NET</set>
+      <color></color>
+      <manacost>3</manacost>
+      <cmc>3</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>When Butler Droid enters the battlefield or dies, choose one —
+        • You gain 2 life.
+        • Untap target permanent.</text>
+    </card>
+    <card>
+      <name>Blackwatch Turf</name>
+      <set rarity="uncommon">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Land</type>
+      <tablerow>0</tablerow>
+      <cipt>1</cipt>
+      <text>Blackwatch Turf enters the battlefield tapped.
+        T: Add B or G.</text>
+    </card>
+    <card>
+      <name>BiHelix Laboratory</name>
+      <set rarity="uncommon">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Land</type>
+      <tablerow>0</tablerow>
+      <cipt>1</cipt>
+      <text>BiHelix Laboratory enters the battlefield tapped.
+        T: Add G or U.</text>
+    </card>
+    <card>
+      <name>Back in Action</name>
+      <set rarity="uncommon">NET</set>
+      <color>W</color>
+      <manacost>1W</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Return target creature card with mana value 2 or less from your graveyard to the battlefield. Arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)</text>
+    </card>
+    <card>
+      <name>Atares 14</name>
+      <set rarity="uncommon">NET</set>
+      <color>U</color>
+      <manacost>4UU</manacost>
+      <cmc>6</cmc>
+      <type>Artifact - Vehicle </type>
+      <tablerow>1</tablerow>
+      <text>Flying
+        When Atares 14 enters the battlefield, draw two cards.
+        Crew 2 (Tap any number of creatures you control with total power 2 or greater: This Vehicle becomes an artifact creature until end of turn.)</text>
+    </card>
+    <card>
+      <name>Assault Squad</name>
+      <set rarity="uncommon">NET</set>
+      <color>R</color>
+      <manacost>3RR</manacost>
+      <cmc>5</cmc>
+      <type>Creature - Human Rebel </type>
+      <pt>3/3</pt>
+      <tablerow>2</tablerow>
+      <text>When Assault Squad enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)
+        Equipped creatures you control have haste.</text>
+    </card>
+    <card>
+      <name>Arms Merchant</name>
+      <set rarity="uncommon">NET</set>
+      <color>W</color>
+      <manacost>3W</manacost>
+      <cmc>4</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>1/2</pt>
+      <tablerow>2</tablerow>
+      <text>When Arms Merchant enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)
+        Other equipped creatures you control get +1/+1.</text>
+    </card>
+    <card>
+      <name>Angry Flamer</name>
+      <set rarity="uncommon">NET</set>
+      <color>R</color>
+      <manacost>3R</manacost>
+      <cmc>4</cmc>
+      <type>Creature - Human Rebel </type>
+      <pt>4/3</pt>
+      <tablerow>2</tablerow>
+      <text>R: Angry Flamer gets +1/+0 until end of turn.
+        As long as Angry Flamer is equipped, it has trample.</text>
+    </card>
+    <card>
+      <name>Amphin Vigilante</name>
+      <set rarity="uncommon">NET</set>
+      <color>G</color>
+      <manacost>3GG</manacost>
+      <cmc>5</cmc>
+      <type>Creature - Salamander Mutant </type>
+      <pt>4/4</pt>
+      <tablerow>2</tablerow>
+      <text>Flash
+        Trample
+        When Amphin Vigilante enters the battlefield, untap another target Mutant you control. That Mutant gets +3/+3 until end of turn.</text>
+    </card>
+    <card>
+      <name>Amalgamech</name>
+      <set rarity="uncommon">NET</set>
+      <color>B</color>
+      <manacost>3BB</manacost>
+      <cmc>5</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>3/5</pt>
+      <tablerow>2</tablerow>
+      <text>When Amalgamech enters the battlefield, you may sacrifice an artifact. If you do, create two 2/2 colorless Construct artifact creature tokens.</text>
+    </card>
+    <card>
+      <name>Automated Archivist</name>
+      <set rarity="uncommon">NET</set>
+      <color>U</color>
+      <manacost>2UU</manacost>
+      <cmc>4</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>0/2</pt>
+      <tablerow>2</tablerow>
+      <text>T: Draw a card.
+        4: Untap Automated Archivist.</text>
+    </card>
+    <card>
+      <name>Aerial Gunner</name>
+      <set rarity="uncommon">NET</set>
+      <color>WR</color>
+      <manacost>1RW</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Rebel </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>Flying, haste
+        When Aerial Gunner enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+    </card>
+    <card>
+      <name>Shunt Access</name>
+      <set rarity="uncommon">NET</set>
+      <color>U</color>
+      <manacost>2U</manacost>
+      <cmc>3</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Upload target spell, then upload the top card of your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Arachdroid</name>
+      <set rarity="uncommon">NET</set>
+      <color>G</color>
+      <manacost>6GG</manacost>
+      <cmc>8</cmc>
+      <type>Artifact Creature - Spider Construct </type>
+      <pt>8/8</pt>
+      <tablerow>2</tablerow>
+      <text>Vigilance, reach</text>
+    </card>
+    <card>
+      <name>Accelerated Assembly</name>
+      <set rarity="uncommon">NET</set>
+      <color>U</color>
+      <manacost>5U</manacost>
+      <cmc>6</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>This spell costs 1 less to cast for each artifact you control.
+        Create two 2/2 colorless Construct artifact creature tokens.</text>
+    </card>
+    <card>
+      <name>Atares Amplifier</name>
+      <set rarity="rare">NET</set>
+      <color>W</color>
+      <manacost>2W</manacost>
+      <cmc>3</cmc>
+      <type>Artifact - Vehicle </type>
+      <tablerow>1</tablerow>
+      <text>Whenever Atares Amplifier is crewed by a creature with flying, it gains flying until end of turn. The same is true for first strike, double strike, deathtouch, haste, hexproof, indestructible, lifelink, menace, prowess, trample, and vigilance.
+        Crew 2 (Tap any number of creatures you control with total power 2 or greater: This Vehicle becomes an artifact creature until end of turn.)</text>
+    </card>
+    <card>
+      <name>Cymurai Blademaster</name>
+      <set rarity="rare">NET</set>
+      <color>W</color>
+      <manacost>1WW</manacost>
+      <cmc>3</cmc>
+      <type>Artifact Creature - Construct Samurai </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>Double strike
+        Superiority — At the beginning of combat on your turn, Cymurai Blademaster gains indestructible until end of turn if you have more life than an opponent.</text>
+    </card>
+    <card>
+      <name>Dominator Droid</name>
+      <set rarity="mythic">NET</set>
+      <color>W</color>
+      <manacost>7WW</manacost>
+      <cmc>9</cmc>
+      <type>Artifact Creature - Giant Construct </type>
+      <pt>7/7</pt>
+      <tablerow>2</tablerow>
+      <text>This spell costs 1 less to cast for each artifact you control.
+        Indestructible</text>
+    </card>
+    <card>
+      <name>L3-T, Equalizer</name>
+      <set rarity="mythic">NET</set>
+      <color>W</color>
+      <manacost>2WW</manacost>
+      <cmc>4</cmc>
+      <type>Legendary Planeswalker - L3-T </type>
+      <loyalty>4</loyalty>
+      <tablerow>1</tablerow>
+      <text>[+1]: You may have each player gain 3 life.
+        [-2]: Choose a permanent type other than land. Each player who controls the most permanents of that type sacrifices one of them.
+        [-7]: Create three 3/3 colorless Construct artifact creature tokens named Equalizer with “Players can’t cast more than one spell each turn” and “When this creature dies, each player draws a card.”
+      </text>
+    </card>
+    <card>
+      <name>Liberated Armory</name>
+      <set rarity="rare">NET</set>
+      <color>W</color>
+      <manacost>2W</manacost>
+      <cmc>3</cmc>
+      <type>Enchantment</type>
+      <tablerow>1</tablerow>
+      <text>Whenever a nontoken creature enters the battlefield under your control, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)
+        Equip costs of equipment you control cost 1 less.</text>
+    </card>
+    <card>
+      <name>Martial Dictate</name>
+      <set rarity="rare">NET</set>
+      <color>W</color>
+      <manacost>XWW</manacost>
+      <cmc>2</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Create X 1/1 white Soldier creature tokens. You gain X life.</text>
+    </card>
+    <card>
+      <name>New World Order</name>
+      <set rarity="mythic">NET</set>
+      <color>W</color>
+      <manacost>4WW</manacost>
+      <cmc>6</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Exchange life totals with target player.</text>
+    </card>
+    <card>
+      <name>Taken for Questioning</name>
+      <set rarity="rare">NET</set>
+      <color>W</color>
+      <manacost>1WW</manacost>
+      <cmc>3</cmc>
+      <type>Enchantment</type>
+      <tablerow>1</tablerow>
+      <text>Superiority — As long as you have more life than an opponent, you may cast Taken for Questioning as though it had flash.
+        When Taken for Questioning enters the battlefield, exile target nonland permanent an opponent controls until Taken for Questioning leaves the battlefield.</text>
+    </card>
+    <card>
+      <name>Theos Artene, Demagogue</name>
+      <set rarity="rare">NET</set>
+      <color>W</color>
+      <manacost>1W</manacost>
+      <cmc>2</cmc>
+      <type>Legendary Creature - Human Advisor </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>Lifelink
+        If you would gain life, you gain twice that much life instead.
+        As long as your life total is at least twice the life total of an opponent, Theos Artene, Demagogue gets +4/+4.</text>
+    </card>
+    <card>
+      <name>Wrath of Mod</name>
+      <set rarity="rare">NET</set>
+      <color>W</color>
+      <manacost>2WW</manacost>
+      <cmc>4</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Each player chooses a creature they control and uploads it. Then destroy all creatures. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Ancestral Research</name>
+      <set rarity="rare">NET</set>
+      <color>U</color>
+      <manacost>U</manacost>
+      <cmc>1</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Upload the top three cards of your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Back Door</name>
+      <set rarity="rare">NET</set>
+      <color>U</color>
+      <manacost>XU</manacost>
+      <cmc>1</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Choose target instant or sorcery card in a graveyard with mana value X or less. You may cast that card without paying its mana cost. If that card would be put into a graveyard this turn, exile it instead.</text>
+    </card>
+    <card>
+      <name>Cloud Colossus</name>
+      <set rarity="rare">NET</set>
+      <color>U</color>
+      <manacost>5UU</manacost>
+      <cmc>7</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>6/6</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        When Cloud Colossus enters the battlefield and at the beginning of your end step, untap each artifact you control.</text>
+    </card>
+    <card>
+      <name>Corporate Ascension</name>
+      <set rarity="rare">NET</set>
+      <color>U</color>
+      <manacost>2U</manacost>
+      <cmc>3</cmc>
+      <type>Enchantment</type>
+      <tablerow>1</tablerow>
+      <text>At the beginning of your upkeep, upload the top card of your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)
+        Whenever you put an uploaded card into your hand, put a profit counter on Corporate Ascension.
+        At the beginning of your upkeep, if there are ten or more profit counters on Corporate Ascension, you win the game.</text>
+    </card>
+    <card>
+      <name>Masq Maven</name>
+      <set rarity="rare">NET</set>
+      <color>U</color>
+      <manacost>1UU</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Rogue </type>
+      <pt>2/3</pt>
+      <tablerow>2</tablerow>
+      <text>Whenever a Rogue you control deals combat damage to a player, draw a card.
+        U: Target Rogue you control can’t be blocked this turn.</text>
+    </card>
+    <card>
+      <name>Mat Harden, Detective</name>
+      <set rarity="rare">NET</set>
+      <color>U</color>
+      <manacost>1U</manacost>
+      <cmc>2</cmc>
+      <type>Legendary Creature - Human Scout </type>
+      <pt>1/3</pt>
+      <tablerow>2</tablerow>
+      <text>Whenever a creature dies, look at the top card of your library. You may put it into your graveyard.
+        U, T: Draw a card. Activate this ability only if there is a creature card, an artifact card, and a land card in your graveyard.</text>
+    </card>
+    <card>
+      <name>Scion Mimic</name>
+      <set rarity="rare">NET</set>
+      <color>U</color>
+      <manacost>1U</manacost>
+      <cmc>2</cmc>
+      <type>Artifact - Vehicle </type>
+      <tablerow>1</tablerow>
+      <text>You may have Scion Mimic enter the battlefield as a copy of any creature or Vehicle on the battlefield, except it’s a Vehicle artifact and has crew 1.
+        Crew 1 (Tap any number of creatures you control with total power 1 or greater: This Vehicle becomes an artifact creature until end of turn.)</text>
+    </card>
+    <card>
+      <name>Corporate Confidant</name>
+      <set rarity="rare">NET</set>
+      <color>B</color>
+      <manacost>1B</manacost>
+      <cmc>2</cmc>
+      <type>Artifact Creature - Construct Advisor </type>
+      <pt>3/1</pt>
+      <tablerow>2</tablerow>
+      <text>Superiority — At the beginning of your upkeep, if you have more life than an opponent, you draw a card and you lose 2 life.</text>
+    </card>
+    <card>
+      <name>Data Demon</name>
+      <set rarity="rare">NET</set>
+      <color>B</color>
+      <manacost>1BB</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Demon </type>
+      <pt>5/4</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        At the beginning of your upkeep, upload two cards from your hand. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Deep Net</name>
+      <set rarity="mythic">NET</set>
+      <color>B</color>
+      <manacost>BBB</manacost>
+      <cmc>3</cmc>
+      <type>Enchantment</type>
+      <tablerow>1</tablerow>
+      <text>Skip your draw step.
+        B: Upload the top card of your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)
+        Pay 2 life: Put an uploaded card you own into your hand. Activate this ability only any time you could cast a sorcery.</text>
+    </card>
+    <card>
+      <name>Ghost in the Machine</name>
+      <set rarity="rare">NET</set>
+      <color>B</color>
+      <manacost>2B</manacost>
+      <cmc>3</cmc>
+      <type>Artifact Creature - Spirit </type>
+      <pt>3/1</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        Ghost in the Machine can’t block.
+        When Ghost in the Machine dies, upload it. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Phantom Walker</name>
+      <set rarity="rare">NET</set>
+      <color>B</color>
+      <manacost>1B</manacost>
+      <cmc>2</cmc>
+      <type>Artifact - Vehicle </type>
+      <tablerow>1</tablerow>
+      <text>Menace
+        Crew 3 (Tap any number of creatures you control with total power 3 or greater: This Vehicle becomes an artifact creature until end of turn.)
+        You may exile two creature cards from your graveyard rather than pay Phantom Walker’s crew cost.</text>
+    </card>
+    <card>
+      <name>Self-Destruct Sequence</name>
+      <set rarity="rare">NET</set>
+      <color>B</color>
+      <manacost>3BB</manacost>
+      <cmc>5</cmc>
+      <type>Enchantment</type>
+      <tablerow>1</tablerow>
+      <text>At the beginning of your upkeep, destroy all creatures and planeswalkers and sacrifice Self-Destruct Sequence.</text>
+    </card>
+    <card>
+      <name>Sick Nic, Baron of Crime</name>
+      <set rarity="mythic">NET</set>
+      <color>B</color>
+      <manacost>BB</manacost>
+      <cmc>2</cmc>
+      <type>Legendary Planeswalker - Nic </type>
+      <loyalty>2</loyalty>
+      <tablerow>1</tablerow>
+      <text>[+1]: Each player reveals the top card of their library, loses life equal to its mana value, then puts it into their hand.
+        [-2]: Target opponent reveals their hand. You choose a nonland card from it. That player discards that card.
+        [-7]: Target opponent loses life equal to the difference between their life total and their starting life total.
+      </text>
+    </card>
+    <card>
+      <name>Szaro, Bounty Hunter</name>
+      <set rarity="rare">NET</set>
+      <color>B</color>
+      <manacost>3BB</manacost>
+      <cmc>5</cmc>
+      <type>Legendary Creature - Human Rogue </type>
+      <pt>3/3</pt>
+      <tablerow>2</tablerow>
+      <text>Deathtouch, lifelink
+        At the beginning of your end step, target creature an opponent controls gets -3/-3 until end of turn.
+        At the beginning of your upkeep, put Szaro on the bottom of your library unless you pay 3 life.</text>
+    </card>
+    <card>
+      <name>Andreux Von, Extremist</name>
+      <set rarity="rare">NET</set>
+      <color>R</color>
+      <manacost>2RR</manacost>
+      <cmc>4</cmc>
+      <type>Legendary Creature - Mutant Rebel </type>
+      <pt>4/3</pt>
+      <tablerow>2</tablerow>
+      <text>First strike
+        Each player must attack with at least one creature each combat if able.
+        Whenever an attacking creature dies, Andreux Von, Extremist deals 1 damage to target player.</text>
+    </card>
+    <card>
+      <name>Blitz Suit</name>
+      <set rarity="uncommon">NET</set>
+      <color>R</color>
+      <manacost>1R</manacost>
+      <cmc>2</cmc>
+      <type>Artifact - Vehicle </type>
+      <tablerow>1</tablerow>
+      <text>Haste
+        When Blitz Suit enters the battlefield, other creatures you control get +1/+0 and gain haste until end of turn.
+        Crew 1 (Tap any number of creatures you control with total power 1 or greater: This Vehicle becomes an artifact creature until end of turn.)</text>
+    </card>
+    <card>
+      <name>Corporate Gamble</name>
+      <set rarity="mythic">NET</set>
+      <color>R</color>
+      <manacost>4RR</manacost>
+      <cmc>6</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Flip ten coins. Target opponent sacrifices a permanent for each coin that comes up heads, then you sacrifice a permanent for each coin that comes up tails.</text>
+    </card>
+    <card>
+      <name>Lock and Load</name>
+      <set rarity="rare">NET</set>
+      <color>R</color>
+      <manacost>2RR</manacost>
+      <cmc>4</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Arm target creature you control twice. It deals damage equal to its power to target creature or planeswalker. (Create two colorless Equipment artifact tokens named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)</text>
+    </card>
+    <card>
+      <name>Mecha Dragon</name>
+      <set rarity="mythic">NET</set>
+      <color>R</color>
+      <manacost>3RR</manacost>
+      <cmc>5</cmc>
+      <type>Artifact Creature - Dragon Construct </type>
+      <pt>5/4</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        R: Mecha Dragon gains haste until end of turn.
+        R: Mecha Dragon gets +1/+0 until end of turn.
+        Sacrifice an artifact: Add R.</text>
+    </card>
+    <card>
+      <name>Motley Crew</name>
+      <set rarity="rare">NET</set>
+      <color>R</color>
+      <manacost>2R</manacost>
+      <cmc>3</cmc>
+      <type>Enchantment</type>
+      <tablerow>1</tablerow>
+      <text>At the beginning of combat on your turn, you may choose at least three creatures you control that share no creature types among them. They each get +3/+0 and gain menace until end of turn.</text>
+    </card>
+    <card>
+      <name>Spice Den</name>
+      <set rarity="rare">NET</set>
+      <color>R</color>
+      <manacost>1R</manacost>
+      <cmc>2</cmc>
+      <type>Enchantment</type>
+      <tablerow>1</tablerow>
+      <text>Creatures you control have
+        “T, Discard a card: Draw a card.”</text>
+    </card>
+    <card>
+      <name>Street Hacker</name>
+      <set rarity="rare">NET</set>
+      <color>R</color>
+      <manacost>R</manacost>
+      <cmc>1</cmc>
+      <type>Creature - Human Rogue </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>As an additional cost to cast this spell, upload a card from your hand. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)
+        Whenever you put an uploaded card into your hand, target creature can’t block this turn.</text>
+    </card>
+    <card>
+      <name>Creeping Corrosion</name>
+      <set rarity="rare">NET</set>
+      <color>G</color>
+      <manacost>2GG</manacost>
+      <cmc>4</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Destroy all artifacts.</text>
+    </card>
+    <card>
+      <name>Gunmetal Hydra</name>
+      <set rarity="rare">NET</set>
+      <color>G</color>
+      <manacost>XGG</manacost>
+      <cmc>2</cmc>
+      <type>Artifact Creature - Hydra Construct </type>
+      <pt>0/0</pt>
+      <tablerow>2</tablerow>
+      <text>Gunmetal Hydra enters the battlefield armed X times. (Create X colorless Equipment artifact token named Weapons with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+    </card>
+    <card>
+      <name>Machine Oracle</name>
+      <set rarity="rare">NET</set>
+      <color>G</color>
+      <manacost>G</manacost>
+      <cmc>1</cmc>
+      <type>Artifact Creature - Construct Advisor </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>Superiority — T: Add one mana of any color. Activate this ability only if you have more life than an opponent.</text>
+    </card>
+    <card>
+      <name>Monstrous Apex</name>
+      <set rarity="mythic">NET</set>
+      <color>G</color>
+      <manacost>4GG</manacost>
+      <cmc>6</cmc>
+      <type>Creature - Ape Mutant </type>
+      <pt>6/6</pt>
+      <tablerow>2</tablerow>
+      <text>Trample, hexproof
+        Exile six other creature cards from your graveyard: Return Monstrous Apex from your graveyard to your hand.</text>
+    </card>
+    <card>
+      <name>Nanobirther</name>
+      <set rarity="mythic">NET</set>
+      <color>G</color>
+      <manacost>2GG</manacost>
+      <cmc>4</cmc>
+      <type>Artifact Creature - Nanobot </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>Whenever you cast a creature spell, create a token that’s a copy of Nanobirther.</text>
+    </card>
+    <card>
+      <name>Sapien Sergeant</name>
+      <set rarity="rare">NET</set>
+      <color>G</color>
+      <manacost>2GG</manacost>
+      <cmc>4</cmc>
+      <type>Artifact Creature - Mutant Soldier </type>
+      <pt>4/4</pt>
+      <tablerow>2</tablerow>
+      <text>Vigilance
+        Superiority — As long as you have more life than an opponent, Sapien Sergeant gets +2/+2 and has trample.</text>
+    </card>
+    <card>
+      <name>State of Affairs</name>
+      <set rarity="rare">NET</set>
+      <color>G</color>
+      <manacost>G</manacost>
+      <cmc>1</cmc>
+      <type>Enchantment</type>
+      <tablerow>1</tablerow>
+      <text>Whenever a land enters the battlefield under your control, you gain 1 life.
+        Superiority — Sacrifice State of Affairs: Draw a card. Activate this ability only if you have more life than an opponent.</text>
+    </card>
+    <card>
+      <name>TC-14 Behemoth</name>
+      <set rarity="rare">NET</set>
+      <color>G</color>
+      <manacost>4GG</manacost>
+      <cmc>6</cmc>
+      <type>Artifact - Vehicle </type>
+      <tablerow>1</tablerow>
+      <text>Trample
+        Crew 6 (Tap any number of creatures you control with total power 6 or greater: This Vehicle becomes an artifact creature until end of turn.)</text>
+    </card>
+    <card>
+      <name>Duplicate Results</name>
+      <set rarity="rare">NET</set>
+      <color>UR</color>
+      <manacost>2UR</manacost>
+      <cmc>4</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Scry 1, then upload the top card of your library. If it’s an instant or sorcery card, you may cast a copy of that spell without paying its mana cost. If it’s a permanent card, create a token that’s a copy of that permanent. That token gains haste. Exile it at the beginning of the next end step. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Strings of the Masquerade</name>
+      <set rarity="mythic">NET</set>
+      <color>UB</color>
+      <manacost>8UB</manacost>
+      <cmc>10</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Target player takes another turn after this one. You control that player during their next two turns. Exile Strings of the Masquerade.</text>
+    </card>
+    <card>
+      <name>Mirsi, Mother of Mutants</name>
+      <set rarity="rare">NET</set>
+      <color>RG</color>
+      <manacost>1RG</manacost>
+      <cmc>3</cmc>
+      <type>Legendary Creature - Mutant </type>
+      <pt>2/4</pt>
+      <tablerow>2</tablerow>
+      <text>RG, T, Sacrifice a Mutant: Search your library for a creature card with mana value equal to 1 plus the sacrificed Mutant’s mana value, put that card onto the battlefield, then shuffle. That creature gains haste. Activate this ability only any time you could cast a sorcery.</text>
+    </card>
+    <card>
+      <name>Masq Saboteur</name>
+      <set rarity="rare">NET</set>
+      <color>UB</color>
+      <manacost>UB</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Rogue </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>Masq Saboteur can’t be blocked unless defending player controls an untapped land.
+        Whenever Masq Saboteur deals combat damage to an opponent, they upload a card from their hand. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Stirring Pride</name>
+      <set rarity="rare">NET</set>
+      <color>WG</color>
+      <manacost>1GW</manacost>
+      <cmc>3</cmc>
+      <type>Enchantment - Aura </type>
+      <tablerow>1</tablerow>
+      <text>Enchant creature
+        Enchanted creature gets +2/+2 and has trample and lifelink.
+        Superiority — When Stirring Pride is put into a graveyard from the battlefield, if you have more life than an opponent, return it to its owner’s hand.</text>
+    </card>
+    <card>
+      <name>Quickdraw Vigilante</name>
+      <set rarity="rare">NET</set>
+      <color>WR</color>
+      <manacost>1RW</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Warrior </type>
+      <pt>3/3</pt>
+      <tablerow>2</tablerow>
+      <text>Vigilance
+        Whenever Quickdraw Vigilante attacks or blocks, if it’s unequipped, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+    </card>
+    <card>
+      <name>Re-spec</name>
+      <set rarity="rare">NET</set>
+      <color>UG</color>
+      <manacost>1GU</manacost>
+      <cmc>3</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Upload target creature. Its controller may put an uploaded creature card they own onto the battlefield tapped. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Skyguard Sovereign</name>
+      <set rarity="rare">NET</set>
+      <color>WU</color>
+      <manacost>2WU</manacost>
+      <cmc>4</cmc>
+      <type>Artifact Creature - Angel Construct </type>
+      <pt>4/3</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        Whenever Skyguard Sovereign or another artifact enters the battlefield under your control, creatures you control get +1/+1 until end of turn.</text>
+    </card>
+    <card>
+      <name>Switchflit</name>
+      <set rarity="mythic">NET</set>
+      <color>RG</color>
+      <manacost>RG</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Insect Mutant </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>Whenever Switchflit deals combat damage to a player, shuffle it into its owner’s library, then reveal cards from the top of your library until you reveal a creature card. Put that card onto the battlefield and the rest on the bottom of your library in a random order.</text>
+    </card>
+    <card>
+      <name>Toxic Scrap Heap</name>
+      <set rarity="rare">NET</set>
+      <color>BR</color>
+      <manacost>BR</manacost>
+      <cmc>2</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>When Toxic Scrap Heap enters the battlefield, it deals 2 damage to any target.
+        When Toxic Scrap Heap is put into your graveyard from the battlefield, target opponent discards a card.</text>
+    </card>
+    <card>
+      <name>Turf Tender</name>
+      <set rarity="rare">NET</set>
+      <color>BG</color>
+      <manacost>4BG</manacost>
+      <cmc>6</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>5/7</pt>
+      <tablerow>2</tablerow>
+      <text>Superiority — Whenever you tap a land for mana, if you have more life than an opponent, add one mana of any type that land produced.
+        2BG: Each opponent loses 2 life and you gain 2 life.</text>
+    </card>
+    <card>
+      <name>Scrap Market</name>
+      <set rarity="rare">NET</set>
+      <color></color>
+      <manacost>3</manacost>
+      <cmc>3</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>1, T, Pay 1 life: Arm target creature. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)
+        1, T, Sacrifice an Equipment: Create a 2/2 colorless Construct artifact creature token.
+        1, T, Sacrifice an artifact creature: You gain 4 life.</text>
+    </card>
+    <card>
+      <name>The Network</name>
+      <set rarity="mythic">NET</set>
+      <color></color>
+      <manacost>7</manacost>
+      <cmc>7</cmc>
+      <type>Legendary Artifact Creature - Avatar </type>
+      <pt>7/7</pt>
+      <tablerow>2</tablerow>
+      <text>Artifacts you control have all activated abilities of each other artifact you control and of each artifact card in your graveyard.</text>
+    </card>
+    <card>
+      <name>Soylent Station</name>
+      <set rarity="rare">NET</set>
+      <color></color>
+      <manacost>1</manacost>
+      <cmc>1</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>T, Sacrifice a nonartifact creature: Add GG.</text>
+    </card>
+    <card>
+      <name>Sprawling Coils</name>
+      <set rarity="rare">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Land</type>
+      <tablerow>0</tablerow>
+      <text>T: Add C.
+        T, Sacrifice Sprawling Coils: Search your library for a Mountain or Forest card, put it onto the battlefield tapped, then shuffle.</text>
+    </card>
+    <card>
+      <name>Ascending Spires</name>
+      <set rarity="rare">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Land</type>
+      <tablerow>0</tablerow>
+      <text>T: Add C.
+        T, Sacrifice Ascending Spires: Search your library for a Plains or Island card, put it onto the battlefield tapped, then shuffle.</text>
+    </card>
+    <card>
+      <name>Umbrous Depths</name>
+      <set rarity="rare">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Land</type>
+      <tablerow>0</tablerow>
+      <text>T: Add C.
+        T, Sacrifice Umbrous Depths: Search your library for an Island or Swamp card, put it onto the battlefield tapped, then shuffle.</text>
+    </card>
+    <card>
+      <name>Shadowed Pillar</name>
+      <set rarity="rare">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Land</type>
+      <tablerow>0</tablerow>
+      <text>T: Add C.
+        T, Sacrifice Shadowed Pillar: Search your library for a Swamp or Mountain card, put it onto the battlefield tapped, then shuffle.</text>
+    </card>
+    <card>
+      <name>Supercomputer</name>
+      <set rarity="rare">NET</set>
+      <color></color>
+      <manacost>4</manacost>
+      <cmc>4</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>Whenever you search your library, you may pay 1. If you do, draw a card.</text>
+    </card>
+    <card>
+      <name>Institutional Inertia</name>
+      <set rarity="uncommon">NET</set>
+      <color>WG</color>
+      <manacost>3GW</manacost>
+      <cmc>5</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Creatures you control get +3/+3 until end of turn.
+        Superiority — If you have more life than each opponent, those creatures also gain trample and lifelink until end of turn.</text>
+    </card>
+    <card>
+      <name>District Explorer</name>
+      <set rarity="common">NET</set>
+      <color>G</color>
+      <manacost>G</manacost>
+      <cmc>1</cmc>
+      <type>Creature - Human Scout </type>
+      <pt>1/2</pt>
+      <tablerow>2</tablerow>
+      <text>When District Explorer enters the battlefield, search your library for a basic land card and upload it, then shuffle. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Out of Date</name>
+      <set rarity="uncommon">NET</set>
+      <color>B</color>
+      <manacost>1B</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Destroy target unequipped nonartifact creature.</text>
+    </card>
+    <card>
+      <name>Precog Pilot</name>
+      <set rarity="uncommon">NET</set>
+      <color>W</color>
+      <manacost>1W</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Pilot </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>Double strike
+        Whenever Precog Pilot becomes tapped, scry 1.</text>
+    </card>
+    <card>
+      <name>Misclick</name>
+      <set rarity="rare">NET</set>
+      <color>B</color>
+      <manacost>1B</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Put each uploaded card and each graveyard on the bottom of their owners’ libraries in a random order.</text>
+    </card>
+    <card>
+      <name>Full Automation</name>
+      <set rarity="mythic">NET</set>
+      <color>U</color>
+      <manacost>3UUU</manacost>
+      <cmc>6</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Draw three cards, then put any number of artifact cards from your hand onto the battlefield.</text>
+    </card>
+    <card>
+      <name>Vibrant Locale</name>
+      <set rarity="rare">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Land</type>
+      <tablerow>0</tablerow>
+      <text>T: Add C.
+        T, Sacrifice Vibrant Locale: Search your library for a Forest or Plains card, put it onto the battlefield tapped, then shuffle.</text>
+    </card>
+    <card>
+      <name>Hired Hit</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>R</manacost>
+      <cmc>1</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>As an additional cost to cast Hired Hit, upload a card from your hand. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)
+        Hired Hit deals 3 damage to any target.</text>
+    </card>
+    <card>
+      <name>Short Circuit</name>
+      <set rarity="uncommon">NET</set>
+      <color>UR</color>
+      <manacost>UR</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Short Circuit deals 2 damage to any target.
+        Upload the top card of your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Civil Unrest</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>1R</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Civil Unrest deals 2 damage to any target. If a creature is dealt damage this way, it can’t block this turn.</text>
+    </card>
+    <card>
+      <name>Demolish</name>
+      <set rarity="common">NET</set>
+      <color>R</color>
+      <manacost>3R</manacost>
+      <cmc>4</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Destroy target artifact or land.</text>
+    </card>
+    <card>
+      <name>Saurian Mechanic</name>
+      <set rarity="rare">NET</set>
+      <color>R</color>
+      <manacost>2R</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Lizard Mutant </type>
+      <pt>2/3</pt>
+      <tablerow>2</tablerow>
+      <text>1R, Sacrifice an artifact: Create a 2/2 colorless Construct artifact creature token.</text>
+    </card>
+    <card>
+      <name>Particular Skills</name>
+      <set rarity="uncommon">NET</set>
+      <color>R</color>
+      <manacost>2R</manacost>
+      <cmc>3</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Creatures you control get +2/+0 until end of turn.
+        Equipped creatures you control gain first strike until end of turn.
+        Mutants you control gain trample until end of turn.</text>
+    </card>
+    <card>
+      <name>Coruscating Cityscape</name>
+      <set rarity="rare">NET</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Land</type>
+      <tablerow>0</tablerow>
+      <text>As Coruscating Cityscape enters the battlefield, upload a card from your hand. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)
+        T: Add one mana of any color.</text>
+    </card>
+    <card>
+      <name>Dystopilith</name>
+      <set rarity="mythic">NET</set>
+      <color></color>
+      <manacost>7</manacost>
+      <cmc>7</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>T: Create a 2/2 colorless Construct artifact creature token for each artifact you control. Activate this ability only during your turn.</text>
+    </card>
+    <card>
+      <name>Mercenary Autopilot</name>
+      <set rarity="rare">NET</set>
+      <color>WB</color>
+      <manacost>WB</manacost>
+      <cmc>2</cmc>
+      <type>Artifact Creature - Construct Pilot </type>
+      <pt>3/1</pt>
+      <tablerow>2</tablerow>
+      <text>Deathtouch, lifelink
+        Sacrifice Mercenary Autopilot: Target Vehicle gains indestructible until end of turn.</text>
+    </card>
+    <card>
+      <name>Mecha Contract</name>
+      <set rarity="uncommon">NET</set>
+      <color>WB</color>
+      <manacost>WB</manacost>
+      <cmc>2</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Search your library for a Vehicle or Pilot card, reveal it, put it into your hand, then shuffle.</text>
+    </card>
+    <card>
+      <name>City Wrecker</name>
+      <set rarity="rare">NET</set>
+      <color>G</color>
+      <manacost>4GGG</manacost>
+      <cmc>7</cmc>
+      <type>Creature - Lizard Mutant </type>
+      <pt>7/7</pt>
+      <tablerow>2</tablerow>
+      <text>Whenever City Wrecker enters the battlefield or attacks, choose one —
+        • City Wrecker fights target creature you don’t control.
+        • Destroy target artifact or enchantment you don’t control.</text>
+    </card>
+    <card>
+      <name>Corporate Control</name>
+      <set rarity="uncommon">NET</set>
+      <color>U</color>
+      <manacost>4UU</manacost>
+      <cmc>6</cmc>
+      <type>Enchantment - Aura </type>
+      <tablerow>1</tablerow>
+      <text>Enchant artifact or creature
+        You control enchanted permanent.</text>
+    </card>
+    <card>
+      <name>Talya, Cyber Wayfarer</name>
+      <set rarity="mythic">NET</set>
+      <color>U</color>
+      <manacost>2UU</manacost>
+      <cmc>4</cmc>
+      <type>Legendary Planeswalker - Talya </type>
+      <loyalty>3</loyalty>
+      <tablerow>1</tablerow>
+      <text>[+1]: Exile another target permanent you control, then return it to the battlefield under its owner’s control.
+        [-2]: Return another target permanent you control to its owner’s hand and draw two cards.
+        [-7]: Untap all permanents and gain control of them until end of turn. Permanents you don’t own don’t untap during their controllers’ next untap steps.
+      </text>
+    </card>
+    <card>
+      <name>Doxxing</name>
+      <set rarity="uncommon">NET</set>
+      <color>R</color>
+      <manacost>3R</manacost>
+      <cmc>4</cmc>
+      <type>Enchantment</type>
+      <tablerow>1</tablerow>
+      <text>Whenever you put an uploaded card into your hand, Doxxing deals 2 damage to any target.</text>
+    </card>
+    
+    <!-->Tokens</-->
+    
+    <card>
+      <name>NET Soldier</name>
+      <set>NET</set>
+      <color>W</color>
+      <type>Token Creature - Soldier </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text></text>
+      <token>1</token>
+      <reverse-related count="3">Force Deployment</reverse-related>
+      <reverse-related count="x">Martial Dictate</reverse-related>
+      <reverse-related count="2">N-FORCE Captain</reverse-related>
+      <reverse-related>City Councilman</reverse-related>
+      
+    </card>
+    <card>
+      <name>NET Lizard Mutant</name>
+      <set>NET</set>
+      <color>R</color>
+      <type>Token Creature - Lizard Mutant </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text></text>
+      <token>1</token>
+      <reverse-related count="2">Lizardman Outbreak</reverse-related>
+      <reverse-related count="2">Escaped Specimen</reverse-related>
+      
+    </card>
+    <card>
+      <name>NET Construct</name>
+      <set>NET</set>
+      <color></color>
+      <type>Token Artifact Creature - Construct </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text></text>
+      <token>1</token>
+      <reverse-related count="2">Amalgamech</reverse-related>
+      <reverse-related count="2">Accelerated Assembly</reverse-related>
+      <reverse-related>Reassembler</reverse-related>
+      <reverse-related>Saurian Mechanic</reverse-related>
+      <reverse-related>Scrap Market</reverse-related>
+      <reverse-related>Cybersmith</reverse-related>
+      <reverse-related count="x">Dystopilith</reverse-related>
+      
+    </card>
+    <card>
+      <name>NET Shark Mutant</name>
+      <set>NET</set>
+      <color>U</color>
+      <type>Token Creature - Shark Mutant </type>
+      <pt>*/*</pt>
+      <tablerow>2</tablerow>
+      <text></text>
+      <token>1</token>
+      <reverse-related>Shark Splice</reverse-related>
+      
+    </card>
+    <card>
+      <name>NET Weapon (Katana)</name>
+      <set>NET</set>
+      <color></color>
+      <type>Token Artifact - Equipment </type>
+      <tablerow>1</tablerow>
+      <text>Equipped creature gets +1/+1.
+        Equip 2</text>
+      <token>1</token>
+      <reverse-related>Arms Merchant</reverse-related>
+      <reverse-related>Back in Action</reverse-related>
+      <reverse-related>Battle Ready</reverse-related>
+      <reverse-related count="x">Rebel Advance</reverse-related>
+      <reverse-related>Liberated Armory</reverse-related>
+      <reverse-related>Rooftop Rebel</reverse-related>
+      <reverse-related count="2">Freedom Fighters</reverse-related>
+      <reverse-related>Skyguard Officer</reverse-related>
+      <reverse-related>Blackwatch Assassin</reverse-related>
+      <reverse-related>Assault Squad</reverse-related>
+      <reverse-related>Hunter-Seeker</reverse-related>
+      <reverse-related count="2">Lock and Load</reverse-related>
+      <reverse-related>Out for Blood</reverse-related>
+      <reverse-related>Road Rebel</reverse-related>
+      <reverse-related>Gun Runner</reverse-related>
+      <reverse-related>Cyber Courier</reverse-related>
+      <reverse-related count="x">Gunmetal Hydra</reverse-related>
+      <reverse-related>Showmatch</reverse-related>
+      <reverse-related>Aerial Gunner</reverse-related>
+      <reverse-related>Gun Collector</reverse-related>
+      <reverse-related>Quickdraw Vigilante</reverse-related>
+      <reverse-related>Combat Droid</reverse-related>
+      <reverse-related>Scrap Market</reverse-related>
+      
+    </card>
+    <card>
+      <name>NET Upload Reminder</name>
+      <set>NET</set>
+      <color></color>
+      <type>Reminder</type>
+      <tablerow>1</tablerow>
+      <text>(To upload a card, exile it face-up. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+      <token>1</token>
+      <reverse-related>Viral Fame</reverse-related>
+      <reverse-related>Wrath of Mod</reverse-related>
+      <reverse-related>Ancestral Research</reverse-related>
+      <reverse-related>Corporate Ascension</reverse-related>
+      <reverse-related>Data Dig</reverse-related>
+      <reverse-related>Shunt Access</reverse-related>
+      <reverse-related>Cyber Savant</reverse-related>
+      <reverse-related>Minimize</reverse-related>
+      <reverse-related>Vat-Grown Infiltrator</reverse-related>
+      <reverse-related>Virtual Reality</reverse-related>
+      <reverse-related>Data Demon</reverse-related>
+      <reverse-related>Deep Net</reverse-related>
+      <reverse-related>Ghost in the Machine</reverse-related>
+      <reverse-related>Masq Hacker</reverse-related>
+      <reverse-related>Server Wipe</reverse-related>
+      <reverse-related>Corporate Infiltrator</reverse-related>
+      <reverse-related>Online Tutor</reverse-related>
+      <reverse-related>Hired Hit</reverse-related>
+      <reverse-related>Street Hacker</reverse-related>
+      <reverse-related>Torrent Feed</reverse-related>
+      <reverse-related>Torrent Seed</reverse-related>
+      <reverse-related>Commune Colossus</reverse-related>
+      <reverse-related>District Explorer</reverse-related>
+      <reverse-related>Digital Witness</reverse-related>
+      <reverse-related>Garden Grafter</reverse-related>
+      <reverse-related>Secret Keeper</reverse-related>
+      <reverse-related>Expansion Plans</reverse-related>
+      <reverse-related>Duplicate Results</reverse-related>
+      <reverse-related>Masq Saboteur</reverse-related>
+      <reverse-related>Night Hacker</reverse-related>
+      <reverse-related>Re-spec</reverse-related>
+      <reverse-related>Short Circuit</reverse-related>
+      <reverse-related>Data Petal</reverse-related>
+      <reverse-related>JMD Dome</reverse-related>
+      <reverse-related>Server Farm</reverse-related>
+      <reverse-related>Coruscating Cityscape</reverse-related>
+      
+    </card>
+    <card>
+      <name>NET Weapon (Pistol)</name>
+      <set>NET</set>
+      <color></color>
+      <type>Token Artifact - Equipment </type>
+      <tablerow>1</tablerow>
+      <text>Equipped creature gets +1/+1.
+        Equip 2</text>
+      <token>1</token>
+      <reverse-related>Arms Merchant</reverse-related>
+      <reverse-related>Back in Action</reverse-related>
+      <reverse-related>Battle Ready</reverse-related>
+      <reverse-related count="x">Rebel Advance</reverse-related>
+      <reverse-related>Liberated Armory</reverse-related>
+      <reverse-related>Rooftop Rebel</reverse-related>
+      <reverse-related count="2">Freedom Fighters</reverse-related>
+      <reverse-related>Skyguard Officer</reverse-related>
+      <reverse-related>Blackwatch Assassin</reverse-related>
+      <reverse-related>Assault Squad</reverse-related>
+      <reverse-related>Hunter-Seeker</reverse-related>
+      <reverse-related count="2">Lock and Load</reverse-related>
+      <reverse-related>Out for Blood</reverse-related>
+      <reverse-related>Road Rebel</reverse-related>
+      <reverse-related>Gun Runner</reverse-related>
+      <reverse-related>Cyber Courier</reverse-related>
+      <reverse-related count="x">Gunmetal Hydra</reverse-related>
+      <reverse-related>Showmatch</reverse-related>
+      <reverse-related>Aerial Gunner</reverse-related>
+      <reverse-related>Gun Collector</reverse-related>
+      <reverse-related>Quickdraw Vigilante</reverse-related>
+      <reverse-related>Combat Droid</reverse-related>
+      <reverse-related>Scrap Market</reverse-related>
+      
+    </card>
+    <card>
+      <name>NET Weapon (Bow)</name>
+      <set>NET</set>
+      <color></color>
+      <type>Token Artifact - Equipment </type>
+      <tablerow>1</tablerow>
+      <text>Equipped creature gets +1/+1.
+        Equip 2</text>
+      <token>1</token>
+      <reverse-related>Arms Merchant</reverse-related>
+      <reverse-related>Back in Action</reverse-related>
+      <reverse-related>Battle Ready</reverse-related>
+      <reverse-related count="x">Rebel Advance</reverse-related>
+      <reverse-related>Liberated Armory</reverse-related>
+      <reverse-related>Rooftop Rebel</reverse-related>
+      <reverse-related count="2">Freedom Fighters</reverse-related>
+      <reverse-related>Skyguard Officer</reverse-related>
+      <reverse-related>Blackwatch Assassin</reverse-related>
+      <reverse-related>Assault Squad</reverse-related>
+      <reverse-related>Hunter-Seeker</reverse-related>
+      <reverse-related count="2">Lock and Load</reverse-related>
+      <reverse-related>Out for Blood</reverse-related>
+      <reverse-related>Road Rebel</reverse-related>
+      <reverse-related>Gun Runner</reverse-related>
+      <reverse-related>Cyber Courier</reverse-related>
+      <reverse-related count="x">Gunmetal Hydra</reverse-related>
+      <reverse-related>Showmatch</reverse-related>
+      <reverse-related>Aerial Gunner</reverse-related>
+      <reverse-related>Gun Collector</reverse-related>
+      <reverse-related>Quickdraw Vigilante</reverse-related>
+      <reverse-related>Combat Droid</reverse-related>
+      <reverse-related>Scrap Market</reverse-related>
+      
+    </card>
+    <card>
+      <name>NET Equalizer</name>
+      <set>NET</set>
+      <color></color>
+      <type>Token Artifact Creature - Construct </type>
+      <pt>3/3</pt>
+      <tablerow>2</tablerow>
+      <text>Players can’t cast more than one spell each turn.
+        When this creature dies, each player draws a card.</text>
+      <token>1</token>
+      <reverse-related count="3">L3-T, Equalizer</reverse-related>
+      
+    </card>
+    <card>
+      <name>NET Weapon (Rifle)</name>
+      <set>NET</set>
+      <color></color>
+      <type>Token Artifact - Equipment </type>
+      <tablerow>1</tablerow>
+      <text>Equipped creature gets +1/+1.
+        Equip 2</text>
+      <token>1</token>
+      <reverse-related>Arms Merchant</reverse-related>
+      <reverse-related>Back in Action</reverse-related>
+      <reverse-related>Battle Ready</reverse-related>
+      <reverse-related count="x">Rebel Advance</reverse-related>
+      <reverse-related>Liberated Armory</reverse-related>
+      <reverse-related>Rooftop Rebel</reverse-related>
+      <reverse-related count="2">Freedom Fighters</reverse-related>
+      <reverse-related>Skyguard Officer</reverse-related>
+      <reverse-related>Blackwatch Assassin</reverse-related>
+      <reverse-related>Assault Squad</reverse-related>
+      <reverse-related>Hunter-Seeker</reverse-related>
+      <reverse-related count="2">Lock and Load</reverse-related>
+      <reverse-related>Out for Blood</reverse-related>
+      <reverse-related>Road Rebel</reverse-related>
+      <reverse-related>Gun Runner</reverse-related>
+      <reverse-related>Cyber Courier</reverse-related>
+      <reverse-related count="x">Gunmetal Hydra</reverse-related>
+      <reverse-related>Showmatch</reverse-related>
+      <reverse-related>Aerial Gunner</reverse-related>
+      <reverse-related>Gun Collector</reverse-related>
+      <reverse-related>Quickdraw Vigilante</reverse-related>
+      <reverse-related>Combat Droid</reverse-related>
+      <reverse-related>Scrap Market</reverse-related>
+      
+    </card>
+    
+  </cards>
+</cockatrice_carddatabase>

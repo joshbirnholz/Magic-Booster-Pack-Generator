@@ -580,6 +580,7 @@ function setDraftmancerCardSet(cardset) {
   document.getElementById("cardset-title").innerHTML = cardset.name;
   
   var p = document.getElementById("download-button");
+  p.innerHTML = "";
   
   // Download button
   if (cardset.string) {
@@ -589,8 +590,6 @@ function setDraftmancerCardSet(cardset) {
       download(cardset.name + ".txt", cardset.string, "text/plain");
     };
     p.appendChild(button);
-  } else {
-    p.innerHTML = "";
   }
   
   // Setup table
@@ -610,7 +609,7 @@ function setDraftmancerCardSet(cardset) {
     
     var data = document.createElement("td");
     var imageURL = element.image || element.image_uris["en"];
-    data.innerHTML = "<center><div><a href='" + imageURL + "'><img src='" + imageURL + "' height=264 width=189 style='border-radius:10px;'></a></div><p>" + element.name + "<br>" + element.set.toUpperCase() + " #" + element.collector_number + "</p><br></center>";
+    data.innerHTML = "<center><div><a href=\"" + imageURL + "\"><img src=\"" + imageURL + "\" height=264 width=189 style='border-radius:10px;'></a></div><p>" + element.name + "<br>" + element.set.toUpperCase() + " #" + element.collector_number + "</p><br></center>";
     
     row.appendChild(data);
     dataCount += 1;

@@ -17,14 +17,16 @@ let package = Package(
 		.package(url: "https://github.com/vapor/fluent.git", from: "4.0.0-rc"),
 		.package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0-rc"),
 		.package(url: "https://github.com/vapor/jwt.git", from: "4.0.0-rc"),
-    .package(url: "https://github.com/yaslab/CSV.swift.git", .upToNextMinor(from: "2.4.3"))
+    .package(url: "https://github.com/yaslab/CSV.swift.git", .upToNextMinor(from: "2.4.3")),
+    .package(url: "https://github.com/CoreOffice/XMLCoder.git", from: "0.17.1")
     ],
     targets: [
-        .target(name: "App", dependencies: [
+      .target(name: "App", dependencies: [
 			.product(name: "Fluent", package: "fluent"),
 			.product(name: "FluentPostgresDriver", package: "fluent-postgres-driver"),
 			.product(name: "Vapor", package: "vapor"),
 			.product(name: "CSV", package: "CSV.swift"),
+      .product(name: "XMLCoder", package: "XMLCoder")
 		]),
         .target(name: "Run", dependencies: [
 			.target(name: "App"),

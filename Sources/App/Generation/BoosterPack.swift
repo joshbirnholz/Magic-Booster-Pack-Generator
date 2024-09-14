@@ -4858,46 +4858,6 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 	}
 }
 
-func cardsFromCockatriceJSON(json: String) throws -> (cards: [MTGCard], setName: String, setCode: String?) {
-	let data = json.data(using: .utf8)!
-	let decoder = JSONDecoder()
-	let cardDB = try decoder.decode(CockatriceCardDatabase.self, from: data)
-	
-	let cards: [(MTGCard, CockatriceCardDatabase.Card)] = cardDB.cards.enumerated().compactMap { (MTGCard(card: $1, collectorNumber: String($0+1)), $1) }
-	
-	let mtgCards: [MTGCard] = cards.map { mtgCard, cockatriceCard in
-		var mtgCard = mtgCard
-		var reverseRelated = cockatriceCard.reverseRelated ?? []
-		
-		if mtgCard.oracleText?.contains("Arm") == true || mtgCard.oracleText?.contains(" arm ") == true {
-			reverseRelated.append(contentsOf: ["Weapon (Bow)", "Weapon (Katana)", "Weapon (Pistol)", "Weapon (Rifle)"].map(CockatriceCardDatabase.Card.ReverseRelated.init))
-		}
-		
-        if mtgCard.isBasicLand && mtgCard.nameHasPrefix("NET", caseSensitive: true) {
-			mtgCard.name = mtgCard.name?.replacingOccurrences(of: "NET ", with: "")
-		}
-		
-		mtgCard.allParts = reverseRelated.compactMap { relation in
-			guard let relatedCard = cards.first(where: { $0.0.name == relation.text })?.0 else { return nil }
-			
-			return MTGCard.RelatedCard(scryfallID: relatedCard.scryfallID,
-									   component: .token,
-									   name: relatedCard.name ?? "",
-									   typeLine: relatedCard.typeLine,
-									   url: relatedCard.scryfallURL)
-		}
-		
-		if mtgCard.nameHasPrefix("Weapon", caseSensitive: true) && mtgCard.layout == "token" {
-			mtgCard.name = "Weapon"
-		}
-			
-		
-		return mtgCard
-	}
-	
-	return (mtgCards, cardDB.sets.first?.value.longname ?? "", cardDB.sets.first?.value.name)
-}
-
 struct ProcessedCards {
 	var rarities: [MTGCard.Rarity: [MTGCard]]
 	var customSlotRarities: [MTGCard.Rarity: [MTGCard]]

@@ -1,0 +1,938 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cockatrice_carddatabase version="3">
+  <sets>
+    <set>
+      <name>ROM</name>
+      <longname>Netropolis: Rise of Machines</longname>
+      <settype>Custom</settype>
+    </set>
+  </sets>
+  <cards>
+    
+    <card>
+      <name>First Steps</name>
+      <set rarity="common">ROM</set>
+      <color>W</color>
+      <manacost>W</manacost>
+      <cmc>1</cmc>
+      <type>Enchantment - Aura </type>
+      <tablerow>1</tablerow>
+      <text>Enchant creature
+        When First Steps enters the battlefield, put a vigilance counter on enchanted creature.
+        Enchanted creature gets +1/+1 for each different kind of counter on it.</text>
+    </card>
+    <card>
+      <name>Neighborhood Watch</name>
+      <set rarity="common">ROM</set>
+      <color>W</color>
+      <manacost>1W</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Warrior </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>First strike mod (This creature enters the battlefield with a first strike counter. When it dies, you may put its counters on target artifact or creature.)</text>
+    </card>
+    <card>
+      <name>Spontaneous Flight</name>
+      <set rarity="common">ROM</set>
+      <color>W</color>
+      <manacost>2W</manacost>
+      <cmc>3</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Target creature gets +2/+2 until end of turn. Put a flying counter on it.</text>
+    </card>
+    <card>
+      <name>Atares Aegis</name>
+      <set rarity="common">ROM</set>
+      <color>W</color>
+      <manacost>1W</manacost>
+      <cmc>2</cmc>
+      <type>Artifact - Vehicle </type>
+      <tablerow>1</tablerow>
+      <text>Crew 1 (Tap any number of creatures you control with total power 1 or greater: This Vehicle becomes an artifact creature until end of turn.)</text>
+    </card>
+    <card>
+      <name>Cyberhawk</name>
+      <set rarity="common">ROM</set>
+      <color>W</color>
+      <manacost>5W</manacost>
+      <cmc>6</cmc>
+      <type>Artifact Creature - Bird Construct </type>
+      <pt>3/4</pt>
+      <tablerow>2</tablerow>
+      <text>Affinity for artifacts (This spell costs 1 less to cast for each artifact you control.)
+        Flying</text>
+    </card>
+    <card>
+      <name>Cloud Droid</name>
+      <set rarity="common">ROM</set>
+      <color>W</color>
+      <manacost>2W</manacost>
+      <cmc>3</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        Whenever another artifact enters the battlefield under your control, you gain 1 life.</text>
+    </card>
+    <card>
+      <name>Crisis Response Team</name>
+      <set rarity="common">ROM</set>
+      <color>W</color>
+      <manacost>3W</manacost>
+      <cmc>4</cmc>
+      <type>Creature - Human </type>
+      <pt>3/2</pt>
+      <tablerow>2</tablerow>
+      <text>Lifelink mod (This creature enters the battlefield with a lifelink counter. When it dies, you may put its counters on target artifact or creature.)</text>
+    </card>
+    <card>
+      <name>Rooftop Rebel</name>
+      <set rarity="common">ROM</set>
+      <color>W</color>
+      <manacost>1W</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Rebel </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>When Rooftop Rebel enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+    </card>
+    <card>
+      <name>N-FORCE Gunner</name>
+      <set rarity="common">ROM</set>
+      <color>W</color>
+      <manacost>2W</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Soldier </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>When N-FORCE Gunner enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)
+        At the beginning of combat on your turn, target equipped creature you control gets +1/+1 until end of turn.</text>
+    </card>
+    <card>
+      <name>Disposal Droid</name>
+      <set rarity="common">ROM</set>
+      <color>W</color>
+      <manacost>2WW</manacost>
+      <cmc>4</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>3/3</pt>
+      <tablerow>2</tablerow>
+      <text>Overcharge (You may upload a card from your hand as you cast this spell. It’s exiled and its owner may pay 2 to put it into their hand anytime they could cast a sorcery.)
+        When Disposal Droid enters the battlefield, if it was overcharged, you may destroy target artifact or enchantment.</text>
+    </card>
+    <card>
+      <name>Resolute Pilot</name>
+      <set rarity="common">ROM</set>
+      <color>W</color>
+      <manacost>2W</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Pilot </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>Whenever Resolute Pilot becomes tapped, tap target creature an opponent controls.</text>
+    </card>
+    <card>
+      <name>Redistribute Matter</name>
+      <set rarity="common">ROM</set>
+      <color>W</color>
+      <manacost>4W</manacost>
+      <cmc>5</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Exile target creature. Each player draws a card.</text>
+    </card>
+    <card>
+      <name>CyCorp Engineer</name>
+      <set rarity="common">ROM</set>
+      <color>U</color>
+      <manacost>1U</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human Advisor </type>
+      <pt>1/3</pt>
+      <tablerow>2</tablerow>
+      <text>T: Add C. Spend this mana only to cast an artifact spell or to pay an upload cost.</text>
+    </card>
+    <card>
+      <name>Server Farm</name>
+      <set rarity="common">ROM</set>
+      <color></color>
+      <manacost>3</manacost>
+      <cmc>3</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>When Server Farm enters the battlefield, you may search your library for a card named Server Farm, upload it, then shuffle your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)
+        T: Add one mana of any color.</text>
+    </card>
+    <card>
+      <name>Strider Droid</name>
+      <set rarity="common">ROM</set>
+      <color>U</color>
+      <manacost>5U</manacost>
+      <cmc>6</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>4/4</pt>
+      <tablerow>2</tablerow>
+      <text>Flash (You may cast this spell any time you could cast an instant.)</text>
+    </card>
+    <card>
+      <name>Data Leak</name>
+      <set rarity="common">ROM</set>
+      <color>U</color>
+      <manacost>1U</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Overcharge (You may upload a card from your hand as you cast this spell. It’s exiled and its owner may pay 2 to put it into their hand anytime they could cast a sorcery.)
+        Counter target spell unless its controller pays 2. If this spell was overcharged, instead counter that spell unless they pay 3.</text>
+    </card>
+    <card>
+      <name>Select</name>
+      <set rarity="common">ROM</set>
+      <color>U</color>
+      <manacost>U</manacost>
+      <cmc>1</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Choose one —
+        • Draw a card.
+        • Put an uploaded card you own into your hand, then upload the top card of your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Veteran Hacker</name>
+      <set rarity="common">ROM</set>
+      <color>U</color>
+      <manacost>U</manacost>
+      <cmc>1</cmc>
+      <type>Creature - Human Rogue </type>
+      <pt>1/2</pt>
+      <tablerow>2</tablerow>
+      <text>Veteran Hacker can’t be blocked.</text>
+    </card>
+    <card>
+      <name>Hovership</name>
+      <set rarity="common">ROM</set>
+      <color>U</color>
+      <manacost>4U</manacost>
+      <cmc>5</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>3/2</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        When Hovership enters the battlefield, draw a card.</text>
+    </card>
+    <card>
+      <name>Repulsor Droid</name>
+      <set rarity="common">ROM</set>
+      <color>U</color>
+      <manacost>3U</manacost>
+      <cmc>4</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>3/3</pt>
+      <tablerow>2</tablerow>
+      <text>Overcharge (You may upload a card from your hand as you cast this spell. It’s exiled and its owner may pay 2 to put it into their hand anytime they could cast a sorcery.)
+        When Repulsor Droid enters the battlefield, if it was overcharged, you may return target creature to its owner’s hand.</text>
+    </card>
+    <card>
+      <name>Counter-Hacker</name>
+      <set rarity="common">ROM</set>
+      <color>U</color>
+      <manacost>1U</manacost>
+      <cmc>2</cmc>
+      <type>Artifact Creature - Construct Rogue </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>Whenever an uploaded card is put into your hand, Counter-Hacker gets +1/+1 until end of turn and can’t be blocked this turn.</text>
+    </card>
+    <card>
+      <name>Wing Trooper</name>
+      <set rarity="common">ROM</set>
+      <color>U</color>
+      <manacost>2U</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Soldier </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>Flying mod (This creature enters the battlefield with a flying counter. When it dies, you may put its counters on target artifact or creature.)</text>
+    </card>
+    <card>
+      <name>Thoughtcast</name>
+      <set rarity="common">ROM</set>
+      <color>U</color>
+      <manacost>4U</manacost>
+      <cmc>5</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Affinity for artifacts (This spell costs 1 less to cast for each artifact you control.)
+        Draw two cards.</text>
+    </card>
+    <card>
+      <name>Search String</name>
+      <set rarity="common">ROM</set>
+      <color>U</color>
+      <manacost>1U</manacost>
+      <cmc>2</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Draw a card.
+        Upload the top card of your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Elysium Rig</name>
+      <set rarity="common">ROM</set>
+      <color>U</color>
+      <manacost>1UU</manacost>
+      <cmc>3</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>When Elysium Rig enters the battlefield, tap target creature. It doesn’t untap during its controller’s untap step as long as you control Elysium Rig.</text>
+    </card>
+    <card>
+      <name>Scion Mark V</name>
+      <set rarity="common">ROM</set>
+      <color>B</color>
+      <manacost>3B</manacost>
+      <cmc>4</cmc>
+      <type>Artifact - Vehicle </type>
+      <tablerow>1</tablerow>
+      <text>When Scion Mark V enters the battlefield, you may return target creature card from your graveyard to your hand.
+        Crew 2 (Tap any number of creatures you control with total power 2 or greater: This Vehicle becomes an artifact creature until end of turn.)</text>
+    </card>
+    <card>
+      <name>Bad Driver</name>
+      <set rarity="common">ROM</set>
+      <color>B</color>
+      <manacost>B</manacost>
+      <cmc>1</cmc>
+      <type>Creature - Human Pilot </type>
+      <pt>1/2</pt>
+      <tablerow>2</tablerow>
+      <text>Whenever Bad Driver becomes tapped, each player loses 1 life.</text>
+    </card>
+    <card>
+      <name>Terminator Droid</name>
+      <set rarity="common">ROM</set>
+      <color>B</color>
+      <manacost>2B</manacost>
+      <cmc>3</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>3/2</pt>
+      <tablerow>2</tablerow>
+      <text>Menace mod (This creature enters the battlefield with a menace counter. When it dies, you may put its counters on target artifact or creature.)</text>
+    </card>
+    <card>
+      <name>Net Loss</name>
+      <set rarity="common">ROM</set>
+      <color>B</color>
+      <manacost>B</manacost>
+      <cmc>1</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Overcharge (You may upload a card from your hand as you cast this spell. It’s exiled and its owner may pay 2 to put it into their hand anytime they could cast a sorcery.)
+        Target player uploads a creature they control. If this spell was overcharged, instead that player sacrifices a creature.</text>
+    </card>
+    <card>
+      <name>Desperate Living</name>
+      <set rarity="common">ROM</set>
+      <color>B</color>
+      <manacost>B</manacost>
+      <cmc>1</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Target creature gets +1/+2 until end of turn. Put a lifelink counter on it.</text>
+    </card>
+    <card>
+      <name>Trash Fire</name>
+      <set rarity="common">ROM</set>
+      <color>R</color>
+      <manacost>2R</manacost>
+      <cmc>3</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Mill six cards. When you do, choose one —
+        • Destroy target artifact.
+        • Trash Fire deals damage to each opponent equal to the number of artifact cards in your graveyard.</text>
+    </card>
+    <card>
+      <name>Red Pill</name>
+      <set rarity="common">ROM</set>
+      <color>R</color>
+      <manacost>R</manacost>
+      <cmc>1</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>As an additional cost to cast Red Pill, upload a creature you control. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)
+        Add RRR. </text>
+    </card>
+    <card>
+      <name>Scrap Scrabbler</name>
+      <set rarity="common">ROM</set>
+      <color>B</color>
+      <manacost>1B</manacost>
+      <cmc>2</cmc>
+      <type>Artifact Creature - Crab Construct </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>2B: Upload Scrap Scrabbler from your graveyard. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Pterodroid</name>
+      <set rarity="common">ROM</set>
+      <color>B</color>
+      <manacost>3B</manacost>
+      <cmc>4</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>2/3</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        When Pterodroid enters the battlefield, you may sacrifice an artifact. If you do, you draw a card and lose 1 life.</text>
+    </card>
+    <card>
+      <name>Fleshgrafter</name>
+      <set rarity="common">ROM</set>
+      <color>B</color>
+      <manacost>2B</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Warrior </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>Discard an artifact card: Fleshgrafter gets +2/+2 until end of turn.</text>
+    </card>
+    <card>
+      <name>Divest</name>
+      <set rarity="common">ROM</set>
+      <color>B</color>
+      <manacost>B</manacost>
+      <cmc>1</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Target player reveals their hand. You choose an artifact or creature card from it. That player discards that card.</text>
+    </card>
+    <card>
+      <name>Costly Defeat</name>
+      <set rarity="common">ROM</set>
+      <color>B</color>
+      <manacost>2BB</manacost>
+      <cmc>4</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Remove up to one counter from target creature, then destroy it.</text>
+    </card>
+    <card>
+      <name>Heaps Hoarder</name>
+      <set rarity="common">ROM</set>
+      <color>B</color>
+      <manacost>4B</manacost>
+      <cmc>5</cmc>
+      <type>Creature - Mutant </type>
+      <pt>4/4</pt>
+      <tablerow>2</tablerow>
+      <text>When Heaps Hoarder enters the battlefield, you gain 1 life for each artifact card in your graveyard.</text>
+    </card>
+    <card>
+      <name>Undermarket Merchant</name>
+      <set rarity="common">ROM</set>
+      <color>R</color>
+      <manacost>1R</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Lizard Mutant </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>Sacrifice an artifact: Add R. Activate this ability only once per turn.</text>
+    </card>
+    <card>
+      <name>System Shock</name>
+      <set rarity="common">ROM</set>
+      <color>R</color>
+      <manacost>1R</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>System Shock deals 2 damage to any target. Put a menace counter on a creature you control. (It can’t be blocked except by two or more creatures.)</text>
+    </card>
+    <card>
+      <name>Cyborg Duelist</name>
+      <set rarity="common">ROM</set>
+      <color>R</color>
+      <manacost>R</manacost>
+      <cmc>1</cmc>
+      <type>Artifact Creature - Human Construct </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>First strike mod (This creature enters the battlefield with a first strike counter. When it dies, you may put its counters on target artifact or creature.)</text>
+    </card>
+    <card>
+      <name>Junkyard Enforcer</name>
+      <set rarity="common">ROM</set>
+      <color>R</color>
+      <manacost>2R</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Human Warrior </type>
+      <pt>2/3</pt>
+      <tablerow>2</tablerow>
+      <text>Sacrifice an artifact: Junkyard Enforcer gets +2/+0 and gains trample until end of turn.</text>
+    </card>
+    <card>
+      <name>Neural Short</name>
+      <set rarity="common">ROM</set>
+      <color>R</color>
+      <manacost>2R</manacost>
+      <cmc>3</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Overcharge (You may upload a card from your hand as you cast this spell. It’s exiled and its owner may pay 2 to put it into their hand anytime they could cast a sorcery.)
+        Neural Short deals 3 damage to target creature. If this spell was overcharged, it deals 6 damage instead.</text>
+    </card>
+    <card>
+      <name>Saurian Sawyer</name>
+      <set rarity="common">ROM</set>
+      <color>R</color>
+      <manacost>1R</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Lizard Mutant Warrior </type>
+      <pt>1/2</pt>
+      <tablerow>2</tablerow>
+      <text>When Saurian Sawyer enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)
+        As long as Saurian Sawyer is equipped, it attacks each turn if able.</text>
+    </card>
+    <card>
+      <name>Armed to the Teeth</name>
+      <set rarity="common">ROM</set>
+      <color>R</color>
+      <manacost>3R</manacost>
+      <cmc>4</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Arm target creature you control, then arm it again. (To arm a creature, create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)</text>
+    </card>
+    <card>
+      <name>Splice Soldier</name>
+      <set rarity="common">ROM</set>
+      <color>G</color>
+      <manacost>4G</manacost>
+      <cmc>5</cmc>
+      <type>Creature - Rhino Mutant Soldier </type>
+      <pt>5/4</pt>
+      <tablerow>2</tablerow>
+      <text>Trample mod (This creature enters the battlefield with a trample counter. When it dies, you may put its counters on target artifact or creature.)</text>
+    </card>
+    <card>
+      <name>Compiler Droid</name>
+      <set rarity="common">ROM</set>
+      <color>R</color>
+      <manacost>2R</manacost>
+      <cmc>3</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>1/3</pt>
+      <tablerow>2</tablerow>
+      <text>Defender, reach
+        T: Compiler Droid deals 1 damage to each opponent.
+        Whenever you put an uploaded card into your hand, untap Compiler Droid.</text>
+    </card>
+    <card>
+      <name>Feral Taxon</name>
+      <set rarity="common">ROM</set>
+      <color>R</color>
+      <manacost>3R</manacost>
+      <cmc>4</cmc>
+      <type>Creature - Lizard Mutant </type>
+      <pt>2/1</pt>
+      <tablerow>2</tablerow>
+      <text>When Feral Taxon enters the battlefield, create a 1/1 red Lizard Mutant creature token.
+        Other Mutants you control get +1/+0.</text>
+    </card>
+    <card>
+      <name>Stoker Droid</name>
+      <set rarity="common">ROM</set>
+      <color>R</color>
+      <manacost>4R</manacost>
+      <cmc>5</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>4/4</pt>
+      <tablerow>2</tablerow>
+      <text>Overcharge (You may upload a card from your hand as you cast this spell. It’s exiled and its owner may pay 2 to put it into their hand anytime they could cast a sorcery.)
+        When Stoker Droid enters the battlefield, if it was overcharged, it deals 2 damage to target creature.</text>
+    </card>
+    <card>
+      <name>Towering Hybrid</name>
+      <set rarity="common">ROM</set>
+      <color>G</color>
+      <manacost>3G</manacost>
+      <cmc>4</cmc>
+      <type>Creature - Mutant </type>
+      <pt>2/4</pt>
+      <tablerow>2</tablerow>
+      <text>Reach mod (This creature enters the battlefield with a reach counter. When it dies, you may put its counters on target artifact or creature.)</text>
+    </card>
+    <card>
+      <name>Refuge Sentinel</name>
+      <set rarity="common">ROM</set>
+      <color>G</color>
+      <manacost>2G</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Mutant Warrior </type>
+      <pt>3/2</pt>
+      <tablerow>2</tablerow>
+      <text>Vigilance mod (This creature enters the battlefield with a vigilance counter. When it dies, you may put its counters on target artifact or creature.)</text>
+    </card>
+    <card>
+      <name>Primal Programming</name>
+      <set rarity="common">ROM</set>
+      <color>G</color>
+      <manacost>1G</manacost>
+      <cmc>2</cmc>
+      <type>Sorcery</type>
+      <tablerow>3</tablerow>
+      <text>Overcharge (You may upload a card from your hand as you cast this spell. It’s exiled and its owner may pay 2 to put it into their hand anytime they could cast a sorcery.)
+        Target creature you control gets +2/+2 until end of turn if this spell was overcharged. Then it fights target creature you don’t control.</text>
+    </card>
+    <card>
+      <name>Stabilizer Droid</name>
+      <set rarity="common">ROM</set>
+      <color>G</color>
+      <manacost>4GG</manacost>
+      <cmc>6</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>6/6</pt>
+      <tablerow>2</tablerow>
+      <text>When Stabilizer Droid enters the battlefield, you gain 4 life.</text>
+    </card>
+    <card>
+      <name>Genetic Symbiote</name>
+      <set rarity="common">ROM</set>
+      <color>G</color>
+      <manacost>1G</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Mutant </type>
+      <pt>0/3</pt>
+      <tablerow>2</tablerow>
+      <text>T: Untap another target Mutant or land you control. Activate this ability only during your turn.</text>
+    </card>
+    <card>
+      <name>Soylent Reaper</name>
+      <set rarity="common">ROM</set>
+      <color>G</color>
+      <manacost>3G</manacost>
+      <cmc>4</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>3/4</pt>
+      <tablerow>2</tablerow>
+      <text>Overcharge (You may upload a card from your hand as you cast this spell. It’s exiled and its owner may pay 2 to put it into their hand anytime they could cast a sorcery.)
+        When Soylent Reaper enters the battlefield, if it was overcharged, search your library for a basic land card, put it onto the battlefield tapped, then shuffle.</text>
+    </card>
+    <card>
+      <name>Terrain Scanner</name>
+      <set rarity="common">ROM</set>
+      <color>G</color>
+      <manacost>G</manacost>
+      <cmc>1</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>T, Sacrifice Terrain Scanner: Look at the top four cards of your library. You may put a land card from among them into your hand. Put the rest into your graveyard.</text>
+    </card>
+    <card>
+      <name>Foster Guardian</name>
+      <set rarity="common">ROM</set>
+      <color>G</color>
+      <manacost>2G</manacost>
+      <cmc>3</cmc>
+      <type>Creature - Mutant </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>When Foster Guardian enters the battlefield, return target permanent card with mana value 1 or less from your graveyard to your hand.</text>
+    </card>
+    <card>
+      <name>Enhance</name>
+      <set rarity="common">ROM</set>
+      <color>G</color>
+      <manacost>1G</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Target creature gets +3/+3 until end of turn. You may move any number of counters onto it from among creatures you control.</text>
+    </card>
+    <card>
+      <name>Privileged Elite</name>
+      <set rarity="common">ROM</set>
+      <color>G</color>
+      <manacost>1G</manacost>
+      <cmc>2</cmc>
+      <type>Creature - Human </type>
+      <pt>2/2</pt>
+      <tablerow>2</tablerow>
+      <text>When Privileged Elite enters the battlefield, if you have at least 20 life, draw a card.</text>
+    </card>
+    <card>
+      <name>Naturalize</name>
+      <set rarity="common">ROM</set>
+      <color>G</color>
+      <manacost>1G</manacost>
+      <cmc>2</cmc>
+      <type>Instant</type>
+      <tablerow>3</tablerow>
+      <text>Destroy target artifact or enchantment.</text>
+    </card>
+    <card>
+      <name>Terramorphic Expanse</name>
+      <set rarity="common">ROM</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Land</type>
+      <tablerow>0</tablerow>
+      <text>T, Sacrifice Terramorphic Expanse: Search your library for a basic land card and put it onto the battlefield tapped, then shuffle.</text>
+    </card>
+    <card>
+      <name>ROM Plains</name>
+      <set rarity="">ROM</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Basic Land - Plains </type>
+      <tablerow>0</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>ROM Island</name>
+      <set rarity="">ROM</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Basic Land - Swamp </type>
+      <tablerow>0</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>ROM Mountain</name>
+      <set rarity="">ROM</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Basic Land - Mountain </type>
+      <tablerow>0</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>ROM Forest</name>
+      <set rarity="">ROM</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Basic Land - Forest </type>
+      <tablerow>0</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>ROM Swamp</name>
+      <set rarity="">ROM</set>
+      <color></color>
+      <manacost></manacost>
+      <cmc>0</cmc>
+      <type>Basic Land - Swamp </type>
+      <tablerow>0</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>Traffic Controller</name>
+      <set rarity="common">ROM</set>
+      <color></color>
+      <manacost>2</manacost>
+      <cmc>2</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>0/4</pt>
+      <tablerow>2</tablerow>
+      <text>Defender
+        Reach</text>
+    </card>
+    <card>
+      <name>Bionic Arms</name>
+      <set rarity="common">ROM</set>
+      <color></color>
+      <manacost>1</manacost>
+      <cmc>1</cmc>
+      <type>Artifact - Equipment </type>
+      <tablerow>1</tablerow>
+      <text>Equipped creature gets +1/+1.
+        Equip 1 (1: Attach to target creature you control. Equip only as a sorcery.)</text>
+    </card>
+    <card>
+      <name>Explosive Apparatus</name>
+      <set rarity="common">ROM</set>
+      <color></color>
+      <manacost>1</manacost>
+      <cmc>1</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>3, T, Sacrifice Explosive Apparatus: It deals 2 damage to any target.</text>
+    </card>
+    <card>
+      <name>Backup Drive</name>
+      <set rarity="common">ROM</set>
+      <color></color>
+      <manacost>1</manacost>
+      <cmc>1</cmc>
+      <type>Artifact</type>
+      <tablerow>1</tablerow>
+      <text>1, T: Add one mana of any color.
+        T, Sacrifice Backup Drive: Upload the top card of your library. (To upload a card, exile it. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+    </card>
+    <card>
+      <name>Cloud Drone</name>
+      <set rarity="common">ROM</set>
+      <color></color>
+      <manacost>1</manacost>
+      <cmc>1</cmc>
+      <type>Artifact Creature - Drone </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        When Cloud Drone enters the battlefield, you gain 1 life.</text>
+    </card>
+    <card>
+      <name>Verticron</name>
+      <set rarity="common">ROM</set>
+      <color></color>
+      <manacost>6</manacost>
+      <cmc>6</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>6/4</pt>
+      <tablerow>2</tablerow>
+      <text></text>
+    </card>
+    <card>
+      <name>Enforcer Droid</name>
+      <set rarity="common">ROM</set>
+      <color></color>
+      <manacost>7</manacost>
+      <cmc>7</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>4/4</pt>
+      <tablerow>2</tablerow>
+      <text>Affinity for artifacts (This spell costs 1 less to cast for each artifact you control.)</text>
+    </card>
+    <card>
+      <name>Roving Servitor</name>
+      <set rarity="common">ROM</set>
+      <color></color>
+      <manacost>3</manacost>
+      <cmc>3</cmc>
+      <type>Artifact Creature - Construct </type>
+      <pt>0/2</pt>
+      <tablerow>2</tablerow>
+      <text>Flying
+        When Roving Servitor enters the battlefield, search your library for a basic land card, reveal it, put it into your hand, then shuffle.</text>
+    </card>
+    <card>
+      <name>Junkyard Digger</name>
+      <set rarity="common">ROM</set>
+      <color>B</color>
+      <manacost>1B</manacost>
+      <cmc>2</cmc>
+      <type>Artifact Creature - Mutant Construct </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text>When Junkyard Digger enters the battlefield, mill three cards, then you may return an artifact or creature card from among them to your hand.</text>
+    </card>
+    
+    <!-->Tokens</-->
+    
+    <card>
+      <name>ROM Weapon (Bow)</name>
+      <set>ROM</set>
+      <color></color>
+      <type>Token Artifact - Equipment </type>
+      <tablerow>1</tablerow>
+      <text>Equipped creature gets +1/+1.
+        Equip 2</text>
+      <token>1</token>
+      <reverse-related>N-FORCE Gunner</reverse-related>
+      <reverse-related>Rooftop Rebel</reverse-related>
+      <reverse-related count="2">Armed to the Teeth</reverse-related>
+      <reverse-related>Saurian Sawyer</reverse-related>
+      
+    </card>
+    <card>
+      <name>ROM Weapon (Katana)</name>
+      <set>ROM</set>
+      <color></color>
+      <type>Token Artifact - Equipment </type>
+      <tablerow>1</tablerow>
+      <text>Equipped creature gets +1/+1.
+        Equip 2</text>
+      <token>1</token>
+      <reverse-related>N-FORCE Gunner</reverse-related>
+      <reverse-related>Rooftop Rebel</reverse-related>
+      <reverse-related count="2">Armed to the Teeth</reverse-related>
+      <reverse-related>Saurian Sawyer</reverse-related>
+      
+    </card>
+    <card>
+      <name>ROM Weapon (Pistol)</name>
+      <set>ROM</set>
+      <color></color>
+      <type>Token Artifact - Equipment </type>
+      <tablerow>1</tablerow>
+      <text>Equipped creature gets +1/+1.
+        Equip 2</text>
+      <token>1</token>
+      <reverse-related>N-FORCE Gunner</reverse-related>
+      <reverse-related>Rooftop Rebel</reverse-related>
+      <reverse-related count="2">Armed to the Teeth</reverse-related>
+      <reverse-related>Saurian Sawyer</reverse-related>
+      
+    </card>
+    <card>
+      <name>ROM Weapon (Rifle)</name>
+      <set>ROM</set>
+      <color></color>
+      <type>Token Artifact - Equipment </type>
+      <tablerow>1</tablerow>
+      <text>Equipped creature gets +1/+1.
+        Equip 2</text>
+      <token>1</token>
+      <reverse-related>N-FORCE Gunner</reverse-related>
+      <reverse-related>Rooftop Rebel</reverse-related>
+      <reverse-related count="2">Armed to the Teeth</reverse-related>
+      <reverse-related>Saurian Sawyer</reverse-related>
+      
+    </card>
+    <card>
+      <name>NET Lizard Mutant</name>
+      <set>ROM</set>
+      <color>R</color>
+      <type>Token Creature - Lizard Mutant </type>
+      <pt>1/1</pt>
+      <tablerow>2</tablerow>
+      <text></text>
+      <token>1</token>
+      <reverse-related>Feral Taxon</reverse-related>
+      
+    </card>
+    <card>
+      <name>ROM Upload Tracker</name>
+      <set>ROM</set>
+      <color></color>
+      <type>Tracker</type>
+      <tablerow>1</tablerow>
+      <text>(To upload a card, exile it face-up. Its owner may pay 2 to return it to their hand any time they could cast a sorcery.)</text>
+      <token>1</token>
+      <reverse-related>Disposal Droid</reverse-related>
+      <reverse-related>Data Leak</reverse-related>
+      <reverse-related>Repulsor Droid</reverse-related>
+      <reverse-related>Select</reverse-related>
+      <reverse-related>Net Loss</reverse-related>
+      <reverse-related>Scrap Scrabbler</reverse-related>
+      <reverse-related>Neural Short</reverse-related>
+      <reverse-related>Red Pill</reverse-related>
+      <reverse-related>Stoker Droid</reverse-related>
+      <reverse-related>Primal Programming</reverse-related>
+      <reverse-related>Soylent Reaper</reverse-related>
+      <reverse-related>Backup Drive</reverse-related>
+      <reverse-related>Server Farm</reverse-related>
+      <reverse-related>Search String</reverse-related>
+      
+    </card>
+    
+  </cards>
+</cockatrice_carddatabase>

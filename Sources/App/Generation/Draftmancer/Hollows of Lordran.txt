@@ -2644,7 +2644,10 @@
     "set" : "hlw",
     "rarity" : "mythic",
     "related_cards": [
-      "Human (THLW)"
+      "Human (THLW)",
+      "Slaine Token Emblem (THLW)",
+      "Slaine Card Draw Emblem (THLW)",
+      "Slaine Extra Turns Emblem (THLW)"
     ]
   },
   {
@@ -3325,6 +3328,36 @@
     "colors": [
       "B"
     ]
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "29",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Slaine%20Emblem%201.jpg",
+    "set" : "thlw",
+    "name" : "Slaine Token Emblem",
+    "type" : "Emblem",
+    "layout": "emblem",
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "27",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Slaine%20Emblem%202.jpg",
+    "set" : "thlw",
+    "name" : "Slaine Card Draw Emblem",
+    "type" : "Emblem",
+    "layout": "emblem",
+  },
+  {
+    "mana_cost" : "",
+    "collector_number" : "28",
+    "rarity" : "common",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Slaine%20Emblem%203.jpg",
+    "set" : "thlw",
+    "name" : "Slaine Extra Turns Emblem",
+    "type" : "Emblem",
+    "layout": "emblem",
   }
 ]
 
@@ -3642,3 +3675,6 @@ Exiled Priestess Hollow (THLW)
 Darkmoon Avenger Hollow (THLW)
 Curse-Marked Crook Hollow (THLW)
 Demented Sorcerer Hollow (THLW)
+Slaine Token Emblem (THLW)
+Slaine Card Draw Emblem (THLW)
+Slaine Extra Turns Emblem (THLW)

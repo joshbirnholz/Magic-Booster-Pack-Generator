@@ -3113,20 +3113,53 @@ func singleBoosterPack(setName: String, setCode: String, boosterPack: [MTGCard],
 }
 
 func singleCardFuzzy(name: String, facedown: Bool, export: Bool) throws -> String {
-	let card = try Swiftfall.getCard(fuzzy: name)
-	let mtgCard = MTGCard(card)
-	return try singleCard(mtgCard, facedown: facedown, export: export)
+  let mtgCard: MTGCard = try {
+    do {
+      let card = try Swiftfall.getCard(fuzzy: name)
+      return MTGCard(card)
+    } catch {
+      if let card = loadedDraftmancerCards?.first(where: { $0.name?.lowercased().hasPrefix(name.lowercased()) == true }) {
+        return card
+      } else {
+        throw PackError.couldNotLoadCards(name)
+      }
+    }
+  }()
+  
+  return try singleCard(mtgCard, facedown: facedown, export: export)
 }
 
 func singleCardExact(name: String, facedown: Bool, export: Bool) throws -> String {
-	let card = try Swiftfall.getCard(exact: name)
-	let mtgCard = MTGCard(card)
+  let mtgCard: MTGCard = try {
+    do {
+      let card = try Swiftfall.getCard(exact: name)
+      return MTGCard(card)
+    } catch {
+      if let card = loadedDraftmancerCards?[.name(name)] {
+        return card
+      } else {
+        throw PackError.couldNotLoadCards(name)
+      }
+    }
+  }()
+	
 	return try singleCard(mtgCard, facedown: facedown, export: export)
 }
 
 func singleCardCodeNumber(code: String, number: String, facedown: Bool, export: Bool) throws -> String {
-	let card = try Swiftfall.getCard(code: code, number: number)
-	let mtgCard = MTGCard(card)
+  let mtgCard: MTGCard = try {
+    do {
+      let card = try Swiftfall.getCard(code: code, number: number)
+      return MTGCard(card)
+    } catch {
+      let identnfier: MTGCardIdentifier = .collectorNumberSet(collectorNumber: number, set: code, name: nil)
+      if let card = loadedDraftmancerCards?[identnfier] {
+        return card
+      } else {
+        throw PackError.couldNotLoadCards(String(describing: identnfier))
+      }
+    }
+  }()
 	return try singleCard(mtgCard, facedown: facedown, export: export)
 }
 

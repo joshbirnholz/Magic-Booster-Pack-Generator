@@ -192,13 +192,20 @@ func getBuiltinDraftmancerCards(_ req: Request) throws -> NIOCore.EventLoopFutur
     let responses: [DraftmancerResponse] = urls.compactMap { url in
       guard let rawData = try? Data(contentsOf: url), let rawString = String(data: rawData, encoding: .utf8) else { return nil }
       let string = customCardsStringFromDraftmancer(rawString)
-      guard let data = string?.data(using: .utf8), let cards = try? decoder.decode([DraftmancerCard].self, from: data) else { return nil }
+      guard let data = string?.data(using: .utf8) else { return nil }
       
-      return DraftmancerResponse(
-        cards: cards,
-        name: url.deletingPathExtension().lastPathComponent,
-        string: rawString.contains("[Settings]") || rawString.contains("[Layouts]") ? rawString : nil
-      )
+      do {
+        let cards = try decoder.decode([DraftmancerCard].self, from: data)
+        
+        return DraftmancerResponse(
+          cards: cards,
+          name: url.deletingPathExtension().lastPathComponent,
+          string: rawString.contains("[Settings]") || rawString.contains("[Layouts]") ? rawString : nil
+        )
+      } catch {
+        print("Error loading cards from \(url.deletingPathExtension().lastPathComponent):", error)
+        return nil
+      }
     }.sorted { $0.name < $1.name }
     
     var headers = HTTPHeaders()

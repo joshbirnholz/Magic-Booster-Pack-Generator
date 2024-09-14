@@ -239,7 +239,7 @@ public struct DraftmancerCard: Codable {
     self.layout = try container.decodeIfPresent(String.self, forKey: .layout)
     self.back = try container.decodeIfPresent(DraftmancerCard.Face.self, forKey: .back)
     
-    if let relatedCardIdentifiers = try container.decodeIfPresent([String].self, forKey: .relatedCards) {
+    if let relatedCardIdentifiers = try? container.decodeIfPresent([String].self, forKey: .relatedCards) {
       self.relatedCardIdentifiers = relatedCardIdentifiers.compactMap { string in
         let groups = DeckParser.parse(deckList: "1 \(string)", autofix: false)
         return groups.first?.cardCounts.first?.identifier

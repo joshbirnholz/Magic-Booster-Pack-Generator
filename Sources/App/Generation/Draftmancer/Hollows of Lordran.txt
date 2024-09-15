@@ -496,9 +496,7 @@
     "set" : "hlw",
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Velka%E2%80%99s%20Missionary.jpeg",
     "related_cards": [
-      "Zombie Soldier (THLW)"
-    ],
-    "related_cards": [
+      "Zombie Soldier (THLW)",
       "Velka's Missionary Hollow (THLW)"
     ]
   },

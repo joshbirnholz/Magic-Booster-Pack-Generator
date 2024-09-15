@@ -2244,6 +2244,19 @@ func urlsForResources(withExtension ext: String? = nil, subdirectory: String) th
   return urls
   #endif
 }
+func urlForResource(_ name: String, withExtension ext: String? = nil, subdirectory: String? = nil) -> URL {
+  let directory = DirectoryConfiguration.detect()
+  var subdirectory = "Sources/App/Generation" + (subdirectory.flatMap { "/" + $0 } ?? "")
+  var subdirectoryURL = URL(fileURLWithPath: directory.workingDirectory)
+    .appendingPathComponent(subdirectory, isDirectory: true)
+    .appendingPathComponent(name)
+  
+  if let ext = ext {
+    subdirectoryURL = subdirectoryURL.appendingPathExtension(ext)
+  }
+  
+  return subdirectoryURL
+}
 
 func jumpstartDeckList() throws -> String {
 	guard let deckListURL = jumpstartDeckListURLs.randomElement() else {

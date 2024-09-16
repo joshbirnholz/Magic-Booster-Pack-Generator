@@ -118,6 +118,7 @@ extension DraftmancerCard {
       type: type,
       imageUris: nil,
       colors: manifestoCard.colors,
+      artist: manifestoCard.artist,
       printedNames: nil,
       image: imageURL,
       set: set,

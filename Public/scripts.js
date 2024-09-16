@@ -483,9 +483,12 @@ function loadDraftmancerCards() {
       for(var i = 0; i<response.length; i++) {
         const cardset = response[i];
         
+        if (cardset.display_reversed) {
+          cardset.cards.reverse();
+        }
+        
         var button = document.createElement('button');
         button.innerHTML = cardset.name;
-        button.id = cardset.name;
         button.onclick = function() {
           setDraftmancerCardSet(cardset);
         };
@@ -513,8 +516,21 @@ function loadDraftmancerCards() {
   })
 }
 
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+var currentCardset;
+
+function toggleViewMode() {
+  localStorage.setItem("showDetails", !(localStorage.getItem("showDetails") === 'true'))
+  
+  setDraftmancerCardSet(currentCardset);
+}
+
 function setDraftmancerCardSet(cardset) {
   document.getElementById("cardset-title").innerHTML = cardset.name;
+  currentCardset = cardset;
   
   var p = document.getElementById("download-button");
   p.innerHTML = "";
@@ -532,42 +548,123 @@ function setDraftmancerCardSet(cardset) {
   // Setup table
   
   var table = document.getElementById("cardtable");
-  table.innerHTML = "";
+  table.innerHTML = "<style>th, td { padding-block: 2px; padding-inline: 4px } </style>";
   
-  var dataCount = 0;
-  var rowCount = 6;
-  var row = document.createElement("tr");
-  table.appendChild(row);
+  var cards = cardset.cards;
   
-  var cards = cardset.display_reversed ? cardset.cards.reverse() : cardset.cards;
-  
-  for(var i=0; i <cards.length; i++) {
-    var element = cards[i];
-    
-    var data = document.createElement("td");
-    
-    var rarity = "";
-    if (element.rarity) {
-      rarity = " (" + Array.from(element.rarity)[0].toUpperCase() + ")";
+  if (localStorage.getItem("showDetails") === 'true') {
+    for(var i=0; i <cards.length; i++) {
+      var element = cards[i];
+      
+      var row1 = document.createElement("tr");
+      table.appendChild(row1);
+      
+      var imageData = document.createElement("td");
+      row1.appendChild(imageData);
+      imageData.setAttribute("rowspan", 4);
+      
+      var imageURL = element.image || element.image_uris["en"];
+      imageData.innerHTML = "<div><a href=\"" + imageURL + "\"><img src=\"" + imageURL + "\" height=264 width=189 style='border-radius:10px;'></a></div>";
+      
+      var nameData = document.createElement("td");
+      row1.appendChild(nameData);
+      nameData.innerHTML = "<h3>" + element.name + "</h3>";
+      
+      var manaCostData = document.createElement("td");
+      manaCostData.setAttribute("align", "right");
+      row1.appendChild(manaCostData);
+      manaCostData.innerHTML = "<h3>" + (element.mana_cost || "") + "</h3>";
+      
+      var row2 = document.createElement("tr");
+      table.appendChild(row2);
+      
+      var typeData = document.createElement("td");
+      row2.appendChild(typeData);
+      var type = element.type || "";
+      if (element.subtypes) {
+        type += " — " + element.subtypes.join(" ");
+      }
+      typeData.innerHTML = "<h4>" + type + "</h4>";
+      
+      var rarityData = document.createElement("td");
+      rarityData.setAttribute("align", "right");
+      row2.appendChild(rarityData);
+      var rarity = "";
+      if (element.rarity) {
+        rarity = " (" + Array.from(element.rarity)[0].toUpperCase() + ")";
+      }
+      rarityData.innerHTML = "<h4>" + element.set.toUpperCase() + " #" + element.collector_number + rarity + "</h4>";
+      
+      var row3 = document.createElement("tr");
+      table.appendChild(row3);
+      
+      var textData = document.createElement("td");
+      textData.setAttribute("width", 1000);
+      textData.setAttribute("colspan", 2);
+      row3.appendChild(textData);
+      if (element.oracle_text) {
+        textData.innerHTML = element.oracle_text.replace(/\n/g, "<br />") || "";
+      }
+      
+      var row4 = document.createElement("tr");
+      table.appendChild(row4);
+      
+      var artistData = document.createElement("td");
+      row4.appendChild(artistData);
+      if (element.artist) {
+        artistData.innerHTML = "Illustrated by: " + element.artist;
+      }
+      
+      var ptLoyaltyData = document.createElement("td");
+      row4.appendChild(ptLoyaltyData);
+      var ptLoyalty = element.loyalty || "";
+      if (element.power != undefined && element.toughness != undefined) {
+        ptLoyalty = element.power.toString() + "/" + element.toughness.toString();
+      }
+      ptLoyaltyData.setAttribute("colspan", 2);
+      ptLoyaltyData.setAttribute("align", "right");
+      ptLoyaltyData.innerHTML = "<h3>" + ptLoyalty + "</h3>";
     }
     
-    var imageURL = element.image || element.image_uris["en"];
-    data.innerHTML = "<center><div><a href=\"" + imageURL + "\"><img src=\"" + imageURL + "\" height=264 width=189 style='border-radius:10px;'></a></div><p>" + element.name + "<br>" + element.set.toUpperCase() + " #" + element.collector_number + rarity + "</p><br></center>";
-    
-    row.appendChild(data);
-    dataCount += 1;
-    if (dataCount >= rowCount) {
-      table.appendChild(row);
-      row = document.createElement("tr");
-      table.appendChild(row);
-      dataCount = 0;
+    while (dataCount < rowCount) {
+      var data = document.createElement("td");
+      row.appendChild(data);
+      dataCount += 1;
     }
-  }
-  
-  while (dataCount < rowCount) {
-    var data = document.createElement("td");
-    row.appendChild(data);
-    dataCount += 1;
+  } else {
+    var dataCount = 0;
+    var rowCount = 6;
+    var row = document.createElement("tr");
+    table.appendChild(row);
+    
+    for(var i=0; i <cards.length; i++) {
+      var element = cards[i];
+      
+      var data = document.createElement("td");
+      
+      var rarity = "";
+      if (element.rarity) {
+        rarity = " (" + Array.from(element.rarity)[0].toUpperCase() + ")";
+      }
+      
+      var imageURL = element.image || element.image_uris["en"];
+      data.innerHTML = "<center><div><a href=\"" + imageURL + "\"><img src=\"" + imageURL + "\" height=264 width=189 style='border-radius:10px;'></a></div><p>" + element.name + "<br>" + element.set.toUpperCase() + " #" + element.collector_number + rarity + "</p><br></center>";
+      
+      row.appendChild(data);
+      dataCount += 1;
+      if (dataCount >= rowCount) {
+        table.appendChild(row);
+        row = document.createElement("tr");
+        table.appendChild(row);
+        dataCount = 0;
+      }
+    }
+    
+    while (dataCount < rowCount) {
+      var data = document.createElement("td");
+      row.appendChild(data);
+      dataCount += 1;
+    }
   }
   
   window.location.hash = cardset.name;

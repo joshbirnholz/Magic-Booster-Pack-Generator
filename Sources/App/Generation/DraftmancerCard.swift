@@ -37,11 +37,12 @@ public struct DraftmancerCard: Codable {
     }
   }
   
-  init(name: String, manaCost: String, type: String, imageUris: [String : URL]? = nil, colors: [String]? = nil, printedNames: [String : URL]? = nil, image: URL? = nil, set: String? = nil, collectorNumber: String? = nil, rarity: Rarity? = nil, subtypes: [String]? = nil, rating: Int? = nil, layout: String? = nil, back: DraftmancerCard.Face? = nil, relatedCards: [DraftmancerCard.Face]? = nil, relatedCardIdentifiers: [MTGCardIdentifier]? = nil, draftEffects: [DraftmancerCard.DraftEffect]? = nil, power: String? = nil, toughness: String? = nil, oracleText: String? = nil, loyalty: String? = nil, keywords: [String]? = nil) {
+  init(name: String, manaCost: String, type: String, imageUris: [String : URL]? = nil, colors: [String]? = nil, artist: String? = nil, printedNames: [String : URL]? = nil, image: URL? = nil, set: String? = nil, collectorNumber: String? = nil, rarity: Rarity? = nil, subtypes: [String]? = nil, rating: Int? = nil, layout: String? = nil, back: DraftmancerCard.Face? = nil, relatedCards: [DraftmancerCard.Face]? = nil, relatedCardIdentifiers: [MTGCardIdentifier]? = nil, draftEffects: [DraftmancerCard.DraftEffect]? = nil, power: String? = nil, toughness: String? = nil, oracleText: String? = nil, loyalty: String? = nil, keywords: [String]? = nil) {
     self.name = name
     self.manaCost = manaCost
     self.type = type
     self.imageUris = imageUris
+    self.artist = artist
     self.colors = colors
     self.printedNames = printedNames
     self.image = image
@@ -136,6 +137,7 @@ public struct DraftmancerCard: Codable {
   var type: String
   var imageUris: [String: URL]?
   var colors: [String]?
+  var artist: String?
   var printedNames: [String: URL]?
   var image: URL?
   var set: String?
@@ -211,6 +213,7 @@ public struct DraftmancerCard: Codable {
     self.loyalty = mtgCard.loyalty
     self.oracleText = mtgCard.oracleText
     self.keywords = mtgCard.keywords
+    self.artist = mtgCard.artist
   }
   
   public func encode(to encoder: Encoder) throws {
@@ -225,6 +228,7 @@ public struct DraftmancerCard: Codable {
       try container.encodeIfPresent(self.image, forKey: .image)
     }
     
+    try container.encodeIfPresent(self.artist, forKey: .artist)
     try container.encodeIfPresent(self.colors, forKey: .colors)
     try container.encodeIfPresent(self.printedNames, forKey: .printedNames)
     try container.encodeIfPresent(self.set, forKey: .set)
@@ -255,6 +259,7 @@ public struct DraftmancerCard: Codable {
     case manaCost
     case type
     case imageUris
+    case artist
     case colors
     case printedNames
     case image
@@ -513,6 +518,10 @@ let draftmancerSets: [DraftmancerSet]? = {
           card.set = "CUSTOM"
         }
         
+        if !card.manaCost.contains("{") {
+          card.manaCost = addBracketsToManaCost(card.manaCost)
+        }
+        
         // Record used collector numbers
         
         if usedCollectorNumbersForSets[card.set!] == nil {
@@ -563,6 +572,53 @@ let draftmancerSets: [DraftmancerSet]? = {
     return nil
   }
 }()
+
+private func addBracketsToManaCost(_ manaCost: String) -> String {
+  var result = ""
+  var buffer = ""
+  var insideBrackets = false
+  
+  // Iterate over each character in the string
+  for (index, char) in manaCost.enumerated() {
+    if char == "{" {
+      insideBrackets = true
+      buffer.append(char)
+    } else if char == "}" {
+      insideBrackets = false
+      buffer.append(char)
+      result.append(buffer)
+      buffer = ""
+    } else if insideBrackets {
+      buffer.append(char)
+    } else {
+      // If we encounter a slash, it's part of a hybrid symbol
+      if char == "/" && index > 0 && !buffer.isEmpty {
+        buffer.append(char)
+        continue
+      }
+      
+      // Check if this is part of a hybrid symbol (e.g., W/U)
+      if index < manaCost.count - 1 && manaCost[manaCost.index(manaCost.startIndex, offsetBy: index + 1)] == "/" {
+        buffer.append(char)
+      } else {
+        if !buffer.isEmpty {
+          buffer.append(char)
+          result.append("{\(buffer)}")
+          buffer = ""
+        } else {
+          result.append("{\(char)}")
+        }
+      }
+    }
+  }
+  
+  // Append any remaining buffer (for complex costs like "W/U")
+  if !buffer.isEmpty {
+    result.append("{\(buffer)}")
+  }
+  
+  return result
+}
 
 func getBuiltinDraftmancerCards(_ req: Request) throws -> NIOCore.EventLoopFuture<Vapor.Response> {
   return req.eventLoop.makeCompletedFuture {

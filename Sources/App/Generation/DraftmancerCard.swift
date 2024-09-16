@@ -736,8 +736,14 @@ extension DraftmancerCard {
       subtypes = typeLine.last?.components(separatedBy: " ")
     }
     
+    var name = cockatriceCard.name
+    
+    if cockatriceCard.isToken && name.hasPrefix("\(cockatriceCard.set.value) ") {
+      name = String(name[name.index(name.startIndex, offsetBy: cockatriceCard.set.value.count+1)...])
+    }
+    
     self.init(
-      name: cockatriceCard.name,
+      name: name,
       manaCost: cockatriceCard.manaCost ?? "",
       type: type,
       imageUris: nil,
@@ -801,7 +807,99 @@ extension DraftmancerSet {
       }
     }
     
-    self.init(cards: cards, name: cockatriceDatabase.sets.set.map(\.longname).joined(separator: "/"))
+    enum Slot: Int, CaseIterable {
+      case colorless, white, blue, black, red, green, multicolored, artifact, land, basic, other
+      
+      func containsCard(_ card: DraftmancerCard) -> Bool {
+        let colors = card.colors ?? []
+        let type = card.type.lowercased()
+        
+        switch self {
+        case .colorless:
+          return colors.isEmpty && !type.contains("artifact") && !type.contains("land")
+        case .white:
+          return colors == ["W"]
+        case .blue:
+          return colors == ["U"]
+        case .black:
+          return colors == ["B"]
+        case .red:
+          return colors == ["R"]
+        case .green:
+          return colors == ["G"]
+        case .multicolored:
+          return colors.count > 1
+        case .artifact:
+          return colors.isEmpty && type.contains("artifact")
+        case .land:
+          return colors.isEmpty && type.contains("land") && !type.contains("basic")
+        case .basic:
+          return type.contains("basic")
+        case .other:
+          return false
+        }
+      }
+    }
+    
+    enum BasicLandOrder: String {
+      case plains, island, swamp, mountain, forest
+      
+      var number: Int {
+        switch self {
+        case .plains:
+          return 0
+        case .island:
+          return 1
+        case .swamp:
+          return 2
+        case .mountain:
+          return 3
+        case .forest:
+          return 4
+        }
+      }
+    }
+    
+    var finalCards: [DraftmancerCard] = []
+    
+    var cardsGroupedBySet: [String: [DraftmancerCard]] = .init(grouping: cards, by: \.set!)
+    
+    for set in cardsGroupedBySet.keys.sorted(on: \.count) {
+      var cards = cardsGroupedBySet[set]!
+      
+      let cardsGroupedBySlot: [Slot: [DraftmancerCard]] = .init(grouping: cards) { card in
+        Slot.allCases.first(where: { $0.containsCard(card) }) ?? .other
+      }
+      
+      cards = Array(Slot.allCases.map { slot in
+        if slot == .basic {
+          return (cardsGroupedBySlot[slot] ?? []).sorted { first, second in
+            guard
+              let firstType = first.subtypes?.last?.lowercased(),
+              let secondType = second.subtypes?.last?.lowercased(),
+              let firstOrder = BasicLandOrder(rawValue: firstType),
+              let secondOrder = BasicLandOrder(rawValue: secondType) else {
+              return first.name < second.name
+            }
+            return firstOrder.number < secondOrder.number
+          }
+        } else {
+          return (cardsGroupedBySlot[slot] ?? []).sorted(on: \.name)
+        }
+      }.joined())
+      
+      finalCards.append(contentsOf: cards)
+    }
+    
+//    cards = Array(cardsGroupedBySet.map({ (set: String, cards: [DraftmancerCard]) in
+//      let cards = cards.sorted(on: \.name)
+//      let cardsGroupedBySlot: [Slot: [DraftmancerCard]] = .init(grouping: cards) { card in
+//        Slot.allCases.first(where: { $0.containsCard(card) }) ?? Slot.allCases.last!
+//      }
+//      return cardsGroupedBySet.sorted(on: \.key).map(\.value).joined()
+//    }).joined())
+    
+    self.init(cards: finalCards, name: cockatriceDatabase.sets.set.map(\.longname).joined(separator: "/"))
   }
 }
 

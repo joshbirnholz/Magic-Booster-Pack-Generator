@@ -871,24 +871,25 @@ extension DraftmancerSet {
         Slot.allCases.first(where: { $0.containsCard(card) }) ?? .other
       }
       
-      let sortedCards = Slot.allCases.map { slot in
-        if slot == .basic {
-          return (cardsGroupedBySlot[slot] ?? []).sorted { first, second in
-            guard
-              let firstType = first.subtypes?.last?.lowercased(),
-              let secondType = second.subtypes?.last?.lowercased(),
-              let firstOrder = BasicLandOrder(rawValue: firstType),
-              let secondOrder = BasicLandOrder(rawValue: secondType) else {
-              return first.name < second.name
+      for slot in Slot.allCases {
+        let sortedCards: [DraftmancerCard] = {
+          if slot == .basic {
+            return (cardsGroupedBySlot[slot] ?? []).sorted { first, second in
+              guard
+                let firstType = first.subtypes?.last?.lowercased(),
+                let secondType = second.subtypes?.last?.lowercased(),
+                let firstOrder = BasicLandOrder(rawValue: firstType),
+                let secondOrder = BasicLandOrder(rawValue: secondType) else {
+                return first.name < second.name
+              }
+              return firstOrder.number < secondOrder.number
             }
-            return firstOrder.number < secondOrder.number
+          } else {
+            return (cardsGroupedBySlot[slot] ?? []).sorted(on: \.name)
           }
-        } else {
-          return (cardsGroupedBySlot[slot] ?? []).sorted(on: \.name)
-        }
-      }.joined()
-      
-      finalCards.append(contentsOf: sortedCards)
+        }()
+        finalCards.append(contentsOf: sortedCards)
+      }      
     }
     
 //    cards = Array(cardsGroupedBySet.map({ (set: String, cards: [DraftmancerCard]) in

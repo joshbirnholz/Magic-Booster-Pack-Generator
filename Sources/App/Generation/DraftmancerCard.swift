@@ -579,44 +579,59 @@ private func addBracketsToManaCost(_ manaCost: String) -> String {
   var insideBrackets = false
   
   // Iterate over each character in the string
-  for (index, char) in manaCost.enumerated() {
-    if char == "{" {
-      insideBrackets = true
-      buffer.append(char)
-    } else if char == "}" {
-      insideBrackets = false
-      buffer.append(char)
-      result.append(buffer)
-      buffer = ""
-    } else if insideBrackets {
-      buffer.append(char)
-    } else {
-      // If we encounter a slash, it's part of a hybrid symbol
-      if char == "/" && index > 0 && !buffer.isEmpty {
-        buffer.append(char)
-        continue
+  var index = manaCost.startIndex
+  while index < manaCost.endIndex {
+      let char = manaCost[index]
+      
+      if char == "{" {
+          insideBrackets = true
+          buffer.append(char)
+      } else if char == "}" {
+          insideBrackets = false
+          buffer.append(char)
+          result.append(buffer)
+          buffer = ""
+      } else if insideBrackets {
+          buffer.append(char)
+      } else {
+          // Check for custom symbol "Vp"
+          let nextIndex = manaCost.index(after: index)
+          if char == "V", nextIndex < manaCost.endIndex, manaCost[nextIndex] == "p" {
+              result.append("{Vp}")
+              // Skip the next character ('p') as it is part of the "Vp" symbol
+              index = manaCost.index(after: nextIndex)
+              continue
+          }
+          
+          // If we encounter a slash, it's part of a hybrid symbol
+          if char == "/" && !buffer.isEmpty {
+              buffer.append(char)
+              index = manaCost.index(after: index)
+              continue
+          }
+
+          // Check if this is part of a hybrid symbol (e.g., W/U)
+          if nextIndex < manaCost.endIndex && manaCost[nextIndex] == "/" {
+              buffer.append(char)
+          } else {
+              if !buffer.isEmpty {
+                  buffer.append(char)
+                  result.append("{\(buffer)}")
+                  buffer = ""
+              } else {
+                  result.append("{\(char)}")
+              }
+          }
       }
       
-      // Check if this is part of a hybrid symbol (e.g., W/U)
-      if index < manaCost.count - 1 && manaCost[manaCost.index(manaCost.startIndex, offsetBy: index + 1)] == "/" {
-        buffer.append(char)
-      } else {
-        if !buffer.isEmpty {
-          buffer.append(char)
-          result.append("{\(buffer)}")
-          buffer = ""
-        } else {
-          result.append("{\(char)}")
-        }
-      }
-    }
+      index = manaCost.index(after: index)
   }
-  
+
   // Append any remaining buffer (for complex costs like "W/U")
   if !buffer.isEmpty {
-    result.append("{\(buffer)}")
+      result.append("{\(buffer)}")
   }
-  
+
   return result
 }
 

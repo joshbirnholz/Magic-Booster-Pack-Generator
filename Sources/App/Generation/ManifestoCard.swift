@@ -170,7 +170,7 @@ extension DraftmancerSet {
     
     self.init(
       cards: cards,
-      name: manifestoSet.name,
-      string: createDraftmancerStringFromCards(cards))
+      name: manifestoSet.name
+    )
   }
 }

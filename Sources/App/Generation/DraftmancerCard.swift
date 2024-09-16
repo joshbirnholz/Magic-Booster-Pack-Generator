@@ -72,8 +72,9 @@ public struct DraftmancerCard: Codable {
     var power: String?
     var toughness: String?
     var loyalty: String?
+    var keywords: [String]?
     
-    init(name: String, imageUris: [String : URL]? = nil, image: URL? = nil, type: String, subtypes: [String]? = nil, oracleText: String? = nil, power: String? = nil, toughness: String? = nil, loyalty: String? = nil) {
+    init(name: String, imageUris: [String : URL]? = nil, image: URL? = nil, type: String, subtypes: [String]? = nil, oracleText: String? = nil, power: String? = nil, toughness: String? = nil, loyalty: String? = nil, keywords: [String]? = nil) {
       self.name = name
       self.imageUris = imageUris
       self.image = image
@@ -83,6 +84,7 @@ public struct DraftmancerCard: Codable {
       self.power = power
       self.toughness = toughness
       self.loyalty = loyalty
+      self.keywords = keywords
     }
     
     public init(from decoder: Decoder) throws {
@@ -102,6 +104,7 @@ public struct DraftmancerCard: Codable {
       self.power = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.power)
       self.toughness = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.toughness)
       self.loyalty = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.loyalty)
+      self.keywords = try container.decodeIfPresent([String].self, forKey: DraftmancerCard.Face.CodingKeys.keywords)
     }
   }
   
@@ -232,7 +235,7 @@ public struct DraftmancerCard: Codable {
     try container.encodeIfPresent(self.layout, forKey: .layout)
     try container.encodeIfPresent(self.back, forKey: .back)
     
-    if let relatedCardIdentifiers = relatedCardIdentifiers {
+    if let relatedCardIdentifiers = self.relatedCardIdentifiers {
       try container.encode(relatedCardIdentifiers.map(String.init), forKey: .relatedCards)
     } else {
       try container.encodeIfPresent(self.relatedCards, forKey: .relatedCards)
@@ -324,17 +327,38 @@ extension DraftmancerCard {
       imageURIs["large"] = image
     }
     
-    let relatedCards: [MTGCard.RelatedCard]? = self.relatedCardIdentifiers?.compactMap { identifier -> MTGCard.RelatedCard? in
-      return .init(
-        scryfallID: nil,
-        component: MTGCard.RelatedCard.Component.token,
-        name: name,
-        typeLine: nil,
-        url: nil,
-        draftmancerIdentifier: identifier
-      )
-        
-    }
+    let relatedCards: [MTGCard.RelatedCard]? = {
+      if let relatedCards = self.relatedCards {
+        return relatedCards.compactMap { face -> MTGCard.RelatedCard? in
+          var typeLine = face.type
+          if let subtypes = face.subtypes {
+            typeLine += " — \(subtypes.joined(separator: " "))"
+          }
+          
+          return .init(
+            scryfallID: nil,
+            component: MTGCard.RelatedCard.Component.token,
+            name: name,
+            typeLine: typeLine,
+            url: nil,
+            draftmancerIdentifier: nil,
+            draftmancerFace: face
+          )
+        }
+      } else {
+        return self.relatedCardIdentifiers?.compactMap { identifier -> MTGCard.RelatedCard? in
+          return .init(
+            scryfallID: nil,
+            component: MTGCard.RelatedCard.Component.token,
+            name: name,
+            typeLine: nil,
+            url: nil,
+            draftmancerIdentifier: identifier
+          )
+          
+        }
+      }
+    }()
     
     return .init(
       scryfallID: UUID(),
@@ -383,24 +407,60 @@ extension DraftmancerCard {
   }
 }
 
-func customCardsStringFromDraftmancer(_ string: String) -> String? {
+struct DraftmancerSection {
+  let name: String
+  let contents: String
+}
+
+func allDraftmancerSections(in string: String) -> [DraftmancerSection] {
   let matches = string.matches(forRegex: #"^\[(.+)\]"#, options: .anchorsMatchLines)
-  guard let firstSection = matches.first, firstSection.groups.first?.value == "CustomCards" else {
+  return matches.compactMap { $0.groups.first?.value }.compactMap {
+    guard let contents = draftMancerStringSection($0, from: string) else { return nil }
+    return .init(name: $0, contents: contents)
+  }
+}
+
+func draftMancerStringSection(_ section: String, from string: String) -> String? {
+  let matches = string.matches(forRegex: #"^\[(.+)\]"#, options: .anchorsMatchLines)
+  guard let index = matches.firstIndex(where: { $0.groups.first?.value == section }) else {
     return nil
   }
+  let section = matches[index]
   
-  if matches.count > 1 {
-    let secondSection = matches[1]
-    return String(string[firstSection.fullMatch.range.upperBound ..< secondSection.fullMatch.range.lowerBound])
+  if let nextSection = matches.indices.contains(index+1) ? matches[index+1] : nil {
+    return String(string[section.fullMatch.range.upperBound ..< nextSection.fullMatch.range.lowerBound])
   } else {
-    return String(string[firstSection.fullMatch.range.upperBound...])
+    return String(string[section.fullMatch.range.upperBound...])
   }
 }
 
 struct DraftmancerSet: Encodable {
-  let cards: [DraftmancerCard]
-  let name: String
-  let string: String?
+  var cards: [DraftmancerCard]
+  var name: String
+  var displayReversed: Bool = false
+  
+  enum CodingKeys: String, CodingKey {
+    case cards
+    case name
+    case string
+    case isDraftable
+    case displayReversed
+  }
+  
+  var isDraftable: Bool {
+    return [DraftmancerCard.Rarity.common, .uncommon, .rare].allSatisfy { rarity in cards.contains(where: { $0.rarity == rarity }) }
+  }
+  
+  func encode(to encoder: any Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    
+    try container.encode(cards, forKey: .cards)
+    try container.encode(name, forKey: .name)
+    try container.encode(isDraftable, forKey: .isDraftable)
+    try container.encode(string, forKey: .string)
+    try container.encode(displayReversed, forKey: .displayReversed)
+    
+  }
 }
 
 let draftmancerSets: [DraftmancerSet]? = {
@@ -410,9 +470,9 @@ let draftmancerSets: [DraftmancerSet]? = {
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
     
-    var draftmancerSets: [DraftmancerSet] = urls.compactMap { url in
+    var draftmancerSets: [DraftmancerSet] = urls.compactMap { url -> DraftmancerSet? in
       guard let rawData = try? Data(contentsOf: url), let rawString = String(data: rawData, encoding: .utf8) else { return nil }
-      let string = customCardsStringFromDraftmancer(rawString)
+      let string = draftMancerStringSection("CustomCards", from: rawString)
       guard let data = string?.data(using: .utf8) else { return nil }
       
       do {
@@ -420,8 +480,7 @@ let draftmancerSets: [DraftmancerSet]? = {
         
         return DraftmancerSet(
           cards: cards,
-          name: url.deletingPathExtension().lastPathComponent,
-          string: rawString.contains("[Settings]") || rawString.contains("[Layouts]") ? rawString : nil
+          name: url.deletingPathExtension().lastPathComponent
         )
       } catch {
         print("‼️ Error loading cards from \(url.deletingPathExtension().lastPathComponent):", error)
@@ -440,6 +499,63 @@ let draftmancerSets: [DraftmancerSet]? = {
     } ?? []
     
     draftmancerSets.append(contentsOf: fromManifesto)
+    
+    // Fill in missing sets and collector numbers
+    var usedCollectorNumbersForSets: [String: Set<Int>] = [:]
+    draftmancerSets = draftmancerSets.map {
+      var set = $0
+      
+      set.cards = set.cards.map { card in
+        var card = card
+        
+        // Set cards with missing sets to "CUSTOM"
+        if card.set == nil {
+          card.set = "CUSTOM"
+        }
+        
+        // Record used collector numbers
+        
+        if usedCollectorNumbersForSets[card.set!] == nil {
+          usedCollectorNumbersForSets[card.set!] = []
+        }
+        
+        if let collectorNumber = card.collectorNumber.flatMap(Int.init) {
+          usedCollectorNumbersForSets[card.set!]?.insert(collectorNumber)
+        }
+        
+        return card
+      }
+      
+      set.cards = set.cards.map { card in
+        var card = card
+        
+        // Add missing collector numbers
+        if card.collectorNumber == nil {
+          let max = usedCollectorNumbersForSets[card.set!]?.max() ?? 0
+          card.collectorNumber = "\(max+1)"
+          usedCollectorNumbersForSets[card.set!]?.insert(max+1)
+        }
+        
+        return card
+      }
+      
+      let cardsGroupedBySet: [String: [DraftmancerCard]] = .init(grouping: set.cards) { card in
+        card.set!
+      }
+      
+      // Sort cards in collector number order, grouped by set code, regardless of how they were originally defined.
+      // Shorter set codes come first, wchich would put tokens (eg "THLW") come after.
+      set.cards = Array(cardsGroupedBySet.keys.sorted(on: \.count).map { setCode in
+        return cardsGroupedBySet[setCode]!.sorted { $0.collectorNumber!.localizedStandardCompare($1.collectorNumber!) == .orderedAscending }
+      }.joined())
+      
+      
+      if set.name == "Custom Cards" {
+        set.displayReversed = true
+      }
+      
+      return set
+    }
     
     return draftmancerSets.sorted { $0.name < $1.name }
   } catch {
@@ -473,7 +589,7 @@ func getBuiltinDraftmancerCards(_ req: Request) throws -> NIOCore.EventLoopFutur
 }
 
 let loadedDraftmancerCards: [MTGCard]? = {
-  guard let sets = draftmancerSets else { return nil }
+  guard var sets = draftmancerSets else { return nil }
   
   return Array(sets.map { $0.cards.compactMap(\.mtgCard) }.joined())
 }()
@@ -593,23 +709,11 @@ extension DraftmancerCard {
 
 extension DraftmancerSet {
   init(cockatriceDatabase: CockatriceCardDatabase) {
-    var countsForSets: [String: Int] = [:]
-    
     var cards: [DraftmancerCard] = cockatriceDatabase.cards.card.map { cockatriceCard in
       var draftmancerCard = DraftmancerCard(cockatriceCard: cockatriceCard)
       
       if cockatriceCard.isToken {
         draftmancerCard.set = "T" + (draftmancerCard.set ?? "")
-      }
-      
-      if let set = draftmancerCard.set {
-        if let count = countsForSets[set] {
-          countsForSets[set] = count+1
-          draftmancerCard.collectorNumber = "\(count+1)"
-        } else {
-          countsForSets[set] = 1
-          draftmancerCard.collectorNumber = "1"
-        }
       }
       
       return draftmancerCard
@@ -641,50 +745,48 @@ extension DraftmancerSet {
       }
     }
     
-    self.init(cards: cards, name: cockatriceDatabase.sets.set.map(\.longname).joined(separator: "/"), string: createDraftmancerStringFromCards(cards))
+    self.init(cards: cards, name: cockatriceDatabase.sets.set.map(\.longname).joined(separator: "/"))
   }
 }
 
-func createDraftmancerStringFromCards(_ cards: [DraftmancerCard]) -> String? {
-  enum Slot: String, CaseIterable, Hashable, Equatable {
-    case common
-    case uncommon
-    case rare
-    case mythic
-    case special
-    case land
-    case tokens
-    
-    var name: String {
-      rawValue.capitalized
+extension DraftmancerSet {
+  var string: String? {
+    enum Slot: String, CaseIterable, Hashable, Equatable {
+      case common
+      case uncommon
+      case rare
+      case mythic
+      case special
+      case land
+      case tokens
+      
+      var name: String {
+        rawValue.capitalized
+      }
     }
-  }
-  
-  let slots: [Slot?: [DraftmancerCard]] = .init(grouping: cards, by: {
-    if $0.type.contains("Basic") {
-      return .land
-    } else if $0.layout == "token" || $0.layout == "emblem" {
-      return .tokens
-    } else if let rarity = $0.rarity {
-      return Slot(rawValue: rarity.rawValue.lowercased())
-    } else {
+    
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+    
+    guard let data = try? encoder.encode(cards), let string = String(data: data, encoding: .utf8) else {
       return nil
     }
-  })
-  
-  guard Set<Slot>([.common, .uncommon, .rare]).isSubset(of: Set(slots.keys.compactMap({ $0 }))) else {
-    return nil
-  }
-  
-  let encoder = JSONEncoder()
-  encoder.keyEncodingStrategy = .convertToSnakeCase
-  encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-  
-  if let data = try? encoder.encode(cards), let string = String(data: data, encoding: .utf8) {
+    
     var draftmancerString = ""
     
     draftmancerString += "[CustomCards]\n"
     draftmancerString += string
+    
+    guard isDraftable else {
+      // If the set isn't draftable, just include all the cards in one slot so they can be viewed on Draftmancer, at least.
+      draftmancerString += "\n[DefaultSlot]\n"
+      for card in cards {
+        draftmancerString += [card.name, card.set.flatMap { "(\($0.uppercased()))" }, card.collectorNumber].compactMap{ $0 }.joined(separator: " ") + "\n"
+      }
+      
+      return draftmancerString
+    }
     
     struct Settings: Encodable {
       struct Layout: Encodable, Equatable {
@@ -696,101 +798,122 @@ func createDraftmancerStringFromCards(_ cards: [DraftmancerCard]) -> String? {
       var layouts: [String: Layout]
     }
     
-    draftmancerString += "\n[Settings]\n"
-    
-    let encoder = JSONEncoder()
-    encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-    
-    let baseLayout: Settings.Layout = {
-      var layout: Settings.Layout = .init(weight: 7, slots: [:])
-      var count = 14
-      
-//      if slots[.special] != nil {
-//        layout.slots[Slot.special.name] = 1
-//        count -= 1
-//      }
-      if slots[.rare] != nil {
-        layout.slots[Slot.rare.name] = 1
-        count -= 1
+    let slots: [Slot?: [DraftmancerCard]] = .init(grouping: cards, by: {
+      if $0.type.contains("Basic") {
+        return .land
+      } else if $0.layout == "token" || $0.layout == "emblem" {
+        return .tokens
+      } else if let rarity = $0.rarity {
+        return Slot(rawValue: rarity.rawValue.lowercased())
+      } else {
+        return nil
       }
-      if slots[.uncommon] != nil {
-        layout.slots[Slot.uncommon.name] = 3
-        count -= 3
-      }
-      if slots[.land] != nil {
-        layout.slots[Slot.land.name] = 1
-      }
-      layout.slots[Slot.common.name] = count
-      return layout
-    }()
+    })
     
-    var layouts = ["Rare": baseLayout]
-    
-    if slots[.mythic] != nil {
-      var mythicLayout = baseLayout
-      mythicLayout.slots[Slot.mythic.name] = 1
-      mythicLayout.slots[Slot.rare.name] = nil
-      mythicLayout.weight = 1
-      
-      layouts["Mythic"] = mythicLayout
-    }
-    
-    let standardRareLayout = Settings.Layout(weight: 7, slots: [Slot.common.name: 10, Slot.uncommon.name: 3, Slot.rare.name: 1, Slot.land.name: 1])
-    let standardMythicLayout = Settings.Layout(weight: 1, slots: [Slot.common.name: 10, Slot.uncommon.name: 3, Slot.mythic.name: 1, Slot.land.name: 1])
-    
-    let standardMythicString = layouts.contains(where: { $0 == "Mythic" && $1 == standardMythicLayout }) ? """
-          "Mythic" : {
-            "slots" : {
-              "Land" : 1,
-              "Mythic" : 1,
-              "Uncommon" : 3,
-              "Common" : 10
-            },
-            "weight" : 1
-          },
-          
-    """ : ""
-    
-    if layouts == ["Rare": standardRareLayout, "Mythic": standardMythicLayout] || layouts == ["Rare": standardRareLayout] {
-      // If the standard slots are being used, then encode it manually to keep order
-      draftmancerString += """
-      {
-        "layouts" : {
-          \(standardMythicString)"Rare" : {
-            "slots" : {
-              "Land" : 1,
-              "Rare" : 1,
-              "Uncommon" : 3,
-              "Common" : 10
-            },
-            "weight" : 7
-          }
-        },
-        "withReplacement" : true
+    let url = urlForResource(name, withExtension: "txt", subdirectory: "Draftmancer")
+    if let rawData = try? Data(contentsOf: url), let allSections = String(data: rawData, encoding: .utf8).flatMap(allDraftmancerSections(in:)), allSections.count > 1 {
+      // Set has specified settings/slots already, use them directoy
+      for section in allSections where section.name != "CustomCards" {
+        draftmancerString += "\n[\(section.name)]\n" + section.contents.trimmingCharacters(in: .newlines)
       }
       
-      """
+      return draftmancerString
     } else {
-      let settings = Settings(
-        withReplacement: true,
-        layouts: layouts
-      )
+      // Create new default settings
+      draftmancerString += "\n[Settings]\n"
       
-      draftmancerString += String(data: try! encoder.encode(settings), encoding: .utf8)! + "\n"
-    }
-    
-    for slot in Slot.allCases {
-      guard let cards = slots[slot] else { continue }
+      let encoder = JSONEncoder()
+      encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
       
-      draftmancerString += "[\(slot.name)]\n"
-      for card in cards {
-        draftmancerString += [card.name, card.set.flatMap { "(\($0))" }, card.collectorNumber].compactMap{ $0 }.joined(separator: " ") + "\n"
+      let baseLayout: Settings.Layout = {
+        var layout: Settings.Layout = .init(weight: 7, slots: [:])
+        var count = 14
+        
+        //      if slots[.special] != nil {
+        //        layout.slots[Slot.special.name] = 1
+        //        count -= 1
+        //      }
+        if slots[.rare] != nil {
+          layout.slots[Slot.rare.name] = 1
+          count -= 1
+        }
+        if slots[.uncommon] != nil {
+          layout.slots[Slot.uncommon.name] = 3
+          count -= 3
+        }
+        if slots[.land] != nil {
+          layout.slots[Slot.land.name] = 1
+        }
+        layout.slots[Slot.common.name] = count
+        return layout
+      }()
+      
+      var layouts = ["Rare": baseLayout]
+      
+      if slots[.mythic] != nil {
+        var mythicLayout = baseLayout
+        mythicLayout.slots[Slot.mythic.name] = 1
+        mythicLayout.slots[Slot.rare.name] = nil
+        mythicLayout.weight = 1
+        
+        layouts["Mythic"] = mythicLayout
       }
+      
+      let standardRareLayout = Settings.Layout(weight: 7, slots: [Slot.common.name: 10, Slot.uncommon.name: 3, Slot.rare.name: 1, Slot.land.name: 1])
+      let standardMythicLayout = Settings.Layout(weight: 1, slots: [Slot.common.name: 10, Slot.uncommon.name: 3, Slot.mythic.name: 1, Slot.land.name: 1])
+      
+      let standardMythicString = layouts.contains(where: { $0 == "Mythic" && $1 == standardMythicLayout }) ? """
+            "Mythic" : {
+              "slots" : {
+                "Land" : 1,
+                "Mythic" : 1,
+                "Uncommon" : 3,
+                "Common" : 10
+              },
+              "weight" : 1
+            },
+            
+      """ : ""
+      
+      if layouts == ["Rare": standardRareLayout, "Mythic": standardMythicLayout] || layouts == ["Rare": standardRareLayout] {
+        // If the standard slots are being used, then encode it manually to keep order
+        draftmancerString += """
+        {
+          "layouts" : {
+            \(standardMythicString)"Rare" : {
+              "slots" : {
+                "Land" : 1,
+                "Rare" : 1,
+                "Uncommon" : 3,
+                "Common" : 10
+              },
+              "weight" : 7
+            }
+          },
+          "withReplacement" : true
+        }
+        
+        """
+      } else {
+        let settings = Settings(
+          withReplacement: true,
+          layouts: layouts
+        )
+        
+        draftmancerString += String(data: try! encoder.encode(settings), encoding: .utf8)! + "\n"
+      }
+      
+      for slot in Slot.allCases {
+        guard let cards = slots[slot] else { continue }
+        
+        draftmancerString += "[\(slot.name)]\n"
+        for card in cards {
+          draftmancerString += [card.name, card.set.flatMap { "(\($0.uppercased()))" }, card.collectorNumber].compactMap{ $0 }.joined(separator: " ") + "\n"
+        }
+      }
+      
+      return draftmancerString
     }
-    
-    return draftmancerString
-  } else {
-    return nil
   }
 }
 

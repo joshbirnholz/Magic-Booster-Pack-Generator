@@ -382,9 +382,6 @@ function doDownloadDeck() {
 		}
 	}
 	
-	var customOverrides = document.getElementById("customoverrides").value;
-	url += "&customoverrides=" + customOverrides;
-	
 	$.ajax({
 		url: url,
 		data: data,
@@ -469,75 +466,6 @@ function loadSets() {
 	})
 }
 
-function loadCustomCards() {
-	$.ajax({
-		url: "customcards",
-		data: null,
-		cache: false,
-		contentType: false,
-		processData: false,
-		method: "GET",
-		success: function(response) {
-			console.log("success:");
-      console.log(response);
-			
-			var table = document.getElementById("cardtable");
-			
-			var dataCount = 0;
-			var rowCount = 6;
-			var row = document.createElement("tr");
-			table.appendChild(row);
-      var cards = response.cards;
-			
-			for(var i=cards.length-1; i >=0; i--) {
-				var element = cards[i];
-				
-				var data = document.createElement("td");
-				var num = i+1;
-				data.innerHTML = "<center><div><a href='" + element.imageURL + "'><img src='" + element.imageURL + "' height=264 width=189 style='border-radius:10px;'></a></div><p>" + element.name + "<br>#" + num + "</p><br></center>";
-				
-				row.appendChild(data);
-				dataCount += 1;
-				if (dataCount >= rowCount) {
-					table.appendChild(row);
-					row = document.createElement("tr");
-					table.appendChild(row);
-					dataCount = 0;
-				}
-			}
-			
-			while (dataCount < rowCount) {
-				var data = document.createElement("td");
-				row.appendChild(data);
-				dataCount += 1;
-			}
-      
-      // Copy draftmancer output
-      var button = document.createElement("button");
-      button.innerHTML = "Copy Draftmancer Custom Cards"
-      button.onclick = function() {
-        navigator.clipboard.writeText(response.draftmancerOutput);
-        
-        var notification = document.getElementById("copyresult");
-        if (notification.innerHTML == "") {
-          notification.innerHTML = "Copied to clipboard. Paste it at the beginning of your Draftmancer custom list, then identify your cards with the set code CUSTOM and optionally specify the collector number."
-        }
-      };
-      
-      document.getElementById("draftmanceroutput").appendChild(button);
-      
-		},
-		error: function(xhr, status, error) {
-			console.log("error");
-			console.log(xhr);
-			console.log(status);
-			console.log(error);
-			
-			alert(error);
-		}
-	})
-}
-
 function loadDraftmancerCards() {
   $.ajax({
     url: "draftmancercards",
@@ -551,19 +479,28 @@ function loadDraftmancerCards() {
       console.log(response);
       
       var tabs = document.getElementById('tabs');
+      var tabsDraftable = document.getElementById('tabs-draftable');
       for(var i = 0; i<response.length; i++) {
         const cardset = response[i];
         
         var button = document.createElement('button');
         button.innerHTML = cardset.name;
+        button.id = cardset.name;
         button.onclick = function() {
           setDraftmancerCardSet(cardset);
         };
-        tabs.appendChild(button);
+        (cardset.is_draftable ? tabsDraftable : tabs).appendChild(button);
       }
       
-      setDraftmancerCardSet(response[0])
+      if (window.location.hash) {
+        var index = response.findIndex(cardset => cardset.name == decodeURI(window.location.hash.substring(1)));
+        setDraftmancerCardSet(response[index] || response[0]);
+      } else {
+        var index = response.findIndex(cardset => cardset.name == "Custom Cards");
+        setDraftmancerCardSet(response[index] || response[0]);
+      }
       
+      document.getElementById('loading').hidden = true;
     },
     error: function(xhr, status, error) {
       console.log("error");
@@ -602,14 +539,20 @@ function setDraftmancerCardSet(cardset) {
   var row = document.createElement("tr");
   table.appendChild(row);
   
-  var cards = cardset.cards;
+  var cards = cardset.display_reversed ? cardset.cards.reverse() : cardset.cards;
   
   for(var i=0; i <cards.length; i++) {
     var element = cards[i];
     
     var data = document.createElement("td");
+    
+    var rarity = "";
+    if (element.rarity) {
+      rarity = " (" + Array.from(element.rarity)[0].toUpperCase() + ")";
+    }
+    
     var imageURL = element.image || element.image_uris["en"];
-    data.innerHTML = "<center><div><a href=\"" + imageURL + "\"><img src=\"" + imageURL + "\" height=264 width=189 style='border-radius:10px;'></a></div><p>" + element.name + "<br>" + element.set.toUpperCase() + " #" + element.collector_number + "</p><br></center>";
+    data.innerHTML = "<center><div><a href=\"" + imageURL + "\"><img src=\"" + imageURL + "\" height=264 width=189 style='border-radius:10px;'></a></div><p>" + element.name + "<br>" + element.set.toUpperCase() + " #" + element.collector_number + rarity + "</p><br></center>";
     
     row.appendChild(data);
     dataCount += 1;
@@ -626,6 +569,8 @@ function setDraftmancerCardSet(cardset) {
     row.appendChild(data);
     dataCount += 1;
   }
+  
+  window.location.hash = cardset.name;
   
 }
 
@@ -887,58 +832,6 @@ function updateChecks() {
 			element.style.opacity = 0.3;
 		}
 	}
-}
-
-function addCustomCard(number) {
-	var box = document.getElementById('customoverrides');
-	
-	if (box.value !== "") {
-		if (!box.value.endsWith(";")) {
-			box.value += ";";
-		}
-		box.value += number;
-	} else {
-		box.value = number;
-	}
-	
-}
-
-function loadCustomCardsList() {
-	$.ajax({
-		url: "customcards",
-		data: null,
-		cache: false,
-		contentType: false,
-		processData: false,
-		method: "GET",
-		success: function(response) {
-			var div = document.getElementById("customlist");
-			var shownCards = 5;
-			
-			var offset = 1;
-			var elements = response.map((element) => {
-				element.offset = offset;
-				offset += 1;
-				return element;
-			});
-			var newest = elements.slice(Math.max(response.length - shownCards, 0));
-			var objects = newest.reverse().map((element) => {
-//				return element.name;
-				
-				var baseW = 63;
-				var baseH = 88;
-				
-				var smallScale = 2;
-				var zoomScale = 5;
-				
-				return "<a class='thumbnail' href='javascript:addCustomCard(" + element.offset +");'><img style='border-radius:7px;' src='" + element.imageURL + "' width='" + (baseW*smallScale) +"px' height='" + (baseH*smallScale) + "px' border='0' /><span><img style='border-radius:17px;' src='" + element.imageURL + "' width='" + (baseW*zoomScale) +"px' height='" + (baseH*zoomScale) + "px' /></span></a>"
-			});
-			div.innerHTML = objects.join(" ");
-		},
-		error: function(xhr, status, error) {
-			
-		}
-	})
 }
 
 function loadSeeds() {

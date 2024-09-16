@@ -37,7 +37,6 @@ public func routes(_ app: Application) throws {
 
 	app.post("url", ":deck", use: generatorController.deckstatsDeck)
 
-	app.get("customcards", use: CustomCards.shared.getCustomCards)
 	app.get("seeds", use: SeedOptions.shared.getAllSeeds)
   
   app.get("draftmancercards", use: getBuiltinDraftmancerCards)

@@ -5,7 +5,6 @@
 	<script src="scripts.js"></script>
 	<script>
 		loadSets();
-		loadCustomCardsList();
 		loadSeeds();
 		
 		if (window.location.href.includes("herokuapp.com")) {
@@ -31,7 +30,6 @@
 	<input type="checkbox" id="autofix" checked>
 		<label for="autofix"> Fix errors automatically</label><br><br>
 		<input id="back" type="text" size="52" placeholder="Card back image URL (optional)"></input><br>
-		<input id="customoverrides" type="text" size="52" placeholder="Custom card overrides (semicolon separated)"></input><br>
 		
 		<p id="herokumove" hidden><b>Important: This tool is moving.</b> After November 28, 2022, this site will stop working from this address.<br>Please use the new URL at: <a href="https://tts-magic-booster.fly.dev/">https://tts-magic-booster.fly.dev/</a></p>
     
@@ -39,13 +37,9 @@
       
       <p>
         <small>
-          <a href="draftmancercards.html">View Draftmancer sets</a>
+          <a href="customcards.html">View custom cards</a>
         </small>
       </p>
-      
-			<small>
-				Newest custom cards: <i><a href="customcards.html">(View all)</a></i><div id="customlist"></div>
-			</small>
 			
 			<hr>
 			<p>
@@ -100,22 +94,14 @@
 										<p>Tokens will be added automatically. To use specific a specific version or art for a token, include the token anywhere in your deck list, like this:</p>
 										<ul><li>1 Spirit (TGK2) 2</li></ul>
 										
-										<p>Some custom cards are available. You can see the available custom cards <a href="customcards.html">here</a>. Use custom cards by specifying set code CUSTOM, such as:</p>
+										<p>Some custom cards are available. You can see the available custom cards <a href="customcards.html">here</a>. Use custom cards as normal by specifying their set code (and optionally their collector number), such as:</p>
 										
 										<ul>
 											<li>1 Demonic Tutor (CUSTOM) 1</li>
 										</ul>
 										
-										<p>If importing via a deck URL, you can still specify custom cards by entering either their names or numbers, separated by commas, in the <i>custom card overrides</i> box. If you use a card with a comma in the name, you can use semicolors instead of commas:</p>
-										<ul>
-											<li>Thalisse</li>
-											<li>Thalisse, Reverent Medium;Generous Gift</li>
-											<li>Counterspell,31</li>
-											<li>16,34</li>
-										</ul>
-										</p>
 										<p>
-										You can specify custom card images (alters) by setting a card's comment on  deckstats.net to a URL to the image you want to use.
+										You can specify custom card images (alters) by setting a card's comment on deckstats.net to a URL to the image you want to use.
 										</p>
 										
 										<p>Example:</p>

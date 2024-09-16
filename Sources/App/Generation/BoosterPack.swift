@@ -4819,7 +4819,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			mythicPolicy = .previous
 		}
 	case .cardlist:
-		return try deck(.arena(inputString), export: export, cardBack: cardBack, autofix: autofixDecklist, customOverrides: [])
+		return try deck(.arena(inputString), export: export, cardBack: cardBack, autofix: autofixDecklist)
 	}
 	
 	guard !mtgCards.isEmpty else { throw PackError.noCards }
@@ -6289,7 +6289,10 @@ fileprivate func getAllTokens(_ cards: [MTGCard], _ tokens: inout [MTGCard]) {
   }.joined()))
 	
 	if !tokenIdentifiers.isEmpty {
+    var hasMissingIdentifiers = false
+    
 		do {
+      // Get tokens from scryfall
 			let collection = try Swiftfall.getCollection(identifiers: tokenIdentifiers)
 			tokens.append(contentsOf: collection.data.map(MTGCard.init).filter { card in card.oracleID != nil && !tokens.contains(where: { manualToken in manualToken.oracleID == card.oracleID }) })
 			
@@ -6302,16 +6305,51 @@ fileprivate func getAllTokens(_ cards: [MTGCard], _ tokens: inout [MTGCard]) {
 				
 				return cards.first
 			}
+      
+      if let notFound = collection.notFound, !notFound.isEmpty {
+        hasMissingIdentifiers = true
+      }
 		} catch {
 			
 		}
     
-    for tokenIdentifier in tokenIdentifiers {
-      if let card = loadedDraftmancerCards?[tokenIdentifier] {
-        tokens.append(card)
+    if hasMissingIdentifiers {
+      // Get custom tokens from identifiers
+      for tokenIdentifier in tokenIdentifiers {
+        if let card = loadedDraftmancerCards?[tokenIdentifier] {
+          tokens.append(card)
+        }
       }
     }
 	}
+  
+  
+  let draftmancerFaces: [DraftmancerCard.Face] = Array(Set(cards.compactMap { card in
+    // Get completely custom tokens
+    return card.allParts?.compactMap { part -> DraftmancerCard.Face? in
+      guard part.component == .token else { return nil }
+      
+      return part.draftmancerFace
+    }
+  }.joined()))
+  
+  print("Getting tokens")
+  
+  let draftmancerTokens: [MTGCard] = draftmancerFaces.compactMap { face -> MTGCard? in
+    guard let image = face.image ?? face.imageUris?["en"] else { return nil }
+    guard face.type.lowercased().contains("token") || face.type.lowercased().contains("emblem") || face.type.lowercased().contains("card") else { return nil }
+    var typeLine = face.type
+    if let subtypes = face.subtypes {
+      typeLine += " – " + subtypes.joined(separator: " ")
+    }
+    print("Created token")
+    return .init(scryfallID: UUID(), oracleID: nil, typeLine: typeLine, power: face.power, toughness: face.toughness, oracleText: face.oracleText, flavorText: nil, name: face.name, loyalty: face.loyalty, cardFaces: nil, convertedManaCost: nil, layout: "token", frame: "2015", frameEffects: nil, manaCost: nil, scryfallURL: nil, borderColor: nil, isFullArt: false, allParts: nil, collectorNumber: "", set: "", colors: nil, producedMana: nil, colorIdentity: nil, keywords: face.keywords, printedName: nil, printedText: nil, printedTypeLine: nil, artist: nil, watermark: nil, rarity: .common, scryfallCardBackID: nil, isFoilAvailable: false, isNonFoilAvailable: true, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], promoTypes: nil, language: .english, releaseDate: nil, isTextless: false, imageUris: ["normal": image, "large": image])
+  }
+  
+  print("Got tokens")
+  
+  tokens.append(contentsOf: draftmancerTokens)
+  print("Appended")
 }
 
 fileprivate func getAllTokens(for cards: [MTGCard]) -> [MTGCard] {
@@ -6481,32 +6519,10 @@ extension MTGCard {
 //  return ""
 //}
 
-func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil, customOverrides: [String]) throws -> String {
+func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil) throws -> String {
 	enum CustomOverride {
 		case identifiers(String)
 		case url(name: String, imageURL: URL)
-	}
-	
-	let customOverrides: [CustomOverride] = customOverrides.compactMap { customOverrides in
-		guard !customOverrides.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
-		
-		if customOverrides.contains("http") {
-			guard let index = customOverrides.firstIndex(of: ":") else { return nil }
-			let name = String(customOverrides[..<index])
-			let urlStartIndex = customOverrides.index(after: index)
-			var urlString = String(customOverrides[urlStartIndex...])
-			if urlString.hasPrefix(":") {
-				urlString = String(urlString.dropFirst())
-			}
-			guard let url = URL(string: urlString) else { return nil }
-			return .url(name: name, imageURL: url)
-		}
-		
-		if !customOverrides.contains(";") {
-			return .identifiers(customOverrides.replacingOccurrences(of: ",", with: ";"))
-		} else {
-			return .identifiers(customOverrides)
-		}
 	}
 	
 	let parsed: [DeckParser.CardGroup] = {
@@ -6772,48 +6788,6 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		}
 	}
 	
-	// Custom card overrides
-	for customOverrides in customOverrides {
-		switch customOverrides {
-		case .identifiers(let customOverrides):
-			let customCardOverrides: [String] = customOverrides.components(separatedBy: ";")
-			for override in customCardOverrides {
-				let identifier: MTGCardIdentifier = {
-					let trimmed = override.trimmingCharacters(in: .whitespacesAndNewlines)
-					if let number = Int(trimmed) {
-						return .collectorNumberSet(collectorNumber: String(number), set: "custom", name: nil)
-					} else {
-						return .name(trimmed)
-					}
-				}()
-				
-				guard let customCard = CustomCards.shared.card(with: identifier) else { continue }
-				
-				mtgCards = mtgCards.map {
-					if $0.oracleID == customCard.oracleID {
-						return customCard
-					} else {
-						return $0
-					}
-				}
-			}
-		case .url(let name, let imageURL):
-			mtgCards = mtgCards.map {
-				if $0.name == name {
-					var card = $0
-					var imageURIs = card.imageUris ?? [:]
-					imageURIs["normal"] = imageURL
-					imageURIs["large"] = imageURL
-					card.imageUris = imageURIs
-					return card
-				} else {
-					return $0
-				}
-			}
-		}
-		
-	}
-	
 	for group in parsed {
 		for cardCount in group.cardCounts {
 			guard let alterURL = cardCount.alter else { continue }
@@ -6858,15 +6832,6 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 				mtgCards[index].imageUris = imageURIs
 			}
 		}
-	}
-	
-	for identifier in customIdentifiers {
-		guard let card = CustomCards.shared.card(with: identifier) else {
-			notFound.append(identifier)
-			continue
-		}
-		identifiers.append(identifier)
-		mtgCards.append(card)
 	}
 	
 	guard notFound.isEmpty else {

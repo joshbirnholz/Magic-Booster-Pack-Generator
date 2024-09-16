@@ -176,7 +176,7 @@ public enum MTGCardIdentifier: Codable, Hashable, CustomStringConvertible {
 		switch self {
 			
 		case .id(let id):
-			return "Scryfall ID \(id)"
+      return id.uuidString
     case .idName(let id, let name):
       return "Scryfall ID \(id) (\(name))"
 		case .mtgoID(let id):

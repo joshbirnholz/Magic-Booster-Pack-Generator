@@ -65,6 +65,7 @@ public struct MTGCard: Codable, Equatable, Hashable {
 		public var typeLine: String?
 		public var url: URL?
     public var draftmancerIdentifier: MTGCardIdentifier?
+    public var draftmancerFace: DraftmancerCard.Face?
 	}
 	
 	public enum Language: String, Codable, Equatable, Hashable {

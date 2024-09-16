@@ -3,13 +3,22 @@
 	<meta charset="utf-8"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="scripts.js"></script>
-	<script>loadCustomCards();</script>
+	<script>loadDraftmancerCards();</script>
 	
 	<link rel="stylesheet" href="style.css"></style>
 </head>
 <body>
 	
-	<p><b>Newest Custom Cards</b></p>
+	<h1>Draftmancer Cards</h1>
+  
+  <p>You can include these custom cards in your decks just as you would with any other card! Specify them by the name, set, and collector numbers shown here.</p>
+  
+  <p id='tabs'>Custom Cards Lists:<br></p>
+  <p id='tabs-draftable'>Draftable Sets:<br></p>
+  
+  <h2 id='cardset-title'></h2>
+  
+  <p id='download-button'></p>
 	
 	<style>
 	.cardtable {
@@ -27,8 +36,7 @@
 	}
 	</style>
   
-  <p id="draftmanceroutput"></p>
-  <p id="copyresult"></p>
+  <p id="loading"><i>Loading…</i></p>
 	
 	<table id="cardtable">
 		

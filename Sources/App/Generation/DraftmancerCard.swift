@@ -865,13 +865,13 @@ extension DraftmancerSet {
     var cardsGroupedBySet: [String: [DraftmancerCard]] = .init(grouping: cards, by: \.set!)
     
     for set in cardsGroupedBySet.keys.sorted(on: \.count) {
-      var cards = cardsGroupedBySet[set]!
+      let cards = cardsGroupedBySet[set]!
       
       let cardsGroupedBySlot: [Slot: [DraftmancerCard]] = .init(grouping: cards) { card in
         Slot.allCases.first(where: { $0.containsCard(card) }) ?? .other
       }
       
-      cards = Array(Slot.allCases.map { slot in
+      let sortedCards = Slot.allCases.map { slot in
         if slot == .basic {
           return (cardsGroupedBySlot[slot] ?? []).sorted { first, second in
             guard
@@ -886,9 +886,9 @@ extension DraftmancerSet {
         } else {
           return (cardsGroupedBySlot[slot] ?? []).sorted(on: \.name)
         }
-      }.joined())
+      }.joined()
       
-      finalCards.append(contentsOf: cards)
+      finalCards.append(contentsOf: sortedCards)
     }
     
 //    cards = Array(cardsGroupedBySet.map({ (set: String, cards: [DraftmancerCard]) in

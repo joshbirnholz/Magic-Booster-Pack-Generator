@@ -738,7 +738,7 @@ extension DraftmancerCard {
     
     var name = cockatriceCard.name
     
-    if cockatriceCard.isToken && name.hasPrefix("\(cockatriceCard.set.value) ") {
+    if (cockatriceCard.isToken || type.contains("Basic")) && name.hasPrefix("\(cockatriceCard.set.value) ") {
       name = String(name[name.index(name.startIndex, offsetBy: cockatriceCard.set.value.count+1)...])
     }
     

@@ -521,6 +521,7 @@ String.prototype.capitalize = function() {
 }
 
 var currentCardset;
+var currentRarity;
 
 function toggleViewMode() {
   localStorage.setItem("showDetails", !(localStorage.getItem("showDetails") === 'true'))
@@ -545,12 +546,41 @@ function setDraftmancerCardSet(cardset) {
     p.appendChild(button);
   }
   
+  // Rarity
+  p.innerHTML += "<br>";
+  var allRaritiesButton = document.createElement("button");
+  allRaritiesButton.innerHTML = "All";
+  allRaritiesButton.onclick = function() {
+    currentRarity = null;
+    setDraftmancerCardSet(cardset);
+  };
+  p.appendChild(allRaritiesButton);
+  
+  var rarities = ["common", "uncommon", "rare", "mythic", "special"];
+  rarities.forEach((rarity) => {
+    var button = document.createElement("button");
+    button.innerHTML = rarity.capitalize();
+    button.onclick = function() {
+      currentRarity = rarity;
+      setDraftmancerCardSet(cardset);
+    };
+    if (currentRarity == rarity) {
+      button.style.background='#000000';
+      button.style.color='white';
+    }
+    p.appendChild(button);
+  });
+  
   // Setup table
   
   var table = document.getElementById("cardtable");
   table.innerHTML = "<style>th, td { padding-block: 2px; padding-inline: 4px } </style>";
   
   var cards = cardset.cards;
+  
+  if (currentRarity) {
+    cards = cards.filter((card) => card.rarity == currentRarity);
+  }
   
   if (localStorage.getItem("showDetails") === 'true') {
     for(var i=0; i <cards.length; i++) {

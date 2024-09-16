@@ -29,7 +29,7 @@
       <cmc>1</cmc>
       <type>Instant</type>
       <tablerow>3</tablerow>
-      <text>Arm target creature. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)</text>
+      <text>Arm target creature. (Create a Weapon token attached to that creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Battle Tested</name>
@@ -115,7 +115,7 @@
       <type>Creature - Human Rebel </type>
       <pt>1/1</pt>
       <tablerow>2</tablerow>
-      <text>When Rooftop Rebel enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+      <text>When Rooftop Rebel enters the battlefield, arm it. (Create a Weapon token attached to this creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Freedom Fighters</name>
@@ -126,7 +126,7 @@
       <type>Creature - Human Rebel </type>
       <pt>1/3</pt>
       <tablerow>2</tablerow>
-      <text>When Freedom Fighters enters the battlefield, arm it twice. (Create two colorless Equipment artifact tokens named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+      <text>When Freedom Fighters enters the battlefield, arm it twice. (Create two Weapon tokens attached to this creature. They're Equipment artifacts with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Overwatch Droid</name>
@@ -403,7 +403,7 @@
       <pt>0/1</pt>
       <tablerow>2</tablerow>
       <text>Flying
-        When Skyguard Officer enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+        When Skyguard Officer enters the battlefield, arm it. (Create a Weapon token attached to this creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Steel Sabotage</name>
@@ -448,7 +448,7 @@
       <pt>1/2</pt>
       <tablerow>2</tablerow>
       <text>Deathtouch
-        When Blackwatch Assassin enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+        When Blackwatch Assassin enters the battlefield, arm it. (Create a Weapon token attached to this creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Blackwatch Intimidator</name>
@@ -622,7 +622,7 @@
       <cmc>3</cmc>
       <type>Instant</type>
       <tablerow>3</tablerow>
-      <text>Arm target creature. It gains double strike until end of turn. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)</text>
+      <text>Arm target creature. It gains double strike until end of turn. (Create a Weapon token attached to that creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Cyber Courier</name>
@@ -634,7 +634,7 @@
       <pt>0/0</pt>
       <tablerow>2</tablerow>
       <text>Haste
-        Cyber Courier enters the battlefield armed. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+        Cyber Courier enters the battlefield armed. (Create a Weapon token attached to this creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Junkyard Boss</name>
@@ -676,7 +676,7 @@
       <type>Creature - Human Rebel </type>
       <pt>3/2</pt>
       <tablerow>2</tablerow>
-      <text>When Road Rebel enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+      <text>When Road Rebel enters the battlefield, arm it. (Create a Weapon token attached to this creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Robotic Revolutionary</name>
@@ -709,7 +709,7 @@
       <type>Creature - Lizard Mutant </type>
       <pt>2/1</pt>
       <tablerow>2</tablerow>
-      <text>When Gun Runner enters the battlefield, arm target creature you control. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)</text>
+      <text>When Gun Runner enters the battlefield, arm target creature you control. (Create a Weapon token attached to that creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Saurian Striker</name>
@@ -901,7 +901,7 @@
       <cmc>3</cmc>
       <type>Sorcery</type>
       <tablerow>3</tablerow>
-      <text>Arm target creature you control. Then that creature fights target creature you don’t control. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)</text>
+      <text>Arm target creature you control. Then that creature fights target creature you don’t control. (Create a Weapon token attached to that creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Soylent Soaker</name>
@@ -990,7 +990,7 @@
       <type>Artifact Creature - Construct </type>
       <pt>1/1</pt>
       <tablerow>2</tablerow>
-      <text>When Combat Droid enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+      <text>When Combat Droid enters the battlefield, arm it. (Create a Weapon token attached to this creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Citizen Droid</name>
@@ -1579,7 +1579,7 @@
       <pt>2/1</pt>
       <tablerow>2</tablerow>
       <text>Menace
-        Whenever Hunter-Seeker deals combat damage to a player, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+        Whenever Hunter-Seeker deals combat damage to a player, arm it. (Create a Weapon token attached to this creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Hitman's Discretion</name>
@@ -1624,7 +1624,7 @@
       <type>Creature - Human Rebel </type>
       <pt>2/2</pt>
       <tablerow>2</tablerow>
-      <text>1, Sacrifice another creature: Arm Gun Collector. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+      <text>1, Sacrifice another creature: Arm Gun Collector. (Create a Weapon token attached to this creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Garden Grafter</name>
@@ -1646,7 +1646,7 @@
       <cmc>3</cmc>
       <type>Sorcery</type>
       <tablerow>3</tablerow>
-      <text>Arm each creature you control. They gain vigilance until end of turn. (Create colorless Equipment artifact tokens named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to those creatures.)</text>
+      <text>Arm each creature you control. They gain vigilance until end of turn. (Create a Weapon token attached to each of those creatures. They're Equipment artifacts with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Extremist's Discretion</name>
@@ -1817,7 +1817,7 @@
       <cmc>2</cmc>
       <type>Instant</type>
       <tablerow>3</tablerow>
-      <text>Return target creature card with mana value 2 or less from your graveyard to the battlefield. Arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)</text>
+      <text>Return target creature card with mana value 2 or less from your graveyard to the battlefield. Arm it. (Create a Weapon token attached to that creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Atares 14</name>
@@ -1840,7 +1840,7 @@
       <type>Creature - Human Rebel </type>
       <pt>3/3</pt>
       <tablerow>2</tablerow>
-      <text>When Assault Squad enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)
+      <text>When Assault Squad enters the battlefield, arm it. (Create a Weapon token attached to this creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)
         Equipped creatures you control have haste.</text>
     </card>
     <card>
@@ -1852,7 +1852,7 @@
       <type>Artifact Creature - Construct </type>
       <pt>1/2</pt>
       <tablerow>2</tablerow>
-      <text>When Arms Merchant enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)
+      <text>When Arms Merchant enters the battlefield, arm it. (Create a Weapon token attached to this creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)
         Other equipped creatures you control get +1/+1.</text>
     </card>
     <card>
@@ -1913,7 +1913,7 @@
       <pt>1/1</pt>
       <tablerow>2</tablerow>
       <text>Flying, haste
-        When Aerial Gunner enters the battlefield, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+        When Aerial Gunner enters the battlefield, arm it. (Create a Weapon token attached to this creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Shunt Access</name>
@@ -2004,7 +2004,7 @@
       <cmc>3</cmc>
       <type>Enchantment</type>
       <tablerow>1</tablerow>
-      <text>Whenever a nontoken creature enters the battlefield under your control, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)
+      <text>Whenever a nontoken creature enters the battlefield under your control, arm it. (Create a Weapon token attached to that creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)
         Equip costs of equipment you control cost 1 less.</text>
     </card>
     <card>
@@ -2280,7 +2280,7 @@
       <cmc>4</cmc>
       <type>Sorcery</type>
       <tablerow>3</tablerow>
-      <text>Arm target creature you control twice. It deals damage equal to its power to target creature or planeswalker. (Create two colorless Equipment artifact tokens named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)</text>
+      <text>Arm target creature you control twice. It deals damage equal to its power to target creature or planeswalker. (Create two Weapon tokens attached to this creature. They're Equipment artifacts with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Mecha Dragon</name>
@@ -2348,7 +2348,7 @@
       <type>Artifact Creature - Hydra Construct </type>
       <pt>0/0</pt>
       <tablerow>2</tablerow>
-      <text>Gunmetal Hydra enters the battlefield armed X times. (Create X colorless Equipment artifact token named Weapons with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+      <text>Gunmetal Hydra enters the battlefield armed X times. (Create X Weapon tokens attached to this creature. They're Equipment artifacts with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Machine Oracle</name>
@@ -2483,7 +2483,7 @@
       <pt>3/3</pt>
       <tablerow>2</tablerow>
       <text>Vigilance
-        Whenever Quickdraw Vigilante attacks or blocks, if it’s unequipped, arm it. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to this creature.)</text>
+        Whenever Quickdraw Vigilante attacks or blocks, if it’s unequipped, arm it. (Create a Weapon token attached to this creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)</text>
     </card>
     <card>
       <name>Re-spec</name>
@@ -2549,7 +2549,7 @@
       <cmc>3</cmc>
       <type>Artifact</type>
       <tablerow>1</tablerow>
-      <text>1, T, Pay 1 life: Arm target creature. (Create a colorless Equipment artifact token named Weapon with equip 2 and “Equipped creature gets +1/+1” attached to that creature.)
+      <text>1, T, Pay 1 life: Arm target creature. (Create a Weapon token attached to that creature. It's an Equipment artifact with "Equipped creature gets +1+1" and equip 2.)
         1, T, Sacrifice an Equipment: Create a 2/2 colorless Construct artifact creature token.
         1, T, Sacrifice an artifact creature: You gain 4 life.</text>
     </card>

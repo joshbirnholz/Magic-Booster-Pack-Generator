@@ -533,28 +533,17 @@ function setDraftmancerCardSet(cardset) {
   document.getElementById("cardset-title").innerHTML = cardset.name;
   currentCardset = cardset;
   
-  var p = document.getElementById("download-button");
-  p.innerHTML = "";
-  
-  // Download button
-  if (cardset.string) {
-    var button = document.createElement("button");
-    button.innerHTML = "Download Draftmancer File"
-    button.onclick = function() {
-      download(cardset.name + ".txt", cardset.string, "text/plain");
-    };
-    p.appendChild(button);
-  }
+  var filters = document.getElementById("filters");
+  filters.innerHTML = "";
   
   // Rarity
-  p.innerHTML += "<br>";
   var allRaritiesButton = document.createElement("button");
   allRaritiesButton.innerHTML = "All";
   allRaritiesButton.onclick = function() {
     currentRarity = null;
     setDraftmancerCardSet(cardset);
   };
-  p.appendChild(allRaritiesButton);
+  filters.appendChild(allRaritiesButton);
   
   var rarities = ["common", "uncommon", "rare", "mythic", "special"];
   rarities.forEach((rarity) => {
@@ -568,8 +557,21 @@ function setDraftmancerCardSet(cardset) {
       button.style.background='#000000';
       button.style.color='white';
     }
-    p.appendChild(button);
+    filters.appendChild(button);
   });
+  
+  var p = document.getElementById("download-button");
+  p.innerHTML = "";
+  
+  // Download button
+  if (cardset.string) {
+    var downloadButton = document.createElement("button");
+    downloadButton.innerHTML = "Download Draftmancer File"
+    downloadButton.onclick = function() {
+      download(cardset.name + ".txt", cardset.string, "text/plain");
+    };
+    p.appendChild(downloadButton);
+  }
   
   // Setup table
   

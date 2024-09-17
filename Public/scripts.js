@@ -646,6 +646,13 @@ function setDraftmancerCardSet(cardset) {
       if (element.artist) {
         artistData.innerHTML = "Illustrated by: " + element.artist;
       }
+      const copyButton = document.createElement("button");
+      const string = copyableText(element);
+      copyButton.onclick = function() {
+        navigator.clipboard.writeText(string);
+      };
+      copyButton.innerHTML = "Copy Text";
+      artistData.appendChild(copyButton);
       
       var ptLoyaltyData = document.createElement("td");
       row4.appendChild(ptLoyaltyData);
@@ -653,7 +660,7 @@ function setDraftmancerCardSet(cardset) {
       if (element.power != undefined && element.toughness != undefined) {
         ptLoyalty = element.power.toString() + "/" + element.toughness.toString();
       }
-      ptLoyaltyData.setAttribute("colspan", 2);
+//      ptLoyaltyData.setAttribute("colspan", 2);
       ptLoyaltyData.setAttribute("align", "right");
       ptLoyaltyData.innerHTML = "<h3>" + ptLoyalty + "</h3>";
     }
@@ -701,6 +708,43 @@ function setDraftmancerCardSet(cardset) {
   
   window.location.hash = cardset.name;
   
+}
+
+function copyableText(draftmancerCard) {
+  var string = draftmancerCard.name;
+  if (draftmancerCard.mana_cost) {
+    string += " " + draftmancerCard.mana_cost;
+  }
+  string += "\n";
+  string += draftmancerCard.type;
+  if (draftmancerCard.subtypes) {
+    string += " – "
+    string += draftmancerCard.subtypes.join(" ");
+  }
+  
+  if (draftmancerCard.rarity) {
+    string += " (";
+    if (draftmancerCard.set) {
+      string += draftmancerCard.set + " "
+    }
+    string += draftmancerCard.rarity[0].toUpperCase() + ")\n";
+  }
+  
+  if (draftmancerCard.oracle_text) {
+    string += draftmancerCard.oracle_text.split("\n").map(line => line.trim()).join("\n");
+  }
+  
+  if (draftmancerCard.power) {
+    string += "\n";
+    string += draftmancerCard.power + "/" + draftmancerCard.toughness;
+  }
+  
+  if (draftmancerCard.loyalty) {
+    string += "\n";
+    string += draftmancerCard.loyalty;
+  }
+  
+  return string;
 }
 
 function loadSetTest(setCode, seed) {

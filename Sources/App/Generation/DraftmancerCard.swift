@@ -675,7 +675,7 @@ struct CockatriceCardDatabase: Codable {
   }
   
   struct Cards: Codable {
-    let card: [Card]
+    var card: [Card]
   }
   
   struct Set: Codable {
@@ -705,23 +705,23 @@ struct CockatriceCardDatabase: Codable {
       }
     }
     
-    let name: String
-    let set: Set
+    var name: String
+    var set: Set
     var rarity: String? { return set.rarity }
     var imageURL: String? { return set.imageURL }
     private let color: String
     var colors: [String] { return color.compactMap( { MTGColor(rawValue: String($0)) }).map(\.rawValue).filter { $0.count == 1 } }
-    let manaCost: String?
-    let cmc: Double?
-    let type: String
+    var manaCost: String?
+    var cmc: Double?
+    var type: String
     private let pt: String?
     var power: String? { return pt?.components(separatedBy: "/").first }
     var toughness: String? { return pt?.components(separatedBy: "/").last }
-    let loyalty: String?
-    let text: String
+    var loyalty: String?
+    var text: String
     private let token: Int?
     var isToken: Bool { token == 1 }
-    let reverseRelated: [String]
+    var reverseRelated: [String]
     
     enum CodingKeys: String, CodingKey {
       case name
@@ -738,8 +738,8 @@ struct CockatriceCardDatabase: Codable {
     }
   }
   
-  let sets: Sets
-  let cards: Cards
+  var sets: Sets
+  var cards: Cards
 }
 
 extension DraftmancerCard {
@@ -751,14 +751,8 @@ extension DraftmancerCard {
       subtypes = typeLine.last?.components(separatedBy: " ")
     }
     
-    var name = cockatriceCard.name
-    
-    if (cockatriceCard.isToken || type.contains("Basic")) && name.hasPrefix("\(cockatriceCard.set.value) ") {
-      name = String(name[name.index(name.startIndex, offsetBy: cockatriceCard.set.value.count+1)...])
-    }
-    
     self.init(
-      name: name,
+      name: cockatriceCard.name,
       manaCost: cockatriceCard.manaCost ?? "",
       type: type,
       imageUris: nil,
@@ -789,16 +783,28 @@ extension DraftmancerSet {
     var cards: [DraftmancerCard] = cockatriceDatabase.cards.card.map { cockatriceCard in
       var draftmancerCard = DraftmancerCard(cockatriceCard: cockatriceCard)
       
+      let originalSet = draftmancerCard.set ?? ""
+      
       if cockatriceCard.isToken {
-        draftmancerCard.set = "T" + (draftmancerCard.set ?? "")
+        draftmancerCard.set = "T" + originalSet
+      }
+      
+      // Remove set code name prefixes for basic lands and tokens
+      if (cockatriceCard.isToken || cockatriceCard.type.lowercased().contains("basic")) && cockatriceCard.name.hasPrefix("\(originalSet) ") {
+        draftmancerCard.name = String(draftmancerCard.name[draftmancerCard.name.index(draftmancerCard.name.startIndex, offsetBy: originalSet.count+1)...])
       }
       
       return draftmancerCard
     }
     
-    for cockatriceCard in cockatriceDatabase.cards.card where !cockatriceCard.reverseRelated.isEmpty {
+    for var cockatriceCard in cockatriceDatabase.cards.card {
       for relationship in cockatriceCard.reverseRelated {
         guard let index = cards.firstIndex(where: { $0.name == relationship }) else { continue }
+        
+        // Also remove set code name prefixes here to keep the reverse relationship intact
+        if (cockatriceCard.isToken || cockatriceCard.type.lowercased().contains("basic")) && cockatriceCard.name.hasPrefix("\(cockatriceCard.set.value) ") {
+          cockatriceCard.name = String(cockatriceCard.name[cockatriceCard.name.index(cockatriceCard.name.startIndex, offsetBy: cockatriceCard.set.value.count+1)...])
+        }
         
         var card: DraftmancerCard {
           get {

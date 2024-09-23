@@ -33,6 +33,7 @@ enum PackError: Error {
 	case couldNotLoadCards(String)
 	case missingSet
 	case failedToBuildPack
+  case reason(String)
 	
 	var code: Int {
 		switch self {
@@ -68,6 +69,8 @@ enum PackError: Error {
 			return 14
 		case .failedToBuildPack:
 			return 15
+    case .reason(_):
+      return 16
 		}
 	}
 }
@@ -6201,6 +6204,56 @@ enum Deck {
 	case archidekt(ArchidektDeck)
 }
 
+extension DeckParser {
+  static func parse(_ deck: Deck, autofixArena: Bool, keepOriginalDeckstatsGroups: Bool) -> [CardGroup] {
+    switch deck {
+    case .arena(let string):
+      return Self.parse(deckList: string, autofix: autofixArena)
+    case .deckstats(let string):
+      return Self.parse(deckstatsDecklist: string, keepOriginalGroups: keepOriginalDeckstatsGroups)
+    case .moxfield(let moxfieldDeck):
+      return Self.parse(moxfieldDeck: moxfieldDeck)
+    case .archidekt(let archidektDeck):
+      return Self.parse(archidektDeck: archidektDeck)
+    }
+  }
+}
+
+func moxfieldString(from groups: [DeckParser.CardGroup]) -> String {  
+  var string = ""
+  
+  for group in groups {
+    for cardCount in group.cardCounts {
+      guard let name = cardCount.identifier.name else {
+        print("DID NOT HAVE NAME FOR: \(cardCount.identifier)")
+        continue
+      }
+      
+      var line = "\(cardCount.count) \(name)"
+      
+      if let set = cardCount.identifier.set {
+        line += " (\(set.uppercased()))"
+      }
+      
+      if let collectorNumber = cardCount.identifier.collectorNumber {
+        line += " \(collectorNumber)"
+      }
+      
+      if cardCount.foil {
+        line += " *F*"
+      }
+      
+      if let groupName = group.name, groupName != "Main" && groupName != "Sideboard" && groupName != "Considering" && groupName != "SB" && groupName != "Maybeboard" && groupName != "Tokens" {
+        line += " #\(groupName)"
+      }
+      
+      string += line + "\n"
+    }
+  }
+  
+  return string.trimmingCharacters(in: .whitespacesAndNewlines)
+}
+
 public struct ArchidektDeck: Decodable {
 	struct CardInfo: Decodable {
 		struct Card: Decodable {
@@ -6585,7 +6638,7 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 				}
 			}()
 			
-			return DeckParser.CardCount(identifier: identifier, count: cardCount.count)
+      return DeckParser.CardCount(identifier: identifier, count: cardCount.count)
 		}
 		
 		return cardGroup

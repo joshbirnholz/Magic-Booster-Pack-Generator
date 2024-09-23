@@ -34,6 +34,8 @@ public func routes(_ app: Application) throws {
 	app.post("token", ":set", use: generatorController.completeToken)
 
 	app.post("deck", use: generatorController.fullDeck)
+  
+  app.post("convert", use: generatorController.convert)
 
 	app.post("url", ":deck", use: generatorController.deckstatsDeck)
 

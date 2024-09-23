@@ -1,0 +1,43 @@
+<!-- Created by Josh Birnholz on 5/12/18. -->
+<head>
+	<meta charset="utf-8"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="scripts.js"></script>
+	
+	<link rel="stylesheet" href="style.css"></style>
+</head>
+<body>
+	<p><b>Deck Importer</b></p>
+	
+	<p>Enter your deck list or a link to a deck. It will be converted to Moxfield format.<p>
+	<table>
+    <tr>
+      <td>
+        Input:
+        <form id="mainform" enctype="multipart/form-data">
+          <textarea id="deck" cols="50" rows="20"></textarea>
+        </form>
+      </td>
+      <td>
+        <p>
+          Output:
+          <div id='boards'></div>
+        </p>
+        <textarea id="output" cols="50" rows="20"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="button" value="Convert" onclick="doConvertDeckToMoxfield()"> <span id="progress"></span>
+      </td>
+      <td>
+        <input type="button" value="Copy" onclick="copyOutput()">
+      </td>
+    </tr>
+  </table>
+  <br>
+	<input type="checkbox" id="autofix" checked>
+		<label for="autofix"> Fix errors automatically</label><br><br>
+     
+     
+</body>

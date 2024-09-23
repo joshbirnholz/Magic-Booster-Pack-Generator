@@ -59,6 +59,8 @@ extension PackError: DebuggableError {
 			return "There was no specified set."
 		case .failedToBuildPack:
 			return "A problem occured trying to select cards for the pack."
+    case .reason(let string):
+      return string
 		}
 	}
 	

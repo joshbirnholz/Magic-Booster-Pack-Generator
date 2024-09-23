@@ -1108,3 +1108,68 @@ function getParameterByName(name, url = window.location.href) {
 	if (!results[2]) return '';
 	return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
+
+function copyOutput() {
+  navigator.clipboard.writeText(document.getElementById('output').value || "");
+}
+
+function doConvertDeckToMoxfield() {
+  $("#progress").html("Working…");
+  
+  var data = new FormData($("#mainform")[0]);
+  
+  data.append("deck", document.getElementById("deck").value);
+  
+  var url = "convert";
+  
+  if ($("#autofix").prop("checked") == true) {
+    url += "?autofix=true"
+  } else {
+    url += "?autofix=false"
+  }
+  
+  url += "&format=moxfield"
+  
+  $.ajax({
+    url: url,
+    data: data,
+    cache: false,
+    contentType: false,
+    processData: false,
+    method: "POST",
+    success: function(response) {
+      console.log("success");
+      console.log(response);
+      
+      if (response.error !== undefined) {
+        alert(response.error);
+        $("#progress").html("");
+        return;
+      } else if (response.boards) {
+        document.getElementById('boards').innerHTML = "";
+        
+        response.boards.forEach((board) => {
+          const button = document.createElement('button');
+          button.innerHTML = board.name;
+          button.onclick = function() {
+            document.getElementById('output').value = board.string;
+          }
+          document.getElementById('boards').appendChild(button);
+        });
+        
+        document.getElementById('output').value = response.boards[0].string;
+        
+        $("#progress").html("");
+      }
+    },
+    error: function(xhr, status, error) {
+      console.log("error");
+      console.log(xhr);
+      console.log(status);
+      console.log(error);
+      
+      alert(error);
+      $("#progress").html("");
+    }
+  })
+}

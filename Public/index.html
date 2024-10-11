@@ -25,7 +25,7 @@
 		<li>Mac: ~/Library/Tabletop Simulator/Saves/Saved Objects</li>
 	</ul>
 	<form id="mainform" enctype="multipart/form-data">
-		<textarea id="deck" cols="50" rows="20"></textarea>
+		<textarea class='deck' id="deck" cols="50" rows="20" placeholder="Enter deck or deck list here…"></textarea>
 	</form>
 	<input type="checkbox" id="autofix" checked>
 		<label for="autofix"> Fix errors automatically</label><br><br>
@@ -54,11 +54,11 @@
 			<p>
 			<input type="button" value="Booster Box…" onclick="doDownloadBox(false)"><br>
 				<input type="button" value="Pre-sorted Booster Box…" onclick="doDownloadBox(true)"><br>
-					<input type="button" value="Booster Packs…" onclick="doDownloadPack(document.getElementById('packCount').value)"> (<i>How many? <input type="number" id="packCount" value="1" style="width: 4em">)</i><br>
+					<input type="button" value="Booster Packs…" onclick="doDownloadPack(document.getElementById('packCount').value)"> How many? <input type="number" id="packCount" min="1" value="1" style="width: 4em"><br>
 						<select name="seedlistall" id="seedlistall" hidden="hidden">
 						<input type="button" value="Prerelease Packs…" onclick="doDownloadPrereleasePack(document.getElementById('prepackCount').value)">
 							<option value="">Loading seeds…</option>
-			   </select> (<i>How many? <input type="number" id="prepackCount" value="1" style="width: 4em">)</i>
+			   </select> How many? <input type="number" id="prepackCount" value="1" min="1" style="width: 4em">
 							
 							</p>
 							
@@ -67,7 +67,7 @@
 							<p>
 							<input type="button" value="Booster Box…" onclick="doDownloadBoxList()"><br>
 								<input type="button" value="Prerelease Pack…" onclick="doDownloadPrereleasePackList()"><br>
-									<input type="button" value="Booster Packs…" onclick="doDownloadCustomNumPacksList(document.getElementById('listPackCount').value)"> (<i>How many? <input type="number" id="listPackCount" value="6" style="width: 4em">)</i>
+									<input type="button" value="Booster Packs…" onclick="doDownloadCustomNumPacksList(document.getElementById('listPackCount').value)"> How many? <input type="number" id="listPackCount" value="6" min="1" style="width: 4em">
 										
 										<hr>
 										

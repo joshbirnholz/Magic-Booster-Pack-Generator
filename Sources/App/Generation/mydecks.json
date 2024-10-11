@@ -575,5 +575,45 @@
     "ci": "UB",
     "comment": "Rule 0 Zombies",
     "name": "Gisa + Geralf"
+  },
+  {
+    "url": "https://deckstats.net/decks/149419/3589698-ygra-eater-of-all",
+    "front": "https://cards.scryfall.io/large/front/9/7/97e0d6ca-eed9-4b57-a34a-0105c41b20b9.jpg",
+    "ids": ["78"],
+    "ci": "bg",
+    "comment": "Nom nom",
+    "name": "Ygra, Eater of All"
+  },
+  {
+    "url": "https://deckstats.net/decks/149419/3626098-animated-army-upgraded-",
+    "front": "https://cards.scryfall.io/large/front/3/1/31e4b7a1-b377-49d2-a92e-4bcb0db35f16.jpg",
+    "ids": ["79"],
+    "ci": "rg",
+    "comment": "Animated Army",
+    "name": "Animated Army",
+  },
+  {
+    "url": "https://deckstats.net/decks/149419/3442894-the-wise-mothman",
+    "front": "https://cards.scryfall.io/large/front/3/d/3d6d6944-a364-41c2-b824-7a1bf6ad0d1e.jpg",
+    "ids": ["80"],
+    "ci": "bgu",
+    "comment": "Mill, counters, swing",
+    "name": "The Wise Mothman"
+  },
+  {
+    "url": "https://deckstats.net/decks/149419/3612568-zinnia-valley-s-voice",
+    "front": "https://cards.scryfall.io/large/front/d/f/dfe36901-5841-4942-8b61-c273111f715e.jpg",
+    "ids": ["81"],
+    "ci": "wur",
+    "comment": "Offspring",
+    "name": "Zinnia, Valley's Voice"
+  },
+  {
+    "url": "https://deckstats.net/decks/149419/3588472-disa-the-restless",
+    "front": "https://cards.scryfall.io/large/front/1/9/19439420-9e0a-4fd1-bae9-f1c698edee1c.jpg",
+    "ids": ["82"],
+    "ci": "bgr",
+    "comment": "Tarmogoyf",
+    "name": "Disa the Restless"
   }
 ]

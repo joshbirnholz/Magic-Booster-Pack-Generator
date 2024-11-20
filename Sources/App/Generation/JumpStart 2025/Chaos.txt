@@ -1,0 +1,20 @@
+1 Averna, the Chaos Bloom (J25)
+1 Shardless Outlander (J25)
+1 Druid of the Anima (J25)
+1 Bloodbraid Elf (J25)
+1 Enlisted Wurm (J25)
+1 Fusion Elemental (J25)
+1 Maelstrom Colossus (J25)
+1 Chromatic Lantern (J25)
+1 Fiery Fall (J25)
+1 Bituminous Blast (J25)
+1 Violent Outburst (J25)
+1 Plains (J25) 81
+1 Island (J25) 84
+1 Swamp (J25) 87
+1 Mountain (J25) 90
+1 Mountain (J25) 91
+1 Forest (J25) 93
+1 Forest (J25) 94
+1 Ash Barrens (J25)
+1 Terramorphic Expanse (J25)

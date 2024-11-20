@@ -61,7 +61,7 @@ final class ScryfallBridgeController {
             set.name = "Mystery Booster (Retail Edition)"
           }
           
-          if set.code == "clu" {
+          if ["clu", "j25"].contains(set.code) {
             return [set]
           }
           

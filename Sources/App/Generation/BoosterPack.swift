@@ -2211,6 +2211,21 @@ let jumpstart2022DeckListURLs: [URL] = try! {
 	#endif
 }()
 
+let jumpstart2025DeckListURLs: [URL] = try! {
+  #if canImport(Vapor)
+  let directory = DirectoryConfiguration.detect()
+  let jumpstartDirectory = "Sources/App/Generation/JumpStart 2025"
+  let jumpstartDirectoryURL = URL(fileURLWithPath: directory.workingDirectory)
+    .appendingPathComponent(jumpstartDirectory, isDirectory: true)
+  return try FileManager.default.contentsOfDirectory(at: jumpstartDirectoryURL, includingPropertiesForKeys: nil)
+  #else
+  guard let urls = Bundle.main.urls(forResourcesWithExtension: "txt", subdirectory: "JumpStart 2025") else {
+    throw PackError.unsupported
+  }
+  return urls
+  #endif
+}()
+
 let superJumpDeckListURLs: [URL] = try! {
 	#if canImport(Vapor)
 	let directory = DirectoryConfiguration.detect()
@@ -2358,6 +2373,42 @@ func generateJumpStart2022Pack() throws -> CardCollection {
 	}
 	
 	return collection
+}
+
+func generateJumpStart2025Pack() throws -> CardCollection {
+  guard let deckListURL = jumpstart2025DeckListURLs.randomElement() else {
+    throw PackError.unsupported
+  }
+  
+  let name = String(deckListURL.lastPathComponent.prefix(while: { !$0.isNumber && $0 != "." }).trimmingCharacters(in: .whitespacesAndNewlines))
+  
+  let faceCardIdentifier: MTGCardIdentifier = .nameSet(name: name, set: "fj25")
+  
+  let contents = try String(contentsOf: deckListURL)
+  var cardCounts = DeckParser.parse(deckList: contents, autofix: true).first?.cardCounts ?? []
+  let identifiers: [MTGCardIdentifier] = [faceCardIdentifier] + cardCounts.map(\.identifier)
+  let cards = try Swiftfall.getCollection(identifiers: identifiers).data
+  
+  var collection = CardCollection()
+  if let faceCard = cards.first(where: { $0.set.lowercased() == "fj25" }) {
+    let mtgCard = MTGCard(faceCard)
+    collection.append(mtgCard)
+  } else {
+    let frontURL = URL(string: "http://josh.birnholz.com/tts/resources/fj25/\(name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!).png")!
+    let number = superJumpDeckListURLs.firstIndex(of: deckListURL) ?? 0
+    let faceCard = MTGCard(name: name, layout: "token", frame: "", isFullArt: true, collectorNumber: "\(number)", set: "fj25", rarity: .common, scryfallCardBackID: nil, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], language: .english, isTextless: false, imageUris: ["normal": frontURL])
+    collection.append(faceCard)
+  }
+  
+  for cardCount in cardCounts {
+    guard let card = cards[cardCount.identifier] else { continue }
+    let mtgCard = MTGCard(card)
+    for _ in 0 ..< cardCount.count {
+      collection.append(mtgCard)
+    }
+  }
+  
+  return collection
 }
 
 func generateSuperJumpPack() throws -> CardCollection {
@@ -2749,7 +2800,7 @@ fileprivate struct CardInfo {
 			return nil
 		}
 		
-		if card.set == "jumpstartface" || card.set == "fjmp" || card.set == "fj22" {
+		if card.set == "jumpstartface" || card.set == "fjmp" || card.set == "fj22" || card.set == "fj25" {
 			self.backURL = Self.jumpstartBack
 		}
 		
@@ -5634,7 +5685,7 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		}
 		
 		switch setCode {
-		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "cmr", "jmp", "dbl", "sjm", "2x2", "clb", "j22", "cmm":
+		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "cmr", "jmp", "dbl", "sjm", "2x2", "clb", "j22", "cmm", "j25":
 			return 24
 		default:
 			return 36
@@ -5674,6 +5725,10 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
 	} else if setCode?.lowercased() == "j22" {
     let packs: [CardCollection] = (1...count).compactMap { _ in try? generateJumpStart2022Pack() }
+    
+    return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
+  } else if setCode?.lowercased() == "j25" {
+    let packs: [CardCollection] = (1...count).compactMap { _ in try? generateJumpStart2025Pack() }
     
     return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
   } else if setCode?.lowercased() == "clu" {
@@ -5732,7 +5787,7 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 		}
 		
 		switch setCode {
-		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "2x2", "clb", "j22", "cmm":
+		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "2x2", "clb", "j22", "cmm", "j25":
 			return 24
 		default:
 			return 36
@@ -5905,6 +5960,10 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
     let pack = try generateJumpStart2022Pack()
     
     return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+  } else if setCode?.lowercased() == "j25" {
+    let pack = try generateJumpStart2025Pack()
+    
+    return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
   } else if setCode?.lowercased() == "clu" {
     let pack = try generateRavnicaClueEditionPack()
     
@@ -5974,7 +6033,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 	}()
 	let packCount = packCount ?? 1
 	let prereleasePacks: [String] = try (0 ..< (packCount)).map { _ in
-    if setCode.lowercased() == "mb1" || setCode.lowercased() == "fmb1" || setCode.lowercased() == "cmb1" || setCode.lowercased() == "jmp" || setCode.lowercased() == "sjm" || setCode.lowercased() == "j22" || setCode.lowercased() == "clu" {
+    if setCode.lowercased() == "mb1" || setCode.lowercased() == "fmb1" || setCode.lowercased() == "cmb1" || setCode.lowercased() == "jmp" || setCode.lowercased() == "sjm" || setCode.lowercased() == "j22" || setCode.lowercased() == "clu" || setCode.lowercased() == "j25" {
 			throw PackError.unsupported
 		} else if setCode.lowercased() == "plc" {
 			let cards = processPlanarChaosCards(cards: cards)

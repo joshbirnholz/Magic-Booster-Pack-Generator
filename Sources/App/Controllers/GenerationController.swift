@@ -498,7 +498,9 @@ final class GeneratorController {
 			guard deckURL.pathComponents.count >= 2, deckURL.pathComponents[1] == "decks", let decklistURL = URL(string: "https://api.moxfield.com/v2/decks/all/\(deckURL.pathComponents[2])") else { throw PackError.invalidURL }
 			
 			DispatchQueue.global(qos: .userInitiated).async {
-				let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+				var request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+        request.setValue("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)", forHTTPHeaderField: "User-Agent")
+        
 				URLSession.shared.dataTask(with: request) { data, response, error in
 					do {
 						guard let data = data else {
@@ -544,9 +546,11 @@ final class GeneratorController {
 							promise.succeed(string)
 						} catch {
 							promise.fail(error)
+              print("Moxfield error:", error)
 						}
 					} catch {
 						promise.fail(error)
+            print("Moxfield error:", error)
 					}
 				}.resume()
 			}

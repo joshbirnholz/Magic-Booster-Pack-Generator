@@ -547,10 +547,16 @@ final class GeneratorController {
 						} catch {
 							promise.fail(error)
               print("Moxfield error:", error)
+              if let data, let response = String(data: data, encoding: .utf8) {
+                print("Moxfield response:", response)
+              }
 						}
 					} catch {
 						promise.fail(error)
             print("Moxfield error:", error)
+            if let data, let response = String(data: data, encoding: .utf8) {
+              print("Moxfield response:", response)
+            }
 					}
 				}.resume()
 			}

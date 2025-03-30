@@ -499,7 +499,11 @@ final class GeneratorController {
 			
 			DispatchQueue.global(qos: .userInitiated).async {
 				var request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
-        request.setValue("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)", forHTTPHeaderField: "User-Agent")
+        
+        if let apiKey = Environment.get("MoxfieldAgent") {
+          request.setValue(apiKey, forHTTPHeaderField: "User-Agent")
+          print("Added Moxfield API key to header")
+        }
         
 				URLSession.shared.dataTask(with: request) { data, response, error in
 					do {

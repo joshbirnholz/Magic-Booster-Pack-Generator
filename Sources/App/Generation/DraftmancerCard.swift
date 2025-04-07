@@ -476,11 +476,14 @@ let draftmancerSets: [DraftmancerSet]? = {
     decoder.keyDecodingStrategy = .convertFromSnakeCase
     
     var draftmancerSets: [DraftmancerSet] = urls.compactMap { url -> DraftmancerSet? in
-      guard let rawData = try? Data(contentsOf: url), let rawString = String(data: rawData, encoding: .utf8) else { return nil }
-      let string = draftMancerStringSection("CustomCards", from: rawString)
-      guard let data = string?.data(using: .utf8) else { return nil }
-      
       do {
+        let rawData = try Data(contentsOf: url)
+        guard let rawString = String(data: rawData, encoding: .utf8) else {
+          print("‼️ Error loading string from data for \(url.deletingPathExtension().lastPathComponent):")
+          return nil
+        }
+        let string = draftMancerStringSection("CustomCards", from: rawString)
+        guard let data = string?.data(using: .utf8) else { return nil }
         let cards = try decoder.decode([DraftmancerCard].self, from: data)
         
         return DraftmancerSet(

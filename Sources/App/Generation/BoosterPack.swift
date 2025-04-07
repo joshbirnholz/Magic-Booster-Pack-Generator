@@ -6511,10 +6511,14 @@ extension MTGCard {
 //      return illustrationId == id.uuidString
     case .name(let name):
       let names: [String] = Array([[self.name], cardFaces?.map(\.name) ?? []].joined()).compactMap { $0?.lowercased() }
-      return names.contains(name.lowercased())
+      return names.contains { other in
+        other == name.lowercased() || other.replacingOccurrences(of: "’", with: "'") == name.lowercased()
+      }
     case .nameSet(name: let name, set: let set):
       let names: [String] = Array([[self.name], cardFaces?.map(\.name) ?? []].joined()).compactMap { $0?.lowercased() }
-      let nameMatches = names.contains(name.lowercased())
+      let nameMatches = names.contains { other in
+        other == name.lowercased() || other.replacingOccurrences(of: "’", with: "'") == name.lowercased()
+      }
       if nameMatches && self.set.lowercased() == set.lowercased() {
         return true
       } else if !nameMatches && set.lowercased() == "dar" && nameMatches && self.set.lowercased() == "dom" {
@@ -6708,8 +6712,6 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 	guard !identifiers.isEmpty else {
 		throw PackError.emptyInput
 	}
-	
-	let customIdentifiers = identifiers.separateAll(where: { $0.set?.lowercased() == "custom" })
 	
 //	let fetchedCardGroups: [[Swiftfall.Card]] = identifiers.chunked(by: 20).map { identifiers in
 //		let query = identifiers.compactMap(\.query).map { "(\($0))" }.joined(separator: " or ") + " prefer:newest game:paper"

@@ -4730,7 +4730,6 @@ func customSet(forSetCode inputString: String) -> Swiftfall.ScryfallSet? {
         }
         
         query = "not:promo " + query
-        print(query)
         query = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         var name = "Shadows over Innistrad Remastered"
@@ -4738,7 +4737,6 @@ func customSet(forSetCode inputString: String) -> Swiftfall.ScryfallSet? {
         if let subtitle = setNames[inputString.lowercased()] {
             name += ": " + subtitle
         }
-        print(name)
         
         return Swiftfall.ScryfallSet(
             code: inputString,

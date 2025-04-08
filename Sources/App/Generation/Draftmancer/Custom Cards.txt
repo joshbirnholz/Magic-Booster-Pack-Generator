@@ -1,6 +1,21 @@
 [CustomCards]
 [
     {
+    "type" : "Enchantment Land",
+    "subtypes": [
+      "Urza's",
+      "Saga"
+    ],
+    "image" : "https://i.imgur.com/bfIAlDu.jpeg",
+    "rarity" : "rare",
+    "mana_cost" : "",
+    "name" : "Urza's Saga",
+    "related_cards": [
+      "Construct (TMH2)"
+    ],
+    "oracle_text": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI — This Saga gains \"{T}: Add {C}.\"\nII — This Saga gains \"{2}, {T}: Create a 0/0 colorless Construct artifact creature token with 'This token gets +1/+1 for each artifact you control.'\"\nIII — Search your library for an artifact card with mana cost {0} or {1}, put it onto the battlefield, then shuffle.",
+    },
+    {
     "type" : "Legendary Creature",
     "subtypes": [
       "Angel"

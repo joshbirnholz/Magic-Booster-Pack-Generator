@@ -323,7 +323,7 @@ extension DraftmancerCard {
     if let subtypes = subtypes {
       typeLine += " — \(subtypes.joined(separator: " "))"
     }
-    guard let rarity = self.rarity.flatMap({ MTGCard.Rarity.init(rawValue: $0.rawValue) }) else { return nil }
+    guard let rarity = self.rarity.flatMap({ MTGCard.Rarity.init(rawValue: $0.rawValue.lowercased()) }) else { return nil }
     
     var imageURIs = self.imageUris ?? [:]
     
@@ -483,7 +483,10 @@ let draftmancerSets: [DraftmancerSet]? = {
           return nil
         }
         let string = draftMancerStringSection("CustomCards", from: rawString)
-        guard let data = string?.data(using: .utf8) else { return nil }
+        guard let data = string?.data(using: .utf8) else {
+          print("‼️ Error getting data from string for \(url.deletingPathExtension().lastPathComponent):")
+          return nil
+        }
         let cards = try decoder.decode([DraftmancerCard].self, from: data)
         let name = url.deletingPathExtension().lastPathComponent
         

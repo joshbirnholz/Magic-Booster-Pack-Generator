@@ -1,206 +1,206 @@
 [CustomCards]
 [
-    {
-    "name" : "Adalbert Steiner",
-    "set" : "fin",
-    "collector_number" : "3",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Adalbert Steiner.jpeg",
-    "mana_cost" : "1W",
-    "type": "Legendary Creature",
-    "rarity": "uncommon"
-  },
-    {
-    "name" : "Al Bhed Rescuers",
-    "set" : "fin",
-    "collector_number" : "88",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Al Bhed Rescuers.jpeg",
-    "mana_cost" : "2B",
-    "type": "Creature",
-    "rarity": "uncommon"
-  },
-    {
-    "name" : "Aqueduct Rat",
-    "set" : "fin",
-    "collector_number" : "123",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Aqueduct Rat.jpeg",
-    "mana_cost" : "1B",
-    "type": "Creature",
-    "rarity": "common"
-  },
-    {
-    "name" : "Barret Wallace",
-    "set" : "fin",
-    "collector_number" : "129",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Barret Wallace.jpeg",
-    "mana_cost" : "3R",
+  {
+    "name": "Adalbert Steiner",
+    "set": "fin",
+    "collector_number": "3",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Adalbert%20Steiner.jpeg",
+    "mana_cost": "1W",
     "type": "Legendary Creature",
     "rarity": "uncommon"
   },
   {
-    "name" : "Beatrix, Loyal General",
-    "set" : "fin",
-    "collector_number" : "554",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Beatrix, Loyal General.jpeg",
-    "mana_cost" : "4WW",
+    "name": "Al Bhed Rescuers",
+    "set": "fin",
+    "collector_number": "88",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Al%20Bhed%20Rescuers.jpeg",
+    "mana_cost": "2B",
+    "type": "Creature",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Aqueduct Rat",
+    "set": "fin",
+    "collector_number": "123",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Aqueduct%20Rat.jpeg",
+    "mana_cost": "1B",
+    "type": "Creature",
+    "rarity": "common"
+  },
+  {
+    "name": "Barret Wallace",
+    "set": "fin",
+    "collector_number": "129",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Barret%20Wallace.jpeg",
+    "mana_cost": "3R",
+    "type": "Legendary Creature",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Beatrix, Loyal General",
+    "set": "fin",
+    "collector_number": "554",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Beatrix,%20Loyal%20General.jpeg",
+    "mana_cost": "4WW",
     "type": "Legendary Creature",
     "rarity": "rare"
   },
   {
-    "name" : "Cloud Moogle",
-    "set" : "fin",
-    "collector_number" : "11",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Cloud Moogle.jpeg",
-    "mana_cost" : "3WW",
+    "name": "Cloud Moogle",
+    "set": "fin",
+    "collector_number": "11",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Cloud%20Moogle.jpeg",
+    "mana_cost": "3WW",
     "type": "Creature",
     "rarity": "common"
   },
-    {
-    "name" : "Coeurl",
-    "set" : "fin",
-    "collector_number" : "12",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Coeurl.jpeg",
-    "mana_cost" : "1W",
+  {
+    "name": "Coeurl",
+    "set": "fin",
+    "collector_number": "12",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Coeurl.jpeg",
+    "mana_cost": "1W",
     "type": "Creature",
     "rarity": "common"
   },
-    {
-    "name" : "Deadly Embrace",
-    "set" : "fin",
-    "collector_number" : "557",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Deadly Embrace.jpeg",
-    "mana_cost" : "3BB",
+  {
+    "name": "Deadly Embrace",
+    "set": "fin",
+    "collector_number": "557",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Deadly%20Embrace.jpeg",
+    "mana_cost": "3BB",
     "type": "Sorcery",
     "rarity": "rare"
   },
-    {
-    "name" : "Dragoon Lance",
-    "set" : "fin",
-    "collector_number" : "17",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Dragoon Lance.jpeg",
-    "mana_cost" : "1W",
+  {
+    "name": "Dragoon Lance",
+    "set": "fin",
+    "collector_number": "17",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Dragoon%20Lance.jpeg",
+    "mana_cost": "1W",
     "type": "Artifact",
     "rarity": "uncommon"
   },
-    {
-    "name" : "Dwarven Castle Guard",
-    "set" : "fin",
-    "collector_number" : "18",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Dwarven Castle Guard.jpeg",
-    "mana_cost" : "1W",
+  {
+    "name": "Dwarven Castle Guard",
+    "set": "fin",
+    "collector_number": "18",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Dwarven%20Castle%20Guard.jpeg",
+    "mana_cost": "1W",
     "type": "Creature",
     "rarity": "common"
   },
-    {
-    "name" : "Extermination",
-    "set" : "fin",
-    "collector_number" : "109",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Extermination.jpeg",
-    "mana_cost" : "2B",
+  {
+    "name": "Extermination",
+    "set": "fin",
+    "collector_number": "109",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Extermination.jpeg",
+    "mana_cost": "2B",
     "type": "Instant",
     "rarity": "uncommon"
   },
-    {
-    "name" : "Il Mheg Fairy",
-    "set" : "fin",
-    "collector_number" : "57",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Fairy of Il Meg.jpeg",
-    "mana_cost" : "1U",
+  {
+    "name": "Il Mheg Fairy",
+    "set": "fin",
+    "collector_number": "57",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Fairy%20of%20Il%20Meg.jpeg",
+    "mana_cost": "1U",
     "type": "Fairy",
     "rarity": "uncommon"
   },
-    {
-    "name" : "Freya Crescent",
-    "set" : "fin",
-    "collector_number" : "138",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Freya Crescent.jpeg",
-    "mana_cost" : "R",
+  {
+    "name": "Freya Crescent",
+    "set": "fin",
+    "collector_number": "138",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Freya%20Crescent.jpeg",
+    "mana_cost": "R",
     "type": "Legendary Creature",
     "rarity": "uncommon"
   },
-    {
-    "name" : "G’raha Tia",
-    "set" : "fin",
-    "collector_number" : "21",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/G’raha Tia.jpeg",
-    "mana_cost" : "4W",
+  {
+    "name": "G’raha Tia",
+    "set": "fin",
+    "collector_number": "21",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/G’raha%20Tia.jpeg",
+    "mana_cost": "4W",
     "type": "Legendary Creature",
     "rarity": "uncommon"
   },
-    {
-    "name" : "Go for the Esper",
-    "set" : "fin",
-    "collector_number" : "68",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Go for the Esper.jpeg",
-    "mana_cost" : "3U",
+  {
+    "name": "Go for the Esper",
+    "set": "fin",
+    "collector_number": "68",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Go%20for%20the%20Esper.jpeg",
+    "mana_cost": "3U",
     "type": "Sorcery",
     "rarity": "common"
   },
-    {
-    "name" : "Item Merchant",
-    "set" : "fin",
-    "collector_number" : "142",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Item Merchant.jpeg",
-    "mana_cost" : "1R",
+  {
+    "name": "Item Merchant",
+    "set": "fin",
+    "collector_number": "142",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Item%20Merchant.jpeg",
+    "mana_cost": "1R",
     "type": "Creature",
     "rarity": "common"
   },
-    {
-    "name" : "Laguna’s Dreams",
-    "set" : "fin",
-    "collector_number" : "50",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Laguna’s Dreams.jpeg",
-    "mana_cost" : "1U",
+  {
+    "name": "Laguna’s Dreams",
+    "set": "fin",
+    "collector_number": "50",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Laguna’s%20Dreams.jpeg",
+    "mana_cost": "1U",
     "type": "Instant",
     "rarity": "common"
   },
-      {
-    "name" : "Lightning, Security Sergeant",
-    "set" : "fin",
-    "collector_number" : "560",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Lightning, Security Sergeant.jpeg",
-    "mana_cost" : "2R",
+  {
+    "name": "Lightning, Security Sergeant",
+    "set": "fin",
+    "collector_number": "560",
+    "image": "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Lightning,%20Security%20Sergeant.jpeg",
+    "mana_cost": "2R",
     "type": "Legendary Creature",
     "rarity": "rare"
   },
-      {
+  {
     "name" : "Magitek Scythe",
     "set" : "fin",
     "collector_number" : "562",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Magitek Scythe.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Magitek%20Scythe.jpeg",
     "mana_cost" : "4",
     "type": "Artifact",
     "rarity": "rare"
   },
-      {
+  {
     "name" : "Rabanastre, City of the Kingdom",
     "set" : "fin",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Rabanastre, City of the Kingdom.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Rabanastre,%20City%20of%20the%20Kingdom.jpeg",
     "mana_cost" : "",
     "type": "Land",
     "rarity": "common"
   },
-      {
+  {
     "name" : "Rays of Judgement",
     "set" : "fin",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Rays of Judgement.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Rays%20of%20Judgement.jpeg",
     "mana_cost" : "3R",
     "collector_number" : "559",
     "type": "Instant",
     "rarity": "rare"
   },
-      {
+  {
     "name" : "Relm’s Drawing",
     "set" : "fin",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Relm’s Drawing.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Relm’s%20Drawing.jpeg",
     "mana_cost" : "2UU",
     "collector_number" : "67",
     "type": "Sorcery",
     "rarity": "rare"
   },
-        {
+  {
     "name" : "Rosa, Steadfast White Mage",
     "set" : "fin",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Rosa, Steadfast White Mage.jpg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Rosa,%20Steadfast%20White%20Mage.jpg",
     "mana_cost" : "2W",
     "collector_number" : "555",
     "type": "Legendary Creature",
@@ -209,7 +209,7 @@
   {
     "name" : "Sahagin",
     "set" : "fin",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Sahagin.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Sahagin.jpeg",
     "mana_cost" : "1U",
     "collector_number" : "71",
     "type": "Creature",
@@ -218,7 +218,7 @@
   {
     "name" : "Samurai Katana",
     "set" : "fin",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Samurai Katana.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Samurai%20Katana.jpeg",
     "mana_cost" : "2R",
     "type": "Artifact",
     "rarity": "common"
@@ -226,32 +226,32 @@
   {
     "name" : "Sephiroth’s Intervention",
     "set" : "fin",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Sephiroth’s Intervention.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Sephiroth’s%20Intervention.jpeg",
     "mana_cost" : "3B",
     "type": "Instant",
     "rarity": "common"
   },
-    {
+  {
     "name" : "Seymour Flux",
     "set" : "fin",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Seymour Flux.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Seymour%20Flux.jpeg",
     "mana_cost" : "4B",
     "collector_number" : "558",
     "type": "Legendary Creature",
     "rarity": "rare"
   },
-      {
+  {
     "name" : "Shambling Cie’th",
     "set" : "fin",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Shambling Cie’th.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Shambling%20Cie’th.jpeg",
     "mana_cost" : "2B",
     "type": "Creature",
     "rarity": "uncommon"
   },
-      {
+  {
     "name" : "Shinra Reinforcements",
     "set" : "fin",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Shinra Reinforcements.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Shinra%20Reinforcements.jpeg",
     "mana_cost" : "2B",
     "type": "Creature",
     "rarity": "common",
@@ -261,25 +261,25 @@
     "name" : "Suplex",
     "set" : "fin",
     "collector_number" : "164",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Suplex.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Suplex.jpeg",
     "mana_cost" : "1R",
     "type": "Sorcery",
     "rarity": "common"
   },
-    {
+  {
     "name" : "Blade of Light",
     "set" : "fin",
     "collector_number" : "32",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Sword of Light.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Sword%20of%20Light.jpeg",
     "mana_cost" : "1W",
     "type": "Instant",
     "rarity": "common"
   },
-    {
+  {
     "name" : "Fate of the Sun-Cryst",
     "set" : "fin",
     "collector_number" : "19",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Syncrystal Fate.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Syncrystal%20Fate.jpeg",
     "mana_cost" : "4W",
     "type": "Instant",
     "rarity": "common"
@@ -288,25 +288,25 @@
     "name" : "The Chosen of the Crystal",
     "set" : "fin",
     "collector_number" : "14",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/The Chosen of the Crystal.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/The%20Chosen%20of%20the%20Crystal.jpeg",
     "mana_cost" : "5WW",
     "type": "Sorcery",
     "rarity": "common"
   },
-    {
+  {
     "name" : "The Return of Evil",
     "set" : "fin",
     "collector_number" : "98",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/The Return of Evil.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/The%20Return%20of%20Evil.jpeg",
     "mana_cost" : "4B",
     "type": "Sorcery",
     "rarity": "uncommon"
   },
-      {
+  {
     "name" : "Treno, the City That Never Sleeps",
     "set" : "fin",
     "collector_number" : "290",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Treno, the City That Never Sleeps.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Treno,%20the%20City%20That%20Never%20Sleeps.jpeg",
     "mana_cost" : "",
     "type": "Land",
     "rarity": "common"
@@ -315,16 +315,16 @@
     "name" : "Ultima Weapon",
     "set" : "fin",
     "collector_number" : "563",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Ultima Weapon.jpg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Ultima%20Weapon.jpg",
     "mana_cost" : "7",
     "type": "Legendary Artifact",
     "rarity": "rare"
   },
-    {
+  {
     "name" : "Ultimecia, Threat to Time",
     "set" : "fin",
     "collector_number" : "556",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Ultimecia, Threat of Time.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Ultimecia,%20Threat%20of%20Time.jpeg",
     "mana_cost" : "4UU",
     "type": "Legendary Creature",
     "rarity": "rare"
@@ -333,16 +333,16 @@
     "name" : "Warrior’s Blade",
     "set" : "fin",
     "collector_number" : "169",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Warrior’s Blade.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Warrior’s%20Blade.jpeg",
     "mana_cost" : "3R",
     "type": "Artifact",
     "rarity": "common"
   },
-    {
+  {
     "name" : "White Auricite",
     "set" : "fin",
     "collector_number" : "41",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/White Aurite.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/White%20Aurite.jpeg",
     "mana_cost" : "2WW",
     "type": "Artifact",
     "rarity": "common"
@@ -351,16 +351,16 @@
     "name" : "White Mage’s Staff",
     "set" : "fin",
     "collector_number" : "42",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/White Mage’s Staff.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/White%20Mage’s%20Staff.jpeg",
     "mana_cost" : "1W",
     "type": "Artifact",
     "rarity": "common"
   },
-    {
+  {
     "name" : "Xande, Dark Mage",
     "set" : "fin",
     "collector_number" : "561",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Xande, Dark Mage.jpeg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Xande,%20Dark%20Mage.jpeg",
     "mana_cost" : "2UB",
     "type": "Legendary Creature",
     "rarity": "rare"
@@ -369,7 +369,7 @@
     "name" : "Island",
     "set" : "fin",
     "collector_number" : "297",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Island (297).jpg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Island%20(297).jpg",
     "mana_cost" : "",
     "type": "Basic Land",
     "rarity": "common"
@@ -378,25 +378,25 @@
     "name" : "Island",
     "set" : "fin",
     "collector_number" : "298",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Island (298).jpg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Island%20(298).jpg",
     "mana_cost" : "",
     "type": "Basic Land",
     "rarity": "common"
   },
-    {
+  {
     "name" : "Island",
     "set" : "fin",
     "collector_number" : "299",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Island (299).jpg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Island%20(299).jpg",
     "mana_cost" : "",
     "type": "Basic Land",
     "rarity": "common"
   },
-    {
+  {
     "name" : "Mountain",
     "set" : "fin",
     "collector_number" : "303",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Mountain (303).jpg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Mountain%20(303).jpg",
     "mana_cost" : "",
     "type": "Basic Land",
     "rarity": "common"
@@ -405,7 +405,7 @@
     "name" : "Mountain",
     "set" : "fin",
     "collector_number" : "304",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Mountain (304).jpg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Mountain%20(304).jpg",
     "mana_cost" : "",
     "type": "Basic Land",
     "rarity": "common"
@@ -414,63 +414,64 @@
     "name" : "Mountain",
     "set" : "fin",
     "collector_number" : "305",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Mountain (305).jpg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Mountain%20(305).jpg",
     "mana_cost" : "",
     "type": "Basic Land",
     "rarity": "common"
   },
-    {
+  {
     "name" : "Plains",
     "set" : "fin",
     "collector_number" : "294",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Plains (294).jpg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Plains%20(294).jpg",
     "mana_cost" : "",
     "type": "Basic Land",
     "rarity": "common"
   },
-      {
+  {
     "name" : "Plains",
     "set" : "fin",
     "collector_number" : "295",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Plains (295).jpg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Plains%20(295).jpg",
     "mana_cost" : "",
     "type": "Basic Land",
     "rarity": "common"
   },
-      {
+  {
     "name" : "Plains",
     "set" : "fin",
-    "collector_number" : "29img",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Plains (296).jpg",
+    "collector_number" : "296",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Plains%20(296).jpg",
     "mana_cost" : "",
     "type": "Basic Land",
     "rarity": "common"
   },
-        {
+  {
     "name" : "Swamp",
     "set" : "fin",
     "collector_number" : "300",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Swamp (300).jpg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Swamp%20(300).jpg",
     "mana_cost" : "",
     "type": "Basic Land",
     "rarity": "common"
   },
-          {
+  {
     "name" : "Swamp",
     "set" : "fin",
     "collector_number" : "301",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Swamp (301).jpg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Swamp%20(301).jpg",
     "mana_cost" : "",
     "type": "Basic Land",
     "rarity": "common"
   },
-          {
+  {
     "name" : "Swamp",
     "set" : "fin",
     "collector_number" : "302",
-    "image" : "https://josh.birnholz.com/tts/cards/fin/Swamp (302).jpg",
+    "image" : "https:\/\/josh.birnholz.com\/tts\/cards\/fin\/Swamp%20(302).jpg",
     "mana_cost" : "",
     "type": "Basic Land",
     "rarity": "common"
   }
+
 ]

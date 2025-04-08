@@ -485,10 +485,13 @@ let draftmancerSets: [DraftmancerSet]? = {
         let string = draftMancerStringSection("CustomCards", from: rawString)
         guard let data = string?.data(using: .utf8) else { return nil }
         let cards = try decoder.decode([DraftmancerCard].self, from: data)
+        let name = url.deletingPathExtension().lastPathComponent
+        
+        print("✅ Loaded \(cards.count) Draftmancer cards from \(name)")
         
         return DraftmancerSet(
           cards: cards,
-          name: url.deletingPathExtension().lastPathComponent
+          name: name
         )
       } catch {
         print("‼️ Error loading cards from \(url.deletingPathExtension().lastPathComponent):", error)

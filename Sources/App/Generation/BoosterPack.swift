@@ -6509,7 +6509,7 @@ extension MTGCard {
 //      return illustrationId == id.uuidString
     case .name(let name):
       var names: [String] = Array([[self.name], cardFaces?.map(\.name) ?? []].joined()).compactMap { $0?.lowercased() }
-      if let flavorName {
+      if let flavorName = flavorName {
         names.append(flavorName.lowercased())
       }
       return names.contains { other in
@@ -6517,7 +6517,7 @@ extension MTGCard {
       }
     case .nameSet(name: let name, set: let set):
       var names: [String] = Array([[self.name], cardFaces?.map(\.name) ?? []].joined()).compactMap { $0?.lowercased() }
-      if let flavorName {
+      if let flavorName = flavorName {
         names.append(flavorName.lowercased())
       }
       let nameMatches = names.contains { other in

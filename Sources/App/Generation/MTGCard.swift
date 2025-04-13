@@ -120,6 +120,7 @@ public struct MTGCard: Codable, Equatable, Hashable {
 	public var oracleText: String?
 	public var flavorText: String?
 	public var name: String?
+  public var flavorName: String?
 	public var loyalty: String?
 	public var cardFaces: [Face]?
 	public var convertedManaCost: Double?

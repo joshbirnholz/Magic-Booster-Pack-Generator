@@ -94,6 +94,7 @@ extension MTGCard {
 				  oracleText: scryfallCard.oracleText,
 				  flavorText: scryfallCard.flavorText,
 				  name: scryfallCard.name,
+          flavorName: scryfallCard.flavorName,
 				  loyalty: scryfallCard.loyalty,
 				  cardFaces: faces,
 				  convertedManaCost: scryfallCard.cmc,

@@ -6508,12 +6508,18 @@ extension MTGCard {
 //    case .illustrationID(let id):
 //      return illustrationId == id.uuidString
     case .name(let name):
-      let names: [String] = Array([[self.name], cardFaces?.map(\.name) ?? []].joined()).compactMap { $0?.lowercased() }
+      var names: [String] = Array([[self.name], cardFaces?.map(\.name) ?? []].joined()).compactMap { $0?.lowercased() }
+      if let flavorName {
+        names.append(flavorName.lowercased())
+      }
       return names.contains { other in
         other == name.lowercased() || other.replacingOccurrences(of: "’", with: "'") == name.lowercased()
       }
     case .nameSet(name: let name, set: let set):
-      let names: [String] = Array([[self.name], cardFaces?.map(\.name) ?? []].joined()).compactMap { $0?.lowercased() }
+      var names: [String] = Array([[self.name], cardFaces?.map(\.name) ?? []].joined()).compactMap { $0?.lowercased() }
+      if let flavorName {
+        names.append(flavorName.lowercased())
+      }
       let nameMatches = names.contains { other in
         other == name.lowercased() || other.replacingOccurrences(of: "’", with: "'") == name.lowercased()
       }

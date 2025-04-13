@@ -436,6 +436,8 @@ internal class Swiftfall {
         
         // The name of this card. If this card has multiple faces, this field will contain both names separated by ␣//␣.
         public let name: String?
+      
+        public let flavorName: String?
         
         // A link to this card object on Scryfall’s API.
         public let uri: String?

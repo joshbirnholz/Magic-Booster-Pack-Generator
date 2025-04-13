@@ -37,8 +37,9 @@ public struct DraftmancerCard: Codable {
     }
   }
   
-  init(name: String, manaCost: String, type: String, imageUris: [String : URL]? = nil, colors: [String]? = nil, artist: String? = nil, printedNames: [String : URL]? = nil, image: URL? = nil, set: String? = nil, collectorNumber: String? = nil, rarity: Rarity? = nil, subtypes: [String]? = nil, rating: Int? = nil, layout: String? = nil, back: DraftmancerCard.Face? = nil, relatedCards: [DraftmancerCard.Face]? = nil, relatedCardIdentifiers: [MTGCardIdentifier]? = nil, draftEffects: [DraftmancerCard.DraftEffect]? = nil, power: String? = nil, toughness: String? = nil, oracleText: String? = nil, loyalty: String? = nil, keywords: [String]? = nil) {
+  init(name: String, flavorName: String? = nil, manaCost: String, type: String, imageUris: [String : URL]? = nil, colors: [String]? = nil, artist: String? = nil, printedNames: [String : URL]? = nil, image: URL? = nil, set: String? = nil, collectorNumber: String? = nil, rarity: Rarity? = nil, subtypes: [String]? = nil, rating: Int? = nil, layout: String? = nil, back: DraftmancerCard.Face? = nil, relatedCards: [DraftmancerCard.Face]? = nil, relatedCardIdentifiers: [MTGCardIdentifier]? = nil, draftEffects: [DraftmancerCard.DraftEffect]? = nil, power: String? = nil, toughness: String? = nil, oracleText: String? = nil, loyalty: String? = nil, keywords: [String]? = nil) {
     self.name = name
+    self.flavorName = flavorName
     self.manaCost = manaCost
     self.type = type
     self.imageUris = imageUris
@@ -65,6 +66,7 @@ public struct DraftmancerCard: Codable {
   
   public struct Face: Codable, Hashable, Equatable {
     var name: String
+    var flavorName: String?
     var imageUris: [String: URL]?
     var image: URL?
     var type: String
@@ -75,8 +77,9 @@ public struct DraftmancerCard: Codable {
     var loyalty: String?
     var keywords: [String]?
     
-    init(name: String, imageUris: [String : URL]? = nil, image: URL? = nil, type: String, subtypes: [String]? = nil, oracleText: String? = nil, power: String? = nil, toughness: String? = nil, loyalty: String? = nil, keywords: [String]? = nil) {
+    init(name: String, flavorName: String? = nil, imageUris: [String : URL]? = nil, image: URL? = nil, type: String, subtypes: [String]? = nil, oracleText: String? = nil, power: String? = nil, toughness: String? = nil, loyalty: String? = nil, keywords: [String]? = nil) {
       self.name = name
+      self.flavorName = name
       self.imageUris = imageUris
       self.image = image
       self.type = type
@@ -91,6 +94,7 @@ public struct DraftmancerCard: Codable {
     public init(from decoder: Decoder) throws {
       let container: KeyedDecodingContainer<DraftmancerCard.Face.CodingKeys> = try decoder.container(keyedBy: DraftmancerCard.Face.CodingKeys.self)
       self.name = try container.decode(String.self, forKey: DraftmancerCard.Face.CodingKeys.name)
+      self.flavorName = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.flavorName)
       
       if let image = try container.decodeIfPresent(URL.self, forKey: .image) {
         self.image = image
@@ -133,6 +137,7 @@ public struct DraftmancerCard: Codable {
   }
   
   var name: String
+  var flavorName: String?
   var manaCost: String
   var type: String
   var imageUris: [String: URL]?
@@ -159,6 +164,7 @@ public struct DraftmancerCard: Codable {
   
   init(mtgCard: MTGCard) {
     self.name = mtgCard.name ?? ""
+    self.flavorName = mtgCard.flavorName
     self.manaCost = mtgCard.manaCost ?? ""
     var types = (mtgCard.typeLine ?? "").components(separatedBy: " — ")
     self.type = types.removeFirst()
@@ -219,6 +225,7 @@ public struct DraftmancerCard: Codable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.flavorName, forKey: .flavorName)
     try container.encode(self.manaCost, forKey: .manaCost)
     try container.encode(self.type, forKey: .type)
     
@@ -256,6 +263,7 @@ public struct DraftmancerCard: Codable {
   
   enum CodingKeys: CodingKey {
     case name
+    case flavorName
     case manaCost
     case type
     case imageUris
@@ -283,6 +291,7 @@ public struct DraftmancerCard: Codable {
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.name = try container.decode(String.self, forKey: .name)
+    self.flavorName = try container.decodeIfPresent(String.self, forKey: .flavorName)
     self.manaCost = try container.decode(String.self, forKey: .manaCost)
     self.type = try container.decode(String.self, forKey: .type)
     self.imageUris = try container.decodeIfPresent([String : URL].self, forKey: .imageUris)
@@ -374,6 +383,7 @@ extension DraftmancerCard {
       oracleText: self.oracleText,
       flavorText: nil,
       name: self.name,
+      flavorName: self.flavorName,
       loyalty: self.loyalty,
       cardFaces: nil, // Back faces and split cards not supported yet
       convertedManaCost: nil,
@@ -519,7 +529,7 @@ let draftmancerSets: [DraftmancerSet]? = {
     draftmancerSets = draftmancerSets.map {
       var set = $0
       
-      set.cards = set.cards.map { card in
+      set.cards = (set.name == "Custom Cards" ? set.cards.reversed() : set.cards).map { card in
         var card = card
         
         // Set cards with missing sets to "CUSTOM"

@@ -1,2946 +1,2686 @@
 [CustomCards]
 [
-    {
-    "type" : "Enchantment Land",
+  {
+    "type": "Instant",
+    "subtypes": [],
+    "image": "https://i.imgur.com/pctPnvy.jpeg",
+    "rarity": "rare",
+    "mana_cost": "{1}{U}{U}",
+    "name": "Force of Negation",
+    "flavor_name": "Witch's Prophecy",
+    "related_cards": [],
+    "oracle_text": "If it's not your turn, you may exile a blue card from your hand rather than pay this spell's mana cost.\nCounter target noncreature spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard."
+  },
+  {
+    "type": "Instant",
+    "subtypes": [],
+    "image": "https://i.imgur.com/T9lzGE7.jpeg",
+    "rarity": "rare",
+    "mana_cost": "{1}{U}",
+    "name": "Arcane Denial",
+    "flavor_name": "Fatalism",
+    "related_cards": [],
+    "oracle_text": "Counter target spell. Its controller may draw up to two cards at the beginning of the next turn's upkeep.\nYou draw a card at the beginning of the next turn's upkeep."
+  },
+  {
+    "type": "Enchantment Land",
     "subtypes": [
       "Urza's",
       "Saga"
     ],
-    "image" : "https://i.imgur.com/bfIAlDu.jpeg",
-    "rarity" : "rare",
-    "mana_cost" : "",
-    "name" : "Urza's Saga",
+    "image": "https://i.imgur.com/bfIAlDu.jpeg",
+    "rarity": "rare",
+    "mana_cost": "",
+    "name": "Urza's Saga",
     "related_cards": [
       "Construct (TMH2)"
     ],
-    "oracle_text": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI — This Saga gains \"{T}: Add {C}.\"\nII — This Saga gains \"{2}, {T}: Create a 0/0 colorless Construct artifact creature token with 'This token gets +1/+1 for each artifact you control.'\"\nIII — Search your library for an artifact card with mana cost {0} or {1}, put it onto the battlefield, then shuffle.",
-    },
-    {
-    "type" : "Legendary Creature",
+    "oracle_text": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI — This Saga gains \"{T}: Add {C}.\"\nII — This Saga gains \"{2}, {T}: Create a 0/0 colorless Construct artifact creature token with 'This token gets +1/+1 for each artifact you control.'\"\nIII — Search your library for an artifact card with mana cost {0} or {1}, put it onto the battlefield, then shuffle."
+  },
+  {
+    "type": "Legendary Creature",
     "subtypes": [
       "Angel"
     ],
-    "image" : "https://i.imgur.com/bscLbpK.jpg",
-    "rarity" : "rare",
-    "mana_cost" : "{3}{W}{W}",
-    "name" : "Auriel, Vigilant Sentinel",
+    "image": "https://i.imgur.com/bscLbpK.jpg",
+    "rarity": "rare",
+    "mana_cost": "{3}{W}{W}",
+    "name": "Auriel, Vigilant Sentinel",
     "related_cards": [
       {
-        "name" : "Knight",
-        "image_uris" : {
-          "en" : "https://cards.scryfall.io/large/front/f/4/f4035134-a162-4651-86c5-ae006b6e0e20.jpg"
+        "name": "Knight",
+        "image_uris": {
+          "en": "https://cards.scryfall.io/large/front/f/4/f4035134-a162-4651-86c5-ae006b6e0e20.jpg"
         },
-        "type" : "Token Creature",
-        "subtypes" : ["Knight"]
+        "type": "Token Creature",
+        "subtypes": [
+          "Knight"
+        ]
       }
     ]
   },
   {
-    "colors" : [
-
-    ],
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/qzTRlQy.jpg"
+    "colors": [],
+    "image_uris": {
+      "en": "https://i.imgur.com/qzTRlQy.jpg"
     },
-    "layout" : "normal",
-    "set" : "CUSTOM",
-    "mana_cost" : "{0}",
-    "collector_number" : "132",
-    "keywords" : [
-
-    ],
-    "oracle_text" : "{T}, Sacrifice Black Lotus: Add three mana of any one color.",
-    "type" : "Artifact",
-    "name" : "Black Lotus"
+    "layout": "normal",
+    "set": "CUSTOM",
+    "mana_cost": "{0}",
+    "collector_number": "132",
+    "keywords": [],
+    "oracle_text": "{T}, Sacrifice Black Lotus: Add three mana of any one color.",
+    "type": "Artifact",
+    "name": "Black Lotus"
   },
   {
-    "mana_cost" : "{1}{B}",
-    "type" : "Enchantment",
-    "colors" : [
+    "mana_cost": "{1}{B}",
+    "type": "Enchantment",
+    "colors": [
       "B"
     ],
-    "set" : "CUSTOM",
-    "name" : "Animate Dead",
-    "collector_number" : "131",
-    "keywords" : [
+    "set": "CUSTOM",
+    "name": "Animate Dead",
+    "collector_number": "131",
+    "keywords": [
       "Enchant"
     ],
-    "layout" : "normal",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/2ZXkE05.jpg"
+    "layout": "normal",
+    "image_uris": {
+      "en": "https://i.imgur.com/2ZXkE05.jpg"
     },
-    "subtypes" : [
+    "subtypes": [
       "Aura"
     ],
-    "oracle_text" : "Enchant creature card in a graveyard\nWhen Animate Dead enters, if it's on the battlefield, it loses \"enchant creature card in a graveyard\" and gains \"enchant creature put onto the battlefield with Animate Dead.\" Return enchanted creature card to the battlefield under your control and attach Animate Dead to it. When Animate Dead leaves the battlefield, that creature's controller sacrifices it.\nEnchanted creature gets -1\/-0."
+    "oracle_text": "Enchant creature card in a graveyard\nWhen Animate Dead enters, if it's on the battlefield, it loses \"enchant creature card in a graveyard\" and gains \"enchant creature put onto the battlefield with Animate Dead.\" Return enchanted creature card to the battlefield under your control and attach Animate Dead to it. When Animate Dead leaves the battlefield, that creature's controller sacrifices it.\nEnchanted creature gets -1/-0."
   },
   {
-    "power" : "5",
-    "type" : "Legendary Creature",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/HPPJsHn.jpg"
+    "power": "5",
+    "type": "Legendary Creature",
+    "image_uris": {
+      "en": "https://i.imgur.com/HPPJsHn.jpg"
     },
-    "related_cards" : [
+    "related_cards": [
       {
-        "name" : "Copy",
-        "image_uris" : {
-          "en" : "https:\/\/cards.scryfall.io\/large\/front\/f\/e\/febfca87-fc37-46cc-8236-73bc5c0e5755.jpg?1689710585"
+        "name": "Copy",
+        "image_uris": {
+          "en": "https://cards.scryfall.io/large/front/f/e/febfca87-fc37-46cc-8236-73bc5c0e5755.jpg?1689710585"
         },
-        "type" : "Token"
+        "type": "Token"
       }
     ],
-    "name" : "The Scarab God",
-    "collector_number" : "130",
-    "mana_cost" : "{3}{U}{B}",
-    "colors" : [
+    "name": "The Scarab God",
+    "collector_number": "130",
+    "mana_cost": "{3}{U}{B}",
+    "colors": [
       "B",
       "U"
     ],
-    "layout" : "normal",
-    "toughness" : "5",
-    "oracle_text" : "At the beginning of your upkeep, each opponent loses X life and you scry X, where X is the number of Zombies you control.\n{2}{U}{B}: Exile target creature card from a graveyard. Create a token that's a copy of it, except it's a 4\/4 black Zombie.\nWhen The Scarab God dies, return it to its owner's hand at the beginning of the next end step.",
-    "subtypes" : [
+    "layout": "normal",
+    "toughness": "5",
+    "oracle_text": "At the beginning of your upkeep, each opponent loses X life and you scry X, where X is the number of Zombies you control.\n{2}{U}{B}: Exile target creature card from a graveyard. Create a token that's a copy of it, except it's a 4/4 black Zombie.\nWhen The Scarab God dies, return it to its owner's hand at the beginning of the next end step.",
+    "subtypes": [
       "God"
     ],
-    "keywords" : [
+    "keywords": [
       "Scry"
     ],
-    "set" : "CUSTOM"
+    "set": "CUSTOM"
   },
   {
-    "layout" : "normal",
-    "mana_cost" : "{5}{R}{G}",
-    "power" : "8",
-    "type" : "Legendary Creature",
-    "subtypes" : [
+    "layout": "normal",
+    "mana_cost": "{5}{R}{G}",
+    "power": "8",
+    "type": "Legendary Creature",
+    "subtypes": [
       "Elder",
       "Dragon"
     ],
-    "keywords" : [
+    "keywords": [
       "Flying",
       "Trample"
     ],
-    "set" : "CUSTOM",
-    "name" : "Dragonlord Atarka",
-    "colors" : [
+    "set": "CUSTOM",
+    "name": "Dragonlord Atarka",
+    "colors": [
       "G",
       "R"
     ],
-    "oracle_text" : "Flying, trample\nWhen Dragonlord Atarka enters, it deals 5 damage divided as you choose among any number of target creatures and\/or planeswalkers your opponents control.",
-    "collector_number" : "129",
-    "toughness" : "8",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/Q7QIOg3.jpg"
+    "oracle_text": "Flying, trample\nWhen Dragonlord Atarka enters, it deals 5 damage divided as you choose among any number of target creatures and/or planeswalkers your opponents control.",
+    "collector_number": "129",
+    "toughness": "8",
+    "image_uris": {
+      "en": "https://i.imgur.com/Q7QIOg3.jpg"
     }
   },
   {
-    "layout" : "normal",
-    "set" : "CUSTOM",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/RVKoHoL.jpg"
+    "layout": "normal",
+    "set": "CUSTOM",
+    "image_uris": {
+      "en": "https://i.imgur.com/RVKoHoL.jpg"
     },
-    "collector_number" : "128",
-    "oracle_text" : "At the beginning of your upkeep, reveal the top card of your library and put that card into your hand. You lose life equal to its mana value.",
-    "colors" : [
+    "collector_number": "128",
+    "oracle_text": "At the beginning of your upkeep, reveal the top card of your library and put that card into your hand. You lose life equal to its mana value.",
+    "colors": [
       "B"
     ],
-    "type" : "Creature",
-    "subtypes" : [
+    "type": "Creature",
+    "subtypes": [
       "Human",
       "Wizard"
     ],
-    "power" : "2",
-    "mana_cost" : "{1}{B}",
-    "keywords" : [
-
-    ],
-    "name" : "Dark Confidant",
-    "toughness" : "1"
+    "power": "2",
+    "mana_cost": "{1}{B}",
+    "keywords": [],
+    "name": "Dark Confidant",
+    "toughness": "1"
   },
   {
-    "name" : "Tamiyo, Collector of Tales",
-    "layout" : "normal",
-    "keywords" : [
-
-    ],
-    "oracle_text" : "Spells and abilities your opponents control can't cause you to discard cards or sacrifice permanents.\n+1: Choose a nonland card name, then reveal the top four cards of your library. Put all cards with the chosen name from among them into your hand and the rest into your graveyard.\n−3: Return target card from your graveyard to your hand.",
-    "mana_cost" : "{2}{G}{U}",
-    "set" : "CUSTOM",
-    "type" : "Legendary Planeswalker",
-    "loyalty" : "5",
-    "colors" : [
+    "name": "Tamiyo, Collector of Tales",
+    "layout": "normal",
+    "keywords": [],
+    "oracle_text": "Spells and abilities your opponents control can't cause you to discard cards or sacrifice permanents.\n+1: Choose a nonland card name, then reveal the top four cards of your library. Put all cards with the chosen name from among them into your hand and the rest into your graveyard.\n−3: Return target card from your graveyard to your hand.",
+    "mana_cost": "{2}{G}{U}",
+    "set": "CUSTOM",
+    "type": "Legendary Planeswalker",
+    "loyalty": "5",
+    "colors": [
       "G",
       "U"
     ],
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/pNbNxvK.jpg"
+    "image_uris": {
+      "en": "https://i.imgur.com/pNbNxvK.jpg"
     },
-    "collector_number" : "127",
-    "subtypes" : [
+    "collector_number": "127",
+    "subtypes": [
       "Tamiyo"
     ]
   },
   {
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/S5JeU5B.jpg"
+    "image_uris": {
+      "en": "https://i.imgur.com/S5JeU5B.jpg"
     },
-    "type" : "Sorcery",
-    "colors" : [
+    "type": "Sorcery",
+    "colors": [
       "W"
     ],
-    "layout" : "normal",
-    "keywords" : [
-
-    ],
-    "name" : "Wrath of God",
-    "collector_number" : "126",
-    "mana_cost" : "{2}{W}{W}",
-    "oracle_text" : "Destroy all creatures. They can't be regenerated.",
-    "set" : "CUSTOM"
+    "layout": "normal",
+    "keywords": [],
+    "name": "Wrath of God",
+    "collector_number": "126",
+    "mana_cost": "{2}{W}{W}",
+    "oracle_text": "Destroy all creatures. They can't be regenerated.",
+    "set": "CUSTOM"
   },
   {
-    "type" : "Sorcery",
-    "colors" : [
+    "type": "Sorcery",
+    "colors": [
       "B",
       "W"
     ],
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/uVgxedy.jpg"
+    "image_uris": {
+      "en": "https://i.imgur.com/uVgxedy.jpg"
     },
-    "collector_number" : "125",
-    "mana_cost" : "{1}{W}{B}",
-    "name" : "Vindicate",
-    "layout" : "normal",
-    "oracle_text" : "Destroy target permanent.",
-    "keywords" : [
-
-    ],
-    "set" : "CUSTOM"
+    "collector_number": "125",
+    "mana_cost": "{1}{W}{B}",
+    "name": "Vindicate",
+    "layout": "normal",
+    "oracle_text": "Destroy target permanent.",
+    "keywords": [],
+    "set": "CUSTOM"
   },
   {
-    "keywords" : [
-
-    ],
-    "oracle_text" : "Exile Time Spiral. Each player shuffles their hand and graveyard into their library, then draws seven cards. You untap up to six lands.",
-    "mana_cost" : "{4}{U}{U}",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/kAk7HST.jpg"
+    "keywords": [],
+    "oracle_text": "Exile Time Spiral. Each player shuffles their hand and graveyard into their library, then draws seven cards. You untap up to six lands.",
+    "mana_cost": "{4}{U}{U}",
+    "image_uris": {
+      "en": "https://i.imgur.com/kAk7HST.jpg"
     },
-    "collector_number" : "124",
-    "layout" : "normal",
-    "set" : "CUSTOM",
-    "type" : "Sorcery",
-    "colors" : [
+    "collector_number": "124",
+    "layout": "normal",
+    "set": "CUSTOM",
+    "type": "Sorcery",
+    "colors": [
       "U"
     ],
-    "name" : "Time Spiral"
+    "name": "Time Spiral"
   },
   {
-    "oracle_text" : "Target player reveals their hand. You choose a nonland card from it. That player discards that card. You lose 2 life.",
-    "name" : "Thoughtseize",
-    "type" : "Sorcery",
-    "layout" : "normal",
-    "keywords" : [
-
-    ],
-    "mana_cost" : "{B}",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/ZxLN9ri.jpg"
+    "oracle_text": "Target player reveals their hand. You choose a nonland card from it. That player discards that card. You lose 2 life.",
+    "name": "Thoughtseize",
+    "type": "Sorcery",
+    "layout": "normal",
+    "keywords": [],
+    "mana_cost": "{B}",
+    "image_uris": {
+      "en": "https://i.imgur.com/ZxLN9ri.jpg"
     },
-    "colors" : [
+    "colors": [
       "B"
     ],
-    "set" : "CUSTOM",
-    "collector_number" : "123"
+    "set": "CUSTOM",
+    "collector_number": "123"
   },
   {
-    "colors" : [
+    "colors": [
       "U"
     ],
-    "name" : "Ponder",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/coKTmdl.jpg"
+    "name": "Ponder",
+    "image_uris": {
+      "en": "https://i.imgur.com/coKTmdl.jpg"
     },
-    "set" : "CUSTOM",
-    "mana_cost" : "{U}",
-    "collector_number" : "122",
-    "layout" : "normal",
-    "oracle_text" : "Look at the top three cards of your library, then put them back in any order. You may shuffle.\nDraw a card.",
-    "keywords" : [
-
-    ],
-    "type" : "Sorcery"
+    "set": "CUSTOM",
+    "mana_cost": "{U}",
+    "collector_number": "122",
+    "layout": "normal",
+    "oracle_text": "Look at the top three cards of your library, then put them back in any order. You may shuffle.\nDraw a card.",
+    "keywords": [],
+    "type": "Sorcery"
   },
   {
-    "layout" : "normal",
-    "name" : "Mind Twist",
-    "type" : "Sorcery",
-    "set" : "CUSTOM",
-    "oracle_text" : "Target player discards X cards at random.",
-    "keywords" : [
-
-    ],
-    "mana_cost" : "{X}{B}",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/3ILsuTA.jpg"
+    "layout": "normal",
+    "name": "Mind Twist",
+    "type": "Sorcery",
+    "set": "CUSTOM",
+    "oracle_text": "Target player discards X cards at random.",
+    "keywords": [],
+    "mana_cost": "{X}{B}",
+    "image_uris": {
+      "en": "https://i.imgur.com/3ILsuTA.jpg"
     },
-    "collector_number" : "121",
-    "colors" : [
+    "collector_number": "121",
+    "colors": [
       "B"
     ]
   },
   {
-    "mana_cost" : "{1}{G}",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/eep6OlZ.jpg"
+    "mana_cost": "{1}{G}",
+    "image_uris": {
+      "en": "https://i.imgur.com/eep6OlZ.jpg"
     },
-    "name" : "Life from the Loam",
-    "set" : "CUSTOM",
-    "layout" : "normal",
-    "colors" : [
+    "name": "Life from the Loam",
+    "set": "CUSTOM",
+    "layout": "normal",
+    "colors": [
       "G"
     ],
-    "type" : "Sorcery",
-    "collector_number" : "120",
-    "oracle_text" : "Return up to three target land cards from your graveyard to your hand.\nDredge 3 (If you would draw a card, you may mill three cards instead. If you do, return this card from your graveyard to your hand.)",
-    "keywords" : [
+    "type": "Sorcery",
+    "collector_number": "120",
+    "oracle_text": "Return up to three target land cards from your graveyard to your hand.\nDredge 3 (If you would draw a card, you may mill three cards instead. If you do, return this card from your graveyard to your hand.)",
+    "keywords": [
       "Dredge",
       "Mill"
     ]
   },
   {
-    "oracle_text" : "Each player shuffles their hand and graveyard into their library, then draws seven cards.\nFlashback {2}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
-    "type" : "Sorcery",
-    "layout" : "normal",
-    "set" : "CUSTOM",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/ewc3c4h.jpg"
+    "oracle_text": "Each player shuffles their hand and graveyard into their library, then draws seven cards.\nFlashback {2}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+    "type": "Sorcery",
+    "layout": "normal",
+    "set": "CUSTOM",
+    "image_uris": {
+      "en": "https://i.imgur.com/ewc3c4h.jpg"
     },
-    "mana_cost" : "{4}{U}{U}",
-    "colors" : [
+    "mana_cost": "{4}{U}{U}",
+    "colors": [
       "U"
     ],
-    "name" : "Echo of Eons",
-    "collector_number" : "119",
-    "keywords" : [
+    "name": "Echo of Eons",
+    "collector_number": "119",
+    "keywords": [
       "Flashback"
     ]
   },
   {
-    "keywords" : [
-
-    ],
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/Ae2JZYG.jpg"
+    "keywords": [],
+    "image_uris": {
+      "en": "https://i.imgur.com/Ae2JZYG.jpg"
     },
-    "name" : "Chain Lightning",
-    "colors" : [
+    "name": "Chain Lightning",
+    "colors": [
       "R"
     ],
-    "collector_number" : "118",
-    "set" : "CUSTOM",
-    "type" : "Sorcery",
-    "oracle_text" : "Chain Lightning deals 3 damage to any target. Then that player or that permanent's controller may pay {R}{R}. If the player does, they may copy this spell and may choose a new target for that copy.",
-    "layout" : "normal",
-    "mana_cost" : "{R}"
+    "collector_number": "118",
+    "set": "CUSTOM",
+    "type": "Sorcery",
+    "oracle_text": "Chain Lightning deals 3 damage to any target. Then that player or that permanent's controller may pay {R}{R}. If the player does, they may copy this spell and may choose a new target for that copy.",
+    "layout": "normal",
+    "mana_cost": "{R}"
   },
   {
-    "name" : "Armageddon",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/4erK9zL.jpg"
+    "name": "Armageddon",
+    "image_uris": {
+      "en": "https://i.imgur.com/4erK9zL.jpg"
     },
-    "colors" : [
+    "colors": [
       "W"
     ],
-    "mana_cost" : "{3}{W}",
-    "type" : "Sorcery",
-    "set" : "CUSTOM",
-    "collector_number" : "117",
-    "layout" : "normal",
-    "oracle_text" : "Destroy all lands.",
-    "keywords" : [
-
-    ]
+    "mana_cost": "{3}{W}",
+    "type": "Sorcery",
+    "set": "CUSTOM",
+    "collector_number": "117",
+    "layout": "normal",
+    "oracle_text": "Destroy all lands.",
+    "keywords": []
   },
   {
-    "subtypes" : [
+    "subtypes": [
       "Arcane"
     ],
-    "layout" : "normal",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/ezKA5er.jpg"
+    "layout": "normal",
+    "image_uris": {
+      "en": "https://i.imgur.com/ezKA5er.jpg"
     },
-    "oracle_text" : "You may put a creature card from your hand onto the battlefield. That creature gains haste. Sacrifice that creature at the beginning of the next end step.\nSplice onto Arcane {2}{R}{R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)",
-    "type" : "Instant",
-    "keywords" : [
+    "oracle_text": "You may put a creature card from your hand onto the battlefield. That creature gains haste. Sacrifice that creature at the beginning of the next end step.\nSplice onto Arcane {2}{R}{R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)",
+    "type": "Instant",
+    "keywords": [
       "Splice"
     ],
-    "set" : "CUSTOM",
-    "colors" : [
+    "set": "CUSTOM",
+    "colors": [
       "R"
     ],
-    "mana_cost" : "{4}{R}",
-    "name" : "Through the Breach",
-    "collector_number" : "116"
+    "mana_cost": "{4}{R}",
+    "name": "Through the Breach",
+    "collector_number": "116"
   },
   {
-    "type" : "Instant",
-    "oracle_text" : "You may pay 1 life and exile a blue card from your hand rather than pay this spell's mana cost.\nCounter target spell.",
-    "collector_number" : "115",
-    "mana_cost" : "{3}{U}{U}",
-    "keywords" : [
-
-    ],
-    "name" : "Force of Will",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/M9ocFCB.jpg"
+    "type": "Instant",
+    "oracle_text": "You may pay 1 life and exile a blue card from your hand rather than pay this spell's mana cost.\nCounter target spell.",
+    "collector_number": "115",
+    "mana_cost": "{3}{U}{U}",
+    "keywords": [],
+    "name": "Force of Will",
+    "image_uris": {
+      "en": "https://i.imgur.com/M9ocFCB.jpg"
     },
-    "colors" : [
+    "colors": [
       "U"
     ],
-    "set" : "CUSTOM",
-    "layout" : "normal"
+    "set": "CUSTOM",
+    "layout": "normal"
   },
   {
-    "layout" : "normal",
-    "set" : "CUSTOM",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/EGeNTeY.jpg"
+    "layout": "normal",
+    "set": "CUSTOM",
+    "image_uris": {
+      "en": "https://i.imgur.com/EGeNTeY.jpg"
     },
-    "type" : "Instant",
-    "name" : "Entomb",
-    "collector_number" : "114",
-    "oracle_text" : "Search your library for a card, put that card into your graveyard, then shuffle.",
-    "keywords" : [
-
-    ],
-    "colors" : [
+    "type": "Instant",
+    "name": "Entomb",
+    "collector_number": "114",
+    "oracle_text": "Search your library for a card, put that card into your graveyard, then shuffle.",
+    "keywords": [],
+    "colors": [
       "B"
     ],
-    "mana_cost" : "{B}"
+    "mana_cost": "{B}"
   },
   {
-    "collector_number" : "113",
-    "layout" : "normal",
-    "name" : "Dismember",
-    "keywords" : [
-
-    ],
-    "type" : "Instant",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/2Y1cHAC.jpg"
+    "collector_number": "113",
+    "layout": "normal",
+    "name": "Dismember",
+    "keywords": [],
+    "type": "Instant",
+    "image_uris": {
+      "en": "https://i.imgur.com/2Y1cHAC.jpg"
     },
-    "colors" : [
+    "colors": [
       "B"
     ],
-    "set" : "CUSTOM",
-    "mana_cost" : "{1}{B\/P}{B\/P}",
-    "oracle_text" : "({B\/P} can be paid with either {B} or 2 life.)\nTarget creature gets -5\/-5 until end of turn."
+    "set": "CUSTOM",
+    "mana_cost": "{1}{B/P}{B/P}",
+    "oracle_text": "({B/P} can be paid with either {B} or 2 life.)\nTarget creature gets -5/-5 until end of turn."
   },
   {
-    "oracle_text" : "You may return an Island you control to its owner's hand rather than pay this spell's mana cost.\nCounter target spell unless its controller pays {1}.",
-    "colors" : [
+    "oracle_text": "You may return an Island you control to its owner's hand rather than pay this spell's mana cost.\nCounter target spell unless its controller pays {1}.",
+    "colors": [
       "U"
     ],
-    "mana_cost" : "{1}{U}",
-    "set" : "CUSTOM",
-    "keywords" : [
-
-    ],
-    "type" : "Instant",
-    "collector_number" : "112",
-    "name" : "Daze",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/WWPrLoN.jpg"
+    "mana_cost": "{1}{U}",
+    "set": "CUSTOM",
+    "keywords": [],
+    "type": "Instant",
+    "collector_number": "112",
+    "name": "Daze",
+    "image_uris": {
+      "en": "https://i.imgur.com/WWPrLoN.jpg"
     },
-    "layout" : "normal"
+    "layout": "normal"
   },
   {
-    "mana_cost" : "{B}",
-    "set" : "CUSTOM",
-    "layout" : "normal",
-    "oracle_text" : "Add {B}{B}{B}.",
-    "keywords" : [
-
-    ],
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/7PQ2saU.jpg"
+    "mana_cost": "{B}",
+    "set": "CUSTOM",
+    "layout": "normal",
+    "oracle_text": "Add {B}{B}{B}.",
+    "keywords": [],
+    "image_uris": {
+      "en": "https://i.imgur.com/7PQ2saU.jpg"
     },
-    "type" : "Instant",
-    "name" : "Dark Ritual",
-    "colors" : [
+    "type": "Instant",
+    "name": "Dark Ritual",
+    "colors": [
       "B"
     ],
-    "collector_number" : "111"
+    "collector_number": "111"
   },
   {
-    "mana_cost" : "{1}{U}{U}{U}",
-    "oracle_text" : "Choose two —\n• Counter target spell.\n• Return target permanent to its owner's hand.\n• Tap all creatures your opponents control.\n• Draw a card.",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/iK0oqkZ.jpg"
+    "mana_cost": "{1}{U}{U}{U}",
+    "oracle_text": "Choose two —\n• Counter target spell.\n• Return target permanent to its owner's hand.\n• Tap all creatures your opponents control.\n• Draw a card.",
+    "image_uris": {
+      "en": "https://i.imgur.com/iK0oqkZ.jpg"
     },
-    "colors" : [
+    "colors": [
       "U"
     ],
-    "name" : "Cryptic Command",
-    "collector_number" : "110",
-    "set" : "CUSTOM",
-    "layout" : "normal",
-    "type" : "Instant",
-    "keywords" : [
-
-    ]
+    "name": "Cryptic Command",
+    "collector_number": "110",
+    "set": "CUSTOM",
+    "layout": "normal",
+    "type": "Instant",
+    "keywords": []
   },
   {
-    "layout" : "normal",
-    "colors" : [
+    "layout": "normal",
+    "colors": [
       "U"
     ],
-    "collector_number" : "109",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/IMGMe7q.jpg"
+    "collector_number": "109",
+    "image_uris": {
+      "en": "https://i.imgur.com/IMGMe7q.jpg"
     },
-    "type" : "Instant",
-    "keywords" : [
-
-    ],
-    "mana_cost" : "{U}{U}",
-    "name" : "Counterspell",
-    "set" : "CUSTOM",
-    "oracle_text" : "Counter target spell."
+    "type": "Instant",
+    "keywords": [],
+    "mana_cost": "{U}{U}",
+    "name": "Counterspell",
+    "set": "CUSTOM",
+    "oracle_text": "Counter target spell."
   },
   {
-    "mana_cost" : "{2}{U}{U}",
-    "type" : "Enchantment",
-    "collector_number" : "108",
-    "set" : "CUSTOM",
-    "name" : "Opposition",
-    "layout" : "normal",
-    "keywords" : [
-
-    ],
-    "colors" : [
+    "mana_cost": "{2}{U}{U}",
+    "type": "Enchantment",
+    "collector_number": "108",
+    "set": "CUSTOM",
+    "name": "Opposition",
+    "layout": "normal",
+    "keywords": [],
+    "colors": [
       "U"
     ],
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/SUAyJpB.jpg"
+    "image_uris": {
+      "en": "https://i.imgur.com/SUAyJpB.jpg"
     },
-    "oracle_text" : "Tap an untapped creature you control: Tap target artifact, creature, or land."
+    "oracle_text": "Tap an untapped creature you control: Tap target artifact, creature, or land."
   },
   {
-    "collector_number" : "107",
-    "layout" : "normal",
-    "colors" : [
-
-    ],
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/KWKReJG.jpg"
+    "collector_number": "107",
+    "layout": "normal",
+    "colors": [],
+    "image_uris": {
+      "en": "https://i.imgur.com/KWKReJG.jpg"
     },
-    "oracle_text" : "{T}: Add {U}.",
-    "set" : "CUSTOM",
-    "keywords" : [
-
-    ],
-    "type" : "Artifact",
-    "name" : "Mox Sapphire",
-    "mana_cost" : "{0}"
+    "oracle_text": "{T}: Add {U}.",
+    "set": "CUSTOM",
+    "keywords": [],
+    "type": "Artifact",
+    "name": "Mox Sapphire",
+    "mana_cost": "{0}"
   },
   {
-    "layout" : "normal",
-    "oracle_text" : "{T}: Add {R}.",
-    "keywords" : [
-
-    ],
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/G9kZCOd.jpg"
+    "layout": "normal",
+    "oracle_text": "{T}: Add {R}.",
+    "keywords": [],
+    "image_uris": {
+      "en": "https://i.imgur.com/G9kZCOd.jpg"
     },
-    "mana_cost" : "{0}",
-    "name" : "Mox Ruby",
-    "type" : "Artifact",
-    "set" : "CUSTOM",
-    "colors" : [
-
-    ],
-    "collector_number" : "106"
+    "mana_cost": "{0}",
+    "name": "Mox Ruby",
+    "type": "Artifact",
+    "set": "CUSTOM",
+    "colors": [],
+    "collector_number": "106"
   },
   {
-    "type" : "Artifact",
-    "layout" : "normal",
-    "name" : "Mox Pearl",
-    "set" : "CUSTOM",
-    "mana_cost" : "{0}",
-    "oracle_text" : "{T}: Add {W}.",
-    "keywords" : [
-
-    ],
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/3nbh6C4.jpg"
+    "type": "Artifact",
+    "layout": "normal",
+    "name": "Mox Pearl",
+    "set": "CUSTOM",
+    "mana_cost": "{0}",
+    "oracle_text": "{T}: Add {W}.",
+    "keywords": [],
+    "image_uris": {
+      "en": "https://i.imgur.com/3nbh6C4.jpg"
     },
-    "collector_number" : "105",
-    "colors" : [
-
-    ]
+    "collector_number": "105",
+    "colors": []
   },
   {
-    "keywords" : [
-
-    ],
-    "set" : "CUSTOM",
-    "layout" : "normal",
-    "colors" : [
-
-    ],
-    "collector_number" : "104",
-    "type" : "Artifact",
-    "oracle_text" : "{T}: Add {B}.",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/CMnIKS7.jpg"
+    "keywords": [],
+    "set": "CUSTOM",
+    "layout": "normal",
+    "colors": [],
+    "collector_number": "104",
+    "type": "Artifact",
+    "oracle_text": "{T}: Add {B}.",
+    "image_uris": {
+      "en": "https://i.imgur.com/CMnIKS7.jpg"
     },
-    "mana_cost" : "{0}",
-    "name" : "Mox Jet"
+    "mana_cost": "{0}",
+    "name": "Mox Jet"
   },
   {
-    "layout" : "normal",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/5vc9QYR.jpg"
+    "layout": "normal",
+    "image_uris": {
+      "en": "https://i.imgur.com/5vc9QYR.jpg"
     },
-    "keywords" : [
-
-    ],
-    "mana_cost" : "{0}",
-    "colors" : [
-
-    ],
-    "oracle_text" : "{T}: Add {G}.",
-    "collector_number" : "103",
-    "type" : "Artifact",
-    "set" : "CUSTOM",
-    "name" : "Mox Emerald"
+    "keywords": [],
+    "mana_cost": "{0}",
+    "colors": [],
+    "oracle_text": "{T}: Add {G}.",
+    "collector_number": "103",
+    "type": "Artifact",
+    "set": "CUSTOM",
+    "name": "Mox Emerald"
   },
   {
-    "collector_number" : "102",
-    "layout" : "normal",
-    "mana_cost" : "{2}",
-    "type" : "Artifact",
-    "oracle_text" : "Grim Monolith doesn't untap during your untap step.\n{T}: Add {C}{C}{C}.\n{4}: Untap Grim Monolith.",
-    "colors" : [
-
-    ],
-    "name" : "Grim Monolith",
-    "keywords" : [
-
-    ],
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/BwXZAPM.jpg"
+    "collector_number": "102",
+    "layout": "normal",
+    "mana_cost": "{2}",
+    "type": "Artifact",
+    "oracle_text": "Grim Monolith doesn't untap during your untap step.\n{T}: Add {C}{C}{C}.\n{4}: Untap Grim Monolith.",
+    "colors": [],
+    "name": "Grim Monolith",
+    "keywords": [],
+    "image_uris": {
+      "en": "https://i.imgur.com/BwXZAPM.jpg"
     },
-    "set" : "CUSTOM"
+    "set": "CUSTOM"
   },
   {
-    "layout" : "normal",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/NvBDs2o.jpg"
+    "layout": "normal",
+    "image_uris": {
+      "en": "https://i.imgur.com/NvBDs2o.jpg"
     },
-    "mana_cost" : "{1}",
-    "colors" : [
-
-    ],
-    "type" : "Artifact",
-    "oracle_text" : "{X}, {T}: Untap X target lands.",
-    "set" : "CUSTOM",
-    "keywords" : [
-
-    ],
-    "collector_number" : "101",
-    "name" : "Candelabra of Tawnos"
+    "mana_cost": "{1}",
+    "colors": [],
+    "type": "Artifact",
+    "oracle_text": "{X}, {T}: Untap X target lands.",
+    "set": "CUSTOM",
+    "keywords": [],
+    "collector_number": "101",
+    "name": "Candelabra of Tawnos"
   },
   {
-    "name" : "Mishra's Workshop",
-    "set" : "CUSTOM",
-    "colors" : [
-
-    ],
-    "collector_number" : "100",
-    "keywords" : [
-
-    ],
-    "layout" : "normal",
-    "oracle_text" : "{T}: Add {C}{C}{C}. Spend this mana only to cast artifact spells.",
-    "type" : "Land",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/HZdHxzh.jpg"
+    "name": "Mishra's Workshop",
+    "set": "CUSTOM",
+    "colors": [],
+    "collector_number": "100",
+    "keywords": [],
+    "layout": "normal",
+    "oracle_text": "{T}: Add {C}{C}{C}. Spend this mana only to cast artifact spells.",
+    "type": "Land",
+    "image_uris": {
+      "en": "https://i.imgur.com/HZdHxzh.jpg"
     },
-    "mana_cost" : ""
+    "mana_cost": ""
   },
   {
-    "mana_cost" : "",
-    "keywords" : [
-
-    ],
-    "name" : "Library of Alexandria",
-    "collector_number" : "99",
-    "colors" : [
-
-    ],
-    "oracle_text" : "{T}: Add {C}.\n{T}: Draw a card. Activate only if you have exactly seven cards in hand.",
-    "set" : "CUSTOM",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/hB22k0h.jpg"
+    "mana_cost": "",
+    "keywords": [],
+    "name": "Library of Alexandria",
+    "collector_number": "99",
+    "colors": [],
+    "oracle_text": "{T}: Add {C}.\n{T}: Draw a card. Activate only if you have exactly seven cards in hand.",
+    "set": "CUSTOM",
+    "image_uris": {
+      "en": "https://i.imgur.com/hB22k0h.jpg"
     },
-    "layout" : "normal",
-    "type" : "Land"
+    "layout": "normal",
+    "type": "Land"
   },
   {
-    "type" : "Land",
-    "colors" : [
-
-    ],
-    "name" : "City of Traitors",
-    "oracle_text" : "When you play another land, sacrifice City of Traitors.\n{T}: Add {C}{C}.",
-    "collector_number" : "98",
-    "mana_cost" : "",
-    "set" : "CUSTOM",
-    "layout" : "normal",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/A9OTuhG.jpg"
+    "type": "Land",
+    "colors": [],
+    "name": "City of Traitors",
+    "oracle_text": "When you play another land, sacrifice City of Traitors.\n{T}: Add {C}{C}.",
+    "collector_number": "98",
+    "mana_cost": "",
+    "set": "CUSTOM",
+    "layout": "normal",
+    "image_uris": {
+      "en": "https://i.imgur.com/A9OTuhG.jpg"
     },
-    "keywords" : [
-
-    ]
+    "keywords": []
   },
   {
-    "mana_cost" : "{3}{G}",
-    "layout" : "normal",
-    "power" : "1",
-    "collector_number" : "97",
-    "set" : "CUSTOM",
-    "subtypes" : [
+    "mana_cost": "{3}{G}",
+    "layout": "normal",
+    "power": "1",
+    "collector_number": "97",
+    "set": "CUSTOM",
+    "subtypes": [
       "Squirrel"
     ],
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/lJM7jaY.png"
+    "image_uris": {
+      "en": "https://i.imgur.com/lJM7jaY.png"
     },
-    "name" : "Toski, Bearer of Secrets",
-    "type" : "Legendary Creature",
-    "oracle_text" : "This spell can't be countered.\nIndestructible\nToski, Bearer of Secrets attacks each combat if able.\nWhenever a creature you control deals combat damage to a player, draw a card.",
-    "toughness" : "1",
-    "colors" : [
+    "name": "Toski, Bearer of Secrets",
+    "type": "Legendary Creature",
+    "oracle_text": "This spell can't be countered.\nIndestructible\nToski, Bearer of Secrets attacks each combat if able.\nWhenever a creature you control deals combat damage to a player, draw a card.",
+    "toughness": "1",
+    "colors": [
       "G"
     ],
-    "keywords" : [
+    "keywords": [
       "Indestructible"
     ]
   },
   {
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/fbjBUja.png"
+    "image_uris": {
+      "en": "https://i.imgur.com/fbjBUja.png"
     },
-    "name" : "Orvar, the All-Form",
-    "subtypes" : [
+    "name": "Orvar, the All-Form",
+    "subtypes": [
       "Shapeshifter"
     ],
-    "type" : "Legendary Creature",
-    "oracle_text" : "Changeling\nWhenever you cast an instant or sorcery spell, if it targets one or more other permanents you control, create a token that's a copy of one of those permanents.\nWhen a spell or ability an opponent controls causes you to discard this card, create a token that's a copy of target permanent.",
-    "colors" : [
+    "type": "Legendary Creature",
+    "oracle_text": "Changeling\nWhenever you cast an instant or sorcery spell, if it targets one or more other permanents you control, create a token that's a copy of one of those permanents.\nWhen a spell or ability an opponent controls causes you to discard this card, create a token that's a copy of target permanent.",
+    "colors": [
       "U"
     ],
-    "power" : "3",
-    "mana_cost" : "{3}{U}",
-    "layout" : "normal",
-    "collector_number" : "96",
-    "related_cards" : [
+    "power": "3",
+    "mana_cost": "{3}{U}",
+    "layout": "normal",
+    "collector_number": "96",
+    "related_cards": [
       {
-        "image_uris" : {
-          "en" : "https:\/\/cards.scryfall.io\/large\/front\/b\/1\/b19112b9-1583-445d-bc48-5ca3325fab48.jpg?1725996984"
+        "image_uris": {
+          "en": "https://cards.scryfall.io/large/front/b/1/b19112b9-1583-445d-bc48-5ca3325fab48.jpg?1725996984"
         },
-        "type" : "Token",
-        "name" : "Copy"
+        "type": "Token",
+        "name": "Copy"
       }
     ],
-    "toughness" : "3",
-    "keywords" : [
+    "toughness": "3",
+    "keywords": [
       "Changeling"
     ],
-    "set" : "CUSTOM"
+    "set": "CUSTOM"
   },
   {
-    "oracle_text" : "When Kardur, Doomscourge enters, until your next turn, creatures your opponents control attack each combat if able and attack a player other than you if able.\nWhenever an attacking creature dies, each opponent loses 1 life and you gain 1 life.",
-    "type" : "Legendary Creature",
-    "power" : "4",
-    "mana_cost" : "{2}{B}{R}",
-    "keywords" : [
-
-    ],
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/STfj295.png"
+    "oracle_text": "When Kardur, Doomscourge enters, until your next turn, creatures your opponents control attack each combat if able and attack a player other than you if able.\nWhenever an attacking creature dies, each opponent loses 1 life and you gain 1 life.",
+    "type": "Legendary Creature",
+    "power": "4",
+    "mana_cost": "{2}{B}{R}",
+    "keywords": [],
+    "image_uris": {
+      "en": "https://i.imgur.com/STfj295.png"
     },
-    "set" : "CUSTOM",
-    "colors" : [
+    "set": "CUSTOM",
+    "colors": [
       "B",
       "R"
     ],
-    "name" : "Kardur, Doomscourge",
-    "collector_number" : "95",
-    "toughness" : "3",
-    "layout" : "normal",
-    "subtypes" : [
+    "name": "Kardur, Doomscourge",
+    "collector_number": "95",
+    "toughness": "3",
+    "layout": "normal",
+    "subtypes": [
       "Demon",
       "Berserker"
     ]
   },
   {
-    "set" : "CUSTOM",
-    "keywords" : [
+    "set": "CUSTOM",
+    "keywords": [
       "Haste",
       "Trample"
     ],
-    "collector_number" : "94",
-    "toughness" : "6",
-    "power" : "6",
-    "colors" : [
+    "collector_number": "94",
+    "toughness": "6",
+    "power": "6",
+    "colors": [
       "G"
     ],
-    "layout" : "normal",
-    "oracle_text" : "Trample, haste\nIf you would put one or more counters on a permanent or player, put twice that many of each of those kinds of counters on that permanent or player instead.\nIf an opponent would put one or more counters on a permanent or player, they put half that many of each of those kinds of counters on that permanent or player instead, rounded down.",
-    "mana_cost" : "{4}{G}{G}",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/zZzs9Al.png"
+    "layout": "normal",
+    "oracle_text": "Trample, haste\nIf you would put one or more counters on a permanent or player, put twice that many of each of those kinds of counters on that permanent or player instead.\nIf an opponent would put one or more counters on a permanent or player, they put half that many of each of those kinds of counters on that permanent or player instead, rounded down.",
+    "mana_cost": "{4}{G}{G}",
+    "image_uris": {
+      "en": "https://i.imgur.com/zZzs9Al.png"
     },
-    "name" : "Vorinclex, Monstrous Raider",
-    "type" : "Legendary Creature",
-    "subtypes" : [
+    "name": "Vorinclex, Monstrous Raider",
+    "type": "Legendary Creature",
+    "subtypes": [
       "Phyrexian",
       "Praetor"
     ]
   },
   {
-    "power" : "2",
-    "keywords" : [
+    "power": "2",
+    "keywords": [
       "Protection",
       "Proliferate"
     ],
-    "layout" : "normal",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/TJjJvca.png"
+    "layout": "normal",
+    "image_uris": {
+      "en": "https://i.imgur.com/TJjJvca.png"
     },
-    "oracle_text" : "Protection from Humans\nPay 1 life, Sacrifice another creature: Put a -1\/-1 counter on up to one target creature and draw a card.\n{B}{B}, Discard a card: Proliferate. (Choose any number of permanents and\/or players, then give each another counter of each kind already there.)",
-    "mana_cost" : "{2}{B}{B}",
-    "colors" : [
+    "oracle_text": "Protection from Humans\nPay 1 life, Sacrifice another creature: Put a -1/-1 counter on up to one target creature and draw a card.\n{B}{B}, Discard a card: Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)",
+    "mana_cost": "{2}{B}{B}",
+    "colors": [
       "B"
     ],
-    "name" : "Yawgmoth, Thran Physician",
-    "type" : "Legendary Creature",
-    "collector_number" : "93",
-    "set" : "CUSTOM",
-    "subtypes" : [
+    "name": "Yawgmoth, Thran Physician",
+    "type": "Legendary Creature",
+    "collector_number": "93",
+    "set": "CUSTOM",
+    "subtypes": [
       "Human",
       "Cleric"
     ],
-    "toughness" : "4"
+    "toughness": "4"
   },
   {
-    "oracle_text" : "Whenever a creature with power 1 or less is put into your graveyard from the battlefield, you may return that card to the battlefield at the beginning of the next end step if Shirei, Shizo's Caretaker is still on the battlefield.",
-    "set" : "CUSTOM",
-    "power" : "2",
-    "type" : "Legendary Creature",
-    "collector_number" : "92",
-    "name" : "Shirei, Shizo's Caretaker",
-    "subtypes" : [
+    "oracle_text": "Whenever a creature with power 1 or less is put into your graveyard from the battlefield, you may return that card to the battlefield at the beginning of the next end step if Shirei, Shizo's Caretaker is still on the battlefield.",
+    "set": "CUSTOM",
+    "power": "2",
+    "type": "Legendary Creature",
+    "collector_number": "92",
+    "name": "Shirei, Shizo's Caretaker",
+    "subtypes": [
       "Spirit"
     ],
-    "toughness" : "2",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/mjiyxZK.png"
+    "toughness": "2",
+    "image_uris": {
+      "en": "https://i.imgur.com/mjiyxZK.png"
     },
-    "keywords" : [
-
-    ],
-    "layout" : "normal",
-    "mana_cost" : "{4}{B}",
-    "colors" : [
+    "keywords": [],
+    "layout": "normal",
+    "mana_cost": "{4}{B}",
+    "colors": [
       "B"
     ]
   },
   {
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/qv0Hdhe.png"
+    "image_uris": {
+      "en": "https://i.imgur.com/qv0Hdhe.png"
     },
-    "toughness" : "4",
-    "layout" : "normal",
-    "set" : "CUSTOM",
-    "collector_number" : "91",
-    "subtypes" : [
+    "toughness": "4",
+    "layout": "normal",
+    "set": "CUSTOM",
+    "collector_number": "91",
+    "subtypes": [
       "Dragon"
     ],
-    "oracle_text" : "Flying\nSpells your opponents cast that target Terror of the Peaks cost an additional 3 life to cast.\nWhenever another creature you control enters, Terror of the Peaks deals damage equal to that creature's power to any target.",
-    "type" : "Creature",
-    "power" : "5",
-    "mana_cost" : "{3}{R}{R}",
-    "keywords" : [
+    "oracle_text": "Flying\nSpells your opponents cast that target Terror of the Peaks cost an additional 3 life to cast.\nWhenever another creature you control enters, Terror of the Peaks deals damage equal to that creature's power to any target.",
+    "type": "Creature",
+    "power": "5",
+    "mana_cost": "{3}{R}{R}",
+    "keywords": [
       "Flying"
     ],
-    "name" : "Terror of the Peaks",
-    "colors" : [
+    "name": "Terror of the Peaks",
+    "colors": [
       "R"
     ]
   },
   {
-    "mana_cost" : "{3}{B}",
-    "colors" : [
+    "mana_cost": "{3}{B}",
+    "colors": [
       "B"
     ],
-    "oracle_text" : "Whenever Ashcoat of the Shadow Swarm attacks or blocks, other Rats you control get +X\/+X until end of turn, where X is the number of Rats you control.\nAt the beginning of your end step, you may mill four cards. If you do, return up to two Rat creature cards from your graveyard to your hand. (To mill a card, put the top card of your library into your graveyard.)",
-    "layout" : "normal",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/7Ol2ixb.png"
+    "oracle_text": "Whenever Ashcoat of the Shadow Swarm attacks or blocks, other Rats you control get +X/+X until end of turn, where X is the number of Rats you control.\nAt the beginning of your end step, you may mill four cards. If you do, return up to two Rat creature cards from your graveyard to your hand. (To mill a card, put the top card of your library into your graveyard.)",
+    "layout": "normal",
+    "image_uris": {
+      "en": "https://i.imgur.com/7Ol2ixb.png"
     },
-    "power" : "3",
-    "collector_number" : "90",
-    "set" : "CUSTOM",
-    "type" : "Legendary Creature",
-    "subtypes" : [
+    "power": "3",
+    "collector_number": "90",
+    "set": "CUSTOM",
+    "type": "Legendary Creature",
+    "subtypes": [
       "Rat",
       "Warlock"
     ],
-    "toughness" : "4",
-    "keywords" : [
+    "toughness": "4",
+    "keywords": [
       "Mill"
     ],
-    "name" : "Ashcoat of the Shadow Swarm"
+    "name": "Ashcoat of the Shadow Swarm"
   },
   {
-    "set" : "CUSTOM",
-    "type" : "Legendary Creature",
-    "subtypes" : [
+    "set": "CUSTOM",
+    "type": "Legendary Creature",
+    "subtypes": [
       "Vampire",
       "Noble"
     ],
-    "keywords" : [
+    "keywords": [
       "First strike"
     ],
-    "colors" : [
+    "colors": [
       "B",
       "R"
     ],
-    "collector_number" : "89",
-    "name" : "Florian, Voldaren Scion",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/oZ0jdol.png"
+    "collector_number": "89",
+    "name": "Florian, Voldaren Scion",
+    "image_uris": {
+      "en": "https://i.imgur.com/oZ0jdol.png"
     },
-    "oracle_text" : "First strike\nAt the beginning of your second main phase, look at the top X cards of your library, where X is the total amount of life your opponents lost this turn. Exile one of those cards and put the rest on the bottom of your library in a random order. You may play the exiled card this turn.",
-    "power" : "3",
-    "layout" : "normal",
-    "toughness" : "3",
-    "mana_cost" : "{1}{B}{R}"
+    "oracle_text": "First strike\nAt the beginning of your second main phase, look at the top X cards of your library, where X is the total amount of life your opponents lost this turn. Exile one of those cards and put the rest on the bottom of your library in a random order. You may play the exiled card this turn.",
+    "power": "3",
+    "layout": "normal",
+    "toughness": "3",
+    "mana_cost": "{1}{B}{R}"
   },
   {
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/mvZSTwJ.png"
+    "image_uris": {
+      "en": "https://i.imgur.com/mvZSTwJ.png"
     },
-    "colors" : [
+    "colors": [
       "R"
     ],
-    "toughness" : "2",
-    "layout" : "normal",
-    "set" : "CUSTOM",
-    "name" : "Auntie Blyte, Bad Influence",
-    "power" : "2",
-    "subtypes" : [
+    "toughness": "2",
+    "layout": "normal",
+    "set": "CUSTOM",
+    "name": "Auntie Blyte, Bad Influence",
+    "power": "2",
+    "subtypes": [
       "Devil",
       "Advisor"
     ],
-    "collector_number" : "88",
-    "oracle_text" : "Flying\nWhenever a source you control deals damage to you, put that many +1\/+1 counters on Auntie Blyte, Bad Influence.\n{1}{R}, {T}, Remove X +1\/+1 counters from Auntie Blyte: It deals X damage to any target.",
-    "keywords" : [
+    "collector_number": "88",
+    "oracle_text": "Flying\nWhenever a source you control deals damage to you, put that many +1/+1 counters on Auntie Blyte, Bad Influence.\n{1}{R}, {T}, Remove X +1/+1 counters from Auntie Blyte: It deals X damage to any target.",
+    "keywords": [
       "Flying"
     ],
-    "mana_cost" : "{2}{R}",
-    "type" : "Legendary Creature"
+    "mana_cost": "{2}{R}",
+    "type": "Legendary Creature"
   },
   {
-    "mana_cost" : "{W}{B}",
-    "layout" : "normal",
-    "oracle_text" : "Whenever you gain life, put two +1\/+1 counters on Karlov of the Ghost Council.\n{W}{B}, Remove six +1\/+1 counters from Karlov of the Ghost Council: Exile target creature.",
-    "subtypes" : [
+    "mana_cost": "{W}{B}",
+    "layout": "normal",
+    "oracle_text": "Whenever you gain life, put two +1/+1 counters on Karlov of the Ghost Council.\n{W}{B}, Remove six +1/+1 counters from Karlov of the Ghost Council: Exile target creature.",
+    "subtypes": [
       "Spirit",
       "Advisor"
     ],
-    "collector_number" : "87",
-    "power" : "2",
-    "toughness" : "2",
-    "name" : "Karlov of the Ghost Council",
-    "keywords" : [
-
-    ],
-    "set" : "CUSTOM",
-    "colors" : [
+    "collector_number": "87",
+    "power": "2",
+    "toughness": "2",
+    "name": "Karlov of the Ghost Council",
+    "keywords": [],
+    "set": "CUSTOM",
+    "colors": [
       "B",
       "W"
     ],
-    "type" : "Legendary Creature",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/82Brqum.png"
+    "type": "Legendary Creature",
+    "image_uris": {
+      "en": "https://i.imgur.com/82Brqum.png"
     }
   },
   {
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/GAClEOU.png"
+    "image_uris": {
+      "en": "https://i.imgur.com/GAClEOU.png"
     },
-    "type" : "Legendary Creature",
-    "set" : "CUSTOM",
-    "mana_cost" : "{1}{U}{B}{R}",
-    "name" : "Admiral Beckett Brass",
-    "subtypes" : [
+    "type": "Legendary Creature",
+    "set": "CUSTOM",
+    "mana_cost": "{1}{U}{B}{R}",
+    "name": "Admiral Beckett Brass",
+    "subtypes": [
       "Human",
       "Pirate"
     ],
-    "layout" : "normal",
-    "power" : "3",
-    "toughness" : "3",
-    "oracle_text" : "Other Pirates you control get +1\/+1.\nAt the beginning of your end step, gain control of target nonland permanent controlled by a player who was dealt combat damage by three or more Pirates this turn.",
-    "colors" : [
+    "layout": "normal",
+    "power": "3",
+    "toughness": "3",
+    "oracle_text": "Other Pirates you control get +1/+1.\nAt the beginning of your end step, gain control of target nonland permanent controlled by a player who was dealt combat damage by three or more Pirates this turn.",
+    "colors": [
       "B",
       "R",
       "U"
     ],
-    "keywords" : [
-
-    ],
-    "collector_number" : "86"
+    "keywords": [],
+    "collector_number": "86"
   },
   {
-    "mana_cost" : "{G}{W}{U}",
-    "set" : "CUSTOM",
-    "oracle_text" : "Tuvasa the Sunlit gets +1\/+1 for each enchantment you control.\nWhenever you cast your first enchantment spell each turn, draw a card.",
-    "type" : "Legendary Creature",
-    "keywords" : [
-
-    ],
-    "toughness" : "1",
-    "name" : "Tuvasa the Sunlit",
-    "colors" : [
+    "mana_cost": "{G}{W}{U}",
+    "set": "CUSTOM",
+    "oracle_text": "Tuvasa the Sunlit gets +1/+1 for each enchantment you control.\nWhenever you cast your first enchantment spell each turn, draw a card.",
+    "type": "Legendary Creature",
+    "keywords": [],
+    "toughness": "1",
+    "name": "Tuvasa the Sunlit",
+    "colors": [
       "G",
       "U",
       "W"
     ],
-    "layout" : "normal",
-    "collector_number" : "85",
-    "subtypes" : [
+    "layout": "normal",
+    "collector_number": "85",
+    "subtypes": [
       "Merfolk",
       "Shaman"
     ],
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/ljvmn6r.png"
+    "image_uris": {
+      "en": "https://i.imgur.com/ljvmn6r.png"
     },
-    "power" : "1"
+    "power": "1"
   },
   {
-    "oracle_text" : "Flying\nWhenever you cast a noncreature spell, create a 1\/1 white Spirit creature token with flying.\nSacrifice a Spirit: Add {R}.",
-    "set" : "CUSTOM",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/vkQnVD7.png"
+    "oracle_text": "Flying\nWhenever you cast a noncreature spell, create a 1/1 white Spirit creature token with flying.\nSacrifice a Spirit: Add {R}.",
+    "set": "CUSTOM",
+    "image_uris": {
+      "en": "https://i.imgur.com/vkQnVD7.png"
     },
-    "name" : "Kykar, Wind's Fury",
-    "colors" : [
+    "name": "Kykar, Wind's Fury",
+    "colors": [
       "R",
       "U",
       "W"
     ],
-    "type" : "Legendary Creature",
-    "layout" : "normal",
-    "power" : "3",
-    "related_cards" : [
+    "type": "Legendary Creature",
+    "layout": "normal",
+    "power": "3",
+    "related_cards": [
       {
-        "image_uris" : {
-          "en" : "https:\/\/cards.scryfall.io\/large\/front\/6\/e\/6e8ba2be-4e95-4d10-b866-9fde3f8c8a3f.jpg?1689972091"
+        "image_uris": {
+          "en": "https://cards.scryfall.io/large/front/6/e/6e8ba2be-4e95-4d10-b866-9fde3f8c8a3f.jpg?1689972091"
         },
-        "name" : "Spirit",
-        "subtypes" : [
+        "name": "Spirit",
+        "subtypes": [
           "Spirit"
         ],
-        "type" : "Token Creature"
+        "type": "Token Creature"
       }
     ],
-    "keywords" : [
+    "keywords": [
       "Flying"
     ],
-    "subtypes" : [
+    "subtypes": [
       "Bird",
       "Wizard"
     ],
-    "mana_cost" : "{1}{U}{R}{W}",
-    "toughness" : "3",
-    "collector_number" : "84"
+    "mana_cost": "{1}{U}{R}{W}",
+    "toughness": "3",
+    "collector_number": "84"
   },
   {
-    "keywords" : [
-
-    ],
-    "subtypes" : [
+    "keywords": [],
+    "subtypes": [
       "Mountain"
     ],
-    "mana_cost" : "",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/chadEr5.jpg"
+    "mana_cost": "",
+    "image_uris": {
+      "en": "https://i.imgur.com/chadEr5.jpg"
     },
-    "colors" : [
-
-    ],
-    "set" : "CUSTOM",
-    "collector_number" : "83",
-    "layout" : "normal",
-    "type" : "Basic Snow Land",
-    "name" : "Snow-Covered Mountain",
-    "oracle_text" : "({T}: Add {R}.)"
+    "colors": [],
+    "set": "CUSTOM",
+    "collector_number": "83",
+    "layout": "normal",
+    "type": "Basic Snow Land",
+    "name": "Snow-Covered Mountain",
+    "oracle_text": "({T}: Add {R}.)"
   },
   {
-    "subtypes" : [
+    "subtypes": [
       "Spirit"
     ],
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/LL1b1sz.jpg"
+    "image_uris": {
+      "en": "https://i.imgur.com/LL1b1sz.jpg"
     },
-    "toughness" : "2",
-    "layout" : "normal",
-    "mana_cost" : "{4}{B}",
-    "oracle_text" : "Whenever a creature with power 1 or less is put into your graveyard from the battlefield, you may return that card to the battlefield at the beginning of the next end step if Shirei, Shizo's Caretaker is still on the battlefield.",
-    "name" : "Shirei, Shizo's Caretaker",
-    "collector_number" : "82",
-    "set" : "CUSTOM",
-    "colors" : [
+    "toughness": "2",
+    "layout": "normal",
+    "mana_cost": "{4}{B}",
+    "oracle_text": "Whenever a creature with power 1 or less is put into your graveyard from the battlefield, you may return that card to the battlefield at the beginning of the next end step if Shirei, Shizo's Caretaker is still on the battlefield.",
+    "name": "Shirei, Shizo's Caretaker",
+    "collector_number": "82",
+    "set": "CUSTOM",
+    "colors": [
       "B"
     ],
-    "power" : "2",
-    "keywords" : [
-
-    ],
-    "type" : "Legendary Creature"
+    "power": "2",
+    "keywords": [],
+    "type": "Legendary Creature"
   },
   {
-    "layout" : "normal",
-    "keywords" : [
-
-    ],
-    "type" : "Basic Snow Land",
-    "name" : "Snow-Covered Plains",
-    "collector_number" : "81",
-    "oracle_text" : "({T}: Add {W}.)",
-    "set" : "CUSTOM",
-    "colors" : [
-
-    ],
-    "mana_cost" : "",
-    "subtypes" : [
+    "layout": "normal",
+    "keywords": [],
+    "type": "Basic Snow Land",
+    "name": "Snow-Covered Plains",
+    "collector_number": "81",
+    "oracle_text": "({T}: Add {W}.)",
+    "set": "CUSTOM",
+    "colors": [],
+    "mana_cost": "",
+    "subtypes": [
       "Plains"
     ],
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/5IIqSLI.png"
+    "image_uris": {
+      "en": "https://i.imgur.com/5IIqSLI.png"
     }
   },
   {
-    "collector_number" : "80",
-    "type" : "Basic Snow Land",
-    "layout" : "normal",
-    "subtypes" : [
+    "collector_number": "80",
+    "type": "Basic Snow Land",
+    "layout": "normal",
+    "subtypes": [
       "Island"
     ],
-    "set" : "CUSTOM",
-    "name" : "Snow-Covered Island",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/OF9ry2Y.png"
+    "set": "CUSTOM",
+    "name": "Snow-Covered Island",
+    "image_uris": {
+      "en": "https://i.imgur.com/OF9ry2Y.png"
     },
-    "keywords" : [
-
-    ],
-    "mana_cost" : "",
-    "colors" : [
-
-    ],
-    "oracle_text" : "({T}: Add {U}.)"
+    "keywords": [],
+    "mana_cost": "",
+    "colors": [],
+    "oracle_text": "({T}: Add {U}.)"
   },
   {
-    "name" : "Snow-Covered Swamp",
-    "subtypes" : [
+    "name": "Snow-Covered Swamp",
+    "subtypes": [
       "Swamp"
     ],
-    "layout" : "normal",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/aMYrIjM.png"
+    "layout": "normal",
+    "image_uris": {
+      "en": "https://i.imgur.com/aMYrIjM.png"
     },
-    "collector_number" : "79",
-    "mana_cost" : "",
-    "keywords" : [
-
-    ],
-    "oracle_text" : "({T}: Add {B}.)",
-    "set" : "CUSTOM",
-    "colors" : [
-
-    ],
-    "type" : "Basic Snow Land"
+    "collector_number": "79",
+    "mana_cost": "",
+    "keywords": [],
+    "oracle_text": "({T}: Add {B}.)",
+    "set": "CUSTOM",
+    "colors": [],
+    "type": "Basic Snow Land"
   },
   {
-    "collector_number" : "78",
-    "layout" : "normal",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/rWHh0MO.png"
+    "collector_number": "78",
+    "layout": "normal",
+    "image_uris": {
+      "en": "https://i.imgur.com/rWHh0MO.png"
     },
-    "keywords" : [
-
-    ],
-    "oracle_text" : "({T}: Add {R}.)",
-    "subtypes" : [
+    "keywords": [],
+    "oracle_text": "({T}: Add {R}.)",
+    "subtypes": [
       "Mountain"
     ],
-    "set" : "CUSTOM",
-    "colors" : [
-
-    ],
-    "type" : "Basic Snow Land",
-    "mana_cost" : "",
-    "name" : "Snow-Covered Mountain"
+    "set": "CUSTOM",
+    "colors": [],
+    "type": "Basic Snow Land",
+    "mana_cost": "",
+    "name": "Snow-Covered Mountain"
   },
   {
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/iv0Pn87.png"
+    "image_uris": {
+      "en": "https://i.imgur.com/iv0Pn87.png"
     },
-    "set" : "CUSTOM",
-    "mana_cost" : "",
-    "name" : "Snow-Covered Forest",
-    "collector_number" : "77",
-    "subtypes" : [
+    "set": "CUSTOM",
+    "mana_cost": "",
+    "name": "Snow-Covered Forest",
+    "collector_number": "77",
+    "subtypes": [
       "Forest"
     ],
-    "colors" : [
-
-    ],
-    "type" : "Basic Snow Land",
-    "layout" : "normal",
-    "oracle_text" : "({T}: Add {G}.)",
-    "keywords" : [
-
-    ]
+    "colors": [],
+    "type": "Basic Snow Land",
+    "layout": "normal",
+    "oracle_text": "({T}: Add {G}.)",
+    "keywords": []
   },
   {
-    "set" : "CUSTOM",
-    "collector_number" : "76",
-    "mana_cost" : "",
-    "colors" : [
-
-    ],
-    "name" : "Snow-Covered Plains",
-    "type" : "Basic Snow Land",
-    "keywords" : [
-
-    ],
-    "oracle_text" : "({T}: Add {W}.)",
-    "subtypes" : [
+    "set": "CUSTOM",
+    "collector_number": "76",
+    "mana_cost": "",
+    "colors": [],
+    "name": "Snow-Covered Plains",
+    "type": "Basic Snow Land",
+    "keywords": [],
+    "oracle_text": "({T}: Add {W}.)",
+    "subtypes": [
       "Plains"
     ],
-    "layout" : "normal",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/YH5YLEC.png"
+    "layout": "normal",
+    "image_uris": {
+      "en": "https://i.imgur.com/YH5YLEC.png"
     }
   },
   {
-    "set" : "CUSTOM",
-    "colors" : [
-
-    ],
-    "collector_number" : "75",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/alnuchJ.png"
+    "set": "CUSTOM",
+    "colors": [],
+    "collector_number": "75",
+    "image_uris": {
+      "en": "https://i.imgur.com/alnuchJ.png"
     },
-    "mana_cost" : "",
-    "type" : "Basic Snow Land",
-    "layout" : "normal",
-    "keywords" : [
-
-    ],
-    "oracle_text" : "({T}: Add {U}.)",
-    "subtypes" : [
+    "mana_cost": "",
+    "type": "Basic Snow Land",
+    "layout": "normal",
+    "keywords": [],
+    "oracle_text": "({T}: Add {U}.)",
+    "subtypes": [
       "Island"
     ],
-    "name" : "Snow-Covered Island"
+    "name": "Snow-Covered Island"
   },
   {
-    "collector_number" : "74",
-    "power" : "6",
-    "toughness" : "6",
-    "oracle_text" : "Swampwalk (This creature can't be blocked as long as defending player controls a Swamp.)\nAt the beginning of your upkeep, return target creature card from your graveyard to the battlefield.\nAt the beginning of each opponent's upkeep, that player sacrifices a creature.",
-    "name" : "Sheoldred, Whispering One",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/63DRNTB.jpg"
+    "collector_number": "74",
+    "power": "6",
+    "toughness": "6",
+    "oracle_text": "Swampwalk (This creature can't be blocked as long as defending player controls a Swamp.)\nAt the beginning of your upkeep, return target creature card from your graveyard to the battlefield.\nAt the beginning of each opponent's upkeep, that player sacrifices a creature.",
+    "name": "Sheoldred, Whispering One",
+    "image_uris": {
+      "en": "https://i.imgur.com/63DRNTB.jpg"
     },
-    "mana_cost" : "{5}{B}{B}",
-    "colors" : [
+    "mana_cost": "{5}{B}{B}",
+    "colors": [
       "B"
     ],
-    "type" : "Legendary Creature",
-    "subtypes" : [
+    "type": "Legendary Creature",
+    "subtypes": [
       "Phyrexian",
       "Praetor"
     ],
-    "set" : "CUSTOM",
-    "layout" : "normal",
-    "keywords" : [
+    "set": "CUSTOM",
+    "layout": "normal",
+    "keywords": [
       "Landwalk",
       "Swampwalk"
     ]
   },
   {
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/JEDSsFY.png"
+    "image_uris": {
+      "en": "https://i.imgur.com/JEDSsFY.png"
     },
-    "name" : "Elesh Norn, Grand Cenobite",
-    "collector_number" : "73",
-    "keywords" : [
+    "name": "Elesh Norn, Grand Cenobite",
+    "collector_number": "73",
+    "keywords": [
       "Vigilance"
     ],
-    "set" : "CUSTOM",
-    "toughness" : "7",
-    "power" : "4",
-    "mana_cost" : "{5}{W}{W}",
-    "colors" : [
+    "set": "CUSTOM",
+    "toughness": "7",
+    "power": "4",
+    "mana_cost": "{5}{W}{W}",
+    "colors": [
       "W"
     ],
-    "oracle_text" : "Vigilance\nOther creatures you control get +2\/+2.\nCreatures your opponents control get -2\/-2.",
-    "type" : "Legendary Creature",
-    "layout" : "normal",
-    "subtypes" : [
+    "oracle_text": "Vigilance\nOther creatures you control get +2/+2.\nCreatures your opponents control get -2/-2.",
+    "type": "Legendary Creature",
+    "layout": "normal",
+    "subtypes": [
       "Phyrexian",
       "Praetor"
     ]
   },
   {
-    "keywords" : [
-
-    ],
-    "mana_cost" : "{U}{U}",
-    "type" : "Instant",
-    "colors" : [
+    "keywords": [],
+    "mana_cost": "{U}{U}",
+    "type": "Instant",
+    "colors": [
       "U"
     ],
-    "oracle_text" : "Counter target spell.",
-    "layout" : "normal",
-    "set" : "CUSTOM",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/dZPsgUj.jpg"
+    "oracle_text": "Counter target spell.",
+    "layout": "normal",
+    "set": "CUSTOM",
+    "image_uris": {
+      "en": "https://i.imgur.com/dZPsgUj.jpg"
     },
-    "name" : "Counterspell",
-    "collector_number" : "72"
+    "name": "Counterspell",
+    "collector_number": "72"
   },
   {
-    "collector_number" : "71",
-    "set" : "CUSTOM",
-    "oracle_text" : "Exile target creature. Its controller may search their library for a basic land card, put that card onto the battlefield tapped, then shuffle.",
-    "keywords" : [
-
-    ],
-    "colors" : [
+    "collector_number": "71",
+    "set": "CUSTOM",
+    "oracle_text": "Exile target creature. Its controller may search their library for a basic land card, put that card onto the battlefield tapped, then shuffle.",
+    "keywords": [],
+    "colors": [
       "W"
     ],
-    "mana_cost" : "{W}",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/ozbzXjU.jpg"
+    "mana_cost": "{W}",
+    "image_uris": {
+      "en": "https://i.imgur.com/ozbzXjU.jpg"
     },
-    "type" : "Instant",
-    "name" : "Path to Exile",
-    "layout" : "normal"
+    "type": "Instant",
+    "name": "Path to Exile",
+    "layout": "normal"
   },
   {
-    "collector_number" : "70",
-    "set" : "CUSTOM",
-    "layout" : "normal",
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/XKxViS5.jpg"
+    "collector_number": "70",
+    "set": "CUSTOM",
+    "layout": "normal",
+    "image_uris": {
+      "en": "https://i.imgur.com/XKxViS5.jpg"
     },
-    "oracle_text" : "Lightning Bolt deals 3 damage to any target.",
-    "colors" : [
+    "oracle_text": "Lightning Bolt deals 3 damage to any target.",
+    "colors": [
       "R"
     ],
-    "mana_cost" : "{R}",
-    "name" : "Lightning Bolt",
-    "type" : "Instant",
-    "keywords" : [
-
-    ]
+    "mana_cost": "{R}",
+    "name": "Lightning Bolt",
+    "type": "Instant",
+    "keywords": []
   },
   {
-    "image_uris" : {
-      "en" : "https:\/\/i.imgur.com\/dJW8eOR.jpg"
+    "image_uris": {
+      "en": "https://i.imgur.com/dJW8eOR.jpg"
     },
-    "toughness" : "6",
-    "type" : "Creature",
-    "set" : "CUSTOM",
-    "colors" : [
+    "toughness": "6",
+    "type": "Creature",
+    "set": "CUSTOM",
+    "colors": [
       "U"
     ],
-    "power" : "4",
-    "subtypes" : [
+    "power": "4",
+    "subtypes": [
       "Sphinx"
     ],
-    "mana_cost" : "{4}{U}{U}",
-    "layout" : "normal",
-    "keywords" : [
+    "mana_cost": "{4}{U}{U}",
+    "layout": "normal",
+    "keywords": [
       "Flying"
     ],
-    "name" : "Consecrated Sphinx",
-    "collector_number" : "69",
-    "oracle_text" : "Flying\nWhenever an opponent draws a card, you may draw two cards."
+    "name": "Consecrated Sphinx",
+    "collector_number": "69",
+    "oracle_text": "Flying\nWhenever an opponent draws a card, you may draw two cards."
   },
   {
-    "colors" : [
+    "colors": [
       "W"
     ],
-    "mana_cost" : "{W}",
-    "collector_number" : "68",
-    "oracle_text" : "Search your library for an artifact or enchantment card, reveal it, then shuffle and put that card on top.",
-    "name" : "Enlightened Tutor",
-    "set" : "CUSTOM",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/STA%20Enlightened%20Tutor.jpg"
+    "mana_cost": "{W}",
+    "collector_number": "68",
+    "oracle_text": "Search your library for an artifact or enchantment card, reveal it, then shuffle and put that card on top.",
+    "name": "Enlightened Tutor",
+    "set": "CUSTOM",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/STA%20Enlightened%20Tutor.jpg"
     },
-    "layout" : "normal",
-    "type" : "Instant",
-    "keywords" : [
-
-    ]
+    "layout": "normal",
+    "type": "Instant",
+    "keywords": []
   },
   {
-    "colors" : [
+    "colors": [
       "G"
     ],
-    "keywords" : [
+    "keywords": [
       "Haste",
       "Trample"
     ],
-    "oracle_text" : "Trample, haste\nIf you would put one or more counters on a permanent or player, put twice that many of each of those kinds of counters on that permanent or player instead.\nIf an opponent would put one or more counters on a permanent or player, they put half that many of each of those kinds of counters on that permanent or player instead, rounded down.",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/vorinclex.jpg"
+    "oracle_text": "Trample, haste\nIf you would put one or more counters on a permanent or player, put twice that many of each of those kinds of counters on that permanent or player instead.\nIf an opponent would put one or more counters on a permanent or player, they put half that many of each of those kinds of counters on that permanent or player instead, rounded down.",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/vorinclex.jpg"
     },
-    "subtypes" : [
+    "subtypes": [
       "Phyrexian",
       "Praetor"
     ],
-    "mana_cost" : "{4}{G}{G}",
-    "toughness" : "6",
-    "set" : "CUSTOM",
-    "layout" : "normal",
-    "type" : "Legendary Creature",
-    "collector_number" : "67",
-    "power" : "6",
-    "name" : "Vorinclex, Monstrous Raider"
+    "mana_cost": "{4}{G}{G}",
+    "toughness": "6",
+    "set": "CUSTOM",
+    "layout": "normal",
+    "type": "Legendary Creature",
+    "collector_number": "67",
+    "power": "6",
+    "name": "Vorinclex, Monstrous Raider"
   },
   {
-    "set" : "CUSTOM",
-    "layout" : "normal",
-    "related_cards" : [
+    "set": "CUSTOM",
+    "layout": "normal",
+    "related_cards": [
       {
-        "image_uris" : {
-          "en" : "https:\/\/cards.scryfall.io\/large\/front\/2\/1\/21e580cb-6092-48b7-ba3e-d64ec28860da.jpg?1608908446"
+        "image_uris": {
+          "en": "https://cards.scryfall.io/large/front/2/1/21e580cb-6092-48b7-ba3e-d64ec28860da.jpg?1608908446"
         },
-        "subtypes" : [
+        "subtypes": [
           "Spirit"
         ],
-        "name" : "Spirit",
-        "type" : "Token Creature"
+        "name": "Spirit",
+        "type": "Token Creature"
       }
     ],
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/thalisse2.jpg"
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/thalisse2.jpg"
     },
-    "collector_number" : "66",
-    "mana_cost" : "{3}{W}{B}",
-    "power" : "3",
-    "name" : "Thalisse, Reverent Medium",
-    "oracle_text" : "At the beginning of each end step, create X 1\/1 white Spirit creature tokens with flying, where X is the number of tokens you created this turn.",
-    "keywords" : [
-
-    ],
-    "type" : "Legendary Creature",
-    "toughness" : "4",
-    "subtypes" : [
+    "collector_number": "66",
+    "mana_cost": "{3}{W}{B}",
+    "power": "3",
+    "name": "Thalisse, Reverent Medium",
+    "oracle_text": "At the beginning of each end step, create X 1/1 white Spirit creature tokens with flying, where X is the number of tokens you created this turn.",
+    "keywords": [],
+    "type": "Legendary Creature",
+    "toughness": "4",
+    "subtypes": [
       "Human",
       "Cleric"
     ],
-    "colors" : [
+    "colors": [
       "B",
       "W"
     ]
   },
   {
-    "colors" : [
-
-    ],
-    "subtypes" : [
+    "colors": [],
+    "subtypes": [
       "Island",
       "Swamp"
     ],
-    "set" : "CUSTOM",
-    "oracle_text" : "({T}: Add {U} or {B}.)\nAs Watery Grave enters, you may pay 2 life. If you don't, it enters tapped.",
-    "layout" : "normal",
-    "mana_cost" : "",
-    "name" : "Watery Grave",
-    "type" : "Land",
-    "collector_number" : "65",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/textlessWateryGrave.jpg"
+    "set": "CUSTOM",
+    "oracle_text": "({T}: Add {U} or {B}.)\nAs Watery Grave enters, you may pay 2 life. If you don't, it enters tapped.",
+    "layout": "normal",
+    "mana_cost": "",
+    "name": "Watery Grave",
+    "type": "Land",
+    "collector_number": "65",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/textlessWateryGrave.jpg"
     },
-    "keywords" : [
-
-    ]
+    "keywords": []
   },
   {
-    "keywords" : [
-
-    ],
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/textlessTempleGarden.jpg"
+    "keywords": [],
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/textlessTempleGarden.jpg"
     },
-    "layout" : "normal",
-    "set" : "CUSTOM",
-    "type" : "Land",
-    "subtypes" : [
+    "layout": "normal",
+    "set": "CUSTOM",
+    "type": "Land",
+    "subtypes": [
       "Forest",
       "Plains"
     ],
-    "name" : "Temple Garden",
-    "mana_cost" : "",
-    "oracle_text" : "({T}: Add {G} or {W}.)\nAs Temple Garden enters, you may pay 2 life. If you don't, it enters tapped.",
-    "colors" : [
-
-    ],
-    "collector_number" : "64"
+    "name": "Temple Garden",
+    "mana_cost": "",
+    "oracle_text": "({T}: Add {G} or {W}.)\nAs Temple Garden enters, you may pay 2 life. If you don't, it enters tapped.",
+    "colors": [],
+    "collector_number": "64"
   },
   {
-    "layout" : "normal",
-    "oracle_text" : "({T}: Add {R} or {G}.)\nAs Stomping Ground enters, you may pay 2 life. If you don't, it enters tapped.",
-    "subtypes" : [
+    "layout": "normal",
+    "oracle_text": "({T}: Add {R} or {G}.)\nAs Stomping Ground enters, you may pay 2 life. If you don't, it enters tapped.",
+    "subtypes": [
       "Mountain",
       "Forest"
     ],
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/textlessStompingGround.jpg"
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/textlessStompingGround.jpg"
     },
-    "keywords" : [
-
-    ],
-    "set" : "CUSTOM",
-    "colors" : [
-
-    ],
-    "mana_cost" : "",
-    "type" : "Land",
-    "name" : "Stomping Ground",
-    "collector_number" : "63"
+    "keywords": [],
+    "set": "CUSTOM",
+    "colors": [],
+    "mana_cost": "",
+    "type": "Land",
+    "name": "Stomping Ground",
+    "collector_number": "63"
   },
   {
-    "subtypes" : [
+    "subtypes": [
       "Island",
       "Mountain"
     ],
-    "layout" : "normal",
-    "collector_number" : "62",
-    "mana_cost" : "",
-    "type" : "Land",
-    "oracle_text" : "({T}: Add {U} or {R}.)\nAs Steam Vents enters, you may pay 2 life. If you don't, it enters tapped.",
-    "set" : "CUSTOM",
-    "keywords" : [
-
-    ],
-    "name" : "Steam Vents",
-    "colors" : [
-
-    ],
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/textlessSteamVents.jpg"
+    "layout": "normal",
+    "collector_number": "62",
+    "mana_cost": "",
+    "type": "Land",
+    "oracle_text": "({T}: Add {U} or {R}.)\nAs Steam Vents enters, you may pay 2 life. If you don't, it enters tapped.",
+    "set": "CUSTOM",
+    "keywords": [],
+    "name": "Steam Vents",
+    "colors": [],
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/textlessSteamVents.jpg"
     }
   },
   {
-    "collector_number" : "61",
-    "name" : "Sacred Foundry",
-    "mana_cost" : "",
-    "layout" : "normal",
-    "keywords" : [
-
-    ],
-    "type" : "Land",
-    "colors" : [
-
-    ],
-    "subtypes" : [
+    "collector_number": "61",
+    "name": "Sacred Foundry",
+    "mana_cost": "",
+    "layout": "normal",
+    "keywords": [],
+    "type": "Land",
+    "colors": [],
+    "subtypes": [
       "Mountain",
       "Plains"
     ],
-    "oracle_text" : "({T}: Add {R} or {W}.)\nAs Sacred Foundry enters, you may pay 2 life. If you don't, it enters tapped.",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/textlessSacredFoundry.jpg"
+    "oracle_text": "({T}: Add {R} or {W}.)\nAs Sacred Foundry enters, you may pay 2 life. If you don't, it enters tapped.",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/textlessSacredFoundry.jpg"
     },
-    "set" : "CUSTOM"
+    "set": "CUSTOM"
   },
   {
-    "keywords" : [
-
-    ],
-    "layout" : "normal",
-    "name" : "Overgrown Tomb",
-    "type" : "Land",
-    "mana_cost" : "",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/textlessOvergrownTomb.jpg"
+    "keywords": [],
+    "layout": "normal",
+    "name": "Overgrown Tomb",
+    "type": "Land",
+    "mana_cost": "",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/textlessOvergrownTomb.jpg"
     },
-    "set" : "CUSTOM",
-    "colors" : [
-
-    ],
-    "collector_number" : "60",
-    "subtypes" : [
+    "set": "CUSTOM",
+    "colors": [],
+    "collector_number": "60",
+    "subtypes": [
       "Swamp",
       "Forest"
     ],
-    "oracle_text" : "({T}: Add {B} or {G}.)\nAs Overgrown Tomb enters, you may pay 2 life. If you don't, it enters tapped."
+    "oracle_text": "({T}: Add {B} or {G}.)\nAs Overgrown Tomb enters, you may pay 2 life. If you don't, it enters tapped."
   },
   {
-    "name" : "Hallowed Fountain",
-    "oracle_text" : "({T}: Add {W} or {U}.)\nAs Hallowed Fountain enters, you may pay 2 life. If you don't, it enters tapped.",
-    "keywords" : [
-
-    ],
-    "layout" : "normal",
-    "mana_cost" : "",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/textlessHallowedFountain.jpg"
+    "name": "Hallowed Fountain",
+    "oracle_text": "({T}: Add {W} or {U}.)\nAs Hallowed Fountain enters, you may pay 2 life. If you don't, it enters tapped.",
+    "keywords": [],
+    "layout": "normal",
+    "mana_cost": "",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/textlessHallowedFountain.jpg"
     },
-    "collector_number" : "59",
-    "type" : "Land",
-    "subtypes" : [
+    "collector_number": "59",
+    "type": "Land",
+    "subtypes": [
       "Plains",
       "Island"
     ],
-    "set" : "CUSTOM",
-    "colors" : [
-
-    ]
+    "set": "CUSTOM",
+    "colors": []
   },
   {
-    "collector_number" : "58",
-    "type" : "Land",
-    "colors" : [
-
-    ],
-    "subtypes" : [
+    "collector_number": "58",
+    "type": "Land",
+    "colors": [],
+    "subtypes": [
       "Plains",
       "Swamp"
     ],
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/textlessGodlessShrine.jpg"
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/textlessGodlessShrine.jpg"
     },
-    "mana_cost" : "",
-    "layout" : "normal",
-    "set" : "CUSTOM",
-    "keywords" : [
-
-    ],
-    "oracle_text" : "({T}: Add {W} or {B}.)\nAs Godless Shrine enters, you may pay 2 life. If you don't, it enters tapped.",
-    "name" : "Godless Shrine"
+    "mana_cost": "",
+    "layout": "normal",
+    "set": "CUSTOM",
+    "keywords": [],
+    "oracle_text": "({T}: Add {W} or {B}.)\nAs Godless Shrine enters, you may pay 2 life. If you don't, it enters tapped.",
+    "name": "Godless Shrine"
   },
   {
-    "colors" : [
-
-    ],
-    "set" : "CUSTOM",
-    "type" : "Land",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/textlessBreedingPool.jpg"
+    "colors": [],
+    "set": "CUSTOM",
+    "type": "Land",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/textlessBreedingPool.jpg"
     },
-    "mana_cost" : "",
-    "subtypes" : [
+    "mana_cost": "",
+    "subtypes": [
       "Forest",
       "Island"
     ],
-    "layout" : "normal",
-    "keywords" : [
-
-    ],
-    "collector_number" : "57",
-    "oracle_text" : "({T}: Add {G} or {U}.)\nAs Breeding Pool enters, you may pay 2 life. If you don't, it enters tapped.",
-    "name" : "Breeding Pool"
+    "layout": "normal",
+    "keywords": [],
+    "collector_number": "57",
+    "oracle_text": "({T}: Add {G} or {U}.)\nAs Breeding Pool enters, you may pay 2 life. If you don't, it enters tapped.",
+    "name": "Breeding Pool"
   },
   {
-    "type" : "Land",
-    "name" : "Blood Crypt",
-    "layout" : "normal",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/textlessBloodCrypt.jpg"
+    "type": "Land",
+    "name": "Blood Crypt",
+    "layout": "normal",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/textlessBloodCrypt.jpg"
     },
-    "collector_number" : "56",
-    "subtypes" : [
+    "collector_number": "56",
+    "subtypes": [
       "Swamp",
       "Mountain"
     ],
-    "oracle_text" : "({T}: Add {B} or {R}.)\nAs Blood Crypt enters, you may pay 2 life. If you don't, it enters tapped.",
-    "mana_cost" : "",
-    "keywords" : [
-
-    ],
-    "colors" : [
-
-    ],
-    "set" : "CUSTOM"
+    "oracle_text": "({T}: Add {B} or {R}.)\nAs Blood Crypt enters, you may pay 2 life. If you don't, it enters tapped.",
+    "mana_cost": "",
+    "keywords": [],
+    "colors": [],
+    "set": "CUSTOM"
   },
   {
-    "collector_number" : "55",
-    "keywords" : [
-
-    ],
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/C20%20Fierce%20Guardianship.jpg"
+    "collector_number": "55",
+    "keywords": [],
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/C20%20Fierce%20Guardianship.jpg"
     },
-    "mana_cost" : "{2}{U}",
-    "type" : "Instant",
-    "name" : "Fierce Guardianship",
-    "oracle_text" : "If you control a commander, you may cast this spell without paying its mana cost.\nCounter target noncreature spell.",
-    "set" : "CUSTOM",
-    "layout" : "normal",
-    "colors" : [
+    "mana_cost": "{2}{U}",
+    "type": "Instant",
+    "name": "Fierce Guardianship",
+    "oracle_text": "If you control a commander, you may cast this spell without paying its mana cost.\nCounter target noncreature spell.",
+    "set": "CUSTOM",
+    "layout": "normal",
+    "colors": [
       "U"
     ]
   },
   {
-    "oracle_text" : "Vigilance\nWhenever Sun Titan enters or attacks, you may return target permanent card with mana value 3 or less from your graveyard to the battlefield.",
-    "layout" : "normal",
-    "set" : "CUSTOM",
-    "subtypes" : [
+    "oracle_text": "Vigilance\nWhenever Sun Titan enters or attacks, you may return target permanent card with mana value 3 or less from your graveyard to the battlefield.",
+    "layout": "normal",
+    "set": "CUSTOM",
+    "subtypes": [
       "Giant"
     ],
-    "colors" : [
+    "colors": [
       "W"
     ],
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/SLD%20Sun%20Titan.jpg"
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/SLD%20Sun%20Titan.jpg"
     },
-    "collector_number" : "54",
-    "power" : "6",
-    "name" : "Sun Titan",
-    "keywords" : [
+    "collector_number": "54",
+    "power": "6",
+    "name": "Sun Titan",
+    "keywords": [
       "Vigilance"
     ],
-    "toughness" : "6",
-    "type" : "Creature",
-    "mana_cost" : "{4}{W}{W}"
+    "toughness": "6",
+    "type": "Creature",
+    "mana_cost": "{4}{W}{W}"
   },
   {
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/Generous%20Gift.jpg"
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/Generous%20Gift.jpg"
     },
-    "name" : "Generous Gift",
-    "layout" : "normal",
-    "collector_number" : "53",
-    "set" : "CUSTOM",
-    "related_cards" : [
+    "name": "Generous Gift",
+    "layout": "normal",
+    "collector_number": "53",
+    "set": "CUSTOM",
+    "related_cards": [
       {
-        "image_uris" : {
-          "en" : "https:\/\/cards.scryfall.io\/large\/front\/2\/b\/2be112a9-0c95-4b38-a94f-cfb87791f06e.jpg?1698873798"
+        "image_uris": {
+          "en": "https://cards.scryfall.io/large/front/2/b/2be112a9-0c95-4b38-a94f-cfb87791f06e.jpg?1698873798"
         },
-        "name" : "Elephant",
-        "subtypes" : [
+        "name": "Elephant",
+        "subtypes": [
           "Elephant"
         ],
-        "type" : "Token Creature"
+        "type": "Token Creature"
       }
     ],
-    "type" : "Instant",
-    "keywords" : [
-
-    ],
-    "colors" : [
+    "type": "Instant",
+    "keywords": [],
+    "colors": [
       "W"
     ],
-    "mana_cost" : "{2}{W}",
-    "oracle_text" : "Destroy target permanent. Its controller creates a 3\/3 green Elephant creature token."
+    "mana_cost": "{2}{W}",
+    "oracle_text": "Destroy target permanent. Its controller creates a 3/3 green Elephant creature token."
   },
   {
-    "layout" : "normal",
-    "mana_cost" : "{1}{B}",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/Demonic%20Tutor.jpg"
+    "layout": "normal",
+    "mana_cost": "{1}{B}",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/Demonic%20Tutor.jpg"
     },
-    "name" : "Demonic Tutor",
-    "type" : "Sorcery",
-    "colors" : [
+    "name": "Demonic Tutor",
+    "type": "Sorcery",
+    "colors": [
       "B"
     ],
-    "collector_number" : "52",
-    "oracle_text" : "Search your library for a card, put that card into your hand, then shuffle.",
-    "set" : "CUSTOM",
-    "keywords" : [
-
-    ]
+    "collector_number": "52",
+    "oracle_text": "Search your library for a card, put that card into your hand, then shuffle.",
+    "set": "CUSTOM",
+    "keywords": []
   },
   {
-    "colors" : [
+    "colors": [
       "U"
     ],
-    "type" : "Instant",
-    "oracle_text" : "Scry 1.\nDraw a card.",
-    "layout" : "normal",
-    "keywords" : [
+    "type": "Instant",
+    "oracle_text": "Scry 1.\nDraw a card.",
+    "layout": "normal",
+    "keywords": [
       "Scry"
     ],
-    "set" : "CUSTOM",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/Opt.jpg"
+    "set": "CUSTOM",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/Opt.jpg"
     },
-    "mana_cost" : "{U}",
-    "name" : "Opt",
-    "collector_number" : "51"
+    "mana_cost": "{U}",
+    "name": "Opt",
+    "collector_number": "51"
   },
   {
-    "collector_number" : "50",
-    "layout" : "normal",
-    "mana_cost" : "{W}",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/Swords%20to%20Plowshares.jpg"
+    "collector_number": "50",
+    "layout": "normal",
+    "mana_cost": "{W}",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/Swords%20to%20Plowshares.jpg"
     },
-    "colors" : [
+    "colors": [
       "W"
     ],
-    "type" : "Instant",
-    "oracle_text" : "Exile target creature. Its controller gains life equal to its power.",
-    "keywords" : [
-
-    ],
-    "set" : "CUSTOM",
-    "name" : "Swords to Plowshares"
+    "type": "Instant",
+    "oracle_text": "Exile target creature. Its controller gains life equal to its power.",
+    "keywords": [],
+    "set": "CUSTOM",
+    "name": "Swords to Plowshares"
   },
   {
-    "type" : "Legendary Artifact Creature",
-    "mana_cost" : "{2}{W}{U}{B}",
-    "colors" : [
+    "type": "Legendary Artifact Creature",
+    "mana_cost": "{2}{W}{U}{B}",
+    "colors": [
       "B",
       "U",
       "W"
     ],
-    "oracle_text" : "At the beginning of your upkeep, choose target opponent. This turn, that player can't cast spells or activate abilities and plays with their hand revealed. You may play lands and cast spells from that player's hand this turn.",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/ARB%20Sen%20Triplets.jpg"
+    "oracle_text": "At the beginning of your upkeep, choose target opponent. This turn, that player can't cast spells or activate abilities and plays with their hand revealed. You may play lands and cast spells from that player's hand this turn.",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/ARB%20Sen%20Triplets.jpg"
     },
-    "keywords" : [
-
-    ],
-    "collector_number" : "49",
-    "power" : "3",
-    "name" : "Sen Triplets",
-    "set" : "CUSTOM",
-    "layout" : "normal",
-    "subtypes" : [
+    "keywords": [],
+    "collector_number": "49",
+    "power": "3",
+    "name": "Sen Triplets",
+    "set": "CUSTOM",
+    "layout": "normal",
+    "subtypes": [
       "Human",
       "Wizard"
     ],
-    "toughness" : "3"
+    "toughness": "3"
   },
   {
-    "set" : "CUSTOM",
-    "name" : "Kroxa, Titan of Death's Hunger",
-    "toughness" : "6",
-    "collector_number" : "48",
-    "keywords" : [
+    "set": "CUSTOM",
+    "name": "Kroxa, Titan of Death's Hunger",
+    "toughness": "6",
+    "collector_number": "48",
+    "keywords": [
       "Escape"
     ],
-    "layout" : "normal",
-    "power" : "6",
-    "colors" : [
+    "layout": "normal",
+    "power": "6",
+    "colors": [
       "B",
       "R"
     ],
-    "oracle_text" : "When Kroxa enters, sacrifice it unless it escaped.\nWhenever Kroxa enters or attacks, each opponent discards a card, then each opponent who didn't discard a nonland card this way loses 3 life.\nEscape—{B}{B}{R}{R}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)",
-    "mana_cost" : "{B}{R}",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/THB%20Kroxa.jpg"
+    "oracle_text": "When Kroxa enters, sacrifice it unless it escaped.\nWhenever Kroxa enters or attacks, each opponent discards a card, then each opponent who didn't discard a nonland card this way loses 3 life.\nEscape—{B}{B}{R}{R}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)",
+    "mana_cost": "{B}{R}",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/THB%20Kroxa.jpg"
     },
-    "type" : "Legendary Creature",
-    "subtypes" : [
+    "type": "Legendary Creature",
+    "subtypes": [
       "Elder",
       "Giant"
     ]
   },
   {
-    "name" : "Cyclonic Rift",
-    "mana_cost" : "{1}{U}",
-    "collector_number" : "47",
-    "type" : "Instant",
-    "keywords" : [
+    "name": "Cyclonic Rift",
+    "mana_cost": "{1}{U}",
+    "collector_number": "47",
+    "type": "Instant",
+    "keywords": [
       "Overload"
     ],
-    "set" : "CUSTOM",
-    "colors" : [
+    "set": "CUSTOM",
+    "colors": [
       "U"
     ],
-    "oracle_text" : "Return target nonland permanent you don't control to its owner's hand.\nOverload {6}{U} (You may cast this spell for its overload cost. If you do, change \"target\" in its text to \"each.\")",
-    "layout" : "normal",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/MM3%20Cyclonic%20Rift%202.jpg"
+    "oracle_text": "Return target nonland permanent you don't control to its owner's hand.\nOverload {6}{U} (You may cast this spell for its overload cost. If you do, change \"target\" in its text to \"each.\")",
+    "layout": "normal",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/MM3%20Cyclonic%20Rift%202.jpg"
     }
   },
   {
-    "loyalty" : "3",
-    "oracle_text" : "+1: Draw a card, then put a card from your hand on top of your library.\n−1: Exile another target permanent you own, then return it to the battlefield under your control.\n−6: Choose left or right. Each player gains control of all nonland permanents other than Aminatou, the Fateshifter controlled by the next player in the chosen direction.\nAminatou, the Fateshifter can be your commander.",
-    "colors" : [
+    "loyalty": "3",
+    "oracle_text": "+1: Draw a card, then put a card from your hand on top of your library.\n−1: Exile another target permanent you own, then return it to the battlefield under your control.\n−6: Choose left or right. Each player gains control of all nonland permanents other than Aminatou, the Fateshifter controlled by the next player in the chosen direction.\nAminatou, the Fateshifter can be your commander.",
+    "colors": [
       "B",
       "U",
       "W"
     ],
-    "collector_number" : "46",
-    "name" : "Aminatou, the Fateshifter",
-    "layout" : "normal",
-    "keywords" : [
-
-    ],
-    "set" : "CUSTOM",
-    "type" : "Legendary Planeswalker",
-    "subtypes" : [
+    "collector_number": "46",
+    "name": "Aminatou, the Fateshifter",
+    "layout": "normal",
+    "keywords": [],
+    "set": "CUSTOM",
+    "type": "Legendary Planeswalker",
+    "subtypes": [
       "Aminatou"
     ],
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/Aminatou%20the%20Fateshifter.jpg"
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/Aminatou%20the%20Fateshifter.jpg"
     },
-    "mana_cost" : "{W}{U}{B}"
+    "mana_cost": "{W}{U}{B}"
   },
   {
-    "oracle_text" : "+1: Draw a card, then put a card from your hand on top of your library.\n−1: Exile another target permanent you own, then return it to the battlefield under your control.\n−6: Choose left or right. Each player gains control of all nonland permanents other than Aminatou, the Fateshifter controlled by the next player in the chosen direction.\nAminatou, the Fateshifter can be your commander.",
-    "keywords" : [
-
-    ],
-    "colors" : [
+    "oracle_text": "+1: Draw a card, then put a card from your hand on top of your library.\n−1: Exile another target permanent you own, then return it to the battlefield under your control.\n−6: Choose left or right. Each player gains control of all nonland permanents other than Aminatou, the Fateshifter controlled by the next player in the chosen direction.\nAminatou, the Fateshifter can be your commander.",
+    "keywords": [],
+    "colors": [
       "B",
       "U",
       "W"
     ],
-    "loyalty" : "3",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/AminatouALT.jpg"
+    "loyalty": "3",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/AminatouALT.jpg"
     },
-    "type" : "Legendary Planeswalker",
-    "set" : "CUSTOM",
-    "mana_cost" : "{W}{U}{B}",
-    "name" : "Aminatou, the Fateshifter",
-    "collector_number" : "45",
-    "subtypes" : [
+    "type": "Legendary Planeswalker",
+    "set": "CUSTOM",
+    "mana_cost": "{W}{U}{B}",
+    "name": "Aminatou, the Fateshifter",
+    "collector_number": "45",
+    "subtypes": [
       "Aminatou"
     ],
-    "layout" : "normal"
+    "layout": "normal"
   },
   {
-    "set" : "CUSTOM",
-    "oracle_text" : "Whenever a creature you control dies, draw a card.\n+1: Create a 2\/2 black Zombie creature token.\n−4: Each player sacrifices two creatures.\n−9: Each opponent chooses a permanent they control of each permanent type and sacrifices the rest.",
-    "loyalty" : "6",
-    "colors" : [
+    "set": "CUSTOM",
+    "oracle_text": "Whenever a creature you control dies, draw a card.\n+1: Create a 2/2 black Zombie creature token.\n−4: Each player sacrifices two creatures.\n−9: Each opponent chooses a permanent they control of each permanent type and sacrifices the rest.",
+    "loyalty": "6",
+    "colors": [
       "B"
     ],
-    "related_cards" : [
+    "related_cards": [
       {
-        "image_uris" : {
-          "en" : "https:\/\/cards.scryfall.io\/large\/front\/a\/0\/a05e77fe-4a5c-492d-9877-67e5b0e89955.jpg?1702501238"
+        "image_uris": {
+          "en": "https://cards.scryfall.io/large/front/a/0/a05e77fe-4a5c-492d-9877-67e5b0e89955.jpg?1702501238"
         },
-        "name" : "Zombie",
-        "type" : "Token Creature",
-        "subtypes" : [
+        "name": "Zombie",
+        "type": "Token Creature",
+        "subtypes": [
           "Zombie"
         ]
       }
     ],
-    "name" : "Liliana, Dreadhorde General",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/WAR%20Liliana.jpg"
+    "name": "Liliana, Dreadhorde General",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/WAR%20Liliana.jpg"
     },
-    "collector_number" : "44",
-    "mana_cost" : "{4}{B}{B}",
-    "type" : "Legendary Planeswalker",
-    "subtypes" : [
+    "collector_number": "44",
+    "mana_cost": "{4}{B}{B}",
+    "type": "Legendary Planeswalker",
+    "subtypes": [
       "Liliana"
     ],
-    "keywords" : [
-
-    ],
-    "layout" : "normal"
+    "keywords": [],
+    "layout": "normal"
   },
   {
-    "collector_number" : "43",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/Thalisse.jpg"
+    "collector_number": "43",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/Thalisse.jpg"
     },
-    "set" : "CUSTOM",
-    "related_cards" : [
+    "set": "CUSTOM",
+    "related_cards": [
       {
-        "subtypes" : [
+        "subtypes": [
           "Spirit"
         ],
-        "image_uris" : {
-          "en" : "https:\/\/cards.scryfall.io\/large\/front\/2\/1\/21e580cb-6092-48b7-ba3e-d64ec28860da.jpg?1608908446"
+        "image_uris": {
+          "en": "https://cards.scryfall.io/large/front/2/1/21e580cb-6092-48b7-ba3e-d64ec28860da.jpg?1608908446"
         },
-        "type" : "Token Creature",
-        "name" : "Spirit"
+        "type": "Token Creature",
+        "name": "Spirit"
       }
     ],
-    "name" : "Thalisse, Reverent Medium",
-    "keywords" : [
-
-    ],
-    "layout" : "normal",
-    "power" : "3",
-    "colors" : [
+    "name": "Thalisse, Reverent Medium",
+    "keywords": [],
+    "layout": "normal",
+    "power": "3",
+    "colors": [
       "B",
       "W"
     ],
-    "type" : "Legendary Creature",
-    "oracle_text" : "At the beginning of each end step, create X 1\/1 white Spirit creature tokens with flying, where X is the number of tokens you created this turn.",
-    "toughness" : "4",
-    "mana_cost" : "{3}{W}{B}",
-    "subtypes" : [
+    "type": "Legendary Creature",
+    "oracle_text": "At the beginning of each end step, create X 1/1 white Spirit creature tokens with flying, where X is the number of tokens you created this turn.",
+    "toughness": "4",
+    "mana_cost": "{3}{W}{B}",
+    "subtypes": [
       "Human",
       "Cleric"
     ]
   },
   {
-    "oracle_text" : "When Tolsimir, Friend to Wolves enters, create Voja, Friend to Elves, a legendary 3\/3 green and white Wolf creature token.\nWhenever a Wolf you control enters, you gain 3 life and that creature fights up to one target creature you don't control.",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/WAR%20Tolsimir,%20Friend%20to%20Wolves.jpg"
+    "oracle_text": "When Tolsimir, Friend to Wolves enters, create Voja, Friend to Elves, a legendary 3/3 green and white Wolf creature token.\nWhenever a Wolf you control enters, you gain 3 life and that creature fights up to one target creature you don't control.",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/WAR%20Tolsimir,%20Friend%20to%20Wolves.jpg"
     },
-    "related_cards" : [
+    "related_cards": [
       {
-        "image_uris" : {
-          "en" : "https:\/\/cards.scryfall.io\/large\/front\/3\/9\/39475e91-1e71-4546-ae4a-47ea66e47536.jpg?1557575985"
+        "image_uris": {
+          "en": "https://cards.scryfall.io/large/front/3/9/39475e91-1e71-4546-ae4a-47ea66e47536.jpg?1557575985"
         },
-        "subtypes" : [
+        "subtypes": [
           "Wolf"
         ],
-        "name" : "Voja, Friend to Elves",
-        "type" : "Token Legendary Creature"
+        "name": "Voja, Friend to Elves",
+        "type": "Token Legendary Creature"
       }
     ],
-    "set" : "CUSTOM",
-    "mana_cost" : "{2}{G}{G}{W}",
-    "subtypes" : [
+    "set": "CUSTOM",
+    "mana_cost": "{2}{G}{G}{W}",
+    "subtypes": [
       "Elf",
       "Scout"
     ],
-    "type" : "Legendary Creature",
-    "collector_number" : "42",
-    "layout" : "normal",
-    "power" : "3",
-    "keywords" : [
+    "type": "Legendary Creature",
+    "collector_number": "42",
+    "layout": "normal",
+    "power": "3",
+    "keywords": [
       "Fight"
     ],
-    "name" : "Tolsimir, Friend to Wolves",
-    "toughness" : "3",
-    "colors" : [
+    "name": "Tolsimir, Friend to Wolves",
+    "toughness": "3",
+    "colors": [
       "G",
       "W"
     ]
   },
   {
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/Teysa%20Orzhov%20Scion%20Extended%20Art.jpg"
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/Teysa%20Orzhov%20Scion%20Extended%20Art.jpg"
     },
-    "type" : "Legendary Creature",
-    "name" : "Teysa, Orzhov Scion",
-    "keywords" : [
-
-    ],
-    "toughness" : "3",
-    "mana_cost" : "{1}{W}{B}",
-    "colors" : [
+    "type": "Legendary Creature",
+    "name": "Teysa, Orzhov Scion",
+    "keywords": [],
+    "toughness": "3",
+    "mana_cost": "{1}{W}{B}",
+    "colors": [
       "B",
       "W"
     ],
-    "subtypes" : [
+    "subtypes": [
       "Human",
       "Advisor"
     ],
-    "layout" : "normal",
-    "oracle_text" : "Sacrifice three white creatures: Exile target creature.\nWhenever another black creature you control dies, create a 1\/1 white Spirit creature token with flying.",
-    "power" : "2",
-    "set" : "CUSTOM",
-    "related_cards" : [
+    "layout": "normal",
+    "oracle_text": "Sacrifice three white creatures: Exile target creature.\nWhenever another black creature you control dies, create a 1/1 white Spirit creature token with flying.",
+    "power": "2",
+    "set": "CUSTOM",
+    "related_cards": [
       {
-        "image_uris" : {
-          "en" : "https:\/\/cards.scryfall.io\/large\/front\/0\/8\/08c8ab9d-50c7-427d-a2ab-eebaa42842a3.jpg?1702501809"
+        "image_uris": {
+          "en": "https://cards.scryfall.io/large/front/0/8/08c8ab9d-50c7-427d-a2ab-eebaa42842a3.jpg?1702501809"
         },
-        "type" : "Token Creature",
-        "subtypes" : [
+        "type": "Token Creature",
+        "subtypes": [
           "Spirit"
         ],
-        "name" : "Spirit"
+        "name": "Spirit"
       }
     ],
-    "collector_number" : "41"
+    "collector_number": "41"
   },
   {
-    "name" : "Lightning Bolt",
-    "set" : "CUSTOM",
-    "keywords" : [
-
-    ],
-    "oracle_text" : "Lightning Bolt deals 3 damage to any target.",
-    "mana_cost" : "{R}",
-    "type" : "Instant",
-    "colors" : [
+    "name": "Lightning Bolt",
+    "set": "CUSTOM",
+    "keywords": [],
+    "oracle_text": "Lightning Bolt deals 3 damage to any target.",
+    "mana_cost": "{R}",
+    "type": "Instant",
+    "colors": [
       "R"
     ],
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/SLD%20Lightning%20Bolt%205.png"
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/SLD%20Lightning%20Bolt%205.png"
     },
-    "collector_number" : "40",
-    "layout" : "normal"
+    "collector_number": "40",
+    "layout": "normal"
   },
   {
-    "name" : "Lightning Bolt",
-    "keywords" : [
-
-    ],
-    "layout" : "normal",
-    "colors" : [
+    "name": "Lightning Bolt",
+    "keywords": [],
+    "layout": "normal",
+    "colors": [
       "R"
     ],
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/SLD%20Lightning%20Bolt%204.png"
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/SLD%20Lightning%20Bolt%204.png"
     },
-    "set" : "CUSTOM",
-    "mana_cost" : "{R}",
-    "type" : "Instant",
-    "collector_number" : "39",
-    "oracle_text" : "Lightning Bolt deals 3 damage to any target."
+    "set": "CUSTOM",
+    "mana_cost": "{R}",
+    "type": "Instant",
+    "collector_number": "39",
+    "oracle_text": "Lightning Bolt deals 3 damage to any target."
   },
   {
-    "set" : "CUSTOM",
-    "oracle_text" : "Lightning Bolt deals 3 damage to any target.",
-    "type" : "Instant",
-    "keywords" : [
-
-    ],
-    "name" : "Lightning Bolt",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/SLD%20Lightning%20Bolt%203.png"
+    "set": "CUSTOM",
+    "oracle_text": "Lightning Bolt deals 3 damage to any target.",
+    "type": "Instant",
+    "keywords": [],
+    "name": "Lightning Bolt",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/SLD%20Lightning%20Bolt%203.png"
     },
-    "mana_cost" : "{R}",
-    "collector_number" : "38",
-    "colors" : [
+    "mana_cost": "{R}",
+    "collector_number": "38",
+    "colors": [
       "R"
     ],
-    "layout" : "normal"
+    "layout": "normal"
   },
   {
-    "collector_number" : "37",
-    "layout" : "normal",
-    "type" : "Instant",
-    "set" : "CUSTOM",
-    "name" : "Lightning Bolt",
-    "oracle_text" : "Lightning Bolt deals 3 damage to any target.",
-    "keywords" : [
-
-    ],
-    "colors" : [
+    "collector_number": "37",
+    "layout": "normal",
+    "type": "Instant",
+    "set": "CUSTOM",
+    "name": "Lightning Bolt",
+    "oracle_text": "Lightning Bolt deals 3 damage to any target.",
+    "keywords": [],
+    "colors": [
       "R"
     ],
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/SLD%20Lightning%20Bolt%202.png"
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/SLD%20Lightning%20Bolt%202.png"
     },
-    "mana_cost" : "{R}"
+    "mana_cost": "{R}"
   },
   {
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/SLD%20Lightning%20Bolt%201.png"
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/SLD%20Lightning%20Bolt%201.png"
     },
-    "colors" : [
+    "colors": [
       "R"
     ],
-    "mana_cost" : "{R}",
-    "set" : "CUSTOM",
-    "name" : "Lightning Bolt",
-    "type" : "Instant",
-    "collector_number" : "36",
-    "keywords" : [
-
-    ],
-    "oracle_text" : "Lightning Bolt deals 3 damage to any target.",
-    "layout" : "normal"
+    "mana_cost": "{R}",
+    "set": "CUSTOM",
+    "name": "Lightning Bolt",
+    "type": "Instant",
+    "collector_number": "36",
+    "keywords": [],
+    "oracle_text": "Lightning Bolt deals 3 damage to any target.",
+    "layout": "normal"
   },
   {
-    "related_cards" : [
+    "related_cards": [
       {
-        "type" : "Token Artifact",
-        "image_uris" : {
-          "en" : "https:\/\/cards.scryfall.io\/large\/front\/c\/b\/cb7b5024-3a0b-4f14-977e-ba6c4c2567c9.jpg?1693611266"
+        "type": "Token Artifact",
+        "image_uris": {
+          "en": "https://cards.scryfall.io/large/front/c/b/cb7b5024-3a0b-4f14-977e-ba6c4c2567c9.jpg?1693611266"
         },
-        "subtypes" : [
+        "subtypes": [
           "Treasure"
         ],
-        "name" : "Treasure"
+        "name": "Treasure"
       }
     ],
-    "oracle_text" : "Whenever an opponent draws a card, that player may pay {2}. If the player doesn't, you create a Treasure token. (It's an artifact with \"{T}, Sacrifice this artifact: Add one mana of any color.\")",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/RNA%20Smothering%20Tithe.jpg"
+    "oracle_text": "Whenever an opponent draws a card, that player may pay {2}. If the player doesn't, you create a Treasure token. (It's an artifact with \"{T}, Sacrifice this artifact: Add one mana of any color.\")",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/RNA%20Smothering%20Tithe.jpg"
     },
-    "layout" : "normal",
-    "type" : "Enchantment",
-    "collector_number" : "35",
-    "colors" : [
+    "layout": "normal",
+    "type": "Enchantment",
+    "collector_number": "35",
+    "colors": [
       "W"
     ],
-    "set" : "CUSTOM",
-    "name" : "Smothering Tithe",
-    "mana_cost" : "{3}{W}",
-    "keywords" : [
+    "set": "CUSTOM",
+    "name": "Smothering Tithe",
+    "mana_cost": "{3}{W}",
+    "keywords": [
       "Treasure"
     ]
   },
   {
-    "collector_number" : "34",
-    "keywords" : [
-
-    ],
-    "type" : "Instant",
-    "colors" : [
+    "collector_number": "34",
+    "keywords": [],
+    "type": "Instant",
+    "colors": [
       "W"
     ],
-    "mana_cost" : "{W}",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/PRM%20Path%20to%20Exile.jpg"
+    "mana_cost": "{W}",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/PRM%20Path%20to%20Exile.jpg"
     },
-    "oracle_text" : "Exile target creature. Its controller may search their library for a basic land card, put that card onto the battlefield tapped, then shuffle.",
-    "name" : "Path to Exile",
-    "layout" : "normal",
-    "set" : "CUSTOM"
+    "oracle_text": "Exile target creature. Its controller may search their library for a basic land card, put that card onto the battlefield tapped, then shuffle.",
+    "name": "Path to Exile",
+    "layout": "normal",
+    "set": "CUSTOM"
   },
   {
-    "layout" : "normal",
-    "name" : "Darkest Hour",
-    "set" : "CUSTOM",
-    "colors" : [
+    "layout": "normal",
+    "name": "Darkest Hour",
+    "set": "CUSTOM",
+    "colors": [
       "B"
     ],
-    "oracle_text" : "All creatures are black.",
-    "mana_cost" : "{B}",
-    "keywords" : [
-
-    ],
-    "type" : "Enchantment",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/PRM%20Darkest%20Hour.jpg"
+    "oracle_text": "All creatures are black.",
+    "mana_cost": "{B}",
+    "keywords": [],
+    "type": "Enchantment",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/PRM%20Darkest%20Hour.jpg"
     },
-    "collector_number" : "33"
+    "collector_number": "33"
   },
   {
-    "oracle_text" : "Destroy all creatures. They can't be regenerated.",
-    "collector_number" : "32",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/PRM%20Damnation.png"
+    "oracle_text": "Destroy all creatures. They can't be regenerated.",
+    "collector_number": "32",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/PRM%20Damnation.png"
     },
-    "colors" : [
+    "colors": [
       "B"
     ],
-    "type" : "Sorcery",
-    "mana_cost" : "{2}{B}{B}",
-    "set" : "CUSTOM",
-    "layout" : "normal",
-    "keywords" : [
-
-    ],
-    "name" : "Damnation"
+    "type": "Sorcery",
+    "mana_cost": "{2}{B}{B}",
+    "set": "CUSTOM",
+    "layout": "normal",
+    "keywords": [],
+    "name": "Damnation"
   },
   {
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/NPH%20Phyrexian%20Unlife.png"
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/NPH%20Phyrexian%20Unlife.png"
     },
-    "name" : "Phyrexian Unlife",
-    "colors" : [
+    "name": "Phyrexian Unlife",
+    "colors": [
       "W"
     ],
-    "type" : "Enchantment",
-    "set" : "CUSTOM",
-    "related_cards" : [
+    "type": "Enchantment",
+    "set": "CUSTOM",
+    "related_cards": [
       {
-        "type" : "Card",
-        "name" : "Poison Counter",
-        "image_uris" : {
-          "en" : "https:\/\/cards.scryfall.io\/large\/front\/4\/7\/470618f6-f67f-44c6-a086-285632508915.jpg?1561757039"
+        "type": "Card",
+        "name": "Poison Counter",
+        "image_uris": {
+          "en": "https://cards.scryfall.io/large/front/4/7/470618f6-f67f-44c6-a086-285632508915.jpg?1561757039"
         }
       }
     ],
-    "layout" : "normal",
-    "keywords" : [
-
-    ],
-    "collector_number" : "31",
-    "oracle_text" : "You don't lose the game for having 0 or less life.\nAs long as you have 0 or less life, all damage is dealt to you as though its source had infect. (Damage is dealt to you in the form of poison counters.)",
-    "mana_cost" : "{2}{W}"
+    "layout": "normal",
+    "keywords": [],
+    "collector_number": "31",
+    "oracle_text": "You don't lose the game for having 0 or less life.\nAs long as you have 0 or less life, all damage is dealt to you as though its source had infect. (Damage is dealt to you in the form of poison counters.)",
+    "mana_cost": "{2}{W}"
   },
   {
-    "set" : "CUSTOM",
-    "type" : "Instant",
-    "oracle_text" : "Return target nonland permanent you don't control to its owner's hand.\nOverload {6}{U} (You may cast this spell for its overload cost. If you do, change \"target\" in its text to \"each.\")",
-    "layout" : "normal",
-    "mana_cost" : "{1}{U}",
-    "colors" : [
+    "set": "CUSTOM",
+    "type": "Instant",
+    "oracle_text": "Return target nonland permanent you don't control to its owner's hand.\nOverload {6}{U} (You may cast this spell for its overload cost. If you do, change \"target\" in its text to \"each.\")",
+    "layout": "normal",
+    "mana_cost": "{1}{U}",
+    "colors": [
       "U"
     ],
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/MM3%20Cyclonic%20Rift%20Extended%20Art.jpg"
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/MM3%20Cyclonic%20Rift%20Extended%20Art.jpg"
     },
-    "keywords" : [
+    "keywords": [
       "Overload"
     ],
-    "collector_number" : "30",
-    "name" : "Cyclonic Rift"
+    "collector_number": "30",
+    "name": "Cyclonic Rift"
   },
   {
-    "toughness" : "5",
-    "set" : "CUSTOM",
-    "subtypes" : [
+    "toughness": "5",
+    "set": "CUSTOM",
+    "subtypes": [
       "Angel"
     ],
-    "type" : "Creature",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/M21%20Baneslayer%20Angel.png"
+    "type": "Creature",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/M21%20Baneslayer%20Angel.png"
     },
-    "mana_cost" : "{3}{W}{W}",
-    "collector_number" : "29",
-    "colors" : [
+    "mana_cost": "{3}{W}{W}",
+    "collector_number": "29",
+    "colors": [
       "W"
     ],
-    "oracle_text" : "Flying, first strike, lifelink, protection from Demons and from Dragons",
-    "keywords" : [
+    "oracle_text": "Flying, first strike, lifelink, protection from Demons and from Dragons",
+    "keywords": [
       "Flying",
       "Lifelink",
       "First strike",
       "Protection"
     ],
-    "power" : "5",
-    "layout" : "normal",
-    "name" : "Baneslayer Angel"
+    "power": "5",
+    "layout": "normal",
+    "name": "Baneslayer Angel"
   },
   {
-    "name" : "Enlightened Tutor",
-    "mana_cost" : "{W}",
-    "colors" : [
+    "name": "Enlightened Tutor",
+    "mana_cost": "{W}",
+    "colors": [
       "W"
     ],
-    "collector_number" : "28",
-    "keywords" : [
-
-    ],
-    "set" : "CUSTOM",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/J20%20Enlightened%20Tutor.jpg"
+    "collector_number": "28",
+    "keywords": [],
+    "set": "CUSTOM",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/J20%20Enlightened%20Tutor.jpg"
     },
-    "layout" : "normal",
-    "oracle_text" : "Search your library for an artifact or enchantment card, reveal it, then shuffle and put that card on top.",
-    "type" : "Instant"
+    "layout": "normal",
+    "oracle_text": "Search your library for an artifact or enchantment card, reveal it, then shuffle and put that card on top.",
+    "type": "Instant"
   },
   {
-    "colors" : [
+    "colors": [
       "U"
     ],
-    "type" : "Enchantment",
-    "mana_cost" : "{2}{U}",
-    "keywords" : [
-
-    ],
-    "layout" : "normal",
-    "collector_number" : "27",
-    "oracle_text" : "Whenever an opponent casts a spell, you may draw a card unless that player pays {1}.",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/J18%20Rhystic%20Study.png"
+    "type": "Enchantment",
+    "mana_cost": "{2}{U}",
+    "keywords": [],
+    "layout": "normal",
+    "collector_number": "27",
+    "oracle_text": "Whenever an opponent casts a spell, you may draw a card unless that player pays {1}.",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/J18%20Rhystic%20Study.png"
     },
-    "set" : "CUSTOM",
-    "name" : "Rhystic Study",
+    "set": "CUSTOM",
+    "name": "Rhystic Study"
   },
   {
-    "keywords" : [
-
-    ],
-    "mana_cost" : "{2}{W}",
-    "name" : "Solemnity",
-    "set" : "CUSTOM",
-    "colors" : [
+    "keywords": [],
+    "mana_cost": "{2}{W}",
+    "name": "Solemnity",
+    "set": "CUSTOM",
+    "colors": [
       "W"
     ],
-    "layout" : "normal",
-    "collector_number" : "26",
-    "oracle_text" : "Players can't get counters.\nCounters can't be put on artifacts, creatures, enchantments, or lands.",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/HOU%20Solemnity.png"
+    "layout": "normal",
+    "collector_number": "26",
+    "oracle_text": "Players can't get counters.\nCounters can't be put on artifacts, creatures, enchantments, or lands.",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/HOU%20Solemnity.png"
     },
-    "type" : "Enchantment"
+    "type": "Enchantment"
   },
   {
-    "mana_cost" : "",
-    "layout" : "normal",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/RNA%20Stomping%20Ground.png"
+    "mana_cost": "",
+    "layout": "normal",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/RNA%20Stomping%20Ground.png"
     },
-    "subtypes" : [
+    "subtypes": [
       "Mountain",
       "Forest"
     ],
-    "name" : "Stomping Ground",
-    "colors" : [
-
-    ],
-    "set" : "CUSTOM",
-    "collector_number" : "25",
-    "keywords" : [
-
-    ],
-    "oracle_text" : "({T}: Add {R} or {G}.)\nAs Stomping Ground enters, you may pay 2 life. If you don't, it enters tapped.",
-    "type" : "Land"
+    "name": "Stomping Ground",
+    "colors": [],
+    "set": "CUSTOM",
+    "collector_number": "25",
+    "keywords": [],
+    "oracle_text": "({T}: Add {R} or {G}.)\nAs Stomping Ground enters, you may pay 2 life. If you don't, it enters tapped.",
+    "type": "Land"
   },
   {
-    "name" : "Hallowed Fountain",
-    "keywords" : [
-
-    ],
-    "set" : "CUSTOM",
-    "type" : "Land",
-    "mana_cost" : "",
-    "collector_number" : "24",
-    "oracle_text" : "({T}: Add {W} or {U}.)\nAs Hallowed Fountain enters, you may pay 2 life. If you don't, it enters tapped.",
-    "subtypes" : [
+    "name": "Hallowed Fountain",
+    "keywords": [],
+    "set": "CUSTOM",
+    "type": "Land",
+    "mana_cost": "",
+    "collector_number": "24",
+    "oracle_text": "({T}: Add {W} or {U}.)\nAs Hallowed Fountain enters, you may pay 2 life. If you don't, it enters tapped.",
+    "subtypes": [
       "Plains",
       "Island"
     ],
-    "colors" : [
-
-    ],
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/RNA%20Hallowed%20Fountain.png"
+    "colors": [],
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/RNA%20Hallowed%20Fountain.png"
     },
-    "layout" : "normal"
+    "layout": "normal"
   },
   {
-    "set" : "CUSTOM",
-    "type" : "Land",
-    "mana_cost" : "",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/RNA%20Godless%20Shrine.png"
+    "set": "CUSTOM",
+    "type": "Land",
+    "mana_cost": "",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/RNA%20Godless%20Shrine.png"
     },
-    "collector_number" : "23",
-    "subtypes" : [
+    "collector_number": "23",
+    "subtypes": [
       "Plains",
       "Swamp"
     ],
-    "oracle_text" : "({T}: Add {W} or {B}.)\nAs Godless Shrine enters, you may pay 2 life. If you don't, it enters tapped.",
-    "colors" : [
-
-    ],
-    "layout" : "normal",
-    "keywords" : [
-
-    ],
-    "name" : "Godless Shrine"
+    "oracle_text": "({T}: Add {W} or {B}.)\nAs Godless Shrine enters, you may pay 2 life. If you don't, it enters tapped.",
+    "colors": [],
+    "layout": "normal",
+    "keywords": [],
+    "name": "Godless Shrine"
   },
   {
-    "subtypes" : [
+    "subtypes": [
       "Forest",
       "Island"
     ],
-    "mana_cost" : "",
-    "oracle_text" : "({T}: Add {G} or {U}.)\nAs Breeding Pool enters, you may pay 2 life. If you don't, it enters tapped.",
-    "name" : "Breeding Pool",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/RNA%20Breeding%20Pool.png"
+    "mana_cost": "",
+    "oracle_text": "({T}: Add {G} or {U}.)\nAs Breeding Pool enters, you may pay 2 life. If you don't, it enters tapped.",
+    "name": "Breeding Pool",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/RNA%20Breeding%20Pool.png"
     },
-    "keywords" : [
-
-    ],
-    "layout" : "normal",
-    "set" : "CUSTOM",
-    "type" : "Land",
-    "collector_number" : "22",
-    "colors" : [
-
-    ]
+    "keywords": [],
+    "layout": "normal",
+    "set": "CUSTOM",
+    "type": "Land",
+    "collector_number": "22",
+    "colors": []
   },
   {
-    "keywords" : [
-
-    ],
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/RNA%20Blood%20Crypt.png"
+    "keywords": [],
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/RNA%20Blood%20Crypt.png"
     },
-    "collector_number" : "21",
-    "oracle_text" : "({T}: Add {B} or {R}.)\nAs Blood Crypt enters, you may pay 2 life. If you don't, it enters tapped.",
-    "layout" : "normal",
-    "subtypes" : [
+    "collector_number": "21",
+    "oracle_text": "({T}: Add {B} or {R}.)\nAs Blood Crypt enters, you may pay 2 life. If you don't, it enters tapped.",
+    "layout": "normal",
+    "subtypes": [
       "Swamp",
       "Mountain"
     ],
-    "type" : "Land",
-    "colors" : [
-
-    ],
-    "set" : "CUSTOM",
-    "mana_cost" : "",
-    "name" : "Blood Crypt"
+    "type": "Land",
+    "colors": [],
+    "set": "CUSTOM",
+    "mana_cost": "",
+    "name": "Blood Crypt"
   },
   {
-    "subtypes" : [
+    "subtypes": [
       "Island",
       "Swamp"
     ],
-    "set" : "CUSTOM",
-    "colors" : [
-
-    ],
-    "layout" : "normal",
-    "oracle_text" : "({T}: Add {U} or {B}.)\nAs Watery Grave enters, you may pay 2 life. If you don't, it enters tapped.",
-    "name" : "Watery Grave",
-    "collector_number" : "20",
-    "mana_cost" : "",
-    "keywords" : [
-
-    ],
-    "type" : "Land",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/GRN%20Watery%20Grave.png"
+    "set": "CUSTOM",
+    "colors": [],
+    "layout": "normal",
+    "oracle_text": "({T}: Add {U} or {B}.)\nAs Watery Grave enters, you may pay 2 life. If you don't, it enters tapped.",
+    "name": "Watery Grave",
+    "collector_number": "20",
+    "mana_cost": "",
+    "keywords": [],
+    "type": "Land",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/GRN%20Watery%20Grave.png"
     }
   },
   {
-    "name" : "Temple Garden",
-    "colors" : [
-
-    ],
-    "mana_cost" : "",
-    "collector_number" : "19",
-    "oracle_text" : "({T}: Add {G} or {W}.)\nAs Temple Garden enters, you may pay 2 life. If you don't, it enters tapped.",
-    "keywords" : [
-
-    ],
-    "subtypes" : [
+    "name": "Temple Garden",
+    "colors": [],
+    "mana_cost": "",
+    "collector_number": "19",
+    "oracle_text": "({T}: Add {G} or {W}.)\nAs Temple Garden enters, you may pay 2 life. If you don't, it enters tapped.",
+    "keywords": [],
+    "subtypes": [
       "Forest",
       "Plains"
     ],
-    "set" : "CUSTOM",
-    "layout" : "normal",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/GRN%20Temple%20Garden.png"
+    "set": "CUSTOM",
+    "layout": "normal",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/GRN%20Temple%20Garden.png"
     },
-    "type" : "Land"
+    "type": "Land"
   },
   {
-    "set" : "CUSTOM",
-    "mana_cost" : "",
-    "name" : "Steam Vents",
-    "colors" : [
-
-    ],
-    "keywords" : [
-
-    ],
-    "collector_number" : "18",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/GRN%20Steam%20Vents.png"
+    "set": "CUSTOM",
+    "mana_cost": "",
+    "name": "Steam Vents",
+    "colors": [],
+    "keywords": [],
+    "collector_number": "18",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/GRN%20Steam%20Vents.png"
     },
-    "layout" : "normal",
-    "oracle_text" : "({T}: Add {U} or {R}.)\nAs Steam Vents enters, you may pay 2 life. If you don't, it enters tapped.",
-    "type" : "Land",
-    "subtypes" : [
+    "layout": "normal",
+    "oracle_text": "({T}: Add {U} or {R}.)\nAs Steam Vents enters, you may pay 2 life. If you don't, it enters tapped.",
+    "type": "Land",
+    "subtypes": [
       "Island",
       "Mountain"
     ]
   },
   {
-    "collector_number" : "17",
-    "name" : "Sacred Foundry",
-    "subtypes" : [
+    "collector_number": "17",
+    "name": "Sacred Foundry",
+    "subtypes": [
       "Mountain",
       "Plains"
     ],
-    "set" : "CUSTOM",
-    "mana_cost" : "",
-    "type" : "Land",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/GRN%20Sacred%20Foundry.png"
+    "set": "CUSTOM",
+    "mana_cost": "",
+    "type": "Land",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/GRN%20Sacred%20Foundry.png"
     },
-    "colors" : [
-
-    ],
-    "oracle_text" : "({T}: Add {R} or {W}.)\nAs Sacred Foundry enters, you may pay 2 life. If you don't, it enters tapped.",
-    "keywords" : [
-
-    ],
-    "layout" : "normal"
+    "colors": [],
+    "oracle_text": "({T}: Add {R} or {W}.)\nAs Sacred Foundry enters, you may pay 2 life. If you don't, it enters tapped.",
+    "keywords": [],
+    "layout": "normal"
   },
   {
-    "set" : "CUSTOM",
-    "layout" : "normal",
-    "subtypes" : [
+    "set": "CUSTOM",
+    "layout": "normal",
+    "subtypes": [
       "Swamp",
       "Forest"
     ],
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/GRN%20Overgrown%20Tomb.png"
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/GRN%20Overgrown%20Tomb.png"
     },
-    "mana_cost" : "",
-    "colors" : [
-
-    ],
-    "type" : "Land",
-    "name" : "Overgrown Tomb",
-    "oracle_text" : "({T}: Add {B} or {G}.)\nAs Overgrown Tomb enters, you may pay 2 life. If you don't, it enters tapped.",
-    "keywords" : [
-
-    ],
-    "collector_number" : "16"
+    "mana_cost": "",
+    "colors": [],
+    "type": "Land",
+    "name": "Overgrown Tomb",
+    "oracle_text": "({T}: Add {B} or {G}.)\nAs Overgrown Tomb enters, you may pay 2 life. If you don't, it enters tapped.",
+    "keywords": [],
+    "collector_number": "16"
   },
   {
-    "collector_number" : "15",
-    "power" : "13",
-    "subtypes" : [
+    "collector_number": "15",
+    "power": "13",
+    "subtypes": [
       "Eldrazi"
     ],
-    "colors" : [
-
-    ],
-    "mana_cost" : "{13}",
-    "type" : "Legendary Creature",
-    "keywords" : [
+    "colors": [],
+    "mana_cost": "{13}",
+    "type": "Legendary Creature",
+    "keywords": [
       "Flying",
       "Protection",
       "Trample"
     ],
-    "name" : "Emrakul, the Promised End",
-    "set" : "CUSTOM",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/EMN%20Emrakul,%20the%20Promised%20End.png"
+    "name": "Emrakul, the Promised End",
+    "set": "CUSTOM",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/EMN%20Emrakul,%20the%20Promised%20End.png"
     },
-    "layout" : "normal",
-    "toughness" : "13",
-    "oracle_text" : "This spell costs {1} less to cast for each card type among cards in your graveyard.\nWhen you cast this spell, you gain control of target opponent during that player's next turn. After that turn, that player takes an extra turn.\nFlying, trample, protection from instants"
+    "layout": "normal",
+    "toughness": "13",
+    "oracle_text": "This spell costs {1} less to cast for each card type among cards in your graveyard.\nWhen you cast this spell, you gain control of target opponent during that player's next turn. After that turn, that player takes an extra turn.\nFlying, trample, protection from instants"
   },
   {
-    "collector_number" : "14",
-    "mana_cost" : "{U}{U}",
-    "type" : "Instant",
-    "layout" : "normal",
-    "keywords" : [
-
-    ],
-    "colors" : [
+    "collector_number": "14",
+    "mana_cost": "{U}{U}",
+    "type": "Instant",
+    "layout": "normal",
+    "keywords": [],
+    "colors": [
       "U"
     ],
-    "oracle_text" : "Counter target spell.",
-    "name" : "Counterspell",
-    "set" : "CUSTOM",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/EMA%20Counterspell.png"
+    "oracle_text": "Counter target spell.",
+    "name": "Counterspell",
+    "set": "CUSTOM",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/EMA%20Counterspell.png"
     }
   },
   {
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/ELD%20Embercleave.png"
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/ELD%20Embercleave.png"
     },
-    "colors" : [
+    "colors": [
       "R"
     ],
-    "collector_number" : "13",
-    "mana_cost" : "{4}{R}{R}",
-    "name" : "Embercleave",
-    "layout" : "normal",
-    "set" : "CUSTOM",
-    "oracle_text" : "Flash\nThis spell costs {1} less to cast for each attacking creature you control.\nWhen Embercleave enters, attach it to target creature you control.\nEquipped creature gets +1\/+1 and has double strike and trample.\nEquip {3}",
-    "keywords" : [
+    "collector_number": "13",
+    "mana_cost": "{4}{R}{R}",
+    "name": "Embercleave",
+    "layout": "normal",
+    "set": "CUSTOM",
+    "oracle_text": "Flash\nThis spell costs {1} less to cast for each attacking creature you control.\nWhen Embercleave enters, attach it to target creature you control.\nEquipped creature gets +1/+1 and has double strike and trample.\nEquip {3}",
+    "keywords": [
       "Equip",
       "Flash"
     ],
-    "subtypes" : [
+    "subtypes": [
       "Equipment"
     ],
-    "type" : "Legendary Artifact"
+    "type": "Legendary Artifact"
   },
   {
-    "type" : "Land",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/ELD%20Command%20Tower.jpg"
+    "type": "Land",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/ELD%20Command%20Tower.jpg"
     },
-    "name" : "Command Tower",
-    "colors" : [
-
-    ],
-    "collector_number" : "12",
-    "oracle_text" : "{T}: Add one mana of any color in your commander's color identity.",
-    "set" : "CUSTOM",
-    "mana_cost" : "",
-    "layout" : "normal",
-    "keywords" : [
-
-    ]
+    "name": "Command Tower",
+    "colors": [],
+    "collector_number": "12",
+    "oracle_text": "{T}: Add one mana of any color in your commander's color identity.",
+    "set": "CUSTOM",
+    "mana_cost": "",
+    "layout": "normal",
+    "keywords": []
   },
   {
-    "mana_cost" : "{1}{G}{U}",
-    "set" : "CUSTOM",
-    "colors" : [
+    "mana_cost": "{1}{G}{U}",
+    "set": "CUSTOM",
+    "colors": [
       "G",
       "U"
     ],
-    "power" : "2",
-    "oracle_text" : "Whenever a creature deals combat damage to one of your opponents, its controller may draw a card.",
-    "collector_number" : "11",
-    "subtypes" : [
+    "power": "2",
+    "oracle_text": "Whenever a creature deals combat damage to one of your opponents, its controller may draw a card.",
+    "collector_number": "11",
+    "subtypes": [
       "Elf",
       "Rogue"
     ],
-    "name" : "Edric, Spymaster of Trest",
-    "keywords" : [
-
-    ],
-    "toughness" : "2",
-    "type" : "Legendary Creature",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/CMD%20Edric,%20Spymaster%20of%20Trest.jpg"
+    "name": "Edric, Spymaster of Trest",
+    "keywords": [],
+    "toughness": "2",
+    "type": "Legendary Creature",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/CMD%20Edric,%20Spymaster%20of%20Trest.jpg"
     },
-    "layout" : "normal"
+    "layout": "normal"
   },
   {
-    "layout" : "normal",
-    "toughness" : "4",
-    "subtypes" : [
+    "layout": "normal",
+    "toughness": "4",
+    "subtypes": [
       "Snake",
       "Monk"
     ],
-    "name" : "Seshiro the Anointed",
-    "oracle_text" : "Other Snake creatures you control get +2\/+2.\nWhenever a Snake you control deals combat damage to a player, you may draw a card.",
-    "type" : "Legendary Creature",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/CHK%20Seshiro%20the%20Anointed.jpg"
+    "name": "Seshiro the Anointed",
+    "oracle_text": "Other Snake creatures you control get +2/+2.\nWhenever a Snake you control deals combat damage to a player, you may draw a card.",
+    "type": "Legendary Creature",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/CHK%20Seshiro%20the%20Anointed.jpg"
     },
-    "colors" : [
+    "colors": [
       "G"
     ],
-    "set" : "CUSTOM",
-    "mana_cost" : "{4}{G}{G}",
-    "power" : "3",
-    "collector_number" : "10",
-    "keywords" : [
-
-    ]
+    "set": "CUSTOM",
+    "mana_cost": "{4}{G}{G}",
+    "power": "3",
+    "collector_number": "10",
+    "keywords": []
   },
   {
-    "collector_number" : "9",
-    "layout" : "normal",
-    "keywords" : [
-
-    ],
-    "oracle_text" : "{T}: Add {C}{C}.",
-    "type" : "Artifact",
-    "mana_cost" : "{1}",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/C20%20Sol%20Ring%20Extended%20Art.jpg"
+    "collector_number": "9",
+    "layout": "normal",
+    "keywords": [],
+    "oracle_text": "{T}: Add {C}{C}.",
+    "type": "Artifact",
+    "mana_cost": "{1}",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/C20%20Sol%20Ring%20Extended%20Art.jpg"
     },
-    "set" : "CUSTOM",
-    "name" : "Sol Ring",
-    "colors" : [
-
-    ]
+    "set": "CUSTOM",
+    "name": "Sol Ring",
+    "colors": []
   },
   {
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/C17%20Teferis%20Protection.jpg"
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/C17%20Teferis%20Protection.jpg"
     },
-    "keywords" : [
-
-    ],
-    "oracle_text" : "Until your next turn, your life total can't change and you gain protection from everything. All permanents you control phase out. (While they're phased out, they're treated as though they don't exist. They phase in before you untap during your untap step.)\nExile Teferi's Protection.",
-    "colors" : [
+    "keywords": [],
+    "oracle_text": "Until your next turn, your life total can't change and you gain protection from everything. All permanents you control phase out. (While they're phased out, they're treated as though they don't exist. They phase in before you untap during your untap step.)\nExile Teferi's Protection.",
+    "colors": [
       "W"
     ],
-    "name" : "Teferi's Protection",
-    "set" : "CUSTOM",
-    "collector_number" : "8",
-    "layout" : "normal",
-    "mana_cost" : "{2}{W}",
-    "type" : "Instant"
+    "name": "Teferi's Protection",
+    "set": "CUSTOM",
+    "collector_number": "8",
+    "layout": "normal",
+    "mana_cost": "{2}{W}",
+    "type": "Instant"
   },
   {
-    "name" : "Island Sanctuary",
-    "keywords" : [
-
-    ],
-    "type" : "Enchantment",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/Island%20Sanctuary.jpg"
+    "name": "Island Sanctuary",
+    "keywords": [],
+    "type": "Enchantment",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/Island%20Sanctuary.jpg"
     },
-    "set" : "CUSTOM",
-    "collector_number" : "6",
-    "layout" : "normal",
-    "oracle_text" : "If you would draw a card during your draw step, instead you may skip that draw. If you do, until your next turn, you can't be attacked except by creatures with flying and\/or islandwalk.",
-    "mana_cost" : "{1}{W}",
-    "colors" : [
+    "set": "CUSTOM",
+    "collector_number": "6",
+    "layout": "normal",
+    "oracle_text": "If you would draw a card during your draw step, instead you may skip that draw. If you do, until your next turn, you can't be attacked except by creatures with flying and/or islandwalk.",
+    "mana_cost": "{1}{W}",
+    "colors": [
       "W"
     ]
   },
   {
-    "type" : "Legendary Creature",
-    "keywords" : [
-
-    ],
-    "oracle_text" : "{G}{U}: Target creature can't be blocked this turn. If that creature is a Snake, it gets +2\/+2 until end of turn.",
-    "subtypes" : [
+    "type": "Legendary Creature",
+    "keywords": [],
+    "oracle_text": "{G}{U}: Target creature can't be blocked this turn. If that creature is a Snake, it gets +2/+2 until end of turn.",
+    "subtypes": [
       "Snake",
       "Wizard"
     ],
-    "toughness" : "2",
-    "collector_number" : "5",
-    "mana_cost" : "{1}{G}{U}",
-    "power" : "2",
-    "name" : "Kaseto, Orochi Archmage",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/C15%20Kaseto,%20Orochi%20Archmage.jpg"
+    "toughness": "2",
+    "collector_number": "5",
+    "mana_cost": "{1}{G}{U}",
+    "power": "2",
+    "name": "Kaseto, Orochi Archmage",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/C15%20Kaseto,%20Orochi%20Archmage.jpg"
     },
-    "set" : "CUSTOM",
-    "layout" : "normal",
-    "colors" : [
+    "set": "CUSTOM",
+    "layout": "normal",
+    "colors": [
       "G",
       "U"
     ]
   },
   {
-    "type" : "Legendary Creature",
-    "layout" : "normal",
-    "colors" : [
+    "type": "Legendary Creature",
+    "layout": "normal",
+    "colors": [
       "W"
     ],
-    "collector_number" : "4",
-    "name" : "Regna, the Redeemer",
-    "keywords" : [
+    "collector_number": "4",
+    "name": "Regna, the Redeemer",
+    "keywords": [
       "Flying",
       "Partner with",
       "Partner"
     ],
-    "set" : "CUSTOM",
-    "subtypes" : [
+    "set": "CUSTOM",
+    "subtypes": [
       "Angel"
     ],
-    "toughness" : "4",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/BBD%20Regna,%20the%20Redeemer.jpg"
+    "toughness": "4",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/BBD%20Regna,%20the%20Redeemer.jpg"
     },
-    "power" : "4",
-    "oracle_text" : "Partner with Krav, the Unredeemed (When this creature enters, target player may put Krav into their hand from their library, then shuffle.)\nFlying\nAt the beginning of each end step, if your team gained life this turn, create two 1\/1 white Warrior creature tokens.",
-    "related_cards" : [
+    "power": "4",
+    "oracle_text": "Partner with Krav, the Unredeemed (When this creature enters, target player may put Krav into their hand from their library, then shuffle.)\nFlying\nAt the beginning of each end step, if your team gained life this turn, create two 1/1 white Warrior creature tokens.",
+    "related_cards": [
       {
-        "type" : "Legendary Creature",
-        "image_uris" : {
-          "en" : "https:\/\/cards.scryfall.io\/large\/front\/6\/7\/67bd3c49-ff73-4630-a4ee-c782f03e511d.jpg?1562915928"
+        "type": "Legendary Creature",
+        "image_uris": {
+          "en": "https://cards.scryfall.io/large/front/6/7/67bd3c49-ff73-4630-a4ee-c782f03e511d.jpg?1562915928"
         },
-        "subtypes" : [
+        "subtypes": [
           "Demon"
         ],
-        "name" : "Krav, the Unredeemed"
+        "name": "Krav, the Unredeemed"
       },
       {
-        "type" : "Token Creature",
-        "image_uris" : {
-          "en" : "https:\/\/cards.scryfall.io\/large\/front\/d\/3\/d36e3c0e-a759-4adc-aa2f-61b13c0f786d.jpg?1561758133"
+        "type": "Token Creature",
+        "image_uris": {
+          "en": "https://cards.scryfall.io/large/front/d/3/d36e3c0e-a759-4adc-aa2f-61b13c0f786d.jpg?1561758133"
         },
-        "subtypes" : [
+        "subtypes": [
           "Warrior"
         ],
-        "name" : "Warrior"
+        "name": "Warrior"
       }
     ],
-    "mana_cost" : "{5}{W}"
+    "mana_cost": "{5}{W}"
   },
   {
-    "power" : "3",
-    "type" : "Legendary Creature",
-    "set" : "CUSTOM",
-    "related_cards" : [
+    "power": "3",
+    "type": "Legendary Creature",
+    "set": "CUSTOM",
+    "related_cards": [
       {
-        "subtypes" : [
+        "subtypes": [
           "Angel"
         ],
-        "image_uris" : {
-          "en" : "https:\/\/cards.scryfall.io\/large\/front\/0\/c\/0c2bf475-9845-40ed-9f55-669325fb6183.jpg?1562897463"
+        "image_uris": {
+          "en": "https://cards.scryfall.io/large/front/0/c/0c2bf475-9845-40ed-9f55-669325fb6183.jpg?1562897463"
         },
-        "type" : "Legendary Creature",
-        "name" : "Regna, the Redeemer"
+        "type": "Legendary Creature",
+        "name": "Regna, the Redeemer"
       }
     ],
-    "subtypes" : [
+    "subtypes": [
       "Demon"
     ],
-    "layout" : "normal",
-    "mana_cost" : "{4}{B}",
-    "collector_number" : "3",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/BBD%20Krav,%20the%20Unredeemed.jpg"
+    "layout": "normal",
+    "mana_cost": "{4}{B}",
+    "collector_number": "3",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/BBD%20Krav,%20the%20Unredeemed.jpg"
     },
-    "toughness" : "3",
-    "colors" : [
+    "toughness": "3",
+    "colors": [
       "B"
     ],
-    "oracle_text" : "Partner with Regna, the Redeemer (When this creature enters, target player may put Regna into their hand from their library, then shuffle.)\n{B}, Sacrifice X creatures: Target player draws X cards and gains X life. Put X +1\/+1 counters on Krav, the Unredeemed.",
-    "name" : "Krav, the Unredeemed",
-    "keywords" : [
+    "oracle_text": "Partner with Regna, the Redeemer (When this creature enters, target player may put Regna into their hand from their library, then shuffle.)\n{B}, Sacrifice X creatures: Target player draws X cards and gains X life. Put X +1/+1 counters on Krav, the Unredeemed.",
+    "name": "Krav, the Unredeemed",
+    "keywords": [
       "Partner with",
       "Partner"
     ]
   },
   {
-    "keywords" : [
-
-    ],
-    "type" : "Legendary Creature",
-    "toughness" : "2",
-    "colors" : [
+    "keywords": [],
+    "type": "Legendary Creature",
+    "toughness": "2",
+    "colors": [
       "B",
       "G"
     ],
-    "collector_number" : "2",
-    "mana_cost" : "{B}{G}",
-    "name" : "Hapatra, Vizier of Poisons",
-    "oracle_text" : "Whenever Hapatra, Vizier of Poisons deals combat damage to a player, you may put a -1\/-1 counter on target creature.\nWhenever you put one or more -1\/-1 counters on a creature, create a 1\/1 green Snake creature token with deathtouch.",
-    "set" : "CUSTOM",
-    "related_cards" : [
+    "collector_number": "2",
+    "mana_cost": "{B}{G}",
+    "name": "Hapatra, Vizier of Poisons",
+    "oracle_text": "Whenever Hapatra, Vizier of Poisons deals combat damage to a player, you may put a -1/-1 counter on target creature.\nWhenever you put one or more -1/-1 counters on a creature, create a 1/1 green Snake creature token with deathtouch.",
+    "set": "CUSTOM",
+    "related_cards": [
       {
-        "type" : "Token Creature",
-        "name" : "Snake",
-        "image_uris" : {
-          "en" : "https:\/\/cards.scryfall.io\/large\/front\/6\/a\/6aaa8539-8d21-4da1-8410-d4354078390f.jpg?1562844799"
+        "type": "Token Creature",
+        "name": "Snake",
+        "image_uris": {
+          "en": "https://cards.scryfall.io/large/front/6/a/6aaa8539-8d21-4da1-8410-d4354078390f.jpg?1562844799"
         },
-        "subtypes" : [
+        "subtypes": [
           "Snake"
         ]
       }
     ],
-    "subtypes" : [
+    "subtypes": [
       "Human",
       "Cleric"
     ],
-    "power" : "2",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/AKH%20Hapatra,%20Vizier%20of%20Poisons.jpg"
+    "power": "2",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/AKH%20Hapatra,%20Vizier%20of%20Poisons.jpg"
     },
-    "layout" : "normal"
+    "layout": "normal"
   },
   {
-    "colors" : [
+    "colors": [
       "W"
     ],
-    "mana_cost" : "{3}{W}",
-    "set" : "CUSTOM",
-    "collector_number" : "1",
-    "layout" : "normal",
-    "image_uris" : {
-      "en" : "http:\/\/josh.birnholz.com\/tts\/cards\/custom\/AKH%20Anointed%20Procession.png"
+    "mana_cost": "{3}{W}",
+    "set": "CUSTOM",
+    "collector_number": "1",
+    "layout": "normal",
+    "image_uris": {
+      "en": "http://josh.birnholz.com/tts/cards/custom/AKH%20Anointed%20Procession.png"
     },
-    "keywords" : [
-
-    ],
-    "type" : "Enchantment",
-    "oracle_text" : "If an effect would create one or more tokens under your control, it creates twice that many of those tokens instead.",
-    "name" : "Anointed Procession"
+    "keywords": [],
+    "type": "Enchantment",
+    "oracle_text": "If an effect would create one or more tokens under your control, it creates twice that many of those tokens instead.",
+    "name": "Anointed Procession"
   }
 ]

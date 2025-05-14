@@ -978,7 +978,7 @@ extension DraftmancerSet {
     
     var finalCards: [DraftmancerCard] = []
     
-    var cardsGroupedBySet: [String: [DraftmancerCard]] = .init(grouping: cards, by: \.set!)
+    let cardsGroupedBySet: [String: [DraftmancerCard]] = [String: [DraftmancerCard]](grouping: cards, by: \.set!)
     
     for set in cardsGroupedBySet.keys.sorted(on: \.count) {
       let cards = cardsGroupedBySet[set]!

@@ -10,8 +10,14 @@ RUN apt-get -qq update && apt-get install -y \
   && rm -r /var/lib/apt/lists/*
 WORKDIR /app
 COPY . .
-RUN mkdir -p /build/lib && cp -R /usr/lib/swift/linux/*.so* /build/lib
-RUN swift build -c release && mv `swift build -c release --show-bin-path` /build/bin
+
+# Build the app
+RUN swift build -c release
+
+# Copy binary and all Swift shared libraries needed for runtime
+RUN mkdir -p /build/bin /build/lib && \
+    cp `swift build -c release --show-bin-path`/Run /build/bin && \
+    ldd `swift build -c release --show-bin-path`/Run | awk '{print $3}' | xargs -I{} cp -v {} /build/lib
 
 # Production image
 FROM ubuntu:18.04

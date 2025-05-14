@@ -1,5 +1,5 @@
 # You can set the Swift version to what you need for your app. Versions can be found here: https://hub.docker.com/_/swift
-FROM swift:5.10.1 as builder
+FROM swift:5.3.0 as builder
 
 # For local build, add `--build-arg env=docker`
 # In your application, you can use `Environment.custom(name: "docker")` to check if you're in this env
@@ -10,14 +10,8 @@ RUN apt-get -qq update && apt-get install -y \
   && rm -r /var/lib/apt/lists/*
 WORKDIR /app
 COPY . .
-
-# Build the app
-RUN swift build -c release
-
-# Copy binary and all Swift shared libraries needed for runtime
-RUN mkdir -p /build/bin /build/lib && \
-    cp `swift build -c release --show-bin-path`/Run /build/bin && \
-    ldd `swift build -c release --show-bin-path`/Run | awk '{print $3}' | xargs -I{} cp -v {} /build/lib
+RUN mkdir -p /build/lib && cp -R /usr/lib/swift/linux/*.so* /build/lib
+RUN swift build -c release && mv `swift build -c release --show-bin-path` /build/bin
 
 # Production image
 FROM ubuntu:18.04

@@ -1,26 +1,14 @@
 [CustomCards]
 [
   {
-    "type": "Instant",
-    "subtypes": [],
-    "image": "https://i.imgur.com/pctPnvy.jpeg",
-    "rarity": "rare",
-    "mana_cost": "{1}{U}{U}",
     "name": "Force of Negation",
     "flavor_name": "Witch's Prophecy",
-    "related_cards": [],
-    "oracle_text": "If it's not your turn, you may exile a blue card from your hand rather than pay this spell's mana cost.\nCounter target noncreature spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard."
+    "front": "https://i.imgur.com/pctPnvy.jpeg"
   },
   {
-    "type": "Instant",
-    "subtypes": [],
-    "image": "https://i.imgur.com/T9lzGE7.jpeg",
-    "rarity": "rare",
-    "mana_cost": "{1}{U}",
     "name": "Arcane Denial",
     "flavor_name": "Fatalism",
-    "related_cards": [],
-    "oracle_text": "Counter target spell. Its controller may draw up to two cards at the beginning of the next turn's upkeep.\nYou draw a card at the beginning of the next turn's upkeep."
+    "front": "https://i.imgur.com/T9lzGE7.jpeg"
   },
   {
     "type": "Enchantment Land",

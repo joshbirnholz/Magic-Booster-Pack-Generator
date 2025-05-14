@@ -171,7 +171,7 @@ public struct DraftmancerCard: Codable {
     self.subtypes = types.first?.components(separatedBy: " ")
     self.set = mtgCard.set
     self.collectorNumber = mtgCard.collectorNumber
-    self.rarity = nil
+    self.rarity = .init(rawValue: mtgCard.rarity.rawValue.lowercased())
     self.layout = mtgCard.layout
     self.back = nil
     self.relatedCards = mtgCard.allParts?.compactMap {
@@ -241,15 +241,15 @@ public struct DraftmancerCard: Codable {
     try container.encodeIfPresent(self.set, forKey: .set)
     try container.encodeIfPresent(self.collectorNumber, forKey: .collectorNumber)
     try container.encodeIfPresent(self.rarity, forKey: .rarity)
-    try container.encodeIfPresent(self.subtypes, forKey: .subtypes)
+    
     try container.encodeIfPresent(self.rating, forKey: .rating)
     try container.encodeIfPresent(self.layout, forKey: .layout)
     try container.encodeIfPresent(self.back, forKey: .back)
     
-    if let relatedCardIdentifiers = self.relatedCardIdentifiers {
+    if let relatedCardIdentifiers = self.relatedCardIdentifiers, !relatedCardIdentifiers.isEmpty {
       try container.encode(relatedCardIdentifiers.map(String.init), forKey: .relatedCards)
-    } else {
-      try container.encodeIfPresent(self.relatedCards, forKey: .relatedCards)
+    } else if let relatedCards = self.relatedCards, !relatedCards.isEmpty {
+      try container.encode(relatedCards, forKey: .relatedCards)
     }
     
     try container.encodeIfPresent(self.draftEffects, forKey: .draftEffects)
@@ -497,13 +497,89 @@ let draftmancerSets: [DraftmancerSet]? = {
           print("‼️ Error getting data from string for \(url.deletingPathExtension().lastPathComponent):")
           return nil
         }
-        let cards = try decoder.decode([DraftmancerCard].self, from: data)
+        
+        struct QuickCard: Decodable {
+          let name: String
+          let flavorName: String?
+          let front: URL
+          let back: URL?
+          let set: String?
+        }
+        
+        enum DraftmancerDecodable: Decodable {
+          case full(DraftmancerCard)
+          case quick(QuickCard)
+          
+          init(from decoder: any Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            if let quick = try? container.decode(QuickCard.self) {
+              self = .quick(quick)
+            } else {
+              let full = try container.decode(DraftmancerCard.self)
+              self = .full(full)
+            }
+          }
+          
+          func card(from collection: [Swiftfall.Card]) -> DraftmancerCard? {
+            switch self {
+            case .full(let card):
+              return card
+            case .quick(let quick):
+              do {
+                let card: Swiftfall.Card = try {
+                  if let card = collection[.name(quick.name)] {
+                    return card
+                  } else {
+                    return try Swiftfall.getCard(exact: quick.name)
+                  }
+                }()
+                var mtgCard = MTGCard(card)
+                
+                if let back = quick.back {
+                  let newFronts = mtgCard.cardFaces?[0].imageUris?.mapValues { _ in quick.front }
+                  mtgCard.cardFaces?[0].imageUris = newFronts
+                  
+                  let newBacks = mtgCard.cardFaces?[1].imageUris?.mapValues { _ in back }
+                  mtgCard.cardFaces?[1].imageUris = newBacks
+                } else {
+                  mtgCard.imageUris = mtgCard.imageUris?.mapValues { _ in quick.front }
+                }
+                
+                var draftmancerCard = DraftmancerCard(mtgCard: mtgCard)
+                draftmancerCard.collectorNumber = nil
+                draftmancerCard.flavorName = quick.flavorName
+                draftmancerCard.set = quick.set
+                
+                return draftmancerCard
+              } catch {
+                print("Error loading card for \(quick.name): \(error)")
+                return nil
+              }
+            }
+          }
+        }
+        
+        let cards = try decoder.decode([DraftmancerDecodable].self, from: data)
         let name = url.deletingPathExtension().lastPathComponent
         
         print("✅ Loaded \(cards.count) Draftmancer cards from \(name)")
         
+        let idsToFetch: [[MTGCardIdentifier]] = cards.compactMap {
+          guard case .quick(let quick) = $0 else { return nil }
+          return .name(quick.name)
+        }.chunked(by: 75)
+        var collection: [Swiftfall.Card] = []
+        for chunk in idsToFetch where !chunk.isEmpty {
+          do {
+            let fetched = try Swiftfall.getCollection(identifiers: chunk).data
+            collection.append(contentsOf: fetched)
+          } catch {
+            print(error)
+          }
+        }
+        
         return DraftmancerSet(
-          cards: cards,
+          cards: cards.compactMap { $0.card(from: collection) },
           name: name
         )
       } catch {

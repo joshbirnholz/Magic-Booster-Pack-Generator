@@ -12,6 +12,8 @@
 				$("#herokumove").show();
 			}
 		}
+    
+    window.addEventListener("load", populateDeckHistory);
 	</script>
 	
 	<link rel="stylesheet" href="style.css"></style>
@@ -27,6 +29,17 @@
 	<form id="mainform" enctype="multipart/form-data">
 		<textarea class='deck' id="deck" cols="50" rows="20" placeholder="Enter deck or deck list here…"></textarea>
 	</form>
+  
+  <p>
+  <label for="deckHistory">Or load a previous deck:</label>
+  <select id="deckHistory" onchange="loadSelectedDeck()">
+    
+  </select>
+  <br>
+  <button type="button" onclick="deleteSelectedDeck()">Delete</button>
+  <button type="button" onclick="window.open(document.getElementById('deckHistory').value, '_blank').focus();">Open</button>
+  </p>
+  
 	<input type="checkbox" id="autofix" checked>
 		<label for="autofix"> Fix errors automatically</label><br><br>
 		<input id="back" type="text" size="52" placeholder="Card back image URL (optional)"></input><br>
@@ -67,76 +80,88 @@
 							<p>
 							<input type="button" value="Booster Box…" onclick="doDownloadBoxList()"><br>
 								<input type="button" value="Prerelease Pack…" onclick="doDownloadPrereleasePackList()"><br>
-									<input type="button" value="Booster Packs…" onclick="doDownloadCustomNumPacksList(document.getElementById('listPackCount').value)"> How many? <input type="number" id="listPackCount" value="6" min="1" style="width: 4em">
-										
-										<hr>
-										
-										<p><b>Help</b></p>
-										
-										<p>When entering a deck list, these sites are supported:<p>
-										<ul>
-											<li><a href="https://deckstats.net">deckstats.net</a></li>
-											<li><a href="https://tappedout.net">TappedOut</a></li>
-											<li><a href="https://www.mtggoldfish.com">MTGGoldfish</a></li>
-											<li><a href="https://www.moxfield.com">Moxfield</a></li>
-											<li><a href="https://archidekt.com">Archidekt</a></li>
-										</ul>
-										<p>Use deckstats.net for the most accurate import, keeping your selected printings and art choices.</p>
-										
-										<p>When entering a deck list, identify cards by either just a name, a name and set code, or a set code and collector number. (MTG Arena format)</p>
-										<ul>
-											<li>17 Mountain &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style="font-size:12">Get a recently printed Mountain</i></li>
-											<li>17 Mountain (IKO) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style="font-size:12">Get a Mountain from Ikoria</i></li>
-											<li>17 Mountain (IKO) 270 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style="font-size:12">Get card #270 from Ikoria</i></li>
-										</ul>
-										
-										<p></p>
-										<p>Tokens will be added automatically. To use specific a specific version or art for a token, include the token anywhere in your deck list, like this:</p>
-										<ul><li>1 Spirit (TGK2) 2</li></ul>
-										
-										<p>Some custom cards are available. You can see the available custom cards <a href="customcards.html">here</a>. Use custom cards as normal by specifying their set code (and optionally their collector number), such as:</p>
-										
-										<ul>
-											<li>1 Demonic Tutor (CUSTOM) 1</li>
-										</ul>
-										
-										<p>
-										You can specify custom card images (alters) by setting a card's comment on deckstats.net to a URL to the image you want to use.
-										</p>
-										
-										<p>Example:</p>
-										<div style="indent: 40px;font-size:13">
-											1 Brazen Borrower // Petty Theft
-											<br>4 Brineborn Cutthroat
-											<br>4 Frilled Mystic
-											<br>4 Nightpack Ambusher
-											<br>4 Spectral Sailor
-											<br>1 Wavebreak Hippocamp
-											<br>4 Wildborn Preserver
-											<br>4 Opt (ELD)
-											<br>4 Quench
-											<br>2 Sinister Sabotage
-											<br>2 Thassa's Intervention
-											<br>2 Unsummon (M20)
-											<br>2 Castle Vantress
-											<br>1 Fabled Passage
-											<br>2 Forest (ELD) 266
-											<br>2 Forest (ELD) 267
-											<br>2 Forest (ELD) 268
-											<br>2 Forest (ELD) 269
-											<br>2 Island (ELD) 254
-											<br>2 Island (ELD) 255
-											<br>2 Island (ELD) 256
-											<br>2 Island (ELD) 257
-											<br>2 Temple of Mystery (M20)
-											<br>3 Thornwood Falls (M20)
-											<br>
-											<br>3 Aether Gust (M20) 42
-											<br>2 Disdainful Stroke (GRN) 37
-											<br>2 Mystical Dispute (ELD) 58
-											<br>2 Negate (M20) 69
-											<br>3 Shifting Ceratops (M20) 194
-											<br>3 Threnody Singer (THB) 75
-											<br>
-										</div>
+                  <input type="button" value="Booster Packs…" onclick="doDownloadCustomNumPacksList(document.getElementById('listPackCount').value)"> How many? <input type="number" id="listPackCount" value="6" min="1" style="width: 4em">
+                    
+                    <hr>
+                    
+                    <p><b>Help</b></p>
+                    
+                    <p>When entering a deck list, these sites are supported:<p>
+                    <ul>
+                      <li><a href="https://deckstats.net">deckstats.net</a></li>
+                      <li><a href="https://tappedout.net">TappedOut</a></li>
+                      <li><a href="https://www.mtggoldfish.com">MTGGoldfish</a></li>
+                      <li><a href="https://www.moxfield.com">Moxfield</a></li>
+                      <li><a href="https://archidekt.com">Archidekt</a></li>
+                    </ul>
+                    <p>Use deckstats.net for the most accurate import, keeping your selected printings and art choices.</p>
+                    
+                    <p>When entering a deck list, identify cards by either just a name, a name and set code, or a set code and collector number. (MTG Arena format)</p>
+                    <ul>
+                      <li>17 Mountain &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style="font-size:12">Get a recently printed Mountain</i></li>
+                      <li>17 Mountain (IKO) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style="font-size:12">Get a Mountain from Ikoria</i></li>
+                      <li>17 Mountain (IKO) 270 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style="font-size:12">Get card #270 from Ikoria</i></li>
+                    </ul>
+                    
+                    <p></p>
+                    <p>Tokens will be added automatically. To use specific a specific version or art for a token, include the token anywhere in your deck list, like this:</p>
+                    <ul><li>1 Spirit (TGK2) 2</li></ul>
+                    
+                    <p>Some custom cards are available. You can see the available custom cards <a href="customcards.html">here</a>. Use custom cards as normal by specifying their set code (and optionally their collector number), such as:</p>
+                    
+                    <ul>
+                      <li>1 Demonic Tutor (CUSTOM) 1</li>
+                    </ul>
+                    
+                    <p>
+                    You can specify custom card images (alters) by setting a card's comment on deckstats.net to a URL to the image you want to use.
+                    </p>
+                    
+                    <p>Example:</p>
+                    <div style="indent: 40px;font-size:13">
+                      1 Brazen Borrower // Petty Theft
+                      <br>4 Brineborn Cutthroat
+                      <br>4 Frilled Mystic
+                      <br>4 Nightpack Ambusher
+                      <br>4 Spectral Sailor
+                      <br>1 Wavebreak Hippocamp
+                      <br>4 Wildborn Preserver
+                      <br>4 Opt (ELD)
+                      <br>4 Quench
+                      <br>2 Sinister Sabotage
+                      <br>2 Thassa's Intervention
+                      <br>2 Unsummon (M20)
+                      <br>2 Castle Vantress
+                      <br>1 Fabled Passage
+                      <br>2 Forest (ELD) 266
+                      <br>2 Forest (ELD) 267
+                      <br>2 Forest (ELD) 268
+                      <br>2 Forest (ELD) 269
+                      <br>2 Island (ELD) 254
+                      <br>2 Island (ELD) 255
+                      <br>2 Island (ELD) 256
+                      <br>2 Island (ELD) 257
+                      <br>2 Temple of Mystery (M20)
+                      <br>3 Thornwood Falls (M20)
+                      <br>
+                      <br>3 Aether Gust (M20) 42
+                      <br>2 Disdainful Stroke (GRN) 37
+                      <br>2 Mystical Dispute (ELD) 58
+                      <br>2 Negate (M20) 69
+                      <br>3 Shifting Ceratops (M20) 194
+                      <br>3 Threnody Singer (THB) 75
+                      <br>
+                    </div>
+                    
+                    <div id="filenameModal" style="display:none; position:fixed; top:30%; left:50%; transform:translate(-50%, -50%); background:white; border:1px solid #ccc; padding:20px; box-shadow:0 2px 10px rgba(0,0,0,0.3); z-index:1000;">
+                      <p>Enter a file name for this deck:</p>
+                      <input type="text" id="filenameInput" style="width:100%; margin-bottom:10px;">
+                        <div id='saveCheckboxDiv'><label><input type="checkbox" id="saveCheckbox" checked> Save this deck to history</label></div>
+                      <div style="margin-top:15px; text-align:right;">
+                        <button onclick="cancelFilenameModal()">Cancel</button>
+                        <button onclick="confirmFilenameModal()">Download</button>
+                      </div>
+                    </div>
+                    <div id="filenameBackdrop" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); z-index:999;"></div>
+
 </body>

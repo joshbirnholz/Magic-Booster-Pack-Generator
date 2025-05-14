@@ -410,13 +410,7 @@ function doDownloadDeck() {
 				filename = obj.filename;
 			}
 			
-			filename = prompt("Enter a file name for this deck.", filename);
-			
-			if (filename == null) {
-				return;
-			}
-			
-			download(filename + ".json", formatted, "application/json");
+      showFilenameModal(filename, formatted);
 		},
 		error: function(xhr, status, error) {
 			console.log("error");
@@ -428,6 +422,65 @@ function doDownloadDeck() {
 			$("#progress").html("");
 		}
 	})
+}
+
+let pendingDownload = {
+  suggestedName: "",
+  content: "",
+};
+
+function showFilenameModal(suggestedName, content) {
+  pendingDownload.suggestedName = suggestedName;
+  pendingDownload.content = content;
+  
+  var checkbox = document.getElementById("saveCheckbox");
+  var checkboxDiv = document.getElementById("saveCheckboxDiv");
+  if (isValidHttpUrl(document.getElementById("deck").value)) {
+    checkboxDiv.hidden = false;
+    checkbox.checked = true;
+  } else {
+    checkboxDiv.hidden = true;
+    checkbox.checked = false;
+  }
+
+  document.getElementById("filenameInput").value = suggestedName;
+  document.getElementById("filenameModal").style.display = "block";
+  document.getElementById("filenameBackdrop").style.display = "block";
+  document.getElementById("filenameInput").focus();
+}
+
+function cancelFilenameModal() {
+  document.getElementById("filenameModal").style.display = "none";
+  document.getElementById("filenameBackdrop").style.display = "none";
+}
+
+function confirmFilenameModal() {
+  const filename = document.getElementById("filenameInput").value.trim();
+  const shouldSave = document.getElementById("saveCheckbox").checked;
+
+  if (!filename) {
+    alert("Please enter a name.");
+    return;
+  }
+
+  if (shouldSave && isValidHttpUrl(document.getElementById("deck").value)) {
+    saveDeckToHistory(filename); // Assumes this function is already defined
+  }
+
+  download(filename + ".json", pendingDownload.content, "application/json");
+  cancelFilenameModal();
+}
+
+function isValidHttpUrl(string) {
+  let url;
+  
+  try {
+    url = new URL(string);
+  } catch (_) {
+    return false;
+  }
+
+  return url.protocol === "http:" || url.protocol === "https:";
 }
 
 function loadSets() {
@@ -1172,4 +1225,80 @@ function doConvertDeckToMoxfield() {
       $("#progress").html("");
     }
   })
+}
+
+function saveDeckToHistory(name) {
+  const deck = document.getElementById("deck").value.trim();
+  if (!deck || !name) return;
+
+  let decks = JSON.parse(localStorage.getItem("deckHistory") || "[]");
+
+  // Check if a deck with the same name already exists
+  const existingIndex = decks.findIndex(d => d.name === name);
+
+  if (existingIndex !== -1) {
+    // Overwrite the existing deck's content and update timestamp
+    decks[existingIndex].content = deck;
+    decks[existingIndex].timestamp = Date.now();
+  } else {
+    // Add new entry
+    decks.push({
+      name: name,
+      content: deck,
+      timestamp: Date.now()
+    });
+  }
+
+  localStorage.setItem("deckHistory", JSON.stringify(decks));
+  populateDeckHistory();
+
+  // Select the newly saved deck
+  const select = document.getElementById("deckHistory");
+  select.value = deck;
+}
+
+
+function populateDeckHistory() {
+  const decks = JSON.parse(localStorage.getItem("deckHistory") || "[]");
+  const select = document.getElementById("deckHistory");
+  select.innerHTML = '<option value="">-- Select a saved deck --</option>';
+
+  decks
+    .sort((a, b) => b.timestamp - a.timestamp)
+    .forEach(deck => {
+      const opt = document.createElement("option");
+      opt.value = deck.content;
+
+      let host = "";
+      try {
+        const url = new URL(deck.content);
+        host = url.hostname.replace("www.", "");
+      } catch (e) {
+        // Not a valid URL — skip host
+      }
+
+      opt.textContent = host ? `${deck.name} (${host})` : deck.name;
+      select.appendChild(opt);
+    });
+}
+
+function loadSelectedDeck() {
+  var value = document.getElementById("deckHistory").value;
+  if (value) {
+    document.getElementById("deck").value = value;
+  }
+}
+
+function deleteSelectedDeck() {
+  const content = document.getElementById("deckHistory").value;
+  if (!content) return;
+
+  let decks = JSON.parse(localStorage.getItem("deckHistory") || "[]");
+
+  // Remove the deck that matches the selected content exactly
+  decks = decks.filter(deck => deck.content !== content);
+
+  localStorage.setItem("deckHistory", JSON.stringify(decks));
+  populateDeckHistory();
+  document.getElementById("deck").value = "";
 }

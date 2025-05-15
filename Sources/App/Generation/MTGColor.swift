@@ -24,7 +24,7 @@ public extension Array where Element == MTGColor {
 	}
 }
 
-public enum MTGColor: String, Codable, CaseIterable {
+public enum MTGColor: String, Codable, CaseIterable, Sendable {
 	case white = "W"
 	case blue = "U"
 	case black = "B"

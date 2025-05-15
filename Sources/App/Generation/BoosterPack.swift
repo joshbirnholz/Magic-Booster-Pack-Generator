@@ -1972,16 +1972,16 @@ enum MysterBoosterSlot: Hashable, Equatable {
 	case foil
 }
 
-func processMysteryBoosterCards(_ cards: [MTGCard]) -> [MysterBoosterSlot: [MTGCard]] {
-	let additionalMainCards: [MTGCard] = {
+func processMysteryBoosterCards(_ cards: [MTGCard]) async -> [MysterBoosterSlot: [MTGCard]] {
+	let additionalMainCards: [MTGCard] = await {
 		do {
 			switch cards.first?.set.lowercased() {
 			case "cmb1", "fmb1":
 				// Add main mystery booster cards to convention/store set.
-				return try Swiftfall.getSet(code: "mb1").getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init)
+				return try await Swiftfall.getSet(code: "mb1").getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init)
 			case "mb1":
 				// Add foils to normal mystery booster set.
-				return try Swiftfall.getSet(code: "fmb1").getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init)
+				return try await Swiftfall.getSet(code: "fmb1").getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init)
 			default:
 				return []
 			}
@@ -2308,7 +2308,7 @@ func ravnicaClueEditionDeckList() throws -> String {
   return try String(contentsOf: deckListURL)
 }
 
-func generateJumpStartPack() throws -> CardCollection {
+func generateJumpStartPack() async throws -> CardCollection {
 	guard let deckListURL = jumpstartDeckListURLs.randomElement() else {
 		throw PackError.unsupported
 	}
@@ -2320,7 +2320,7 @@ func generateJumpStartPack() throws -> CardCollection {
 	let contents = try String(contentsOf: deckListURL)
 	let cardCounts = DeckParser.parse(deckList: contents, autofix: true).first?.cardCounts ?? []
 	let identifiers: [MTGCardIdentifier] = [faceCardIdentifier] + cardCounts.map(\.identifier)
-	let cards = try Swiftfall.getCollection(identifiers: identifiers).data
+	let cards = try await Swiftfall.getCollection(identifiers: identifiers).data
 	
 	var collection = CardCollection()
 	if let faceCard = cards.first(where: { $0.set.lowercased() == "fjmp" }) {
@@ -2339,7 +2339,7 @@ func generateJumpStartPack() throws -> CardCollection {
 	return collection
 }
 
-func generateJumpStart2022Pack() throws -> CardCollection {
+func generateJumpStart2022Pack() async throws -> CardCollection {
 	guard let deckListURL = jumpstart2022DeckListURLs.randomElement() else {
 		throw PackError.unsupported
 	}
@@ -2351,7 +2351,7 @@ func generateJumpStart2022Pack() throws -> CardCollection {
 	let contents = try String(contentsOf: deckListURL)
 	let cardCounts = DeckParser.parse(deckList: contents, autofix: true).first?.cardCounts ?? []
 	let identifiers: [MTGCardIdentifier] = [faceCardIdentifier] + cardCounts.map(\.identifier)
-	let cards = try Swiftfall.getCollection(identifiers: identifiers).data
+	let cards = try await Swiftfall.getCollection(identifiers: identifiers).data
 	
 	var collection = CardCollection()
 	if let faceCard = cards.first(where: { $0.set.lowercased() == "fj22" }) {
@@ -2375,7 +2375,7 @@ func generateJumpStart2022Pack() throws -> CardCollection {
 	return collection
 }
 
-func generateJumpStart2025Pack() throws -> CardCollection {
+func generateJumpStart2025Pack() async throws -> CardCollection {
   guard let deckListURL = jumpstart2025DeckListURLs.randomElement() else {
     throw PackError.unsupported
   }
@@ -2387,7 +2387,7 @@ func generateJumpStart2025Pack() throws -> CardCollection {
   let contents = try String(contentsOf: deckListURL)
   var cardCounts = DeckParser.parse(deckList: contents, autofix: true).first?.cardCounts ?? []
   let identifiers: [MTGCardIdentifier] = [faceCardIdentifier] + cardCounts.map(\.identifier)
-  let cards = try Swiftfall.getCollection(identifiers: identifiers).data
+  let cards = try await Swiftfall.getCollection(identifiers: identifiers).data
   
   var collection = CardCollection()
   if let faceCard = cards.first(where: { $0.set.lowercased() == "fj25" }) {
@@ -2411,7 +2411,7 @@ func generateJumpStart2025Pack() throws -> CardCollection {
   return collection
 }
 
-func generateSuperJumpPack() throws -> CardCollection {
+func generateSuperJumpPack() async throws -> CardCollection {
 	guard let deckListURL = superJumpDeckListURLs.randomElement() else {
 		throw PackError.unsupported
 	}
@@ -2422,7 +2422,7 @@ func generateSuperJumpPack() throws -> CardCollection {
 	let contents = try String(contentsOf: deckListURL)
 	let cardCounts = DeckParser.parse(deckList: contents, autofix: true).first?.cardCounts ?? []
 	let identifiers: [MTGCardIdentifier] = /*[faceCardIdentifier] + */cardCounts.map(\.identifier)
-	let cards = try Swiftfall.getCollection(identifiers: identifiers).data
+	let cards = try await Swiftfall.getCollection(identifiers: identifiers).data
 	
 	let frontURL = URL(string: "http://josh.birnholz.com/tts/resources/superjump/\(name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!).jpg")!
 	print(frontURL)
@@ -2450,7 +2450,7 @@ func generateSuperJumpPack() throws -> CardCollection {
 	return collection
 }
 
-func generateRavnicaClueEditionPack() throws -> CardCollection {
+func generateRavnicaClueEditionPack() async throws -> CardCollection {
   guard let deckListURL = ravnicaClueEditionDeckListURLs.randomElement() else {
     throw PackError.unsupported
   }
@@ -2462,7 +2462,7 @@ func generateRavnicaClueEditionPack() throws -> CardCollection {
   let contents = try String(contentsOf: deckListURL)
   let cardCounts = DeckParser.parse(deckList: contents, autofix: true).first?.cardCounts ?? []
   let identifiers: [MTGCardIdentifier] = [faceCardIdentifier] + cardCounts.map(\.identifier)
-  let cards = try Swiftfall.getCollection(identifiers: identifiers).data
+  let cards = try await Swiftfall.getCollection(identifiers: identifiers).data
   
   var collection = CardCollection()
   if let faceCard = cards.first(where: { $0.set.lowercased() == "fclu" }) {
@@ -2951,8 +2951,6 @@ fileprivate struct CardInfo {
 	
 }
 
-fileprivate var packTexturesExist: [String: Bool] = [:]
-
 func singleCompleteToken(tokens: [MTGCard], export: Bool) throws -> ObjectStateJSON {
 	guard !tokens.isEmpty, let first = tokens.first, let cardInfo = CardInfo(offset: 0, currentState: first, allStates: tokens) else { throw PackError.noCards }
 	
@@ -2984,7 +2982,7 @@ func singleCompleteToken(tokens: [MTGCard], export: Bool) throws -> ObjectStateJ
 }
 
 /// Put commons into the array first (index 0) and rares last. Then the basic land after the rares.
-func boosterPackJSON(setName: String, setCode: String, name: String? = nil, cards: [MTGCard], tokens: [MTGCard] = [], inPack: Bool = true, cardBack: URL? = nil, nickname: String? = nil) throws -> ObjectStateJSON {
+func boosterPackJSON(setName: String, setCode: String, name: String? = nil, cards: [MTGCard], tokens: [MTGCard] = [], inPack: Bool = true, cardBack: URL? = nil, nickname: String? = nil) async throws -> ObjectStateJSON {
 	
 //	let cardInfo = Array(cards.enumerated().compactMap(CardInfo.init(offset:card:)))
 	let cardInfo: [CardInfo] = cards.reversed().enumerated().compactMap { sequence in
@@ -3053,8 +3051,7 @@ func boosterPackJSON(setName: String, setCode: String, name: String? = nil, card
 	}
 	
 	var packTextureURL = URL(string: "http://josh.birnholz.com/tts/resources/pack/\(setCode).jpg")!
-	let exists = packTexturesExist[setCode] ?? fileExists(at: packTextureURL)
-	packTexturesExist[setCode] = exists
+  let exists = await RemoteFileExistenceCache.shared.fileExists(at: packTextureURL)
 	if !exists {
 		print("No pack texture for \(setCode), using default")
 		packTextureURL = URL(string: "http://josh.birnholz.com/tts/resources/pack/default.jpg")!
@@ -3143,13 +3140,13 @@ func boosterPackJSON(setName: String, setCode: String, name: String? = nil, card
 	return pack
 }
 
-func singleBoosterPack(setName: String, setCode: String, boosterPack: [MTGCard], tokens: [MTGCard], inPack: Bool? = nil, export: Bool, cardBack: URL? = nil, nickname: String? = nil) throws -> String {
+func singleBoosterPack(setName: String, setCode: String, boosterPack: [MTGCard], tokens: [MTGCard], inPack: Bool? = nil, export: Bool, cardBack: URL? = nil, nickname: String? = nil) async throws -> String {
 	let boosterPackString: String
 	
 	if let inPack = inPack {
-		boosterPackString = try boosterPackJSON(setName: setName, setCode: setCode, cards: boosterPack, tokens: tokens, inPack: inPack, cardBack: cardBack)
+		boosterPackString = try await boosterPackJSON(setName: setName, setCode: setCode, cards: boosterPack, tokens: tokens, inPack: inPack, cardBack: cardBack)
 	} else {
-		boosterPackString = try boosterPackJSON(setName: setName, setCode: setCode, cards: boosterPack, tokens: tokens, cardBack: cardBack, nickname: nickname)
+		boosterPackString = try await boosterPackJSON(setName: setName, setCode: setCode, cards: boosterPack, tokens: tokens, cardBack: cardBack, nickname: nickname)
 	}
 	
 	if !export {
@@ -3179,13 +3176,13 @@ func singleBoosterPack(setName: String, setCode: String, boosterPack: [MTGCard],
 """
 }
 
-func singleCardFuzzy(name: String, facedown: Bool, export: Bool) throws -> String {
-  let mtgCard: MTGCard = try {
+func singleCardFuzzy(name: String, facedown: Bool, export: Bool) async throws -> String {
+  let mtgCard: MTGCard = try await {
     do {
-      let card = try Swiftfall.getCard(fuzzy: name)
+      let card = try await Swiftfall.getCard(fuzzy: name)
       return MTGCard(card)
     } catch {
-      if let card = loadedDraftmancerCards?.first(where: { $0.name?.lowercased().hasPrefix(name.lowercased()) == true }) {
+      if let card = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased().hasPrefix(name.lowercased()) == true }) {
         return card
       } else {
         throw PackError.couldNotLoadCards(name)
@@ -3196,13 +3193,13 @@ func singleCardFuzzy(name: String, facedown: Bool, export: Bool) throws -> Strin
   return try singleCard(mtgCard, facedown: facedown, export: export)
 }
 
-func singleCardExact(name: String, facedown: Bool, export: Bool) throws -> String {
-  let mtgCard: MTGCard = try {
+func singleCardExact(name: String, facedown: Bool, export: Bool) async throws -> String {
+  let mtgCard: MTGCard = try await {
     do {
-      let card = try Swiftfall.getCard(exact: name)
+      let card = try await Swiftfall.getCard(exact: name)
       return MTGCard(card)
     } catch {
-      if let card = loadedDraftmancerCards?[.name(name)] {
+      if let card = await DraftmancerSetCache.shared.loadedDraftmancerCards?[.name(name)] {
         return card
       } else {
         throw PackError.couldNotLoadCards(name)
@@ -3213,14 +3210,14 @@ func singleCardExact(name: String, facedown: Bool, export: Bool) throws -> Strin
 	return try singleCard(mtgCard, facedown: facedown, export: export)
 }
 
-func singleCardCodeNumber(code: String, number: String, facedown: Bool, export: Bool) throws -> String {
-  let mtgCard: MTGCard = try {
+func singleCardCodeNumber(code: String, number: String, facedown: Bool, export: Bool) async throws -> String {
+  let mtgCard: MTGCard = try await {
     do {
-      let card = try Swiftfall.getCard(code: code, number: number)
+      let card = try await Swiftfall.getCard(code: code, number: number)
       return MTGCard(card)
     } catch {
       let identnfier: MTGCardIdentifier = .collectorNumberSet(collectorNumber: number, set: code, name: nil)
-      if let card = loadedDraftmancerCards?[identnfier] {
+      if let card = await DraftmancerSetCache.shared.loadedDraftmancerCards?[identnfier] {
         return card
       } else {
         throw PackError.couldNotLoadCards(String(describing: identnfier))
@@ -3230,14 +3227,14 @@ func singleCardCodeNumber(code: String, number: String, facedown: Bool, export: 
 	return try singleCard(mtgCard, facedown: facedown, export: export)
 }
 
-func singleCardRand(facedown: Bool, export: Bool) throws -> String {
-	let card = try Swiftfall.getRandomCard()
+func singleCardRand(facedown: Bool, export: Bool) async throws -> String {
+	let card = try await Swiftfall.getRandomCard()
 	let mtgCard = MTGCard(card)
 	return try singleCard(mtgCard, facedown: facedown, export: export)
 }
 
-func singleCardScryfallQuery(query: String, facedown: Bool, export: Bool) throws -> String {
-	guard let card = Swiftfall.getCards(query: query).compactMap({ $0?.data }).joined().randomElement() else {
+func singleCardScryfallQuery(query: String, facedown: Bool, export: Bool) async throws -> String {
+	guard let card = try await Swiftfall.getAllCards(query: query).randomElement() else {
 		throw PackError.noCards
 	}
 	let mtgCard = MTGCard(card)
@@ -3294,15 +3291,15 @@ func singleCard(_ card: MTGCard, tokens: [MTGCard] = [], facedown: Bool = true, 
 	"""
 }
 
-func allTokensForSet(setCode: String) throws -> [MTGCard] {
+func allTokensForSet(setCode: String) async throws -> [MTGCard] {
 	let set: Swiftfall.ScryfallSet
 	do {
-		set = try Swiftfall.getSet(code: "t\(setCode)")
+		set = try await Swiftfall.getSet(code: "t\(setCode)")
 	} catch {
-		set = try Swiftfall.getSet(code: setCode)
+		set = try await Swiftfall.getSet(code: setCode)
 	}
 	
-	let cards = set.getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init).sorted { ($0.name ?? "") < ($1.name ?? "") }
+	let cards = await set.getCards().asyncCompactMap { $0?.data }.joined().compactMap(MTGCard.init).sorted { ($0.name ?? "") < ($1.name ?? "") }
 	
 	guard !cards.isEmpty else {
 		throw PackError.noCards
@@ -3381,15 +3378,15 @@ func wrapObjectStateInSaveFile(_ objectState: ObjectStateJSON) -> String {
 	"""
 }
 
-func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], names: [String?]? = nil, tokens: [MTGCard], inPack: Bool = true, export: Bool, cardBack: URL? = nil) throws -> String {
+func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], names: [String?]? = nil, tokens: [MTGCard], inPack: Bool = true, export: Bool, cardBack: URL? = nil) async throws -> String {
 	
 	let names: [String?] = names ?? Array(repeating: String?.none, count: boosterPacks.count)
 	let packs = zip(boosterPacks, names)
-	let boosterPacks: [ObjectStateJSON] = try packs.map { cards, name in
+	let boosterPacks: [ObjectStateJSON] = try await packs.asyncMap { cards, name in
 		if cards.count == 1, let card = cards.first {
 			return try singleCard(card, tokens: tokens, facedown: false, export: false)
 		} else {
-			return try boosterPackJSON(setName: setName, setCode: setCode, name: name, cards: cards, tokens: tokens, inPack: inPack, cardBack: cardBack)
+			return try await boosterPackJSON(setName: setName, setCode: setCode, name: name, cards: cards, tokens: tokens, inPack: inPack, cardBack: cardBack)
 		}
 	}
 	
@@ -3402,60 +3399,48 @@ func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], nam
 	return wrapObjectStateInSaveFile(objectState)
 }
 
-func checkIfFileExists(at url: URL, timeout: TimeInterval = 1.0, completion: @escaping (Bool) -> Void) {
-	var request = URLRequest(url: url)
-	request.httpMethod = "HEAD"
-	request.timeoutInterval = timeout
-
-	let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-		if let httpResp: HTTPURLResponse = response as? HTTPURLResponse {
-			completion(httpResp.statusCode == 200)
-		}
-	})
-
-	task.resume()
+actor RemoteFileExistenceCache {
+  static let shared = RemoteFileExistenceCache()
+  
+  private var cache: [URL: Bool] = [:]
+  
+  func fileExists(at url: URL, timeout: TimeInterval = 1.0) async -> Bool {
+    if let cached = cache[url] {
+      return cached
+    }
+    
+    let exists = await checkIfFileExists(at: url, timeout: timeout)
+    cache[url] = exists
+    return exists
+  }
+  
+  private func checkIfFileExists(at url: URL, timeout: TimeInterval) async -> Bool {
+    var request = URLRequest(url: url)
+    request.httpMethod = "HEAD"
+    request.timeoutInterval = timeout
+    
+    do {
+      let (_, response) = try await URLSession.shared.data(for: request)
+      if let httpResp = response as? HTTPURLResponse {
+        return httpResp.statusCode == 200
+      }
+    } catch {
+      return false
+    }
+    
+    return false
+  }
 }
 
-fileprivate var fileExists: [URL: Bool] = [:]
 
-func fileExists(at url: URL, timeout: TimeInterval = 1.0) -> Bool {
-	if let exists = fileExists[url] {
-		return exists
-	}
-	
-	var result = false
-	let semaphore = DispatchSemaphore(value: 0)
-	checkIfFileExists(at: url, timeout: timeout) { (exists) in
-		result = exists
-		fileExists[url] = exists
-		semaphore.signal()
-	}
-	semaphore.wait()
-	return result
-}
-
-func spindownDieJSON(setCode: String) -> String {
-	func checkIfFileExists(at url: URL, timeout: TimeInterval = 1.0, completion: @escaping (Bool) -> Void) {
-		var request = URLRequest(url: url)
-		request.httpMethod = "HEAD"
-		request.timeoutInterval = timeout
-
-		let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-			if let httpResp: HTTPURLResponse = response as? HTTPURLResponse {
-				completion(httpResp.statusCode == 200)
-			}
-		})
-
-		task.resume()
-	}
-	
+func spindownDieJSON(setCode: String) async -> String {
 	func spindownURL(for setCode: String = "default") -> URL {
 		return URL(string: "http://josh.birnholz.com/tts/resources/spindowns/\(setCode).jpg")!
 	}
 	
 	var spindownTextureURL = spindownURL(for: setCode)
 	
-	if !fileExists(at: spindownTextureURL) {
+  if await !RemoteFileExistenceCache.shared.fileExists(at: spindownTextureURL) {
 		print("Spindown die doesn't exist for \(setCode), using default")
 		spindownTextureURL = spindownURL()
 	} else {
@@ -4332,7 +4317,7 @@ fileprivate let ikoKeywordCounters = """
 }
 """
 
-func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]], promoCard: MTGCard, tokens: [MTGCard], basicLands: [MTGCard], includePromoCard: Bool?, includeLands: Bool?, includeSheet: Bool?, includeSpindown: Bool?, export: Bool, seed: Seed?) throws -> String {
+func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]], promoCard: MTGCard, tokens: [MTGCard], basicLands: [MTGCard], includePromoCard: Bool?, includeLands: Bool?, includeSheet: Bool?, includeSpindown: Bool?, export: Bool, seed: Seed?) async throws -> String {
 	let includeSheet = includeSheet ?? true
 	let includeSpindown = includeSpindown ?? true
 	let includeLands = includeLands ?? true
@@ -4343,15 +4328,15 @@ func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]],
 		name += " — \(seed.name)"
 	}
 	
-	let boosterPackString = try boosterPacks.enumerated().map { index, cards in
-		return try boosterPackJSON(setName: index == 0 ? name : setName, setCode: setCode, cards: cards, tokens: tokens, inPack: index == 0 && seed != nil ? false : true)
+	let boosterPackString = try await boosterPacks.enumerated().asyncMap { index, cards in
+		return try await boosterPackJSON(setName: index == 0 ? name : setName, setCode: setCode, cards: cards, tokens: tokens, inPack: index == 0 && seed != nil ? false : true)
 	}.joined(separator: ",\n")
 	let promoCardString = try singleCard(promoCard, facedown: false)
 	
 	var containedObjects: [String] = []
 	
 	if includeSpindown {
-		containedObjects.append(spindownDieJSON(setCode: seed?.name.lowercased() ?? setCode))
+		containedObjects.append(await spindownDieJSON(setCode: seed?.name.lowercased() ?? setCode))
 	}
 	
 	if includeSheet {
@@ -4373,14 +4358,14 @@ func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]],
 	containedObjects.append(boosterPackString)
 	
 	if includeLands {
-		let landPacks = try landPacksJSON(basicLands: basicLands)
+		let landPacks = try await landPacksJSON(basicLands: basicLands)
 		containedObjects.append(contentsOf: landPacks)
 	}
 	
 	var boxTextureName = seed?.name.lowercased() ?? setCode
 	var boxURL: URL { URL(string: "http://josh.birnholz.com/tts/resources/prerelease/\(boxTextureName).jpg")! }
 	
-	if !fileExists(at: boxURL) {
+  if await !RemoteFileExistenceCache.shared.fileExists(at: boxURL) {
 		boxTextureName = "default"
 		print("No texture for \(setCode) prerelease box, using default")
 	} else {
@@ -4459,21 +4444,19 @@ func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]],
 	return wrapObjectStateInSaveFile(objectState)
 }
 
-func allLandPacksSingleJSON(setCards: (cards: [MTGCard], setCode: String)?, specialOptions: [String], export: Bool) throws -> String {
-	let lands: [MTGCard] = try {
+func allLandPacksSingleJSON(setCards: (cards: [MTGCard], setCode: String)?, specialOptions: [String], export: Bool) async throws -> String {
+	let lands: [MTGCard] = try await {
 		if let (cards, setCode) = setCards {
-			let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: true)
+			let processed = try await process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: true)
 			return processed.basicLands
 		} else {
-			return Swiftfall
-			.getCards(query: "type='basic land –'", unique: false)
-			.compactMap { $0?.data }
-			.joined()
+			return try await Swiftfall
+      .getAllCards(query: "type='basic land –'", unique: nil)
 			.compactMap(MTGCard.init)
 		}
 	}()
 	
-	let landPacks = try landPacksJSON(basicLands: lands).reversed()
+	let landPacks = try await landPacksJSON(basicLands: lands).reversed()
 	
 	let objectState = """
 		{
@@ -4546,7 +4529,7 @@ func allLandPacksSingleJSON(setCards: (cards: [MTGCard], setCode: String)?, spec
 	"""
 }
 
-func landPacksJSON(basicLands: [MTGCard]) throws -> [String] {
+func landPacksJSON(basicLands: [MTGCard]) async throws -> [String] {
 	let plains = basicLands.filter { $0.name == "Plains" }
 	let islands = basicLands.filter { $0.name == "Island" }
 	let swamps = basicLands.filter { $0.name == "Swamp" }
@@ -4571,7 +4554,7 @@ func landPacksJSON(basicLands: [MTGCard]) throws -> [String] {
 		landPacks.append(pack)
 	}
 	
-	return try landPacks.map { try boosterPackJSON(setName: $0.first!.name!, setCode: "", cards: $0, inPack: false) }
+	return try await landPacks.asyncMap { try await boosterPackJSON(setName: $0.first!.name!, setCode: "", cards: $0, inPack: false) }
 }
 
 fileprivate let prereleaseSheet = """
@@ -4737,6 +4720,8 @@ func customSet(forSetCode inputString: String) -> Swiftfall.ScryfallSet? {
         if let subtitle = setNames[inputString.lowercased()] {
             name += ": " + subtitle
         }
+      
+        guard let searchUri = URL(string: "https://api.scryfall.com/cards/search?unique=prints&q=\(query)") else { return nil }
         
         return Swiftfall.ScryfallSet(
             code: inputString,
@@ -4744,7 +4729,7 @@ func customSet(forSetCode inputString: String) -> Swiftfall.ScryfallSet? {
             name: name,
             uri: "",
             scryfallUri: "",
-            searchUri: "https://api.scryfall.com/cards/search?unique=prints&q=\(query)",
+            searchUri: searchUri,
             releasedAt: Date(rfc1123: "Tue, 21 Mar 2023 00:00:00 GMT"),
             setType: "masters",
             cardCount: 281 + (cardNames[inputString.lowercased()] ?? []).count,
@@ -4783,7 +4768,7 @@ func customSetJSONURL(forSetCode inputString: String) -> URL? {
 	#endif
 }
 
-public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, includeBasicLands: Bool, includeTokens: Bool, specialOptions: [String] = [], cardBack: URL? = nil, autofixDecklist: Bool, outputFormat: OutputFormat, seed: Seed? = nil) throws -> String {
+public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, includeBasicLands: Bool, includeTokens: Bool, specialOptions: [String] = [], cardBack: URL? = nil, autofixDecklist: Bool, outputFormat: OutputFormat, seed: Seed? = nil) async throws -> String {
 	let mtgCards: [MTGCard]
 	let setName: String
 	let setCode: String?
@@ -4827,7 +4812,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 //		return string
 	case .scryfallSetCode:
 		if let url = customSetJSONURL(forSetCode: inputString), let data = try? Data(contentsOf: url), let string = String(data: data, encoding: .utf8) {
-			return try generate(input: .mtgCardJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, autofixDecklist: autofixDecklist, outputFormat: outputFormat, seed: seed)
+			return try await generate(input: .mtgCardJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, autofixDecklist: autofixDecklist, outputFormat: outputFormat, seed: seed)
 		}
 		if inputString.lowercased() == "sjm" {
       mtgCards = [MTGCard.init(layout: "", frame: "", isFullArt: false, collectorNumber: "", set: "", rarity: .common, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], language: .english, isTextless: false)]
@@ -4837,22 +4822,22 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			break
 		}
         
-        let set: Swiftfall.ScryfallSet = try {
+        let set: Swiftfall.ScryfallSet = try await {
             if let customSet = customSet(forSetCode: inputString) {
                 return customSet
             } else {
-                return try Swiftfall.getSet(code: inputString)
+                return try await Swiftfall.getSet(code: inputString)
             }
         }()
         
 		
-		mtgCards = set.getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init)
+    mtgCards = await set.getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init)
 		setName = set.name
 		setCode = set.code
 		
 		let tokenCutoff = Date(timeIntervalSince1970: 1184284800) // Only sets released after this date include tokens
-		if includeTokens, let code = set.code, let tokenSet = try? Swiftfall.getSet(code: "t\(code)"), let releaseDate = set.releasedAt, releaseDate >= tokenCutoff {
-			tokens = tokenSet.getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init)
+		if includeTokens, let code = set.code, let tokenSet = try? await Swiftfall.getSet(code: "t\(code)"), let releaseDate = set.releasedAt, releaseDate >= tokenCutoff {
+			tokens = await tokenSet.getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init)
 		} else {
 			tokens = []
 		}
@@ -4871,7 +4856,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			mythicPolicy = .previous
 		}
 	case .cardlist:
-		return try deck(.arena(inputString), export: export, cardBack: cardBack, autofix: autofixDecklist)
+		return try await deck(.arena(inputString), export: export, cardBack: cardBack, autofix: autofixDecklist)
 	}
 	
 	guard !mtgCards.isEmpty else { throw PackError.noCards }
@@ -4911,15 +4896,15 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 	
 	switch output {
 	case .boosterBox:
-		return try boosterBox(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, boxCount: boxCount, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, includeBasicLands: includeBasicLands, includeTokens: includeTokens, outputFormat: outputFormat)
+    return try await boosterBox(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, boxCount: boxCount, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, includeBasicLands: includeBasicLands, includeTokens: includeTokens, outputFormat: outputFormat)
 	case .commanderBoxingLeagueBox:
-		return try commanderBoxingLeagueBox(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, boxCount: boxCount, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, includeBasicLands: includeBasicLands, includeTokens: includeTokens)
+		return try await commanderBoxingLeagueBox(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, boxCount: boxCount, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, includeBasicLands: includeBasicLands, includeTokens: includeTokens)
 	case .boosterPack:
-		return try boosterPack(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, includeBasicLands: includeBasicLands, includeTokens: includeTokens, outputFormat: outputFormat, seed: seed)
+		return try await boosterPack(setName: setName, cards: mtgCards, tokens: tokens, setCode: setCode, mode: mode, export: export, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, includeBasicLands: includeBasicLands, includeTokens: includeTokens, outputFormat: outputFormat, seed: seed)
 	case .prereleaseKit:
-		return try prereleaseKit(setName: setName, setCode: setCode ?? mtgCards.first?.set ?? inputString, cards: mtgCards, tokens: tokens, mode: mode, export: export, packCount: boxCount, includePromoCard: prereleaseIncludePromoCard, includeLands: prereleaseIncludeLands, includeSheet: prereleaseIncludeSheet, includeSpindown: prereleaseIncludeSpindown, boosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, outputFormat: outputFormat, seed: seed)
+		return try await prereleaseKit(setName: setName, setCode: setCode ?? mtgCards.first?.set ?? inputString, cards: mtgCards, tokens: tokens, mode: mode, export: export, packCount: boxCount, includePromoCard: prereleaseIncludePromoCard, includeLands: prereleaseIncludeLands, includeSheet: prereleaseIncludeSheet, includeSpindown: prereleaseIncludeSpindown, boosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, foilPolicy: foilPolicy, mythicPolicy: mythicPolicy, specialOptions: specialOptions, outputFormat: outputFormat, seed: seed)
 	case .landPack:
-		return try allLandPacksSingleJSON(setCards: (cards: mtgCards, setCode: setCode ?? mtgCards.first?.set ?? inputString), specialOptions: specialOptions, export: export)
+		return try await allLandPacksSingleJSON(setCards: (cards: mtgCards, setCode: setCode ?? mtgCards.first?.set ?? inputString), specialOptions: specialOptions, export: export)
 	}
 }
 
@@ -4940,91 +4925,69 @@ struct ProcessedCards {
 	var basicLands: [MTGCard]
 }
 
-fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBasicLands: Bool) throws -> ProcessedCards {
+fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [String], includeBasicLands: Bool) async throws -> ProcessedCards {
 	var mainCards = cards
 	
-	let basicLandSlotCards: [MTGCard] = { () -> [MTGCard] in
+	let basicLandSlotCards: [MTGCard] = try await { () -> [MTGCard] in
 		switch setCode?.lowercased() {
 		case "grn", "rna":
 			return cards.filter { $0.hasType("gate") }
 		case "dgm":
 			guard includeBasicLands else { return [] }
-			return Swiftfall
-				.getCards(query: "(set:rtr or set:gtc) type:land -type:basic")
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+				.getAllCards(query: "(set:rtr or set:gtc) type:land -type:basic")
 				.compactMap(MTGCard.init)
 		case "frf":
 			guard includeBasicLands else { return [] }
-			return Swiftfall
-				.getCards(query: "((set:ktk oracle:'search your library') or (set:frf oracle:'gain 1 life')) type:land")
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+				.getAllCards(query: "((set:ktk oracle:'search your library') or (set:frf oracle:'gain 1 life')) type:land")
 				.compactMap(MTGCard.init)
 		case "cns", "cn2":
 			return cards.filter { $0.watermark == "conspiracy" }
 		case "tsp":
-			return Swiftfall
-				.getCards(query: "is:timeshifted")
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+				.getAllCards(query: "is:timeshifted")
 				.compactMap(MTGCard.init)
 		case "emn":
 			guard includeBasicLands else { return [] }
-			return Swiftfall
-				.getCards(query: "set:soi type:'basic land'", unique: true)
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+        .getAllCards(query: "set:soi type:'basic land'", unique: .prints)
 				.compactMap(MTGCard.init)
 		case "aer":
 			guard includeBasicLands else { return [] }
-			return Swiftfall
-				.getCards(query: "set:kld type:'basic land'", unique: true)
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+        .getAllCards(query: "set:kld type:'basic land'", unique: .prints)
 				.compactMap(MTGCard.init)
 		case "ogw":
 			guard includeBasicLands else { return [] }
-			return Swiftfall
-				.getCards(query: "set:bfz type:'basic land'", unique: true)
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+        .getAllCards(query: "set:bfz type:'basic land'", unique: .prints)
 				.compactMap(MTGCard.init)
 				+ cards.filter { $0.hasType("basic", "—", "land") }
 		case "bng", "jou":
 			guard includeBasicLands else { return [] }
-			return Swiftfall
-				.getCards(query: "set:ths type:'basic land'", unique: true)
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+        .getAllCards(query: "set:ths type:'basic land'", unique: .prints)
 				.compactMap(MTGCard.init)
 		case "gtc":
 			guard includeBasicLands else { return [] }
-			return Swiftfall
-				.getCards(query: "set:rtr type:'basic land'", unique: true)
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+        .getAllCards(query: "set:rtr type:'basic land'", unique: .prints)
 				.compactMap(MTGCard.init)
 		case "dka":
 			guard includeBasicLands else { return [] }
-			return Swiftfall
-				.getCards(query: "set:isd type:'basic land'", unique: true)
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+        .getAllCards(query: "set:isd type:'basic land'", unique: .prints)
 				.compactMap(MTGCard.init)
 		case "wwk":
 			guard includeBasicLands else { return [] }
-			return Swiftfall
-				.getCards(query: "set:zen type:'basic land'", unique: true)
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+        .getAllCards(query: "set:zen type:'basic land'", unique: .prints)
 				.compactMap(MTGCard.init)
 		case "arb", "con":
 			guard includeBasicLands else { return [] }
-			return Swiftfall
-				.getCards(query: "set:ala type:'basic land'", unique: true)
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+        .getAllCards(query: "set:ala type:'basic land'", unique: .prints)
 				.compactMap(MTGCard.init)
 		case "iko", "m21", "neo":
 			let basicLands = mainCards.separateAll { $0.hasType("basic", "land") }
@@ -5033,17 +4996,13 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			return basicLands + dualLands
 		case "akr":
 			guard includeBasicLands else { return [] }
-			return Swiftfall
-				.getCards(query: "set:akh,hou type:'basic land'", unique: true)
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+        .getAllCards(query: "set:akh,hou type:'basic land'", unique: .prints)
 				.compactMap(MTGCard.init)
 		case "klr":
 			guard includeBasicLands else { return [] }
-			return Swiftfall
-				.getCards(query: "set:kld,aer type:'basic land'", unique: true)
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+        .getAllCards(query: "set:kld,aer type:'basic land'", unique: .prints)
 				.compactMap(MTGCard.init)
 		case "znr":
             let basicLands = mainCards.separateAll { $0.isBasicLand }
@@ -5061,20 +5020,16 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		case "tsr":
 			return mainCards.separateAll(where: { $0.rarity == .special })
 		case "stx":
-			return Swiftfall
-				.getCards(query: "set:sta lang:en", unique: true)
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+        .getAllCards(query: "set:sta lang:en", unique: .prints)
 				.map {
 					var card = MTGCard($0)
 					card.isFoundInBoosters = true
 					return card
 				}
 		case "bro":
-			return Swiftfall
-				.getCards(query: "set:brr lang:en", unique: true)
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+        .getAllCards(query: "set:brr lang:en", unique: .prints)
 				.map {
 					var card = MTGCard($0)
 					card.isFoundInBoosters = true
@@ -5106,15 +5061,13 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		}().filter { $0.isFoundInBoosters && !$0.isPromo }
 	
 	// Actual basic lands. Used when creating land packs
-	let basicLands: [MTGCard] = {
+	let basicLands: [MTGCard] = try await {
 		let defaultBasicLands = { basicLandSlotCards.filter { $0.hasType("basic", "—", "land") && !$0.hasFrameEffects("showcase") } }() // Get basic lands with a type. This will find normal basic lands and basic snow lands, but not Wastes, which appears at Common rarity, not land rarity.
 		
 		switch setCode?.lowercased() ?? "" {
 		case "dgm":
-			return Swiftfall
-				.getCards(query: "(set:rtr or set:gtc) type:land type:basic", unique: true)
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+        .getAllCards(query: "(set:rtr or set:gtc) type:land type:basic", unique: .prints)
 				.compactMap(MTGCard.init)
 //		case "cns", "cn2":
 //			return []
@@ -5132,10 +5085,8 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		case "khm":
             return cards.filter { $0.hasType("basic") && !$0.hasType("snow") }
 		case "tsr":
-			return Swiftfall
-				.getCards(query: "set:tsp t:basic", unique: true)
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+        .getAllCards(query: "set:tsp t:basic", unique: .prints)
 				.compactMap(MTGCard.init)
 		case "stx", "mh2":
             let basicLands = mainCards.separateAll { $0.hasType("basic", "land") }
@@ -5167,25 +5118,21 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 			return defaultBasicLands
 		default:
 			// Just get the most recent hi-res basic lands if there are none others.
-			return Swiftfall
-			.getCards(query: "type='basic land –' is:highres", unique: false)
-			.compactMap { $0?.data }
-			.joined()
+			return try await Swiftfall
+        .getAllCards(query: "type='basic land –' is:highres", unique: .prints)
 			.compactMap(MTGCard.init)
 		}
 	}()
 	
-	let additionalMainCards: [MTGCard] = try {
+	let additionalMainCards: [MTGCard] = try await {
 		switch setCode?.lowercased() {
 		case "dgm":
-			return Swiftfall
-				.getCards(query: "(set:rtr or set:gtc) type:land oracle:'pay 2 life'")
-				.compactMap { $0?.data }
-				.joined()
+			return try await Swiftfall
+				.getAllCards(query: "(set:rtr or set:gtc) type:land oracle:'pay 2 life'")
 				.compactMap(MTGCard.init)
 		case "cmb1", "fmb1":
 			// Add main mystery booster cards to convention/store set.
-			return try Swiftfall
+			return try await Swiftfall
 				.getSet(code: "mb1")
 				.getCards()
 				.compactMap { $0?.data }
@@ -5193,17 +5140,15 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.compactMap(MTGCard.init)
 		case "mb1":
 			// Add foils to normal mystery booster set.
-			return try Swiftfall
+			return try await Swiftfall
 				.getSet(code: "fmb1")
 				.getCards()
 				.compactMap { $0?.data }
 				.joined()
 				.compactMap(MTGCard.init)
 		case "iko" where specialOptions.contains("c20partners"):
-			var cards = Swiftfall
-				.getCards(query: "set:c20 o:'partner with'")
-				.compactMap { $0?.data }
-				.joined()
+			var cards = try await  Swiftfall
+				.getAllCards(query: "set:c20 o:'partner with'")
 				.compactMap(MTGCard.init)
 			
 			for i in 0 ..< cards.count {
@@ -5456,7 +5401,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 		return parts.contains(where: { $0.component == .meldResult && $0.scryfallID == card.scryfallID }) == true
 	}
 	
-	let customSlotRarities: [MTGCard.Rarity: [MTGCard]] = {
+	let customSlotRarities: [MTGCard.Rarity: [MTGCard]] = try await {
 		switch setCode?.lowercased() {
 		case "isd", "dka", "soi", "emn":
 			return .init(grouping: mainCards.separateAll(where: { $0.layout == "transform" || $0.layout == "meld" }), by: \.rarity)
@@ -5475,10 +5420,8 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
         case "sir", "sir1", "sir2", "sir3", "sir4":
             return .init(grouping: mainCards.separateAll(where: { $0.frame == "2003" }), by: \.rarity)
         case "mom":
-            let multiverseLegends: [MTGCard] = Swiftfall
-                .getCards(query: "set:mul lang:en not:etched", unique: true)
-                .compactMap { $0?.data }
-                .joined()
+            let multiverseLegends: [MTGCard] = try await Swiftfall
+                .getAllCards(query: "set:mul lang:en not:etched", unique: .prints)
                 .map {
                     var card = MTGCard($0)
                     card.isFoundInBoosters = true
@@ -5508,10 +5451,10 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
         }
     }()
 	
-	let masterpieces: [MTGCard] = try {
+	let masterpieces: [MTGCard] = try await {
 		switch setCode?.lowercased() {
 		case "bfz":
-			return try Swiftfall
+			return try await Swiftfall
 				.getSet(code: "exp")
 				.getCards()
 				.compactMap { $0?.data }
@@ -5519,7 +5462,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.compactMap(MTGCard.init)
 				.filter { (1...25).contains($0.numericCollectorNumber ?? 0) }
 		case "ogw":
-			return try Swiftfall
+			return try await Swiftfall
 				.getSet(code: "exp")
 				.getCards()
 				.compactMap { $0?.data }
@@ -5527,7 +5470,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.compactMap(MTGCard.init)
 				.filter { (26...45).contains($0.numericCollectorNumber ?? 0) }
 		case "kld":
-			return try Swiftfall
+			return try await Swiftfall
 				.getSet(code: "mps")
 				.getCards()
 				.compactMap { $0?.data }
@@ -5535,7 +5478,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.compactMap(MTGCard.init)
 				.filter { (1...30).contains($0.numericCollectorNumber ?? 0) }
 		case "aer":
-			return try Swiftfall
+			return try await Swiftfall
 				.getSet(code: "mps")
 				.getCards()
 				.compactMap { $0?.data }
@@ -5543,7 +5486,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.compactMap(MTGCard.init)
 				.filter { (31...54).contains($0.numericCollectorNumber ?? 0) }
 		case "akh":
-			return try Swiftfall
+			return try await Swiftfall
 				.getSet(code: "mp2")
 				.getCards()
 				.compactMap { $0?.data }
@@ -5551,7 +5494,7 @@ fileprivate func process(cards: [MTGCard], setCode: String?, specialOptions: [St
 				.compactMap(MTGCard.init)
 				.filter { (1...30).contains($0.numericCollectorNumber ?? 0) }
 		case "hou":
-			return try Swiftfall
+			return try await Swiftfall
 				.getSet(code: "mp2")
 				.getCards()
 				.compactMap { $0?.data }
@@ -5676,7 +5619,7 @@ func simpleJsonOutput(cards: CardCollection) throws -> String {
 	return String(data: data, encoding: .utf8) ?? ""
 }
 
-fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool, boxCount: Int?, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], includeBasicLands: Bool, includeTokens: Bool, outputFormat: OutputFormat) throws -> String {
+fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool, boxCount: Int?, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], includeBasicLands: Bool, includeTokens: Bool, outputFormat: OutputFormat) async throws -> String {
 	let count: Int = {
 		if let boxCount = boxCount, boxCount > 0 {
 			return boxCount
@@ -5690,10 +5633,10 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		}
 	}()
 	
-	func output(setName: String, setCode: String, packs: [CardCollection], tokens: [MTGCard]) throws -> String {
+	func output(setName: String, setCode: String, packs: [CardCollection], tokens: [MTGCard]) async throws -> String {
 		switch outputFormat {
 		case .tts:
-			return try boosterBag(setName: setName, setCode: setCode, boosterPacks: packs.map(\.mtgCards), tokens: tokens, export: export)
+			return try await boosterBag(setName: setName, setCode: setCode, boosterPacks: packs.map(\.mtgCards), tokens: tokens, export: export)
 		case .cardlist:
 			return try cardListOutput(cards: CardCollection(cards: Array(packs.map(\.cards).joined())))
 		case .json:
@@ -5706,56 +5649,56 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		
 		let packs: [CardCollection] = (1...count).map { _ in generateCommanderLegendsPack(cards, includeTokens: includeTokens) }
 		
-		return try output(setName: "Commander Legends", setCode: setCode ?? "", packs: packs, tokens: cards.tokens)
+		return try await output(setName: "Commander Legends", setCode: setCode ?? "", packs: packs, tokens: cards.tokens)
 	} else if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
-		let cards = processMysteryBoosterCards(cards)
+		let cards = await processMysteryBoosterCards(cards)
 		let packs: [CardCollection] = (1...count).map { _ in generateMysteryBooster(cards: cards) }
 		
-		return try output(setName: "Mystery Booster", setCode: setCode ?? "", packs: packs, tokens: [])
+		return try await output(setName: "Mystery Booster", setCode: setCode ?? "", packs: packs, tokens: [])
 	} else if setCode?.lowercased() == "plc" {
 		let cards = processPlanarChaosCards(cards: cards)
 		let packs: [CardCollection] = (1...count).map { _ in generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities) }
 		
-		return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
+		return try await output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
 	} else if setCode?.lowercased() == "jmp" {
-		let packs: [CardCollection] = (1...count).compactMap { _ in try? generateJumpStartPack() }
+    let packs: [CardCollection] = await (1...count).asyncCompactMap { _ in try? await generateJumpStartPack() }
 		
-		return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
+		return try await output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
 	} else if setCode?.lowercased() == "j22" {
-    let packs: [CardCollection] = (1...count).compactMap { _ in try? generateJumpStart2022Pack() }
+    let packs: [CardCollection] = await (1...count).asyncCompactMap { _ in try? await generateJumpStart2022Pack() }
     
-    return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
+    return try await output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
   } else if setCode?.lowercased() == "j25" {
-    let packs: [CardCollection] = (1...count).compactMap { _ in try? generateJumpStart2025Pack() }
+    let packs: [CardCollection] = await (1...count).asyncCompactMap { _ in try? await generateJumpStart2025Pack() }
     
-    return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
+    return try await output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
   } else if setCode?.lowercased() == "clu" {
-    let packs: [CardCollection] = (1...count).compactMap { _ in try? generateRavnicaClueEditionPack() }
+    let packs: [CardCollection] = await (1...count).asyncCompactMap { _ in try? await generateRavnicaClueEditionPack() }
     
-    return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
+    return try await output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
   } else if setCode?.lowercased() == "sjm" {
-		let packs: [CardCollection] = (1...count).compactMap { _ in try? generateSuperJumpPack() }
+		let packs: [CardCollection] = await (1...count).asyncCompactMap { _ in try? await generateSuperJumpPack() }
 		
-		return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
+		return try await output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
 	} else if setCode?.lowercased() == "clb" {
 		let cards = processBaldursGateCards(cards, tokens: tokens)
 		
 		let packs: [CardCollection] = (1...count).map { _ in generateBaldursGatePack(cards, includeExtendedArt: includeExtendedArt, includeTokens: includeTokens) }
 		
-		let tokens = try allTokensForSet(setCode: setCode!)
+    let tokens = try await allTokensForSet(setCode: setCode!)
 		
-		return try output(setName: "Commander Legends: Battle for Baldur's Gate", setCode: setCode ?? "", packs: packs, tokens: tokens)
+    return try await output(setName: "Commander Legends: Battle for Baldur's Gate", setCode: setCode ?? "", packs: packs, tokens: tokens)
 	} else if setCode?.lowercased() == "cmm" {
     let cards = processCommanderMastersCards(cards, tokens: tokens)
     
     let packs: [CardCollection] = (1...count).map { _ in generateCommanderMastersPack(cards, includeTokens: includeTokens) }
     
-    let tokens = try allTokensForSet(setCode: setCode!)
+    let tokens = try await allTokensForSet(setCode: setCode!)
     
-    return try output(setName: "Commander Masters", setCode: setCode ?? "", packs: packs, tokens: tokens)
+    return try await output(setName: "Commander Masters", setCode: setCode ?? "", packs: packs, tokens: tokens)
   }
 	
-	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
+  let processed = try await process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
 	
     let packs: [CardCollection] = try (1...count).map { _ in try generatePack(
         rarities: processed.rarities,
@@ -5775,10 +5718,10 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
         mythicPolicy: mythicPolicy
     ) }
     
-	return try output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: tokens + processed.tokens)
+  return try await output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: tokens + processed.tokens)
 }
 
-fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool, boxCount: Int?, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], includeBasicLands: Bool, includeTokens: Bool) throws -> String {
+fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool, boxCount: Int?, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], includeBasicLands: Bool, includeTokens: Bool) async throws -> String {
 	let count: Int = {
 		if let boxCount = boxCount, boxCount > 0 {
 			return boxCount
@@ -5797,36 +5740,36 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 		
 		let packs: [CardCollection] = (1...count).map { _ in generateCommanderLegendsPack(cards, includeTokens: includeTokens) }
 		
-		return try boosterBag(setName: "Commander Legends", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: cards.tokens, export: export)
+    return try await boosterBag(setName: "Commander Legends", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: cards.tokens, export: export)
 	} else if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
-		let cards = processMysteryBoosterCards(cards)
+    let cards = await processMysteryBoosterCards(cards)
 		let packs: [CardCollection] = (1...count).map { _ in generateMysteryBooster(cards: cards) }
 		
-		return try boosterBag(setName: "Mystery Booster", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: [], export: export)
+    return try await boosterBag(setName: "Mystery Booster", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: [], export: export)
 	} else if setCode?.lowercased() == "plc" {
 		let cards = processPlanarChaosCards(cards: cards)
 		let packs: [CardCollection] = (1...count).map { _ in generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities) }
 		
-		return try boosterBag(setName: setName, setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: [], export: export)
+    return try await boosterBag(setName: setName, setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: [], export: export)
 	} else if setCode?.lowercased() == "clb" {
 		let cards = processBaldursGateCards(cards, tokens: tokens)
 		
 		let packs: [CardCollection] = (1...count).map { _ in generateBaldursGatePack(cards, includeExtendedArt: includeExtendedArt, includeTokens: includeTokens) }
 		
-		let tokens = try allTokensForSet(setCode: setCode!)
+    let tokens = try await allTokensForSet(setCode: setCode!)
 		
-		return try boosterBag(setName: "Commander Legends: Battle for Baldur's Gate", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: tokens, export: export)
+    return try await boosterBag(setName: "Commander Legends: Battle for Baldur's Gate", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: tokens, export: export)
 	} else if setCode?.lowercased() == "cmm" {
     let cards = processCommanderMastersCards(cards, tokens: tokens)
     
     let packs: [CardCollection] = (1...count).map { _ in generateCommanderMastersPack(cards, includeTokens: includeTokens) }
     
-    let tokens = try allTokensForSet(setCode: setCode!)
+    let tokens = try await allTokensForSet(setCode: setCode!)
     
-    return try boosterBag(setName: "Commander Masters", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: tokens, export: export)
+    return try await boosterBag(setName: "Commander Masters", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: tokens, export: export)
   }
 	
-	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
+  let processed = try await process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
 	
     var cards: [MTGCard] = try Array((1...count).map { _ in try generatePack(
         rarities: processed.rarities,
@@ -5848,7 +5791,7 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 	
 	let code = setCode ?? cards.first?.set ?? ""
 	
-	let tokens = try allTokensForSet(setCode: code)
+	let tokens = try await allTokensForSet(setCode: code)
 	let token = try singleCompleteToken(tokens: tokens, export: false)
 	
 	cards.removeAll(where: { $0.hasType("basic") || $0.layout == "token" || $0.layout == "double_faced_token" })
@@ -5902,13 +5845,13 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 		("Colorless Commons & Uncommons", colorless)
 	].reversed())
 	
-	let packs: [ObjectStateJSON] = try namesAndPacks.compactMap { name, cards in
+	let packs: [ObjectStateJSON] = try await namesAndPacks.asyncCompactMap { name, cards in
 		guard !cards.isEmpty else { return nil }
 		
 		if cards.count == 1, let card = cards.first {
 			return try singleCard(card, tokens: [], facedown: false, export: false)
 		} else {
-			return try boosterPackJSON(setName: setName, setCode: code, name: name, cards: cards, tokens: tokens, inPack: false, cardBack: nil)
+			return try await boosterPackJSON(setName: setName, setCode: code, name: name, cards: cards, tokens: tokens, inPack: false, cardBack: nil)
 		}
 	}
 	
@@ -5921,12 +5864,12 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 	return wrapObjectStateInSaveFile(objectState)
 }
 
-fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], includeBasicLands: Bool, includeTokens: Bool, outputFormat: OutputFormat, seed: Seed? = nil) throws -> String {
+fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard], setCode: String?, mode: Mode, export: Bool, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], includeBasicLands: Bool, includeTokens: Bool, outputFormat: OutputFormat, seed: Seed? = nil) async throws -> String {
 	
-	func output(setName: String, setCode: String, pack: CardCollection, tokens: [MTGCard]) throws -> String {
+	func output(setName: String, setCode: String, pack: CardCollection, tokens: [MTGCard]) async throws -> String {
 		switch outputFormat {
 		case .tts:
-			return try singleBoosterPack(setName: setName, setCode: setCode, boosterPack: pack.mtgCards, tokens: tokens, export: export)
+			return try await singleBoosterPack(setName: setName, setCode: setCode, boosterPack: pack.mtgCards, tokens: tokens, export: export)
 		case .cardlist:
 			return try cardListOutput(cards: pack)
 		case .json:
@@ -5939,63 +5882,63 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 		
 		let pack = generateCommanderLegendsPack(cards, includeTokens: includeTokens)
 		
-		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: cards.tokens)
+    return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: cards.tokens)
 	} else if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
-		let cards = processMysteryBoosterCards(cards)
+		let cards = await processMysteryBoosterCards(cards)
 		let pack = generateMysteryBooster(cards: cards)
 		
-		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+    return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
 	} else if setCode?.lowercased() == "plc" {
 		let cards = processPlanarChaosCards(cards: cards)
 		let pack = generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities)
 		
-		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+    return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
 	} else if setCode?.lowercased() == "jmp" {
-		let pack = try generateJumpStartPack()
+    let pack = try await generateJumpStartPack()
 		
-		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+    return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
 	} else if setCode?.lowercased() == "j22" {
-    let pack = try generateJumpStart2022Pack()
+    let pack = try await generateJumpStart2022Pack()
     
-    return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+    return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
   } else if setCode?.lowercased() == "j25" {
-    let pack = try generateJumpStart2025Pack()
+    let pack = try await generateJumpStart2025Pack()
     
-    return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+    return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
   } else if setCode?.lowercased() == "clu" {
-    let pack = try generateRavnicaClueEditionPack()
+    let pack = try await generateRavnicaClueEditionPack()
     
-    return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+    return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
   } else if setCode?.lowercased() == "sjm" {
-		let pack = try generateSuperJumpPack()
+    let pack = try await generateSuperJumpPack()
 		let frontCard = pack[0]
-		let tokens = getAllTokens(for: pack.mtgCards) + [frontCard]
+    let tokens = await getAllTokens(for: pack.mtgCards) + [frontCard]
 		
-		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens)
+    return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens)
 	} else if setCode?.lowercased() == "dbl" {
 		let processed = processDoubleFeatureCards(cards)
 		let pack = generateDoubleFeaturePack(processed)
 		
-		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+    return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
 	} else if setCode?.lowercased() == "clb" {
 		let cards = processBaldursGateCards(cards, tokens: tokens)
 		
 		let pack = generateBaldursGatePack(cards, includeExtendedArt: includeExtendedArt, includeTokens: includeTokens)
 		
-		let tokens = try allTokensForSet(setCode: setCode!)
+    let tokens = try await allTokensForSet(setCode: setCode!)
 		
-		return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens)
+    return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens)
 	} else if setCode?.lowercased() == "cmm" {
     let cards = processCommanderMastersCards(cards, tokens: tokens)
     
     let pack = generateCommanderMastersPack(cards, includeTokens: includeTokens)
     
-    let tokens = try allTokensForSet(setCode: setCode!)
+    let tokens = try await allTokensForSet(setCode: setCode!)
     
-    return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens)
+    return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens)
   }
 	
-	let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
+  let processed = try await process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
 	
     let pack = try generatePack(
         rarities: processed.rarities,
@@ -6016,10 +5959,10 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
         seed: seed
     )
 	
-	return try output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens + processed.tokens)
+  return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens + processed.tokens)
 }
 
-fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard], tokens: [MTGCard], mode: Mode, export: Bool, packCount: Int? = nil, includePromoCard: Bool?, includeLands: Bool?, includeSheet: Bool?, includeSpindown: Bool?, boosterCount: Int?, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], outputFormat: OutputFormat, seed: Seed? = nil) throws -> String {
+fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard], tokens: [MTGCard], mode: Mode, export: Bool, packCount: Int? = nil, includePromoCard: Bool?, includeLands: Bool?, includeSheet: Bool?, includeSpindown: Bool?, boosterCount: Int?, includeExtendedArt: Bool, foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, specialOptions: [String], outputFormat: OutputFormat, seed: Seed? = nil) async throws -> String {
 	let boosterCount: Int = {
 		if let boosterCount = boosterCount {
 			return boosterCount
@@ -6030,19 +5973,17 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 		return 6
 	}()
 	let packCount = packCount ?? 1
-	let prereleasePacks: [String] = try (0 ..< (packCount)).map { _ in
+	let prereleasePacks: [String] = try await (0 ..< (packCount)).asyncMap { _ in
     if setCode.lowercased() == "mb1" || setCode.lowercased() == "fmb1" || setCode.lowercased() == "cmb1" || setCode.lowercased() == "jmp" || setCode.lowercased() == "sjm" || setCode.lowercased() == "j22" || setCode.lowercased() == "clu" || setCode.lowercased() == "j25" {
 			throw PackError.unsupported
 		} else if setCode.lowercased() == "plc" {
 			let cards = processPlanarChaosCards(cards: cards)
 			let packs = (1...boosterCount).map { _ in generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities) }
 			
-			let promoCard = try MTGCard(Swiftfall.getCard(id: "c287d593-cfd0-46b6-bde0-0c04a83d828b"))
+      let promoCard = try await MTGCard(Swiftfall.getCard(id: "c287d593-cfd0-46b6-bde0-0c04a83d828b"))
 			
-			let basicLands: [MTGCard] = Swiftfall
-			.getCards(query: "set:tsp type:'basic land'", unique: true)
-			.compactMap { $0?.data }
-			.joined()
+			let basicLands: [MTGCard] = try await Swiftfall
+        .getAllCards(query: "set:tsp type:'basic land'", unique: .prints)
 			.compactMap(MTGCard.init)
 			
 			switch outputFormat {
@@ -6059,11 +6000,11 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 				}
 				return try simpleJsonOutput(cards: cards)
 			case .tts:
-				return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs.map(\.mtgCards), promoCard: promoCard, tokens: [], basicLands: basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: export, seed: seed)
+				return try await prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs.map(\.mtgCards), promoCard: promoCard, tokens: [], basicLands: basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: export, seed: seed)
 			}
 		}
 		
-		let processed = try process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: true)
+		let processed = try await process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: true)
 		
 		let packs: [CardCollection] = try (1...boosterCount).map { value in try generatePack(
 			rarities: processed.rarities,
@@ -6084,8 +6025,8 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 			seed: value == 1 ? seed : nil
 		)}
 		
-		let promoCard: MTGCard = try {
-			let promos = Swiftfall.getCards(query: "set:p\(setCode) is:prerelease").compactMap { $0?.data }.joined().map(MTGCard.init)
+		let promoCard: MTGCard = try await {
+			let promos = try await Swiftfall.getAllCards(query: "set:p\(setCode) is:prerelease").map(MTGCard.init)
 			let promosRarities: [MTGCard.Rarity: [MTGCard]] = .init(grouping: promos, by: \.rarity)
 			let filtered: [MTGCard.Rarity: [MTGCard]] = promosRarities.mapValues({ cards in
 				guard let seed = seed, seed.packtype == .grnRna else { return cards }
@@ -6143,7 +6084,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 			}
 			return try simpleJsonOutput(cards: cards)
 		case .tts:
-			return try prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs.map(\.mtgCards), promoCard: promoCard, tokens: tokens + processed.tokens, basicLands: processed.basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: false, seed: seed)
+			return try await prereleasePack(setName: setName, setCode: setCode, boosterPacks: packs.map(\.mtgCards), promoCard: promoCard, tokens: tokens + processed.tokens, basicLands: processed.basicLands, includePromoCard: includePromoCard, includeLands: includeLands, includeSheet: includeSheet, includeSpindown: includeSpindown, export: false, seed: seed)
 		}
 	}
 	
@@ -6254,7 +6195,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 	}
 }
 
-enum Deck {
+enum Deck: Sendable {
 	case arena(String)
 	case deckstats(String)
 	case moxfield(MoxfieldDeck)
@@ -6311,7 +6252,7 @@ func moxfieldString(from groups: [DeckParser.CardGroup]) -> String {
   return string.trimmingCharacters(in: .whitespacesAndNewlines)
 }
 
-public struct ArchidektDeck: Decodable {
+public struct ArchidektDeck: Decodable, Sendable {
 	struct CardInfo: Decodable {
 		struct Card: Decodable {
 			struct Edition: Decodable {
@@ -6336,7 +6277,7 @@ public struct ArchidektDeck: Decodable {
 	let cards: [CardInfo]
 }
 
-public struct MoxfieldDeck: Decodable {
+public struct MoxfieldDeck: Decodable, Sendable {
 	struct CardInfo: Decodable {
 		struct Card: Decodable {
 			let scryfallID: UUID?
@@ -6385,7 +6326,7 @@ let fixedSetCodes: [String: String] = [
 	"pwp21": "pw21"
 ]
 
-fileprivate func getAllTokens(_ cards: [MTGCard], _ tokens: inout [MTGCard]) {
+fileprivate func getAllTokens(_ cards: [MTGCard], _ tokens: inout [MTGCard]) async {
 	let tokenIdentifiers: [MTGCardIdentifier] = Array(Set(cards.compactMap { card in
     return card.allParts?.compactMap { part -> MTGCardIdentifier? in
       guard part.component == .token else { return nil }
@@ -6403,7 +6344,7 @@ fileprivate func getAllTokens(_ cards: [MTGCard], _ tokens: inout [MTGCard]) {
     
 		do {
       // Get tokens from scryfall
-			let collection = try Swiftfall.getCollection(identifiers: tokenIdentifiers)
+			let collection = try await Swiftfall.getCollection(identifiers: tokenIdentifiers)
 			tokens.append(contentsOf: collection.data.map(MTGCard.init).filter { card in card.oracleID != nil && !tokens.contains(where: { manualToken in manualToken.oracleID == card.oracleID }) })
 			
 			let cards: [UUID?: [MTGCard]] = .init(grouping: tokens, by: \.oracleID)
@@ -6426,7 +6367,7 @@ fileprivate func getAllTokens(_ cards: [MTGCard], _ tokens: inout [MTGCard]) {
     if hasMissingIdentifiers {
       // Get custom tokens from identifiers
       for tokenIdentifier in tokenIdentifiers {
-        if let card = loadedDraftmancerCards?[tokenIdentifier] {
+        if let card = await DraftmancerSetCache.shared.loadedDraftmancerCards?[tokenIdentifier] {
           tokens.append(card)
         }
       }
@@ -6462,7 +6403,7 @@ fileprivate func getAllTokens(_ cards: [MTGCard], _ tokens: inout [MTGCard]) {
   print("Appended")
 }
 
-fileprivate func getAllTokens(for cards: [MTGCard]) -> [MTGCard] {
+fileprivate func getAllTokens(for cards: [MTGCard]) async -> [MTGCard] {
 	var tokens: [MTGCard] = []
 	
 	let tokenIdentifiers: [MTGCardIdentifier] = {
@@ -6474,7 +6415,7 @@ fileprivate func getAllTokens(for cards: [MTGCard]) -> [MTGCard] {
 	}
 	
 	do {
-		let collection = try Swiftfall.getCollection(identifiers: tokenIdentifiers)
+		let collection = try await Swiftfall.getCollection(identifiers: tokenIdentifiers)
 		tokens.append(contentsOf: collection.data.map(MTGCard.init).filter { card in card.oracleID != nil && !tokens.contains(where: { manualToken in manualToken.oracleID == card.oracleID }) })
 		
 		let cards: [UUID?: [MTGCard]] = .init(grouping: tokens, by: \.oracleID)
@@ -6639,7 +6580,7 @@ extension MTGCard {
 //  return ""
 //}
 
-func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil) throws -> String {
+func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil) async throws -> String {
 	enum CustomOverride {
 		case identifiers(String)
 		case url(name: String, imageURL: URL)
@@ -6723,9 +6664,9 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 //		return fetchedCards
 //	}
 //	let cards: [Swiftfall.Card] = Array(fetchedCardGroups.joined())
-	let collections: [Swiftfall.CardCollectionList] = try identifiers.chunked(by: 75).compactMap {
+	let collections: [Swiftfall.CardCollectionList] = try await identifiers.chunked(by: 75).asyncCompactMap {
 		do {
-			return try Swiftfall.getCollection(identifiers: $0)
+			return try await Swiftfall.getCollection(identifiers: $0)
 		} catch {
 			print(error)
 			throw error
@@ -6735,7 +6676,7 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 	var notFound: [MTGCardIdentifier] = Array(collections.compactMap(\.notFound).joined())
   
   // Custom cards from Draftmancer
-  if !notFound.isEmpty, let draftmancerCards = loadedDraftmancerCards {
+  if !notFound.isEmpty, let draftmancerCards = await DraftmancerSetCache.shared.loadedDraftmancerCards {
     let identifiersToTry = notFound
     for identifier in identifiersToTry {
       func handle(card: MTGCard) {
@@ -6799,9 +6740,9 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		
 		identifiers = newIdentifiers
 		
-		let collections: [Swiftfall.CardCollectionList] = try retriable.chunked(by: 75).compactMap {
+		let collections: [Swiftfall.CardCollectionList] = try await retriable.chunked(by: 75).asyncCompactMap {
 			do {
-				return try Swiftfall.getCollection(identifiers: $0)
+				return try await Swiftfall.getCollection(identifiers: $0)
 			} catch {
 				print(error)
 				throw error
@@ -6854,9 +6795,9 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		
 		identifiers = newIdentifiers
 		
-		let collections: [Swiftfall.CardCollectionList] = try retriable.chunked(by: 75).compactMap {
+    let collections: [Swiftfall.CardCollectionList] = try await retriable.chunked(by: 75).asyncCompactMap {
 			do {
-				return try Swiftfall.getCollection(identifiers: $0)
+				return try await Swiftfall.getCollection(identifiers: $0)
 			} catch {
 				print(error)
 				throw error
@@ -7021,21 +6962,21 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 	}
 	
 	if includeTokens {
-		getAllTokens(mtgCards, &tokens)
+		await getAllTokens(mtgCards, &tokens)
 	}
 	
 	if mtgCards.contains(where: { $0.keywords.contains("Daybound") || $0.keywords.contains("Nightbound") || $0.oracleText?.lowercased().contains("it becomes day") == true || $0.oracleText?.lowercased().contains("it becomes night") == true }) && !tokens.contains(where: { $0.scryfallID?.uuidString == "9c0f7843-4cbb-4d0f-8887-ec823a9238da" }) {
-		let dayNightToken = try Swiftfall.getCard(id: "9c0f7843-4cbb-4d0f-8887-ec823a9238da")
+		let dayNightToken = try await Swiftfall.getCard(id: "9c0f7843-4cbb-4d0f-8887-ec823a9238da")
 		tokens.append(MTGCard(dayNightToken))
 	}
 	
 	if mtgCards.contains(where: { $0.oracleText?.lowercased().contains("the monarch") == true }) {
-		let monarchToken = try Swiftfall.getCard(id: "bf7f3fc9-35f1-4b8c-b02b-494c71f31107")
+		let monarchToken = try await Swiftfall.getCard(id: "bf7f3fc9-35f1-4b8c-b02b-494c71f31107")
 		tokens.append(MTGCard(monarchToken))
 	}
 	
 	if mtgCards.contains(where: { $0.oracleText?.lowercased().contains("foretell") == true }) {
-		let foretellToken = try Swiftfall.getCard(id: "fb02637f-1385-4d3d-8dc0-de513db7633a")
+		let foretellToken = try await Swiftfall.getCard(id: "fb02637f-1385-4d3d-8dc0-de513db7633a")
 		tokens.append(MTGCard(foretellToken))
 	}
 	
@@ -7046,23 +6987,23 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 			"70b284bd-7a8f-4b60-8238-f746bdc5b236" // Tomb of Annihilation
 		].compactMap(UUID.init(uuidString:)).map { MTGCardIdentifier.id($0) }
 		
-		let dungeons = try Swiftfall.getCollection(identifiers: dungeonIdentifiers).data.map(MTGCard.init)
+		let dungeons = try await Swiftfall.getCollection(identifiers: dungeonIdentifiers).data.map(MTGCard.init)
 		
 		tokens.append(contentsOf: dungeons)
 	}
 	
 	if mtgCards.contains(where: { $0.oracleText?.lowercased().contains("take the initiative") == true }) {
-		let initative = try Swiftfall.getCard(id: "2c65185b-6cf0-451d-985e-56aa45d9a57d")
+		let initative = try await Swiftfall.getCard(id: "2c65185b-6cf0-451d-985e-56aa45d9a57d")
 		tokens.append(MTGCard(initative))
 	}
     
     if mtgCards.contains(where: { $0.oracleText?.lowercased().contains("the ring tempts you") == true }) {
-        let ringToken = try Swiftfall.getCard(id: "7215460e-8c06-47d0-94e5-d1832d0218af")
+        let ringToken = try await Swiftfall.getCard(id: "7215460e-8c06-47d0-94e5-d1832d0218af")
         tokens.append(MTGCard(ringToken))
     }
   
   if mtgCards.contains(where: { $0.oracleText?.lowercased().contains("rad counter") == true }) {
-      let radCounter = try Swiftfall.getCard(id: "0886657d-afb0-4f1f-9af7-960724793077")
+      let radCounter = try await Swiftfall.getCard(id: "0886657d-afb0-4f1f-9af7-960724793077")
       tokens.append(MTGCard(radCounter))
   }
   
@@ -7087,7 +7028,7 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
     
     pack.insert(contentsOf: faceCards, at: 0)
     
-    let output = try singleBoosterPack(setName: "", setCode: "", boosterPack: pack, tokens: tokens, inPack: false, export: export, cardBack: cardBack/*, nickname: outputName*/)
+    let output = try await singleBoosterPack(setName: "", setCode: "", boosterPack: pack, tokens: tokens, inPack: false, export: export, cardBack: cardBack/*, nickname: outputName*/)
     let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: output, filename: outputName ?? fileName))
     return String(data: data, encoding: .utf8) ?? ""
   } else {
@@ -7106,7 +7047,7 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 			names.insert("", at: 0)
 		}
 		
-		let output = try boosterBag(setName: outputName ?? "", setCode: "", boosterPacks: packs, names: names, tokens: tokens, inPack: false, export: export, cardBack: cardBack)
+		let output = try await boosterBag(setName: outputName ?? "", setCode: "", boosterPacks: packs, names: names, tokens: tokens, inPack: false, export: export, cardBack: cardBack)
 		let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: output, filename: outputName ?? fileName))
 		return String(data: data, encoding: .utf8) ?? ""
 	}
@@ -7129,10 +7070,10 @@ extension Collection where Element == Swiftfall.Card {
 				return card.illustrationId == id.uuidString
 			case .name(let name):
 				let name = name.lowercased()
-				return card.name?.lowercased() == name || card.cardFaces?.contains(where: { $0.name?.lowercased() == name }) == true
+        return card.name.lowercased() == name || card.cardFaces?.contains(where: { $0.name?.lowercased() == name }) == true
 			case .nameSet(name: let name, set: let set):
 				let name = name.lowercased()
-				return (card.name?.lowercased() == name || card.cardFaces?.contains(where: { $0.name?.lowercased() == name }) == true) && card.set.lowercased() == set.lowercased()
+        return (card.name.lowercased() == name || card.cardFaces?.contains(where: { $0.name?.lowercased() == name }) == true) && card.set.lowercased() == set.lowercased()
 			case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set, _):
 				return card.collectorNumber.lowercased() == collectorNumber.lowercased() && card.set.lowercased() == set.lowercased()
 			}

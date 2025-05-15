@@ -11,11 +11,11 @@ import Vapor
 #endif
 
 extension Swiftfall.ScryfallError: DebuggableError {
-	var reason: String {
+  public var reason: String {
 		return self.details
 	}
 	
-	var identifier: String {
+  public var identifier: String {
 		return self.code
 	}
 }

@@ -13,7 +13,7 @@ import Vapor
 #endif
 import XMLCoder
 
-public struct DraftmancerCard: Codable {
+public struct DraftmancerCard: Codable, Sendable {
   enum Rarity: String, Codable, Comparable {
     case common, uncommon, rare, mythic, special
     
@@ -64,7 +64,7 @@ public struct DraftmancerCard: Codable {
     self.keywords = keywords
   }
   
-  public struct Face: Codable, Hashable, Equatable {
+  public struct Face: Codable, Hashable, Equatable, Sendable {
     var name: String
     var flavorName: String?
     var imageUris: [String: URL]?
@@ -113,7 +113,7 @@ public struct DraftmancerCard: Codable {
     }
   }
   
-  public enum DraftEffect: String, Codable {
+  public enum DraftEffect: String, Codable, Sendable {
     case FaceUp              // Reveal the card to other players and mark the card as face up. Important note: Necessary for most 'UsableEffects" to function correctly!.
     case Reveal              // Reveal the card to other players
     case NotePassingPlayer   // Note the previous player's name on the card.
@@ -162,7 +162,7 @@ public struct DraftmancerCard: Codable {
   var loyalty: String?
   var keywords: [String]?
   
-  init(mtgCard: MTGCard) {
+  init(mtgCard: MTGCard) async {
     self.name = mtgCard.name ?? ""
     self.flavorName = mtgCard.flavorName
     self.manaCost = mtgCard.manaCost ?? ""
@@ -174,11 +174,11 @@ public struct DraftmancerCard: Codable {
     self.rarity = .init(rawValue: mtgCard.rarity.rawValue.lowercased())
     self.layout = mtgCard.layout
     self.back = nil
-    self.relatedCards = mtgCard.allParts?.compactMap {
+    self.relatedCards = await mtgCard.allParts?.asyncCompactMap {
       guard
         $0.name != mtgCard.name,
         let id = $0.scryfallID,
-        let card = try? Swiftfall.getCard(id: id.uuidString)
+        let card = try? await Swiftfall.getCard(id: id.uuidString)
       else { return nil }
       
       let mtgCard = MTGCard(card)
@@ -449,7 +449,7 @@ func draftMancerStringSection(_ section: String, from string: String) -> String?
   }
 }
 
-struct DraftmancerSet: Encodable {
+struct DraftmancerSet: Encodable, Sendable {
   var cards: [DraftmancerCard]
   var name: String
   var displayReversed: Bool = false
@@ -478,195 +478,225 @@ struct DraftmancerSet: Encodable {
   }
 }
 
-let draftmancerSets: [DraftmancerSet]? = {
-  do {
-    let urls = try urlsForResources(withExtension: "txt", subdirectory: "Draftmancer")
-    
-    let decoder = JSONDecoder()
-    decoder.keyDecodingStrategy = .convertFromSnakeCase
-    
-    var draftmancerSets: [DraftmancerSet] = urls.compactMap { url -> DraftmancerSet? in
-      do {
-        let rawData = try Data(contentsOf: url)
-        guard let rawString = String(data: rawData, encoding: .utf8) else {
-          print("‼️ Error loading string from data for \(url.deletingPathExtension().lastPathComponent):")
+actor DraftmancerSetCache {
+  static let shared = DraftmancerSetCache()
+  
+  private var cachedSets: [DraftmancerSet]? = nil
+  
+  var sets: [DraftmancerSet]? {
+    get async {
+      if let cachedSets {
+        return cachedSets
+      } else {
+        do {
+          let sets = try await load()
+          self.cachedSets = sets
+          return sets
+        } catch {
           return nil
         }
-        let string = draftMancerStringSection("CustomCards", from: rawString)
-        guard let data = string?.data(using: .utf8) else {
-          print("‼️ Error getting data from string for \(url.deletingPathExtension().lastPathComponent):")
-          return nil
-        }
-        
-        struct QuickCard: Decodable {
-          let name: String
-          let flavorName: String?
-          let front: URL
-          let back: URL?
-          let set: String?
-        }
-        
-        enum DraftmancerDecodable: Decodable {
-          case full(DraftmancerCard)
-          case quick(QuickCard)
-          
-          init(from decoder: any Decoder) throws {
-            let container = try decoder.singleValueContainer()
-            if let quick = try? container.decode(QuickCard.self) {
-              self = .quick(quick)
-            } else {
-              let full = try container.decode(DraftmancerCard.self)
-              self = .full(full)
-            }
+      }
+    }
+  }
+  
+  var loadedDraftmancerCards: [MTGCard]? {
+    get async {
+      guard let sets = await sets else { return nil }
+      
+      return Array(sets.map { $0.cards.compactMap(\.mtgCard) }.joined())
+    }
+  }
+  
+  private func load() async throws -> [DraftmancerSet] {
+    do {
+      let urls = try urlsForResources(withExtension: "txt", subdirectory: "Draftmancer")
+      
+      let decoder = JSONDecoder()
+      decoder.keyDecodingStrategy = .convertFromSnakeCase
+      
+      var draftmancerSets: [DraftmancerSet] = await urls.asyncCompactMap { url -> DraftmancerSet? in
+        do {
+          let rawData = try Data(contentsOf: url)
+          guard let rawString = String(data: rawData, encoding: .utf8) else {
+            print("‼️ Error loading string from data for \(url.deletingPathExtension().lastPathComponent):")
+            return nil
+          }
+          let string = draftMancerStringSection("CustomCards", from: rawString)
+          guard let data = string?.data(using: .utf8) else {
+            print("‼️ Error getting data from string for \(url.deletingPathExtension().lastPathComponent):")
+            return nil
           }
           
-          func card(from collection: [Swiftfall.Card]) -> DraftmancerCard? {
-            switch self {
-            case .full(let card):
-              return card
-            case .quick(let quick):
-              do {
-                let card: Swiftfall.Card = try {
-                  if let card = collection[.name(quick.name)] {
-                    return card
-                  } else {
-                    return try Swiftfall.getCard(exact: quick.name)
-                  }
-                }()
-                var mtgCard = MTGCard(card)
-                
-                if let back = quick.back {
-                  let newFronts = mtgCard.cardFaces?[0].imageUris?.mapValues { _ in quick.front }
-                  mtgCard.cardFaces?[0].imageUris = newFronts
+          struct QuickCard: Decodable {
+            let name: String
+            let flavorName: String?
+            let front: URL
+            let back: URL?
+            let set: String?
+          }
+          
+          enum DraftmancerDecodable: Decodable {
+            case full(DraftmancerCard)
+            case quick(QuickCard)
+            
+            init(from decoder: any Decoder) throws {
+              let container = try decoder.singleValueContainer()
+              if let quick = try? container.decode(QuickCard.self) {
+                self = .quick(quick)
+              } else {
+                let full = try container.decode(DraftmancerCard.self)
+                self = .full(full)
+              }
+            }
+            
+            func card(from collection: [Swiftfall.Card]) async -> DraftmancerCard? {
+              switch self {
+              case .full(let card):
+                return card
+              case .quick(let quick):
+                do {
+                  let card: Swiftfall.Card = try await {
+                    if let card = collection[.name(quick.name)] {
+                      return card
+                    } else {
+                      return try await Swiftfall.getCard(exact: quick.name)
+                    }
+                  }()
+                  var mtgCard = MTGCard(card)
                   
-                  let newBacks = mtgCard.cardFaces?[1].imageUris?.mapValues { _ in back }
-                  mtgCard.cardFaces?[1].imageUris = newBacks
-                } else {
-                  mtgCard.imageUris = mtgCard.imageUris?.mapValues { _ in quick.front }
+                  if let back = quick.back {
+                    let newFronts = mtgCard.cardFaces?[0].imageUris?.mapValues { _ in quick.front }
+                    mtgCard.cardFaces?[0].imageUris = newFronts
+                    
+                    let newBacks = mtgCard.cardFaces?[1].imageUris?.mapValues { _ in back }
+                    mtgCard.cardFaces?[1].imageUris = newBacks
+                  } else {
+                    mtgCard.imageUris = mtgCard.imageUris?.mapValues { _ in quick.front }
+                  }
+                  
+                  var draftmancerCard = await DraftmancerCard(mtgCard: mtgCard)
+                  draftmancerCard.collectorNumber = nil
+                  draftmancerCard.flavorName = quick.flavorName
+                  draftmancerCard.set = quick.set
+                  
+                  return draftmancerCard
+                } catch {
+                  print("Error loading card for \(quick.name): \(error)")
+                  return nil
                 }
-                
-                var draftmancerCard = DraftmancerCard(mtgCard: mtgCard)
-                draftmancerCard.collectorNumber = nil
-                draftmancerCard.flavorName = quick.flavorName
-                draftmancerCard.set = quick.set
-                
-                return draftmancerCard
-              } catch {
-                print("Error loading card for \(quick.name): \(error)")
-                return nil
               }
             }
           }
-        }
-        
-        let cards = try decoder.decode([DraftmancerDecodable].self, from: data)
-        let name = url.deletingPathExtension().lastPathComponent
-        
-        print("✅ Loaded \(cards.count) Draftmancer cards from \(name)")
-        
-        let idsToFetch: [[MTGCardIdentifier]] = cards.compactMap {
-          guard case .quick(let quick) = $0 else { return nil }
-          return .name(quick.name)
-        }.chunked(by: 75)
-        var collection: [Swiftfall.Card] = []
-        for chunk in idsToFetch where !chunk.isEmpty {
-          do {
-            let fetched = try Swiftfall.getCollection(identifiers: chunk).data
-            collection.append(contentsOf: fetched)
-          } catch {
-            print(error)
+          
+          let cards = try decoder.decode([DraftmancerDecodable].self, from: data)
+          let name = url.deletingPathExtension().lastPathComponent
+          
+          print("✅ Loaded \(cards.count) Draftmancer cards from \(name)")
+          
+          let idsToFetch: [[MTGCardIdentifier]] = cards.compactMap {
+            guard case .quick(let quick) = $0 else { return nil }
+            return .name(quick.name)
+          }.chunked(by: 75)
+          var collection: [Swiftfall.Card] = []
+          for chunk in idsToFetch where !chunk.isEmpty {
+            do {
+              let fetched = try await Swiftfall.getCollection(identifiers: chunk).data
+              collection.append(contentsOf: fetched)
+            } catch {
+              print(error)
+            }
           }
+          
+          return await DraftmancerSet(
+            cards: cards.asyncCompactMap { await $0.card(from: collection) },
+            name: name
+          )
+        } catch {
+          print("‼️ Error loading cards from \(url.deletingPathExtension().lastPathComponent):", error)
+          return nil
+        }
+      }
+      
+      let fromCockatrice: [DraftmancerSet] = loadedCockatriceDatabases?.map {
+        DraftmancerSet.init(cockatriceDatabase: $0)
+      } ?? []
+      
+      draftmancerSets.append(contentsOf: fromCockatrice)
+      
+      let fromManifesto: [DraftmancerSet] = loadedManifestoSets?.map {
+        DraftmancerSet.init(manifestoSet: $0)
+      } ?? []
+      
+      draftmancerSets.append(contentsOf: fromManifesto)
+      
+      // Fill in missing sets and collector numbers
+      var usedCollectorNumbersForSets: [String: Set<Int>] = [:]
+      draftmancerSets = draftmancerSets.map {
+        var set = $0
+        
+        set.cards = (set.name == "Custom Cards" ? set.cards.reversed() : set.cards).map { card in
+          var card = card
+          
+          // Set cards with missing sets to "CUSTOM"
+          if card.set == nil {
+            card.set = "CUSTOM"
+          }
+          
+          if !card.manaCost.contains("{") {
+            card.manaCost = addBracketsToManaCost(card.manaCost)
+          }
+          
+          // Record used collector numbers
+          
+          if usedCollectorNumbersForSets[card.set!] == nil {
+            usedCollectorNumbersForSets[card.set!] = []
+          }
+          
+          if let collectorNumber = card.collectorNumber.flatMap(Int.init) {
+            usedCollectorNumbersForSets[card.set!]?.insert(collectorNumber)
+          }
+          
+          return card
         }
         
-        return DraftmancerSet(
-          cards: cards.compactMap { $0.card(from: collection) },
-          name: name
-        )
-      } catch {
-        print("‼️ Error loading cards from \(url.deletingPathExtension().lastPathComponent):", error)
-        return nil
+        set.cards = set.cards.map { card in
+          var card = card
+          
+          // Add missing collector numbers
+          if card.collectorNumber == nil {
+            let max = usedCollectorNumbersForSets[card.set!]?.max() ?? 0
+            card.collectorNumber = "\(max+1)"
+            usedCollectorNumbersForSets[card.set!]?.insert(max+1)
+          }
+          
+          return card
+        }
+        
+        let cardsGroupedBySet: [String: [DraftmancerCard]] = .init(grouping: set.cards) { card in
+          card.set!
+        }
+        
+        // Sort cards in collector number order, grouped by set code, regardless of how they were originally defined.
+        // Shorter set codes come first, wchich would put tokens (eg "THLW") come after.
+        set.cards = Array(cardsGroupedBySet.keys.sorted(on: \.count).map { setCode in
+          return cardsGroupedBySet[setCode]!.sorted { $0.collectorNumber!.localizedStandardCompare($1.collectorNumber!) == .orderedAscending }
+        }.joined())
+        
+        
+        if set.name == "Custom Cards" {
+          set.displayReversed = true
+        }
+        
+        return set
       }
+      
+      return draftmancerSets.sorted { $0.name < $1.name }
+    } catch {
+      print("Error loading Draftmancer sets:", error)
+      throw error
     }
-    
-    let fromCockatrice: [DraftmancerSet] = loadedCockatriceDatabases?.map {
-      DraftmancerSet.init(cockatriceDatabase: $0)
-    } ?? []
-    
-    draftmancerSets.append(contentsOf: fromCockatrice)
-    
-    let fromManifesto: [DraftmancerSet] = loadedManifestoSets?.map {
-      DraftmancerSet.init(manifestoSet: $0)
-    } ?? []
-    
-    draftmancerSets.append(contentsOf: fromManifesto)
-    
-    // Fill in missing sets and collector numbers
-    var usedCollectorNumbersForSets: [String: Set<Int>] = [:]
-    draftmancerSets = draftmancerSets.map {
-      var set = $0
-      
-      set.cards = (set.name == "Custom Cards" ? set.cards.reversed() : set.cards).map { card in
-        var card = card
-        
-        // Set cards with missing sets to "CUSTOM"
-        if card.set == nil {
-          card.set = "CUSTOM"
-        }
-        
-        if !card.manaCost.contains("{") {
-          card.manaCost = addBracketsToManaCost(card.manaCost)
-        }
-        
-        // Record used collector numbers
-        
-        if usedCollectorNumbersForSets[card.set!] == nil {
-          usedCollectorNumbersForSets[card.set!] = []
-        }
-        
-        if let collectorNumber = card.collectorNumber.flatMap(Int.init) {
-          usedCollectorNumbersForSets[card.set!]?.insert(collectorNumber)
-        }
-        
-        return card
-      }
-      
-      set.cards = set.cards.map { card in
-        var card = card
-        
-        // Add missing collector numbers
-        if card.collectorNumber == nil {
-          let max = usedCollectorNumbersForSets[card.set!]?.max() ?? 0
-          card.collectorNumber = "\(max+1)"
-          usedCollectorNumbersForSets[card.set!]?.insert(max+1)
-        }
-        
-        return card
-      }
-      
-      let cardsGroupedBySet: [String: [DraftmancerCard]] = .init(grouping: set.cards) { card in
-        card.set!
-      }
-      
-      // Sort cards in collector number order, grouped by set code, regardless of how they were originally defined.
-      // Shorter set codes come first, wchich would put tokens (eg "THLW") come after.
-      set.cards = Array(cardsGroupedBySet.keys.sorted(on: \.count).map { setCode in
-        return cardsGroupedBySet[setCode]!.sorted { $0.collectorNumber!.localizedStandardCompare($1.collectorNumber!) == .orderedAscending }
-      }.joined())
-      
-      
-      if set.name == "Custom Cards" {
-        set.displayReversed = true
-      }
-      
-      return set
-    }
-    
-    return draftmancerSets.sorted { $0.name < $1.name }
-  } catch {
-    print("Error loading Draftmancer sets:", error)
-    return nil
   }
-}()
+}
 
 private func addBracketsToManaCost(_ manaCost: String) -> String {
   var result = ""
@@ -731,7 +761,9 @@ private func addBracketsToManaCost(_ manaCost: String) -> String {
 }
 
 func getBuiltinDraftmancerCards(_ req: Request) throws -> NIOCore.EventLoopFuture<Vapor.Response> {
-  return req.eventLoop.makeCompletedFuture {
+  let promise: EventLoopPromise<Vapor.Response> = req.eventLoop.makePromise()
+  
+  promise.completeWithTask {
     var headers = HTTPHeaders()
     headers.add(name: .contentType, value: "application/json")
     
@@ -739,7 +771,7 @@ func getBuiltinDraftmancerCards(_ req: Request) throws -> NIOCore.EventLoopFutur
     encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
     encoder.keyEncodingStrategy = .convertToSnakeCase
     
-    guard let responses = draftmancerSets else {
+    guard let responses = await DraftmancerSetCache.shared.sets else {
       return .init(
         status: .internalServerError, headers: headers
       )
@@ -752,13 +784,9 @@ func getBuiltinDraftmancerCards(_ req: Request) throws -> NIOCore.EventLoopFutur
       status: .ok, headers: headers, body: .init(string: string)
     )
   }
-}
-
-let loadedDraftmancerCards: [MTGCard]? = {
-  guard var sets = draftmancerSets else { return nil }
   
-  return Array(sets.map { $0.cards.compactMap(\.mtgCard) }.joined())
-}()
+  return promise.futureResult
+}
 
 // MARK: Cockatrice
 

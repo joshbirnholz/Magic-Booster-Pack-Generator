@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum MTGCardIdentifier: Codable, Hashable, CustomStringConvertible {
+public enum MTGCardIdentifier: Codable, Hashable, CustomStringConvertible, Sendable {
 	enum CodingKeys: String, CodingKey {
 		case id
 		case mtgoId

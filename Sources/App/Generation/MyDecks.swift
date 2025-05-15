@@ -33,7 +33,7 @@ struct MyDeck: Codable, Content {
     }
 }
 
-final class MyDecks {
+final class MyDecks: Sendable {
 	static let shared = MyDecks()
 	
 	private init() { }

@@ -11,13 +11,13 @@ import Foundation
 import UIKit
 #endif
 
-public struct MTGCard: Codable, Equatable, Hashable {
+public struct MTGCard: Codable, Equatable, Hashable, Sendable {
 	
 	public func hash(into hasher: inout Hasher) {
 		hasher.combine(self.scryfallID)
 	}
 	
-	public enum BorderColor: String, Codable {
+	public enum BorderColor: String, Codable, Sendable {
 		case black
 		case borderless
 		case gold
@@ -37,7 +37,7 @@ public struct MTGCard: Codable, Equatable, Hashable {
 		#endif
 	}
 	
-	public struct Face: Codable, Equatable, Hashable {
+	public struct Face: Codable, Equatable, Hashable, Sendable {
 		public var typeLine: String?
 		public var power: String?
 		public var toughness: String?
@@ -52,8 +52,8 @@ public struct MTGCard: Codable, Equatable, Hashable {
 		var imageUris: [String: URL]?
 	}
 	
-	public struct RelatedCard: Codable, Equatable, Hashable {
-		public enum Component: String, Codable {
+	public struct RelatedCard: Codable, Equatable, Hashable, Sendable {
+		public enum Component: String, Codable, Sendable {
 			case token
 			case meldPart = "meld_part"
 			case meldResult = "meld_result"
@@ -68,7 +68,7 @@ public struct MTGCard: Codable, Equatable, Hashable {
     public var draftmancerFace: DraftmancerCard.Face?
 	}
 	
-	public enum Language: String, Codable, Equatable, Hashable {
+	public enum Language: String, Codable, Equatable, Hashable, Sendable {
 		case english = "en"
 		case spanish = "es"
 		case french = "fr"
@@ -88,7 +88,7 @@ public struct MTGCard: Codable, Equatable, Hashable {
 		case phyrexian = "ph"
 	}
 	
-	public enum Rarity: String, Codable, Equatable, Hashable, CaseIterable, Comparable {
+	public enum Rarity: String, Codable, Equatable, Hashable, CaseIterable, Comparable, Sendable {
 		public static func < (lhs: MTGCard.Rarity, rhs: MTGCard.Rarity) -> Bool {
 			return lhs.compareValue < rhs.compareValue
 		}

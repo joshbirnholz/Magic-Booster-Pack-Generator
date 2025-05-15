@@ -17,26 +17,26 @@ extension Swiftfall.ScryfallSet: Content {
 final class ScryfallBridgeController {
 	
 	static let customSets = [
-    Swiftfall.ScryfallSet(code: "sjm", mtgo: nil, name: "SuperJump! (Magic Online)", uri: "", scryfallUri: "", searchUri: "", releasedAt: nil, setType: "expansion", cardCount: 0, digital: true, foilOnly: false, blockCode: "sjm", block: "sjm", printedSize: nil, iconSvgUri: nil),
+    Swiftfall.ScryfallSet(code: "sjm", mtgo: nil, name: "SuperJump! (Magic Online)", uri: "", scryfallUri: "", searchUri: nil, releasedAt: nil, setType: "expansion", cardCount: 0, digital: true, foilOnly: false, blockCode: "sjm", block: "sjm", printedSize: nil, iconSvgUri: nil),
 	]
 	
 	func getSets(_ req: Request) throws -> EventLoopFuture<[Swiftfall.ScryfallSet]> {
 		let promise: EventLoopPromise<[Swiftfall.ScryfallSet]> = req.eventLoop.makePromise()
-		
-		DispatchQueue.global(qos: .userInitiated).async {
-			do {
-				let allowedSetTypes: Set<String> = [
-					"core",
-					"expansion",
-					"masters",
-					"draft_innovation"
-				]
+    
+    promise.completeWithTask {
+      do {
+        let allowedSetTypes: Set<String> = [
+          "core",
+          "expansion",
+          "masters",
+          "draft_innovation"
+        ]
         
         let disallowedSetCodes: Set<String> = [
           "plist", "h1r", "j21", "slx", "uplist", "scd", "tscd", "sis", "mat", "mom", "who", "rvr", "lci"
         ]
         
-        let setsFromScryfall: [[Swiftfall.ScryfallSet]] = try Swiftfall.getSetList().data.compactMap {
+        let setsFromScryfall: [[Swiftfall.ScryfallSet]] = try await Swiftfall.getSetList().data.compactMap {
           guard allowedSetTypes.contains($0.setType),
                 let code = $0.code,
                 !disallowedSetCodes.contains(code)
@@ -76,18 +76,16 @@ final class ScryfallBridgeController {
           
           return [set]
         }
-                
-                var sets = Array(setsFromScryfall.joined())
-				
-				sets.append(contentsOf: Self.customSets)
-				
-				promise.succeed(sets)
-			} catch {
-				promise.fail(error)
-			}
-		}
-		
-		return promise.futureResult
+        
+        var sets = Array(setsFromScryfall.joined())
+        
+        sets.append(contentsOf: Self.customSets)
+        
+        return sets
+      }
+    }
+    
+    return promise.futureResult
 	}
 	
 }

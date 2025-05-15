@@ -8,7 +8,7 @@
 import Foundation
 import Vapor
 
-public struct Seed: Codable, Content {
+public struct Seed: Codable, Content, Sendable {
 	enum PackType: String, Codable, CaseIterable {
 		case stx, grnRna, snc
 	}
@@ -34,7 +34,7 @@ public struct Seed: Codable, Content {
 	}
 }
 
-final class SeedOptions {
+final class SeedOptions: Sendable {
 	static let shared = SeedOptions()
 	
 	private let seeds: [String: [String: String]] = {

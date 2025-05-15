@@ -67,18 +67,8 @@ struct Packet: Codable {
 	}
 	
 	static let allPackets: [Packet] = {
-		do {
-			let url: URL = {
-				#if canImport(Vapor)
-				let directory = DirectoryConfiguration.detect()
-				let configDir = "Sources/App/Generation"
-				return URL(fileURLWithPath: directory.workingDirectory)
-					.appendingPathComponent(configDir, isDirectory: true)
-					.appendingPathComponent("j21packets.json", isDirectory: false)
-				#else
-				return Bundle.main.url(forResource: "j21packets", withExtension: "json")
-				#endif
-			}()
+		do {      
+      let url = urlForResource("j21packets", withExtension: "json")
 			
 			let decoder = JSONDecoder()
 			let data = try Data(contentsOf: url)

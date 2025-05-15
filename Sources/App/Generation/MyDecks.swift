@@ -38,18 +38,8 @@ final class MyDecks: Sendable {
 	
 	private init() { }
 	
-    let deckURLs: Result<[MyDeck], Error> = Result {
-        let url: URL = {
-        #if canImport(Vapor)
-            let directory = DirectoryConfiguration.detect()
-            let configDir = "Sources/App/Generation"
-            return URL(fileURLWithPath: directory.workingDirectory)
-                .appendingPathComponent(configDir, isDirectory: true)
-                .appendingPathComponent("mydecks.json", isDirectory: false)
-        #else
-            return Bundle.main.url(forResource: "mydecks", withExtension: "json")
-        #endif
-        }()
+    let deckURLs: Result<[MyDeck], Error> = Result {      
+        let url = urlForResource("mydecks", withExtension: "json")
         
         let decoder = JSONDecoder()
         let data = try Data(contentsOf: url)

@@ -38,18 +38,8 @@ final class SeedOptions: Sendable {
 	static let shared = SeedOptions()
 	
 	private let seeds: [String: [String: String]] = {
-		do {
-			let url: URL = {
-				#if canImport(Vapor)
-				let directory = DirectoryConfiguration.detect()
-				let configDir = "Sources/App/Generation"
-				return URL(fileURLWithPath: directory.workingDirectory)
-					.appendingPathComponent(configDir, isDirectory: true)
-					.appendingPathComponent("seeds.json", isDirectory: false)
-				#else
-				return Bundle.main.url(forResource: "seeds", withExtension: "json")
-				#endif
-			}()
+		do {      
+      let url = urlForResource("seeds", withExtension: "json")
 			
 			let decoder = JSONDecoder()
 			let data = try Data(contentsOf: url)

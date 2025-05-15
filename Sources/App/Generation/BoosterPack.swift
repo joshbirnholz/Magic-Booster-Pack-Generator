@@ -2181,72 +2181,20 @@ func generateDoubleFeaturePack(_ processed: DoubleFeatureProcessed) -> CardColle
 	return pack
 }
 
-let jumpstartDeckListURLs: [URL] = try! {
-	#if canImport(Vapor)
-	let directory = DirectoryConfiguration.detect()
-	let jumpstartDirectory = "Sources/App/Generation/JumpStart"
-	let jumpstartDirectoryURL = URL(fileURLWithPath: directory.workingDirectory)
-		.appendingPathComponent(jumpstartDirectory, isDirectory: true)
-	return try FileManager.default.contentsOfDirectory(at: jumpstartDirectoryURL, includingPropertiesForKeys: nil)
-	#else
-	guard let urls = Bundle.main.urls(forResourcesWithExtension: "txt", subdirectory: "JumpStart") else {
-		throw PackError.unsupported
-	}
-	return urls
-	#endif
-}()
+let jumpstartDeckListURLs: [URL] = try! urlsForResources(withExtension: "txt", subdirectory: "JumpStart")
 
-let jumpstart2022DeckListURLs: [URL] = try! {
-	#if canImport(Vapor)
-	let directory = DirectoryConfiguration.detect()
-	let jumpstartDirectory = "Sources/App/Generation/JumpStart 2022"
-	let jumpstartDirectoryURL = URL(fileURLWithPath: directory.workingDirectory)
-		.appendingPathComponent(jumpstartDirectory, isDirectory: true)
-	return try FileManager.default.contentsOfDirectory(at: jumpstartDirectoryURL, includingPropertiesForKeys: nil)
-	#else
-	guard let urls = Bundle.main.urls(forResourcesWithExtension: "txt", subdirectory: "JumpStart 2022") else {
-		throw PackError.unsupported
-	}
-	return urls
-	#endif
-}()
+let jumpstart2022DeckListURLs: [URL] = try! urlsForResources(withExtension: "txt", subdirectory: "JumpStart 2022")
 
-let jumpstart2025DeckListURLs: [URL] = try! {
-  #if canImport(Vapor)
-  let directory = DirectoryConfiguration.detect()
-  let jumpstartDirectory = "Sources/App/Generation/JumpStart 2025"
-  let jumpstartDirectoryURL = URL(fileURLWithPath: directory.workingDirectory)
-    .appendingPathComponent(jumpstartDirectory, isDirectory: true)
-  return try FileManager.default.contentsOfDirectory(at: jumpstartDirectoryURL, includingPropertiesForKeys: nil)
-  #else
-  guard let urls = Bundle.main.urls(forResourcesWithExtension: "txt", subdirectory: "JumpStart 2025") else {
-    throw PackError.unsupported
-  }
-  return urls
-  #endif
-}()
+let jumpstart2025DeckListURLs: [URL] = try! urlsForResources(withExtension: "txt", subdirectory: "JumpStart 2025")
 
-let superJumpDeckListURLs: [URL] = try! {
-	#if canImport(Vapor)
-	let directory = DirectoryConfiguration.detect()
-	let jumpstartDirectory = "Sources/App/Generation/SuperJump"
-	let jumpstartDirectoryURL = URL(fileURLWithPath: directory.workingDirectory)
-		.appendingPathComponent(jumpstartDirectory, isDirectory: true)
-	return try FileManager.default.contentsOfDirectory(at: jumpstartDirectoryURL, includingPropertiesForKeys: nil)
-	#else
-	guard let urls = Bundle.main.urls(forResourcesWithExtension: "txt", subdirectory: "SuperJump") else {
-		throw PackError.unsupported
-	}
-	return urls
-	#endif
-}()
+let superJumpDeckListURLs: [URL] = try! urlsForResources(withExtension: "txt", subdirectory: "SuperJump")
 
 let ravnicaClueEditionDeckListURLs: [URL] = try! urlsForResources(withExtension: "txt", subdirectory: "Ravnica Clue Edition")
 
 func urlsForResources(withExtension ext: String? = nil, subdirectory: String) throws -> [URL] {
   #if canImport(Vapor)
   let directory = DirectoryConfiguration.detect()
-  let subdirectory = "Sources/App/Generation/\(subdirectory)"
+  let subdirectory = "Resources/\(subdirectory)"
   let subdirectoryURL = URL(fileURLWithPath: directory.workingDirectory)
     .appendingPathComponent(subdirectory, isDirectory: true)
   let contents = try FileManager.default.contentsOfDirectory(at: subdirectoryURL, includingPropertiesForKeys: nil)
@@ -2264,7 +2212,7 @@ func urlsForResources(withExtension ext: String? = nil, subdirectory: String) th
 }
 func urlForResource(_ name: String, withExtension ext: String? = nil, subdirectory: String? = nil) -> URL {
   let directory = DirectoryConfiguration.detect()
-  var subdirectory = "Sources/App/Generation" + (subdirectory.flatMap { "/" + $0 } ?? "")
+  let subdirectory = "Resources" + (subdirectory.flatMap { "/" + $0 } ?? "")
   var subdirectoryURL = URL(fileURLWithPath: directory.workingDirectory)
     .appendingPathComponent(subdirectory, isDirectory: true)
     .appendingPathComponent(name)
@@ -4745,29 +4693,6 @@ func customSet(forSetCode inputString: String) -> Swiftfall.ScryfallSet? {
     }
 }
 
-func customSetJSONURL(forSetCode inputString: String) -> URL? {
-	let customSets = [
-		"netropolis": "net",
-		"amonkhet remastered": "akr",
-		"kaladesh remastered": "klr",
-		"hollows of lordran": "hlw"
-	]
-	
-	guard let customsetcode = customSets[inputString.lowercased()] ?? customSets.values.first(where: { $0 == inputString.lowercased() }) else {
-		return nil
-	}
-	
-	#if canImport(Vapor)
-	let directory = DirectoryConfiguration.detect()
-	let configDir = "Sources/App/Generation"
-	return URL(fileURLWithPath: directory.workingDirectory)
-		.appendingPathComponent(configDir, isDirectory: true)
-		.appendingPathComponent("custommtg-\(customsetcode).json", isDirectory: false)
-	#else
-	return Bundle.main.url(forResource: "custommtg-\(customsetcode)", withExtension: "json")
-	#endif
-}
-
 public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, includeBasicLands: Bool, includeTokens: Bool, specialOptions: [String] = [], cardBack: URL? = nil, autofixDecklist: Bool, outputFormat: OutputFormat, seed: Seed? = nil) async throws -> String {
 	let mtgCards: [MTGCard]
 	let setName: String
@@ -4811,9 +4736,6 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 //
 //		return string
 	case .scryfallSetCode:
-		if let url = customSetJSONURL(forSetCode: inputString), let data = try? Data(contentsOf: url), let string = String(data: data, encoding: .utf8) {
-			return try await generate(input: .mtgCardJSON, inputString: string, output: output, export: export, boxCount: boxCount, prereleaseIncludePromoCard: prereleaseIncludePromoCard, prereleaseIncludeLands: prereleaseIncludeLands, prereleaseIncludeSheet: prereleaseIncludeSheet, prereleaseIncludeSpindown: prereleaseIncludeSpindown, prereleaseBoosterCount: prereleaseBoosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, autofixDecklist: autofixDecklist, outputFormat: outputFormat, seed: seed)
-		}
 		if inputString.lowercased() == "sjm" {
       mtgCards = [MTGCard.init(layout: "", frame: "", isFullArt: false, collectorNumber: "", set: "", rarity: .common, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], language: .english, isTextless: false)]
 			setName = "SuperJump!"
@@ -6816,35 +6738,6 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		}
 		
     mtgCards += Array(collections.map(\.data).joined()).map(MTGCard.init)
-	}
-	
-	if autofix {
-		// Set codes for arena-only sets whose images should be changed to use versions listed in a custom set file.
-		let customSets: Set<String> = [
-			"akr", "klr"
-		]
-		
-		for customSetCode in customSets {
-			if mtgCards.contains(where: { $0.set.lowercased() == customSetCode }) {
-				if let jsonURL = customSetJSONURL(forSetCode: customSetCode), let data = try? Data(contentsOf: jsonURL), let set = try? JSONDecoder().decode(MTGSet.self, from: data) {
-					mtgCards = mtgCards.map { originalCard in
-						var fixedCard = originalCard
-						
-						if originalCard.set.lowercased() == set.code.lowercased(), let card = set.cards.first(where: { $0.oracleID == originalCard.oracleID }) {
-							fixedCard.imageUris = card.imageUris
-							
-							if let faces = card.cardFaces {
-								for (index, face) in faces.enumerated() where originalCard.cardFaces?.indices.contains(index) == true {
-									fixedCard.cardFaces?[index].imageUris = face.imageUris
-								}
-							}
-						}
-						
-						return fixedCard
-					}
-				}
-			}
-		}
 	}
 	
 	for group in parsed {

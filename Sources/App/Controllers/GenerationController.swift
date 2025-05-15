@@ -26,16 +26,19 @@ extension URLQueryContainer {
 	}
 }
 
-final class GeneratorController: Sendable {
-	func boosterPack(_ req: Request) async throws -> String {
+final class GeneratorController {
+	func boosterPack(_ req: Request) throws -> EventLoopFuture<String> {
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
+		
 		if let count = (try? req.query.get(Int.self, at: "count")) ?? (try? req.query.get(Int.self, at: "boosters")), count > 1 {
-			return try await boosterBox(req)
+			return try boosterBox(req)
 		}
 
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let includeExtendedArt: Bool = req.query.getBoolValue(at: "extendedart") ?? false
 		guard let set = req.parameters.get("set") else {
-			throw PackError.missingSet
+			promise.fail(PackError.missingSet)
+			return promise.futureResult
 		}
 		let specialOptions = (try? req.query.get(String.self, at: "special").components(separatedBy: ",")) ?? []
 		let includeBasicLands = req.query.getBoolValue(at: "lands") ?? true
@@ -48,10 +51,14 @@ final class GeneratorController: Sendable {
 			return SeedOptions.shared.seedOptions(forSetCode: code).first(where: { $0.name == name })
 		}
 
-    return try await generate(input: .scryfallSetCode, inputString: set, output: .boosterPack, export: export, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, specialOptions: specialOptions, autofixDecklist: false, outputFormat: outputFormat, seed: seed)
+    promise.completeWithTask {
+      return try await generate(input: .scryfallSetCode, inputString: set, output: .boosterPack, export: export, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, specialOptions: specialOptions, autofixDecklist: false, outputFormat: outputFormat, seed: seed)
+		}
+
+		return promise.futureResult
 	}
 	
-	func boosterBox(_ req: Request) async throws -> String {
+	func boosterBox(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let count = (try? req.query.get(Int.self, at: "count")) ?? (try? req.query.get(Int.self, at: "boosters"))
 		let includeExtendedArt: Bool = req.query.getBoolValue(at: "extendedart") ?? false
@@ -61,15 +68,22 @@ final class GeneratorController: Sendable {
 		let outputFormat = (try? req.query.get(String.self, at: "outputformat")).flatMap(OutputFormat.init(rawValue:)) ?? .default
 
 		if count == 1 {
-			return try await boosterPack(req)
+			return try boosterPack(req)
 		}
+		
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
 
 //		let set = try req.parameters.next(String.self)
 		guard let set = req.parameters.get("set") else {
-			throw PackError.missingSet
+			promise.fail(PackError.missingSet)
+			return promise.futureResult
 		}
 
-    return try await generate(input: .scryfallSetCode, inputString: set, output: .boosterBox, export: export, boxCount: count, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, specialOptions: specialOptions, autofixDecklist: false, outputFormat: outputFormat)
+    promise.completeWithTask {
+      try await generate(input: .scryfallSetCode, inputString: set, output: .boosterBox, export: export, boxCount: count, includeExtendedArt: includeExtendedArt, includeBasicLands: includeBasicLands, includeTokens: includeTokens, specialOptions: specialOptions, autofixDecklist: false, outputFormat: outputFormat)
+		}
+
+		return promise.futureResult
 	}
 	
 //	func commanderBoxingLeagueBox(_ req: Request) throws -> EventLoopFuture<String> {
@@ -95,7 +109,7 @@ final class GeneratorController: Sendable {
 //		return promise.futureResult
 //	}
 	
-	func prereleasePack(_ req: Request) async throws -> String {
+	func prereleasePack(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let includeExtendedArt: Bool = req.query.getBoolValue(at: "extendedart") ?? false
 		let count = try? req.query.get(Int.self, at: "count")
@@ -115,11 +129,17 @@ final class GeneratorController: Sendable {
 
 		let outputFormat = (try? req.query.get(String.self, at: "outputformat")).flatMap(OutputFormat.init(rawValue:)) ?? .default
 
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
 		guard let set = req.parameters.get("set") else {
-			throw PackError.missingSet
+			promise.fail(PackError.missingSet)
+			return promise.futureResult
 		}
 
-    return try await generate(input: .scryfallSetCode, inputString: set, output: .prereleaseKit, export: export, boxCount: count, prereleaseIncludePromoCard: includePromo, prereleaseIncludeLands: includeLands, prereleaseIncludeSheet: includeSheet, prereleaseIncludeSpindown: includeSpindown, prereleaseBoosterCount: boosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: true, includeTokens: true, specialOptions: specialOptions, autofixDecklist: false, outputFormat: outputFormat, seed: seed)
+    promise.completeWithTask {
+      return try await generate(input: .scryfallSetCode, inputString: set, output: .prereleaseKit, export: export, boxCount: count, prereleaseIncludePromoCard: includePromo, prereleaseIncludeLands: includeLands, prereleaseIncludeSheet: includeSheet, prereleaseIncludeSpindown: includeSpindown, prereleaseBoosterCount: boosterCount, includeExtendedArt: includeExtendedArt, includeBasicLands: true, includeTokens: true, specialOptions: specialOptions, autofixDecklist: false, outputFormat: outputFormat, seed: seed)
+		}
+
+		return promise.futureResult
 	}
 	
 	private static let decoder = JSONDecoder()
@@ -128,102 +148,102 @@ final class GeneratorController: Sendable {
 		var deck: String
 	}
   
-  fileprivate func deckFromURL(_ deckURL: URL, autofix: Bool) async throws -> Deck {
+  fileprivate func deckFromURL(_ deckURL: URL, autofix: Bool, _ completion: @Sendable @escaping (Result<Deck, Error>) -> Void) {
     guard let components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else {
-      throw PackError.invalidURL
+      completion(.failure(PackError.invalidURL))
+      return
     }
     
     switch components.host {
     case "www.archidekt.com", "archidekt.com":
       guard deckURL.pathComponents.count >= 2, deckURL.pathComponents[1] == "decks", let decklistURL = URL(string: "https://archidekt.com/api/decks/\(deckURL.pathComponents[2])/") else {
-        throw PackError.invalidURL
+        completion(.failure(PackError.invalidURL))
+        return
       }
       
-      return try await withCheckedThrowingContinuation { continuation in
-        DispatchQueue.global(qos: .userInitiated).async {
-          let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
-          URLSession.shared.dataTask(with: request) { data, response, error in
+      DispatchQueue.global(qos: .userInitiated).async {
+        let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+          do {
+            guard let data = data else {
+              throw error!
+            }
+            
+            let decoder = JSONDecoder()
+            let archidektDeck = try decoder.decode(ArchidektDeck.self, from: data)
+            
+            DispatchQueue(label: "decklist").async {
+              completion(.success(.archidekt(archidektDeck)))
+            }
+          } catch let error as DebuggableError {
+            struct ErrorMessage: Codable {
+              var error: String
+            }
+            
+            let encoder = JSONEncoder()
+            let errorMessage = ErrorMessage(error: error.reason)
             do {
-              guard let data1 = data else {
-                throw error!
-              }
-              
-              let decoder = JSONDecoder()
-              let archidektDeck = try decoder.decode(ArchidektDeck.self, from: data1)
-              
-              DispatchQueue(label: "decklist").async {
-                continuation.resume(with: .success(.archidekt(archidektDeck)))
-              }
-            } catch let error as DebuggableError {
-              struct ErrorMessage: Codable {
-                var error: String
-              }
-              
-              let encoder = JSONEncoder()
-              let errorMessage = ErrorMessage(error: error.reason)
-              do {
-                let data = try encoder.encode(errorMessage)
-                let string = String(data: data, encoding: .utf8)!
-                continuation.resume(with: .failure(PackError.reason(string)))
-                return
-              } catch {
-                continuation.resume(with: .failure(error))
-                return
-              }
+              let data = try encoder.encode(errorMessage)
+              let string = String(data: data, encoding: .utf8)!
+              completion(.failure(PackError.reason(string)))
+              return
             } catch {
-              continuation.resume(with: .failure(error))
+              completion(.failure(error))
               return
             }
-          }.resume()
-        }
+          } catch {
+            completion(.failure(error))
+            return
+          }
+        }.resume()
       }
     case "moxfield.com", "www.moxfield.com":
       guard deckURL.pathComponents.count >= 2, deckURL.pathComponents[1] == "decks", let decklistURL = URL(string: "https://api.moxfield.com/v2/decks/all/\(deckURL.pathComponents[2])") else {
-        throw PackError.invalidURL
+        completion(.failure(PackError.invalidURL))
+        return
       }
       
-      return try await withCheckedThrowingContinuation { continuation in
-        DispatchQueue.global(qos: .userInitiated).async {
-          let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
-          URLSession.shared.dataTask(with: request) { data, response, error in
+      DispatchQueue.global(qos: .userInitiated).async {
+        let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+          do {
+            guard let data = data else {
+              throw error!
+            }
+            
+            let decoder = JSONDecoder()
+            let moxfieldDeck = try decoder.decode(MoxfieldDeck.self, from: data)
+            
+            DispatchQueue(label: "decklist").async {
+              completion(.success(.moxfield(moxfieldDeck)))
+            }
+          } catch let error as DebuggableError {
+            struct ErrorMessage: Codable {
+              var error: String
+            }
+            
+            let encoder = JSONEncoder()
+            let errorMessage = ErrorMessage(error: error.reason)
             do {
-              guard let data1 = data else {
-                throw error!
-              }
-              
-              let decoder = JSONDecoder()
-              let moxfieldDeck = try decoder.decode(MoxfieldDeck.self, from: data1)
-              
-              DispatchQueue(label: "decklist").async {
-                continuation.resume(with: .success(.moxfield(moxfieldDeck)))
-              }
-            } catch let error as DebuggableError {
-              struct ErrorMessage: Codable {
-                var error: String
-              }
-              
-              let encoder = JSONEncoder()
-              let errorMessage = ErrorMessage(error: error.reason)
-              do {
-                let data = try encoder.encode(errorMessage)
-                let string = String(data: data, encoding: .utf8)!
-                continuation.resume(with: .failure(PackError.reason(string)))
-                return
-              } catch {
-                continuation.resume(with: .failure(error))
-                return
-              }
+              let data = try encoder.encode(errorMessage)
+              let string = String(data: data, encoding: .utf8)!
+              completion(.failure(PackError.reason(string)))
+              return
             } catch {
-              continuation.resume(with: .failure(error))
+              completion(.failure(error))
               return
             }
-          }.resume()
-        }
+          } catch {
+            completion(.failure(error))
+            return
+          }
+        }.resume()
       }
       
     case "deckstats.net", "www.deckstats.net":
       guard var components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else {
-        throw PackError.invalidURL
+        completion(.failure(PackError.invalidURL))
+        return
       }
       components.queryItems = [
         URLQueryItem(name: "export_dec", value: "1"),
@@ -233,54 +253,53 @@ final class GeneratorController: Sendable {
       ]
       
       guard let decklistURL = components.url else {
-        throw PackError.invalidURL
+        completion(.failure(PackError.invalidURL))
+        return
       }
       
-      return try await withCheckedThrowingContinuation { continuation in
-        DispatchQueue.global(qos: .userInitiated).async {
-          let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
-          URLSession.shared.dataTask(with: request) { data, response, error in
-            do {
-              guard let data1 = data else {
-                throw error!
-              }
-              
-              if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 400 {
-                continuation.resume(with: .failure(PackError.privateDeck))
-                return
-              }
-              
-              guard let decklist = String(data: data1, encoding: .utf8) else {
-                continuation.resume(with: .failure(PackError.invalidURL))
-                return
-              }
-              
-              DispatchQueue(label: "decklist").async {
-                continuation.resume(with: .success(.deckstats(decklist)))
-                return
-              }
-            } catch let error as DebuggableError {
-              struct ErrorMessage: Codable {
-                var error: String
-              }
-              
-              let encoder = JSONEncoder()
-              let errorMessage = ErrorMessage(error: error.reason)
-              do {
-                let data = try encoder.encode(errorMessage)
-                let string = String(data: data, encoding: .utf8)!
-                continuation.resume(with: .failure(PackError.reason(string)))
-                return
-              } catch {
-                continuation.resume(with: .failure(error))
-                return
-              }
-            } catch {
-              continuation.resume(with: .failure(error))
+      DispatchQueue.global(qos: .userInitiated).async {
+        let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+          do {
+            guard let data = data else {
+              throw error!
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 400 {
+              completion(.failure(PackError.privateDeck))
               return
             }
-          }.resume()
-        }
+            
+            guard let decklist = String(data: data, encoding: .utf8) else {
+              completion(.failure(PackError.invalidURL))
+              return
+            }
+            
+            DispatchQueue(label: "decklist").async {
+              completion(.success(.deckstats(decklist)))
+              return
+            }
+          } catch let error as DebuggableError {
+            struct ErrorMessage: Codable {
+              var error: String
+            }
+            
+            let encoder = JSONEncoder()
+            let errorMessage = ErrorMessage(error: error.reason)
+            do {
+              let data = try encoder.encode(errorMessage)
+              let string = String(data: data, encoding: .utf8)!
+              completion(.failure(PackError.reason(string)))
+              return
+            } catch {
+              completion(.failure(error))
+              return
+            }
+          } catch {
+            completion(.failure(error))
+            return
+          }
+        }.resume()
       }
     case "www.tappedout.net", "tappedout.net":
       var newComponents = components
@@ -289,98 +308,95 @@ final class GeneratorController: Sendable {
       newComponents.queryItems = queryItems
       
       guard let decklistURL = newComponents.url else {
-        throw PackError.invalidURL
+        completion(.failure(PackError.invalidURL))
+        return
       }
       
-      return try await withCheckedThrowingContinuation { continuation in
-        DispatchQueue.global(qos: .userInitiated).async {
-          let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
-          URLSession.shared.dataTask(with: request) { data, response, error in
-            do {
-              guard let data1 = data else {
-                throw error!
-              }
-              
-              if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 400 {
-                throw PackError.privateDeck
-              }
-              
-              guard let decklist = String(data: data1, encoding: .utf8) else {
-                continuation.resume(with: .failure(PackError.invalidURL))
-                return
-              }
-              
-              DispatchQueue(label: "decklist").async {
-                continuation.resume(with: .success(.deckstats(decklist)))
-                return
-              }
-            } catch let error as DebuggableError {
-              struct ErrorMessage: Codable {
-                var error: String
-              }
-              
-              let encoder = JSONEncoder()
-              let errorMessage = ErrorMessage(error: error.reason)
-              do {
-                let data = try encoder.encode(errorMessage)
-                let string = String(data: data, encoding: .utf8)!
-                continuation.resume(with: .failure(PackError.reason(string)))
-                return
-              } catch {
-                continuation.resume(with: .failure(error))
-                return
-              }
-            } catch {
-              continuation.resume(with: .failure(error))
+      DispatchQueue.global(qos: .userInitiated).async {
+        let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+          do {
+            guard let data = data else {
+              throw error!
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 400 {
+              throw PackError.privateDeck
+            }
+            
+            guard let decklist = String(data: data, encoding: .utf8) else {
+              completion(.failure(PackError.invalidURL))
               return
             }
-          }.resume()
-        }
+            
+            DispatchQueue(label: "decklist").async {
+              completion(.success(.deckstats(decklist)))
+              return
+            }
+          } catch let error as DebuggableError {
+            struct ErrorMessage: Codable {
+              var error: String
+            }
+            
+            let encoder = JSONEncoder()
+            let errorMessage = ErrorMessage(error: error.reason)
+            do {
+              let data = try encoder.encode(errorMessage)
+              let string = String(data: data, encoding: .utf8)!
+              completion(.failure(PackError.reason(string)))
+              return
+            } catch {
+              completion(.failure(error))
+              return
+            }
+          } catch {
+            completion(.failure(error))
+            return
+          }
+        }.resume()
       }
     case "www.mtggoldfish.com", "mtggoldfish.com":
-      return try await withCheckedThrowingContinuation { continuation in
-        DispatchQueue.global().async {
-          let request = URLRequest(url: deckURL, cachePolicy: .reloadIgnoringLocalCacheData)
-          URLSession.shared.dataTask(with: request) { data, response, error in
-            do {
-              if let response = response as? HTTPURLResponse, response.statusCode == 404 {
-                continuation.resume(with: .failure(PackError.privateDeck))
-                return
-              }
-              
-              guard let data1 = data, let page = String(data: data1, encoding: .utf8) else {
-                continuation.resume(with: .failure(PackError.invalidURL))
-                return
-              }
-              
-              guard let arenaDownloadLink = page.matches(forRegex: #"<a class="btn btn-secondary deck-tools-btn" href="(\/deck\/arena_download\/.+)">"#).first?.groups.first?.value, let arenaDownloadURL = URL(string: "https://www.mtggoldfish.com" + arenaDownloadLink) else {
-                continuation.resume(with: .failure(PackError.invalidURL))
-                return
-              }
-              
-              let arenaDownloadRequest = URLRequest(url: arenaDownloadURL, cachePolicy: .reloadIgnoringLocalCacheData)
-              URLSession.shared.dataTask(with: arenaDownloadRequest) { data2, response1, error in
-                do {
-                  guard let data1 = data2, let page = String(data: data1, encoding: .utf8) else {
-                    continuation.resume(with: .failure(PackError.privateDeck))
-                    return
-                  }
-                  
-                  guard let decklist = page.matches(forRegex: #"<textarea class='copy-paste-box'>(.*)<\/textarea>"#, options: .dotMatchesLineSeparators).first?.groups.first?.value.decodingHTMLEntities else {
-                    continuation.resume(with: .failure(PackError.privateDeck))
-                    return
-                  }
-                  
-                  DispatchQueue(label: "decklist").async {
-                    continuation.resume(with: .success(.arena(decklist)))
-                    return
-                  }
-                  
-                }
-              }.resume()
+      DispatchQueue.global().async {
+        let request = URLRequest(url: deckURL, cachePolicy: .reloadIgnoringLocalCacheData)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+          do {
+            if let response = response as? HTTPURLResponse, response.statusCode == 404 {
+              completion(.failure(PackError.privateDeck))
+              return
             }
-          }.resume()
-        }
+            
+            guard let data = data, let page = String(data: data, encoding: .utf8) else {
+              completion(.failure(PackError.invalidURL))
+              return
+            }
+            
+            guard let arenaDownloadLink = page.matches(forRegex: #"<a class="btn btn-secondary deck-tools-btn" href="(\/deck\/arena_download\/.+)">"#).first?.groups.first?.value, let arenaDownloadURL = URL(string: "https://www.mtggoldfish.com" + arenaDownloadLink) else {
+              completion(.failure(PackError.invalidURL))
+              return
+            }
+            
+            let arenaDownloadRequest = URLRequest(url: arenaDownloadURL, cachePolicy: .reloadIgnoringLocalCacheData)
+            URLSession.shared.dataTask(with: arenaDownloadRequest) { data, response, error in
+              do {
+                guard let data = data, let page = String(data: data, encoding: .utf8) else {
+                  completion(.failure(PackError.privateDeck))
+                  return
+                }
+                
+                guard let decklist = page.matches(forRegex: #"<textarea class='copy-paste-box'>(.*)<\/textarea>"#, options: .dotMatchesLineSeparators).first?.groups.first?.value.decodingHTMLEntities else {
+                  completion(.failure(PackError.privateDeck))
+                  return
+                }
+                
+                DispatchQueue(label: "decklist").async {
+                  completion(.success(.arena(decklist)))
+                  return
+                }
+                
+              }
+            }.resume()
+          }
+        }.resume()
       }
     default:
       struct ErrorMessage: Codable {
@@ -392,9 +408,11 @@ final class GeneratorController: Sendable {
       do {
         let data = try encoder.encode(errorMessage)
         let string = String(data: data, encoding: .utf8)!
-        throw PackError.reason(string)
+        completion(.failure(PackError.reason(string)))
+        return
       } catch {
-        throw error
+        completion(.failure(error))
+        return
       }
     }
   }
@@ -896,51 +914,65 @@ final class GeneratorController: Sendable {
     }
   }
   
-  func convert(_ req: Request) async -> DeckResponse {
+  func convert(_ req: Request) throws -> EventLoopFuture<DeckResponse> {
+    let promise: EventLoopPromise<DeckResponse> = req.eventLoop.makePromise()
     do {
       let autofix: Bool = req.query.getBoolValue(at: "autofix") ?? true
       let format: String = try req.query.get(String.self, at: "format")
       let decklist = try req.content.decode(DeckList.self)
       
       if let url = URL(string: decklist.deck), url.absoluteString.lowercased().hasPrefix("http") {
-        do {
-          let deck = try await self.deckFromURL(url, autofix: autofix)
-          return .init(deck: deck)
-        } catch {
-          return .init(error: (error as? DebuggableError)?.reason ?? error.localizedDescription)
+        self.deckFromURL(url, autofix: autofix) { result in
+          do {
+            let deck = try result.get()
+            promise.succeed(.init(deck: deck))
+          } catch {
+            promise.succeed(.init(error: (error as? DebuggableError)?.reason ?? error.localizedDescription))
+          }
         }
       } else {
         let deck: Deck = decklist.deck.contains("[") || decklist.deck.contains("]") ? .deckstats(decklist.deck) : .arena(decklist.deck)
-        return .init(deck: deck)
+        
+        DispatchQueue.global().async {
+          promise.succeed(.init(deck: deck))
+        }
       }
     } catch {
-      return .init(error: (error as? DebuggableError)?.reason ?? error.localizedDescription)
+      promise.succeed(.init(error: (error as? DebuggableError)?.reason ?? error.localizedDescription))
     }
+    
+    return promise.futureResult
   }
 	
-	func singleCardNamed(_ req: Request) async throws -> String {
+	func singleCardNamed(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let facedown: Bool = req.query.getBoolValue(at: "facedown") ?? false
 		
 		let fuzzy = try? req.query.get(String.self, at: "fuzzy")
 		let exact = try? req.query.get(String.self, at: "exact")
 		
-    do {
-      if let fuzzy = fuzzy {
-        let result = try await singleCardFuzzy(name: fuzzy, facedown: facedown, export: export)
-        return result
-      } else if let exact = exact {
-        let result = try await singleCardExact(name: exact, facedown: facedown, export: export)
-        return result
-      } else {
-        throw PackError.noName
-      }
-    } catch {
-      throw error
-    }
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
+		
+    promise.completeWithTask {
+			do {
+				if let fuzzy = fuzzy {
+					let result = try await singleCardFuzzy(name: fuzzy, facedown: facedown, export: export)
+					return result
+				} else if let exact = exact {
+					let result = try await singleCardExact(name: exact, facedown: facedown, export: export)
+					return result
+				} else {
+					throw PackError.noName
+				}
+			} catch {
+				throw error
+			}
+		}
+		
+		return promise.futureResult
 	}
 	
-	func singleCard(_ req: Request) async throws -> String {
+	func singleCard(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let facedown: Bool = req.query.getBoolValue(at: "facedown") ?? false
 
@@ -948,45 +980,75 @@ final class GeneratorController: Sendable {
 			throw PackError.emptyInput
 		}
 
-    return try await singleCardCodeNumber(code: code, number: number, facedown: facedown, export: export)
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
+
+    promise.completeWithTask {
+      return try await singleCardCodeNumber(code: code, number: number, facedown: facedown, export: export)
+		}
+
+		return promise.futureResult
 	}
 	
-	func singleCardRandom(_ req: Request) async throws -> String {
+	func singleCardRandom(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let facedown: Bool = req.query.getBoolValue(at: "facedown") ?? false
 		
 		let query = try? req.query.get(String.self, at: "q")
 		
-    if let query = query {
-      return try await singleCardScryfallQuery(query: query, facedown: facedown, export: export)
-    } else {
-      return try await singleCardRand(facedown: facedown, export: export)
-    }
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
+		
+    promise.completeWithTask {
+      if let query = query {
+        return try await singleCardScryfallQuery(query: query, facedown: facedown, export: export)
+      } else {
+        return try await singleCardRand(facedown: facedown, export: export)
+      }
+		}
+		
+		return promise.futureResult
 	}
 	
-	func completeToken(_ req: Request) async throws -> String {
+	func completeToken(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
+		
 		guard let set = req.parameters.get("set") else {
-			throw PackError.missingSet
+			promise.fail(PackError.missingSet)
+			return promise.futureResult
 		}
 
-    let allTokens = try await allTokensForSet(setCode: set)
-    let token = try singleCompleteToken(tokens: allTokens, export: export)
-    return token
+    promise.completeWithTask {
+      let allTokens = try await allTokensForSet(setCode: set)
+      let token = try singleCompleteToken(tokens: allTokens, export: export)
+      return token
+		}
+
+		return promise.futureResult
 	}
 	
-  func landPacks(_ req: Request) async throws -> String {
+	func landPacks(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = false
 //		let set: String? = try? req.query.get(String.self, at: "set")
 		let set = req.parameters.get("set")
 		
-    if let set = set {
-      let packs = try await generate(input: .scryfallSetCode, inputString: set, output: .landPack, export: export, boxCount: nil, prereleaseIncludePromoCard: nil, prereleaseIncludeLands: nil, prereleaseIncludeSheet: nil, prereleaseIncludeSpindown: nil, prereleaseBoosterCount: nil, includeExtendedArt: false, includeBasicLands: true, includeTokens: false, specialOptions: [], cardBack: nil, autofixDecklist: false, outputFormat: .default)
-      return packs
-    } else {
-      let packs = try await allLandPacksSingleJSON(setCards: nil, specialOptions: [], export: export)
-      return packs
-    }
+		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
+		
+    promise.completeWithTask {
+			do {
+				if let set = set {
+					let packs = try await generate(input: .scryfallSetCode, inputString: set, output: .landPack, export: export, boxCount: nil, prereleaseIncludePromoCard: nil, prereleaseIncludeLands: nil, prereleaseIncludeSheet: nil, prereleaseIncludeSpindown: nil, prereleaseBoosterCount: nil, includeExtendedArt: false, includeBasicLands: true, includeTokens: false, specialOptions: [], cardBack: nil, autofixDecklist: false, outputFormat: .default)
+					return packs
+				} else {
+					let packs = try await allLandPacksSingleJSON(setCards: nil, specialOptions: [], export: export)
+					return packs
+				}
+			} catch {
+				throw error
+			}
+			
+		}
+		
+		return promise.futureResult
 	}
 }

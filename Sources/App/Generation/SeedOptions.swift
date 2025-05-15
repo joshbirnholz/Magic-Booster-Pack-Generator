@@ -73,13 +73,17 @@ final class SeedOptions: Sendable {
 		}.sorted(on: \.name)
 	}
 	
-  func getAllSeeds(_ req: Request) async throws -> [String: [Seed]] {
+	func getAllSeeds(_ req: Request) throws -> EventLoopFuture<[String: [Seed]]> {
+		let promise: EventLoopPromise<[String: [Seed]]> = req.eventLoop.makePromise()
+		
 		var dict: [String: [Seed]] = [:]
 		
 		for setCode in self.seeds.keys {
 			dict[setCode] = seedOptions(forSetCode: setCode)
 		}
-    
-    return dict
+		
+		promise.succeed(dict)
+		
+		return promise.futureResult
 	}
 }

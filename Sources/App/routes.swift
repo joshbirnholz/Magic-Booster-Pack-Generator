@@ -4,7 +4,7 @@ import Vapor
 public func routes(_ app: Application) throws {
 	
 	app.get { req -> Response in
-    req.redirect(to: "index.html", redirectType: .permanent)
+		req.redirect(to: "index.html", type: .permanent)
 	}
 	
 	let generatorController = GeneratorController()

@@ -981,7 +981,7 @@ public class Swiftfall {
     
     let suffix = code.lowercased() + "/" + (retry ? number : number.lowercased())
     guard let encodedSuffix = suffix.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
-      throw NSError()
+      throw SwiftfallError.badURL
     }
     let call = URL(string: "\(scryfall)cards/" + encodedSuffix)!
     

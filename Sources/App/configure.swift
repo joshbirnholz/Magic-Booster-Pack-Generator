@@ -15,7 +15,7 @@ public func configure(_ app: Application) throws {
 //	app.middleware.use(FileMiddleware.self)
 //	app.middleware.use(ErrorMiddleware.self)
 	
-	let file = FileMiddleware(publicDirectory: app.directory.publicDirectory)
+  let file = FileMiddleware(publicDirectory: app.directory.publicDirectory, defaultFile: "index.html")
 	app.middleware.use(file)
 	
 	try routes(app)

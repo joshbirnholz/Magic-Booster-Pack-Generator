@@ -3,9 +3,9 @@ import Vapor
 /// Register your application's routes here.
 public func routes(_ app: Application) throws {
 	
-	app.get { req -> Response in
-		req.redirect(to: "index.html", type: .permanent)
-	}
+//	app.get { req -> Response in
+//		req.redirect(to: "index.html", type: .permanent)
+//	}
 	
 	let generatorController = GeneratorController()
 	

@@ -336,7 +336,7 @@ extension DraftmancerCard {
     
     var imageURIs = self.imageUris ?? [:]
     
-    if let image = image, imageURIs.isEmpty {
+    if let image = image ?? imageURIs["en"] {
       imageURIs["normal"] = image
       imageURIs["large"] = image
     }
@@ -578,6 +578,7 @@ actor DraftmancerSetCache {
                   draftmancerCard.collectorNumber = nil
                   draftmancerCard.flavorName = quick.flavorName
                   draftmancerCard.set = quick.set
+                  draftmancerCard.artist = nil
                   
                   return draftmancerCard
                 } catch {

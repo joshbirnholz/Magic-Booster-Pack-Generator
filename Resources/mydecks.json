@@ -613,7 +613,31 @@
     "front": "https://cards.scryfall.io/large/front/1/9/19439420-9e0a-4fd1-bae9-f1c698edee1c.jpg",
     "ids": ["82"],
     "ci": "bgr",
-    "comment": "Tarmogoyf",
+    "comment": "Tarmogoyfs",
     "name": "Disa the Restless"
+  },
+  {
+    "url": "https://deckstats.net/decks/149419/3702740-toby-beastie-befriender",
+    "front": "https://cards.scryfall.io/large/front/c/a/cafe5755-88b0-4fee-8596-4232844f60fc.jpg",
+    "ids": ["83"],
+    "ci": "w",
+    "comment": "Go wide tokens",
+    "name": "Toby, Beastie Befriender"
+  },
+  {
+    "url": "https://deckstats.net/decks/149419/4054067-celes-rune-knight",
+    "front": "https://cards.scryfall.io/large/front/3/0/30584c53-533b-4dc7-b07c-8600164a99b3.jpg",
+    "ids": ["84"],
+    "ci": "wbr",
+    "comment": "Reanimator, counters",
+    "name": "Celes, Rune Knight"
+  },
+  {
+    "url": "https://deckstats.net/decks/149419/3985813-copy-of-eternal-might",
+    "front": "https://cards.scryfall.io/large/front/c/0/c0629894-0b72-4abe-9771-03becfdb241c.jpg",
+    "ids": ["85"],
+    "ci": "wub",
+    "comment": "Eternal Might",
+    "name": "Eternal Might (upgraded)"
   }
 ]

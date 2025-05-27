@@ -2,7 +2,7 @@
 [
   {
     "name": "Ardbert, Warrior of Darkness",
-    "front": "https://i.imgur.com/JoVY5h8.jpeg"
+    "front": "https://i.imgur.com/RYaIlP4.jpeg"
   },
   {
     "name": "Estinien Varlineau",

@@ -1,6 +1,10 @@
 [CustomCards]
 [
   {
+    "name": "Ardbert, Warrior of Darkness",
+    "front": "https://i.imgur.com/JoVY5h8.jpeg"
+  },
+  {
     "name": "Estinien Varlineau",
     "front": "https://i.imgur.com/Hu27YRg.jpeg"
   },

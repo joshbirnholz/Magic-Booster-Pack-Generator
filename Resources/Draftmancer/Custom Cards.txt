@@ -1,6 +1,22 @@
 [CustomCards]
 [
   {
+    "name": "Estinien Varlineau",
+    "front": "https://i.imgur.com/Hu27YRg.jpeg"
+  },
+  {
+    "name": "Plains",
+    "front": "https://i.imgur.com/fS4ZN5l.jpeg"
+  },
+  {
+    "name": "Alisaie Leveilleur",
+    "front": "https://i.imgur.com/0QhQGie.jpeg"
+  },
+  {
+    "name": "Alphinaud Leveilleur",
+    "front": "https://i.imgur.com/TfVunhR.jpeg"
+  },
+  {
     "name": "Force of Negation",
     "flavor_name": "Witch's Prophecy",
     "front": "https://i.imgur.com/pctPnvy.jpeg"

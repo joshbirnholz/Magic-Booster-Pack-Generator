@@ -19,7 +19,8 @@ let package = Package(
     .package(url: "https://github.com/yaslab/CSV.swift.git", .upToNextMinor(from: "2.4.3")),
 
     // XML decoding
-    .package(url: "https://github.com/CoreOffice/XMLCoder.git", from: "0.17.1")
+    .package(url: "https://github.com/CoreOffice/XMLCoder.git", from: "0.17.1"),
+    .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.6.0"),
   ],
   targets: [
     .target(
@@ -29,7 +30,8 @@ let package = Package(
         .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver"),
         .product(name: "Vapor", package: "vapor"),
         .product(name: "CSV", package: "CSV.swift"),
-        .product(name: "XMLCoder", package: "XMLCoder")
+        .product(name: "XMLCoder", package: "XMLCoder"),
+        .product(name: "SwiftSoup", package: "SwiftSoup")
       ]
     ),
     .executableTarget(

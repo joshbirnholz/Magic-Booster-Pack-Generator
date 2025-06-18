@@ -262,6 +262,12 @@ extension Array {
 			try predicate(element)
 		}.randomElement()?.offset
 	}
+  
+  func randomElement(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Element? {
+    try filter { element in
+      try predicate(element)
+    }.randomElement()
+  }
 }
 
 func generatePack(rarities: [MTGCard.Rarity: [MTGCard]], customSlotRarities: [MTGCard.Rarity: [MTGCard]], customSlot2Rarities: [MTGCard.Rarity: [MTGCard]], customSlot3Rarities: [MTGCard.Rarity: [MTGCard]], basicLands: [MTGCard], tokens: [MTGCard], showcaseRarities: [MTGCard.Rarity: [MTGCard]], borderless: [MTGCard], extendedArt: [MTGCard], meldResults: [MTGCard], mode: Mode, includeExtendedArt: Bool, masterpieceCards: [MTGCard], foilPolicy: FoilPolicy, mythicPolicy: MythicPolicy, seed: Seed? = nil) throws -> CardCollection {
@@ -2417,6 +2423,36 @@ func generateRavnicaClueEditionPack() async throws -> CardCollection {
     let mtgCard = MTGCard(faceCard)
     collection.append(mtgCard)
   }
+  
+  for cardCount in cardCounts.reversed() {
+    guard let card = cards[cardCount.identifier] else { continue }
+    let mtgCard = MTGCard(card)
+    for _ in 0 ..< cardCount.count {
+      collection.append(mtgCard)
+    }
+  }
+  
+  return collection
+}
+
+func generateJumpInPack(setCode: String) async throws -> CardCollection {
+  guard let parser = JumpInParser.shared else {
+    throw PackError.unsupported
+  }
+  
+  guard parser.supportedSetCodes().contains(setCode.uppercased()) else {
+    throw PackError.invalidJumpStartName
+  }
+  
+  guard let contents = parser.generateDeckList(for: setCode) else {
+    throw PackError.unsupported
+  }
+  
+  let cardCounts = DeckParser.parse(deckList: contents, autofix: true).first?.cardCounts ?? []
+  let identifiers: [MTGCardIdentifier] = cardCounts.map(\.identifier)
+  let cards = try await Swiftfall.getCollection(identifiers: identifiers).data
+  
+  var collection = CardCollection()
   
   for cardCount in cardCounts.reversed() {
     guard let card = cards[cardCount.identifier] else { continue }
@@ -4742,16 +4778,22 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			setCode = "SJM"
 			tokens = []
 			break
-		}
-        
-        let set: Swiftfall.ScryfallSet = try await {
-            if let customSet = customSet(forSetCode: inputString) {
-                return customSet
-            } else {
-                return try await Swiftfall.getSet(code: inputString)
-            }
-        }()
-        
+    } else if inputString.lowercased().hasPrefix("jumpin-") {
+      mtgCards = [MTGCard.init(layout: "", frame: "", isFullArt: false, collectorNumber: "", set: "", rarity: .common, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], language: .english, isTextless: false)]
+      setName = "Jump In"
+      setCode = inputString
+      tokens = []
+      break
+    }
+    
+    let set: Swiftfall.ScryfallSet = try await {
+      if let customSet = customSet(forSetCode: inputString) {
+        return customSet
+      } else {
+        return try await Swiftfall.getSet(code: inputString)
+      }
+    }()
+    
 		
     mtgCards = await set.getCards().compactMap { $0?.data }.joined().compactMap(MTGCard.init)
 		setName = set.name
@@ -5618,6 +5660,12 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
     let tokens = try await allTokensForSet(setCode: setCode!)
     
     return try await output(setName: "Commander Masters", setCode: setCode ?? "", packs: packs, tokens: tokens)
+  } else if let setCode = setCode?.lowercased(), setCode.hasPrefix("jumpin-") {
+    let fullCode = setCode.replacingOccurrences(of: "jumpin-", with: "")
+    
+    let packs: [CardCollection] = await (1...count).asyncCompactMap { _ in try? await generateJumpInPack(setCode: fullCode) }
+    
+    return try await output(setName: setName, setCode: setCode, packs: packs, tokens: [])
   }
 	
   let processed = try await process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)
@@ -5858,6 +5906,14 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
     let tokens = try await allTokensForSet(setCode: setCode!)
     
     return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: tokens)
+  } else if let setCode = setCode?.lowercased(), setCode.hasPrefix("jumpin-") {
+    let fullCode = setCode.replacingOccurrences(of: "jumpin-", with: "")
+    
+    let pack = try await generateJumpInPack(setCode: fullCode)
+    
+    let tokens = try await allTokensForSet(setCode: fullCode)
+    
+    return try await output(setName: setName, setCode: setCode, pack: pack, tokens: tokens)
   }
 	
   let processed = try await process(cards: cards, setCode: setCode, specialOptions: specialOptions, includeBasicLands: includeBasicLands)

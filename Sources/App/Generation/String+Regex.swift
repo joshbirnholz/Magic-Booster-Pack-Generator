@@ -74,6 +74,11 @@ extension Array {
 		}
 		return copy.suffix(n)
 	}
+  
+  public func choose(_ n: Int, where predicate: (Element) throws -> Bool) rethrows -> ArraySlice<Element> {
+    guard n >= 0 else { return [] }
+    return try filter(predicate).choose(n)
+  }
 }
 
 extension Optional where Wrapped: StringProtocol {

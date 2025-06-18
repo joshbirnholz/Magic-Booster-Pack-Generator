@@ -82,12 +82,10 @@ final class ScryfallBridgeController {
         
         sets.insert(contentsOf: Self.customSets, at: 0)
         
-        if let parser = JumpInParser.shared {
-          for set in data.reversed() {
-            guard let code = set.code, parser.supportedSetCodes().contains(code.uppercased()) else { continue }
-            let set = Swiftfall.ScryfallSet(code: "jumpin-\(code.lowercased())", mtgo: nil, name: "Jump In! \(set.name)", uri: "", scryfallUri: "", searchUri: nil, releasedAt: nil, setType: "expansion", cardCount: 0, digital: true, foilOnly: false, blockCode: "jumpin", block: "jumpin", printedSize: nil, iconSvgUri: nil)
-            sets.insert(set, at: 0)
-          }
+        for set in data.reversed() {
+          guard let code = set.code, JumpInParser.shared.supportedSetCodes().contains(code.uppercased()) else { continue }
+          let set = Swiftfall.ScryfallSet(code: "jumpin-\(code.lowercased())", mtgo: nil, name: "Jump In! \(set.name)", uri: "", scryfallUri: "", searchUri: nil, releasedAt: nil, setType: "expansion", cardCount: 0, digital: true, foilOnly: false, blockCode: "jumpin", block: "jumpin", printedSize: nil, iconSvgUri: nil)
+          sets.insert(set, at: 0)
         }
         
         return sets

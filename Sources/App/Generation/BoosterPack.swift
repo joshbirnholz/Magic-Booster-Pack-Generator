@@ -33,6 +33,7 @@ enum PackError: Error {
 	case couldNotLoadCards(String)
 	case missingSet
 	case failedToBuildPack
+  case invalidSet(String)
   case reason(String)
 	
 	var code: Int {
@@ -71,6 +72,8 @@ enum PackError: Error {
 			return 15
     case .reason(_):
       return 16
+    case .invalidSet(_):
+      return 17
 		}
 	}
 }
@@ -256,17 +259,31 @@ extension Array where Element == MTGCard {
 	}
 }
 
-extension Array {
-	func randomIndex(where predicate: (Self.Element) throws -> Bool) rethrows -> Int? {
-		try enumerated().filter { _, element in
-			try predicate(element)
-		}.randomElement()?.offset
-	}
+extension Collection {
+  func randomIndex(where predicate: (Self.Element) throws -> Bool) rethrows -> Int? {
+    try enumerated().filter { _, element in
+      try predicate(element)
+    }.randomElement()?.offset
+  }
   
   func randomElement(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Element? {
     try filter { element in
       try predicate(element)
     }.randomElement()
+  }
+}
+
+extension Array {
+  mutating func removeRandomElement(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Element? {
+    guard let index = try randomIndex(where: predicate) else { return nil }
+    return self.remove(at: index)
+  }
+}
+
+extension Set {
+  mutating func removeRandomElement(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Element? {
+    guard let element = try randomElement(where: predicate) else { return nil }
+    return self.remove(element)
   }
 }
 
@@ -2436,9 +2453,7 @@ func generateRavnicaClueEditionPack() async throws -> CardCollection {
 }
 
 func generateJumpInPack(setCode: String) async throws -> CardCollection {
-  guard let parser = JumpInParser.shared else {
-    throw PackError.unsupported
-  }
+  let parser = JumpInParser.shared
   
   guard parser.supportedSetCodes().contains(setCode.uppercased()) else {
     throw PackError.invalidJumpStartName

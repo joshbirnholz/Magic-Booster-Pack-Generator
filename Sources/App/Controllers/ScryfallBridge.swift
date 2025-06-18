@@ -36,7 +36,8 @@ final class ScryfallBridgeController {
           "plist", "h1r", "j21", "slx", "uplist", "scd", "tscd", "sis", "mat", "mom", "who", "rvr", "lci"
         ]
         
-        let setsFromScryfall: [[Swiftfall.ScryfallSet]] = try await Swiftfall.getSetList().data.compactMap {
+        let data = try await Swiftfall.getSetList().data
+        let setsFromScryfall: [[Swiftfall.ScryfallSet]] = data.compactMap {
           guard allowedSetTypes.contains($0.setType),
                 let code = $0.code,
                 !disallowedSetCodes.contains(code)
@@ -79,7 +80,15 @@ final class ScryfallBridgeController {
         
         var sets = Array(setsFromScryfall.joined())
         
-        sets.append(contentsOf: Self.customSets)
+        sets.insert(contentsOf: Self.customSets, at: 0)
+        
+        if let parser = JumpInParser.shared {
+          for set in data.reversed() {
+            guard let code = set.code, parser.supportedSetCodes().contains(code.uppercased()) else { continue }
+            let set = Swiftfall.ScryfallSet(code: "jumpin-\(code.lowercased())", mtgo: nil, name: "Jump In! \(set.name)", uri: "", scryfallUri: "", searchUri: nil, releasedAt: nil, setType: "expansion", cardCount: 0, digital: true, foilOnly: false, blockCode: "jumpin", block: "jumpin", printedSize: nil, iconSvgUri: nil)
+            sets.insert(set, at: 0)
+          }
+        }
         
         return sets
       }

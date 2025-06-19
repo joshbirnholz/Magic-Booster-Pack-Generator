@@ -248,8 +248,8 @@ struct JumpInParser {
           return [firstMono, secondMono, other].shuffled()
         default:
           guard
-            let mono = packets.removeRandomElement(where: { $0.colors.count == 1 }), let color = mono.colors.first,
-            let multi = packets.removeRandomElement(where: { $0.colors.count > 1 && $0.colors.contains(color) }),
+            let mono = packets.removeRandomElement(where: { $0.colors.count == 1 }),
+            let multi = packets.removeRandomElement(where: { $0.colors.count > 1 && Set($0.colors) != Set(mono.colors) }),
             let other = packets.randomElement(where: { Set($0.colors) != Set(mono.colors) && Set($0.colors) != Set(multi.colors) })
           else {
             throw PackError.failedToBuildPack
@@ -259,8 +259,8 @@ struct JumpInParser {
         }
       } else {
         guard
-          let mono = packets.removeRandomElement(where: { $0.colors.count == 1 }), let color = mono.colors.first,
-          let multi = packets.removeRandomElement(where: { $0.colors.count > 1 && $0.colors.contains(color) }),
+          let mono = packets.removeRandomElement(where: { $0.colors.count == 1 }),
+          let multi = packets.removeRandomElement(where: { $0.colors.count > 1 && Set($0.colors) != Set(mono.colors) }),
           let other = packets.randomElement(where: { Set($0.colors) != Set(mono.colors) && Set($0.colors) != Set(multi.colors) })
         else {
           throw PackError.failedToBuildPack

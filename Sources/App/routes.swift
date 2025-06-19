@@ -10,6 +10,7 @@ public func routes(_ app: Application) throws {
 	let generatorController = GeneratorController()
   
   app.get("jumpinpackets", ":set", use: JumpInParser.shared.getAllPackets(_:))
+  app.get("jumpin", use: JumpInParser.shared.jumpinDeck(_:))
   
   app.get("jumpin", ":set", use: JumpInParser.shared.selectPackets(_:))
 	

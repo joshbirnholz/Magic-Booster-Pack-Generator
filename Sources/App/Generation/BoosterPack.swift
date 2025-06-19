@@ -6573,7 +6573,7 @@ extension MTGCard {
 //  return ""
 //}
 
-func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil) async throws -> String {
+func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil, direct: Bool = false) async throws -> String {
 	enum CustomOverride {
 		case identifiers(String)
 		case url(name: String, imageURL: URL)
@@ -6993,6 +6993,10 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
     pack.insert(contentsOf: faceCards, at: 0)
     
     let output = try await singleBoosterPack(setName: "", setCode: "", boosterPack: pack, tokens: tokens, inPack: false, export: export, cardBack: cardBack/*, nickname: outputName*/)
+    if direct {
+      return output
+    }
+    
     let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: output, filename: outputName ?? fileName))
     return String(data: data, encoding: .utf8) ?? ""
   } else {
@@ -7012,6 +7016,11 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 		}
 		
 		let output = try await boosterBag(setName: outputName ?? "", setCode: "", boosterPacks: packs, names: names, tokens: tokens, inPack: false, export: export, cardBack: cardBack)
+    
+    if direct {
+      return output
+    }
+    
 		let data = try JSONEncoder().encode(DownloadOutput(downloadOutput: output, filename: outputName ?? fileName))
 		return String(data: data, encoding: .utf8) ?? ""
 	}

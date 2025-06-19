@@ -54,6 +54,10 @@ public enum MTGColor: String, Codable, CaseIterable, Sendable {
 			return "colorless"
 		}
 	}
+  
+  public static var allColors: [MTGColor] {
+    [.white, .blue, .black, .red, .green]
+  }
 	
 	public var orderNumber: Int? {
 		switch self {

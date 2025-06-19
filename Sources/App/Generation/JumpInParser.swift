@@ -307,9 +307,6 @@ extension JumpInParser {
   }
 
   func addLands(packetA: Packet, set1: String, packetB: Packet, set2: String) async throws -> String {
-    let colorsA = Set(packetA.colors)
-    let colorsB = Set(packetB.colors)
-
     var deckCards = packetA.generateDeckList().split(separator: "\n").map { "\($0) (\(packetA.setCode.uppercased()))" }
     + packetB.generateDeckList().split(separator: "\n").map { "\($0) (\(packetB.setCode.uppercased()))" }
 
@@ -350,7 +347,7 @@ extension JumpInParser {
       return MTGCard(wilds)
     }()
     
-    for (colors, count) in duals.shuffled() {
+    for (colors, count) in duals {
       guard totalQuantity < 40 else { break }
       let count = min(count, 40 - totalQuantity)
       let card = availableDuals.first(where: { Set($0.producedMana ?? []) == Set(colors) }) ?? fiveColor
@@ -360,10 +357,11 @@ extension JumpInParser {
       }
     }
 
-    for (color, count) in basics.shuffled() {
+    for (color, count) in basics.sorted(by: { $0.value < $1.value }) {
       guard let land = color.land else { continue }
       guard totalQuantity < 40 else { break }
-      let count = min(count, 40 - totalQuantity)
+      // In a dual color deck, at least five basics of each color are added.
+      let count = min(Set(packetA.colors + packetB.colors).count == 2 ? max(count, 5) : count, 40 - totalQuantity)
       cardCounts.append(.init(identifier: .nameSet(name: land.capitalized, set: set1.uppercased()), count: count))
       deckCards.append("\(count) \(land.capitalized) (\(set1.uppercased()))")
     }
@@ -397,13 +395,11 @@ extension JumpInParser {
           duals[Set([array[i], array[j]]), default: 0] += 1
         }
       }
-      duals[Set(MTGColor.allColors), default: 0] += 1
     }
 
     func addTwoColorDuals(_ colors: Set<MTGColor>) {
       if colors.count == 2 {
-        duals[colors, default: 0] += 3
-        duals[Set(MTGColor.allColors), default: 0] += 1
+        duals[colors, default: 0] += 2
       }
     }
 

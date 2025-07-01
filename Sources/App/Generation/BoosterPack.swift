@@ -2703,7 +2703,7 @@ fileprivate struct CardInfo {
             self.backIsHidden = true
             
             self.faceURL = faceURL
-        } else if (card.layout == "transform" || card.layout == "modal_dfc"), let faces = card.cardFaces, faces.count >= 2, let faceURL = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"], let backFaceURL = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
+        } else if (card.layout.contains("transform") || card.layout.contains("dfc") || card.layout == "modal_dfc"), let faces = card.cardFaces, faces.count >= 2, let faceURL = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"], let backFaceURL = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
 			self.backURL = backURL
 			
 			let frontName = faces[0].name ?? ""
@@ -5585,7 +5585,7 @@ func simpleJsonOutput(cards: CardCollection) throws -> String {
 	
 	let simpleJson: [SimpleJsonCard] = cards.cards.map { card in
 		let back: SimpleJsonCard.Back? = {
-			guard let faces = card.card.cardFaces, faces.count == 2, card.card.layout == "transform" || card.card.layout == "modal_dfc" || card.card.layout == "double_faced_token" || card.card.layout == "double_sided" else { return nil }
+      guard let faces = card.card.cardFaces, faces.count == 2, card.card.layout.contains("transform") || card.card.layout.contains("dfc") || card.card.layout == "modal_dfc" || card.card.layout == "double_faced_token" || card.card.layout == "double_sided" else { return nil }
 			let back = faces[1]
 			
 			return SimpleJsonCard.Back(name: back.name ?? "", imageURL: back.imageUris?["normal"] ?? back.imageUris?["large"])

@@ -374,51 +374,141 @@ extension DraftmancerCard {
       }
     }()
     
-    return .init(
-      scryfallID: UUID(),
-      oracleID: nil,
-      typeLine: typeLine,
-      power: self.power,
-      toughness: self.toughness,
-      oracleText: self.oracleText,
-      flavorText: nil,
-      name: self.name,
-      flavorName: self.flavorName,
-      loyalty: self.loyalty,
-      cardFaces: nil, // Back faces and split cards not supported yet
-      convertedManaCost: nil,
-      layout: self.layout ?? (self.type.lowercased().contains("token") ? "token" : self.type.lowercased().contains("emblem") ? "emblem" : "normal"),
-      frame: "",
-      frameEffects: nil,
-      manaCost: self.manaCost,
-      scryfallURL: nil,
-      borderColor: nil,
-      isFullArt: false,
-      allParts: relatedCards,
-      collectorNumber: self.collectorNumber ?? "",
-      set: self.set ?? "",
-      colors: self.colors?.compactMap(MTGColor.init(rawValue:)),
-      producedMana: nil,
-      colorIdentity: nil,
-      keywords: self.keywords,
-      printedName: nil,
-      printedText: nil,
-      printedTypeLine: nil,
-      artist: nil,
-      watermark: nil,
-      rarity: rarity,
-      scryfallCardBackID: nil,
-      isFoilAvailable: true,
-      isNonFoilAvailable: true,
-      isPromo: false,
-      isFoundInBoosters: true,
-      finishes: [.nonfoil],
-      promoTypes: nil,
-      language: .english,
-      releaseDate: nil,
-      isTextless: false,
-      imageUris: imageURIs
-    )
+    if let back, let layout, layout.lowercased().contains("transform") || layout.lowercased().contains("dfc") || layout.lowercased().contains("double_sided") {
+      var backImageUris: [String: URL]?
+      
+      if let image = back.image ?? back.imageUris?["en"] {
+        backImageUris = [
+          "normal": image,
+          "large": image
+        ]
+      }
+      
+      var backTypeLine = back.type
+      if let subtypes = back.subtypes {
+        backTypeLine += " — \(subtypes.joined(separator: " "))"
+      }
+      
+      let backFace = MTGCard.Face(
+        typeLine: typeLine,
+        power: back.power,
+        toughness: back.toughness,
+        oracleText: oracleText,
+        flavorText: nil,
+        name: back.name,
+        loyalty: back.loyalty,
+        manaCost: nil,
+        colors: nil,
+        watermark: nil,
+        imageUris: backImageUris
+      )
+      
+      let frontFace = MTGCard.Face.init(
+        typeLine: typeLine,
+        power: self.power,
+        toughness: self.toughness,
+        oracleText: self.oracleText,
+        flavorText: nil,
+        name: self.name,
+        loyalty: self.loyalty,
+        manaCost: self.manaCost,
+        colors: self.colors?.compactMap(MTGColor.init(rawValue:)),
+        watermark: nil,
+        imageUris: imageURIs
+      )
+      
+      return .init(
+        scryfallID: UUID(),
+        oracleID: nil,
+        typeLine: "\(typeLine) // \(backTypeLine)",
+        power: nil,
+        toughness: nil,
+        oracleText: "\(self.oracleText ?? "")\n//\n\(back.oracleText ?? "")",
+        flavorText: nil,
+        name: "\(name) // \(back.name)",
+        flavorName: nil,
+        loyalty: nil,
+        cardFaces: [frontFace, backFace],
+        convertedManaCost: nil,
+        layout: self.layout ?? (self.type.lowercased().contains("token") ? "token" : self.type.lowercased().contains("emblem") ? "emblem" : "normal"),
+        frame: "",
+        frameEffects: nil,
+        manaCost: self.manaCost,
+        scryfallURL: nil,
+        borderColor: nil,
+        isFullArt: false,
+        allParts: relatedCards,
+        collectorNumber: self.collectorNumber ?? "",
+        set: self.set ?? "",
+        colors: nil,
+        producedMana: nil,
+        colorIdentity: nil,
+        keywords: self.keywords,
+        printedName: nil,
+        printedText: nil,
+        printedTypeLine: nil,
+        artist: nil,
+        watermark: nil,
+        rarity: rarity,
+        scryfallCardBackID: nil,
+        isFoilAvailable: true,
+        isNonFoilAvailable: true,
+        isPromo: false,
+        isFoundInBoosters: true,
+        finishes: [.nonfoil],
+        promoTypes: nil,
+        language: .english,
+        releaseDate: nil,
+        isTextless: false,
+        imageUris: nil
+      )
+    } else {
+      return .init(
+        scryfallID: UUID(),
+        oracleID: nil,
+        typeLine: typeLine,
+        power: self.power,
+        toughness: self.toughness,
+        oracleText: self.oracleText,
+        flavorText: nil,
+        name: self.name,
+        flavorName: self.flavorName,
+        loyalty: self.loyalty,
+        cardFaces: nil, // Back faces and split cards not supported yet
+        convertedManaCost: nil,
+        layout: self.layout ?? (self.type.lowercased().contains("token") ? "token" : self.type.lowercased().contains("emblem") ? "emblem" : "normal"),
+        frame: "",
+        frameEffects: nil,
+        manaCost: self.manaCost,
+        scryfallURL: nil,
+        borderColor: nil,
+        isFullArt: false,
+        allParts: relatedCards,
+        collectorNumber: self.collectorNumber ?? "",
+        set: self.set ?? "",
+        colors: self.colors?.compactMap(MTGColor.init(rawValue:)),
+        producedMana: nil,
+        colorIdentity: nil,
+        keywords: self.keywords,
+        printedName: nil,
+        printedText: nil,
+        printedTypeLine: nil,
+        artist: nil,
+        watermark: nil,
+        rarity: rarity,
+        scryfallCardBackID: nil,
+        isFoilAvailable: true,
+        isNonFoilAvailable: true,
+        isPromo: false,
+        isFoundInBoosters: true,
+        finishes: [.nonfoil],
+        promoTypes: nil,
+        language: .english,
+        releaseDate: nil,
+        isTextless: false,
+        imageUris: imageURIs
+      )
+    }
   }
 }
 
@@ -629,6 +719,12 @@ actor DraftmancerSetCache {
       } ?? []
       
       draftmancerSets.append(contentsOf: fromManifesto)
+      
+      let fromMSE: [DraftmancerSet] = loadedMSESets?.map {
+        DraftmancerSet(mseSet: $0)
+      } ?? []
+      
+      draftmancerSets.append(contentsOf: fromMSE)
       
       // Fill in missing sets and collector numbers
       var usedCollectorNumbersForSets: [String: Set<Int>] = [:]
@@ -1090,9 +1186,45 @@ extension DraftmancerSet {
     
     guard isDraftable else {
       // If the set isn't draftable, just include all the cards in one slot so they can be viewed on Draftmancer, at least.
+      var cards = cards
+      let tokens = cards.separateAll(where: { $0.layout == "token" })
+      let basics = cards.separateAll(where: { $0.type.lowercased().contains("basic") })
+      
       draftmancerString += "\n[DefaultSlot]\n"
       for card in cards {
         draftmancerString += [card.name, card.set.flatMap { "(\($0.uppercased()))" }, card.collectorNumber].compactMap{ $0 }.joined(separator: " ") + "\n"
+      }
+      
+      if !basics.isEmpty {
+        draftmancerString += "\n[Basic Lands]\n"
+        for card in basics {
+          draftmancerString += [card.name, card.set.flatMap { "(\($0.uppercased()))" }, card.collectorNumber].compactMap{ $0 }.joined(separator: " ") + "\n"
+        }
+      }
+      
+      if !tokens.isEmpty {
+        draftmancerString += "\n[Tokens]\n"
+        for card in tokens {
+          draftmancerString += [card.name, card.set.flatMap { "(\($0.uppercased()))" }, card.collectorNumber].compactMap{ $0 }.joined(separator: " ") + "\n"
+        }
+      }
+      
+      if !basics.isEmpty || !tokens.isEmpty {
+        let settings = """
+        [Settings]
+        {
+          "layouts": {
+            "Default": {
+              "weight": 1,
+              "slots": [
+                { "name": "DefaultSlot", "count": 15 },
+              ]
+            }
+          }
+        }
+        
+        """
+        draftmancerString = settings + draftmancerString
       }
       
       return draftmancerString
@@ -1245,3 +1377,201 @@ let loadedCockatriceDatabases: [CockatriceCardDatabase]? = {
     }
   }
 }()
+
+// MARK: MSE
+
+struct MSESet: Codable {
+  let cards: [MSECard]
+  var name: String?
+}
+
+struct MSECard: Codable {
+  let cardName: String
+  let color: String?
+  let rarity: String
+  let type: String
+  let number: Int
+  let colorIdentity: String
+  let cost: String?
+  let rulesText: String?
+  let flavorText: String?
+  let pt: String?
+  let specialText: String?
+  let shape: String
+  let set: String
+  let loyalty: String?
+  let artist: String
+  let notes: String?
+  let imageType: String
+  
+  // Back face or Adventure side
+  let cardName2: String?
+  let color2: String?
+  let type2: String?
+  let cost2: String?
+  let rulesText2: String?
+  let flavorText2: String?
+  let pt2: String?
+  let specialText2: String?
+  let loyalty2: String?
+  let artist2: String?
+}
+
+func fixManaCost(_ cost: String) -> String {
+  let pattern = #"(?<=\{)([A-Z]{2})(?=\})"#
+  guard let regex = try? NSRegularExpression(pattern: pattern) else { return cost }
+
+  let nsrange = NSRange(cost.startIndex..<cost.endIndex, in: cost)
+  var fixed = cost
+
+  // Work from end to start to avoid messing up ranges after replacements
+  for match in regex.matches(in: cost, options: [], range: nsrange).reversed() {
+    guard let range = Range(match.range(at: 1), in: cost) else { continue }
+    let symbol = cost[range]
+
+    // Skip if symbol is numeric (e.g. "10", "20", etc.)
+    if Int(symbol) != nil { continue }
+
+    // Insert slash between the characters (e.g. "CW" -> "C/W")
+    let fixedSymbol = "\(symbol.prefix(1))/\(symbol.suffix(1))"
+    fixed.replaceSubrange(range, with: fixedSymbol)
+  }
+
+  return fixed
+}
+
+extension DraftmancerCard {
+  init?(mseCard card: MSECard) {
+    guard let cost = card.cost else { return nil }
+    
+    let fixedCost = fixManaCost(cost)
+    
+    let isDFC = card.shape.contains("transform")
+    
+    let typeParts = card.type.components(separatedBy: " — ")
+    let type = typeParts.first ?? card.type
+    let subtypes = typeParts.count > 1 ? typeParts[1].components(separatedBy: " ") : nil
+    
+    let rarity: Rarity? = {
+      switch card.rarity.lowercased() {
+      case "common": return .common
+      case "uncommon": return .uncommon
+      case "rare": return .rare
+      case "mythic": return .mythic
+      case "special": return .special
+      case "cube": return .special
+      default: return nil
+      }
+    }()
+    
+    func imageURL(isBack: Bool = false) -> URL? {
+      guard let name = card.cardName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
+            let set = card.set.uppercased().addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
+      else { return nil }
+      
+      var string = "https://capitalich.github.io/sets/\(set)-files/img/\(card.number)"
+      
+      if card.shape == "token" {
+        string += "t"
+      }
+      
+      string += "_\(name)"
+      
+      if isDFC {
+        string += (isBack ? "_back" : "_front")
+      }
+      
+      string += ".png"
+      
+      return URL(string: string)
+    }
+    
+    guard let frontURL = imageURL() else { return nil }
+    
+    let (power, toughness): (String?, String?) = card.pt.flatMap {
+      guard $0.contains("/") else { return (nil, nil) }
+      var components = $0.components(separatedBy: "/")
+      return (components[0], components[1])
+    } ?? (nil, nil)
+    
+    let (power2, toughness2): (String?, String?) = card.pt2.flatMap {
+      guard $0.contains("/") else { return (nil, nil) }
+      var components = $0.components(separatedBy: "/")
+      return (components[0], components[1])
+    } ?? (nil, nil)
+    
+    self.init(
+      name: card.cardName,
+      flavorName: nil,
+      manaCost: fixedCost,
+      type: type,
+      imageUris: ["en": frontURL],
+      colors: card.color.flatMap { Array($0).map(String.init) },
+      artist: card.artist,
+      printedNames: nil,
+      image: imageURL(),
+      set: card.shape == "token" ? "T\(card.set)" : card.set,
+      collectorNumber: String(card.number),
+      rarity: rarity,
+      subtypes: subtypes,
+      rating: nil,
+      layout: card.shape,
+      back: isDFC ? DraftmancerCard.Face(
+        name: card.cardName2 ?? "",
+        image: imageURL(isBack: true),
+        type: card.type2 ?? "",
+        oracleText: card.rulesText2,
+        power: power2,
+        toughness: toughness2,
+        loyalty: card.loyalty2,
+        keywords: []
+      ) : nil,
+      relatedCards: nil,
+      relatedCardIdentifiers: nil,
+      draftEffects: nil,
+      power: power,
+      toughness: toughness,
+      oracleText: card.rulesText,
+      loyalty: card.loyalty,
+      keywords: []
+    )
+  }
+}
+
+let loadedMSESets: [MSESet]? = {
+  guard let urls = try? urlsForResources(withExtension: "json", subdirectory: "MSE Set Hub") else { return nil }
+  
+  let decoder = JSONDecoder()
+  decoder.keyDecodingStrategy = .convertFromSnakeCase
+  
+  return urls.compactMap { url in
+    do {
+      guard let data = try? Data(contentsOf: url) else { return nil }
+      var set = try decoder.decode(MSESet.self, from: data)
+      set.name = url.deletingPathExtension().lastPathComponent
+      
+      print("✅ Loaded \(set.cards.count) MSE cards from \(url.lastPathComponent)")
+      return set
+    } catch {
+      print("‼️ Error loading Cockatrice cards:", error)
+      return nil
+    }
+  }
+}()
+
+extension DraftmancerSet {
+  init(mseSet: MSESet) {
+    let cards: [DraftmancerCard] = mseSet.cards.compactMap { card in
+      guard let c = DraftmancerCard(mseCard: card) else {
+        print("Couldn't load Draftmancer card for \(card.cardName)")
+        return nil
+      }
+      return c
+    }
+    
+    self.init(
+      cards: cards,
+      name: mseSet.name ?? ""
+    )
+  }
+}

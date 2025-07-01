@@ -720,11 +720,18 @@ actor DraftmancerSetCache {
       
       draftmancerSets.append(contentsOf: fromManifesto)
       
-      let fromMSE: [DraftmancerSet] = loadedMSESets?.map {
-        DraftmancerSet(mseSet: $0)
-      } ?? []
-      
-      draftmancerSets.append(contentsOf: fromMSE)
+      let cubeURL = URL(string: "https://capitalich.github.io/lists/all-cards.json")!
+      if let data = try? await URLSession.shared.data(from: cubeURL).0, let adventureTimeCube = try? decoder.decode(MSESet.self, from: data) {
+        var set = DraftmancerSet(mseSet: adventureTimeCube)
+        set.name = "Adventure Time Cube"
+        draftmancerSets.append(set)
+      } else {
+        let fromMSE: [DraftmancerSet] = loadedMSESets?.map {
+          DraftmancerSet(mseSet: $0)
+        } ?? []
+        
+        draftmancerSets.append(contentsOf: fromMSE)
+      }
       
       // Fill in missing sets and collector numbers
       var usedCollectorNumbersForSets: [String: Set<Int>] = [:]
@@ -1465,7 +1472,7 @@ extension DraftmancerCard {
     }()
     
     func imageURL(isBack: Bool = false) -> URL? {
-      guard let name = card.cardName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
+      guard let name = card.cardName.trimmingCharacters(in: .whitespacesAndNewlines).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
             let set = card.set.uppercased().addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
       else { return nil }
       
@@ -1490,18 +1497,18 @@ extension DraftmancerCard {
     
     let (power, toughness): (String?, String?) = card.pt.flatMap {
       guard $0.contains("/") else { return (nil, nil) }
-      var components = $0.components(separatedBy: "/")
+      let components = $0.components(separatedBy: "/")
       return (components[0], components[1])
     } ?? (nil, nil)
     
     let (power2, toughness2): (String?, String?) = card.pt2.flatMap {
       guard $0.contains("/") else { return (nil, nil) }
-      var components = $0.components(separatedBy: "/")
+      let components = $0.components(separatedBy: "/")
       return (components[0], components[1])
     } ?? (nil, nil)
     
     self.init(
-      name: card.cardName,
+      name: card.cardName.trimmingCharacters(in: .whitespacesAndNewlines),
       flavorName: nil,
       manaCost: fixedCost,
       type: type,
@@ -1517,7 +1524,7 @@ extension DraftmancerCard {
       rating: nil,
       layout: card.shape,
       back: isDFC ? DraftmancerCard.Face(
-        name: card.cardName2 ?? "",
+        name: card.cardName2?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
         image: imageURL(isBack: true),
         type: card.type2 ?? "",
         oracleText: card.rulesText2,

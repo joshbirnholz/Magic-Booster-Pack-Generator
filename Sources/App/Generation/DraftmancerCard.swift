@@ -1187,7 +1187,7 @@ extension DraftmancerSet {
     guard isDraftable else {
       // If the set isn't draftable, just include all the cards in one slot so they can be viewed on Draftmancer, at least.
       var cards = cards
-      let tokens = cards.separateAll(where: { $0.layout == "token" })
+      let tokens = cards.separateAll(where: { $0.layout == "token" || $0.type.lowercased().contains("token") })
       let basics = cards.separateAll(where: { $0.type.lowercased().contains("basic") })
       
       draftmancerString += "\n[DefaultSlot]\n"

@@ -1517,7 +1517,7 @@ extension DraftmancerCard {
       artist: card.artist,
       printedNames: nil,
       image: imageURL(),
-      set: card.shape == "token" ? "T\(card.set)" : card.set,
+      set: (card.shape == "token" || type.lowercased().contains("token")) ? "T\(card.set)" : card.set,
       collectorNumber: String(card.number),
       rarity: rarity,
       subtypes: subtypes,

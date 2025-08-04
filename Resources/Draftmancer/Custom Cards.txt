@@ -1,6 +1,31 @@
 [CustomCards]
 [
   {
+    "image" : "https://i.imgur.com/J0LsiPp.png",
+    "mana_cost" : "{2}{U}",
+    "name" : "Steal",
+    "rarity" : "uncommon",
+    "subtypes" : [],
+    "type" : "Sorcery",
+    "oracle_text": "Gain control of target Eqiupment. Create a 1/1 colorless Hero creature token and attach that Equipment to it.",
+    "flavor_text": "“It’s a little tight, but the price was right!”"
+  },
+  {
+    "name": "Lotus Cobra",
+    "front": "https://i.imgur.com/5Aa3l3k.jpeg",
+    "flavor_name": "Dreaming Kshatriya"
+  },
+  {
+    "name": "Tireless Provisioner",
+    "front": "https://i.imgur.com/6JO72E0.jpeg",
+    "flavor_name": "Disciples of the Hand"
+  },
+  {
+    "name": "Fabled Passage",
+    "front": "https://i.imgur.com/4KiORBZ.jpeg",
+    "flavor_name": "Il Mheg, Fairy Kingdom"
+  },
+  {
     "name": "Ardbert, Warrior of Darkness",
     "front": "https://i.imgur.com/RYaIlP4.jpeg"
   },

@@ -12,7 +12,7 @@
   },
   {
     "name": "Lotus Cobra",
-    "front": "https://i.imgur.com/5Aa3l3k.jpeg",
+    "front": "https://i.imgur.com/JLJLQt0.jpeg",
     "flavor_name": "Dreaming Kshatriya"
   },
   {
@@ -22,7 +22,7 @@
   },
   {
     "name": "Fabled Passage",
-    "front": "https://i.imgur.com/4KiORBZ.jpeg",
+    "front": "https://i.imgur.com/65ms1gY.jpeg",
     "flavor_name": "Il Mheg, Fairy Kingdom"
   },
   {

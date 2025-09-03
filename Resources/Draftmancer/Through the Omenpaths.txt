@@ -1,0 +1,17 @@
+[CustomCards]
+[
+  {
+    "name": "The Soul Stone",
+    "front": "https://i.imgur.com/yI6PQhH.jpeg",
+    "flavor_name": "The Terminus of Return",
+    "set": "OM1",
+    "collector_number": "66"
+  },
+  {
+    "name": "Spider-Punk",
+    "front": "https://i.imgur.com/myYpPyi.jpeg",
+    "flavor_name": "Kraza, the Swarm as One",
+    "set": "OM1",
+    "collector_number": "92"
+  }
+]

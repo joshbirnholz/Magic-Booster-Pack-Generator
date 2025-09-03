@@ -12,8 +12,8 @@
   },
   {
     "name": "Lotus Cobra",
-    "front": "https://i.imgur.com/JLJLQt0.jpeg",
-    "flavor_name": "Dreaming Kshatriya"
+    "front": "https://i.imgur.com/ttEuKxQ.jpeg",
+    "flavor_name": "Marilith"
   },
   {
     "name": "Tireless Provisioner",

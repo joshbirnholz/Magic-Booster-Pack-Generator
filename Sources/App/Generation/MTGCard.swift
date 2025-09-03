@@ -44,6 +44,8 @@ public struct MTGCard: Codable, Equatable, Hashable, Sendable {
 		public var oracleText: String?
 		public var flavorText: String?
 		public var name: String?
+    public var printedName: String?
+    public var flavorName: String?
 		public var loyalty: String?
 		public var manaCost: String?
 		public var colors: [MTGColor]?

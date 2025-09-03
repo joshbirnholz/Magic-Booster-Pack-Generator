@@ -2650,52 +2650,28 @@ fileprivate struct CardInfo {
 		let backURL: URL = URL(string: "https://backs.scryfall.io/normal/\(first)/\(second)/\(backIDString).jpg")!
         
         var description = ""
-		
-		/* if card.layout == "transform", let faces = card.cardFaces, faces.count == 2,
-			let front = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"],
-			let back = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
-			let frontName = faces[0].name ?? ""
-			let backName = faces[1].name ?? ""
-			
-			self.faceURL = front
-			self.backURL = Self.defaultBack
-			self.nickname = frontName
-			self.description = "// \(backName)"
-			
-			var backState = CardInfo(faceURL: back, backURL: front, nickname: backName, description: "// \(frontName)", sideways: false)
-			backState.state = 2
-			otherStates = [backState]
-			self.state = 1
-			self.sideways = false
-			
-			self.backIsHidden = true
-		} else if card.layout == "meld", let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"], let result = card.allParts?.first(where: { $0.name != card.name && $0.component == .meldResult }), let backURL = URL(string: "https://img.scryfall.com/card_backs/image/normal/\(card.scryfallCardBackID.uuidString.lowercased().prefix(2))/\(card.scryfallCardBackID.uuidString.lowercased()).jpg") {
-			let frontName = card.name ?? ""
-			let backName = result.name
-			
-			self.backURL = Self.defaultBack
-			self.nickname = frontName
-			self.backIsHidden = true
-			self.faceURL = faceURL
-			self.description = "// \(backName)"
-			self.sideways = false
-			
-			var backState = CardInfo(faceURL: backURL, backURL: faceURL, nickname: backName, description: "// \(frontName)", sideways: true, backIsHidden: true)
-			backState.state = 2
-			self.otherStates = [backState]
-			self.state = 1
-			
-		} else */
         
         if (card.layout == "reversible_card"), let faces = card.cardFaces, faces.count >= 2, let faceURL = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"], let backFaceURL = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
             self.backURL = backURL
             
-            let frontName = faces[0].name ?? ""
-            let backName = faces[1].name ?? ""
+            let frontName = Self.makeNickname(name: faces[0].name, flavorName: faces[0].flavorName, printedName: faces[0].printedName, language: card.language)
+            let backName = Self.makeNickname(name: faces[1].name, flavorName: faces[1].flavorName, printedName: faces[1].printedName, language: card.language)
             
             self.nickname = frontName
+          
+            if let name = faces[0].name, frontName != name {
+              description = "(\(name))"
+            }
+          
+            let backDescription: String = {
+              if let name = faces[1].name, backName != name {
+                return "(\(name))"
+              } else {
+                return ""
+              }
+            }()
             
-            var backState = CardInfo(faceURL: backFaceURL, backURL: Self.defaultBack, nickname: backName, description: "", sideways: false)
+            var backState = CardInfo(faceURL: backFaceURL, backURL: Self.defaultBack, nickname: backName, description: backDescription, sideways: false)
             backState.state = 2
             otherStates = [backState]
             self.state = 1
@@ -2706,10 +2682,10 @@ fileprivate struct CardInfo {
         } else if (card.layout.contains("transform") || card.layout.contains("dfc") || card.layout == "modal_dfc"), let faces = card.cardFaces, faces.count >= 2, let faceURL = faces[0].imageUris?["normal"] ?? faces[0].imageUris?["large"], let backFaceURL = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
 			self.backURL = backURL
 			
-			let frontName = faces[0].name ?? ""
-			let backName = faces[1].name ?? ""
+			let frontName = Self.makeNickname(name: faces[0].name, flavorName: faces[0].flavorName, printedName: faces[0].printedName, language: card.language)
+			let backName = Self.makeNickname(name: faces[1].name, flavorName: faces[1].flavorName, printedName: faces[1].printedName, language: card.language)
 			
-			self.nickname = frontName
+      self.nickname = frontName
 			description = "// \(backName)"
 			
 			var backState = CardInfo(faceURL: backFaceURL, backURL: Self.defaultBack, nickname: backName, description: "// \(frontName)", sideways: false)
@@ -2724,13 +2700,7 @@ fileprivate struct CardInfo {
 			
 			self.backURL = Self.defaultBack
 			
-            let frontName: String = {
-                if card.language == .phyrexian {
-                    return card.name ?? ""
-                } else {
-                    return card.printedName ?? card.name ?? ""
-                }
-            }()
+      let frontName = Self.makeNickname(name: card.name, flavorName: card.flavorName, printedName: card.printedName, language: card.language)
 			let backName = result.name
 			
 			self.nickname = frontName
@@ -2745,37 +2715,19 @@ fileprivate struct CardInfo {
 			
 			self.faceURL = faceURL
 			
-		}/* else if let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"], card.layout == "meld", let result = card.allParts?.first(where: { $0.name != card.name && $0.component == .meldResult }), let backFaceURL = URL(string: "https://img.scryfall.com/card_backs/image/normal/\(backID.uuidString.lowercased().prefix(2))/\(backID.uuidString.lowercased()).jpg") {
-			self.backURL = backURL
-			
-			let frontName = card.name ?? ""
-			let backName = result.name
-			
-			self.nickname = frontName
-			self.description = "// \(backName)"
-			
-			var backState = CardInfo(faceURL: backFaceURL, backURL: Self.defaultBack, nickname: backName, description: "// \(frontName)", sideways: false)
-			backState.state = 2
-			otherStates = [backState]
-			self.state = 1
-			self.sideways = false
-			self.backIsHidden = true
-			
-			self.faceURL = faceURL
-		}*/ else if let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"] ?? card.cardFaces?.first?.imageUris?["normal"] ?? card.cardFaces?.first?.imageUris?["large"]  {
+		} else if let faceURL = card.imageUris?["normal"] ?? card.imageUris?["large"] ?? card.cardFaces?.first?.imageUris?["normal"] ?? card.cardFaces?.first?.imageUris?["large"]  {
 			self.faceURL = faceURL
 			if card.layout == "double_faced_token", let faces = card.cardFaces, faces.count >= 2, let backFaceURL = faces[1].imageUris?["normal"] ?? faces[1].imageUris?["large"] {
 				self.backURL = backFaceURL
-				self.nickname = "\(faces[0].name ?? "") // \(faces[1].name ?? "")"
+        self.nickname = "\(faces[0].flavorName ?? faces[0].name ?? "") // \(faces[1].flavorName ?? faces[1].name ?? "")"
 			} else {
 				self.backURL = backURL
-				self.nickname = {
-                    if card.language == .phyrexian {
-                        return card.name ?? ""
-                    } else {
-                        return card.printedName ?? card.name ?? ""
-                    }
-                }()
+        self.nickname = Self.makeNickname(name: card.name, flavorName: card.flavorName, printedName: card.printedName, language: card.language)
+        
+        if let name = card.name, self.nickname != name {
+          description = "(\(name))"
+        }
+        
 				self.backIsHidden = true
 			}
 			self.otherStates = []
@@ -2783,18 +2735,6 @@ fileprivate struct CardInfo {
 			self.backIsHidden = !(card.layout.contains("token") || card.layout == "emblem")
 			
 			self.sideways = false
-			
-//			if card.layout == "split" {
-//				if card.keywords.contains("Aftermath") {
-//					self.sideways = false
-//				} else if card.set == "cmb1" || card.set == "cmb2" {
-//					self.sideways = false
-//				} else {
-//					self.sideways = true
-//				}
-//			} else {
-//				self.sideways = false
-//			}
 		} else {
 			return nil
 		}
@@ -2806,30 +2746,38 @@ fileprivate struct CardInfo {
 		self.num = num
         
     if card.language != .english || card.isTextless, let typeLine = card.typeLine, let oracleText = card.oracleText {
-            if !description.isEmpty {
-                description += "\n\n"
-            }
-            
-            description += "\(typeLine)\n\n\(oracleText)"
-            
-            if let power = card.power, let toughness = card.toughness {
-                if !oracleText.isEmpty {
-                    description += "\n\n"
-                }
-                description += "\(power)/\(toughness)"
-            }
-            
-            if let loyalty = card.loyalty {
-                if !oracleText.isEmpty {
-                    description += "\n\n"
-                }
-                description += "Loyalty: \(loyalty)"
-            }
+      if !description.isEmpty {
+        description += "\n\n"
+      }
+      
+      description += "\(typeLine)\n\n\(oracleText)"
+      
+      if let power = card.power, let toughness = card.toughness {
+        if !oracleText.isEmpty {
+          description += "\n\n"
         }
-        
-        description = description.replacingOccurrences(of: "\n", with: "\\n")
-        self.description = description
-	}
+        description += "\(power)/\(toughness)"
+      }
+      
+      if let loyalty = card.loyalty {
+        if !oracleText.isEmpty {
+          description += "\n\n"
+        }
+        description += "Loyalty: \(loyalty)"
+      }
+    }
+    
+    description = description.replacingOccurrences(of: "\n", with: "\\n")
+    self.description = description
+  }
+  
+  static func makeNickname(name: String?, flavorName: String?, printedName: String?, language: MTGCard.Language) -> String {
+    if language == .phyrexian {
+        return flavorName ?? name ?? ""
+    } else {
+        return printedName ?? flavorName ?? name ?? ""
+    }
+  }
 	
 	enum Difference {
 		case powerToughness

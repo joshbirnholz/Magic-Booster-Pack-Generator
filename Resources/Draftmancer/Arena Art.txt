@@ -1,0 +1,9 @@
+[CustomCards]
+[
+  {
+    "name": "Villainous Wealth",
+    "front": "https://i.imgur.com/hUL4VuJ.jpeg",
+    "set": "KTK",
+    "collector_number": "211y"
+  }
+]

@@ -623,6 +623,7 @@ actor DraftmancerSetCache {
             let front: URL
             let back: URL?
             let set: String?
+            let collectorNumber: String?
           }
           
           enum DraftmancerDecodable: Decodable {
@@ -665,7 +666,7 @@ actor DraftmancerSetCache {
                   }
                   
                   var draftmancerCard = await DraftmancerCard(mtgCard: mtgCard)
-                  draftmancerCard.collectorNumber = nil
+                  draftmancerCard.collectorNumber = quick.collectorNumber
                   draftmancerCard.flavorName = quick.flavorName
                   draftmancerCard.set = quick.set
                   draftmancerCard.artist = nil

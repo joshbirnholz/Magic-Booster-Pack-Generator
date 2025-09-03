@@ -6521,6 +6521,42 @@ extension MTGCard {
 //  return ""
 //}
 
+fileprivate func getCustomCards(_ notFound: inout [MTGCardIdentifier], _ mtgCards: inout [MTGCard], _ identifiers: inout [MTGCardIdentifier], _ draftmancerCards: [MTGCard], _ autofix: Bool) {
+  let identifiersToTry = notFound
+  for identifier in identifiersToTry {
+    func handle(card: MTGCard) {
+      if let index = mtgCards.firstIndex(where: { $0.isIdentified(by: identifier) }) {
+        mtgCards[index] = card
+      } else {
+        
+        mtgCards.append(card)
+        
+        if let index = notFound.firstIndex(of: identifier) {
+          notFound.remove(at: index)
+        }
+        if let index = identifiers.firstIndex(of: identifier) {
+          identifiers.remove(at: index)
+          identifiers.append(identifier)
+        }
+      }
+    }
+    
+    if let card = draftmancerCards[identifier] {
+      guard autofix else {
+        handle(card: card)
+        continue
+      }
+      if case .collectorNumberSet(let collectorNumber, let set, let name) = identifier, name == nil, let originalIdentifier = identifiers.first(where: { $0.collectorNumber == collectorNumber && $0.set == set }), let originalName = originalIdentifier.name, card.name != originalName, let replacementCard = draftmancerCards[.nameSet(name: originalName, set: set)] {
+        // Fix for cards from draftmancer with valid set code but incorrect collector number.
+        // Eg turns "Plains (HLW) 1" into "Plains (HLW)"
+        handle(card: replacementCard)
+      } else {
+        handle(card: card)
+      }
+    }
+  }
+}
+
 func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil, direct: Bool = false) async throws -> String {
 	enum CustomOverride {
 		case identifiers(String)
@@ -6616,36 +6652,20 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
   var mtgCards: [MTGCard] = Array(collections.map(\.data).joined()).map(MTGCard.init)
 	var notFound: [MTGCardIdentifier] = Array(collections.compactMap(\.notFound).joined())
   
+  var arenaOnlyIdentifiers: [MTGCardIdentifier] = mtgCards.enumerated().compactMap {
+    $1.games.contains("arena") && !$1.games.contains("paper") ? identifiers[$0] : nil
+  }
+  
+  print(arenaOnlyIdentifiers)
+  
+  // Replace Arena cards with better-looking versions
+  if !arenaOnlyIdentifiers.isEmpty, let draftmancerCards = await DraftmancerSetCache.shared.loadedDraftmancerCards {
+    getCustomCards(&arenaOnlyIdentifiers, &mtgCards, &identifiers, draftmancerCards, autofix)
+  }
+  
   // Custom cards from Draftmancer
   if !notFound.isEmpty, let draftmancerCards = await DraftmancerSetCache.shared.loadedDraftmancerCards {
-    let identifiersToTry = notFound
-    for identifier in identifiersToTry {
-      func handle(card: MTGCard) {
-        mtgCards.append(card)
-        
-        if let index = notFound.firstIndex(of: identifier) {
-          notFound.remove(at: index)
-        }
-        if let index = identifiers.firstIndex(of: identifier) {
-          identifiers.remove(at: index)
-          identifiers.append(identifier)
-        }
-      }
-      
-      if let card = draftmancerCards[identifier] {
-        guard autofix else {
-          handle(card: card)
-          continue
-        }
-        if case .collectorNumberSet(let collectorNumber, let set, let name) = identifier, name == nil, let originalIdentifier = identifiers.first(where: { $0.collectorNumber == collectorNumber && $0.set == set }), let originalName = originalIdentifier.name, card.name != originalName, let replacementCard = draftmancerCards[.nameSet(name: originalName, set: set)] {
-          // Fix for cards from draftmancer with valid set code but incorrect collector number.
-          // Eg turns "Plains (HLW) 1" into "Plains (HLW)"
-          handle(card: replacementCard)
-        } else {
-          handle(card: card)
-        }
-      }
-    }
+    getCustomCards(&notFound, &mtgCards, &identifiers, draftmancerCards, autofix)
   }
 	
 	// First round of retries: Remove incorrect collector numbers

@@ -196,6 +196,8 @@ public struct MTGCard: Codable, Equatable, Hashable, Sendable {
   public var isTextless: Bool
 	
 	var imageUris: [String: URL]?
+  
+  var games: [String] = ["paper"]
 	
 	var faceURL: URL? {
 		guard let scryfallID = scryfallID?.uuidString.lowercased() else {

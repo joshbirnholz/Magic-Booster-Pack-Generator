@@ -75,7 +75,7 @@
   },
   {
     "name": "Murderous Cut",
-    "front": "https://i.imgur.com/5XE6Rwz.jpeg",
+    "front": "https://i.imgur.com/LKYw4pY.jpeg",
     "set": "KTK",
     "collector_number": "81y"
   },
@@ -123,7 +123,7 @@
   },
   {
     "name": "Empty the Pits",
-    "front": "https://i.imgur.com/v2gqKgQ.jpeg",
+    "front": "https://i.imgur.com/YSxfCeI.jpeg",
     "set": "KTK",
     "collector_number": "72y"
   },

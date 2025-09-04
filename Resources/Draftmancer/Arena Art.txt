@@ -81,7 +81,7 @@
   },
   {
     "name": "Immerwolf",
-    "front": "https://i.imgur.com/WwTpMmc.jpeg",
+    "front": "https://i.imgur.com/cM0IhZl.jpeg",
     "set": "SIS",
     "collector_number": "65"
   },

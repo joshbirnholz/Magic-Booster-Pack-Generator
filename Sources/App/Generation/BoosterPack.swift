@@ -6540,17 +6540,16 @@ extension MTGCard {
 //  return ""
 //}
 
-fileprivate func getCustomCards(_ notFound: inout [MTGCardIdentifier], _ mtgCards: inout [MTGCard], _ identifiers: inout [MTGCardIdentifier], _ draftmancerCards: [MTGCard], _ autofix: Bool) {
-  let identifiersToTry = notFound
-  for identifier in identifiersToTry {
+fileprivate func getCustomCards(_ identifiersToReplace: inout [MTGCardIdentifier], _ mtgCards: inout [MTGCard], _ identifiers: inout [MTGCardIdentifier], _ draftmancerCards: [MTGCard], _ autofix: Bool) {
+  for identifier in identifiersToReplace {
     func handle(card: MTGCard) {
       if let index = mtgCards.firstIndex(where: { $0.isIdentified(by: identifier) }) {
         mtgCards[index] = card
       } else {
         mtgCards.append(card)
         
-        if let index = notFound.firstIndex(of: identifier) {
-          notFound.remove(at: index)
+        if let index = identifiersToReplace.firstIndex(of: identifier) {
+          identifiersToReplace.remove(at: index)
         }
         if let index = identifiers.firstIndex(of: identifier) {
           identifiers.remove(at: index)
@@ -6571,6 +6570,8 @@ fileprivate func getCustomCards(_ notFound: inout [MTGCardIdentifier], _ mtgCard
       } else {
         handle(card: card)
       }
+    } else {
+      print("Coudln't find custom card for \(identifier)")
     }
   }
 }
@@ -6670,11 +6671,9 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
   var mtgCards: [MTGCard] = Array(collections.map(\.data).joined()).map(MTGCard.init)
 	var notFound: [MTGCardIdentifier] = Array(collections.compactMap(\.notFound).joined())
   
-  var arenaOnlyIdentifiers: [MTGCardIdentifier] = mtgCards.enumerated().compactMap {
-    $1.games.contains("arena") && !$1.games.contains("paper") ? identifiers[$0] : nil
+  var arenaOnlyIdentifiers: [MTGCardIdentifier] = identifiers.filter {
+    mtgCards[$0]?.games == ["arena"]
   }
-  
-  print(arenaOnlyIdentifiers)
   
   // Replace Arena cards with better-looking versions
   if !arenaOnlyIdentifiers.isEmpty, let draftmancerCards = await DraftmancerSetCache.shared.loadedDraftmancerCards {

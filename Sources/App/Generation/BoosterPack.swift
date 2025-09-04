@@ -6420,10 +6420,7 @@ extension MTGCard {
         other == name.lowercased() || other.replacingOccurrences(of: "’", with: "'") == name.lowercased()
       }
     case .nameSet(name: let name, set: let set):
-      var names: [String] = Array([[self.name], cardFaces?.map(\.name) ?? []].joined()).compactMap { $0?.lowercased() }
-      if let flavorName = flavorName {
-        names.append(flavorName.lowercased())
-      }
+      let names: [String] = Array([[self.name, self.flavorName], cardFaces?.map(\.name) ?? [], cardFaces?.map(\.flavorName) ?? []].joined()).compactMap { $0?.lowercased() }
       let nameMatches = names.contains { other in
         other == name.lowercased() || other.replacingOccurrences(of: "’", with: "'") == name.lowercased()
       }
@@ -6550,7 +6547,6 @@ fileprivate func getCustomCards(_ notFound: inout [MTGCardIdentifier], _ mtgCard
       if let index = mtgCards.firstIndex(where: { $0.isIdentified(by: identifier) }) {
         mtgCards[index] = card
       } else {
-        
         mtgCards.append(card)
         
         if let index = notFound.firstIndex(of: identifier) {

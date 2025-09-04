@@ -3127,9 +3127,17 @@ func singleCardFuzzy(name: String, facedown: Bool, export: Bool) async throws ->
   let mtgCard: MTGCard = try await {
     do {
       let card = try await Swiftfall.getCard(fuzzy: name)
+      
+      if card.games == ["arena"], let fixed = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased() == card.name.lowercased() && $0.set.lowercased() == card.set.lowercased() && $0.collectorNumber.lowercased() == card.collectorNumber.lowercased()
+      }) {
+        return fixed
+      }
+      
       return MTGCard(card)
     } catch {
-      if let card = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased().hasPrefix(name.lowercased()) == true }) {
+      if let card = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased().hasPrefix(name.lowercased()) == true || $0.flavorName?.lowercased().hasPrefix((name.lowercased())) == true }) {
+        return card
+      } else if let card = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased().contains(name.lowercased()) == true || $0.flavorName?.lowercased().contains((name.lowercased())) == true }) {
         return card
       } else {
         throw PackError.couldNotLoadCards(name)
@@ -3137,13 +3145,19 @@ func singleCardFuzzy(name: String, facedown: Bool, export: Bool) async throws ->
     }
   }()
   
-  return try singleCard(mtgCard, facedown: facedown, export: export)
+  return try await singleCard(mtgCard, facedown: facedown, export: export)
 }
 
 func singleCardExact(name: String, facedown: Bool, export: Bool) async throws -> String {
   let mtgCard: MTGCard = try await {
     do {
       let card = try await Swiftfall.getCard(exact: name)
+      
+      if card.games == ["arena"], let fixed = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased() == card.name.lowercased() && $0.set.lowercased() == card.set.lowercased() && $0.collectorNumber.lowercased() == card.collectorNumber.lowercased()
+      }) {
+        return fixed
+      }
+      
       return MTGCard(card)
     } catch {
       if let card = await DraftmancerSetCache.shared.loadedDraftmancerCards?[.name(name)] {
@@ -3154,13 +3168,19 @@ func singleCardExact(name: String, facedown: Bool, export: Bool) async throws ->
     }
   }()
 	
-	return try singleCard(mtgCard, facedown: facedown, export: export)
+  return try await singleCard(mtgCard, facedown: facedown, export: export)
 }
 
 func singleCardCodeNumber(code: String, number: String, facedown: Bool, export: Bool) async throws -> String {
   let mtgCard: MTGCard = try await {
     do {
       let card = try await Swiftfall.getCard(code: code, number: number)
+      
+      if card.games == ["arena"], let fixed = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased() == card.name.lowercased() && $0.set.lowercased() == card.set.lowercased() && $0.collectorNumber.lowercased() == card.collectorNumber.lowercased()
+      }) {
+        return fixed
+      }
+      
       return MTGCard(card)
     } catch {
       let identnfier: MTGCardIdentifier = .collectorNumberSet(collectorNumber: number, set: code, name: nil)
@@ -3171,13 +3191,13 @@ func singleCardCodeNumber(code: String, number: String, facedown: Bool, export: 
       }
     }
   }()
-	return try singleCard(mtgCard, facedown: facedown, export: export)
+  return try await singleCard(mtgCard, facedown: facedown, export: export)
 }
 
 func singleCardRand(facedown: Bool, export: Bool) async throws -> String {
 	let card = try await Swiftfall.getRandomCard()
 	let mtgCard = MTGCard(card)
-	return try singleCard(mtgCard, facedown: facedown, export: export)
+  return try await singleCard(mtgCard, facedown: facedown, export: export)
 }
 
 func singleCardScryfallQuery(query: String, facedown: Bool, export: Bool) async throws -> String {
@@ -3185,10 +3205,10 @@ func singleCardScryfallQuery(query: String, facedown: Bool, export: Bool) async 
 		throw PackError.noCards
 	}
 	let mtgCard = MTGCard(card)
-	return try singleCard(mtgCard, facedown: facedown, export: export)
+  return try await singleCard(mtgCard, facedown: facedown, export: export)
 }
 
-func singleCard(_ card: MTGCard, tokens: [MTGCard] = [], facedown: Bool = true, export: Bool = false) throws -> String {
+func singleCard(_ card: MTGCard, tokens: [MTGCard] = [], facedown: Bool = true, export: Bool = false) async throws -> String {
 //	let cardInfo: [CardInfo] = cards.reversed().enumerated().compactMap { sequence in
 //		if (sequence.element.layout == "token" || sequence.element.layout == "emblem") && !tokens.isEmpty {
 //			return CardInfo(offset: sequence.offset, currentState: sequence.element, allStates: tokens)
@@ -3200,6 +3220,13 @@ func singleCard(_ card: MTGCard, tokens: [MTGCard] = [], facedown: Bool = true, 
 //			return cardInfo
 //		}
 //	}
+  
+  var card = card
+  
+  if card.games == ["arena"], let fixed = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased() == card.name?.lowercased() && $0.set.lowercased() == card.set.lowercased() && $0.collectorNumber.lowercased() == card.collectorNumber.lowercased()
+  }) {
+    card = fixed
+  }
 	
 	let info: CardInfo?
 	if card.layout == "token" || card.layout == "emblem" && !tokens.isEmpty {
@@ -3331,7 +3358,7 @@ func boosterBag(setName: String, setCode: String, boosterPacks: [[MTGCard]], nam
 	let packs = zip(boosterPacks, names)
 	let boosterPacks: [ObjectStateJSON] = try await packs.asyncMap { cards, name in
 		if cards.count == 1, let card = cards.first {
-			return try singleCard(card, tokens: tokens, facedown: false, export: false)
+      return try await singleCard(card, tokens: tokens, facedown: false, export: false)
 		} else {
 			return try await boosterPackJSON(setName: setName, setCode: setCode, name: name, cards: cards, tokens: tokens, inPack: inPack, cardBack: cardBack)
 		}
@@ -4278,7 +4305,7 @@ func prereleasePack(setName: String, setCode: String, boosterPacks: [[MTGCard]],
 	let boosterPackString = try await boosterPacks.enumerated().asyncMap { index, cards in
 		return try await boosterPackJSON(setName: index == 0 ? name : setName, setCode: setCode, cards: cards, tokens: tokens, inPack: index == 0 && seed != nil ? false : true)
 	}.joined(separator: ",\n")
-	let promoCardString = try singleCard(promoCard, facedown: false)
+  let promoCardString = try await singleCard(promoCard, facedown: false)
 	
 	var containedObjects: [String] = []
 	
@@ -5782,7 +5809,7 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 		guard !cards.isEmpty else { return nil }
 		
 		if cards.count == 1, let card = cards.first {
-			return try singleCard(card, tokens: [], facedown: false, export: false)
+      return try await singleCard(card, tokens: [], facedown: false, export: false)
 		} else {
 			return try await boosterPackJSON(setName: setName, setCode: code, name: name, cards: cards, tokens: tokens, inPack: false, cardBack: nil)
 		}

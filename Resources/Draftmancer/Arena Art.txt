@@ -2,8 +2,147 @@
 [
   {
     "name": "Villainous Wealth",
-    "front": "https://i.imgur.com/hUL4VuJ.jpeg",
+    "front": "https://i.imgur.com/YANpmeS.jpeg",
     "set": "KTK",
     "collector_number": "211y"
+  },
+  {
+    "name": "Dark Deal",
+    "front": "https://i.imgur.com/a8yjj6H.jpeg",
+    "set": "PIO",
+    "collector_number": "89"
+  },
+  {
+    "name": "Grim Haruspex",
+    "front": "https://i.imgur.com/maHTCBg.jpeg",
+    "set": "KTK",
+    "collector_number": "73y"
+  },
+  {
+    "name": "Rest in Peace",
+    "front": "https://i.imgur.com/EqTc8fM.jpeg",
+    "set": "AKR",
+    "collector_number": "33"
+  },
+  {
+    "name": "Erebos, God of the Dead",
+    "front": "https://i.imgur.com/OEQRwCS.jpeg",
+    "set": "PIO",
+    "collector_number": "291"
+  },
+  {
+    "name": "Sphinx's Revelation",
+    "front": "https://i.imgur.com/UT73Jl4.jpeg",
+    "set": "AKR",
+    "collector_number": "262"
+  },
+  {
+    "name": "Sidisi, Brood Tyrant",
+    "front": "https://i.imgur.com/zvkPDcU.jpeg",
+    "set": "KTK",
+    "collector_number": "199y"
+  },
+  {
+    "name": "Growing Ranks",
+    "front": "https://i.imgur.com/pMggJNP.jpeg",
+    "set": "PIO",
+    "collector_number": "308",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enter the Infinite",
+    "front": "https://i.imgur.com/pMghqac.jpeg",
+    "set": "PIO",
+    "collector_number": "365"
+  },
+  {
+    "name": "Act of Treason",
+    "front": "https://i.imgur.com/Aw5WdTj.jpeg",
+    "set": "KTK",
+    "collector_number": "95y"
+  },
+  {
+    "name": "Counterflux",
+    "front": "https://i.imgur.com/JKGafnB.jpeg",
+    "set": "PIO",
+    "collector_number": "213"
+  },
+  {
+    "name": "Kheru Spellsnatcher",
+    "front": "https://i.imgur.com/2JNd6B4.jpeg",
+    "set": "KTK",
+    "collector_number": "45y"
+  },
+  {
+    "name": "Murderous Cut",
+    "front": "https://i.imgur.com/5XE6Rwz.jpeg",
+    "set": "KTK",
+    "collector_number": "81y"
+  },
+  {
+    "name": "Immerwolf",
+    "front": "https://i.imgur.com/WwTpMmc.jpeg",
+    "set": "SIS",
+    "collector_number": "65"
+  },
+  {
+    "name": "Stab Wound",
+    "front": "https://i.imgur.com/8WSXeZ2.jpeg",
+    "set": "PIO",
+    "collector_number": "111"
+  },
+  {
+    "name": "Sultai Ascendancy",
+    "front": "https://i.imgur.com/0fUb3J2.jpeg",
+    "set": "KTK",
+    "collector_number": "203y"
+  },
+  {
+    "name": "Perilous Vault",
+    "front": "https://i.imgur.com/gFmSJ20.jpeg",
+    "set": "AKR",
+    "collector_number": "278"
+  },
+  {
+    "name": "Pharika, God of Affliction",
+    "front": "https://i.imgur.com/XcC4FCC.jpeg",
+    "set": "PIO",
+    "collector_number": "315"
+  },
+  {
+    "name": "Behold the Beyond",
+    "front": "https://i.imgur.com/In8w63d.jpeg",
+    "set": "PIO",
+    "collector_number": "84"
+  },
+  {
+    "name": "Crater's Claws",
+    "front": "https://i.imgur.com/WugqC9t.jpeg",
+    "set": "KTK",
+    "collector_number": "106y"
+  },
+  {
+    "name": "Empty the Pits",
+    "front": "https://i.imgur.com/v2gqKgQ.jpeg",
+    "set": "KTK",
+    "collector_number": "72y"
+  },
+  {
+    "name": "Chained to the Rocks",
+    "front": "https://i.imgur.com/mkCJrjo.jpeg",
+    "set": "PIO",
+    "collector_number": "9"
+  },
+  {
+    "name": "Soulflayer",
+    "front": "https://i.imgur.com/Rvgg11g.jpeg",
+    "set": "PIO",
+    "collector_number": "110"
+  },
+  {
+    "name": "Galvanic Bombardment",
+    "front": "https://i.imgur.com/5jrKgA1.jpeg",
+    "set": "SIR",
+    "collector_number": "157"
   }
 ]

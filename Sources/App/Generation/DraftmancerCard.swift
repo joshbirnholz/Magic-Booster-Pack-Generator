@@ -623,6 +623,7 @@ actor DraftmancerSetCache {
             let front: URL
             let back: URL?
             let set: String?
+            let rarity: DraftmancerCard.Rarity?
             let collectorNumber: String?
           }
           
@@ -670,6 +671,10 @@ actor DraftmancerSetCache {
                   draftmancerCard.flavorName = quick.flavorName
                   draftmancerCard.set = quick.set
                   draftmancerCard.artist = nil
+                  
+                  if let rarity = quick.rarity {
+                    draftmancerCard.rarity = rarity
+                  }
                   
                   return draftmancerCard
                 } catch {

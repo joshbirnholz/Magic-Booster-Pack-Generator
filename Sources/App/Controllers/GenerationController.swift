@@ -950,8 +950,28 @@ final class GeneratorController {
 		
 		let fuzzy = try? req.query.get(String.self, at: "fuzzy")
 		let exact = try? req.query.get(String.self, at: "exact")
-		
-		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
+    
+    let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
+    
+    if let exact {
+      let match = exact.matches(forRegex: #"(.+)\((.+)\)(.+)?"#)
+      if let groups = match.first?.groups {
+        promise.completeWithTask({
+          let cardName = groups[0].value.trimmingCharacters(in: .whitespaces)
+          let setCode = groups[1].value.trimmingCharacters(in: .whitespaces)
+          let collectorNumber = groups.count == 3 ? groups[2].value.trimmingCharacters(in: .whitespaces) : nil
+          
+          if let collectorNumber {
+            let mtgCard = try await Swiftfall.getCard(code: setCode, number: collectorNumber)
+            return try await App.singleCard(MTGCard(mtgCard), facedown: facedown, export: export)
+          } else {
+            let mtgCard = try await Swiftfall.getCard(name: cardName, set: setCode)
+            return try await App.singleCard(MTGCard(mtgCard), facedown: facedown, export: export)
+          }
+        })
+        return promise.futureResult
+      }
+    }
 		
     promise.completeWithTask {
 			do {

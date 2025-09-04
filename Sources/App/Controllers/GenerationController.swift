@@ -953,8 +953,8 @@ final class GeneratorController {
     
     let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
     
-    if let exact {
-      let match = exact.matches(forRegex: #"(.+)\((.+)\)(.+)?"#)
+    if let name = fuzzy ?? exact {
+      let match = name.matches(forRegex: #"(.+)\((.+)\)(.+)?"#)
       if let groups = match.first?.groups {
         promise.completeWithTask({
           let cardName = groups[0].value.trimmingCharacters(in: .whitespaces)

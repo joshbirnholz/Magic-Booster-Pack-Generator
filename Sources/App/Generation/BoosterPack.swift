@@ -3135,13 +3135,11 @@ func singleCardFuzzy(name: String, facedown: Bool, export: Bool) async throws ->
       
       return MTGCard(card)
     } catch {
-      if let card = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased().hasPrefix(name.lowercased()) == true || $0.flavorName?.lowercased().hasPrefix((name.lowercased())) == true }) {
+      if let card = await DraftmancerSetCache.shared.cardNamed(fuzzy: name) {
         return card
-      } else if let card = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased().contains(name.lowercased()) == true || $0.flavorName?.lowercased().contains((name.lowercased())) == true }) {
-        return card
-      } else {
-        throw PackError.couldNotLoadCards(name)
       }
+      
+      throw PackError.couldNotLoadCards(name)
     }
   }()
   
@@ -6417,10 +6415,7 @@ extension MTGCard {
 //    case .illustrationID(let id):
 //      return illustrationId == id.uuidString
     case .name(let name):
-      var names: [String] = Array([[self.name], cardFaces?.map(\.name) ?? []].joined()).compactMap { $0?.lowercased() }
-      if let flavorName = flavorName {
-        names.append(flavorName.lowercased())
-      }
+      let names: [String] = Array([[self.name, self.flavorName], cardFaces?.map(\.name) ?? [], cardFaces?.map(\.flavorName) ?? []].joined()).compactMap { $0?.lowercased() }
       return names.contains { other in
         other == name.lowercased() || other.replacingOccurrences(of: "’", with: "'") == name.lowercased()
       }

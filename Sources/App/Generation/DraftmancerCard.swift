@@ -173,7 +173,49 @@ public struct DraftmancerCard: Codable, Sendable {
     self.collectorNumber = mtgCard.collectorNumber
     self.rarity = .init(rawValue: mtgCard.rarity.rawValue.lowercased())
     self.layout = mtgCard.layout
-    self.back = nil
+    
+    if (mtgCard.layout.lowercased().contains("transform") || mtgCard.layout.lowercased().contains("dfc") || mtgCard.layout.lowercased().contains("double_sided")), let faces = mtgCard.cardFaces, faces.count == 2, let back = faces.last {
+      var types = (back.typeLine ?? "").components(separatedBy: " — ")
+      let backType = types.removeFirst()
+      let backSubtypes = types.first?.components(separatedBy: " ")
+      
+      let backImageUris: [String: URL] = {
+        if let url = back.imageUris?["large"] {
+          return ["en": url]
+        } else {
+          return [:]
+        }
+      }()
+      
+      self.back = .init(
+        name: back.name ?? "",
+        flavorName: back.flavorName,
+        imageUris: backImageUris,
+        image: nil,
+        type: backType,
+        subtypes: backSubtypes,
+        oracleText: back.oracleText,
+        power: back.power,
+        toughness: back.toughness,
+        loyalty: back.loyalty,
+        keywords: nil
+      )
+      
+      if let url = faces.first?.imageUris?["large"] {
+        self.imageUris = ["en": url]
+      } else {
+        self.imageUris = [:]
+      }
+    } else {
+      self.back = nil
+      
+      if let url = mtgCard.imageUris?["large"] {
+        self.imageUris = ["en": url]
+      } else {
+        self.imageUris = [:]
+      }
+    }
+    
     self.relatedCards = await mtgCard.allParts?.asyncCompactMap {
       guard
         $0.name != mtgCard.name,
@@ -201,12 +243,6 @@ public struct DraftmancerCard: Codable, Sendable {
       )
     }
     self.draftEffects = nil
-    
-    if let url = mtgCard.imageUris?["large"] {
-      self.imageUris = ["en": url]
-    } else {
-      self.imageUris = [:]
-    }
     
     self.colors = mtgCard.colors?.compactMap { $0.rawValue }
     self.printedNames = nil
@@ -390,12 +426,13 @@ extension DraftmancerCard {
       }
       
       let backFace = MTGCard.Face(
-        typeLine: typeLine,
+        typeLine: backTypeLine,
         power: back.power,
         toughness: back.toughness,
         oracleText: oracleText,
         flavorText: nil,
         name: back.name,
+        flavorName: back.flavorName,
         loyalty: back.loyalty,
         manaCost: nil,
         colors: nil,
@@ -410,6 +447,7 @@ extension DraftmancerCard {
         oracleText: self.oracleText,
         flavorText: nil,
         name: self.name,
+        flavorName: self.flavorName,
         loyalty: self.loyalty,
         manaCost: self.manaCost,
         colors: self.colors?.compactMap(MTGColor.init(rawValue:)),
@@ -597,6 +635,40 @@ actor DraftmancerSetCache {
     }
   }
   
+  func cardNamed(fuzzy name: String) async -> MTGCard? {
+    let cards = await loadedDraftmancerCards ?? []
+    let cardsAndNames: [(MTGCard, [String])] = cards.map {
+      var names: [String?] = [$0.name, $0.flavorName]
+      names += $0.cardFaces?.compactMap(\.name) ?? []
+      names += $0.cardFaces?.compactMap(\.flavorName) ?? []
+      
+      return ($0, names.compactMap { $0?.lowercased() })
+    }
+    
+    var filtered = cardsAndNames.filter({ (card, names) in
+      names.contains(where: { $0.hasPrefix(name.lowercased()) })
+    })
+    
+    if let first = filtered.first, filtered.count == 1 {
+      return first.0
+    }
+    
+    filtered = cardsAndNames.filter({ (card, names) in
+      names.contains(where: { $0.contains(name.lowercased()) })
+    })
+    
+    if let first = filtered.first, filtered.count == 1 {
+      return first.0
+    }
+    
+    return nil
+  }
+  
+  func cardNamed(exact name: String) async -> MTGCard? {
+    let cards = await loadedDraftmancerCards ?? []
+    return cards[.name(name)]
+  }
+  
   private func load() async throws -> [DraftmancerSet] {
     do {
       let urls = try urlsForResources(withExtension: "txt", subdirectory: "Draftmancer")
@@ -620,6 +692,7 @@ actor DraftmancerSetCache {
           struct QuickCard: Decodable {
             let name: String
             let flavorName: String?
+            let flavorNameBack: String?
             let front: URL
             let back: URL?
             let set: String?
@@ -656,12 +729,14 @@ actor DraftmancerSetCache {
                   }()
                   var mtgCard = MTGCard(card)
                   
-                  if let back = quick.back {
+                  if let back = quick.back, mtgCard.cardFaces?.count == 2 {
                     let newFronts = mtgCard.cardFaces?[0].imageUris?.mapValues { _ in quick.front }
                     mtgCard.cardFaces?[0].imageUris = newFronts
                     
                     let newBacks = mtgCard.cardFaces?[1].imageUris?.mapValues { _ in back }
                     mtgCard.cardFaces?[1].imageUris = newBacks
+                    
+                    mtgCard.cardFaces?[1].flavorName = quick.flavorNameBack
                   } else {
                     mtgCard.imageUris = mtgCard.imageUris?.mapValues { _ in quick.front }
                   }
@@ -669,6 +744,7 @@ actor DraftmancerSetCache {
                   var draftmancerCard = await DraftmancerCard(mtgCard: mtgCard)
                   draftmancerCard.collectorNumber = quick.collectorNumber
                   draftmancerCard.flavorName = quick.flavorName
+                  draftmancerCard.back?.flavorName = quick.flavorNameBack
                   draftmancerCard.set = quick.set
                   draftmancerCard.artist = nil
                   

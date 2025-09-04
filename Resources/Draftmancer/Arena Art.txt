@@ -32,7 +32,7 @@
   },
   {
     "name": "Sphinx's Revelation",
-    "front": "https://i.imgur.com/UT73Jl4.jpeg",
+    "front": "https://i.imgur.com/WoI8kpV.jpeg",
     "set": "AKR",
     "collector_number": "262"
   },
@@ -93,7 +93,7 @@
   },
   {
     "name": "Sultai Ascendancy",
-    "front": "https://i.imgur.com/0fUb3J2.jpeg",
+    "front": "https://i.imgur.com/LPc9QFT.jpeg",
     "set": "KTK",
     "collector_number": "203y"
   },
@@ -117,7 +117,7 @@
   },
   {
     "name": "Crater's Claws",
-    "front": "https://i.imgur.com/WugqC9t.jpeg",
+    "front": "https://i.imgur.com/CT3uZMN.jpeg",
     "set": "KTK",
     "collector_number": "106y"
   },
@@ -144,5 +144,17 @@
     "front": "https://i.imgur.com/5jrKgA1.jpeg",
     "set": "SIR",
     "collector_number": "157"
+  },
+  {
+    "name": "Highland Lake",
+    "front": "https://i.imgur.com/2XO0ohU.jpeg",
+    "set": "SIR",
+    "collector_number": "272"
+  },
+  {
+    "name": "Sigardian Priest",
+    "front": "https://i.imgur.com/TrWsFrW.jpeg",
+    "set": "SIR",
+    "collector_number": "44"
   }
 ]

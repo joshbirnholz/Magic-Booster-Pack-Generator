@@ -653,7 +653,15 @@ function setDraftmancerCardSet(cardset) {
       
       var nameData = document.createElement("td");
       row1.appendChild(nameData);
-      nameData.innerHTML = "<h3>" + element.name + "</h3>";
+      var name = element.flavor_name || element.name;
+      if (element.back && element.back.flavor_name) {
+        name += " // " + element.back.flavor_name;
+      }
+      
+      if (element.flavor_name) {
+        name += " (" + element.name + ")";
+      }
+      nameData.innerHTML = "<h3>" + name + "</h3>";
       
       var manaCostData = document.createElement("td");
       manaCostData.setAttribute("align", "right");

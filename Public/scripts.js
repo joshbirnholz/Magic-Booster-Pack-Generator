@@ -747,8 +747,17 @@ function setDraftmancerCardSet(cardset) {
         rarity = " (" + Array.from(element.rarity)[0].toUpperCase() + ")";
       }
       
+      var name = element.flavor_name || element.name;
+      if (element.back && element.back.flavor_name) {
+        name += " // " + element.back.flavor_name;
+      }
+      
+      if (element.flavor_name) {
+        name += " (" + element.name + ")";
+      }
+      
       var imageURL = element.image || element.image_uris["en"];
-      data.innerHTML = "<center><div><a href=\"" + imageURL + "\"><img src=\"" + imageURL + "\" height=264 width=189 style='border-radius:10px;'></a></div><p>" + element.name + "<br>" + element.set.toUpperCase() + " #" + element.collector_number + rarity + "</p><br></center>";
+      data.innerHTML = "<center><div><a href=\"" + imageURL + "\"><img src=\"" + imageURL + "\" height=264 width=189 style='border-radius:10px;'></a></div><p>" + name + "<br>" + element.set.toUpperCase() + " #" + element.collector_number + rarity + "</p><br></center>";
       
       row.appendChild(data);
       dataCount += 1;

@@ -363,12 +363,12 @@ public struct DraftmancerCard: Codable, Sendable {
 }
 
 extension DraftmancerCard {
-  var mtgCard: MTGCard? {
+  var mtgCard: MTGCard {
     var typeLine = type
     if let subtypes = subtypes {
       typeLine += " — \(subtypes.joined(separator: " "))"
     }
-    guard let rarity = self.rarity.flatMap({ MTGCard.Rarity.init(rawValue: $0.rawValue.lowercased()) }) else { return nil }
+    let rarity = self.rarity.flatMap({ MTGCard.Rarity.init(rawValue: $0.rawValue.lowercased()) }) ?? .bonus
     
     var imageURIs = self.imageUris ?? [:]
     

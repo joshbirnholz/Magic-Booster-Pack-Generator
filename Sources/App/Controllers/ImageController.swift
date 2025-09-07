@@ -40,24 +40,36 @@ actor ImageController {
   }
   
   func artCrop(_ req: Request) async throws -> Response {
-    guard let urlString = req.query[String.self, at: "url"], let url = URL(string: urlString) else {
-      throw Abort(.badRequest, reason: "Missing or invalid url")
+    let back = req.query.getBoolValue(at: "back") ?? false
+    
+    guard let code = req.parameters.get("set"), let number = req.parameters.get("number") else {
+      throw Abort(.badRequest, reason: "Missing values for parameters code and/or number")
     }
     
-    guard await DraftmancerSetCache.shared.loadedDraftmancerCards.contains(where: {
-      for (_, otherURL) in $0.imageUris ?? [:] {
-        if url.absoluteString.lowercased() == otherURL.absoluteString.lowercased() {
-          return true
+    guard let mtgCard = await DraftmancerSetCache.shared.loadedDraftmancerCards?[.collectorNumberSet(collectorNumber: number, set: code, name: nil)] else {
+      throw Abort(.badRequest, reason: "Set code and number do not identifiy a valid custom card")
+    }
+    
+    let card = Swiftfall.Card(mtgCard)
+    
+    let urls = {
+      var temp: [URL] = []
+      if let url = card.imageUris?["large"] ?? card.imageUris?["normal"] {
+        temp.append(url)
+      }
+      if let faces = card.cardFaces, faces.count == 2 {
+        for face in faces {
+          if let url = face.imageUris?["large"] ?? face.imageUris?["normal"]{
+            temp.append(url)
+          }
         }
       }
-      for otherURL in Array($0.cardFaces?.compactMap { $0.imageUris?.values } ?? []).joined() {
-        if url.absoluteString.lowercased() == otherURL.absoluteString.lowercased() {
-          return true
-        }
-      }
-      return false
-    }) else {
-      throw Abort(.badRequest, reason: "URL not allowed")
+      
+      return temp
+    }()
+    
+    guard let url = back ? urls.last : urls.first else {
+      throw Abort(.expectationFailed, reason: "Custom card has no images")
     }
     
     if let data = getCache(for: url) ?? loadFromDisk(for: url) {
@@ -67,6 +79,16 @@ actor ImageController {
                       body: .init(data: data))
     }
     
+    let data = try await artCrop(url: url)
+    
+    return Response(
+      status: .ok,
+      headers: ["Content-Type": "image/jpeg"],
+      body: .init(data: data)
+    )
+  }
+  
+  func artCrop(url: URL) async throws -> Data {
     let referenceWidth: Double = 2010
     let referenceHeight: Double = 2814
     let refX: Double = 155
@@ -77,6 +99,7 @@ actor ImageController {
     // Download image
     let (data, _) = try await URLSession.shared.data(from: url)
     guard let image = try? Image<RGBA, UInt8>(fileData: data) else {
+      print("Could not decode image at \(url)")
       throw Abort(.unsupportedMediaType, reason: "Could not decode image")
     }
     
@@ -99,9 +122,6 @@ actor ImageController {
       throw Abort(.internalServerError, reason: "Encoding failed")
     }
     
-    var buffer = ByteBufferAllocator().buffer(capacity: jpegData.count)
-    buffer.writeBytes(jpegData)
-    
     cropCache[url] = jpegData
     
     Task {
@@ -111,11 +131,7 @@ actor ImageController {
       setCache(for: url, data: jpegData)
     }
     
-    return Response(
-      status: .ok,
-      headers: ["Content-Type": "image/jpeg"],
-      body: .init(buffer: buffer)
-    )
+    return jpegData
   }
   
 }

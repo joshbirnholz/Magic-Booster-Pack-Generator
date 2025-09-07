@@ -80,7 +80,7 @@ public func routes(_ app: Application) throws {
   
   let imageController = ImageController()
   
-  app.get("artcrop", use: imageController.artCrop(_:))
+  app.get("artcrop", ":set", ":number", use: imageController.artCrop(_:))
   
   app.routes.defaultMaxBodySize = .init(stringLiteral: "4mb")
 	

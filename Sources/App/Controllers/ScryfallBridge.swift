@@ -14,7 +14,7 @@ extension Swiftfall.ScryfallSet: Content {
 	
 }
 
-final class ScryfallBridgeController {
+final class ScryfallBridgeController: Sendable {
 	
 	static let customSets = [
     Swiftfall.ScryfallSet(code: "sjm", mtgo: nil, name: "SuperJump! (Magic Online)", uri: "", scryfallUri: "", searchUri: nil, releasedAt: nil, setType: "expansion", cardCount: 0, digital: true, foilOnly: false, blockCode: "sjm", block: "sjm", printedSize: nil, iconSvgUri: nil),

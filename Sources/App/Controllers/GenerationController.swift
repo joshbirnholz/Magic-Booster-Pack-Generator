@@ -26,7 +26,7 @@ extension URLQueryContainer {
 	}
 }
 
-final class GeneratorController {
+final class GeneratorController: Sendable {
 	func boosterPack(_ req: Request) throws -> EventLoopFuture<String> {
 		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
 		
@@ -1005,7 +1005,7 @@ final class GeneratorController {
       }
     }
 		
-    promise.completeWithTask {
+    let result: String = try await {
 			do {
 				if let fuzzy = fuzzy {
           let result = try await singleCardFuzzy(name: fuzzy, facedown: facedown, export: export, format: format)

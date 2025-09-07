@@ -4,11 +4,11 @@ import PackageDescription
 let package = Package(
   name: "TabletopSimulatorMagicBoosterPackServer",
   platforms: [
-    .macOS(.v10_15),
+    .macOS(.v12),
   ],
   dependencies: [
     // 💧 A server-side Swift web framework.
-    .package(url: "https://github.com/vapor/vapor.git", from: "4.3.0"),
+    .package(url: "https://github.com/vapor/vapor.git", from: "4.92.0"),
 
     // 🔵 Swift ORM (queries, models, relations, etc) built on SQLite 3.
     .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0-rc"),

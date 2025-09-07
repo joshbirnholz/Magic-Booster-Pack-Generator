@@ -198,7 +198,7 @@ protocol JSONResponseEncodable: Encodable, ResponseEncodable {
 }
 
 public extension EventLoop {
-  func makeCompletedFuture<Success>(withResultOf body: () throws -> Success) -> EventLoopFuture<Success> {
+  func makeCompletedFuture<Success: Sendable>(withResultOf body: () throws -> Success) -> EventLoopFuture<Success> {
     makeCompletedFuture(Result {
       return try body()
     })

@@ -44,6 +44,22 @@ actor ImageController {
       throw Abort(.badRequest, reason: "Missing or invalid url")
     }
     
+    guard await DraftmancerSetCache.shared.loadedDraftmancerCards.contains(where: {
+      for (_, otherURL) in $0.imageUris ?? [:] {
+        if url.absoluteString.lowercased() == otherURL.absoluteString.lowercased() {
+          return true
+        }
+      }
+      for otherURL in Array($0.cardFaces?.compactMap { $0.imageUris?.values } ?? []).joined() {
+        if url.absoluteString.lowercased() == otherURL.absoluteString.lowercased() {
+          return true
+        }
+      }
+      return false
+    }) else {
+      throw Abort(.badRequest, reason: "URL not allowed")
+    }
+    
     if let data = getCache(for: url) ?? loadFromDisk(for: url) {
       setCache(for: url, data: data)
       return Response(status: .ok,

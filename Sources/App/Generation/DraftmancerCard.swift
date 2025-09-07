@@ -664,6 +664,49 @@ actor DraftmancerSetCache {
     return nil
   }
   
+  func cardsMatchingNameQuery(_ query: String) async throws -> [MTGCard] {
+    let cards = await loadedDraftmancerCards ?? []
+    
+    return cards.filter { card in
+      var names: [String] = [card.name, card.flavorName].compactMap { $0 }
+      names += card.cardFaces?.compactMap(\.name) ?? []
+      names += card.cardFaces?.compactMap(\.flavorName) ?? []
+      
+      return names.contains(where: { nameMatchesCardName(cardName: $0, query: query) })
+    }
+  }
+  
+  private func nameMatchesCardName(cardName: String, query: String) -> Bool {
+    // Normalize both query and card name
+    let normalizedCardName = cardName
+      .lowercased()
+      .components(separatedBy: CharacterSet.alphanumerics.inverted)
+      .filter { !$0.isEmpty }
+      .joined(separator: " ")
+    
+    let normalizedQuery = query
+      .lowercased()
+      .components(separatedBy: CharacterSet.alphanumerics.inverted)
+      .filter { !$0.isEmpty }
+    
+    // If query is empty, no match
+    guard !normalizedQuery.isEmpty else { return false }
+    
+    // Split card name into words
+    let cardWords = normalizedCardName.split(separator: " ")
+    
+    // Attempt to match each query part in order against card name words
+    var startIndex = cardWords.startIndex
+    for q in normalizedQuery {
+      guard let matchIndex = cardWords[startIndex...].firstIndex(where: { $0.hasPrefix(q) }) else {
+        return false
+      }
+      startIndex = cardWords.index(after: matchIndex)
+    }
+    
+    return true
+}
+  
   func cardNamed(exact name: String) async -> MTGCard? {
     let cards = await loadedDraftmancerCards ?? []
     return cards[.name(name)]
@@ -972,6 +1015,40 @@ func getBuiltinDraftmancerCards(_ req: Request) throws -> NIOCore.EventLoopFutur
   }
   
   return promise.futureResult
+}
+
+func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Response {
+  let query: String? = try? req.query.get(at: "q")
+  
+  let headers: HTTPHeaders = [
+    "Content-Type": "application/json",
+    "access-control-allow-headers": "Origin",
+    "access-control-allow-origin": "*"
+  ]
+  
+  let encoder = JSONEncoder()
+  encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+  encoder.keyEncodingStrategy = .convertToSnakeCase
+  
+  guard var cards = await DraftmancerSetCache.shared.loadedDraftmancerCards else {
+    return .init(
+      status: .internalServerError, headers: headers
+    )
+  }
+  
+  if let query {
+    cards = try await DraftmancerSetCache.shared.cardsMatchingNameQuery(query)
+  }
+  
+  let scryfallCards = cards.map { Swiftfall.Card.init($0) }
+  let list = Swiftfall.CardList.init(data: scryfallCards, hasMore: false, nextPage: nil, totalCards: scryfallCards.count)
+  
+  let data = try encoder.encode(list)
+  let string = String.init(data: data, encoding: .utf8) ?? ""
+  
+  return .init(
+    status: .ok, headers: headers, body: .init(string: string)
+  )
 }
 
 // MARK: Cockatrice

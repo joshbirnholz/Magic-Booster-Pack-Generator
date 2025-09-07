@@ -8,11 +8,43 @@
 import Vapor
 import Swim
 
-final class ImageController: Sendable {
+actor ImageController {
+  
+  private var cropCache: [URL: Data] = [:]
+  private var accessOrder: [URL] = []
+  private let maxCacheEntries = 100  // tune this number
+  
+  private func setCache(for url: URL, data: Data) {
+    cropCache[url] = data
+    accessOrder.removeAll { $0 == url }
+    accessOrder.insert(url, at: 0)
+    
+    if accessOrder.count > maxCacheEntries {
+      if let toRemove = accessOrder.popLast() {
+        cropCache.removeValue(forKey: toRemove)
+      }
+    }
+  }
+  
+  private func getCache(for url: URL) -> Data? {
+    if let data = cropCache[url] {
+      accessOrder.removeAll { $0 == url }
+      accessOrder.insert(url, at: 0)
+      return data
+    }
+    return nil
+  }
   
   func artCrop(_ req: Request) async throws -> Response {
     guard let urlString = req.query[String.self, at: "url"], let url = URL(string: urlString) else {
       throw Abort(.badRequest, reason: "Missing or invalid url")
+    }
+    
+    if let data = getCache(for: url) ?? loadFromDisk(for: url) {
+      setCache(for: url, data: data)
+      return Response(status: .ok,
+                      headers: ["Content-Type": "image/jpeg"],
+                      body: .init(data: data))
     }
     
     let referenceWidth: Double = 2010
@@ -50,6 +82,15 @@ final class ImageController: Sendable {
     var buffer = ByteBufferAllocator().buffer(capacity: jpegData.count)
     buffer.writeBytes(jpegData)
     
+    cropCache[url] = jpegData
+    
+    Task {
+      saveToDisk(jpegData, for: url)
+    }
+    Task {
+      setCache(for: url, data: jpegData)
+    }
+    
     return Response(
       status: .ok,
       headers: ["Content-Type": "image/jpeg"],
@@ -61,4 +102,28 @@ final class ImageController: Sendable {
 
 extension RGBA: ImageFileFormat {
   
+}
+
+extension ImageController {
+  private var cacheDirectory: URL {
+      FileManager.default.temporaryDirectory.appendingPathComponent("ImageCache")
+  }
+  
+  private func filePath(for url: URL) -> URL {
+    let filename = url.absoluteString
+      .addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? UUID().uuidString
+    return cacheDirectory.appendingPathComponent(filename).appendingPathExtension("jpg")
+  }
+  
+  private func loadFromDisk(for url: URL) -> Data? {
+    let path = filePath(for: url)
+    return try? Data(contentsOf: path)
+  }
+  
+  private func saveToDisk(_ data: Data, for url: URL) {
+    let fm = FileManager.default
+    try? fm.createDirectory(at: cacheDirectory, withIntermediateDirectories: true)
+    let path = filePath(for: url)
+    try? data.write(to: path)
+  }
 }

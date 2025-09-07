@@ -143,7 +143,7 @@ extension Swiftfall.Card {
     dateFormatter.dateFormat = "yyyy-MM-dd"
     
     func addArtCropURL(to imageUris: inout [String: URL]?) {
-      guard let url = imageUris?["large"] ?? imageUris?["normal"] else { return }
+      guard imageUris?["art_crop"] == nil, let url = imageUris?["large"] ?? imageUris?["normal"] else { return }
       
       let host = "http://tts-magic-booster.fly.dev"
       

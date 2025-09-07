@@ -7,6 +7,10 @@
 
 import Vapor
 import Swim
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+import Foundation
+#endif
 
 actor ImageController {
   
@@ -75,7 +79,7 @@ actor ImageController {
     
     // Encode back to JPEG
     
-    guard let jpegData = try? cropped.fileData(format: .jpeg(quality: 90)) else {
+    guard let jpegData = try? cropped.fileData(format: WriteFormat.jpeg(quality: 90)) else {
       throw Abort(.internalServerError, reason: "Encoding failed")
     }
     

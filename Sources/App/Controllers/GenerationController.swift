@@ -1000,7 +1000,7 @@ final class GeneratorController: Sendable {
           }
         }()
         
-        return Response(headers: ["Content-Type": "application/json", "access-control-allow-headers": "Origin"], body: .init(string: result))
+        return Response(headers: ["Content-Type": "application/json", "access-control-allow-headers": "Origin", "access-control-allow-origin": "*"], body: .init(string: result))
       }
     }
 		
@@ -1020,7 +1020,7 @@ final class GeneratorController: Sendable {
 			}
 		}()
 		
-    return Response(headers: ["Content-Type": "application/json", "access-control-allow-headers": "Origin"], body: .init(string: result))
+    return Response(headers: ["Content-Type": "application/json", "access-control-allow-headers": "Origin", "access-control-allow-origin": "*"], body: .init(string: result))
 	}
 	
 	func singleCard(_ req: Request) throws -> EventLoopFuture<String> {

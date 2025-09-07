@@ -212,7 +212,7 @@
   },
   {
     "name": "Sunscorch Regent",
-    "front": "https://i.imgur.com/A63Gn2A.jpeg",
+    "front": "https://i.imgur.com/A53Gn2A.jpeg",
     "set": "PRM",
     "collector_number": "55896",
     "rarity": "rare"

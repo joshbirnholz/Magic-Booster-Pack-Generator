@@ -2,2991 +2,4010 @@
 [
   {
     "collector_number" : "1",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Adorned%20Gargoyle.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{W}",
     "name" : "Adorned Gargoyle",
+    "oracle_text" : "Flying\nEquip abilities you activate that target Adorned Gargoyle cost 2 less to activate.\nWhen Adorned Gargoyle dies, return up to one target Equipment card from your graveyard to your hand.",
+    "power" : "3",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Gargoyle"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Artifact Creature"
   },
   {
     "collector_number" : "2",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Arrest.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{W}",
     "name" : "Arrest",
+    "oracle_text" : "Enchant creature\nEnchanted creature can’t attack or block, and its activated abilities can’t be activated.",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Aura"
-    ],
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "3",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Chosen%20by%20the%20Lords.jpeg",
-    "mana_cost" : "{2}{W}{W}",
-    "name" : "Chosen by the Lords",
-    "rarity" : "rare",
-    "set" : "hlw",
-    "type" : "Sorcery"
+    "colors" : [
+      "W"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Astora%20Elite.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{1}{W}",
+    "name" : "Astora Elite",
+    "oracle_text" : "Astora Elite has first strike as long as it’s attacking.",
+    "power" : "2",
+    "rarity" : "common",
+    "set" : "HLW",
+    "toughness" : "1",
+    "type" : "Creature"
   },
   {
     "collector_number" : "4",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkbreaker%20Angel.jpeg",
-    "mana_cost" : "{3}{W}{W}",
-    "name" : "Darkbreaker Angel",
-    "rarity" : "mythic",
-    "related_cards" : [
-      "Darkbreaker Angel Hollow (THLW)"
+    "colors" : [
+      "W"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Angel"
-    ],
-    "type" : "Creature"
-  },
-  {
-    "collector_number" : "5",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Astora%20Elite.jpeg",
-    "mana_cost" : "{1}{W}",
-    "name" : "Astora Elite",
-    "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Knight"
-    ],
-    "type" : "Creature"
-  },
-  {
-    "collector_number" : "6",
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Astora%20Outcast.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{W}{W}",
     "name" : "Astora Outcast",
+    "oracle_text" : "Whenever Astora Outcast attacks, tap target creature an opponent controls.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Knight. Hollow only as a sorcery.)",
+    "power" : "4",
     "rarity" : "uncommon",
     "related_cards" : [
       "Astora Outcast Hollow (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "4",
     "type" : "Creature"
   },
   {
-    "collector_number" : "7",
+    "collector_number" : "5",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Balder%20Knight.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{W}",
     "name" : "Balder Knight",
+    "oracle_text" : "Whenever another Zombie enters the battlefield under your control, put a +1\/+1 counter on Balder Knight.",
+    "power" : "2",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Zombie Knight"
+    "set" : "HLW",
+    "toughness" : "2",
+    "type" : "Creature"
+  },
+  {
+    "collector_number" : "6",
+    "colors" : [
+      "W"
     ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Bell%20Gargoyles.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{4}{W}",
+    "name" : "Bell Gargoyles",
+    "oracle_text" : "Flying, vigilance",
+    "power" : "3",
+    "rarity" : "common",
+    "set" : "HLW",
+    "toughness" : "3",
+    "type" : "Artifact Creature"
+  },
+  {
+    "collector_number" : "7",
+    "colors" : [
+      "W"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Bonfire%20Keeper.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{1}{W}",
+    "name" : "Bonfire Keeper",
+    "oracle_text" : "When Bonfire Keeper enters the battlefield, you gain 2 life.",
+    "power" : "2",
+    "rarity" : "common",
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "8",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Bell%20Gargoyles.jpeg",
-    "mana_cost" : "{4}{W}",
-    "name" : "Bell Gargoyles",
-    "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Gargoyle"
+    "colors" : [
+      "W"
     ],
-    "type" : "Artifact Creature"
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Chosen%20by%20the%20Lords.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{2}{W}{W}",
+    "name" : "Chosen by the Lords",
+    "oracle_text" : "Choose target creature you control. Tap all other creatures. Put a +1\/+1 counter on the chosen creature for each creature tapped this way.",
+    "rarity" : "rare",
+    "set" : "HLW",
+    "type" : "Sorcery"
   },
   {
     "collector_number" : "9",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Bonfire%20Keeper.jpeg",
-    "mana_cost" : "{1}{W}",
-    "name" : "Bonfire Keeper",
-    "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Cleric"
+    "colors" : [
+      "W"
     ],
-    "type" : "Creature"
-  },
-  {
-    "collector_number" : "10",
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Companion%E2%80%99s%20Experience.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{W}",
     "name" : "Companion's Experience",
+    "oracle_text" : "Whenever exactly two creatures you control attack, put two +1\/+1 counters on the creature with the least power among them. If they have equal power, instead put a +1\/+1 counter on both of them.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
+    "collector_number" : "10",
+    "colors" : [
+      "W"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkbreaker%20Angel.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{3}{W}{W}",
+    "name" : "Darkbreaker Angel",
+    "oracle_text" : "Flying, vigilance, lifelink\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Angel. Hollow only as a sorcery.)",
+    "power" : "5",
+    "rarity" : "mythic",
+    "related_cards" : [
+      "Darkbreaker Angel Hollow (THLW)"
+    ],
+    "set" : "HLW",
+    "toughness" : "4",
+    "type" : "Creature"
+  },
+  {
     "collector_number" : "11",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkmoon%20Avenger.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{W}",
     "name" : "Darkmoon Avenger",
+    "oracle_text" : "When Darkmoon Avenger enters the battlefield, at the beginning of target opponent’s next end step, that player sacrifices a tapped creature.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Knight. Hollow only as a sorcery.)",
+    "power" : "3",
     "rarity" : "uncommon",
     "related_cards" : [
       "Darkmoon Avenger Hollow (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "12",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkmoon%20Deterrence.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{W}",
     "name" : "Darkmoon Deterrence",
+    "oracle_text" : "Destroy target attacking or blocking creature. Scry 1.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "13",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Doomed%20Pilgrim.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{W}",
     "name" : "Doomed Pilgrim",
+    "oracle_text" : "When Doomed Pilgrim enters the battlefield, if an opponent controls more lands than you, you may search your library for up to two Plains cards, reveal them, put them into your hand, then shuffle your library.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Cleric. Hollow only as a sorcery.)",
+    "power" : "2",
     "rarity" : "rare",
     "related_cards" : [
       "Doomed Pilgrim Hollow (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Cleric"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "14",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dull%20Defender.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{W}",
     "name" : "Dull Defender",
+    "oracle_text" : "Defender\nDull Defender can attack as though it didn’t have defender as long as an opponent controls a tapped creature.",
+    "power" : "3",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Zombie Soldier"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "15",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Endless%20Encounters.jpeg",
-    "mana_cost" : "{2}{W}{W}",
+    "layout" : "normal",
+    "mana_cost" : "{2}{W}",
     "name" : "Endless Encounters",
+    "oracle_text" : "Create two 1\/1 white Zombie Soldier creature tokens.\nWhenever a Zombie you control deals combat damage to an opponent, if Endless Encounters is in your graveyard, you may return it to your hand.",
     "rarity" : "rare",
     "related_cards" : [
       "Zombie Soldier (THLW)"
     ],
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "16",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Evander%E2%80%99s%20Phantom.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{W}",
     "name" : "Evander's Phantom",
+    "oracle_text" : "Flying\nWhenever Evander’s Phantom and exactly one other creature attack, they each get +1\/+1 until end of turn.",
+    "power" : "1",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Spirit Warrior"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "17",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Exiled%20Priestess.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{W}",
     "name" : "Exiled Priestess",
+    "oracle_text" : "When Exiled Priestess dies, put a +1\/+1 counter on up to one target creature.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Cleric. Hollow only as a sorcery.)",
+    "power" : "2",
     "rarity" : "common",
     "related_cards" : [
       "Exiled Priestess Hollow (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Cleric"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
     "collector_number" : "18",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Expendable%E2%80%99s%20Vigil.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{W}",
     "name" : "Expendable's Vigil",
+    "oracle_text" : "Enchant creature\nEnchanted creature gets +2\/+0 and has vigilance.\nWhenever a Zombie enters the battlefield under your control, you may pay W. If you do, return Expendable’s Vigil from your graveyard to your hand.",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Aura"
-    ],
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "19",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Fade%20to%20Ash.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{W}",
     "name" : "Fade to Ash",
+    "oracle_text" : "Exile target artifact or enchantment.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "20",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gargoyle%20Helm.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{W}",
     "name" : "Gargoyle Helm",
+    "oracle_text" : "Equipped creature gets +1\/+1 and has vigilance.\nEquip 2 (2: Attach to target creature you control. Equip only as a sorcery.)",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Artifact"
   },
   {
     "collector_number" : "21",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwyn%E2%80%99s%20Last%20Hope.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{W}{W}",
     "name" : "Gwyn's Last Hope",
+    "oracle_text" : "As an additional cost to cast this spell, sacrifice a creature.\nDestroy all creatures.",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "22",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwyndolin%E2%80%99s%20Bow.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{W}",
     "name" : "Gwyndolin's Bow",
+    "oracle_text" : "Equipped creature gets +2\/+0 and has first strike.\nWhenever equipped creature attacks, choose target creature an opponent controls. Until your next turn, that creature can’t attack or block and its activated abilities can’t be activated.\nEquip 2",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Legendary Artifact"
   },
   {
     "collector_number" : "23",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwynevere%E2%80%99s%20Benediction.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{W}",
     "name" : "Gwynevere's Benediction",
+    "oracle_text" : "Enchant creature\nEnchanted creature gets +1\/+1 for each permanent you control that’s attached to it.",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Aura"
-    ],
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "24",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Havel%2C%20the%20Rock.jpeg",
+    "colors" : [
+      "W"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Havel,%20the%20Rock.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{W}{W}",
     "name" : "Havel, the Rock",
+    "oracle_text" : "Havel, the Rock gets +1\/+1 for each nontoken Equipment you control.\nYou may pay 0 rather than pay equip costs.",
+    "power" : "3",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Demigod Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Legendary Creature"
   },
   {
     "collector_number" : "25",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Heavy%20Iron%20Armor.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{W}",
     "name" : "Heavy Iron Armor",
+    "oracle_text" : "If a source would deal damage to equipped creature, prevent half that damage, rounded up.\nEquip 2",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Artifact"
   },
   {
     "collector_number" : "26",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hollowed%20Hero.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{W}",
     "name" : "Hollowed Hero",
+    "oracle_text" : "1W, T: Tap target creature.",
+    "power" : "1",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Zombie Soldier"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "27",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Imprisoned%20Hollow.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{W}",
     "name" : "Imprisoned Hollow",
+    "oracle_text" : "",
+    "power" : "0",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Zombie Soldier"
-    ],
+    "set" : "HLW",
+    "toughness" : "4",
     "type" : "Creature"
   },
   {
     "collector_number" : "28",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Legacy%20of%20Knights.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{W}",
     "name" : "Legacy of Knights",
+    "oracle_text" : "Search your library for up to one Knight card and up to one Equipment card and reveal them. Shuffle your library, then put those cards on top of it in any order.",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "29",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Lifehunt%20Boon.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{W}",
     "name" : "Lifehunt Boon",
+    "oracle_text" : "Target creature gets +1\/+0 and gains first strike and lifelink until end of turn.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "30",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Overcome%20the%20Odds.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{W}",
     "name" : "Overcome the Odds",
+    "oracle_text" : "Destroy target creature with power 4 or greater. Put a +1\/+1 counter on up to one target creature you control.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "31",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Paladin%20of%20Holy%20Relics.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{W}",
     "name" : "Paladin of Holy Relics",
+    "oracle_text" : "When Paladin of Holy Relics enters the battlefield, reveal the top five cards of your library. Put up to one Aura or Equipment card from among them into your hand, and the rest on the bottom of your library in any order.",
+    "power" : "3",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "32",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Pilgrim%20Phantom.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{W}",
     "name" : "Pilgrim Phantom",
+    "oracle_text" : "Flying, first strike",
+    "power" : "2",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Spirit Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "33",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sanctuary%20Manticore.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{W}{W}",
     "name" : "Sanctuary Manticore",
+    "oracle_text" : "Flying\n2W: Another target creature you control gains indestructible until end of turn.",
+    "power" : "5",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Manticore"
-    ],
+    "set" : "HLW",
+    "toughness" : "4",
     "type" : "Creature"
   },
   {
     "collector_number" : "34",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Seeker%20of%20the%20Cure.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{W}",
     "name" : "Seeker of the Cure",
+    "oracle_text" : "Hollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Knight. Hollow only as a sorcery.)",
+    "power" : "3",
     "rarity" : "common",
     "related_cards" : [
       "Seeker of the Cure Hollow (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "35",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sen%E2%80%99s%20Fortress%20Golem.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{W}{W}",
     "name" : "Sen's Fortress Golem",
+    "oracle_text" : "Vigilance\nCreatures can’t attack you or a permanent you control unless their controller pays 3 for each of those creatures.",
+    "power" : "6",
     "rarity" : "mythic",
-    "set" : "hlw",
-    "subtypes" : [
-      "Golem"
-    ],
+    "set" : "HLW",
+    "toughness" : "6",
     "type" : "Legendary Artifact Creature"
   },
   {
     "collector_number" : "36",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Soothing%20Sunlight.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{W}",
     "name" : "Soothing Sunlight",
+    "oracle_text" : "Enchant creature\nWhen Soothing Sunlight enters the battlefield, you gain 2 life.\nEnchanted creature gets +2\/+2.",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Aura"
-    ],
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "37",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sunlight%20Paragon.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{W}{W}",
     "name" : "Sunlight Paragon",
+    "oracle_text" : "Flying\nCreatures can’t attack alone.",
+    "power" : "4",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Spirit Warrior"
-    ],
+    "set" : "HLW",
+    "toughness" : "4",
     "type" : "Creature"
   },
   {
     "collector_number" : "38",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Undead%20Steed.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{W}",
     "name" : "Undead Steed",
+    "oracle_text" : "When Undead Steed enters the battlefield, create a 2\/2 white Knight creature token.",
+    "power" : "2",
     "rarity" : "common",
     "related_cards" : [
       "Knight (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Zombie Horse"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "39",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Undead-Burg%20Captain.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{W}",
     "name" : "Undead-Burg Captain",
+    "oracle_text" : "Undead-Burg Captain’s power and toughness are each equal to the number of Zombies you control.",
+    "power" : "*",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Zombie Soldier"
-    ],
+    "set" : "HLW",
+    "toughness" : "*",
     "type" : "Creature"
   },
   {
     "collector_number" : "40",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/United%20in%20Victory.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{W}",
     "name" : "United in Victory",
+    "oracle_text" : "Put a +1\/+1 counter on each creature you control. You gain 1 life for each creature you control.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "41",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Velka%E2%80%99s%20Justice.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{W}",
     "name" : "Velka's Justice",
+    "oracle_text" : "Velka’s Justice deals 3 damage to target attacking or blocking creature.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "42",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Velka%E2%80%99s%20Missionary.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{W}",
     "name" : "Velka's Missionary",
+    "oracle_text" : "When Velka’s Missionary enters the battlefield, create a 1\/1 white Zombie Soldier creature token.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Cleric. Hollow only as a sorcery.)",
+    "power" : "3",
     "rarity" : "common",
     "related_cards" : [
       "Zombie Soldier (THLW)",
       "Velka's Missionary Hollow (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Cleric"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "43",
+    "colors" : [
+      "W"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Wondrous%20Incandescence.jpeg",
-    "mana_cost" : "1WW",
+    "layout" : "normal",
+    "mana_cost" : "{1}{W}{W}",
     "name" : "Wondrous Incandescence",
+    "oracle_text" : "Whenever Wondrous Incandescence or a creature enters the battlefield under your control, creatures you control get +1\/+1 until end of turn.",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "44",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/A%20Cold%20and%20Gentle%20Place.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{U}",
     "name" : "A Cold and Gentle Place",
+    "oracle_text" : "Whenever a creature an opponent controls becomes tapped, that creature doesn’t untap during its controller’s next untap step.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "45",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Absorbed%20in%20Thought.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{U}",
     "name" : "Absorbed in Thought",
+    "oracle_text" : "Journey twice. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nScry 2.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "46",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Banish%20to%20the%20Painting.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{U}",
     "name" : "Banish to the Painting",
+    "oracle_text" : "Put target nonland permanent on top of its owner’s library.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "47",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Blue%20Crystal%20Golem.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{5}{U}",
     "name" : "Blue Crystal Golem",
+    "oracle_text" : "Blue Crystal Golem can’t attack unless there are four or more cards in your graveyard.",
+    "power" : "6",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Golem"
-    ],
+    "set" : "HLW",
+    "toughness" : "6",
     "type" : "Artifact Creature"
   },
   {
     "collector_number" : "48",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Cancel.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{U}{U}",
     "name" : "Cancel",
+    "oracle_text" : "Counter target spell.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "49",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ciaran%2C%20Blade%20of%20the%20Lords.jpeg",
-    "mana_cost" : "{1}{U}{U}",
-    "name" : "Ciaran, Blade of the Lords",
-    "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Demigod Assassin"
+    "colors" : [
+      "U"
     ],
-    "type" : "Legendary Creature"
-  },
-  {
-    "collector_number" : "50",
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ciaran%E2%80%99s%20Obsession.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{U}",
     "name" : "Ciaran's Obsession",
+    "oracle_text" : "Look at the top four cards of your library. Put up to two of them into your hand and the rest into your graveyard.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
+    "collector_number" : "50",
+    "colors" : [
+      "U"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ciaran,%20Blade%20of%20the%20Lords.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{1}{U}{U}",
+    "name" : "Ciaran, Blade of the Lords",
+    "oracle_text" : "As Ciaran, Blade of the Lords enters the battlefield, each opponent chooses a creature card name.\nCiaran can’t be blocked except by creatures with one of the chosen names.",
+    "power" : "3",
+    "rarity" : "rare",
+    "set" : "HLW",
+    "toughness" : "3",
+    "type" : "Legendary Creature"
+  },
+  {
     "collector_number" : "51",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Crossing%20the%20Fog.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{U}",
     "name" : "Crossing the Fog",
+    "oracle_text" : "Journey three times. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "52",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Crystalline%20Armor.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{U}",
     "name" : "Crystalline Armor",
+    "oracle_text" : "Equipped creature gets +2\/+2.\nWhen equipped creature dies, sacrifice Crystalline Armor.\nEquip 1",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Artifact"
   },
   {
     "collector_number" : "53",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Curse-Marked%20Crook.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{U}",
     "name" : "Curse-Marked Crook",
+    "oracle_text" : "When Curse-Marked Crook enters the battlefield, scry 1.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Rogue. Hollow only as a sorcery.)",
+    "power" : "2",
     "rarity" : "common",
     "related_cards" : [
       "Curse-Marked Crook Hollow (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Rogue"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "54",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkmoon%20Favor.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{U}",
     "name" : "Darkmoon Favor",
+    "oracle_text" : "Scry 4, then draw two cards.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "55",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkroot%20Sorcerer.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{U}",
     "name" : "Darkroot Sorcerer",
+    "oracle_text" : "Flash (You may cast this spell any time you could cast an instant.)",
+    "power" : "1",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Wizard"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "56",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkroot%20Spellguard.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{U}",
     "name" : "Darkroot Spellguard",
+    "oracle_text" : "Flash\nWhen Darkroot Spellguard enters the battlefield, counter target spell. If that spell is countered this way, put it into its owner’s hand instead of into that player’s graveyard.",
+    "power" : "3",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "57",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Demented%20Sorcerer.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{U}",
     "name" : "Demented Sorcerer",
+    "oracle_text" : "When Demented Sorcerer enters the battlefield, look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest into your graveyard.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Wizard. Hollow only as a sorcery.)",
+    "power" : "3",
     "rarity" : "uncommon",
     "related_cards" : [
       "Demented Sorcerer Hollow (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Wizard"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "58",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dour%20Vagrant.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{U}",
     "name" : "Dour Vagrant",
+    "oracle_text" : "When Dour Vagrant enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Rogue. Hollow only as a sorcery.)",
+    "power" : "2",
     "rarity" : "rare",
     "related_cards" : [
-      "Dour Vagrant Hollow (THLW)"
+      "Dour Vagrant Hollow (THLW)",
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Rogue"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
     "collector_number" : "59",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Essence%20Scatter.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{U}",
     "name" : "Essence Scatter",
+    "oracle_text" : "Counter target creature spell.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "60",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Everlasting%20Research.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{U}",
     "name" : "Everlasting Research",
+    "oracle_text" : "At the beginning of each player’s draw step, that player looks at the top two cards of their library, puts one of those cards into their hand and the other into their graveyard.",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "61",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Eyes%20of%20the%20Darkmoon.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{U}",
     "name" : "Eyes of the Darkmoon",
+    "oracle_text" : "Flash\nFlying\n2U, Exile a noncreature card from your graveyard: Put a +1\/+1 counter on Eyes of the Darkmoon.",
+    "power" : "1",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Bird Illusion"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
     "collector_number" : "62",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Flooding%20of%20New%20Londo.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{U}{U}",
     "name" : "Flooding of New Londo",
+    "oracle_text" : "Return all creatures to their owners’ hands. For each creature returned to its owner’s hand this way, its controller puts the top card of their library into their graveyard.",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "63",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Illusory%20Wall.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{U}",
     "name" : "Illusory Wall",
+    "oracle_text" : "Defender\nWhen Illusory Wall becomes the target of a spell, sacrifice it.",
+    "power" : "0",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Illusion Wall"
-    ],
+    "set" : "HLW",
+    "toughness" : "10",
     "type" : "Creature"
   },
   {
     "collector_number" : "64",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Instant%20Petrification.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{U}",
     "name" : "Instant Petrification",
+    "oracle_text" : "Flash\nEnchant creature\nEnchanted creature has base power and toughness 0\/4. It’s a colorless Wall artifact creature with defender and loses all other abilities.",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Aura"
-    ],
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "65",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Moonlight%20Butterfly.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{U}{U}",
     "name" : "Moonlight Butterfly",
+    "oracle_text" : "Flash\nFlying\nWhen Moonlight Butterfly enters the battlefield, copy target instant or sorcery spell you control. You may choose new targets for the copy.",
+    "power" : "4",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Insect"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "66",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/New%20Londo%20Drowned.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{U}",
     "name" : "New Londo Drowned",
+    "oracle_text" : "",
+    "power" : "3",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Zombie"
-    ],
+    "set" : "HLW",
+    "toughness" : "5",
     "type" : "Creature"
   },
   {
     "collector_number" : "67",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Overwhelming%20Burden.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{U}",
     "name" : "Overwhelming Burden",
+    "oracle_text" : "Enchant creature\nEnchanted creature doesn’t untap during its controller’s untap step.",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Aura"
-    ],
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "68",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Pale-Drake%E2%80%99s%20Pact.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{U}{U}",
     "name" : "Pale-Drake's Pact",
+    "oracle_text" : "Exchange control of target artifact or enchantment you control and target creature an opponent controls.",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "69",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Path%20of%20Brilliance.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{U}",
     "name" : "Path of Brilliance",
+    "oracle_text" : "When Path of Brilliance enters the battlefield, journey twice. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nAt the beginning of combat on your turn, if you own a journeyed card in exile, tap target creature an opponent controls.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "70",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Prized%20Drake.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{U}{U}",
     "name" : "Prized Drake",
+    "oracle_text" : "Flying\nWhen Prized Drake dies, you draw a card.",
+    "power" : "4",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Drake"
-    ],
+    "set" : "HLW",
+    "toughness" : "4",
     "type" : "Creature"
   },
   {
     "collector_number" : "71",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Rapid%20Rusting.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{U}",
     "name" : "Rapid Rusting",
+    "oracle_text" : "Target creature gets -5\/-0 until end of turn. Return all permanents attached to it to their owners’ hands.\nDraw a card.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "72",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Raven%20Rider.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{U}",
     "name" : "Raven Rider",
+    "oracle_text" : "Flying\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Knight. Hollow only as a sorcery.)",
+    "power" : "3",
     "rarity" : "common",
     "related_cards" : [
       "Raven Rider Hollow (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "73",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ring%20Collector.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{U}{U}",
     "name" : "Ring Collector",
+    "oracle_text" : "When Ring Collector enters the battlefield, search your library for up to three artifact cards with different names that each have converted mana cost 1 or less, reveal them, put them into your hand, then shuffle your library.",
+    "power" : "2",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Rogue"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "74",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ruin%20Haunt.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{U}",
     "name" : "Ruin Haunt",
+    "oracle_text" : "Flash\nFlying",
+    "power" : "2",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Spirit"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "75",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Scholar%E2%80%99s%20Catalyst.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{U}",
     "name" : "Scholar's Catalyst",
+    "oracle_text" : "When Scholar’s Catalyst enters the battlefield, target player puts the top three cards of their library into their graveyard.\nEquipped creature gets +1\/+1.\nEquip 1 (1: Attach to target creature you control. Equip only as a sorcery.)",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Artifact"
   },
   {
     "collector_number" : "76",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Seath%2C%20Scaleless%20Betrayer.jpeg",
+    "colors" : [
+      "U"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Seath,%20Scaleless%20Betrayer.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{U}{U}",
     "name" : "Seath, Scaleless Betrayer",
+    "oracle_text" : "This spell can’t be countered.\nFlying, indestructible\nWhen you’re dealt combat damage, sacrifice Seath, Scaleless Betrayer.\nU, Discard a card: Return Seath to its owner’s hand.",
+    "power" : "7",
     "rarity" : "mythic",
-    "set" : "hlw",
-    "subtypes" : [
-      "Dragon Wizard"
-    ],
+    "set" : "HLW",
+    "toughness" : "7",
     "type" : "Legendary Creature"
   },
   {
     "collector_number" : "77",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Seek%20the%20Past.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{U}",
     "name" : "Seek the Past",
+    "oracle_text" : "Shuffle your graveyard and any number of journeyed cards you own in exile into your library. Draw a card.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "78",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sidetracked.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{U}",
     "name" : "Sidetracked",
+    "oracle_text" : "Return target creature to its owner’s hand.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "79",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Slaine%E2%80%99s%20Ally.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{U}",
     "name" : "Slaine's Ally",
+    "oracle_text" : "When Slaine’s Ally enters the battlefield, tap up to two target creatures.",
+    "power" : "3",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Wizard"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "80",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sorcerous%20Explorer.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{U}",
     "name" : "Sorcerous Explorer",
+    "oracle_text" : "When Sorcerous Explorer enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
+    "power" : "2",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Wizard"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "81",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Soul%20Confluence.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{U}{U}{U}",
     "name" : "Soul Confluence",
+    "oracle_text" : "Reveal the top five cards of your library. An opponent separates those cards into three piles. Put the cards in one pile into your graveyard. Put the cards in another pile into your hand. Exile the cards in the third pile, then for each nonland card exiled this way not named Soul Confluence, you may cast that card without paying its mana cost.",
     "rarity" : "mythic",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "82",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/The%20Moonlight%20Greatsword.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{U}",
     "name" : "The Moonlight Greatsword",
+    "oracle_text" : "Instant and sorcery spells you cast cost 1 less to cast.\nEquipped creature gets +X\/+X, where X is the number of instant and sorcery cards in your graveyard.\nEquip 2",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Legendary Artifact"
   },
   {
     "collector_number" : "83",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Traveler%E2%80%99s%20Protection.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{U}",
     "name" : "Traveler's Protection",
+    "oracle_text" : "Target creature you control gains hexproof until end of turn.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "84",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Valley%20Drake.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{U}",
     "name" : "Valley Drake",
+    "oracle_text" : "Flying",
+    "power" : "2",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Drake"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "85",
+    "colors" : [
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Vinheim%20Agent.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{U}",
     "name" : "Vinheim Agent",
+    "oracle_text" : "Discard a card: Vinheim Agent can’t be blocked this turn.",
+    "power" : "2",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Rogue"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
     "collector_number" : "86",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Vinheim%20Handler.jpeg",
-    "mana_cost" : "3U",
-    "name" : "Vinheim Handler",
-    "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Rogue"
+    "colors" : [
+      "U"
     ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Vinheim%20Handler.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{3}{U}",
+    "name" : "Vinheim Handler",
+    "oracle_text" : "Whenever a creature you control attacks alone, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
+    "power" : "1",
+    "rarity" : "uncommon",
+    "set" : "HLW",
+    "toughness" : "4",
     "type" : "Creature"
   },
   {
     "collector_number" : "87",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Abyssal%20Adventurer.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{B}",
     "name" : "Abyssal Adventurer",
+    "oracle_text" : "When Abyssal Adventurer dies, target creature an opponent controls gets -1\/-1 until end of turn.",
+    "power" : "1",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
     "collector_number" : "88",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Artorias%2C%20Abyss-Stricken.jpeg",
-    "mana_cost" : "{2}{B}{B}",
-    "name" : "Artorias, Abyss-Stricken",
-    "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Demigod Knight"
+    "colors" : [
+      "B"
     ],
-    "type" : "Legendary Creature"
-  },
-  {
-    "collector_number" : "89",
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Artorias%E2%80%99s%20Cursed%20Greatsword.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{B}",
     "name" : "Artorias's Cursed Greatsword",
+    "oracle_text" : "Equipped creature gets +3\/+0 and has menace.\nEquip—Discard a card or pay 5 life.",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Legendary Artifact"
   },
   {
+    "collector_number" : "89",
+    "colors" : [
+      "B"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Artorias,%20Abyss-Stricken.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{2}{B}{B}",
+    "name" : "Artorias, Abyss-Stricken",
+    "oracle_text" : "Artorias, Abyss-Stricken can’t block.\nPay 5 life: Artorias gains first strike, trample, and haste until end of turn.",
+    "power" : "5",
+    "rarity" : "rare",
+    "set" : "HLW",
+    "toughness" : "5",
+    "type" : "Legendary Creature"
+  },
+  {
     "collector_number" : "90",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Barbaric%20Cleric.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{B}",
     "name" : "Barbaric Cleric",
+    "oracle_text" : "When Barbaric Cleric enters the battlefield, each opponent loses 2 life and you gain 2 life.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Cleric. Hollow only as a sorcery.)",
+    "power" : "4",
     "rarity" : "common",
     "related_cards" : [
       "Barbaric Cleric Hollow (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Cleric"
-    ],
+    "set" : "HLW",
+    "toughness" : "4",
     "type" : "Creature"
   },
   {
     "collector_number" : "91",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Barbed%20Blade.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{B}",
     "name" : "Barbed Blade",
+    "oracle_text" : "When Barbed Blade enters the battlefield, each opponent loses 2 life.\nEquipped creature gets +2\/+0.\nEquip 2 (2: Attach to target creature you control. Equip only as a sorcery.)",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Artifact"
   },
   {
     "collector_number" : "92",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Behold%20the%20Soul.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{B}",
     "name" : "Behold the Soul",
+    "oracle_text" : "Target player draws two cards, loses 2 life, and puts the top two cards of their library into their graveyard.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "93",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Black%20Knight%20Armor.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{B}",
     "name" : "Black Knight Armor",
+    "oracle_text" : "Equipped creature gets +2\/+2.\nWhenever Black Knight Armor becomes unattached from a permanent, sacrifice that permanent.\nEquip 1",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Artifact"
   },
   {
     "collector_number" : "94",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Blackened%20Knight.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{B}{B}",
     "name" : "Blackened Knight",
+    "oracle_text" : "Blackened Knight attacks an opponent who controls a Demon, a Dragon, or a Zombie each combat if able.",
+    "power" : "4",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Demigod Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "4",
     "type" : "Creature"
   },
   {
     "collector_number" : "95",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Brand%20with%20Undeath.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{B}",
     "name" : "Brand with Undeath",
+    "oracle_text" : "Until end of turn, target creature gets +2\/+0 and gains “When this creature dies, return it to the battlefield tapped under its owner’s control.”",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "96",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Brutal%20Incineration.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{B}",
     "name" : "Brutal Incineration",
+    "oracle_text" : "Target creature gets -4\/-4 until end of turn. Its controller loses 2 life.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "97",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Centipede%20Demon.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{5}{B}{B}",
     "name" : "Centipede Demon",
+    "oracle_text" : "When Centipede Demon enters the battlefield, each opponent discards a card and sacrifices a creature.",
+    "power" : "9",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Insect Demon"
-    ],
+    "set" : "HLW",
+    "toughness" : "5",
     "type" : "Creature"
   },
   {
     "collector_number" : "98",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Consumed%20by%20the%20Abyss.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{B}",
     "name" : "Consumed by the Abyss",
+    "oracle_text" : "Exile target creature.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "99",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkwraith%20Elite.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{B}",
     "name" : "Darkwraith Elite",
+    "oracle_text" : "Deathtouch\nWhenever Darkwraith Elite deals combat damage to a player, create a 1\/1 black Skeleton creature token.\n1B, Sacrifice another creature: Darkwraith Elite gains indestructible until end of turn. Tap it.",
+    "power" : "3",
     "rarity" : "rare",
     "related_cards" : [
       "Skeleton (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Skeleton Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "100",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkwraith%20Warband.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{B}",
     "name" : "Darkwraith Warband",
+    "oracle_text" : "When Darkwraith Warband enters the battlefield, you may sacrifice another creature. If you do, put two +1\/+1 counters on Darkwraith Warband and each opponent loses 2 life.",
+    "power" : "3",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Skeleton Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "101",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Deathless%20Commander.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{B}",
     "name" : "Deathless Commander",
+    "oracle_text" : "Other Zombies and Knights you control get +1\/+1.",
+    "power" : "2",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Zombie Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "102",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Deceitful%20Stab.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{B}",
     "name" : "Deceitful Stab",
+    "oracle_text" : "Target attacking or blocking creature gets -2\/-2 until end of turn.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "103",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Duress.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{B}",
     "name" : "Duress",
+    "oracle_text" : "Target opponent reveals their hand. You choose a noncreature, nonland card from it. That player discards that card.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "104",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Fall%20From%20Favor.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{B}",
     "name" : "Fall From Favor",
+    "oracle_text" : "Exile target legendary creature.",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "105",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Fallen%20Champion.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{B}",
     "name" : "Fallen Champion",
+    "oracle_text" : "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhenever a creature you control despairs, target creature an opponent controls gets -2\/-2 until end of turn.",
+    "power" : "3",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "106",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Fallen%20Farmer.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{B}",
     "name" : "Fallen Farmer",
+    "oracle_text" : "1B: Return Fallen Farmer from your graveyard to your hand.",
+    "power" : "1",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Zombie Farmer"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
     "collector_number" : "107",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Futile%20Pursuit.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{B}",
     "name" : "Futile Pursuit",
+    "oracle_text" : "Choose one or both —\n• Target player reveals their hand. You choose a nonland card from it. That player discards that card.\n• Target player puts all journeyed cards they own in exile into their graveyard.",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "108",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hollow%20Victory.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{5}{B}",
     "name" : "Hollow Victory",
+    "oracle_text" : "This spell costs 1 less to cast for each Zombie you control.\nTarget player draws three cards and loses 3 life.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "109",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hopeless%20Determination.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{B}",
     "name" : "Hopeless Determination",
+    "oracle_text" : "At the beginning of your end step, each opponent loses 1 life and you gain 1 life.\nIf you would draw a card while your library has no cards in it, skip that draw instead.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "110",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Humanity%20Hunter.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{B}",
     "name" : "Humanity Hunter",
+    "oracle_text" : "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Humanity Hunter despairs, it gets +2\/+0 and gains menace until end of turn.",
+    "power" : "3",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Rogue"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "111",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hungering%20Knight.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{B}",
     "name" : "Hungering Knight",
+    "oracle_text" : "Sacrifice a creature: Hungering Knight gets +2\/+2 until end of turn.",
+    "power" : "2",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Zombie Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "112",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Izalith%E2%80%99s%20Ruination.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{B}",
     "name" : "Izalith's Ruination",
+    "oracle_text" : "As an additional cost to cast this spell, sacrifice a creature.\nTarget opponent sacrifices a land and loses 4 life.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "113",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Journey%E2%80%99s%20End.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{B}",
     "name" : "Journey's End",
+    "oracle_text" : "As an additional cost to cast this spell, discard a card.\nDestroy target creature.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "114",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Key-Holder%20Demon.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{B}{B}",
     "name" : "Key-Holder Demon",
+    "oracle_text" : "Flying\nWhen Key-Holder Demon enters the battlefield, exile all cards from all opponents’ graveyards.",
+    "power" : "4",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Beast Demon"
-    ],
+    "set" : "HLW",
+    "toughness" : "4",
     "type" : "Creature"
   },
   {
     "collector_number" : "115",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Mind%20Rot.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{B}",
     "name" : "Mind Rot",
+    "oracle_text" : "Target player discards two cards.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "116",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Mindless%20Hollow.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{B}",
     "name" : "Mindless Hollow",
+    "oracle_text" : "",
+    "power" : "1",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Zombie"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "117",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Nito%2C%20the%20Gravelord.jpeg",
+    "colors" : [
+      "B"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Nito%E2%80%99s%20Miasma.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{1}{B}{B}",
+    "name" : "Nito's Miasma",
+    "oracle_text" : "Target creature gets -4\/-4 until end of turn. Each other creature gets -1\/-1 until end of turn.",
+    "rarity" : "uncommon",
+    "set" : "HLW",
+    "type" : "Sorcery"
+  },
+  {
+    "collector_number" : "118",
+    "colors" : [
+      "B"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Nito,%20the%20Gravelord.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{B}{B}{B}",
     "name" : "Nito, the Gravelord",
+    "oracle_text" : "When Nito, the Gravelord enters the battlefield, all other creatures get -2\/-2 until end of turn.\nWhenever a nontoken creature dies, create a 1\/1 black Skeleton creature token.",
+    "power" : "6",
     "rarity" : "mythic",
     "related_cards" : [
       "Skeleton (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Skeleton God"
-    ],
+    "set" : "HLW",
+    "toughness" : "6",
     "type" : "Legendary Creature"
   },
   {
-    "collector_number" : "118",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Nito%E2%80%99s%20Miasma.jpeg",
-    "mana_cost" : "{1}{B}{B}",
-    "name" : "Nito's Miasma",
-    "rarity" : "uncommon",
-    "set" : "hlw",
-    "type" : "Sorcery"
-  },
-  {
     "collector_number" : "119",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Offering%20of%20Humanity.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{B}",
     "name" : "Offering of Humanity",
+    "oracle_text" : "As an additional cost to cast this spell, sacrifice a creature.\nDraw two cards.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "120",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Parasitic%20Wallhugger.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{B}",
     "name" : "Parasitic Wallhugger",
+    "oracle_text" : "Defender\nWhenever another creature you control dies, each opponent loses 1 life.",
+    "power" : "1",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Insect Horror"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "121",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Reign%20of%20the%20Dark%20Lord.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{B}{B}",
     "name" : "Reign of the Dark Lord",
+    "oracle_text" : "2B, Discard a card: Exile target creature card from your graveyard. Create a token that’s a copy of it, except it’s black and it’s a Zombie in addition to its other types. Activate this ability only any time you could cast a sorcery.",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Legendary Enchantment"
   },
   {
     "collector_number" : "122",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ruin%20Delver.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{B}",
     "name" : "Ruin Delver",
+    "oracle_text" : "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Ruin Delver despairs, you draw a card and you lose 1 life.",
+    "power" : "2",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Rogue"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
     "collector_number" : "123",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sewer%20Nibbler.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{B}",
     "name" : "Sewer Nibbler",
+    "oracle_text" : "When Sewer Nibbler enters the battlefield, put the top three cards of your library into your graveyard.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Rat. Hollow only as a sorcery.)",
+    "power" : "2",
     "rarity" : "common",
     "related_cards" : [
       "Sewer Nibbler Hollow (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Rat"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
     "collector_number" : "124",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sin%20Caller.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{B}",
     "name" : "Sin Caller",
+    "oracle_text" : "Whenever a creature you control dies, you draw a card and you lose 1 life.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Cleric. Hollow only as a sorcery.)",
+    "power" : "4",
     "rarity" : "rare",
     "related_cards" : [
       "Sin Caller Hollow (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Cleric"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "125",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sin%20Cultist.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{B}",
     "name" : "Sin Cultist",
+    "oracle_text" : "When Sin Cultist enters the battlefield, each player sacrifices a creature.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Cleric. Hollow only as a sorcery.)",
+    "power" : "3",
     "rarity" : "uncommon",
     "related_cards" : [
       "Sin Cultist Hollow (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Cleric"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
     "collector_number" : "126",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/The%20Furtive%20Pygmy.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{B}{B}",
     "name" : "The Furtive Pygmy",
+    "oracle_text" : "At the beginning of your upkeep, put the top X cards of your library into your graveyard, where X is the number of cards in your graveyard. Create a 1\/1 black Human creature token for each nonland card put into your graveyard this way.",
+    "power" : "1",
     "rarity" : "mythic",
     "related_cards" : [
       "Human (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Legendary Creature"
   },
   {
     "collector_number" : "127",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Titanite%20Demon.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{5}{B}",
     "name" : "Titanite Demon",
+    "oracle_text" : "When Titanite Demon enters the battlefield, you draw a card and you lose 1 life.",
+    "power" : "4",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Demon Construct"
-    ],
+    "set" : "HLW",
+    "toughness" : "5",
     "type" : "Artifact Creature"
   },
   {
     "collector_number" : "128",
+    "colors" : [
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Velka%E2%80%99s%20Crow.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{B}",
     "name" : "Velka's Crow",
+    "oracle_text" : "Flying\nWhen Velka’s Crow enters the battlefield, look at the top card of your library. You may put it into your graveyard.",
+    "power" : "2",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Bird"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "129",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Venomous%20Bandit.jpeg",
-    "mana_cost" : "B",
-    "name" : "Venomous Bandit",
-    "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Rogue"
+    "colors" : [
+      "B"
     ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Venomous%20Bandit.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{B}",
+    "name" : "Venomous Bandit",
+    "oracle_text" : "Venomous Bandit can’t block.\nDesperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Venomous Bandit despairs, it gets +1\/+2 and gains deathtouch until end of turn.",
+    "power" : "2",
+    "rarity" : "uncommon",
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
     "collector_number" : "130",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Batwing%20Demon.jpeg",
-    "mana_cost" : "3R",
-    "name" : "Batwing Demon",
-    "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Bat Demon"
+    "colors" : [
+      "R"
     ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Batwing%20Demon.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{3}{R}",
+    "name" : "Batwing Demon",
+    "oracle_text" : "Flying\nWhen Batwing Demon enters the battlefield, another target creature you control gets +3\/+0 and gains flying until end of turn. Sacrifice that creature at the beginning of the next end step.",
+    "power" : "3",
+    "rarity" : "uncommon",
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "131",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Bloodied%20Shotel.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{R}",
     "name" : "Bloodied Shotel",
+    "oracle_text" : "Equipped creature gets +2\/+1.\nEquip 3\nWhenever a creature you control despairs, you may attach Bloodied Shotel to that creature.",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Artifact"
   },
   {
     "collector_number" : "132",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Capra%20Demon.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{R}",
     "name" : "Capra Demon",
+    "oracle_text" : "Menace",
+    "power" : "3",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Goat Demon"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "133",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ceaseless%20Destruction.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{R}",
     "name" : "Ceaseless Destruction",
+    "oracle_text" : "Destroy target artifact. Add RR.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "134",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ceaseless%20Discharge.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{R}{R}{R}{R}",
     "name" : "Ceaseless Discharge",
+    "oracle_text" : "Trample\nAt the beginning of each of your main phases, add eight R.\nWhenever you lose unspent mana, Ceaseless Discharge deals that much damage to you.",
+    "power" : "8",
     "rarity" : "mythic",
-    "set" : "hlw",
-    "subtypes" : [
-      "Elemental Demon"
-    ],
+    "set" : "HLW",
+    "toughness" : "8",
     "type" : "Legendary Creature"
   },
   {
     "collector_number" : "135",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Crazed%20Butcher.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{R}",
     "name" : "Crazed Butcher",
+    "oracle_text" : "",
+    "power" : "4",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Zombie Warrior"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "136",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Cruel%20Lunatic.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{R}",
     "name" : "Cruel Lunatic",
+    "oracle_text" : "When Cruel Lunatic enters the battlefield, any opponent may have it deal 5 damage to them. If a player does, sacrifice Cruel Lunatic.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Berserker. Hollow only as a sorcery.)",
+    "power" : "5",
     "rarity" : "rare",
     "related_cards" : [
       "Cruel Lunatic Hollow (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Berserker"
-    ],
+    "set" : "HLW",
+    "toughness" : "4",
     "type" : "Creature"
   },
   {
     "collector_number" : "137",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Doomsayer%20Sage.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{R}",
     "name" : "Doomsayer Sage",
+    "oracle_text" : "Whenever you cast a noncreature spell, Doomsayer Sage gets +1\/+1 until end of turn.",
+    "power" : "1",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Shaman"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "138",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dragon-Path%20Daredevil.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{R}",
     "name" : "Dragon-Path Daredevil",
+    "oracle_text" : "Menace\nWhen Dragon-Path Daredevil enters the battlefield, you may discard a card. If you do, journey twice. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
+    "power" : "3",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Dragon"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "139",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Excessive%20Moxie.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{R}",
     "name" : "Excessive Moxie",
+    "oracle_text" : "Attacking creatures get +2\/+0 until end of turn.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "140",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Lightning%20Spear.jpeg",
-    "mana_cost" : "{2}{R}",
-    "name" : "Lightning Spear",
-    "rarity" : "common",
-    "set" : "hlw",
-    "type" : "Instant"
+    "colors" : [
+      "R"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Flame%20Storm.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{1}{R}{R}",
+    "name" : "Flame Storm",
+    "oracle_text" : "Flame Storm deals 3 damage to each creature. Whenever a creature dealt damage this way dies this turn, Flame Storm deals 1 damage to that creature’s controller.",
+    "rarity" : "rare",
+    "set" : "HLW",
+    "type" : "Sorcery"
   },
   {
     "collector_number" : "141",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Flame%20Storm.jpeg",
-    "mana_cost" : "{1}{R}{R}",
-    "name" : "Flame Storm",
-    "rarity" : "rare",
-    "set" : "hlw",
-    "type" : "Sorcery"
+    "colors" : [
+      "R"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Glory%20Chaser.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{1}{R}",
+    "name" : "Glory Chaser",
+    "oracle_text" : "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Glory Chaser despairs, it gets +2\/+0 and gains trample until end of turn.",
+    "power" : "2",
+    "rarity" : "common",
+    "set" : "HLW",
+    "toughness" : "1",
+    "type" : "Creature"
   },
   {
     "collector_number" : "142",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Glory%20Chaser.jpeg",
-    "mana_cost" : "{1}{R}",
-    "name" : "Glory Chaser",
-    "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Knight"
+    "colors" : [
+      "R"
     ],
-    "type" : "Creature"
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Grand%20Fire%20Orb.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{2}{R}{R}",
+    "name" : "Grand Fire Orb",
+    "oracle_text" : "Grand Fire Orb deals 5 damage to target creature.",
+    "rarity" : "common",
+    "set" : "HLW",
+    "type" : "Sorcery"
   },
   {
     "collector_number" : "143",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Grand%20Fire%20Orb.jpeg",
-    "mana_cost" : "{2}{R}{R}",
-    "name" : "Grand Fire Orb",
-    "rarity" : "common",
-    "set" : "hlw",
-    "type" : "Sorcery"
+    "colors" : [
+      "R"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Grim%20Mercenary.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{1}{R}{R}",
+    "name" : "Grim Mercenary",
+    "oracle_text" : "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Grim Mercenary despairs, it gains double strike until end of turn.",
+    "power" : "3",
+    "rarity" : "uncommon",
+    "set" : "HLW",
+    "toughness" : "3",
+    "type" : "Creature"
   },
   {
     "collector_number" : "144",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Grim%20Mercenary.jpeg",
-    "mana_cost" : "{1}{R}{R}",
-    "name" : "Grim Mercenary",
-    "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Soldier"
+    "colors" : [
+      "R"
     ],
-    "type" : "Creature"
-  },
-  {
-    "collector_number" : "145",
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwyn%E2%80%99s%20Defeat.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{X}{R}{R}",
     "name" : "Gwyn's Defeat",
+    "oracle_text" : "This spell costs 4 less to cast if you control a creature with power 4 or greater.\nGwyn’s Defeat deals X damage to any target.",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
-    "collector_number" : "146",
+    "collector_number" : "145",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Heir%20of%20Chaos.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{R}",
     "name" : "Heir of Chaos",
+    "oracle_text" : "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Heir of Chaos despairs, when you cast your next instant or sorcery spell this turn, copy it. You may choose new targets for the copy.",
+    "power" : "3",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Wizard"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
-    "collector_number" : "147",
+    "collector_number" : "146",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hero%E2%80%99s%20Gamble.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{R}",
     "name" : "Hero's Gamble",
+    "oracle_text" : "Journey five times. At the beginning of the next end step, shuffle five journeyed cards you own in exile into your library. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
-    "collector_number" : "148",
+    "collector_number" : "147",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Izalith%20Firesage.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{R}{R}",
     "name" : "Izalith Firesage",
+    "oracle_text" : "Trample\nWhen Izalith Firesage enters the battlefield, scry 3, then reveal the top card of your library. When you do, Izalith Firesage deals X damage to any target, where X is the revealed card’s converted mana cost.",
+    "power" : "6",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Beast Demon Shaman"
-    ],
+    "set" : "HLW",
+    "toughness" : "6",
     "type" : "Creature"
   },
   {
-    "collector_number" : "149",
+    "collector_number" : "148",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Jolly%20Cooperation.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{R}{R}",
     "name" : "Jolly Cooperation",
+    "oracle_text" : "Untap up to two target creatures. After this main phase, there is an additional combat phase followed by an additional main phase.\nJourney twice. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
+    "type" : "Sorcery"
+  },
+  {
+    "collector_number" : "149",
+    "colors" : [
+      "R"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Kalameet%E2%80%99s%20Gaze.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{1}{R}",
+    "name" : "Kalameet's Gaze",
+    "oracle_text" : "Kalameet’s Gaze deals 4 damage to any target that was dealt damage this turn.",
+    "rarity" : "uncommon",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "150",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Kalameet%E2%80%99s%20Gaze.jpeg",
-    "mana_cost" : "{1}{R}",
-    "name" : "Kalameet's Gaze",
-    "rarity" : "uncommon",
-    "set" : "hlw",
-    "type" : "Sorcery"
+    "colors" : [
+      "R"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Lightning%20Spear.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{2}{R}",
+    "name" : "Lightning Spear",
+    "oracle_text" : "Lightning Spear deals 3 damage to any target.",
+    "rarity" : "common",
+    "set" : "HLW",
+    "type" : "Instant"
   },
   {
     "collector_number" : "151",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Lingering%20Animosity.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{R}",
     "name" : "Lingering Animosity",
+    "oracle_text" : "Enchant creature\nWhen Lingering Animosity enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nEnchanted creature attacks each combat if able.",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Aura"
-    ],
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "152",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Linking%20the%20Flame.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{R}",
     "name" : "Linking the Flame",
+    "oracle_text" : "At the beginning of your end step, you may put a +1\/+1 counter on target creature that attacked this turn.\nAt the beginning of your upkeep, you may sacrifice a Human with power 12 or greater. If you do, you win the game.",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "153",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Mad%20Prayer.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{R}",
     "name" : "Mad Prayer",
+    "oracle_text" : "As an additional cost to cast this spell, discard a card.\nDraw two cards.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "154",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Magma%20Spider.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{R}",
     "name" : "Magma Spider",
+    "oracle_text" : "Reach\nWhen Magma Spider dies, it deals 3 damage to each opponent.",
+    "power" : "3",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Spider"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
     "collector_number" : "155",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ornstein%2C%20Dragonslayer.jpeg",
+    "colors" : [
+      "R"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ornstein,%20Dragonslayer.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{R}",
     "name" : "Ornstein, Dragonslayer",
+    "oracle_text" : "Haste\nOrnstein, Dragonslayer has first strike as long as it’s attacking.\nDamage can’t be prevented.\n2R: Ornstein, Dragonslayer gets +3\/+0 until end of turn.",
+    "power" : "3",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Demigod Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Legendary Creature"
   },
   {
     "collector_number" : "156",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Paragon%20Transformation.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{R}",
     "name" : "Paragon Transformation",
+    "oracle_text" : "As an additional cost to cast this spell, sacrifice a creature.\nCreate a 4\/4 colorless Dragon artifact creature token with flying.",
     "rarity" : "uncommon",
     "related_cards" : [
       "Dragon (THLW)"
     ],
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "157",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Path%20of%20Violence.jpeg",
-    "mana_cost" : "{1}{R}",
+    "layout" : "normal",
+    "mana_cost" : "{R}",
     "name" : "Path of Violence",
+    "oracle_text" : "When Path of Violence enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nAt the beginning of combat on your turn, if you own a journeyed card in exile, target creature you control gets +2\/+0 until end of turn.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "158",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Power%20Within.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{R}{R}{R}",
     "name" : "Power Within",
+    "oracle_text" : "Whenever you cast an instant or sorcery spell, copy that spell. You may choose new targets for the copy. Power Within deals damage to you equal to that spell’s converted mana cost.",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "159",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Pyromancer%E2%80%99s%20Flame.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{R}",
     "name" : "Pyromancer's Flame",
+    "oracle_text" : "Whenever equipped creature attacks, it deals 2 damage to target opponent.\nEquip 2 (2: Attach to target creature you control. Equip only as a sorcery.)",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Artifact"
   },
   {
     "collector_number" : "160",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Pyromancer%E2%80%99s%20Wisdom.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{R}",
     "name" : "Pyromancer's Wisdom",
+    "oracle_text" : "Add RRR.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "161",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Quelaag%E2%80%99s%20Ferocity.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{R}",
     "name" : "Quelaag's Ferocity",
+    "oracle_text" : "Target creature gains double strike until end of turn.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "162",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Quelaag%E2%80%99s%20Furysword.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{R}{R}",
     "name" : "Quelaag's Furysword",
+    "oracle_text" : "Equipped creature has double strike.\nWhenever equipped creature deals combat damage to a player, put a fury counter on Quelaag’s Furysword, then Quelaag’s Furysword deals damage equal to the number of fury counters on it to that player.\nEquip 3",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Legendary Artifact"
   },
   {
     "collector_number" : "163",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Quelana%E2%80%99s%20Pupil.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{R}",
     "name" : "Quelana's Pupil",
+    "oracle_text" : "Haste\nWhen Quelana’s Pupil enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
+    "power" : "3",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Shaman"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "164",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Rotting%20Hellhound.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{R}",
     "name" : "Rotting Hellhound",
+    "oracle_text" : "Haste\nDesperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Rotting Hellhound despairs, it deals 1 damage to any target.",
+    "power" : "1",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Zombie Dog"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
     "collector_number" : "165",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Solaire%E2%80%99s%20Madness.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{R}",
     "name" : "Solaire's Madness",
+    "oracle_text" : "Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn. When that creature dies this turn, it deals 2 damage to each opponent.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "166",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Student%20of%20the%20Dragon-Path.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{R}",
     "name" : "Student of the Dragon-Path",
+    "oracle_text" : "R: Student of the Dragon-Path gets +1\/+0 until end of turn.",
+    "power" : "2",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Dragon"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "167",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sunlight%20Apostate.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{R}",
     "name" : "Sunlight Apostate",
+    "oracle_text" : "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Sunlight Apostate despairs, it deals 1 damage to each of up to two target creatures. Those creatures can’t block this turn.",
+    "power" : "5",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Dragon"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "168",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sunlight%20Spear.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{R}{R}",
     "name" : "Sunlight Spear",
+    "oracle_text" : "Sunlight Spear deals 6 damage to any target. This damage can’t be prevented.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "169",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sunset%20on%20a%20Dying%20World.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{R}",
     "name" : "Sunset on a Dying World",
+    "oracle_text" : "At the beginning of your end step, each player sacrifices a nonland permanent. Sunset on a Dying World deals 3 damage to each player who can’t.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "170",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Taurus%20Demon.jpeg",
-    "mana_cost" : "4R",
-    "name" : "Taurus Demon",
-    "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Ox Demon"
+    "colors" : [
+      "R"
     ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Taurus%20Demon.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{4}{R}",
+    "name" : "Taurus Demon",
+    "oracle_text" : "Trample\nTaurus Demon attacks each combat if able.",
+    "power" : "5",
+    "rarity" : "common",
+    "set" : "HLW",
+    "toughness" : "5",
     "type" : "Creature"
   },
   {
     "collector_number" : "171",
+    "colors" : [
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/The%20First%20Flame.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{R}",
     "name" : "The First Flame",
+    "oracle_text" : "Exile the top card of your library. You may play that card this turn. When you play that card this turn, repeat this process.",
     "rarity" : "mythic",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "172",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Warrior%20of%20Sunlight.jpeg",
-    "mana_cost" : "1R",
-    "name" : "Warrior of Sunlight",
-    "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Knight"
+    "colors" : [
+      "R"
     ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Warrior%20of%20Sunlight.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{1}{R}",
+    "name" : "Warrior of Sunlight",
+    "oracle_text" : "Whenever Warrior of Sunlight and exactly one other creature attack, they both get +1\/+0 until end of turn.",
+    "power" : "2",
+    "rarity" : "common",
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "173",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Adventurer%E2%80%99s%20Rest.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Adventurer's Rest",
+    "oracle_text" : "You gain 5 life. If a creature you control dealt combat damage to an opponent this turn, you gain 10 life instead.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "174",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ambuscade.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{G}",
     "name" : "Ambuscade",
+    "oracle_text" : "Target creature you control gets +1\/+0 until end of turn. It deals damage equal to its power to target creature an opponent controls.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "175",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Ancient%20Extinction.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{G}{G}",
     "name" : "Ancient Extinction",
+    "oracle_text" : "Choose one —\n• Destroy all artifacts.\n• Destroy all creatures with flying.\n• Destroy all lands with activated abilities that aren’t mana abilities.",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "176",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Blight%20Hatching.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{G}",
     "name" : "Blight Hatching",
+    "oracle_text" : "Whenever a non-Spider creature token enters the battlefield under your control, you may exile it. If you do, create a number of 1\/2 green Spider creature tokens with reach equal to that token’s toughness.",
     "rarity" : "uncommon",
     "related_cards" : [
       "Spider (THLW)"
     ],
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "177",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Blight%20Slime.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{G}",
     "name" : "Blight Slime",
+    "oracle_text" : "Whenever another creature you control dies, put a +1\/+1 counter on Blight Slime.",
+    "power" : "2",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Ooze"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "178",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Blighted%20Dragonoid.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{G}",
     "name" : "Blighted Dragonoid",
+    "oracle_text" : "When Blighted Dragonoid dies, you may distribute two +1\/+1 counters among one or two target creatures.",
+    "power" : "4",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Dragon"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "179",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Burrowing%20Rockwurm.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{G}{G}",
     "name" : "Burrowing Rockwurm",
+    "oracle_text" : "Flash\nWhen Burrowing Rockwurm enters the battlefield, you may destroy target Aura or Equipment.",
+    "power" : "5",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Wurm"
-    ],
+    "set" : "HLW",
+    "toughness" : "5",
     "type" : "Creature"
   },
   {
     "collector_number" : "180",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Crossing%20of%20Paths.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Crossing of Paths",
+    "oracle_text" : "Target creature you control fights target creature an opponent controls. Whenever one of those creatures dies this turn, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "181",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkroot%20Hunt-Pack.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{G}",
     "name" : "Darkroot Hunt-Pack",
+    "oracle_text" : "Flash\nWhenever you cast a noninstant spell during an opponent’s turn, create a 2\/2 green Wolf creature token.",
+    "power" : "2",
     "rarity" : "rare",
     "related_cards" : [
       "Wolf (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Archer"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "182",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkroot%20Poisoner.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{G}",
     "name" : "Darkroot Poisoner",
+    "oracle_text" : "Flash\n2G: Darkroot Poisoner gains deathtouch until end of turn.",
+    "power" : "3",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Warrior"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "183",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkroot%20Tracker.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{G}",
     "name" : "Darkroot Tracker",
+    "oracle_text" : "Flash\nWhen Darkroot Tracker enters the battlefield, return target card with flash or instant card from your graveyard to your hand. (Not sorcery.)",
+    "power" : "3",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Archer Scout"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "184",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Deluded%20Thrasher.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{G}",
     "name" : "Deluded Thrasher",
+    "oracle_text" : "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Deluded Thrasher despairs, it gets +2\/+2 until end of turn and can’t be blocked by creatures with power 2 or less this turn.",
+    "power" : "3",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Dragon"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "185",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dragon-Path%20Adept.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{G}",
     "name" : "Dragon-Path Adept",
+    "oracle_text" : "Hexproof",
+    "power" : "3",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Dragon"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "186",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dragon-Speaker%20Ascendant.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Dragon-Speaker Ascendant",
+    "oracle_text" : "3, Sacrifice Dragon-Speaker Ascendant: Search your library for a Dragon creature card, reveal it, put it into your hand, then shuffle your library.\n6, Exile Dragon-Speaker Ascendant from your graveyard: Create a 4\/4 colorless Dragon artifact creature token with flying.",
+    "power" : "2",
     "rarity" : "rare",
     "related_cards" : [
       "Dragon (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Dragon"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "187",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Explorer%E2%80%99s%20Reward.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{X}{G}",
     "name" : "Explorer's Reward",
+    "oracle_text" : "Journey X times. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nYou may put a creature card with converted mana cost X or less from among journeyed cards you own in exile onto the battlefield under your control.",
     "rarity" : "mythic",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "188",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Fading%20Sage.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Fading Sage",
+    "oracle_text" : "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Fading Sage despairs, put two +1\/+1 counters on another target creature you control.",
+    "power" : "2",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Shaman"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "189",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gaping%20Dragon.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{G}{G}",
     "name" : "Gaping Dragon",
+    "oracle_text" : "Trample, haste\nAt the beginning of each end step, sacrifice a permanent and put a +1\/+1 counter on Gaping Dragon.",
+    "power" : "4",
     "rarity" : "mythic",
-    "set" : "hlw",
-    "subtypes" : [
-      "Dragon Horror"
-    ],
+    "set" : "HLW",
+    "toughness" : "4",
     "type" : "Legendary Creature"
   },
   {
     "collector_number" : "190",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Giant%20Spider.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{G}",
     "name" : "Giant Spider",
+    "oracle_text" : "Reach",
+    "power" : "2",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Spider"
-    ],
+    "set" : "HLW",
+    "toughness" : "4",
     "type" : "Creature"
   },
   {
     "collector_number" : "191",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Giant%E2%80%99s%20Technique.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{G}",
     "name" : "Giant's Technique",
+    "oracle_text" : "Enchant creature\nEnchanted creature gets +2\/+2.\nWhenever enchanted creature attacks, if it’s equipped, double its power and toughness until end of turn.",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Aura"
-    ],
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "192",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Grave-Guard%20Wolf.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Grave-Guard Wolf",
+    "oracle_text" : "When Grave-Guard Wolf dies, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
+    "power" : "3",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Wolf"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
     "collector_number" : "193",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Great%20Hammer.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Great Hammer",
+    "oracle_text" : "Equipped creature gets +2\/+2.\nEquip 2 (2: Attach to target creature you control. Equip only as a sorcery.)",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Artifact"
   },
   {
     "collector_number" : "194",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwynevere%E2%80%99s%20Guidance.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Gwynevere's Guidance",
+    "oracle_text" : "Enchant creature\nWhen Gwynevere’s Guidance enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nEnchanted creature gets +2\/+1.",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Aura"
-    ],
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "195",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hawkeye%20Gough.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{G}{G}",
     "name" : "Hawkeye Gough",
+    "oracle_text" : "Vigilance, reach\nWhen Hawkeye Gough enters the battlefield, target opponent creates a 4\/4 colorless Dragon artifact creature token with flying.",
+    "power" : "7",
     "rarity" : "rare",
     "related_cards" : [
       "Dragon (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Giant Archer"
-    ],
+    "set" : "HLW",
+    "toughness" : "7",
     "type" : "Legendary Creature"
   },
   {
     "collector_number" : "196",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hawkeye%20Greatbow.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Hawkeye Greatbow",
+    "oracle_text" : "Equipped creature gets +3\/+0 and has reach.\nWhenever equipped creature deals combat damage to a creature, it deals that much damage to up to one other target creature.\nEquip 3",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Legendary Artifact"
   },
   {
     "collector_number" : "197",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hunted%20Questant.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Hunted Questant",
+    "oracle_text" : "When Hunted Questant enters the battlefield, target opponent creates a 2\/2 green Wolf creature token. You journey twice. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
+    "power" : "3",
     "rarity" : "uncommon",
-    "related_cards" : [
-      "Wolf (THLW)"
-    ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "198",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hunter%20Hydra.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{X}{G}",
     "name" : "Hunter Hydra",
+    "oracle_text" : "Flash\nHunter Hydra enters the battlefield with X +1\/+1 counters on it.\nWhenever another creature dies, put a +1\/+1 counter on Hunter Hydra.",
+    "power" : "0",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Hydra"
-    ],
+    "set" : "HLW",
+    "toughness" : "0",
     "type" : "Creature"
   },
   {
     "collector_number" : "199",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hunter%E2%80%99s%20Savvy.jpeg",
-    "mana_cost" : "{1}{G}",
+    "layout" : "normal",
+    "mana_cost" : "{2}{G}",
     "name" : "Hunter's Savvy",
+    "oracle_text" : "Destroy target creature with flying. Put a +1\/+1 counter on up to one target creature you control.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "200",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Keeper%20of%20the%20Dead-Woods.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{G}{G}",
     "name" : "Keeper of the Dead-Woods",
+    "oracle_text" : "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Keeper of the Dead-Woods despairs, return up to two target non-Human creature cards from your graveyard to your hand.",
+    "power" : "3",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Shaman"
-    ],
+    "set" : "HLW",
+    "toughness" : "4",
     "type" : "Creature"
   },
   {
     "collector_number" : "201",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Lurching%20Giant.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{5}{G}",
     "name" : "Lurching Giant",
+    "oracle_text" : "",
+    "power" : "6",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Zombie Giant"
-    ],
+    "set" : "HLW",
+    "toughness" : "6",
     "type" : "Creature"
   },
   {
     "collector_number" : "202",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Murakumo.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{G}",
     "name" : "Murakumo",
+    "oracle_text" : "Equipped creature gets +4\/+2 and has trample.\nAt the beginning of combat on your turn, you may attach Murakumo to target creature with power 4 or greater.\nEquip 4",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Artifact"
   },
   {
     "collector_number" : "203",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Mushroom%20Family.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{G}",
     "name" : "Mushroom Family",
+    "oracle_text" : "When Mushroom Family enters the battlefield, create two 1\/1 green Fungus creature tokens.",
+    "power" : "3",
     "rarity" : "common",
     "related_cards" : [
       "Fungus (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Fungus"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "204",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Path%20of%20Strength.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{G}",
     "name" : "Path of Strength",
+    "oracle_text" : "When Path of Strength enters the battlefield, journey twice. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nAt the beginning of combat on your turn, if you own a journeyed card in exile, target creature you control gets +2\/+2 and gains trample until end of turn.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "205",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Provoke%20the%20Primeval.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{G}",
     "name" : "Provoke the Primeval",
+    "oracle_text" : "Put a +1\/+1 counter on target creature you control. Untap that creature.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "206",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Pyromantic%20Shaman.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Pyromantic Shaman",
+    "oracle_text" : "T: Add R.",
+    "power" : "2",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Shaman"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
     "collector_number" : "207",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Reach%20the%20Bonfire.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{G}",
     "name" : "Reach the Bonfire",
+    "oracle_text" : "Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "208",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Return%20to%20Nature.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Return to Nature",
+    "oracle_text" : "Choose one —\n• Destroy target artifact.\n• Destroy target enchantment.\n• Exile target card from a graveyard.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "209",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Search%20for%20Dusk.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Search for Dusk",
+    "oracle_text" : "Look at the top five cards of your library. You may reveal a creature card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Sorcery"
   },
   {
     "collector_number" : "210",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Servant%20of%20the%20Fair%20Lady.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{G}",
     "name" : "Servant of the Fair Lady",
+    "oracle_text" : "When Servant of the Fair Lady dies, create a 1\/2 green Spider creature token with reach.",
+    "power" : "1",
     "rarity" : "common",
     "related_cards" : [
       "Spider (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Zombie Horror"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
     "collector_number" : "211",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Soul%20Infusion.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Soul Infusion",
+    "oracle_text" : "Target creature gets +3\/+3 and gains trample until end of turn.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "212",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Stranded%20Hydra.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{5}{G}{G}",
     "name" : "Stranded Hydra",
+    "oracle_text" : "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Stranded Hydra despairs, creatures you control get +3\/+3 and gain trample until end of turn.",
+    "power" : "6",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Hydra"
-    ],
+    "set" : "HLW",
+    "toughness" : "6",
     "type" : "Creature"
   },
   {
     "collector_number" : "213",
+    "colors" : [
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/The%20Road%20Ahead.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{G}",
     "name" : "The Road Ahead",
+    "oracle_text" : "You may play an additional land on each of your turns.\nWhenever a land enters the battlefield under your control, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "214",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Walking%20Woods.jpeg",
-    "mana_cost" : "4G",
-    "name" : "Walking Woods",
-    "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Plant Horror"
+    "colors" : [
+      "G"
     ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Walking%20Woods.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{4}{G}",
+    "name" : "Walking Woods",
+    "oracle_text" : "When Walking Woods enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
+    "power" : "4",
+    "rarity" : "common",
+    "set" : "HLW",
+    "toughness" : "5",
     "type" : "Creature"
   },
   {
     "collector_number" : "215",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Wayfinder%E2%80%99s%20Landmark.jpeg",
-    "mana_cost" : "2G",
-    "name" : "Wayfinder's Landmark",
-    "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Aura"
+    "colors" : [
+      "G"
     ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Wayfinder%E2%80%99s%20Landmark.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{2}{G}",
+    "name" : "Wayfinder's Landmark",
+    "oracle_text" : "Enchant land\nEnchanted land has “2, T: Reveal the top four cards of your library. Put up to one land card from among them onto the battlefield and attach Wayfinder’s Landmark to it. Put the rest into your graveyard.”",
+    "rarity" : "rare",
+    "set" : "HLW",
     "type" : "Enchantment"
   },
   {
     "collector_number" : "216",
+    "colors" : [
+      "W",
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Brilliant%20Phantom.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{R}{W}",
     "name" : "Brilliant Phantom",
+    "oracle_text" : "Flying\nWhenever Brilliant Phantom and exactly one other creature attack, they each get +2\/+0 until end of turn.",
+    "power" : "2",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Spirit Warrior"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "217",
+    "colors" : [
+      "U",
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkroot%20Diviner.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{G}{U}",
     "name" : "Darkroot Diviner",
+    "oracle_text" : "Flash\nFlying\nWhenever you cast a spell during an opponent’s turn, scry 1.",
+    "power" : "2",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Shaman"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "218",
+    "colors" : [
+      "R",
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dragon-Path%20Traveler.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{R}{G}",
     "name" : "Dragon-Path Traveler",
+    "oracle_text" : "Whenever you put a journeyed card into your hand, add RG. Until end of turn, you don’t lose this mana as steps and phases end.",
+    "power" : "3",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Dragon"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "219",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Evander%2C%20Sunlight%20Martyr.jpeg",
+    "colors" : [
+      "W",
+      "R"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Evander,%20Sunlight%20Martyr.jpeg",
+    "layout" : "normal",
+    "loyalty" : "3",
     "mana_cost" : "{2}{R}{W}",
     "name" : "Evander, Sunlight Martyr",
+    "oracle_text" : "Whenever one or more loyalty counters are removed from Evander, Sunlight Martyr, create a 2\/2 white Knight creature token.\n[+1]: Evander, Sunlight Martyr deals 1 damage to any target.\n[-1]: Creatures you control get +1\/+1 and gain haste until end of turn.",
     "rarity" : "mythic",
-    "related_cards" : [
-      "Knight (THLW)"
-    ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Evander"
-    ],
+    "set" : "HLW",
     "type" : "Legendary Planeswalker"
   },
   {
     "collector_number" : "220",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwyn%2C%20Lord%20of%20Sunlight.jpeg",
+    "colors" : [
+      "W",
+      "R"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwyn,%20Lord%20of%20Sunlight.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{R}{R}{W}{W}",
     "name" : "Gwyn, Lord of Sunlight",
+    "oracle_text" : "First strike, vigilance\nWhenever Gwyn, Lord of Sunlight or another creature you control attacks, Gwyn deals 3 damage to target creature an opponent controls.",
+    "power" : "7",
     "rarity" : "mythic",
-    "set" : "hlw",
-    "subtypes" : [
-      "God"
-    ],
+    "set" : "HLW",
+    "toughness" : "7",
     "type" : "Legendary Creature"
   },
   {
     "collector_number" : "221",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwyndolin%2C%20the%20Darkmoon.jpeg",
+    "colors" : [
+      "W",
+      "U"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwyndolin,%20the%20Darkmoon.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{W}{U}",
     "name" : "Gwyndolin, the Darkmoon",
+    "oracle_text" : "At the beginning of your upkeep, scry 2.\nWhenever an opponent casts a spell that targets you or a permanent you control, exile target permanent that player controls.",
+    "power" : "4",
     "rarity" : "mythic",
-    "set" : "hlw",
-    "subtypes" : [
-      "God"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Legendary Creature"
   },
   {
     "collector_number" : "222",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwynevere%2C%20Bountiful%20Sun.jpeg",
+    "colors" : [
+      "W",
+      "G"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Gwynevere,%20Bountiful%20Sun.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{G}{W}",
     "name" : "Gwynevere, Bountiful Sun",
+    "oracle_text" : "Lifelink\nWhenever an Aura enters the battlefield under your control, if it’s not a token, create a token that’s a copy of that Aura. (Attach that token to something it could legally enchant.)",
+    "power" : "2",
     "rarity" : "mythic",
-    "set" : "hlw",
-    "subtypes" : [
-      "God"
-    ],
+    "set" : "HLW",
+    "toughness" : "5",
     "type" : "Legendary Creature"
   },
   {
     "collector_number" : "223",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Izalith%2C%20Great%20Flame%20Witch.jpeg",
+    "colors" : [
+      "B",
+      "R"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Izalith,%20Great%20Flame%20Witch.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{B}{R}",
     "name" : "Izalith, Great Flame Witch",
+    "oracle_text" : "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Izalith, Great Flame Witch despairs, search your library for a Demon creature card, put it onto the battlefield tapped and attacking, then shuffle your library.",
+    "power" : "6",
     "rarity" : "mythic",
-    "set" : "hlw",
-    "subtypes" : [
-      "God"
-    ],
+    "set" : "HLW",
+    "toughness" : "4",
     "type" : "Legendary Creature"
   },
   {
     "collector_number" : "224",
+    "colors" : [
+      "U",
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/King%20of%20New%20Londo.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{4}{U}{B}",
     "name" : "King of New Londo",
+    "oracle_text" : "Flying, lifelink\nWhen King of New Londo enters the battlefield, you may search your library for a card named King of New Londo, reveal it, then shuffle your library and put that card on top of it.",
+    "power" : "5",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Horror"
-    ],
+    "set" : "HLW",
+    "toughness" : "4",
     "type" : "Legendary Creature"
   },
   {
     "collector_number" : "225",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Lautrec%2C%20the%20Embraced.jpeg",
+    "colors" : [
+      "B",
+      "R"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Lautrec,%20the%20Embraced.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{B}{R}",
     "name" : "Lautrec, the Embraced",
+    "oracle_text" : "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Lautrec, the Embraced despairs, defending player reveals their hand. You choose a nonland card from it and exile it. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any type to cast that spell.",
+    "power" : "4",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Legendary Creature"
   },
   {
     "collector_number" : "226",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Manus%2C%20Father%20of%20the%20Abyss.jpeg",
+    "colors" : [
+      "B",
+      "G"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Manus,%20Father%20of%20the%20Abyss.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{5}{B}{G}",
     "name" : "Manus, Father of the Abyss",
+    "oracle_text" : "Trample\nWhen Manus, Father of the Abyss enters the battlefield, it fights target creature an opponent controls.\nIf a nontoken creature an opponent controls would die, instead exile it and you draw a card.",
+    "power" : "7",
     "rarity" : "mythic",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Horror"
-    ],
+    "set" : "HLW",
+    "toughness" : "7",
     "type" : "Legendary Creature"
   },
   {
     "collector_number" : "227",
+    "colors" : [
+      "W",
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Pass%20On.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{G}{W}",
     "name" : "Pass On",
+    "oracle_text" : "Create a 2\/2 green Wolf creature token. Attach any number of Auras and\/or Equipment you control to that token.",
     "rarity" : "uncommon",
     "related_cards" : [
       "Wolf (THLW)"
     ],
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Instant"
   },
   {
     "collector_number" : "228",
+    "colors" : [
+      "W",
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Priest%20of%20Velka.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{W}{B}",
     "name" : "Priest of Velka",
+    "oracle_text" : "When Priest of Velka enters the battlefield, each opponent loses life equal to the number of Zombies you control and you gain that much life.\nHollow (Discard a card, Pay this card’s mana cost and exile it from your graveyard: Create a token that’s a copy of it, except it’s a black Zombie Human Cleric. Hollow only as a sorcery.)",
+    "power" : "3",
     "rarity" : "uncommon",
     "related_cards" : [
       "Priest of Velka Hollow (THLW)"
     ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Cleric"
-    ],
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Creature"
   },
   {
     "collector_number" : "229",
+    "colors" : [
+      "W",
+      "U"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Priscilla%E2%80%99s%20Twinblade.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}{W}{U}",
     "name" : "Priscilla's Twinblade",
+    "oracle_text" : "When Priscilla’s Twinblade enters the battlefield, draw a card.\nPriscilla’s Twinblade can block an additional creature each combat.",
+    "power" : "2",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "4",
     "type" : "Creature"
   },
   {
     "collector_number" : "230",
+    "colors" : [
+      "B",
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Relentless%20Marauder.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{B}{R}",
     "name" : "Relentless Marauder",
+    "oracle_text" : "Desperation (This creature may despair as it attacks. If it does, sacrifice it at the beginning of the next end step.)\nWhen Relentless Marauder despairs, other creatures you control gain “When this creature dies, return it to the battlefield tapped under its owner’s control” until end of turn.",
+    "power" : "2",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Zombie Berserker"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "231",
+    "colors" : [
+      "U",
+      "B"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Shrewd%20Collectors.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{1}{U}{B}",
     "name" : "Shrewd Collectors",
+    "oracle_text" : "Shrewd Collectors’s power is equal to the number of noncreature cards in your graveyard.\n2UB: Look at the top card of your library. You may put that card into your graveyard.",
+    "power" : "*",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Samurai"
-    ],
+    "set" : "HLW",
+    "toughness" : "5",
     "type" : "Creature"
   },
   {
     "collector_number" : "232",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Slaine%2C%20Fated%20Lord.jpeg",
+    "colors" : [
+      "U",
+      "G"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Slaine,%20Fated%20Lord.jpeg",
+    "layout" : "normal",
+    "loyalty" : "4",
     "mana_cost" : "{4}{G}{U}",
     "name" : "Slaine, Fated Lord",
+    "oracle_text" : "[+1]: You get an emblem with “At the beginning of your end step, create a 1\/1 black Human creature token.”\n[-3]: You get an emblem with “At the beginning of your end step, draw a card.”\n[-8]: You get an emblem with “At the beginning of your end step, if it isn’t an extra turn, take an extra turn after this one.”",
     "rarity" : "mythic",
-    "related_cards" : [
-      "Human (THLW)",
-      "Slaine Token Emblem (THLW)",
-      "Slaine Card Draw Emblem (THLW)",
-      "Slaine Extra Turns Emblem (THLW)"
-    ],
-    "set" : "hlw",
-    "subtypes" : [
-      "Slaine"
-    ],
+    "set" : "HLW",
     "type" : "Legendary Planeswalker"
   },
   {
     "collector_number" : "233",
+    "colors" : [
+      "U",
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Stalking%20Phantom.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{U}{R}",
     "name" : "Stalking Phantom",
+    "oracle_text" : "Flying, haste\nWhenever you put a journeyed card into your hand, put a +1\/+1 counter on Stalking Phantom.",
+    "power" : "1",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Spirit Wizard"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Creature"
   },
   {
     "collector_number" : "234",
+    "colors" : [
+      "W",
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/The%20Gods%E2%80%99%20Blacksmith.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}{G}{W}",
     "name" : "The Gods' Blacksmith",
+    "oracle_text" : "T: Add WUBRG. Spend this mana only to cast Equipment spells or to activate abilities of Equipment.\nWhenever an equipped creature you control attacks, put a +1\/+1 counter on it.",
+    "power" : "5",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Giant Artificer"
-    ],
+    "set" : "HLW",
+    "toughness" : "5",
     "type" : "Legendary Creature"
   },
   {
     "collector_number" : "235",
+    "colors" : [
+      "B",
+      "G"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Thorned%20Slayer.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{B}{G}",
     "name" : "Thorned Slayer",
+    "oracle_text" : "You may have Thorned Slayer assign its combat damage as though it weren’t blocked.\n1, Sacrifice another creature: Put a +1\/+1 counter on Thorned Slayer.",
+    "power" : "2",
     "rarity" : "uncommon",
-    "set" : "hlw",
-    "subtypes" : [
-      "Human Knight"
-    ],
+    "set" : "HLW",
+    "toughness" : "2",
     "type" : "Creature"
   },
   {
     "collector_number" : "236",
+    "colors" : [
+      "B",
+      "R"
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Trusty%20Patches.jpeg",
+    "layout" : "normal",
+    "loyalty" : "3",
     "mana_cost" : "{1}{B}{R}",
     "name" : "Trusty Patches",
+    "oracle_text" : "[+1]: Each player discards a card unless they sacrifice a creature.\n[+1]: Exile target card from a graveyard. Trusty Patches deals 2 damage to each opponent.\n[-6]: For each player, choose at random two nonland cards from that player’s graveyard. For each card chosen this way, you may cast it without paying its mana cost.",
     "rarity" : "mythic",
-    "set" : "hlw",
-    "subtypes" : [
-      "Patches"
-    ],
+    "set" : "HLW",
     "type" : "Legendary Planeswalker"
   },
   {
     "collector_number" : "237",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Velka%2C%20Arbiter%20of%20Sin.jpeg",
-    "mana_cost" : "2WB",
-    "name" : "Velka, Arbiter of Sin",
-    "rarity" : "mythic",
-    "set" : "hlw",
-    "subtypes" : [
-      "God"
+    "colors" : [
+      "W",
+      "B"
     ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Velka,%20Arbiter%20of%20Sin.jpeg",
+    "layout" : "normal",
+    "mana_cost" : "{2}{W}{B}",
+    "name" : "Velka, Arbiter of Sin",
+    "oracle_text" : "Deathtouch, lifelink\nWhenever Velka, Arbiter of Sin or another creature enters the battlefield under your control, choose one —\n• Each player gains 2 life.\n• Each player loses 2 life.",
+    "power" : "3",
+    "rarity" : "mythic",
+    "set" : "HLW",
+    "toughness" : "3",
     "type" : "Legendary Creature"
   },
   {
     "collector_number" : "238",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Crystal%20Lizard.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}",
     "name" : "Crystal Lizard",
+    "oracle_text" : "When Crystal Lizard enters the battlefield, draw a card.\n2, T, Sacrifice Crystal Lizard: Add two mana in any combination of colors.",
+    "power" : "0",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Lizard"
-    ],
+    "set" : "HLW",
+    "toughness" : "1",
     "type" : "Artifact Creature"
   },
   {
     "collector_number" : "239",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dragon%20Tooth.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{5}",
     "name" : "Dragon Tooth",
+    "oracle_text" : "Indestructible\nEquipped creature gets +5\/+5 and has trample and hexproof.\nEquip 5",
     "rarity" : "rare",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Artifact"
   },
   {
     "collector_number" : "240",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Estus%20Flask.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{2}",
     "name" : "Estus Flask",
+    "oracle_text" : "Estus Flask enters the battlefield with five charge counters on it.\nT, Remove a charge counter from Estus Flask: You gain 2 life.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Artifact"
   },
   {
     "collector_number" : "241",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Everlasting%20Dragon.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{9}",
     "name" : "Everlasting Dragon",
+    "oracle_text" : "Flying\nPrevent all damage that would be dealt to you or to Everlasting Dragon.",
+    "power" : "6",
     "rarity" : "mythic",
-    "set" : "hlw",
-    "subtypes" : [
-      "Dragon"
-    ],
+    "set" : "HLW",
+    "toughness" : "6",
     "type" : "Artifact Creature"
   },
   {
     "collector_number" : "242",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Zweihander.jpeg",
+    "layout" : "normal",
     "mana_cost" : "{3}",
     "name" : "Zweihander",
+    "oracle_text" : "Equipped creature gets +3\/+0.\nEquip 3 (3: Attach to target creature you control. Equip only as a sorcery.)",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Equipment"
-    ],
+    "set" : "HLW",
     "type" : "Artifact"
   },
   {
     "collector_number" : "243",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Abandoned%20Bonfire.jpeg",
+    "layout" : "normal",
     "mana_cost" : "",
     "name" : "Abandoned Bonfire",
+    "oracle_text" : "When Abandoned Bonfire enters the battlefield, you gain 2 life.\nT: Add C.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Land"
   },
   {
     "collector_number" : "244",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Decaying%20Domain.jpeg",
+    "layout" : "normal",
     "mana_cost" : "",
     "name" : "Decaying Domain",
+    "oracle_text" : "T: Add C.\n2, T, Sacrifice Decaying Domain: Destroy target nonbasic land. Its controller may scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Land"
   },
   {
     "collector_number" : "245",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Evolving%20Wilds.jpeg",
+    "layout" : "normal",
     "mana_cost" : "",
     "name" : "Evolving Wilds",
+    "oracle_text" : "T, Sacrifice Evolving Wilds: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.",
     "rarity" : "common",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Land"
   },
   {
     "collector_number" : "246",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Firelink%20Shrine.jpeg",
+    "layout" : "normal",
     "mana_cost" : "",
     "name" : "Firelink Shrine",
+    "oracle_text" : "T: Add C.\nT: Add one mana of any color. Spend this mana only to cast an artifact, enchantment, or creature spell with converted mana cost 2 or less.",
     "rarity" : "rare",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Land"
   },
   {
     "collector_number" : "247",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Frosted%20Sanctuary.jpeg",
+    "layout" : "normal",
     "mana_cost" : "",
     "name" : "Frosted Sanctuary",
+    "oracle_text" : "Frosted Sanctuary enters the battlefield tapped.\nT: Add W or U.\n2, T, Sacrifice Frosted Sanctuary: Draw a card.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Land"
   },
   {
     "collector_number" : "248",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Hero%E2%80%99s%20Rest.jpeg",
+    "layout" : "normal",
     "mana_cost" : "",
     "name" : "Hero's Rest",
+    "oracle_text" : "Hero’s Rest enters the battlefield tapped.\nT: Add G or W.\n2, T, Sacrifice Hero’s Rest: Draw a card.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Land"
   },
   {
     "collector_number" : "249",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Lava%20Roots.jpeg",
+    "layout" : "normal",
     "mana_cost" : "",
     "name" : "Lava Roots",
+    "oracle_text" : "Lava Roots enters the battlefield tapped.\nT: Add R or G.\n2, T, Sacrifice Lava Roots: Draw a card.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Land"
   },
   {
     "collector_number" : "250",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sinister%20Ruins.jpeg",
+    "layout" : "normal",
     "mana_cost" : "",
     "name" : "Sinister Ruins",
+    "oracle_text" : "Sinister Ruins enters the battlefield tapped.\nT: Add B or R.\n2, T, Sacrifice Sinister Ruins: Draw a card.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Land"
   },
   {
     "collector_number" : "251",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Watery%20Depths.jpeg",
+    "layout" : "normal",
     "mana_cost" : "",
     "name" : "Watery Depths",
+    "oracle_text" : "Watery Depths enters the battlefield tapped.\nT: Add U or B.\n2, T, Sacrifice Watery Depths: Draw a card.",
     "rarity" : "uncommon",
-    "set" : "hlw",
+    "set" : "HLW",
     "type" : "Land"
   },
   {
     "collector_number" : "252",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Plains.jpeg",
+    "layout" : "normal",
     "mana_cost" : "",
     "name" : "Plains",
+    "oracle_text" : "",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Plains"
-    ],
+    "set" : "HLW",
     "type" : "Basic Land"
   },
   {
     "collector_number" : "253",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Island.jpeg",
+    "layout" : "normal",
     "mana_cost" : "",
     "name" : "Island",
+    "oracle_text" : "",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Island"
-    ],
+    "set" : "HLW",
     "type" : "Basic Land"
   },
   {
     "collector_number" : "254",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Swamp.jpeg",
+    "layout" : "normal",
     "mana_cost" : "",
     "name" : "Swamp",
+    "oracle_text" : "",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Swamp"
-    ],
+    "set" : "HLW",
     "type" : "Basic Land"
   },
   {
     "collector_number" : "255",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Mountain.jpeg",
+    "layout" : "normal",
     "mana_cost" : "",
     "name" : "Mountain",
+    "oracle_text" : "",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Mountain"
-    ],
+    "set" : "HLW",
     "type" : "Basic Land"
   },
   {
     "collector_number" : "256",
+    "colors" : [
+
+    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Forest.jpeg",
+    "layout" : "normal",
     "mana_cost" : "",
     "name" : "Forest",
+    "oracle_text" : "",
     "rarity" : "common",
-    "set" : "hlw",
-    "subtypes" : [
-      "Forest"
-    ],
+    "set" : "HLW",
     "type" : "Basic Land"
-  },
-  {
-    "collector_number" : "1",
-    "colors" : [
-      "B"
-    ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Astora%20Outcast%20Hollow.jpeg",
-    "layout" : "token",
-    "mana_cost" : "",
-    "name" : "Astora Outcast Hollow",
-    "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Human Knight"
-    ],
-    "type" : "Token Creature"
   },
   {
     "collector_number" : "2",
     "colors" : [
-      "B"
+
     ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkbreaker%20Angel%20Hollow.jpeg",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Slaine%20Emblem%202.jpg",
     "layout" : "token",
     "mana_cost" : "",
-    "name" : "Darkbreaker Angel Hollow",
+    "name" : "Slaine Card Draw Emblem",
+    "oracle_text" : "At the beginning of your end step, draw a card.",
     "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Angel"
-    ],
-    "type" : "Token Creature"
+    "set" : "THLW",
+    "type" : "Emblem"
   },
   {
     "collector_number" : "3",
     "colors" : [
-      "B"
+
     ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkmoon%20Avenger%20Hollow.jpeg",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Slaine%20Emblem%203.jpg",
     "layout" : "token",
     "mana_cost" : "",
-    "name" : "Darkmoon Avenger Hollow",
+    "name" : "Slaine Extra Turns Emblem",
+    "oracle_text" : "At the beginning of your end step, if it isn’t an extra turn, take an extra turn after this one.",
     "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Human Knight"
-    ],
-    "type" : "Token Creature"
+    "set" : "THLW",
+    "type" : "Emblem"
   },
   {
     "collector_number" : "4",
     "colors" : [
-      "B"
+
     ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Doomed%20Pilgrim%20Hollow.jpeg",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Slaine%20Emblem%201.jpg",
     "layout" : "token",
     "mana_cost" : "",
-    "name" : "Doomed Pilgrim Hollow",
+    "name" : "Slaine Token Emblem",
+    "oracle_text" : "At the beginning of your end step, create a 1\/1 black Human creature token.",
     "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Human Cleric"
-    ],
-    "type" : "Token Creature"
+    "set" : "THLW",
+    "type" : "Emblem"
   },
   {
     "collector_number" : "5",
-    "colors" : [
-      "B"
-    ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Exiled%20Priestess%20Hollow.jpeg",
-    "layout" : "token",
-    "mana_cost" : "",
-    "name" : "Exiled Priestess Hollow",
-    "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Human Cleric"
-    ],
-    "type" : "Token Creature"
-  },
-  {
-    "collector_number" : "6",
     "colors" : [
       "W"
     ],
@@ -2994,49 +4013,15 @@
     "layout" : "token",
     "mana_cost" : "",
     "name" : "Knight",
+    "oracle_text" : "",
     "power" : "2",
     "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Knight"
-    ],
+    "set" : "THLW",
     "toughness" : "2",
     "type" : "Token Creature"
   },
   {
-    "collector_number" : "7",
-    "colors" : [
-      "B"
-    ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Seeker%20of%20the%20Cure%20Hollow.jpeg",
-    "layout" : "token",
-    "mana_cost" : "",
-    "name" : "Seeker of the Cure Hollow",
-    "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Human Knight"
-    ],
-    "type" : "Token Creature"
-  },
-  {
-    "collector_number" : "8",
-    "colors" : [
-      "B"
-    ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Velka%E2%80%99s%20Missionary%20Hollow.jpeg",
-    "layout" : "token",
-    "mana_cost" : "",
-    "name" : "Velka's Missionary Hollow",
-    "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Human Cleric"
-    ],
-    "type" : "Token Creature"
-  },
-  {
-    "collector_number" : "9",
+    "collector_number" : "6",
     "colors" : [
       "W"
     ],
@@ -3044,12 +4029,58 @@
     "layout" : "token",
     "mana_cost" : "",
     "name" : "Zombie Soldier",
+    "oracle_text" : "",
     "power" : "1",
     "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Soldier"
+    "set" : "THLW",
+    "toughness" : "1",
+    "type" : "Token Creature"
+  },
+  {
+    "collector_number" : "7",
+    "colors" : [
+      "B"
     ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Barbaric%20Cleric%20Hollow.jpeg",
+    "layout" : "token",
+    "mana_cost" : "",
+    "name" : "Barbaric Cleric Hollow",
+    "oracle_text" : "When Barbaric Cleric enters the battlefield, each opponent loses 2 life and you gain 2 life.",
+    "power" : "4",
+    "rarity" : "common",
+    "set" : "THLW",
+    "toughness" : "4",
+    "type" : "Token Creature"
+  },
+  {
+    "collector_number" : "8",
+    "colors" : [
+      "B"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Human.jpeg",
+    "layout" : "token",
+    "mana_cost" : "",
+    "name" : "Human",
+    "oracle_text" : "",
+    "power" : "1",
+    "rarity" : "common",
+    "set" : "THLW",
+    "toughness" : "1",
+    "type" : "Token Creature"
+  },
+  {
+    "collector_number" : "9",
+    "colors" : [
+      "B"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sewer%20Nibbler%20Hollow.jpeg",
+    "layout" : "token",
+    "mana_cost" : "",
+    "name" : "Sewer Nibbler Hollow",
+    "oracle_text" : "When Sewer Nibbler enters the battlefield, put the top three cards of your library into your graveyard.",
+    "power" : "2",
+    "rarity" : "common",
+    "set" : "THLW",
     "toughness" : "1",
     "type" : "Token Creature"
   },
@@ -3058,15 +4089,15 @@
     "colors" : [
       "B"
     ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Curse-Marked%20Crook%20Hollow.jpeg",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sin%20Caller%20Hollow.jpeg",
     "layout" : "token",
     "mana_cost" : "",
-    "name" : "Curse-Marked Crook Hollow",
+    "name" : "Sin Caller Hollow",
+    "oracle_text" : "Whenever a creature you control dies, you draw a card and you lose 1 life.",
+    "power" : "4",
     "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Human Rogue"
-    ],
+    "set" : "THLW",
+    "toughness" : "3",
     "type" : "Token Creature"
   },
   {
@@ -3074,15 +4105,15 @@
     "colors" : [
       "B"
     ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Demented%20Sorcerer%20Hollow.jpeg",
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sin%20Cultist%20Hollow.jpeg",
     "layout" : "token",
     "mana_cost" : "",
-    "name" : "Demented Sorcerer Hollow",
+    "name" : "Sin Cultist Hollow",
+    "oracle_text" : "When Sin Cultist enters the battlefield, each player sacrifices a creature.",
+    "power" : "3",
     "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Human Wizard"
-    ],
+    "set" : "THLW",
+    "toughness" : "1",
     "type" : "Token Creature"
   },
   {
@@ -3090,151 +4121,19 @@
     "colors" : [
       "B"
     ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dour%20Vagrant%20Hollow.jpeg",
-    "layout" : "token",
-    "mana_cost" : "",
-    "name" : "Dour Vagrant Hollow",
-    "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Human Rogue"
-    ],
-    "type" : "Token Creature"
-  },
-  {
-    "collector_number" : "13",
-    "colors" : [
-      "B"
-    ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Raven%20Rider%20Hollow.jpeg",
-    "layout" : "token",
-    "mana_cost" : "",
-    "name" : "Raven Rider Hollow",
-    "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Human Knight"
-    ],
-    "type" : "Token Creature"
-  },
-  {
-    "collector_number" : "14",
-    "colors" : [
-      "B"
-    ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Barbaric%20Cleric%20Hollow.jpeg",
-    "layout" : "token",
-    "mana_cost" : "",
-    "name" : "Barbaric Cleric Hollow",
-    "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Human Cleric"
-    ],
-    "type" : "Token Creature"
-  },
-  {
-    "collector_number" : "15",
-    "colors" : [
-      "B"
-    ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Human.jpeg",
-    "layout" : "token",
-    "mana_cost" : "",
-    "name" : "Human",
-    "power" : "1",
-    "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Human"
-    ],
-    "toughness" : "1",
-    "type" : "Token Creature"
-  },
-  {
-    "collector_number" : "16",
-    "colors" : [
-      "B"
-    ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sewer%20Nibbler%20Hollow.jpeg",
-    "layout" : "token",
-    "mana_cost" : "",
-    "name" : "Sewer Nibbler Hollow",
-    "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Rat"
-    ],
-    "type" : "Token Creature"
-  },
-  {
-    "collector_number" : "17",
-    "colors" : [
-      "B"
-    ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sin%20Caller%20Hollow.jpeg",
-    "layout" : "token",
-    "mana_cost" : "",
-    "name" : "Sin Caller Hollow",
-    "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Human Cleric"
-    ],
-    "type" : "Token Creature"
-  },
-  {
-    "collector_number" : "18",
-    "colors" : [
-      "B"
-    ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Sin%20Cultist%20Hollow.jpeg",
-    "layout" : "token",
-    "mana_cost" : "",
-    "name" : "Sin Cultist Hollow",
-    "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Human Cleric"
-    ],
-    "type" : "Token Creature"
-  },
-  {
-    "collector_number" : "19",
-    "colors" : [
-      "B"
-    ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Skeleton.jpeg",
     "layout" : "token",
     "mana_cost" : "",
     "name" : "Skeleton",
+    "oracle_text" : "",
     "power" : "1",
     "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Skeleton"
-    ],
-    "toughness" : "2",
+    "set" : "THLW",
+    "toughness" : "1",
     "type" : "Token Creature"
   },
   {
-    "collector_number" : "20",
-    "colors" : [
-      "B"
-    ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Cruel%20Lunatic%20Hollow.jpeg",
-    "layout" : "token",
-    "mana_cost" : "",
-    "name" : "Cruel Lunatic Hollow",
-    "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Human Berserker"
-    ],
-    "type" : "Token Creature"
-  },
-  {
-    "collector_number" : "21",
+    "collector_number" : "13",
     "colors" : [
       "G"
     ],
@@ -3242,38 +4141,31 @@
     "layout" : "token",
     "mana_cost" : "",
     "name" : "Fungus",
+    "oracle_text" : "",
     "power" : "1",
     "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Fungus"
-    ],
+    "set" : "THLW",
     "toughness" : "1",
     "type" : "Token Creature"
   },
   {
-    "collector_number" : "22",
+    "collector_number" : "14",
     "colors" : [
       "G"
     ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Spider.jpeg",
-    "keywords" : [
-      "Reach"
-    ],
     "layout" : "token",
     "mana_cost" : "",
     "name" : "Spider",
+    "oracle_text" : "Reach",
     "power" : "1",
     "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Spider"
-    ],
+    "set" : "THLW",
     "toughness" : "2",
     "type" : "Token Creature"
   },
   {
-    "collector_number" : "23",
+    "collector_number" : "15",
     "colors" : [
       "G"
     ],
@@ -3281,81 +4173,252 @@
     "layout" : "token",
     "mana_cost" : "",
     "name" : "Wolf",
+    "oracle_text" : "",
     "power" : "2",
     "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Wolf"
-    ],
+    "set" : "THLW",
     "toughness" : "2",
+    "type" : "Token Creature"
+  },
+  {
+    "collector_number" : "16",
+    "colors" : [
+      "W",
+      "B"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Astora%20Outcast%20Hollow.jpeg",
+    "layout" : "token",
+    "mana_cost" : "",
+    "name" : "Astora Outcast Hollow",
+    "oracle_text" : "Whenever Astora Outcast attacks, tap target creature an opponent controls.",
+    "power" : "4",
+    "rarity" : "common",
+    "set" : "THLW",
+    "toughness" : "4",
+    "type" : "Token Creature"
+  },
+  {
+    "collector_number" : "17",
+    "colors" : [
+      "B",
+      "R"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Cruel%20Lunatic%20Hollow.jpeg",
+    "layout" : "token",
+    "mana_cost" : "",
+    "name" : "Cruel Lunatic Hollow",
+    "oracle_text" : "When Cruel Lunatic enters the battlefield, any opponent may have it deal 5 damage to them. If a player does, sacrifice Cruel Lunatic.",
+    "power" : "5",
+    "rarity" : "common",
+    "set" : "THLW",
+    "toughness" : "4",
+    "type" : "Token Creature"
+  },
+  {
+    "collector_number" : "18",
+    "colors" : [
+      "U",
+      "B"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Curse-Marked%20Crook%20Hollow.jpeg",
+    "layout" : "token",
+    "mana_cost" : "",
+    "name" : "Curse-Marked Crook Hollow",
+    "oracle_text" : "When Curse-Marked Crook enters the battlefield, scry 1.",
+    "power" : "2",
+    "rarity" : "common",
+    "set" : "THLW",
+    "toughness" : "3",
+    "type" : "Token Creature"
+  },
+  {
+    "collector_number" : "19",
+    "colors" : [
+      "W",
+      "B"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkbreaker%20Angel%20Hollow.jpeg",
+    "layout" : "token",
+    "mana_cost" : "",
+    "name" : "Darkbreaker Angel Hollow",
+    "oracle_text" : "Flying, vigilance, lifelink",
+    "power" : "5",
+    "rarity" : "common",
+    "set" : "THLW",
+    "toughness" : "4",
+    "type" : "Token Creature"
+  },
+  {
+    "collector_number" : "20",
+    "colors" : [
+      "W",
+      "B"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Darkmoon%20Avenger%20Hollow.jpeg",
+    "layout" : "token",
+    "mana_cost" : "",
+    "name" : "Darkmoon Avenger Hollow",
+    "oracle_text" : "When Darkmoon Avenger enters the battlefield, at the beginning of target opponent’s next end step, that player sacrifices a tapped creature.",
+    "power" : "3",
+    "rarity" : "common",
+    "set" : "THLW",
+    "toughness" : "3",
+    "type" : "Token Creature"
+  },
+  {
+    "collector_number" : "21",
+    "colors" : [
+      "U",
+      "B"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Demented%20Sorcerer%20Hollow.jpeg",
+    "layout" : "token",
+    "mana_cost" : "",
+    "name" : "Demented Sorcerer Hollow",
+    "oracle_text" : "When Demented Sorcerer enters the battlefield, look at the top four cards of your library. You may reveal an noncreature, nonland card from among them and put it into your hand. Put the rest into your graveyard.",
+    "power" : "3",
+    "rarity" : "common",
+    "set" : "THLW",
+    "toughness" : "3",
+    "type" : "Token Creature"
+  },
+  {
+    "collector_number" : "22",
+    "colors" : [
+      "W",
+      "B"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Doomed%20Pilgrim%20Hollow.jpeg",
+    "layout" : "token",
+    "mana_cost" : "",
+    "name" : "Doomed Pilgrim Hollow",
+    "oracle_text" : "When Doomed Pilgrim enters the battlefield, if an opponent controls more lands than you, you may search your library for up to two Plains cards, reveal them, put them into your hand, then shuffle your library.",
+    "power" : "2",
+    "rarity" : "common",
+    "set" : "THLW",
+    "toughness" : "2",
+    "type" : "Token Creature"
+  },
+  {
+    "collector_number" : "23",
+    "colors" : [
+      "U",
+      "B"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dour%20Vagrant%20Hollow.jpeg",
+    "layout" : "token",
+    "mana_cost" : "",
+    "name" : "Dour Vagrant Hollow",
+    "oracle_text" : "When Dour Vagrant enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
+    "power" : "2",
+    "rarity" : "common",
+    "set" : "THLW",
+    "toughness" : "1",
+    "type" : "Token Creature"
+  },
+  {
+    "collector_number" : "24",
+    "colors" : [
+      "W",
+      "B"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Exiled%20Priestess%20Hollow.jpeg",
+    "layout" : "token",
+    "mana_cost" : "",
+    "name" : "Exiled Priestess Hollow",
+    "oracle_text" : "When Exiled Priestess dies, put a +1\/+1 counter on up to one target creature.",
+    "power" : "2",
+    "rarity" : "common",
+    "set" : "THLW",
+    "toughness" : "1",
     "type" : "Token Creature"
   },
   {
     "collector_number" : "25",
     "colors" : [
+      "W",
       "B"
     ],
     "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Priest%20of%20Velka%20Hollow.jpeg",
     "layout" : "token",
     "mana_cost" : "",
     "name" : "Priest of Velka Hollow",
+    "oracle_text" : "When Priest of Velka enters the battlefield, each opponent loses life equal to the number of Zombies you control and you gain that much life.",
+    "power" : "3",
     "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Zombie Human Cleric"
-    ],
+    "set" : "THLW",
+    "toughness" : "3",
     "type" : "Token Creature"
   },
   {
     "collector_number" : "26",
     "colors" : [
-
+      "U",
+      "B"
     ],
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dragon.jpeg",
-    "keywords" : [
-      "Flying"
-    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Raven%20Rider%20Hollow.jpeg",
     "layout" : "token",
     "mana_cost" : "",
-    "name" : "Dragon",
-    "power" : "4",
+    "name" : "Raven Rider Hollow",
+    "oracle_text" : "Flying",
+    "power" : "3",
     "rarity" : "common",
-    "set" : "thlw",
-    "subtypes" : [
-      "Dragon"
-    ],
-    "toughness" : "4",
-    "type" : "Token Artifact Creature"
+    "set" : "THLW",
+    "toughness" : "3",
+    "type" : "Token Creature"
   },
   {
     "collector_number" : "27",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Slaine%20Emblem%202.jpg",
-    "layout" : "emblem",
+    "colors" : [
+      "W",
+      "B"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Seeker%20of%20the%20Cure%20Hollow.jpeg",
+    "layout" : "token",
     "mana_cost" : "",
-    "name" : "Slaine Card Draw Emblem",
+    "name" : "Seeker of the Cure Hollow",
+    "oracle_text" : "",
+    "power" : "3",
     "rarity" : "common",
-    "set" : "thlw",
-    "type" : "Emblem"
+    "set" : "THLW",
+    "toughness" : "2",
+    "type" : "Token Creature"
   },
   {
     "collector_number" : "28",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Slaine%20Emblem%203.jpg",
-    "layout" : "emblem",
+    "colors" : [
+      "W",
+      "B"
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Velka%E2%80%99s%20Missionary%20Hollow.jpeg",
+    "layout" : "token",
     "mana_cost" : "",
-    "name" : "Slaine Extra Turns Emblem",
+    "name" : "Velka's Missionary Hollow",
+    "oracle_text" : "When Velka’s Missionary enters the battlefield, create a 1\/1 white Zombie Soldier creature token.",
+    "power" : "3",
     "rarity" : "common",
-    "set" : "thlw",
-    "type" : "Emblem"
+    "related_cards" : [
+      "Zombie Soldier (THLW)"
+    ],
+    "set" : "THLW",
+    "toughness" : "3",
+    "type" : "Token Creature"
   },
   {
     "collector_number" : "29",
-    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Slaine%20Emblem%201.jpg",
-    "layout" : "emblem",
+    "colors" : [
+
+    ],
+    "image" : "http:\/\/josh.birnholz.com\/tts\/cards\/hlw\/Dragon.jpeg",
+    "layout" : "token",
     "mana_cost" : "",
-    "name" : "Slaine Token Emblem",
+    "name" : "Dragon",
+    "oracle_text" : "Flying",
+    "power" : "4",
     "rarity" : "common",
-    "set" : "thlw",
-    "type" : "Emblem"
+    "set" : "THLW",
+    "toughness" : "4",
+    "type" : "Token Artifact Creature"
   }
 ]
 [Settings]

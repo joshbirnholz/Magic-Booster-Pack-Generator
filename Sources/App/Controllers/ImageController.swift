@@ -72,10 +72,16 @@ actor ImageController {
       throw Abort(.expectationFailed, reason: "Custom card has no images")
     }
     
+    let headers: HTTPHeaders = [
+      "Content-Type": "image/jpeg",
+      "access-control-allow-headers": "Origin",
+      "access-control-allow-origin": "*"
+    ]
+    
     if let data = getCache(for: url) ?? loadFromDisk(for: url) {
       setCache(for: url, data: data)
       return Response(status: .ok,
-                      headers: ["Content-Type": "image/jpeg"],
+                      headers: headers,
                       body: .init(data: data))
     }
     
@@ -83,12 +89,12 @@ actor ImageController {
     
     return Response(
       status: .ok,
-      headers: ["Content-Type": "image/jpeg"],
+      headers: headers,
       body: .init(data: data)
     )
   }
   
-  func artCrop(url: URL) async throws -> Data {
+  private func artCrop(url: URL) async throws -> Data {
     let referenceWidth: Double = 2010
     let referenceHeight: Double = 2814
     let refX: Double = 155

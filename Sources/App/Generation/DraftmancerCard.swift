@@ -682,7 +682,6 @@ actor DraftmancerSetCache {
       .lowercased()
       .components(separatedBy: CharacterSet.alphanumerics.inverted)
       .filter { !$0.isEmpty }
-      .joined(separator: " ")
     
     let normalizedQuery = query
       .lowercased()
@@ -692,20 +691,16 @@ actor DraftmancerSetCache {
     // If query is empty, no match
     guard !normalizedQuery.isEmpty else { return false }
     
-    // Split card name into words
-    let cardWords = normalizedCardName.split(separator: " ")
-    
-    // Attempt to match each query part in order against card name words
-    var startIndex = cardWords.startIndex
+    // Each query word must match the prefix of some card name word
     for q in normalizedQuery {
-      guard let matchIndex = cardWords[startIndex...].firstIndex(where: { $0.hasPrefix(q) }) else {
+      guard normalizedCardName.contains(where: { $0.hasPrefix(q) }) else {
         return false
       }
-      startIndex = cardWords.index(after: matchIndex)
     }
     
     return true
-}
+  }
+
   
   func cardNamed(exact name: String) async -> MTGCard? {
     let cards = await loadedDraftmancerCards ?? []

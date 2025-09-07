@@ -9,12 +9,14 @@
     "layout" : "normal",
     "mana_cost" : "{3}{W}",
     "name" : "Adorned Gargoyle",
-    "oracle_text" : "Flying\nEquip abilities you activate that target Adorned Gargoyle cost 2 less to activate.\nWhen Adorned Gargoyle dies, return up to one target Equipment card from your graveyard to your hand.",
+    "oracle_text" : "Flying\nEquip abilities you activate that target Adorned Gargoyle cost {2} less to activate.\nWhen Adorned Gargoyle dies, return up to one target Equipment card from your graveyard to your hand.",
     "power" : "3",
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Artifact Creature"
+    "type" : "Artifact Creature",
+    "artist": "pixivid1736758",
+    "subtypes": ["Gargoyle"]
   },
   {
     "collector_number" : "2",
@@ -28,7 +30,10 @@
     "oracle_text" : "Enchant creature\nEnchanted creature can’t attack or block, and its activated abilities can’t be activated.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "Dark Souls",
+    "subtypes": ["Aura"],
+    "flavor_text": "\"...The undead are led north, locked away to await the end of the world...\"\n—*The Legend of the Chosen Undead*"
   },
   {
     "collector_number" : "3",
@@ -44,7 +49,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "pixivid3335331",
+    "subtypes": ["Human", "Knight"]
   },
   {
     "collector_number" : "4",
@@ -63,7 +70,9 @@
     ],
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "pixivid8172314",
+    "subtypes": ["Human", "Knight"]
   },
   {
     "collector_number" : "5",
@@ -79,7 +88,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Alex Buggenum",
+    "subtypes": ["Zombie", "Knight"]
   },
   {
     "collector_number" : "6",
@@ -95,7 +106,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Artifact Creature"
+    "type" : "Artifact Creature",
+    "artist": "mobocanario",
+    "subtypes": ["Gargoyle"]
   },
   {
     "collector_number" : "7",
@@ -111,7 +124,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "ttt",
+    "subtypes": ["Human", "Cleric"]
   },
   {
     "collector_number" : "8",
@@ -125,7 +140,8 @@
     "oracle_text" : "Choose target creature you control. Tap all other creatures. Put a +1\/+1 counter on the chosen creature for each creature tapped this way.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Dark Souls"
   },
   {
     "collector_number" : "9",
@@ -139,7 +155,8 @@
     "oracle_text" : "Whenever exactly two creatures you control attack, put two +1\/+1 counters on the creature with the least power among them. If they have equal power, instead put a +1\/+1 counter on both of them.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "Crooked Nose Arts"
   },
   {
     "collector_number" : "10",
@@ -158,7 +175,9 @@
     ],
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "David Demaret",
+    "subtypes": ["Angel"]
   },
   {
     "collector_number" : "11",
@@ -177,7 +196,9 @@
     ],
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Conor Burke & pinkmoth",
+    "subtypes": ["Human", "Knight"]
   },
   {
     "collector_number" : "12",
@@ -191,7 +212,8 @@
     "oracle_text" : "Destroy target attacking or blocking creature. Scry 1.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Ulises Serrano"
   },
   {
     "collector_number" : "13",
@@ -210,7 +232,9 @@
     ],
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Alexander Puchkov",
+    "subtypes": ["Human", "Cleric"]
   },
   {
     "collector_number" : "14",
@@ -226,7 +250,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Leon Lesmana",
+    "subtypes": ["Zombie", "Soldier"]
   },
   {
     "collector_number" : "15",
@@ -243,7 +269,8 @@
       "Zombie Soldier (THLW)"
     ],
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Luke Oram"
   },
   {
     "collector_number" : "16",
@@ -259,7 +286,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "saeedramez",
+    "subtypes": ["Spirit", "Warrior"]
   },
   {
     "collector_number" : "17",
@@ -278,7 +307,9 @@
     ],
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "JLIEN",
+    "subtypes": ["Human", "Cleric"]
   },
   {
     "collector_number" : "18",
@@ -289,10 +320,12 @@
     "layout" : "normal",
     "mana_cost" : "{1}{W}",
     "name" : "Expendable's Vigil",
-    "oracle_text" : "Enchant creature\nEnchanted creature gets +2\/+0 and has vigilance.\nWhenever a Zombie enters the battlefield under your control, you may pay W. If you do, return Expendable’s Vigil from your graveyard to your hand.",
+    "oracle_text" : "Enchant creature\nEnchanted creature gets +2\/+0 and has vigilance.\nWhenever a Zombie enters the battlefield under your control, you may pay {W}. If you do, return Expendable’s Vigil from your graveyard to your hand.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "onlychasing_safety",
+    "subtypes": ["Aura"]
   },
   {
     "collector_number" : "19",
@@ -306,7 +339,8 @@
     "oracle_text" : "Exile target artifact or enchantment.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "wingless_sselgniw"
   },
   {
     "collector_number" : "20",
@@ -317,10 +351,12 @@
     "layout" : "normal",
     "mana_cost" : "{W}",
     "name" : "Gargoyle Helm",
-    "oracle_text" : "Equipped creature gets +1\/+1 and has vigilance.\nEquip 2 (2: Attach to target creature you control. Equip only as a sorcery.)",
+    "oracle_text" : "Equipped creature gets +1\/+1 and has vigilance.\nEquip {2} ({2}:Attach to target creature you control. Equip only as a sorcery.)",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Artifact"
+    "type" : "Artifact",
+    "artist": "pixivid3590819",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "21",
@@ -334,7 +370,8 @@
     "oracle_text" : "As an additional cost to cast this spell, sacrifice a creature.\nDestroy all creatures.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "pixivid371993"
   },
   {
     "collector_number" : "22",
@@ -345,10 +382,12 @@
     "layout" : "normal",
     "mana_cost" : "{1}{W}",
     "name" : "Gwyndolin's Bow",
-    "oracle_text" : "Equipped creature gets +2\/+0 and has first strike.\nWhenever equipped creature attacks, choose target creature an opponent controls. Until your next turn, that creature can’t attack or block and its activated abilities can’t be activated.\nEquip 2",
+    "oracle_text" : "Equipped creature gets +2\/+0 and has first strike.\nWhenever equipped creature attacks, choose target creature an opponent controls. Until your next turn, that creature can’t attack or block and its activated abilities can’t be activated.\nEquip {2}",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Legendary Artifact"
+    "type" : "Legendary Artifact",
+    "artist": "pixivid3980737",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "23",
@@ -362,7 +401,9 @@
     "oracle_text" : "Enchant creature\nEnchanted creature gets +1\/+1 for each permanent you control that’s attached to it.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "nathaliagommes & Calibur",
+    "subtypes": ["Aura"]
   },
   {
     "collector_number" : "24",
@@ -373,12 +414,14 @@
     "layout" : "normal",
     "mana_cost" : "{1}{W}{W}",
     "name" : "Havel, the Rock",
-    "oracle_text" : "Havel, the Rock gets +1\/+1 for each nontoken Equipment you control.\nYou may pay 0 rather than pay equip costs.",
+    "oracle_text" : "Havel, the Rock gets +1\/+1 for each nontoken Equipment you control.\nYou may pay {0} rather than pay equip costs.",
     "power" : "3",
     "rarity" : "rare",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "Pablo Mendoza",
+    "subtypes": ["Demigod", "Knight"]
   },
   {
     "collector_number" : "25",
@@ -389,10 +432,12 @@
     "layout" : "normal",
     "mana_cost" : "{1}{W}",
     "name" : "Heavy Iron Armor",
-    "oracle_text" : "If a source would deal damage to equipped creature, prevent half that damage, rounded up.\nEquip 2",
+    "oracle_text" : "If a source would deal damage to equipped creature, prevent half that damage, rounded up.\nEquip {2}",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Artifact"
+    "type" : "Artifact",
+    "artist": "mrfr2eman",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "26",
@@ -403,12 +448,14 @@
     "layout" : "normal",
     "mana_cost" : "{1}{W}",
     "name" : "Hollowed Hero",
-    "oracle_text" : "1W, T: Tap target creature.",
+    "oracle_text" : "{1}{W}, {T}:Tap target creature.",
     "power" : "1",
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Harry Osborn",
+    "subtypes": ["Zombie", "Soldier"]
   },
   {
     "collector_number" : "27",
@@ -424,7 +471,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Xavier Garcia",
+    "subtypes": ["Zombie", "Soldier"]
   },
   {
     "collector_number" : "28",
@@ -438,7 +487,8 @@
     "oracle_text" : "Search your library for up to one Knight card and up to one Equipment card and reveal them. Shuffle your library, then put those cards on top of it in any order.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Daniel Horia"
   },
   {
     "collector_number" : "29",
@@ -452,7 +502,8 @@
     "oracle_text" : "Target creature gets +1\/+0 and gains first strike and lifelink until end of turn.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "ggutuart"
   },
   {
     "collector_number" : "30",
@@ -466,7 +517,8 @@
     "oracle_text" : "Destroy target creature with power 4 or greater. Put a +1\/+1 counter on up to one target creature you control.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "haco1"
   },
   {
     "collector_number" : "31",
@@ -482,7 +534,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "pixivid5314453",
+    "subtypes": ["Human", "Knight"]
   },
   {
     "collector_number" : "32",
@@ -498,7 +552,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Jake Bullock",
+    "subtypes": ["Spirit", "Knight"]
   },
   {
     "collector_number" : "33",
@@ -509,12 +565,14 @@
     "layout" : "normal",
     "mana_cost" : "{4}{W}{W}",
     "name" : "Sanctuary Manticore",
-    "oracle_text" : "Flying\n2W: Another target creature you control gains indestructible until end of turn.",
+    "oracle_text" : "Flying\n{2}{W}: Another target creature you control gains indestructible until end of turn.",
     "power" : "5",
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Ryan Van Dongen",
+    "subtypes": ["Manticore"]
   },
   {
     "collector_number" : "34",
@@ -533,7 +591,9 @@
     ],
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Dante Liu",
+    "subtypes": ["Human", "Knight"]
   },
   {
     "collector_number" : "35",
@@ -549,7 +609,9 @@
     "rarity" : "mythic",
     "set" : "HLW",
     "toughness" : "6",
-    "type" : "Legendary Artifact Creature"
+    "type" : "Legendary Artifact Creature",
+    "artist": "Sohlol",
+    "subtypes": ["Golem"]
   },
   {
     "collector_number" : "36",
@@ -563,7 +625,9 @@
     "oracle_text" : "Enchant creature\nWhen Soothing Sunlight enters the battlefield, you gain 2 life.\nEnchanted creature gets +2\/+2.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "nero_tbs",
+    "subtypes": ["Aura"]
   },
   {
     "collector_number" : "37",
@@ -579,7 +643,9 @@
     "rarity" : "rare",
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Conor Burke",
+    "subtypes": ["Spirit", "Warrior"]
   },
   {
     "collector_number" : "38",
@@ -598,7 +664,9 @@
     ],
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "exileden",
+    "subtypes": ["Zombie", "Horse"]
   },
   {
     "collector_number" : "39",
@@ -614,7 +682,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "*",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Harry Osborn",
+    "subtypes": ["Zombie", "Soldier"]
   },
   {
     "collector_number" : "40",
@@ -628,7 +698,8 @@
     "oracle_text" : "Put a +1\/+1 counter on each creature you control. You gain 1 life for each creature you control.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "sanekyle"
   },
   {
     "collector_number" : "41",
@@ -642,7 +713,8 @@
     "oracle_text" : "Velka’s Justice deals 3 damage to target attacking or blocking creature.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "rostyslav Zagronov"
   },
   {
     "collector_number" : "42",
@@ -662,7 +734,9 @@
     ],
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "rotaken",
+    "subtypes": ["Human", "Cleric"]
   },
   {
     "collector_number" : "43",
@@ -676,7 +750,8 @@
     "oracle_text" : "Whenever Wondrous Incandescence or a creature enters the battlefield under your control, creatures you control get +1\/+1 until end of turn.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "Admhire"
   },
   {
     "collector_number" : "44",
@@ -690,7 +765,8 @@
     "oracle_text" : "Whenever a creature an opponent controls becomes tapped, that creature doesn’t untap during its controller’s next untap step.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "arafelle"
   },
   {
     "collector_number" : "45",
@@ -704,7 +780,8 @@
     "oracle_text" : "Journey twice. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nScry 2.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "ludvikskp"
   },
   {
     "collector_number" : "46",
@@ -718,7 +795,8 @@
     "oracle_text" : "Put target nonland permanent on top of its owner’s library.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "dr_adri"
   },
   {
     "collector_number" : "47",
@@ -734,7 +812,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "6",
-    "type" : "Artifact Creature"
+    "type" : "Artifact Creature",
+    "artist": "Cryotube",
+    "subtypes": ["Golem"]
   },
   {
     "collector_number" : "48",
@@ -748,7 +828,8 @@
     "oracle_text" : "Counter target spell.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Tyler Ryan"
   },
   {
     "collector_number" : "49",
@@ -762,7 +843,8 @@
     "oracle_text" : "Look at the top four cards of your library. Put up to two of them into your hand and the rest into your graveyard.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "yucide"
   },
   {
     "collector_number" : "50",
@@ -778,7 +860,9 @@
     "rarity" : "rare",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "David Hsu Yen",
+    "subtypes": ["Demigod", "Assassin"]
   },
   {
     "collector_number" : "51",
@@ -792,7 +876,8 @@
     "oracle_text" : "Journey three times. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Jorge Gonzales"
   },
   {
     "collector_number" : "52",
@@ -803,10 +888,12 @@
     "layout" : "normal",
     "mana_cost" : "{U}",
     "name" : "Crystalline Armor",
-    "oracle_text" : "Equipped creature gets +2\/+2.\nWhen equipped creature dies, sacrifice Crystalline Armor.\nEquip 1",
+    "oracle_text" : "Equipped creature gets +2\/+2.\nWhen equipped creature dies, sacrifice Crystalline Armor.\nEquip {1}",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Artifact"
+    "type" : "Artifact",
+    "artist": "Dark Souls",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "53",
@@ -825,7 +912,9 @@
     ],
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Nathan Gordon",
+    "subtypes": ["Human", "Rogue"]
   },
   {
     "collector_number" : "54",
@@ -839,7 +928,8 @@
     "oracle_text" : "Scry 4, then draw two cards.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Rirth"
   },
   {
     "collector_number" : "55",
@@ -855,7 +945,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Manuel Castañón",
+    "subtypes": ["Human", "Wizard"]
   },
   {
     "collector_number" : "56",
@@ -871,7 +963,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Conor Burke",
+    "subtypes": ["Human", "Knight"]
   },
   {
     "collector_number" : "57",
@@ -890,7 +984,9 @@
     ],
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Rulin Liu",
+    "subtypes": ["Human", "Wizard"]
   },
   {
     "collector_number" : "58",
@@ -909,7 +1005,9 @@
     ],
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Onestepart",
+    "subtypes": ["Human", "Rogue"]
   },
   {
     "collector_number" : "59",
@@ -923,7 +1021,8 @@
     "oracle_text" : "Counter target creature spell.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Toddy"
   },
   {
     "collector_number" : "60",
@@ -937,7 +1036,8 @@
     "oracle_text" : "At the beginning of each player’s draw step, that player looks at the top two cards of their library, puts one of those cards into their hand and the other into their graveyard.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "Ignisopitus"
   },
   {
     "collector_number" : "61",
@@ -948,12 +1048,14 @@
     "layout" : "normal",
     "mana_cost" : "{U}",
     "name" : "Eyes of the Darkmoon",
-    "oracle_text" : "Flash\nFlying\n2U, Exile a noncreature card from your graveyard: Put a +1\/+1 counter on Eyes of the Darkmoon.",
+    "oracle_text" : "Flash\nFlying\n{2}{U}, Exile a noncreature card from your graveyard: Put a +1\/+1 counter on Eyes of the Darkmoon.",
     "power" : "1",
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "N. Geppert (Honeydew Studios)",
+    "subtypes": ["Bird", "Illusion"]
   },
   {
     "collector_number" : "62",
@@ -967,7 +1069,8 @@
     "oracle_text" : "Return all creatures to their owners’ hands. For each creature returned to its owner’s hand this way, its controller puts the top card of their library into their graveyard.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Manuel Diaz Lopez"
   },
   {
     "collector_number" : "63",
@@ -983,7 +1086,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "10",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Nele Diel",
+    "subtypes": ["Illusion", "Wall"]
   },
   {
     "collector_number" : "64",
@@ -997,7 +1102,9 @@
     "oracle_text" : "Flash\nEnchant creature\nEnchanted creature has base power and toughness 0\/4. It’s a colorless Wall artifact creature with defender and loses all other abilities.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "Conor Burke",
+    "subtypes": ["Aura"]
   },
   {
     "collector_number" : "65",
@@ -1013,7 +1120,9 @@
     "rarity" : "rare",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Vohvelintu",
+    "subtypes": ["Insect"]
   },
   {
     "collector_number" : "66",
@@ -1029,7 +1138,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "5",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Alex Tuis",
+    "subtypes": ["Zombie"]
   },
   {
     "collector_number" : "67",
@@ -1043,7 +1154,9 @@
     "oracle_text" : "Enchant creature\nEnchanted creature doesn’t untap during its controller’s untap step.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "legendary_memory",
+    "subtypes": ["Aura"]
   },
   {
     "collector_number" : "68",
@@ -1057,7 +1170,8 @@
     "oracle_text" : "Exchange control of target artifact or enchantment you control and target creature an opponent controls.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "risingmonster"
   },
   {
     "collector_number" : "69",
@@ -1071,7 +1185,8 @@
     "oracle_text" : "When Path of Brilliance enters the battlefield, journey twice. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nAt the beginning of combat on your turn, if you own a journeyed card in exile, tap target creature an opponent controls.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "tacosauceninja"
   },
   {
     "collector_number" : "70",
@@ -1087,7 +1202,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Dmitry Ork",
+    "subtypes": ["Drake"]
   },
   {
     "collector_number" : "71",
@@ -1101,7 +1218,8 @@
     "oracle_text" : "Target creature gets -5\/-0 until end of turn. Return all permanents attached to it to their owners’ hands.\nDraw a card.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Jens Kuczwara"
   },
   {
     "collector_number" : "72",
@@ -1120,7 +1238,9 @@
     ],
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "thebastardson",
+    "subtypes": ["Human", "Knight"]
   },
   {
     "collector_number" : "73",
@@ -1131,12 +1251,14 @@
     "layout" : "normal",
     "mana_cost" : "{4}{U}{U}",
     "name" : "Ring Collector",
-    "oracle_text" : "When Ring Collector enters the battlefield, search your library for up to three artifact cards with different names that each have converted mana cost 1 or less, reveal them, put them into your hand, then shuffle your library.",
+    "oracle_text" : "When Ring Collector enters the battlefield, search your library for up to three artifact cards with different names that each have mana value 1 or less, reveal them, put them into your hand, then shuffle your library.",
     "power" : "2",
     "rarity" : "rare",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "pixivid5149351",
+    "subtypes": ["Human", "Rogue"]
   },
   {
     "collector_number" : "74",
@@ -1152,7 +1274,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Conor Burke",
+    "subtypes": ["Spirit"]
   },
   {
     "collector_number" : "75",
@@ -1163,10 +1287,12 @@
     "layout" : "normal",
     "mana_cost" : "{U}",
     "name" : "Scholar's Catalyst",
-    "oracle_text" : "When Scholar’s Catalyst enters the battlefield, target player puts the top three cards of their library into their graveyard.\nEquipped creature gets +1\/+1.\nEquip 1 (1: Attach to target creature you control. Equip only as a sorcery.)",
+    "oracle_text" : "When Scholar’s Catalyst enters the battlefield, target player puts the top three cards of their library into their graveyard.\nEquipped creature gets +1\/+1.\nEquip {1} ({1}:Attach to target creature you control. Equip only as a sorcery.)",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Artifact"
+    "type" : "Artifact",
+    "artist": "AJ Manzanedo",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "76",
@@ -1177,12 +1303,14 @@
     "layout" : "normal",
     "mana_cost" : "{3}{U}{U}",
     "name" : "Seath, Scaleless Betrayer",
-    "oracle_text" : "This spell can’t be countered.\nFlying, indestructible\nWhen you’re dealt combat damage, sacrifice Seath, Scaleless Betrayer.\nU, Discard a card: Return Seath to its owner’s hand.",
+    "oracle_text" : "This spell can’t be countered.\nFlying, indestructible\nWhen you’re dealt combat damage, sacrifice Seath, Scaleless Betrayer.\n{U}, Discard a card: Return Seath to its owner’s hand.",
     "power" : "7",
     "rarity" : "mythic",
     "set" : "HLW",
     "toughness" : "7",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "azloRaimT",
+    "subtypes": ["Dragon", "Wizard"]
   },
   {
     "collector_number" : "77",
@@ -1196,7 +1324,8 @@
     "oracle_text" : "Shuffle your graveyard and any number of journeyed cards you own in exile into your library. Draw a card.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Ian Hinley"
   },
   {
     "collector_number" : "78",
@@ -1210,7 +1339,8 @@
     "oracle_text" : "Return target creature to its owner’s hand.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Roman Razgriz"
   },
   {
     "collector_number" : "79",
@@ -1226,7 +1356,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "baruyon",
+    "subtypes": ["Dragon", "Wizard"]
   },
   {
     "collector_number" : "80",
@@ -1242,7 +1374,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Satoshi Kamanaka",
+    "subtypes": ["Human", "Wizard"]
   },
   {
     "collector_number" : "81",
@@ -1256,7 +1390,8 @@
     "oracle_text" : "Reveal the top five cards of your library. An opponent separates those cards into three piles. Put the cards in one pile into your graveyard. Put the cards in another pile into your hand. Exile the cards in the third pile, then for each nonland card exiled this way not named Soul Confluence, you may cast that card without paying its mana cost.",
     "rarity" : "mythic",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Dark Souls"
   },
   {
     "collector_number" : "82",
@@ -1267,10 +1402,12 @@
     "layout" : "normal",
     "mana_cost" : "{2}{U}",
     "name" : "The Moonlight Greatsword",
-    "oracle_text" : "Instant and sorcery spells you cast cost 1 less to cast.\nEquipped creature gets +X\/+X, where X is the number of instant and sorcery cards in your graveyard.\nEquip 2",
+    "oracle_text" : "Instant and sorcery spells you cast cost {1} less to cast.\nEquipped creature gets +X\/+X, where X is the number of instant and sorcery cards in your graveyard.\nEquip {2}",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Legendary Artifact"
+    "type" : "Legendary Artifact",
+    "artist": "DanPilla",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "83",
@@ -1284,7 +1421,8 @@
     "oracle_text" : "Target creature you control gains hexproof until end of turn.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Aaron Foster"
   },
   {
     "collector_number" : "84",
@@ -1300,7 +1438,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Roberto Gatto",
+    "subtypes": ["Drake"]
   },
   {
     "collector_number" : "85",
@@ -1316,7 +1456,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Felipe Escobar Bravo",
+    "subtypes": ["Human", "Rogue"]
   },
   {
     "collector_number" : "86",
@@ -1332,7 +1474,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Sharam Sunstrum",
+    "subtypes": ["Human", "Rogue"]
   },
   {
     "collector_number" : "87",
@@ -1348,7 +1492,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Nigel Mack",
+    "subtypes": ["Human", "Knight"]
   },
   {
     "collector_number" : "88",
@@ -1362,7 +1508,9 @@
     "oracle_text" : "Equipped creature gets +3\/+0 and has menace.\nEquip—Discard a card or pay 5 life.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Legendary Artifact"
+    "type" : "Legendary Artifact",
+    "artist": "touge369",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "89",
@@ -1378,7 +1526,9 @@
     "rarity" : "rare",
     "set" : "HLW",
     "toughness" : "5",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "Pablo Mendoza",
+    "subtypes": ["Demigod", "Knight"]
   },
   {
     "collector_number" : "90",
@@ -1397,7 +1547,9 @@
     ],
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Manuel Castañón",
+    "subtypes": ["Human", "Cleric"]
   },
   {
     "collector_number" : "91",
@@ -1408,10 +1560,12 @@
     "layout" : "normal",
     "mana_cost" : "{1}{B}",
     "name" : "Barbed Blade",
-    "oracle_text" : "When Barbed Blade enters the battlefield, each opponent loses 2 life.\nEquipped creature gets +2\/+0.\nEquip 2 (2: Attach to target creature you control. Equip only as a sorcery.)",
+    "oracle_text" : "When Barbed Blade enters the battlefield, each opponent loses 2 life.\nEquipped creature gets +2\/+0.\nEquip {2} ({2}:Attach to target creature you control. Equip only as a sorcery.)",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Artifact"
+    "type" : "Artifact",
+    "artist": "pixivid5149351",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "92",
@@ -1425,7 +1579,8 @@
     "oracle_text" : "Target player draws two cards, loses 2 life, and puts the top two cards of their library into their graveyard.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "inkyh"
   },
   {
     "collector_number" : "93",
@@ -1436,10 +1591,12 @@
     "layout" : "normal",
     "mana_cost" : "{1}{B}",
     "name" : "Black Knight Armor",
-    "oracle_text" : "Equipped creature gets +2\/+2.\nWhenever Black Knight Armor becomes unattached from a permanent, sacrifice that permanent.\nEquip 1",
+    "oracle_text" : "Equipped creature gets +2\/+2.\nWhenever Black Knight Armor becomes unattached from a permanent, sacrifice that permanent.\nEquip {1}",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Artifact"
+    "type" : "Artifact",
+    "artist": "WOLPE",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "94",
@@ -1455,7 +1612,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Victor Garcia",
+    "subtypes": ["Demigod", "Knight"]
   },
   {
     "collector_number" : "95",
@@ -1469,7 +1628,8 @@
     "oracle_text" : "Until end of turn, target creature gets +2\/+0 and gains “When this creature dies, return it to the battlefield tapped under its owner’s control.”",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "YMD"
   },
   {
     "collector_number" : "96",
@@ -1483,7 +1643,8 @@
     "oracle_text" : "Target creature gets -4\/-4 until end of turn. Its controller loses 2 life.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "LUADIRGE"
   },
   {
     "collector_number" : "97",
@@ -1499,7 +1660,9 @@
     "rarity" : "rare",
     "set" : "HLW",
     "toughness" : "5",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Andrew Odoerfer",
+    "subtypes": ["Insect", "Demon"]
   },
   {
     "collector_number" : "98",
@@ -1513,7 +1676,8 @@
     "oracle_text" : "Exile target creature.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "herrkamissar"
   },
   {
     "collector_number" : "99",
@@ -1524,7 +1688,7 @@
     "layout" : "normal",
     "mana_cost" : "{2}{B}",
     "name" : "Darkwraith Elite",
-    "oracle_text" : "Deathtouch\nWhenever Darkwraith Elite deals combat damage to a player, create a 1\/1 black Skeleton creature token.\n1B, Sacrifice another creature: Darkwraith Elite gains indestructible until end of turn. Tap it.",
+    "oracle_text" : "Deathtouch\nWhenever Darkwraith Elite deals combat damage to a player, create a 1\/1 black Skeleton creature token.\n{1}{B}, Sacrifice another creature: Darkwraith Elite gains indestructible until end of turn. Tap it.",
     "power" : "3",
     "rarity" : "rare",
     "related_cards" : [
@@ -1532,7 +1696,9 @@
     ],
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "moni158",
+    "subtypes": ["Skeleton", "Knight"]
   },
   {
     "collector_number" : "100",
@@ -1548,7 +1714,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Jowain92",
+    "subtypes": ["Skeleton", "Knight"]
   },
   {
     "collector_number" : "101",
@@ -1564,7 +1732,9 @@
     "rarity" : "rare",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Alexbuggenum",
+    "subtypes": ["Zombie", "Knight"]
   },
   {
     "collector_number" : "102",
@@ -1578,7 +1748,8 @@
     "oracle_text" : "Target attacking or blocking creature gets -2\/-2 until end of turn.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "sangheili117"
   },
   {
     "collector_number" : "103",
@@ -1592,7 +1763,8 @@
     "oracle_text" : "Target opponent reveals their hand. You choose a noncreature, nonland card from it. That player discards that card.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "John Barry Ballaran"
   },
   {
     "collector_number" : "104",
@@ -1606,7 +1778,8 @@
     "oracle_text" : "Exile target legendary creature.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "pixivid100284"
   },
   {
     "collector_number" : "105",
@@ -1622,7 +1795,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "elrem",
+    "subtypes": ["Human", "Knight"]
   },
   {
     "collector_number" : "106",
@@ -1638,7 +1813,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "shredguts",
+    "subtypes": ["Zombie", "Farmer"]
   },
   {
     "collector_number" : "107",
@@ -1652,7 +1829,8 @@
     "oracle_text" : "Choose one or both —\n• Target player reveals their hand. You choose a nonland card from it. That player discards that card.\n• Target player puts all journeyed cards they own in exile into their graveyard.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Milana Silvers"
   },
   {
     "collector_number" : "108",
@@ -1666,7 +1844,8 @@
     "oracle_text" : "This spell costs 1 less to cast for each Zombie you control.\nTarget player draws three cards and loses 3 life.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "GorkeChaos"
   },
   {
     "collector_number" : "109",
@@ -1680,7 +1859,8 @@
     "oracle_text" : "At the beginning of your end step, each opponent loses 1 life and you gain 1 life.\nIf you would draw a card while your library has no cards in it, skip that draw instead.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "Demon Souls"
   },
   {
     "collector_number" : "110",
@@ -1696,7 +1876,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "vulpes ibculta",
+    "subtypes": ["Human", "Rogue"]
   },
   {
     "collector_number" : "111",
@@ -1712,7 +1894,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Felix Ortiz",
+    "subtypes": ["Zombie", "Knight"]
   },
   {
     "collector_number" : "112",
@@ -1726,7 +1910,8 @@
     "oracle_text" : "As an additional cost to cast this spell, sacrifice a creature.\nTarget opponent sacrifices a land and loses 4 life.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "SteiTastan"
   },
   {
     "collector_number" : "113",
@@ -1740,7 +1925,8 @@
     "oracle_text" : "As an additional cost to cast this spell, discard a card.\nDestroy target creature.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "violentouiche"
   },
   {
     "collector_number" : "114",
@@ -1756,7 +1942,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "eh Macmillan",
+    "subtypes": ["Beast", "Demon"]
   },
   {
     "collector_number" : "115",
@@ -1770,7 +1958,8 @@
     "oracle_text" : "Target player discards two cards.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "tentaclesandteeth"
   },
   {
     "collector_number" : "116",
@@ -1786,7 +1975,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "mantoe",
+    "subtypes": ["Zombie"]
   },
   {
     "collector_number" : "117",
@@ -1800,7 +1991,8 @@
     "oracle_text" : "Target creature gets -4\/-4 until end of turn. Each other creature gets -1\/-1 until end of turn.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Cosme Lucero"
   },
   {
     "collector_number" : "118",
@@ -1819,7 +2011,9 @@
     ],
     "set" : "HLW",
     "toughness" : "6",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "Pablo Mendoza",
+    "subtypes": ["Skeleton", "God"]
   },
   {
     "collector_number" : "119",
@@ -1833,7 +2027,8 @@
     "oracle_text" : "As an additional cost to cast this spell, sacrifice a creature.\nDraw two cards.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Felix A. Hertel"
   },
   {
     "collector_number" : "120",
@@ -1849,7 +2044,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Dark Souls",
+    "subtypes": ["Insect", "Horror"]
   },
   {
     "collector_number" : "121",
@@ -1860,10 +2057,11 @@
     "layout" : "normal",
     "mana_cost" : "{3}{B}{B}",
     "name" : "Reign of the Dark Lord",
-    "oracle_text" : "2B, Discard a card: Exile target creature card from your graveyard. Create a token that’s a copy of it, except it’s black and it’s a Zombie in addition to its other types. Activate this ability only any time you could cast a sorcery.",
+    "oracle_text" : "{2}{B}, Discard a card: Exile target creature card from your graveyard. Create a token that’s a copy of it, except it’s black and it’s a Zombie in addition to its other types. Activate this ability only any time you could cast a sorcery.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Legendary Enchantment"
+    "type" : "Legendary Enchantment",
+    "artist": "Conor Burke"
   },
   {
     "collector_number" : "122",
@@ -1879,7 +2077,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Kennyfull",
+    "subtypes": ["Human", "Rogue"]
   },
   {
     "collector_number" : "123",
@@ -1898,7 +2098,9 @@
     ],
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Kari Christensen",
+    "subtypes": ["Rat"]
   },
   {
     "collector_number" : "124",
@@ -1917,7 +2119,9 @@
     ],
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "banished_shadow",
+    "subtypes": ["Human", "Cleric"]
   },
   {
     "collector_number" : "125",
@@ -1936,7 +2140,9 @@
     ],
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Andrey Ilnykh",
+    "subtypes": ["Human", "Cleric"]
   },
   {
     "collector_number" : "126",
@@ -1955,7 +2161,9 @@
     ],
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "Dark Souls",
+    "subtypes": ["Human"]
   },
   {
     "collector_number" : "127",
@@ -1971,7 +2179,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "5",
-    "type" : "Artifact Creature"
+    "type" : "Artifact Creature",
+    "artist": "pixivid1474679",
+    "subtypes": ["Demon", "Construct"]
   },
   {
     "collector_number" : "128",
@@ -1987,7 +2197,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Pablo Dominguez",
+    "subtypes": ["Bird"]
   },
   {
     "collector_number" : "129",
@@ -2003,7 +2215,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "rabbig_san",
+    "subtypes": ["Human", "Rogue"]
   },
   {
     "collector_number" : "130",
@@ -2019,7 +2233,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "benwootten",
+    "subtypes": ["Bat", "Demon"]
   },
   {
     "collector_number" : "131",
@@ -2030,10 +2246,12 @@
     "layout" : "normal",
     "mana_cost" : "{1}{R}",
     "name" : "Bloodied Shotel",
-    "oracle_text" : "Equipped creature gets +2\/+1.\nEquip 3\nWhenever a creature you control despairs, you may attach Bloodied Shotel to that creature.",
+    "oracle_text" : "Equipped creature gets +2\/+1.\nEquip {3}\nWhenever a creature you control despairs, you may attach Bloodied Shotel to that creature.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Artifact"
+    "type" : "Artifact",
+    "artist": "Li Shi Xing",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "132",
@@ -2049,7 +2267,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Alexandrza Brovskiy",
+    "subtypes": ["Goat", "Demon"]
   },
   {
     "collector_number" : "133",
@@ -2060,10 +2280,11 @@
     "layout" : "normal",
     "mana_cost" : "{1}{R}",
     "name" : "Ceaseless Destruction",
-    "oracle_text" : "Destroy target artifact. Add RR.",
+    "oracle_text" : "Destroy target artifact. Add {R}{R}.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Jack"
   },
   {
     "collector_number" : "134",
@@ -2074,12 +2295,14 @@
     "layout" : "normal",
     "mana_cost" : "{4}{R}{R}{R}{R}",
     "name" : "Ceaseless Discharge",
-    "oracle_text" : "Trample\nAt the beginning of each of your main phases, add eight R.\nWhenever you lose unspent mana, Ceaseless Discharge deals that much damage to you.",
+    "oracle_text" : "Trample\nAt the beginning of each of your main phases, add eight {R}.\nWhenever you lose unspent mana, Ceaseless Discharge deals that much damage to you.",
     "power" : "8",
     "rarity" : "mythic",
     "set" : "HLW",
     "toughness" : "8",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "moni158",
+    "subtypes": ["Elemental", "Demon"]
   },
   {
     "collector_number" : "135",
@@ -2095,7 +2318,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "yashiro50",
+    "subtypes": ["Zombie", "Warrior"]
   },
   {
     "collector_number" : "136",
@@ -2114,7 +2339,9 @@
     ],
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Violentouiche (Edited)",
+    "subtypes": ["Human", "Berserker"]
   },
   {
     "collector_number" : "137",
@@ -2130,7 +2357,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "nahelus",
+    "subtypes": ["Human", "Shaman"]
   },
   {
     "collector_number" : "138",
@@ -2146,7 +2375,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "ThemeFinland",
+    "subtypes": ["Human", "Dragon"]
   },
   {
     "collector_number" : "139",
@@ -2160,7 +2391,8 @@
     "oracle_text" : "Attacking creatures get +2\/+0 until end of turn.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "hugepointedhat"
   },
   {
     "collector_number" : "140",
@@ -2174,7 +2406,8 @@
     "oracle_text" : "Flame Storm deals 3 damage to each creature. Whenever a creature dealt damage this way dies this turn, Flame Storm deals 1 damage to that creature’s controller.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Snapdragon"
   },
   {
     "collector_number" : "141",
@@ -2190,7 +2423,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "pixivid11887748",
+    "subtypes": ["Human", "Knight"]
   },
   {
     "collector_number" : "142",
@@ -2204,7 +2439,8 @@
     "oracle_text" : "Grand Fire Orb deals 5 damage to target creature.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Daniel Clasouin"
   },
   {
     "collector_number" : "143",
@@ -2220,7 +2456,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Li-Ojan",
+    "subtypes": ["Human", "Soldier"]
   },
   {
     "collector_number" : "144",
@@ -2234,7 +2472,8 @@
     "oracle_text" : "This spell costs 4 less to cast if you control a creature with power 4 or greater.\nGwyn’s Defeat deals X damage to any target.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Tuoi"
   },
   {
     "collector_number" : "145",
@@ -2250,7 +2489,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "6beans",
+    "subtypes": ["Human", "Wizard"]
   },
   {
     "collector_number" : "146",
@@ -2264,7 +2505,8 @@
     "oracle_text" : "Journey five times. At the beginning of the next end step, shuffle five journeyed cards you own in exile into your library. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "oniruu"
   },
   {
     "collector_number" : "147",
@@ -2275,12 +2517,14 @@
     "layout" : "normal",
     "mana_cost" : "{4}{R}{R}",
     "name" : "Izalith Firesage",
-    "oracle_text" : "Trample\nWhen Izalith Firesage enters the battlefield, scry 3, then reveal the top card of your library. When you do, Izalith Firesage deals X damage to any target, where X is the revealed card’s converted mana cost.",
+    "oracle_text" : "Trample\nWhen Izalith Firesage enters the battlefield, scry 3, then reveal the top card of your library. When you do, Izalith Firesage deals X damage to any target, where X is the revealed card’s mana value.",
     "power" : "6",
     "rarity" : "rare",
     "set" : "HLW",
     "toughness" : "6",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Mobocanario",
+    "subtypes": ["Beast", "Demon", "Shaman"]
   },
   {
     "collector_number" : "148",
@@ -2294,7 +2538,8 @@
     "oracle_text" : "Untap up to two target creatures. After this main phase, there is an additional combat phase followed by an additional main phase.\nJourney twice. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Roy Ugang"
   },
   {
     "collector_number" : "149",
@@ -2308,7 +2553,8 @@
     "oracle_text" : "Kalameet’s Gaze deals 4 damage to any target that was dealt damage this turn.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "halycon450"
   },
   {
     "collector_number" : "150",
@@ -2322,7 +2568,9 @@
     "oracle_text" : "Lightning Spear deals 3 damage to any target.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Michele Giorgi",
+    "subtypes": ["Aura"]
   },
   {
     "collector_number" : "151",
@@ -2336,7 +2584,8 @@
     "oracle_text" : "Enchant creature\nWhen Lingering Animosity enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nEnchanted creature attacks each combat if able.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "Alley_web"
   },
   {
     "collector_number" : "152",
@@ -2350,7 +2599,8 @@
     "oracle_text" : "At the beginning of your end step, you may put a +1\/+1 counter on target creature that attacked this turn.\nAt the beginning of your upkeep, you may sacrifice a Human with power 12 or greater. If you do, you win the game.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "Dark Souls"
   },
   {
     "collector_number" : "153",
@@ -2364,7 +2614,8 @@
     "oracle_text" : "As an additional cost to cast this spell, discard a card.\nDraw two cards.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Sharkrocket"
   },
   {
     "collector_number" : "154",
@@ -2380,7 +2631,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Sharkrocket",
+    "subtypes": ["Spider"]
   },
   {
     "collector_number" : "155",
@@ -2391,12 +2644,14 @@
     "layout" : "normal",
     "mana_cost" : "{2}{R}",
     "name" : "Ornstein, Dragonslayer",
-    "oracle_text" : "Haste\nOrnstein, Dragonslayer has first strike as long as it’s attacking.\nDamage can’t be prevented.\n2R: Ornstein, Dragonslayer gets +3\/+0 until end of turn.",
+    "oracle_text" : "Haste\nOrnstein, Dragonslayer has first strike as long as it’s attacking.\nDamage can’t be prevented.\n{2}{R}: Ornstein, Dragonslayer gets +3\/+0 until end of turn.",
     "power" : "3",
     "rarity" : "rare",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "Oukaen",
+    "subtypes": ["Demigod", "Knight"]
   },
   {
     "collector_number" : "156",
@@ -2413,7 +2668,8 @@
       "Dragon (THLW)"
     ],
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Storm Spirit"
   },
   {
     "collector_number" : "157",
@@ -2427,7 +2683,8 @@
     "oracle_text" : "When Path of Violence enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nAt the beginning of combat on your turn, if you own a journeyed card in exile, target creature you control gets +2\/+0 until end of turn.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "tosthage"
   },
   {
     "collector_number" : "158",
@@ -2438,10 +2695,11 @@
     "layout" : "normal",
     "mana_cost" : "{1}{R}{R}{R}",
     "name" : "Power Within",
-    "oracle_text" : "Whenever you cast an instant or sorcery spell, copy that spell. You may choose new targets for the copy. Power Within deals damage to you equal to that spell’s converted mana cost.",
+    "oracle_text" : "Whenever you cast an instant or sorcery spell, copy that spell. You may choose new targets for the copy. Power Within deals damage to you equal to that spell’s mana value.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "blank aoz"
   },
   {
     "collector_number" : "159",
@@ -2452,10 +2710,12 @@
     "layout" : "normal",
     "mana_cost" : "{R}",
     "name" : "Pyromancer's Flame",
-    "oracle_text" : "Whenever equipped creature attacks, it deals 2 damage to target opponent.\nEquip 2 (2: Attach to target creature you control. Equip only as a sorcery.)",
+    "oracle_text" : "Whenever equipped creature attacks, it deals 2 damage to target opponent.\nEquip {2} ({2}:Attach to target creature you control. Equip only as a sorcery.)",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Artifact"
+    "type" : "Artifact",
+    "artist": "Jeehyung Lee",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "160",
@@ -2466,10 +2726,11 @@
     "layout" : "normal",
     "mana_cost" : "{1}{R}",
     "name" : "Pyromancer's Wisdom",
-    "oracle_text" : "Add RRR.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
+    "oracle_text" : "Add {R}{R}{R}.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Luis Borgia"
   },
   {
     "collector_number" : "161",
@@ -2483,7 +2744,8 @@
     "oracle_text" : "Target creature gains double strike until end of turn.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Marcus Djurdjevic"
   },
   {
     "collector_number" : "162",
@@ -2494,10 +2756,12 @@
     "layout" : "normal",
     "mana_cost" : "{1}{R}{R}",
     "name" : "Quelaag's Furysword",
-    "oracle_text" : "Equipped creature has double strike.\nWhenever equipped creature deals combat damage to a player, put a fury counter on Quelaag’s Furysword, then Quelaag’s Furysword deals damage equal to the number of fury counters on it to that player.\nEquip 3",
+    "oracle_text" : "Equipped creature has double strike.\nWhenever equipped creature deals combat damage to a player, put a fury counter on Quelaag’s Furysword, then Quelaag’s Furysword deals damage equal to the number of fury counters on it to that player.\nEquip {3}",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Legendary Artifact"
+    "type" : "Legendary Artifact",
+    "artist": "Enoxico",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "163",
@@ -2513,7 +2777,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "sirtiefling",
+    "subtypes": ["Human", "Shaman"]
   },
   {
     "collector_number" : "164",
@@ -2529,7 +2795,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Vladyslava Hladkova",
+    "subtypes": ["Zombie", "Dog"]
   },
   {
     "collector_number" : "165",
@@ -2543,7 +2811,8 @@
     "oracle_text" : "Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn. When that creature dies this turn, it deals 2 damage to each opponent.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "pixivid336349"
   },
   {
     "collector_number" : "166",
@@ -2554,12 +2823,14 @@
     "layout" : "normal",
     "mana_cost" : "{2}{R}",
     "name" : "Student of the Dragon-Path",
-    "oracle_text" : "R: Student of the Dragon-Path gets +1\/+0 until end of turn.",
+    "oracle_text" : "{R: Student of the Dragon-Path gets +1\/+0 until end of turn.",
     "power" : "2",
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "ThemeFinland",
+    "subtypes": ["Human", "Dragon"]
   },
   {
     "collector_number" : "167",
@@ -2575,7 +2846,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "ThemeFinland",
+    "subtypes": ["Human", "Dragon"]
   },
   {
     "collector_number" : "168",
@@ -2589,7 +2862,8 @@
     "oracle_text" : "Sunlight Spear deals 6 damage to any target. This damage can’t be prevented.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Stephen Stark"
   },
   {
     "collector_number" : "169",
@@ -2603,7 +2877,8 @@
     "oracle_text" : "At the beginning of your end step, each player sacrifices a nonland permanent. Sunset on a Dying World deals 3 damage to each player who can’t.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "Michael Bird"
   },
   {
     "collector_number" : "170",
@@ -2619,7 +2894,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "5",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Patricia Casarrubios",
+    "subtypes": ["Ox", "Demon"]
   },
   {
     "collector_number" : "171",
@@ -2633,7 +2910,8 @@
     "oracle_text" : "Exile the top card of your library. You may play that card this turn. When you play that card this turn, repeat this process.",
     "rarity" : "mythic",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Dark Souls"
   },
   {
     "collector_number" : "172",
@@ -2649,7 +2927,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Habab Alizadeh",
+    "subtypes": ["Human", "Knight"]
   },
   {
     "collector_number" : "173",
@@ -2663,7 +2943,8 @@
     "oracle_text" : "You gain 5 life. If a creature you control dealt combat damage to an opponent this turn, you gain 10 life instead.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Dark Souls"
   },
   {
     "collector_number" : "174",
@@ -2677,7 +2958,8 @@
     "oracle_text" : "Target creature you control gets +1\/+0 until end of turn. It deals damage equal to its power to target creature an opponent controls.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Quentin Lecuiller"
   },
   {
     "collector_number" : "175",
@@ -2691,7 +2973,8 @@
     "oracle_text" : "Choose one —\n• Destroy all artifacts.\n• Destroy all creatures with flying.\n• Destroy all lands with activated abilities that aren’t mana abilities.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Cheo36"
   },
   {
     "collector_number" : "176",
@@ -2708,7 +2991,8 @@
       "Spider (THLW)"
     ],
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "akin-adekile"
   },
   {
     "collector_number" : "177",
@@ -2724,7 +3008,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "wombattree",
+    "subtypes": ["Ooze"]
   },
   {
     "collector_number" : "178",
@@ -2740,7 +3026,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "ThemeFinland",
+    "subtypes": ["Human", "Dragon"]
   },
   {
     "collector_number" : "179",
@@ -2756,7 +3044,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "5",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Dark Souls",
+    "subtypes": ["Wurm"]
   },
   {
     "collector_number" : "180",
@@ -2770,7 +3060,8 @@
     "oracle_text" : "Target creature you control fights target creature an opponent controls. Whenever one of those creatures dies this turn, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "GLV88"
   },
   {
     "collector_number" : "181",
@@ -2789,7 +3080,9 @@
     ],
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Ren Tu",
+    "subtypes": ["Human", "Archer"]
   },
   {
     "collector_number" : "182",
@@ -2800,12 +3093,14 @@
     "layout" : "normal",
     "mana_cost" : "{2}{G}",
     "name" : "Darkroot Poisoner",
-    "oracle_text" : "Flash\n2G: Darkroot Poisoner gains deathtouch until end of turn.",
+    "oracle_text" : "Flash\n{2}{G}: Darkroot Poisoner gains deathtouch until end of turn.",
     "power" : "3",
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Solfar",
+    "subtypes": ["Human", "Warrior"]
   },
   {
     "collector_number" : "183",
@@ -2821,7 +3116,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "INK_HEAD",
+    "subtypes": ["Human", "Archer", "Scout"]
   },
   {
     "collector_number" : "184",
@@ -2837,7 +3134,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "ThemeFinland",
+    "subtypes": ["Human", "Dragon"]
   },
   {
     "collector_number" : "185",
@@ -2853,7 +3152,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "ThemeFinland",
+    "subtypes": ["Human", "Dragon"]
   },
   {
     "collector_number" : "186",
@@ -2864,7 +3165,7 @@
     "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Dragon-Speaker Ascendant",
-    "oracle_text" : "3, Sacrifice Dragon-Speaker Ascendant: Search your library for a Dragon creature card, reveal it, put it into your hand, then shuffle your library.\n6, Exile Dragon-Speaker Ascendant from your graveyard: Create a 4\/4 colorless Dragon artifact creature token with flying.",
+    "oracle_text" : "{3}, Sacrifice Dragon-Speaker Ascendan{T}:Search your library for a Dragon creature card, reveal it, put it into your hand, then shuffle your library.\n{6}, Exile Dragon-Speaker Ascendant from your graveyard: Create a 4\/4 colorless Dragon artifact creature token with flying.",
     "power" : "2",
     "rarity" : "rare",
     "related_cards" : [
@@ -2872,7 +3173,9 @@
     ],
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "ThemeFinland",
+    "subtypes": ["Human", "Dragon"]
   },
   {
     "collector_number" : "187",
@@ -2883,10 +3186,11 @@
     "layout" : "normal",
     "mana_cost" : "{X}{G}",
     "name" : "Explorer's Reward",
-    "oracle_text" : "Journey X times. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nYou may put a creature card with converted mana cost X or less from among journeyed cards you own in exile onto the battlefield under your control.",
+    "oracle_text" : "Journey X times. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nYou may put a creature card with mana value X or less from among journeyed cards you own in exile onto the battlefield under your control.",
     "rarity" : "mythic",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "pixivid7104480"
   },
   {
     "collector_number" : "188",
@@ -2902,7 +3206,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Elizer Morcillos",
+    "subtypes": ["Human", "Shaman"]
   },
   {
     "collector_number" : "189",
@@ -2918,7 +3224,9 @@
     "rarity" : "mythic",
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "onestepart (Edited)",
+    "subtypes": ["Dragon", "Horror"]
   },
   {
     "collector_number" : "190",
@@ -2934,7 +3242,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Tomas Muir",
+    "subtypes": ["Spider"]
   },
   {
     "collector_number" : "191",
@@ -2948,7 +3258,9 @@
     "oracle_text" : "Enchant creature\nEnchanted creature gets +2\/+2.\nWhenever enchanted creature attacks, if it’s equipped, double its power and toughness until end of turn.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "Lizzie6x9",
+    "subtypes": ["Aura"]
   },
   {
     "collector_number" : "192",
@@ -2964,7 +3276,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Cynthia F.G.",
+    "subtypes": ["Wolf"]
   },
   {
     "collector_number" : "193",
@@ -2975,10 +3289,12 @@
     "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Great Hammer",
-    "oracle_text" : "Equipped creature gets +2\/+2.\nEquip 2 (2: Attach to target creature you control. Equip only as a sorcery.)",
+    "oracle_text" : "Equipped creature gets +2\/+2.\nEquip {2} ({2}:Attach to target creature you control. Equip only as a sorcery.)",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Artifact"
+    "type" : "Artifact",
+    "artist": "Dark Souls Concept Art",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "194",
@@ -2992,7 +3308,9 @@
     "oracle_text" : "Enchant creature\nWhen Gwynevere’s Guidance enters the battlefield, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nEnchanted creature gets +2\/+1.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "lixin2738",
+    "subtypes": ["Aura"]
   },
   {
     "collector_number" : "195",
@@ -3011,7 +3329,9 @@
     ],
     "set" : "HLW",
     "toughness" : "7",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "SGJin",
+    "subtypes": ["Giant", "Archer"]
   },
   {
     "collector_number" : "196",
@@ -3022,10 +3342,12 @@
     "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Hawkeye Greatbow",
-    "oracle_text" : "Equipped creature gets +3\/+0 and has reach.\nWhenever equipped creature deals combat damage to a creature, it deals that much damage to up to one other target creature.\nEquip 3",
+    "oracle_text" : "Equipped creature gets +3\/+0 and has reach.\nWhenever equipped creature deals combat damage to a creature, it deals that much damage to up to one other target creature.\nEquip {3}",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Legendary Artifact"
+    "type" : "Legendary Artifact",
+    "artist": "pixivid47881929",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "197",
@@ -3041,7 +3363,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Lizzie6x9",
+    "subtypes": ["Human", "Knight"]
   },
   {
     "collector_number" : "198",
@@ -3057,7 +3381,9 @@
     "rarity" : "rare",
     "set" : "HLW",
     "toughness" : "0",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Diencry",
+    "subtypes": ["Hydra"]
   },
   {
     "collector_number" : "199",
@@ -3071,7 +3397,8 @@
     "oracle_text" : "Destroy target creature with flying. Put a +1\/+1 counter on up to one target creature you control.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "pixivid267137"
   },
   {
     "collector_number" : "200",
@@ -3087,7 +3414,9 @@
     "rarity" : "rare",
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Anato Finnstark",
+    "subtypes": ["Human", "Shaman"]
   },
   {
     "collector_number" : "201",
@@ -3103,7 +3432,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "6",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Satoshi Kamanaka",
+    "subtypes": ["Zombie", "Giant"]
   },
   {
     "collector_number" : "202",
@@ -3114,10 +3445,12 @@
     "layout" : "normal",
     "mana_cost" : "{3}{G}",
     "name" : "Murakumo",
-    "oracle_text" : "Equipped creature gets +4\/+2 and has trample.\nAt the beginning of combat on your turn, you may attach Murakumo to target creature with power 4 or greater.\nEquip 4",
+    "oracle_text" : "Equipped creature gets +4\/+2 and has trample.\nAt the beginning of combat on your turn, you may attach Murakumo to target creature with power 4 or greater.\nEquip {4}",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Artifact"
+    "type" : "Artifact",
+    "artist": "pixivid33878106",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "203",
@@ -3136,7 +3469,9 @@
     ],
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "tetsuko9999",
+    "subtypes": ["Fungus"]
   },
   {
     "collector_number" : "204",
@@ -3150,7 +3485,8 @@
     "oracle_text" : "When Path of Strength enters the battlefield, journey twice. (To journey, exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)\nAt the beginning of combat on your turn, if you own a journeyed card in exile, target creature you control gets +2\/+2 and gains trample until end of turn.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "Anato Finnstark"
   },
   {
     "collector_number" : "205",
@@ -3164,7 +3500,9 @@
     "oracle_text" : "Put a +1\/+1 counter on target creature you control. Untap that creature.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Tyler Hunter",
+    "subtypes": ["Human", "Shaman"]
   },
   {
     "collector_number" : "206",
@@ -3175,12 +3513,13 @@
     "layout" : "normal",
     "mana_cost" : "{1}{G}",
     "name" : "Pyromantic Shaman",
-    "oracle_text" : "T: Add R.",
+    "oracle_text" : "{T}:Add {R}.",
     "power" : "2",
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "rakuen_no_musume"
   },
   {
     "collector_number" : "207",
@@ -3194,7 +3533,8 @@
     "oracle_text" : "Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Roman Ayseenko"
   },
   {
     "collector_number" : "208",
@@ -3208,7 +3548,8 @@
     "oracle_text" : "Choose one —\n• Destroy target artifact.\n• Destroy target enchantment.\n• Exile target card from a graveyard.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Matt Forsyth"
   },
   {
     "collector_number" : "209",
@@ -3222,7 +3563,8 @@
     "oracle_text" : "Look at the top five cards of your library. You may reveal a creature card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.\nJourney. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Sorcery"
+    "type" : "Sorcery",
+    "artist": "Ludvikskp"
   },
   {
     "collector_number" : "210",
@@ -3241,7 +3583,9 @@
     ],
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Julia Faulwetter",
+    "subtypes": ["Zombie", "Horror"]
   },
   {
     "collector_number" : "211",
@@ -3255,7 +3599,8 @@
     "oracle_text" : "Target creature gets +3\/+3 and gains trample until end of turn.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Nagy Norbert"
   },
   {
     "collector_number" : "212",
@@ -3271,7 +3616,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "6",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Dark Souls",
+    "subtypes": ["Hydra"]
   },
   {
     "collector_number" : "213",
@@ -3285,7 +3632,8 @@
     "oracle_text" : "You may play an additional land on each of your turns.\nWhenever a land enters the battlefield under your control, journey. (Exile the top card of your library face up. Whenever a creature you control deals combat damage to an opponent, put a journeyed card you own into your hand.)",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "Zusacre"
   },
   {
     "collector_number" : "214",
@@ -3301,7 +3649,9 @@
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "5",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Kristina Laine",
+    "subtypes": ["Plant", "Horror"]
   },
   {
     "collector_number" : "215",
@@ -3312,10 +3662,12 @@
     "layout" : "normal",
     "mana_cost" : "{2}{G}",
     "name" : "Wayfinder's Landmark",
-    "oracle_text" : "Enchant land\nEnchanted land has “2, T: Reveal the top four cards of your library. Put up to one land card from among them onto the battlefield and attach Wayfinder’s Landmark to it. Put the rest into your graveyard.”",
+    "oracle_text" : "Enchant land\nEnchanted land has “{2}, {T}:Reveal the top four cards of your library. Put up to one land card from among them onto the battlefield and attach Wayfinder’s Landmark to it. Put the rest into your graveyard.”",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Enchantment"
+    "type" : "Enchantment",
+    "artist": "Le Long (Edited)",
+    "subtypes": ["Aura"]
   },
   {
     "collector_number" : "216",
@@ -3332,7 +3684,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Conor Burke",
+    "subtypes": ["Spirit", "Warrior"]
   },
   {
     "collector_number" : "217",
@@ -3349,7 +3703,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Tim Keil",
+    "subtypes": ["Human", "Shaman"]
   },
   {
     "collector_number" : "218",
@@ -3361,12 +3717,14 @@
     "layout" : "normal",
     "mana_cost" : "{1}{R}{G}",
     "name" : "Dragon-Path Traveler",
-    "oracle_text" : "Whenever you put a journeyed card into your hand, add RG. Until end of turn, you don’t lose this mana as steps and phases end.",
+    "oracle_text" : "Whenever you put a journeyed card into your hand, add {R}{G}. Until end of turn, you don’t lose this mana as steps and phases end.",
     "power" : "3",
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "ThemeFinland",
+    "subtypes": ["Human", "Dragon"]
   },
   {
     "collector_number" : "219",
@@ -3382,7 +3740,9 @@
     "oracle_text" : "Whenever one or more loyalty counters are removed from Evander, Sunlight Martyr, create a 2\/2 white Knight creature token.\n[+1]: Evander, Sunlight Martyr deals 1 damage to any target.\n[-1]: Creatures you control get +1\/+1 and gain haste until end of turn.",
     "rarity" : "mythic",
     "set" : "HLW",
-    "type" : "Legendary Planeswalker"
+    "type" : "Legendary Planeswalker",
+    "artist": "Jwolk",
+    "subtypes": ["Evander"]
   },
   {
     "collector_number" : "220",
@@ -3399,7 +3759,9 @@
     "rarity" : "mythic",
     "set" : "HLW",
     "toughness" : "7",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "SGJin",
+    "subtypes": ["God"]
   },
   {
     "collector_number" : "221",
@@ -3416,7 +3778,9 @@
     "rarity" : "mythic",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "Kzcjimmy",
+    "subtypes": ["God"]
   },
   {
     "collector_number" : "222",
@@ -3433,7 +3797,9 @@
     "rarity" : "mythic",
     "set" : "HLW",
     "toughness" : "5",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "Dark Souls",
+    "subtypes": ["God"]
   },
   {
     "collector_number" : "223",
@@ -3450,7 +3816,9 @@
     "rarity" : "mythic",
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "Stephen Stark",
+    "subtypes": ["God"]
   },
   {
     "collector_number" : "224",
@@ -3467,7 +3835,9 @@
     "rarity" : "rare",
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "Sasisage",
+    "subtypes": ["Human", "Horror"]
   },
   {
     "collector_number" : "225",
@@ -3484,7 +3854,9 @@
     "rarity" : "rare",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "Michele Giorgi",
+    "subtypes": ["Human", "Knight"]
   },
   {
     "collector_number" : "226",
@@ -3501,7 +3873,9 @@
     "rarity" : "mythic",
     "set" : "HLW",
     "toughness" : "7",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "Nahelus",
+    "subtypes": ["Human", "Horror"]
   },
   {
     "collector_number" : "227",
@@ -3519,7 +3893,8 @@
       "Wolf (THLW)"
     ],
     "set" : "HLW",
-    "type" : "Instant"
+    "type" : "Instant",
+    "artist": "Moni158"
   },
   {
     "collector_number" : "228",
@@ -3539,7 +3914,9 @@
     ],
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Aleksandra Lech",
+    "subtypes": ["Human", "Cleric"]
   },
   {
     "collector_number" : "229",
@@ -3556,7 +3933,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "4",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Cheo36",
+    "subtypes": ["Human", "Knight"]
   },
   {
     "collector_number" : "230",
@@ -3573,7 +3952,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "nero_tbs",
+    "subtypes": ["Zombie", "Berserker"]
   },
   {
     "collector_number" : "231",
@@ -3585,12 +3966,14 @@
     "layout" : "normal",
     "mana_cost" : "{1}{U}{B}",
     "name" : "Shrewd Collectors",
-    "oracle_text" : "Shrewd Collectors’s power is equal to the number of noncreature cards in your graveyard.\n2UB: Look at the top card of your library. You may put that card into your graveyard.",
+    "oracle_text" : "Shrewd Collectors’s power is equal to the number of noncreature cards in your graveyard.\n{2}{U}{B}: Look at the top card of your library. You may put that card into your graveyard.",
     "power" : "*",
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "5",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "pixivid1474679",
+    "subtypes": ["Human", "Samurai"]
   },
   {
     "collector_number" : "232",
@@ -3606,7 +3989,9 @@
     "oracle_text" : "[+1]: You get an emblem with “At the beginning of your end step, create a 1\/1 black Human creature token.”\n[-3]: You get an emblem with “At the beginning of your end step, draw a card.”\n[-8]: You get an emblem with “At the beginning of your end step, if it isn’t an extra turn, take an extra turn after this one.”",
     "rarity" : "mythic",
     "set" : "HLW",
-    "type" : "Legendary Planeswalker"
+    "type" : "Legendary Planeswalker",
+    "artist": "SirTiefling",
+    "subtypes": ["Slaine"]
   },
   {
     "collector_number" : "233",
@@ -3623,7 +4008,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "YMD",
+    "subtypes": ["Spirit", "Wizard"]
   },
   {
     "collector_number" : "234",
@@ -3635,12 +4022,14 @@
     "layout" : "normal",
     "mana_cost" : "{3}{G}{W}",
     "name" : "The Gods' Blacksmith",
-    "oracle_text" : "T: Add WUBRG. Spend this mana only to cast Equipment spells or to activate abilities of Equipment.\nWhenever an equipped creature you control attacks, put a +1\/+1 counter on it.",
+    "oracle_text" : "{T}:Add {W}{U}{B}{R}{G}. Spend this mana only to cast Equipment spells or to activate abilities of Equipment.\nWhenever an equipped creature you control attacks, put a +1\/+1 counter on it.",
     "power" : "5",
     "rarity" : "rare",
     "set" : "HLW",
     "toughness" : "5",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "Le Long (Edited)",
+    "subtypes": ["Giant", "Artificer"]
   },
   {
     "collector_number" : "235",
@@ -3657,7 +4046,9 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "toughness" : "2",
-    "type" : "Creature"
+    "type" : "Creature",
+    "artist": "Conor Burke",
+    "subtypes": ["Human Knight"]
   },
   {
     "collector_number" : "236",
@@ -3673,7 +4064,9 @@
     "oracle_text" : "[+1]: Each player discards a card unless they sacrifice a creature.\n[+1]: Exile target card from a graveyard. Trusty Patches deals 2 damage to each opponent.\n[-6]: For each player, choose at random two nonland cards from that player’s graveyard. For each card chosen this way, you may cast it without paying its mana cost.",
     "rarity" : "mythic",
     "set" : "HLW",
-    "type" : "Legendary Planeswalker"
+    "type" : "Legendary Planeswalker",
+    "artist": "Rohantohu",
+    "subtypes": ["Patches"]
   },
   {
     "collector_number" : "237",
@@ -3690,7 +4083,9 @@
     "rarity" : "mythic",
     "set" : "HLW",
     "toughness" : "3",
-    "type" : "Legendary Creature"
+    "type" : "Legendary Creature",
+    "artist": "matinee79",
+    "subtypes": ["God"]
   },
   {
     "collector_number" : "238",
@@ -3701,12 +4096,14 @@
     "layout" : "normal",
     "mana_cost" : "{2}",
     "name" : "Crystal Lizard",
-    "oracle_text" : "When Crystal Lizard enters the battlefield, draw a card.\n2, T, Sacrifice Crystal Lizard: Add two mana in any combination of colors.",
+    "oracle_text" : "When Crystal Lizard enters the battlefield, draw a card.\n{2}, {T}, Sacrifice Crystal Lizard: Add two mana in any combination of colors.",
     "power" : "0",
     "rarity" : "common",
     "set" : "HLW",
     "toughness" : "1",
-    "type" : "Artifact Creature"
+    "type" : "Artifact Creature",
+    "artist": "Marcelo Sperandio",
+    "subtypes": ["Lizard"]
   },
   {
     "collector_number" : "239",
@@ -3717,10 +4114,12 @@
     "layout" : "normal",
     "mana_cost" : "{5}",
     "name" : "Dragon Tooth",
-    "oracle_text" : "Indestructible\nEquipped creature gets +5\/+5 and has trample and hexproof.\nEquip 5",
+    "oracle_text" : "Indestructible\nEquipped creature gets +5\/+5 and has trample and hexproof.\nEquip {5}",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Artifact"
+    "type" : "Artifact",
+    "artist": "pixivid31835188",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "240",
@@ -3731,10 +4130,12 @@
     "layout" : "normal",
     "mana_cost" : "{2}",
     "name" : "Estus Flask",
-    "oracle_text" : "Estus Flask enters the battlefield with five charge counters on it.\nT, Remove a charge counter from Estus Flask: You gain 2 life.",
+    "oracle_text" : "Estus Flask enters the battlefield with five charge counters on it.\n{T}, Remove a charge counter from Estus Flask: You gain 2 life.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Artifact"
+    "type" : "Artifact",
+    "artist": "sarahasmical",
+    "subtypes": ["Dragon"]
   },
   {
     "collector_number" : "241",
@@ -3750,7 +4151,9 @@
     "rarity" : "mythic",
     "set" : "HLW",
     "toughness" : "6",
-    "type" : "Artifact Creature"
+    "type" : "Artifact Creature",
+    "artist": "ThemeFinland",
+    "subtypes": ["Equipment"]
   },
   {
     "collector_number" : "242",
@@ -3761,10 +4164,11 @@
     "layout" : "normal",
     "mana_cost" : "{3}",
     "name" : "Zweihander",
-    "oracle_text" : "Equipped creature gets +3\/+0.\nEquip 3 (3: Attach to target creature you control. Equip only as a sorcery.)",
+    "oracle_text" : "Equipped creature gets +3\/+0.\nEquip {3} ({3}:Attach to target creature you control. Equip only as a sorcery.)",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Artifact"
+    "type" : "Artifact",
+    "artist": "Dark Souls"
   },
   {
     "collector_number" : "243",
@@ -3775,10 +4179,11 @@
     "layout" : "normal",
     "mana_cost" : "",
     "name" : "Abandoned Bonfire",
-    "oracle_text" : "When Abandoned Bonfire enters the battlefield, you gain 2 life.\nT: Add C.",
+    "oracle_text" : "When Abandoned Bonfire enters the battlefield, you gain 2 life.\n{T}:Add {C}.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Land"
+    "type" : "Land",
+    "artist": "Sharrine Ishak"
   },
   {
     "collector_number" : "244",
@@ -3789,10 +4194,11 @@
     "layout" : "normal",
     "mana_cost" : "",
     "name" : "Decaying Domain",
-    "oracle_text" : "T: Add C.\n2, T, Sacrifice Decaying Domain: Destroy target nonbasic land. Its controller may scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)",
+    "oracle_text" : "{T}:Add C.\n{2}, {T}, Sacrifice Decaying Domain: Destroy target nonbasic land. Its controller may scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Land"
+    "type" : "Land",
+    "artist": "Onestepart"
   },
   {
     "collector_number" : "245",
@@ -3803,10 +4209,11 @@
     "layout" : "normal",
     "mana_cost" : "",
     "name" : "Evolving Wilds",
-    "oracle_text" : "T, Sacrifice Evolving Wilds: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.",
+    "oracle_text" : "{T}, Sacrifice Evolving Wilds: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Land"
+    "type" : "Land",
+    "artist": "Dark Souls"
   },
   {
     "collector_number" : "246",
@@ -3817,10 +4224,11 @@
     "layout" : "normal",
     "mana_cost" : "",
     "name" : "Firelink Shrine",
-    "oracle_text" : "T: Add C.\nT: Add one mana of any color. Spend this mana only to cast an artifact, enchantment, or creature spell with converted mana cost 2 or less.",
+    "oracle_text" : "{T}:Add {C}.\n{T}:Add one mana of any color. Spend this mana only to cast an artifact, enchantment, or creature spell with mana value 2 or less.",
     "rarity" : "rare",
     "set" : "HLW",
-    "type" : "Land"
+    "type" : "Land",
+    "artist": "Dragonizm"
   },
   {
     "collector_number" : "247",
@@ -3831,10 +4239,11 @@
     "layout" : "normal",
     "mana_cost" : "",
     "name" : "Frosted Sanctuary",
-    "oracle_text" : "Frosted Sanctuary enters the battlefield tapped.\nT: Add W or U.\n2, T, Sacrifice Frosted Sanctuary: Draw a card.",
+    "oracle_text" : "Frosted Sanctuary enters the battlefield tapped.\n{T}:Add {W} or {U}.\n{2}, {T}, Sacrifice Frosted Sanctuary: Draw a card.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Land"
+    "type" : "Land",
+    "artist": "Arafelle"
   },
   {
     "collector_number" : "248",
@@ -3845,10 +4254,11 @@
     "layout" : "normal",
     "mana_cost" : "",
     "name" : "Hero's Rest",
-    "oracle_text" : "Hero’s Rest enters the battlefield tapped.\nT: Add G or W.\n2, T, Sacrifice Hero’s Rest: Draw a card.",
+    "oracle_text" : "Hero’s Rest enters the battlefield tapped.\n{T}:Add {G} or {W}.\n{2}, {T}, Sacrifice Hero’s Res{T}:Draw a card.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Land"
+    "type" : "Land",
+    "artist": "Virginie Simard"
   },
   {
     "collector_number" : "249",
@@ -3859,10 +4269,11 @@
     "layout" : "normal",
     "mana_cost" : "",
     "name" : "Lava Roots",
-    "oracle_text" : "Lava Roots enters the battlefield tapped.\nT: Add R or G.\n2, T, Sacrifice Lava Roots: Draw a card.",
+    "oracle_text" : "Lava Roots enters the battlefield tapped.\n{T}:Add {R} or {G}.\n{2}, {T}, Sacrifice Lava Roots: Draw a card.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Land"
+    "type" : "Land",
+    "artist": "François Coutu"
   },
   {
     "collector_number" : "250",
@@ -3873,10 +4284,11 @@
     "layout" : "normal",
     "mana_cost" : "",
     "name" : "Sinister Ruins",
-    "oracle_text" : "Sinister Ruins enters the battlefield tapped.\nT: Add B or R.\n2, T, Sacrifice Sinister Ruins: Draw a card.",
+    "oracle_text" : "Sinister Ruins enters the battlefield tapped.\n{T}:Add {B} or {R}.\n{2}, {T}, Sacrifice Sinister Ruins: Draw a card.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Land"
+    "type" : "Land",
+    "artist": "Dark Souls"
   },
   {
     "collector_number" : "251",
@@ -3887,10 +4299,11 @@
     "layout" : "normal",
     "mana_cost" : "",
     "name" : "Watery Depths",
-    "oracle_text" : "Watery Depths enters the battlefield tapped.\nT: Add U or B.\n2, T, Sacrifice Watery Depths: Draw a card.",
+    "oracle_text" : "Watery Depths enters the battlefield tapped.\n{T}:Add {U} or {B}.\n{2}, {T}, Sacrifice Watery Depths: Draw a card.",
     "rarity" : "uncommon",
     "set" : "HLW",
-    "type" : "Land"
+    "type" : "Land",
+    "artist": "Marek Madej"
   },
   {
     "collector_number" : "252",
@@ -3904,7 +4317,9 @@
     "oracle_text" : "",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Basic Land"
+    "type" : "Basic Land",
+    "artist": "Jeremiah Killian",
+    "subtypes": ["Plains"]
   },
   {
     "collector_number" : "253",
@@ -3918,7 +4333,9 @@
     "oracle_text" : "",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Basic Land"
+    "type" : "Basic Land",
+    "artist": "ElkaArt",
+    "subtypes": ["Island"]
   },
   {
     "collector_number" : "254",
@@ -3932,7 +4349,9 @@
     "oracle_text" : "",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Basic Land"
+    "type" : "Basic Land",
+    "artist": "ElkaArt",
+    "subtypes": ["Swamp"]
   },
   {
     "collector_number" : "255",
@@ -3946,7 +4365,9 @@
     "oracle_text" : "",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Basic Land"
+    "type" : "Basic Land",
+    "artist": "ElkaArt",
+    "subtypes": ["Mountain"]
   },
   {
     "collector_number" : "256",
@@ -3960,7 +4381,9 @@
     "oracle_text" : "",
     "rarity" : "common",
     "set" : "HLW",
-    "type" : "Basic Land"
+    "type" : "Basic Land",
+    "artist": "Andres Rocha",
+    "subtypes": ["Forest"]
   },
   {
     "collector_number" : "2",
@@ -3974,7 +4397,8 @@
     "oracle_text" : "At the beginning of your end step, draw a card.",
     "rarity" : "common",
     "set" : "THLW",
-    "type" : "Emblem"
+    "type" : "Emblem",
+    "artist": "SirTiefling"
   },
   {
     "collector_number" : "3",
@@ -3988,7 +4412,8 @@
     "oracle_text" : "At the beginning of your end step, if it isn’t an extra turn, take an extra turn after this one.",
     "rarity" : "common",
     "set" : "THLW",
-    "type" : "Emblem"
+    "type" : "Emblem",
+    "artist": "SirTiefling"
   },
   {
     "collector_number" : "4",
@@ -4002,7 +4427,8 @@
     "oracle_text" : "At the beginning of your end step, create a 1\/1 black Human creature token.",
     "rarity" : "common",
     "set" : "THLW",
-    "type" : "Emblem"
+    "type" : "Emblem",
+    "artist": "SirTiefling"
   },
   {
     "collector_number" : "5",
@@ -4018,7 +4444,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "2",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Kaffeebohnson",
+    "subtypes": ["Knight"]
   },
   {
     "collector_number" : "6",
@@ -4034,7 +4462,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "1",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Matt Forsyth",
+    "subtypes": ["Zombie", "Soldier"]
   },
   {
     "collector_number" : "7",
@@ -4050,7 +4480,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "4",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Violentouiche",
+    "subtypes": ["Zombie", "Human", "Cleric"]
   },
   {
     "collector_number" : "8",
@@ -4066,7 +4498,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "1",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Joe Gloria Kairo",
+    "subtypes": ["Human"]
   },
   {
     "collector_number" : "9",
@@ -4082,7 +4516,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "1",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Kari Christensen",
+    "subtypes": ["Zombie", "Rat"]
   },
   {
     "collector_number" : "10",
@@ -4098,7 +4534,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "3",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Banished_Shadow",
+    "subtypes": ["Zombie", "Human", "Cleric"]
   },
   {
     "collector_number" : "11",
@@ -4114,7 +4552,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "1",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Andrey Ilinykh",
+    "subtypes": ["Zombie", "Human", "Cleric"]
   },
   {
     "collector_number" : "12",
@@ -4130,7 +4570,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "1",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Sady-ize",
+    "subtypes": ["Skeleton"]
   },
   {
     "collector_number" : "13",
@@ -4146,7 +4588,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "1",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Annee Naronghai",
+    "subtypes": ["Fungus"]
   },
   {
     "collector_number" : "14",
@@ -4162,7 +4606,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "2",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Gusti_Boucher",
+    "subtypes": ["Spider"]
   },
   {
     "collector_number" : "15",
@@ -4178,7 +4624,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "2",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Ren Tu",
+    "subtypes": ["Wolf"]
   },
   {
     "collector_number" : "16",
@@ -4195,7 +4643,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "4",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "El Jay",
+    "subtypes": ["Zombie", "Human", "Knight"]
   },
   {
     "collector_number" : "17",
@@ -4212,7 +4662,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "4",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Violentouiche",
+    "subtypes": ["Zombie", "Human", "Berserker"]
   },
   {
     "collector_number" : "18",
@@ -4229,7 +4681,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "3",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Nathan Gordon",
+    "subtypes": ["Zombie", "Human", "Rogue"]
   },
   {
     "collector_number" : "19",
@@ -4246,7 +4700,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "4",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "David Demaret",
+    "subtypes": ["Zombie", "Angel"]
   },
   {
     "collector_number" : "20",
@@ -4263,7 +4719,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "3",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Conor Burke & Pinkmoth",
+    "subtypes": ["Zombie", "Human", "Knight"]
   },
   {
     "collector_number" : "21",
@@ -4280,7 +4738,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "3",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Rulin Liu",
+    "subtypes": ["Zombie", "Human", "Wizard"]
   },
   {
     "collector_number" : "22",
@@ -4297,7 +4757,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "2",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Alexander Puchkov",
+    "subtypes": ["Zombie", "Human", "Cleric"]
   },
   {
     "collector_number" : "23",
@@ -4314,7 +4776,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "1",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Onestepart",
+    "subtypes": ["Zombie", "Human", "Rogue"]
   },
   {
     "collector_number" : "24",
@@ -4331,7 +4795,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "1",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Sergey Samarskiy",
+    "subtypes": ["Zombie", "Human", "Cleric"]
   },
   {
     "collector_number" : "25",
@@ -4348,7 +4814,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "3",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Aleksandra Lech",
+    "subtypes": ["Zombie", "Human", "Cleric"]
   },
   {
     "collector_number" : "26",
@@ -4365,7 +4833,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "3",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Thebastardson",
+    "subtypes": ["Zombie", "Human", "Knight"]
   },
   {
     "collector_number" : "27",
@@ -4382,7 +4852,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "2",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Dante Liu",
+    "subtypes": ["Zombie", "Human", "Knight"]
   },
   {
     "collector_number" : "28",
@@ -4402,7 +4874,9 @@
     ],
     "set" : "THLW",
     "toughness" : "3",
-    "type" : "Token Creature"
+    "type" : "Token Creature",
+    "artist": "Rotaken",
+    "subtypes": ["Zombie", "Human", "Cleric"]
   },
   {
     "collector_number" : "29",
@@ -4418,7 +4892,9 @@
     "rarity" : "common",
     "set" : "THLW",
     "toughness" : "4",
-    "type" : "Token Artifact Creature"
+    "type" : "Token Artifact Creature",
+    "artist": "Stephen Stark",
+    "subtypes": ["Dragon"]
   }
 ]
 [Settings]

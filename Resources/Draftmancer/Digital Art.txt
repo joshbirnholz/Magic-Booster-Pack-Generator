@@ -181,5 +181,40 @@
     "set": "SIR",
     "collector_number": "44",
     "rarity": "common"
-  }
+  },
+  {
+    "name": "Walking Ballista",
+    "front": "https://i.imgur.com/z8ZPFug.jpeg",
+    "set": "PRM",
+    "collector_number": "69991",
+    "rarity": "rare"
+  },
+  {
+    "name": "Twilight Mire",
+    "front": "https://i.imgur.com/xbv8mBI.jpeg",
+    "set": "PRM",
+    "collector_number": "62455",
+    "rarity": "rare"
+  },
+  {
+    "name": "Grim Monolith",
+    "front": "https://i.imgur.com/n07y4TZ.jpeg",
+    "set": "PRM",
+    "collector_number": "61567",
+    "rarity": "rare"
+  },
+  {
+    "name": "Kozilek, the Great Distortion",
+    "front": "https://i.imgur.com/6CdqJai.jpeg",
+    "set": "PRM",
+    "collector_number": "62493",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Sunscorch Regent",
+    "front": "https://i.imgur.com/A63Gn2A.jpeg",
+    "set": "PRM",
+    "collector_number": "55896",
+    "rarity": "rare"
+  },
 ]

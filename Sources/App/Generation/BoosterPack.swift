@@ -3128,7 +3128,7 @@ func singleCardFuzzy(name: String, facedown: Bool, export: Bool) async throws ->
     do {
       let card = try await Swiftfall.getCard(fuzzy: name)
       
-      if card.games == ["arena"], let fixed = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased() == card.name.lowercased() && $0.set.lowercased() == card.set.lowercased() && $0.collectorNumber.lowercased() == card.collectorNumber.lowercased()
+      if !card.games.contains("paper"), let fixed = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased() == card.name.lowercased() && $0.set.lowercased() == card.set.lowercased() && $0.collectorNumber.lowercased() == card.collectorNumber.lowercased()
       }) {
         return fixed
       }
@@ -3151,7 +3151,7 @@ func singleCardExact(name: String, facedown: Bool, export: Bool) async throws ->
     do {
       let card = try await Swiftfall.getCard(exact: name)
       
-      if card.games == ["arena"], let fixed = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased() == card.name.lowercased() && $0.set.lowercased() == card.set.lowercased() && $0.collectorNumber.lowercased() == card.collectorNumber.lowercased()
+      if !card.games.contains("paper"), let fixed = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased() == card.name.lowercased() && $0.set.lowercased() == card.set.lowercased() && $0.collectorNumber.lowercased() == card.collectorNumber.lowercased()
       }) {
         return fixed
       }
@@ -3174,7 +3174,7 @@ func singleCardCodeNumber(code: String, number: String, facedown: Bool, export: 
     do {
       let card = try await Swiftfall.getCard(code: code, number: number)
       
-      if card.games == ["arena"], let fixed = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased() == card.name.lowercased() && $0.set.lowercased() == card.set.lowercased() && $0.collectorNumber.lowercased() == card.collectorNumber.lowercased()
+      if !card.games.contains("paper"), let fixed = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased() == card.name.lowercased() && $0.set.lowercased() == card.set.lowercased() && $0.collectorNumber.lowercased() == card.collectorNumber.lowercased()
       }) {
         return fixed
       }
@@ -3221,7 +3221,7 @@ func singleCard(_ card: MTGCard, tokens: [MTGCard] = [], facedown: Bool = true, 
   
   var card = card
   
-  if card.games == ["arena"], let fixed = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased() == card.name?.lowercased() && $0.set.lowercased() == card.set.lowercased() && $0.collectorNumber.lowercased() == card.collectorNumber.lowercased()
+  if !card.games.contains("paper"), let fixed = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased() == card.name?.lowercased() && $0.set.lowercased() == card.set.lowercased() && $0.collectorNumber.lowercased() == card.collectorNumber.lowercased()
   }) {
     card = fixed
   }
@@ -6672,7 +6672,7 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 	var notFound: [MTGCardIdentifier] = Array(collections.compactMap(\.notFound).joined())
   
   var arenaOnlyIdentifiers: [MTGCardIdentifier] = identifiers.filter {
-    mtgCards[$0]?.games == ["arena"]
+    mtgCards[$0]?.games.contains("paper") == false
   }
   
   // Replace Arena cards with better-looking versions

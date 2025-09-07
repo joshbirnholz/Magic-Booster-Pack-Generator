@@ -1,5 +1,5 @@
 {
-  "originHash" : "4dd4d54e158ff57ba0ed106ae9a14c7520722f203a839f8e144e0d9a6187107d",
+  "originHash" : "f9fe29f87d40a4515633b685e6d57db2ff1dc5180637ea6970e88a0e230a933d",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -278,6 +278,15 @@
       "state" : {
         "revision" : "aa85ee96017a730031bafe411cde24a08a17a9c9",
         "version" : "2.8.8"
+      }
+    },
+    {
+      "identity" : "swim",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/t-ae/swim.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "e8e3dc5f6a6f58af40a5c341cb7fbf0d7324dc74"
       }
     },
     {

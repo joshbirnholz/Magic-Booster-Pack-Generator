@@ -78,6 +78,10 @@ public func routes(_ app: Application) throws {
   app.post("collectionremove", use: collectionRemove(_:))
   app.get("collectionremove", use: collectionRemove(_:))
   
+  let imageController = ImageController()
+  
+  app.get("artcrop", use: imageController.artCrop(_:))
+  
   app.routes.defaultMaxBodySize = .init(stringLiteral: "4mb")
 	
 //	do {

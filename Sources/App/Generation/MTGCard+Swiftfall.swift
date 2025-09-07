@@ -137,8 +137,28 @@ extension MTGCard {
 
 extension Swiftfall.Card {
   init(_ mtgCard: MTGCard) {
+    var mtgCard = mtgCard
+    
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
+    
+    func addArtCropURL(to imageUris: inout [String: URL]?) {
+      guard let url = imageUris?["large"] ?? imageUris?["normal"] else { return }
+      
+      let host = "http://tts-magic-booster.fly.dev"
+      
+      imageUris?["art_crop"] = URL(string: "\(host)/artcrop?url=\(url)")
+    }
+    
+    addArtCropURL(to: &mtgCard.imageUris)
+    
+    if let count = mtgCard.cardFaces?.count {
+      for i in (0..<count) {
+        var imageUris = mtgCard.cardFaces?[i].imageUris
+        addArtCropURL(to: &imageUris)
+        mtgCard.cardFaces?[i].imageUris = imageUris
+      }
+    }
     
     let faces = mtgCard.cardFaces?.map {
       Swiftfall.Card.Face(name: $0.name, flavorName: $0.flavorName, manaCost: $0.manaCost, cmc: nil, typeLine: $0.typeLine, oracleText: $0.oracleText, colors: $0.colors?.compactMap(\.rawValue), colorIndicator: nil, power: $0.power, toughness: $0.toughness, loyalty: $0.loyalty, defense: nil, flavorText: $0.flavorText, illustrationId: nil, imageUris: $0.imageUris, oracleId: mtgCard.oracleID, watermark: $0.watermark, printedName: $0.printedName, printedText: nil, printedTypeLine: nil)

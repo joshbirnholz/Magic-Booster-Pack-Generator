@@ -21,6 +21,7 @@ let package = Package(
     // XML decoding
     .package(url: "https://github.com/CoreOffice/XMLCoder.git", from: "0.17.1"),
     .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.6.0"),
+    .package(url: "https://github.com/t-ae/swim.git", branch: "master"),
   ],
   targets: [
     .target(
@@ -31,7 +32,8 @@ let package = Package(
         .product(name: "Vapor", package: "vapor"),
         .product(name: "CSV", package: "CSV.swift"),
         .product(name: "XMLCoder", package: "XMLCoder"),
-        .product(name: "SwiftSoup", package: "SwiftSoup")
+        .product(name: "SwiftSoup", package: "SwiftSoup"),
+        .product(name: "Swim", package: "Swim")
       ]
     ),
     .executableTarget(

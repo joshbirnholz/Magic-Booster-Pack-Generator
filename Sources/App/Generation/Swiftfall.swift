@@ -303,6 +303,87 @@ public class Swiftfall {
   }
   
   public struct Card: Codable, CustomStringConvertible, Equatable, Hashable, Sendable, Identifiable {
+    internal init(prices: Swiftfall.Card.Prices? = nil, id: UUID, oracleId: UUID? = nil, multiverseIds: [Int], mtgoId: Int? = nil, arenaId: Int? = nil, mtgoFoilId: Int? = nil, tcgplayerId: Int? = nil, tcgplayerEtchedId: Int? = nil, name: String, flavorName: String? = nil, uri: String? = nil, scryfallUri: String, cardFaces: [Swiftfall.Card.Face]? = nil, printsSearchUri: String, securityStamp: String? = nil, rulingsUri: String, layout: String, cmc: Double? = nil, typeLine: String? = nil, oracleText: String? = nil, manaCost: String? = nil, power: String? = nil, toughness: String? = nil, loyalty: String? = nil, defense: String? = nil, colors: [String]? = nil, colorIndicator: [String]? = nil, colorIdentity: [String]? = nil, keywords: [String]? = nil, producedMana: [String]? = nil, purchaseUris: [String : URL]? = nil, flavorText: String? = nil, attractionLights: [Int]? = nil, illustrationId: String? = nil, imageUris: [String : URL]? = nil, legalities: [String : String], reserved: Bool, edhrecRank: Int? = nil, allParts: [Swiftfall.Card.RelatedCard]? = nil, set: String, setName: String, setType: String? = nil, rarity: String, cardBackId: UUID? = nil, artist: String? = nil, collectorNumber: String, digital: Bool, highresImage: Bool, lifeModifier: String? = nil, handModifier: String? = nil, frame: String, frameEffects: [String]? = nil, promoTypes: [String]? = nil, oversized: Bool? = nil, fullArt: Bool, watermark: String? = nil, borderColor: String, storySpotlightNumber: Int? = nil, storySpotlightUri: String? = nil, storySpotlight: Bool? = nil, contentWarning: Bool? = nil, printedName: String? = nil, printedText: String? = nil, printedTypeLine: String? = nil, textless: Bool, lang: Swiftfall.Card.Language, foil: Bool, finishes: [Swiftfall.Card.Finish], nonfoil: Bool, promo: Bool, booster: Bool, releasedAt: String, relatedUris: [String : URL]? = nil, games: [String], gameChanger: Bool? = nil, variation: Bool? = nil, variationOf: UUID? = nil) {
+      self.prices = prices
+      self.id = id
+      self.oracleId = oracleId
+      self.multiverseIds = multiverseIds
+      self.mtgoId = mtgoId
+      self.arenaId = arenaId
+      self.mtgoFoilId = mtgoFoilId
+      self.tcgplayerId = tcgplayerId
+      self.tcgplayerEtchedId = tcgplayerEtchedId
+      self.name = name
+      self.flavorName = flavorName
+      self.uri = uri
+      self.scryfallUri = scryfallUri
+      self.cardFaces = cardFaces
+      self.printsSearchUri = printsSearchUri
+      self.securityStamp = securityStamp
+      self.rulingsUri = rulingsUri
+      self.layout = layout
+      self.cmc = cmc
+      self.typeLine = typeLine
+      self.oracleText = oracleText
+      self.manaCost = manaCost
+      self.power = power
+      self.toughness = toughness
+      self.loyalty = loyalty
+      self.defense = defense
+      self.colors = colors
+      self.colorIndicator = colorIndicator
+      self.colorIdentity = colorIdentity
+      self.keywords = keywords
+      self.producedMana = producedMana
+      self.purchaseUris = purchaseUris
+      self.flavorText = flavorText
+      self.attractionLights = attractionLights
+      self.illustrationId = illustrationId
+      self.imageUris = imageUris
+      self.legalities = legalities
+      self.reserved = reserved
+      self.edhrecRank = edhrecRank
+      self.allParts = allParts
+      self.set = set
+      self.setName = setName
+      self.setType = setType
+      self.rarity = rarity
+      self.cardBackId = cardBackId
+      self.artist = artist
+      self.collectorNumber = collectorNumber
+      self.digital = digital
+      self.highresImage = highresImage
+      self.lifeModifier = lifeModifier
+      self.handModifier = handModifier
+      self.frame = frame
+      self.frameEffects = frameEffects
+      self.promoTypes = promoTypes
+      self.oversized = oversized
+      self.fullArt = fullArt
+      self.watermark = watermark
+      self.borderColor = borderColor
+      self.storySpotlightNumber = storySpotlightNumber
+      self.storySpotlightUri = storySpotlightUri
+      self.storySpotlight = storySpotlight
+      self.contentWarning = contentWarning
+      self.printedName = printedName
+      self.printedText = printedText
+      self.printedTypeLine = printedTypeLine
+      self.textless = textless
+      self.lang = lang
+      self.foil = foil
+      self.finishes = finishes
+      self.nonfoil = nonfoil
+      self.promo = promo
+      self.booster = booster
+      self.releasedAt = releasedAt
+      self.relatedUris = relatedUris
+      self.games = games
+      self.gameChanger = gameChanger
+      self.variation = variation
+      self.variationOf = variationOf
+    }
+    
     
     // Some cards have cards closely related to them. They will contain an array of RelatedCards.
     public struct RelatedCard: Codable, CustomStringConvertible, Equatable, Hashable, Sendable {

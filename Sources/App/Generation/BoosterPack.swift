@@ -3123,7 +3123,7 @@ func singleBoosterPack(setName: String, setCode: String, boosterPack: [MTGCard],
 """
 }
 
-func singleCardFuzzy(name: String, facedown: Bool, export: Bool) async throws -> String {
+func singleCardFuzzy(name: String, facedown: Bool, export: Bool, format: String?) async throws -> String {
   let mtgCard: MTGCard = try await {
     do {
       let card = try await Swiftfall.getCard(fuzzy: name)
@@ -3143,10 +3143,18 @@ func singleCardFuzzy(name: String, facedown: Bool, export: Bool) async throws ->
     }
   }()
   
+  if format == "scryfall" {
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    encoder.outputFormatting = .prettyPrinted
+    let data = try encoder.encode(Swiftfall.Card(mtgCard))
+    return String(data: data, encoding: .utf8)!
+  }
+  
   return try await singleCard(mtgCard, facedown: facedown, export: export)
 }
 
-func singleCardExact(name: String, facedown: Bool, export: Bool) async throws -> String {
+func singleCardExact(name: String, facedown: Bool, export: Bool, format: String?) async throws -> String {
   let mtgCard: MTGCard = try await {
     do {
       let card = try await Swiftfall.getCard(exact: name)
@@ -3165,6 +3173,14 @@ func singleCardExact(name: String, facedown: Bool, export: Bool) async throws ->
       }
     }
   }()
+  
+  if format == "scryfall" {
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    encoder.outputFormatting = .prettyPrinted
+    let data = try encoder.encode(Swiftfall.Card(mtgCard))
+    return String(data: data, encoding: .utf8)!
+  }
 	
   return try await singleCard(mtgCard, facedown: facedown, export: export)
 }

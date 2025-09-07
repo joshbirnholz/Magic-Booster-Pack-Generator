@@ -947,6 +947,7 @@ final class GeneratorController {
 	func singleCardNamed(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let facedown: Bool = req.query.getBoolValue(at: "facedown") ?? false
+    let format: String? = try? req.query.get(at: "format")
 		
 		let fuzzy = try? req.query.get(String.self, at: "fuzzy")
 		let exact = try? req.query.get(String.self, at: "exact")
@@ -1007,10 +1008,10 @@ final class GeneratorController {
     promise.completeWithTask {
 			do {
 				if let fuzzy = fuzzy {
-					let result = try await singleCardFuzzy(name: fuzzy, facedown: facedown, export: export)
+          let result = try await singleCardFuzzy(name: fuzzy, facedown: facedown, export: export, format: format)
 					return result
 				} else if let exact = exact {
-					let result = try await singleCardExact(name: exact, facedown: facedown, export: export)
+          let result = try await singleCardExact(name: exact, facedown: facedown, export: export, format: format)
 					return result
 				} else {
 					throw PackError.noName

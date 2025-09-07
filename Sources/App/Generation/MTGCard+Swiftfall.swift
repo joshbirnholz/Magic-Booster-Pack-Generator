@@ -134,3 +134,18 @@ extension MTGCard {
 //				  imageUris: scryfallCard.imageUris != nil ? newImageURIs(cardID: scryfallCard.id) : nil)
 	}
 }
+
+extension Swiftfall.Card {
+  init(_ mtgCard: MTGCard) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    
+    let faces = mtgCard.cardFaces?.map {
+      Swiftfall.Card.Face(name: $0.name, flavorName: $0.flavorName, manaCost: $0.manaCost, cmc: nil, typeLine: $0.typeLine, oracleText: $0.oracleText, colors: $0.colors?.compactMap(\.rawValue), colorIndicator: nil, power: $0.power, toughness: $0.toughness, loyalty: $0.loyalty, defense: nil, flavorText: $0.flavorText, illustrationId: nil, imageUris: $0.imageUris, oracleId: mtgCard.oracleID, watermark: $0.watermark, printedName: $0.printedName, printedText: nil, printedTypeLine: nil)
+    }
+    
+    let printsSearchUri = ""
+    
+    self.init(prices: nil, id: mtgCard.scryfallID ?? UUID(), oracleId: mtgCard.oracleID ?? UUID(), multiverseIds: [], mtgoId: nil, arenaId: nil, mtgoFoilId: nil, tcgplayerId: nil, tcgplayerEtchedId: nil, name: mtgCard.name ?? "", flavorName: mtgCard.flavorName ?? "", uri: mtgCard.scryfallURL?.absoluteString, scryfallUri: mtgCard.scryfallURL?.absoluteString ?? "", cardFaces: faces, printsSearchUri: "", securityStamp: nil, rulingsUri: "", layout: mtgCard.layout, cmc: mtgCard.convertedManaCost, typeLine: mtgCard.typeLine, oracleText: mtgCard.oracleText, manaCost: mtgCard.manaCost, power: mtgCard.power, toughness: mtgCard.toughness, loyalty: mtgCard.loyalty, defense: mtgCard.defense, colors: mtgCard.colors?.compactMap(\.rawValue), colorIndicator: nil, colorIdentity: mtgCard.colorIdentity?.compactMap(\.rawValue), keywords: mtgCard.keywords, producedMana: mtgCard.producedMana?.compactMap(\.rawValue), purchaseUris: nil, flavorText: mtgCard.flavorText, attractionLights: nil, illustrationId: nil, imageUris: mtgCard.imageUris, legalities: [:], reserved: false, edhrecRank: nil, allParts: nil, set: mtgCard.set, setName: mtgCard.set, setType: nil, rarity: mtgCard.rarity.rawValue, cardBackId: mtgCard.scryfallCardBackID, artist: mtgCard.artist, collectorNumber: mtgCard.collectorNumber, digital: false, highresImage: true, lifeModifier: nil, handModifier: nil, frame: mtgCard.frame, frameEffects: mtgCard.frameEffects, promoTypes: mtgCard.promoTypes, oversized: nil, fullArt: mtgCard.isFullArt, watermark: mtgCard.watermark, borderColor: mtgCard.borderColor?.rawValue ?? "black", storySpotlightNumber: nil, storySpotlightUri: nil, storySpotlight: nil, contentWarning: nil, printedName: mtgCard.printedName, printedText: mtgCard.printedText, printedTypeLine: mtgCard.printedTypeLine, textless: mtgCard.isTextless, lang: .init(rawValue: mtgCard.language.rawValue)!, foil: mtgCard.isFoilAvailable, finishes: mtgCard.finishes, nonfoil: mtgCard.isNonFoilAvailable, promo: mtgCard.isPromo, booster: mtgCard.isFoundInBoosters, releasedAt: mtgCard.releaseDate.flatMap(dateFormatter.string(from:)) ?? "", relatedUris: nil, games: mtgCard.games, gameChanger: nil, variation: nil, variationOf: nil)
+  }
+}

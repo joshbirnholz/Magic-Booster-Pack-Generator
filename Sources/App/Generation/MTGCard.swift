@@ -124,6 +124,7 @@ public struct MTGCard: Codable, Equatable, Hashable, Sendable {
 	public var name: String?
   public var flavorName: String?
 	public var loyalty: String?
+  public var defense: String?
 	public var cardFaces: [Face]?
 	public var convertedManaCost: Double?
 	public var layout: String

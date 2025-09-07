@@ -962,11 +962,42 @@ final class GeneratorController {
           let collectorNumber = groups.count == 3 ? groups[2].value.trimmingCharacters(in: .whitespaces) : nil
           
           if let collectorNumber {
-            let mtgCard = try await Swiftfall.getCard(code: setCode, number: collectorNumber)
-            return try await App.singleCard(MTGCard(mtgCard), facedown: facedown, export: export)
+            do {
+              let card = try await Swiftfall.getCard(code: setCode, number: collectorNumber)
+              var mtgCard = MTGCard(card)
+              
+              if !card.games.contains("paper"), let fixed = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased() == card.name.lowercased() && $0.set.lowercased() == card.set.lowercased() && $0.collectorNumber.lowercased() == card.collectorNumber.lowercased()
+              }) {
+                mtgCard = fixed
+              }
+              
+              return try await App.singleCard(mtgCard, facedown: facedown, export: export)
+            } catch {
+              if let card = await DraftmancerSetCache.shared.loadedDraftmancerCards?[.collectorNumberSet(collectorNumber: collectorNumber, set: setCode, name: cardName)] {
+                return try await App.singleCard(card, facedown: facedown, export: export)
+              } else {
+                throw error
+              }
+            }
           } else {
-            let mtgCard = try await Swiftfall.getCard(name: cardName, set: setCode)
-            return try await App.singleCard(MTGCard(mtgCard), facedown: facedown, export: export)
+            do {
+              let card = try await Swiftfall.getCard(name: cardName, set: setCode)
+              
+              var mtgCard = MTGCard(card)
+              
+              if !card.games.contains("paper"), let fixed = await DraftmancerSetCache.shared.loadedDraftmancerCards?.first(where: { $0.name?.lowercased() == card.name.lowercased() && $0.set.lowercased() == card.set.lowercased() && $0.collectorNumber.lowercased() == card.collectorNumber.lowercased()
+              }) {
+                mtgCard = fixed
+              }
+              
+              return try await App.singleCard(mtgCard, facedown: facedown, export: export)
+            } catch {
+              if let card = await DraftmancerSetCache.shared.loadedDraftmancerCards?[.nameSet(name: cardName, set: setCode)] {
+                return try await App.singleCard(card, facedown: facedown, export: export)
+              } else {
+                throw error
+              }
+            }
           }
         })
         return promise.futureResult

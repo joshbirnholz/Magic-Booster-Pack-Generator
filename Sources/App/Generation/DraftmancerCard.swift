@@ -37,7 +37,7 @@ public struct DraftmancerCard: Codable, Sendable {
     }
   }
   
-  init(name: String, flavorName: String? = nil, manaCost: String, type: String, imageUris: [String : URL]? = nil, colors: [String]? = nil, artist: String? = nil, printedNames: [String : URL]? = nil, image: URL? = nil, set: String? = nil, collectorNumber: String? = nil, rarity: Rarity? = nil, subtypes: [String]? = nil, rating: Int? = nil, layout: String? = nil, back: DraftmancerCard.Face? = nil, relatedCards: [DraftmancerCard.Face]? = nil, relatedCardIdentifiers: [MTGCardIdentifier]? = nil, draftEffects: [DraftmancerCard.DraftEffect]? = nil, power: String? = nil, toughness: String? = nil, oracleText: String? = nil, loyalty: String? = nil, keywords: [String]? = nil) {
+  init(name: String, flavorName: String? = nil, manaCost: String, type: String, imageUris: [String : URL]? = nil, colors: [String]? = nil, artist: String? = nil, printedNames: [String : URL]? = nil, image: URL? = nil, set: String? = nil, collectorNumber: String? = nil, rarity: Rarity? = nil, subtypes: [String]? = nil, rating: Int? = nil, layout: String? = nil, back: DraftmancerCard.Face? = nil, relatedCards: [DraftmancerCard.Face]? = nil, relatedCardIdentifiers: [MTGCardIdentifier]? = nil, draftEffects: [DraftmancerCard.DraftEffect]? = nil, power: String? = nil, toughness: String? = nil, oracleText: String? = nil, flavorText: String? = nil, loyalty: String? = nil, keywords: [String]? = nil) {
     self.name = name
     self.flavorName = flavorName
     self.manaCost = manaCost
@@ -60,6 +60,7 @@ public struct DraftmancerCard: Codable, Sendable {
     self.power = power
     self.toughness = toughness
     self.oracleText = oracleText
+    self.flavorText = flavorText
     self.loyalty = loyalty
     self.keywords = keywords
   }
@@ -72,12 +73,13 @@ public struct DraftmancerCard: Codable, Sendable {
     var type: String
     var subtypes: [String]?
     var oracleText: String?
+    var flavorText: String?
     var power: String?
     var toughness: String?
     var loyalty: String?
     var keywords: [String]?
     
-    init(name: String, flavorName: String? = nil, imageUris: [String : URL]? = nil, image: URL? = nil, type: String, subtypes: [String]? = nil, oracleText: String? = nil, power: String? = nil, toughness: String? = nil, loyalty: String? = nil, keywords: [String]? = nil) {
+    init(name: String, flavorName: String? = nil, imageUris: [String : URL]? = nil, image: URL? = nil, type: String, subtypes: [String]? = nil, oracleText: String? = nil, flavorText: String? = nil, power: String? = nil, toughness: String? = nil, loyalty: String? = nil, keywords: [String]? = nil) {
       self.name = name
       self.flavorName = name
       self.imageUris = imageUris
@@ -85,6 +87,7 @@ public struct DraftmancerCard: Codable, Sendable {
       self.type = type
       self.subtypes = subtypes
       self.oracleText = oracleText
+      self.flavorText = flavorText
       self.power = power
       self.toughness = toughness
       self.loyalty = loyalty
@@ -106,6 +109,7 @@ public struct DraftmancerCard: Codable, Sendable {
       self.type = try container.decode(String.self, forKey: DraftmancerCard.Face.CodingKeys.type)
       self.subtypes = try container.decodeIfPresent([String].self, forKey: DraftmancerCard.Face.CodingKeys.subtypes)
       self.oracleText = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.oracleText)
+      self.flavorText = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.flavorText)
       self.power = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.power)
       self.toughness = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.toughness)
       self.loyalty = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.loyalty)
@@ -159,6 +163,7 @@ public struct DraftmancerCard: Codable, Sendable {
   var power: String?
   var toughness: String?
   var oracleText: String?
+  var flavorText: String?
   var loyalty: String?
   var keywords: [String]?
   
@@ -195,6 +200,7 @@ public struct DraftmancerCard: Codable, Sendable {
         type: backType,
         subtypes: backSubtypes,
         oracleText: back.oracleText,
+        flavorText: back.flavorText,
         power: back.power,
         toughness: back.toughness,
         loyalty: back.loyalty,
@@ -254,6 +260,7 @@ public struct DraftmancerCard: Codable, Sendable {
     self.toughness = mtgCard.toughness
     self.loyalty = mtgCard.loyalty
     self.oracleText = mtgCard.oracleText
+    self.flavorText = mtgCard.flavorText
     self.keywords = mtgCard.keywords
     self.artist = mtgCard.artist
   }
@@ -293,6 +300,7 @@ public struct DraftmancerCard: Codable, Sendable {
     try container.encodeIfPresent(self.power, forKey: .power)
     try container.encodeIfPresent(self.toughness, forKey: .toughness)
     try container.encodeIfPresent(self.oracleText, forKey: .oracleText)
+    try container.encodeIfPresent(self.flavorText, forKey: .flavorText)
     try container.encodeIfPresent(self.loyalty, forKey: .loyalty)
     try container.encodeIfPresent(self.keywords, forKey: .keywords)
   }
@@ -320,6 +328,7 @@ public struct DraftmancerCard: Codable, Sendable {
     case power
     case toughness
     case oracleText
+    case flavorText
     case loyalty
     case keywords
   }
@@ -341,6 +350,7 @@ public struct DraftmancerCard: Codable, Sendable {
     self.rating = try container.decodeIfPresent(Int.self, forKey: .rating)
     self.layout = try container.decodeIfPresent(String.self, forKey: .layout)
     self.back = try container.decodeIfPresent(DraftmancerCard.Face.self, forKey: .back)
+    self.artist = try container.decodeIfPresent(String.self, forKey: .artist)
     
     if let relatedCardIdentifiers = try? container.decodeIfPresent([String].self, forKey: .relatedCards) {
       self.relatedCardIdentifiers = relatedCardIdentifiers.compactMap { string in
@@ -357,6 +367,7 @@ public struct DraftmancerCard: Codable, Sendable {
     self.power = try container.decodeIfPresent(String.self, forKey: .power)
     self.toughness = try container.decodeIfPresent(String.self, forKey: .toughness)
     self.oracleText = try container.decodeIfPresent(String.self, forKey: .oracleText)
+    self.flavorText = try container.decodeIfPresent(String.self, forKey: .flavorText)
     self.loyalty = try container.decodeIfPresent(String.self, forKey: .loyalty)
     self.keywords = try container.decodeIfPresent([String].self, forKey: .keywords)
   }
@@ -462,7 +473,7 @@ extension DraftmancerCard {
         power: nil,
         toughness: nil,
         oracleText: "\(self.oracleText ?? "")\n//\n\(back.oracleText ?? "")",
-        flavorText: nil,
+        flavorText: self.flavorText,
         name: "\(name) // \(back.name)",
         flavorName: nil,
         loyalty: nil,
@@ -485,7 +496,7 @@ extension DraftmancerCard {
         printedName: nil,
         printedText: nil,
         printedTypeLine: nil,
-        artist: nil,
+        artist: self.artist,
         watermark: nil,
         rarity: rarity,
         scryfallCardBackID: nil,
@@ -508,7 +519,7 @@ extension DraftmancerCard {
         power: self.power,
         toughness: self.toughness,
         oracleText: self.oracleText,
-        flavorText: nil,
+        flavorText: self.flavorText,
         name: self.name,
         flavorName: self.flavorName,
         loyalty: self.loyalty,
@@ -531,7 +542,7 @@ extension DraftmancerCard {
         printedName: nil,
         printedText: nil,
         printedTypeLine: nil,
-        artist: nil,
+        artist: self.artist,
         watermark: nil,
         rarity: rarity,
         scryfallCardBackID: nil,

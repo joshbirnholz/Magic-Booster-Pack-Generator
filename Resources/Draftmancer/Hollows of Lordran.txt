@@ -33,7 +33,7 @@
     "type" : "Enchantment",
     "artist": "Dark Souls",
     "subtypes": ["Aura"],
-    "flavor_text": "\"...The undead are led north, locked away to await the end of the world...\"\n—*The Legend of the Chosen Undead*"
+    "flavor_text": "“...The undead are led north, locked away to await the end of the world...”\n—*The Legend of the Chosen Undead*"
   },
   {
     "collector_number" : "3",
@@ -51,7 +51,8 @@
     "toughness" : "1",
     "type" : "Creature",
     "artist": "pixivid3335331",
-    "subtypes": ["Human", "Knight"]
+    "subtypes": ["Human", "Knight"],
+    "flavor_text": "Astora knights make frequent treks across Lordran, seeking challenges to test the sharpness of their blades and the strength of their holy vows."
   },
   {
     "collector_number" : "4",
@@ -90,7 +91,8 @@
     "toughness" : "2",
     "type" : "Creature",
     "artist": "Alex Buggenum",
-    "subtypes": ["Zombie", "Knight"]
+    "subtypes": ["Zombie", "Knight"],
+    "flavor_text": "“The Balder expedition had few survivors. Even the ‘Iron Legions’ of legend became just more fodder for the curse.”\n—Renly, knight of Balder"
   },
   {
     "collector_number" : "6",
@@ -108,7 +110,8 @@
     "toughness" : "3",
     "type" : "Artifact Creature",
     "artist": "mobocanario",
-    "subtypes": ["Gargoyle"]
+    "subtypes": ["Gargoyle"],
+    "flavor_text": "The undead pilgrimage is a gauntlet of challenges, testing the strength of the undead who come to Lordran. The first challenge is to defeat the animated gargoyles of the Undead Parish."
   },
   {
     "collector_number" : "7",
@@ -126,7 +129,8 @@
     "toughness" : "2",
     "type" : "Creature",
     "artist": "ttt",
-    "subtypes": ["Human", "Cleric"]
+    "subtypes": ["Human", "Cleric"],
+    "flavor_text": "“Aimless souls gather near, and she feeds them readily to the fire. What a waste... Don’t you think we could make better use?”\n—Lautrec, the Embraced"
   },
   {
     "collector_number" : "8",
@@ -141,7 +145,8 @@
     "rarity" : "rare",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "Dark Souls"
+    "artist": "Dark Souls",
+    "flavor_text": "“So you are chosen, to succeed the great Lord Gwyn, and all the others.”"
   },
   {
     "collector_number" : "9",
@@ -213,7 +218,8 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "Ulises Serrano"
+    "artist": "Ulises Serrano",
+    "flavor_text": "“Thy transgression shall not go unpunished.”—Gwyndolin"
   },
   {
     "collector_number" : "13",
@@ -252,7 +258,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "Leon Lesmana",
-    "subtypes": ["Zombie", "Soldier"]
+    "subtypes": ["Zombie", "Soldier"],
+    "flavor_text": "Undead-Burg’s guards have forgotten everything except their duty."
   },
   {
     "collector_number" : "15",
@@ -288,7 +295,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "saeedramez",
-    "subtypes": ["Spirit", "Warrior"]
+    "subtypes": ["Spirit", "Warrior"],
+    "flavor_text": "“Helping others is what makes you fit to be a Warrior of Sunlight.”\n—Evander"
   },
   {
     "collector_number" : "17",
@@ -340,7 +348,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "wingless_sselgniw"
+    "artist": "wingless_sselgniw",
+    "flavor_text": "“...But soon, the First Flame will fade, and only darkness will remain. Even now there are only embers...”\n—*The Legend of the Chosen Undead*"
   },
   {
     "collector_number" : "20",
@@ -356,7 +365,8 @@
     "set" : "HLW",
     "type" : "Artifact",
     "artist": "pixivid3590819",
-    "subtypes": ["Equipment"]
+    "subtypes": ["Equipment"],
+    "flavor_text": "“Stay away from anyone strange enough to wear monster armor.”\n—Petrus, Thorolund pilgrim"
   },
   {
     "collector_number" : "21",
@@ -387,7 +397,8 @@
     "set" : "HLW",
     "type" : "Legendary Artifact",
     "artist": "pixivid3980737",
-    "subtypes": ["Equipment"]
+    "subtypes": ["Equipment"],
+    "flavor_text": "“Thou hast journey’d far, and overcome much, Chosen Undead. Come hither and receive the sun’s blessing.”"
   },
   {
     "collector_number" : "23",
@@ -403,7 +414,8 @@
     "set" : "HLW",
     "type" : "Enchantment",
     "artist": "nathaliagommes & Calibur",
-    "subtypes": ["Aura"]
+    "subtypes": ["Aura"],
+    "flavor_text": "In fear of the coming darkness, Gwyn sacrificed himself to the First Flame."
   },
   {
     "collector_number" : "24",
@@ -421,7 +433,8 @@
     "toughness" : "3",
     "type" : "Legendary Creature",
     "artist": "Pablo Mendoza",
-    "subtypes": ["Demigod", "Knight"]
+    "subtypes": ["Demigod", "Knight"],
+    "flavor_text": "Clad in stone to stand firm against dragon-breath."
   },
   {
     "collector_number" : "25",
@@ -437,7 +450,8 @@
     "set" : "HLW",
     "type" : "Artifact",
     "artist": "mrfr2eman",
-    "subtypes": ["Equipment"]
+    "subtypes": ["Equipment"],
+    "flavor_text": "“In this dangerous place, you rush in like a naked babe and you’ll be skinned alive.”\n—Renly, knight of Balder"
   },
   {
     "collector_number" : "26",
@@ -455,7 +469,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "Harry Osborn",
-    "subtypes": ["Zombie", "Soldier"]
+    "subtypes": ["Zombie", "Soldier"],
+    "flavor_text": "“Many have fallen while attempting the pilgrimage. Even the most skillful of warriors or the most pious of priests seem to meet their match eventually.”\n—Petrus, Thorolund pilgrim"
   },
   {
     "collector_number" : "27",
@@ -473,7 +488,8 @@
     "toughness" : "4",
     "type" : "Creature",
     "artist": "Xavier Garcia",
-    "subtypes": ["Zombie", "Soldier"]
+    "subtypes": ["Zombie", "Soldier"],
+    "flavor_text": "“...Yet only in the ancient legends is it stated—that one day an undead shall be chosen, to leave their prison in pilgrimage to the land of ancient lords.”\n—*The Legend of the Chosen Undead*"
   },
   {
     "collector_number" : "28",
@@ -488,7 +504,8 @@
     "rarity" : "rare",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "Daniel Horia"
+    "artist": "Daniel Horia",
+    "flavor_text": "The Knights of Gwyn defended Gwyn’s kingdom, and expanded his rule."
   },
   {
     "collector_number" : "29",
@@ -503,7 +520,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "ggutuart"
+    "artist": "ggutuart",
+    "flavor_text": "“Priscilla was rightly feared. Even the gods feared her, believing that she would someday betray them.”\n—Oswald, Pardoner of Velka"
   },
   {
     "collector_number" : "30",
@@ -518,7 +536,8 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "haco1"
+    "artist": "haco1",
+    "flavor_text": "Black-Iron Tarkus was the first undead to defeat the giant golem which guards to entrance to Anor Londo."
   },
   {
     "collector_number" : "31",
@@ -554,7 +573,8 @@
     "toughness" : "2",
     "type" : "Creature",
     "artist": "Jake Bullock",
-    "subtypes": ["Spirit", "Knight"]
+    "subtypes": ["Spirit", "Knight"],
+    "flavor_text": "When an undead pilgrim completes a challenge, they use summoning to leave behind a phantom copy of themselves that will assist future pilgrims."
   },
   {
     "collector_number" : "33",
@@ -572,7 +592,8 @@
     "toughness" : "4",
     "type" : "Creature",
     "artist": "Ryan Van Dongen",
-    "subtypes": ["Manticore"]
+    "subtypes": ["Manticore"],
+    "flavor_text": "“All provisions were taken to protect the princess. But still ‘twas not enough...”\n—Elizabeth, sanctuary matron"
   },
   {
     "collector_number" : "34",
@@ -593,7 +614,8 @@
     "toughness" : "2",
     "type" : "Creature",
     "artist": "Dante Liu",
-    "subtypes": ["Human", "Knight"]
+    "subtypes": ["Human", "Knight"],
+    "flavor_text": "“...a terrible curse, seen amongst the living...”\n—*The Legend of the Chosen Undead*"
   },
   {
     "collector_number" : "35",
@@ -627,7 +649,8 @@
     "set" : "HLW",
     "type" : "Enchantment",
     "artist": "nero_tbs",
-    "subtypes": ["Aura"]
+    "subtypes": ["Aura"],
+    "flavor_text": "“Gwynevere bless you.”"
   },
   {
     "collector_number" : "37",
@@ -645,7 +668,8 @@
     "toughness" : "4",
     "type" : "Creature",
     "artist": "Conor Burke",
-    "subtypes": ["Spirit", "Warrior"]
+    "subtypes": ["Spirit", "Warrior"],
+    "flavor_text": "The most devout of the Warriors of Sunlight make a sacred vow to never fight without a companion."
   },
   {
     "collector_number" : "38",
@@ -666,7 +690,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "exileden",
-    "subtypes": ["Zombie", "Horse"]
+    "subtypes": ["Zombie", "Horse"],
+    "flavor_text": "“I pushed her too hard. Though we escaped danger, her body failed from the exertion. Her mind went soon after.”\n—Leon, Knight of Astora"
   },
   {
     "collector_number" : "39",
@@ -684,7 +709,8 @@
     "toughness" : "*",
     "type" : "Creature",
     "artist": "Harry Osborn",
-    "subtypes": ["Zombie", "Soldier"]
+    "subtypes": ["Zombie", "Soldier"],
+    "flavor_text": "Surviving a trek through Lordran requires caution and patience: Slowly luring off one hollow at a time to avoid facing overwhelming numbers."
   },
   {
     "collector_number" : "40",
@@ -699,7 +725,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "sanekyle"
+    "artist": "sanekyle",
+    "flavor_text": "“Have you met Solaire? He’s a bit of a fool, but he happens to be an awfully strong one. I’m sure you’d be an unbreakable team!”\n—Trusty Patches"
   },
   {
     "collector_number" : "41",
@@ -714,7 +741,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "rostyslav Zagronov"
+    "artist": "rostyslav Zagronov",
+    "flavor_text": "“For each sin there is a punishment, and it is the task of Velka to define the sin and to mete out the punishment.”\n—Oswald, Pardoner of Velka"
   },
   {
     "collector_number" : "42",
@@ -751,7 +779,8 @@
     "rarity" : "rare",
     "set" : "HLW",
     "type" : "Enchantment",
-    "artist": "Admhire"
+    "artist": "Admhire",
+    "flavor_text": "“I have come to this great land, the birthplace of Lord Gwyn, to seek my very own sun!”\n—Solaire, Seeker of Sunlight"
   },
   {
     "collector_number" : "44",
@@ -796,7 +825,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "dr_adri"
+    "artist": "dr_adri",
+    "flavor_text": "“Astounding! Every part of the cave was fashioned from glistening crystal. The walls, the floor, even the residents themselves.”\n—Notes of Big Hat Logan"
   },
   {
     "collector_number" : "47",
@@ -814,7 +844,8 @@
     "toughness" : "6",
     "type" : "Artifact Creature",
     "artist": "Cryotube",
-    "subtypes": ["Golem"]
+    "subtypes": ["Golem"],
+    "flavor_text": "Seath is both a powerful sorcerer and an ancient dragon. There exist few who can interfere with his plans."
   },
   {
     "collector_number" : "48",
@@ -862,7 +893,8 @@
     "toughness" : "3",
     "type" : "Legendary Creature",
     "artist": "David Hsu Yen",
-    "subtypes": ["Demigod", "Assassin"]
+    "subtypes": ["Demigod", "Assassin"],
+    "flavor_text": "“Thou must returneth from whence thou came. This land is peaceful, its inhabitants kind—and thou dost not belong.”\n—Priscilla, Protector of the Painting"
   },
   {
     "collector_number" : "51",
@@ -929,7 +961,8 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "Rirth"
+    "artist": "Rirth",
+    "flavor_text": "“Deserveth thou a reward, for thy adherence to thy role. Once a suitable champion is found amongst the undead, thy reward shalt be even greater.”\n—Gwyndolin, to one of his knights"
   },
   {
     "collector_number" : "55",
@@ -947,7 +980,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "Manuel Castañón",
-    "subtypes": ["Human", "Wizard"]
+    "subtypes": ["Human", "Wizard"],
+    "flavor_text": "The Darkroot Hunters accept anyone who proves their loyalty, no matter their fighting style."
   },
   {
     "collector_number" : "56",
@@ -1022,7 +1056,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "Toddy"
+    "artist": "Toddy",
+    "flavor_text": "“Don’t even consider going to Anor Londo. The centuries greatest heroes have all tried and failed. You won’t stand a chance...”\n—Renly, knight of Balder"
   },
   {
     "collector_number" : "60",
@@ -1037,7 +1072,8 @@
     "rarity" : "rare",
     "set" : "HLW",
     "type" : "Enchantment",
-    "artist": "Ignisopitus"
+    "artist": "Ignisopitus",
+    "flavor_text": "For Seath, the secret of immortality was always tantalizingly close."
   },
   {
     "collector_number" : "61",
@@ -1070,7 +1106,8 @@
     "rarity" : "rare",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "Manuel Diaz Lopez"
+    "artist": "Manuel Diaz Lopez",
+    "flavor_text": "“There was no choice but to seal away the Darkwraiths, and many innocents with them.”\n—Ingward, Keeper of the Seal"
   },
   {
     "collector_number" : "63",
@@ -1088,7 +1125,8 @@
     "toughness" : "10",
     "type" : "Creature",
     "artist": "Nele Diel",
-    "subtypes": ["Illusion", "Wall"]
+    "subtypes": ["Illusion", "Wall"],
+    "flavor_text": "Lies beyond.\n—Graffiti at Anor Londo"
   },
   {
     "collector_number" : "64",
@@ -1140,7 +1178,8 @@
     "toughness" : "5",
     "type" : "Creature",
     "artist": "Alex Tuis",
-    "subtypes": ["Zombie"]
+    "subtypes": ["Zombie"],
+    "flavor_text": "“When New Londo was destroyed, the ordinary people were killed alongside their corrupt kings. So the histories say, at least. Nowadays it’s hard to tell if anything in those old books was true.”\n—Rickert, Vinheim exile",
   },
   {
     "collector_number" : "67",
@@ -1156,7 +1195,8 @@
     "set" : "HLW",
     "type" : "Enchantment",
     "artist": "legendary_memory",
-    "subtypes": ["Aura"]
+    "subtypes": ["Aura"],
+    "flavor_text": "“For most, the fate of the future is just too much to bear.”\n—Slaine",
   },
   {
     "collector_number" : "68",
@@ -1171,7 +1211,8 @@
     "rarity" : "rare",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "risingmonster"
+    "artist": "risingmonster",
+    "flavor_text": "“...Seath the Scaleless sided with the lords, betraying his own kind...”\n—*The Legend of the Chosen Undead*"
   },
   {
     "collector_number" : "69",
@@ -1204,7 +1245,8 @@
     "toughness" : "4",
     "type" : "Creature",
     "artist": "Dmitry Ork",
-    "subtypes": ["Drake"]
+    "subtypes": ["Drake"],
+    "flavor_text": "Drake scales can substitute for those of their distant cousins, the true dragons.",
   },
   {
     "collector_number" : "71",
@@ -1219,7 +1261,8 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "Jens Kuczwara"
+    "artist": "Jens Kuczwara",
+    "flavor_text": "Don’t get too attached to your armor."
   },
   {
     "collector_number" : "72",
@@ -1276,7 +1319,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "Conor Burke",
-    "subtypes": ["Spirit"]
+    "subtypes": ["Spirit"],
+    "flavor_text": "Terrible screams still echo through the ruins of New Londo."
   },
   {
     "collector_number" : "75",
@@ -1325,7 +1369,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "Ian Hinley"
+    "artist": "Ian Hinley",
+    "flavor_text": "May thy legend be remembered evermore.—Epitaph on the grave of Artorias"
   },
   {
     "collector_number" : "78",
@@ -1358,7 +1403,8 @@
     "toughness" : "2",
     "type" : "Creature",
     "artist": "baruyon",
-    "subtypes": ["Dragon", "Wizard"]
+    "subtypes": ["Dragon", "Wizard"],
+    "flavor_text": "“Anyone self-taught earns my respect. Witches even more so.”\n—Slaine"
   },
   {
     "collector_number" : "80",
@@ -1440,7 +1486,8 @@
     "toughness" : "2",
     "type" : "Creature",
     "artist": "Roberto Gatto",
-    "subtypes": ["Drake"]
+    "subtypes": ["Drake"],
+    "flavor_text": "“That one’s stashed some fine treasures in her nest. If you wanted, you could sneak up and grab ‘em! Do be careful though. These cliffs are quite treacherous...”\n—Trusty Patches"
   },
   {
     "collector_number" : "85",
@@ -1458,7 +1505,8 @@
     "toughness" : "1",
     "type" : "Creature",
     "artist": "Felipe Escobar Bravo",
-    "subtypes": ["Human", "Rogue"]
+    "subtypes": ["Human", "Rogue"],
+    "flavor_text": "Vinheim Academy’s prize pupils are contracted out to the highest bidder."
   },
   {
     "collector_number" : "86",
@@ -1494,7 +1542,8 @@
     "toughness" : "1",
     "type" : "Creature",
     "artist": "Nigel Mack",
-    "subtypes": ["Human", "Knight"]
+    "subtypes": ["Human", "Knight"],
+    "flavor_text": "You’ll join them, sooner or later."
   },
   {
     "collector_number" : "88",
@@ -1510,7 +1559,8 @@
     "set" : "HLW",
     "type" : "Legendary Artifact",
     "artist": "touge369",
-    "subtypes": ["Equipment"]
+    "subtypes": ["Equipment"],
+    "flavor_text": "A great curse, for the greatest knight."
   },
   {
     "collector_number" : "89",
@@ -1528,7 +1578,8 @@
     "toughness" : "5",
     "type" : "Legendary Creature",
     "artist": "Pablo Mendoza",
-    "subtypes": ["Demigod", "Knight"]
+    "subtypes": ["Demigod", "Knight"],
+    "flavor_text": "Hulking strength where there was martial skill. Crazed bloodthirst where there was knightly courage."
   },
   {
     "collector_number" : "90",
@@ -1580,7 +1631,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "inkyh"
+    "artist": "inkyh",
+    "flavor_text": "“...And so they left the darkness, to find the souls of Lords within the Flame...”\n—*The Legend of the Chosen Undead*"
   },
   {
     "collector_number" : "93",
@@ -1614,7 +1666,8 @@
     "toughness" : "4",
     "type" : "Creature",
     "artist": "Victor Garcia",
-    "subtypes": ["Demigod", "Knight"]
+    "subtypes": ["Demigod", "Knight"],
+    "flavor_text": "“Veterans of Gwyn’s wars still wander Lordran, hunting old foes.”\n—Notes of Big Hat Logan"
   },
   {
     "collector_number" : "95",
@@ -1629,7 +1682,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "YMD"
+    "artist": "YMD",
+    "flavor_text": "This sign brands the undead, bearers of the undead curse."
   },
   {
     "collector_number" : "96",
@@ -1644,7 +1698,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "LUADIRGE"
+    "artist": "LUADIRGE",
+    "flavor_text": "He had already died once that day. The armor, he thought, would make sure that didn’t happen again."
   },
   {
     "collector_number" : "97",
@@ -1662,7 +1717,8 @@
     "toughness" : "5",
     "type" : "Creature",
     "artist": "Andrew Odoerfer",
-    "subtypes": ["Insect", "Demon"]
+    "subtypes": ["Insect", "Demon"],
+    "flavor_text": "The sisters of Izalith gave their brother a ring to ease his pain. Fool that he was, he readily dropped it, and from that spot a terrible demon was born."
   },
   {
     "collector_number" : "98",
@@ -1677,7 +1733,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "herrkamissar"
+    "artist": "herrkamissar",
+    "flavor_text": "“An abyss threatens to swallow all of Oolacile. Artorias came to stop this, but without a doubt he will be defeated, overcome by its utter blackness.”\n—Elizabeth, sanctuary matron"
   },
   {
     "collector_number" : "99",
@@ -1734,7 +1791,8 @@
     "toughness" : "2",
     "type" : "Creature",
     "artist": "Alexbuggenum",
-    "subtypes": ["Zombie", "Knight"]
+    "subtypes": ["Zombie", "Knight"],
+    "flavor_text": "“What kind of leader was he? Inspiring and kind, or cruel and malevolent? Well, none of that matters now.”\n—Renly, knight of Balder"
   },
   {
     "collector_number" : "102",
@@ -1749,7 +1807,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "sangheili117"
+    "artist": "sangheili117",
+    "flavor_text": "“I was foolish to hope that honor would still be alive in Lordran. The Knights of Gwyn must be rolling in their graves.”\n—Renly, knight of Balder"
   },
   {
     "collector_number" : "103",
@@ -1764,7 +1823,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "John Barry Ballaran"
+    "artist": "John Barry Ballaran",
+    "flavor_text": "Despair ahead.\n—Etched on an alley wall"
   },
   {
     "collector_number" : "104",
@@ -1815,7 +1875,8 @@
     "toughness" : "1",
     "type" : "Creature",
     "artist": "shredguts",
-    "subtypes": ["Zombie", "Farmer"]
+    "subtypes": ["Zombie", "Farmer"],
+    "flavor_text": "Humans sow, and the curse reaps."
   },
   {
     "collector_number" : "107",
@@ -1845,7 +1906,8 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "GorkeChaos"
+    "artist": "GorkeChaos",
+    "flavor_text": "hollow_victory"
   },
   {
     "collector_number" : "109",
@@ -1896,7 +1958,8 @@
     "toughness" : "2",
     "type" : "Creature",
     "artist": "Felix Ortiz",
-    "subtypes": ["Zombie", "Knight"]
+    "subtypes": ["Zombie", "Knight"],
+    "flavor_text": "“To restore your humanity, pillage the soul of a healthy person... but don’t let anyone know I told you that.”\n—Palter, undead merchant"
   },
   {
     "collector_number" : "112",
@@ -1911,7 +1974,8 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "SteiTastan"
+    "artist": "SteiTastan",
+    "flavor_text": "As the First Flame faded, the Witch of Izalith attempted the impossible—To light a new Flame using her own soul."
   },
   {
     "collector_number" : "113",
@@ -1926,7 +1990,8 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "violentouiche"
+    "artist": "violentouiche",
+    "flavor_text": "All adventurers must someday come to an end."
   },
   {
     "collector_number" : "114",
@@ -1944,7 +2009,8 @@
     "toughness" : "4",
     "type" : "Creature",
     "artist": "eh Macmillan",
-    "subtypes": ["Beast", "Demon"]
+    "subtypes": ["Beast", "Demon"],
+    "flavor_text": "When a captured undead hopes to escape its prison, it’s a demon’s job to crush that hope."
   },
   {
     "collector_number" : "115",
@@ -1959,7 +2025,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "tentaclesandteeth"
+    "artist": "tentaclesandteeth",
+    "flavor_text": "When an undead dies, they soon rise again—losing their mind in the process."
   },
   {
     "collector_number" : "116",
@@ -1977,7 +2044,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "mantoe",
-    "subtypes": ["Zombie"]
+    "subtypes": ["Zombie"],
+    "flavor_text": "The undead never resist their fate."
   },
   {
     "collector_number" : "117",
@@ -1992,7 +2060,8 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "Cosme Lucero"
+    "artist": "Cosme Lucero",
+    "flavor_text": "“...Nito unleashed a miasma of death and disease...”\n—*The Legend of the Chosen Undead*"
   },
   {
     "collector_number" : "118",
@@ -2028,7 +2097,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "Felix A. Hertel"
+    "artist": "Felix A. Hertel",
+    "flavor_text": "“To ease thy suffering.”\n—Rupert, Fair Lady’s servant"
   },
   {
     "collector_number" : "120",
@@ -2046,7 +2116,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "Dark Souls",
-    "subtypes": ["Insect", "Horror"]
+    "subtypes": ["Insect", "Horror"],
+    "flavor_text": "Sewers are the only infrastructure left functioning in Lordran."
   },
   {
     "collector_number" : "121",
@@ -2181,7 +2252,8 @@
     "toughness" : "5",
     "type" : "Artifact Creature",
     "artist": "pixivid1474679",
-    "subtypes": ["Demon", "Construct"]
+    "subtypes": ["Demon", "Construct"],
+    "flavor_text": "“Titanite is an invaluable material for forging weapons and armor. Though this one might not be worth the risk.”\n—Andre, Astora blacksmith"
   },
   {
     "collector_number" : "128",
@@ -2269,7 +2341,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "Alexandrza Brovskiy",
-    "subtypes": ["Goat", "Demon"]
+    "subtypes": ["Goat", "Demon"],
+    "flavor_text": "Whenever a Chaos Demon travels to the surface, havoc inevitably follows."
   },
   {
     "collector_number" : "133",
@@ -2284,7 +2357,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "Jack"
+    "artist": "Jack",
+    "flavor_text": "Izalith’s only son bore the worst of the chaos flame’s transformative effects. So great was the destruction caused by his demonic form that he was banished, and his true name forgotten."
   },
   {
     "collector_number" : "134",
@@ -2320,7 +2394,8 @@
     "toughness" : "2",
     "type" : "Creature",
     "artist": "yashiro50",
-    "subtypes": ["Zombie", "Warrior"]
+    "subtypes": ["Zombie", "Warrior"],
+    "flavor_text": "“My sister displayed the mark just one year before her eighteenth birthday. Yet even her youth could not save her from banishment. She was lucid as she left, but I have no faith that the sister I knew will ever return.”\n—Marlo, Thorolund peasant"
   },
   {
     "collector_number" : "136",
@@ -2359,7 +2434,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "nahelus",
-    "subtypes": ["Human", "Shaman"]
+    "subtypes": ["Human", "Shaman"],
+    "flavor_text": "“The flame is good to us. But we must remember one thing—Always fear the flame, lest you be devoured by it.”"
   },
   {
     "collector_number" : "138",
@@ -2392,7 +2468,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "hugepointedhat"
+    "artist": "hugepointedhat",
+    "flavor_text": "“Siegmeyer? That onion of a knight, always rushing into danger? Don’t take after him, that’s what I say.”\n—Trusty Patches"
   },
   {
     "collector_number" : "140",
@@ -2407,7 +2484,8 @@
     "rarity" : "rare",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "Snapdragon"
+    "artist": "Snapdragon",
+    "flavor_text": "“...The witches weaved great firestorms...”\n—*The Legend of the Chosen Undead*"
   },
   {
     "collector_number" : "141",
@@ -2425,7 +2503,8 @@
     "toughness" : "1",
     "type" : "Creature",
     "artist": "pixivid11887748",
-    "subtypes": ["Human", "Knight"]
+    "subtypes": ["Human", "Knight"],
+    "flavor_text": "“They must remember my name!”"
   },
   {
     "collector_number" : "142",
@@ -2440,7 +2519,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "Daniel Clasouin"
+    "artist": "Daniel Clasouin",
+    "flavor_text": "“The more a pyromancer adores the flame, the greater their power in wielding it.”\n—Quelana, Mother of Pyromancy"
   },
   {
     "collector_number" : "143",
@@ -2473,7 +2553,8 @@
     "rarity" : "rare",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "Tuoi"
+    "artist": "Tuoi",
+    "flavor_text": "After hundreds of years, Gwyn was finally put to rest.kalam"
   },
   {
     "collector_number" : "145",
@@ -2554,7 +2635,8 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "halycon450"
+    "artist": "halycon450",
+    "flavor_text": "“Kalameet is a a ferocious dragon indeed. Even the knights of mighty Anor Londo dared not provoke his ire.”\n—Hawkeye Gough"
   },
   {
     "collector_number" : "150",
@@ -2570,7 +2652,8 @@
     "set" : "HLW",
     "type" : "Instant",
     "artist": "Michele Giorgi",
-    "subtypes": ["Aura"]
+    "subtypes": ["Aura"],
+    "flavor_text": "The Warriors of Sunlight worship Lord Gwyn. Each member memorizes stories of his mighty bolts, and the war he waged against dragons long ago."
   },
   {
     "collector_number" : "151",
@@ -2615,7 +2698,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "Sharkrocket"
+    "artist": "Sharkrocket",
+    "flavor_text": "Lautrec offered his life to a goddess long ago, but he’s since realized that other’s peoples lives are more easily gifted."
   },
   {
     "collector_number" : "154",
@@ -2633,7 +2717,8 @@
     "toughness" : "1",
     "type" : "Creature",
     "artist": "Sharkrocket",
-    "subtypes": ["Spider"]
+    "subtypes": ["Spider"],
+    "flavor_text": "“Wildlife near Lost Izalith have adapted to its searing heat.”\n—Notes of Big Hat Logan"
   },
   {
     "collector_number" : "155",
@@ -2669,7 +2754,8 @@
     ],
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "Storm Spirit"
+    "artist": "Storm Spirit",
+    "flavor_text": "Transcend mortality.\n—Mantra of the Dragon-Path"
   },
   {
     "collector_number" : "157",
@@ -2699,7 +2785,8 @@
     "rarity" : "rare",
     "set" : "HLW",
     "type" : "Enchantment",
-    "artist": "blank aoz"
+    "artist": "blank aoz",
+    "flavor_text": "A secret technique known only to heretics and the mad."
   },
   {
     "collector_number" : "159",
@@ -2715,7 +2802,8 @@
     "set" : "HLW",
     "type" : "Artifact",
     "artist": "Jeehyung Lee",
-    "subtypes": ["Equipment"]
+    "subtypes": ["Equipment"],
+    "flavor_text": "The flame of pyromancy is passed down from master to student."
   },
   {
     "collector_number" : "160",
@@ -2745,7 +2833,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "Marcus Djurdjevic"
+    "artist": "Marcus Djurdjevic",
+    "flavor_text": "Quelaag’s upper half is human, and her lower half is magma spider. Both halves are quite capable of killing you."
   },
   {
     "collector_number" : "162",
@@ -2812,7 +2901,8 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "pixivid336349"
+    "artist": "pixivid336349",
+    "flavor_text": "“Finally! I’ve found it, I really have! My very own sun... I am the sun!”"
   },
   {
     "collector_number" : "166",
@@ -2830,7 +2920,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "ThemeFinland",
-    "subtypes": ["Human", "Dragon"]
+    "subtypes": ["Human", "Dragon"],
+    "flavor_text": "“Rumors speak of a dragon hiding deep underground. Worshipers safeguard it, while learning to emulate its ancient powers.”\n—Notes of Big Hat Logan"
   },
   {
     "collector_number" : "167",
@@ -2848,7 +2939,8 @@
     "toughness" : "2",
     "type" : "Creature",
     "artist": "ThemeFinland",
-    "subtypes": ["Human", "Dragon"]
+    "subtypes": ["Human", "Dragon"],
+    "flavor_text": "“I give my life for the true gods.”"
   },
   {
     "collector_number" : "168",
@@ -2863,7 +2955,8 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "Stephen Stark"
+    "artist": "Stephen Stark",
+    "flavor_text": "“...With the strength of Lords, they challenged the dragons. Gwyn’s mighty bolts peeled apart their stone scales...”\n—*The Legend of the Chosen Undead*"
   },
   {
     "collector_number" : "169",
@@ -2878,7 +2971,8 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "type" : "Enchantment",
-    "artist": "Michael Bird"
+    "artist": "Michael Bird",
+    "flavor_text": "“We’re all doomed, its just a question of which ones of us go first.”\n—Leon, Knight of Astora"
   },
   {
     "collector_number" : "170",
@@ -2896,7 +2990,8 @@
     "toughness" : "5",
     "type" : "Creature",
     "artist": "Patricia Casarrubios",
-    "subtypes": ["Ox", "Demon"]
+    "subtypes": ["Ox", "Demon"],
+    "flavor_text": "“A goat demon just moved in below the town. Up above, there’s a bull demon too! What’s this world coming to?”\n—Palter, undead merchant"
   },
   {
     "collector_number" : "171",
@@ -2911,7 +3006,8 @@
     "rarity" : "mythic",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "Dark Souls"
+    "artist": "Dark Souls",
+    "flavor_text": "“...Then came fire...”\n—*The Legend of the Chosen Undead*"
   },
   {
     "collector_number" : "172",
@@ -2929,7 +3025,8 @@
     "toughness" : "2",
     "type" : "Creature",
     "artist": "Habab Alizadeh",
-    "subtypes": ["Human", "Knight"]
+    "subtypes": ["Human", "Knight"],
+    "flavor_text": "“Seek companionship in battle and purpose in victory.”\n—Evander"
   },
   {
     "collector_number" : "173",
@@ -2944,7 +3041,8 @@
     "rarity" : "uncommon",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "Dark Souls"
+    "artist": "Dark Souls",
+    "flavor_text": "As each step of the pilgrimage grows longer and more arduous, the few chances to rest become ever more precious."
   },
   {
     "collector_number" : "174",
@@ -2959,7 +3057,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "Quentin Lecuiller"
+    "artist": "Quentin Lecuiller",
+    "flavor_text": "No trespassers shall remain alive.\n—Sign at the grave of Artorias"
   },
   {
     "collector_number" : "175",
@@ -2974,7 +3073,8 @@
     "rarity" : "rare",
     "set" : "HLW",
     "type" : "Sorcery",
-    "artist": "Cheo36"
+    "artist": "Cheo36",
+    "flavor_text": "“...and so the Dragons were no more...”\n—*The Legend of the Chosen Undead*"
   },
   {
     "collector_number" : "176",
@@ -3010,7 +3110,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "wombattree",
-    "subtypes": ["Ooze"]
+    "subtypes": ["Ooze"],
+    "flavor_text": "“This is the fate that would have befallen all of those in blight-town, had our lady not intervened.”\n—Eingyi, chief servant"
   },
   {
     "collector_number" : "178",
@@ -3028,7 +3129,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "ThemeFinland",
-    "subtypes": ["Human", "Dragon"]
+    "subtypes": ["Human", "Dragon"],
+    "flavor_text": "She sought immortality, but found only death."
   },
   {
     "collector_number" : "179",
@@ -3046,7 +3148,8 @@
     "toughness" : "5",
     "type" : "Creature",
     "artist": "Dark Souls",
-    "subtypes": ["Wurm"]
+    "subtypes": ["Wurm"],
+    "flavor_text": "Acid burns and missing limbs are the telltale signs of an encounter with a rockwurm."
   },
   {
     "collector_number" : "180",
@@ -3082,7 +3185,8 @@
     "toughness" : "2",
     "type" : "Creature",
     "artist": "Ren Tu",
-    "subtypes": ["Human", "Archer"]
+    "subtypes": ["Human", "Archer"],
+    "flavor_text": "“Fight and hunt as you like—Whoever’s fastest gets the prey.”"
   },
   {
     "collector_number" : "182",
@@ -3100,7 +3204,8 @@
     "toughness" : "2",
     "type" : "Creature",
     "artist": "Solfar",
-    "subtypes": ["Human", "Warrior"]
+    "subtypes": ["Human", "Warrior"],
+    "flavor_text": "“Honor is for weaklings. My family doesn’t tolerate weaklings.”"
   },
   {
     "collector_number" : "183",
@@ -3154,7 +3259,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "ThemeFinland",
-    "subtypes": ["Human", "Dragon"]
+    "subtypes": ["Human", "Dragon"],
+    "flavor_text": "Worshipers on the Dragon-Path scour the world for dragon scales. By reclaiming them they gain the scales’ protective power, growing ever closer to becoming dragons themselves."
   },
   {
     "collector_number" : "186",
@@ -3226,7 +3332,8 @@
     "toughness" : "4",
     "type" : "Legendary Creature",
     "artist": "onestepart (Edited)",
-    "subtypes": ["Dragon", "Horror"]
+    "subtypes": ["Dragon", "Horror"],
+    "flavor_text": "With flame came want, and with want came greed."
   },
   {
     "collector_number" : "190",
@@ -3244,7 +3351,8 @@
     "toughness" : "4",
     "type" : "Creature",
     "artist": "Tomas Muir",
-    "subtypes": ["Spider"]
+    "subtypes": ["Spider"],
+    "flavor_text": "Lordran’s greatest monsters are those that have absorbed the most souls."
   },
   {
     "collector_number" : "191",
@@ -3278,7 +3386,8 @@
     "toughness" : "1",
     "type" : "Creature",
     "artist": "Cynthia F.G.",
-    "subtypes": ["Wolf"]
+    "subtypes": ["Wolf"],
+    "flavor_text:": "Each wolf is trusted to defend the pack’s secrets to the death."
   },
   {
     "collector_number" : "193",
@@ -3294,7 +3403,8 @@
     "set" : "HLW",
     "type" : "Artifact",
     "artist": "Dark Souls Concept Art",
-    "subtypes": ["Equipment"]
+    "subtypes": ["Equipment"],
+    "flavor_text": "Oolacile’s guardian statues wield clubs made from the trees they protect."
   },
   {
     "collector_number" : "194",
@@ -3398,7 +3508,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "pixivid267137"
+    "artist": "pixivid267137",
+    "flavor_text": "“Darkroot Forest is like our own little garden. We prune what we don’t like.”\n—Laurella, member of the Darkroot Clan"
   },
   {
     "collector_number" : "200",
@@ -3434,7 +3545,8 @@
     "toughness" : "6",
     "type" : "Creature",
     "artist": "Satoshi Kamanaka",
-    "subtypes": ["Zombie", "Giant"]
+    "subtypes": ["Zombie", "Giant"],
+    "flavor_text": "“Pity about that large one, lumbering about. I’d bet he was a smith, too. During the age of fire, most of them giants were. Now the curse has taken what little brains the gods gave ‘im.”\n—Andre, Astora blacksmith"
   },
   {
     "collector_number" : "202",
@@ -3471,7 +3583,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "tetsuko9999",
-    "subtypes": ["Fungus"]
+    "subtypes": ["Fungus"],
+    "flavor_text": "“Day 4—Succeeded in harvesting from the local fungoids. Ingesting their dried flesh creates a euphoric sensation.”\n—Notes of Big Hat Logan"
   },
   {
     "collector_number" : "204",
@@ -3502,7 +3615,8 @@
     "set" : "HLW",
     "type" : "Instant",
     "artist": "Tyler Hunter",
-    "subtypes": ["Human", "Shaman"]
+    "subtypes": ["Human", "Shaman"],
+    "flavor_text": "The citizens of Oolacile awoke Manus from his slumber, seeking to steal his ancient soul."
   },
   {
     "collector_number" : "206",
@@ -3519,7 +3633,8 @@
     "set" : "HLW",
     "toughness" : "1",
     "type" : "Creature",
-    "artist": "rakuen_no_musume"
+    "artist": "rakuen_no_musume",
+    "flavor_text": "“A pyromancer must be in tune with nature herself.”\n—Laurentius, pyromancy sage"
   },
   {
     "collector_number" : "207",
@@ -3549,7 +3664,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "Matt Forsyth"
+    "artist": "Matt Forsyth",
+    "flavor_text": "The world began without knowledge, and without knowledge it will end."
   },
   {
     "collector_number" : "209",
@@ -3585,7 +3701,8 @@
     "toughness" : "1",
     "type" : "Creature",
     "artist": "Julia Faulwetter",
-    "subtypes": ["Zombie", "Horror"]
+    "subtypes": ["Zombie", "Horror"],
+    "flavor_text": "“We would like nothing more than to serve our dear lady, who has taken in our diseased, unwanted selves.”\n—Eingyi, chief servant"
   },
   {
     "collector_number" : "211",
@@ -3600,7 +3717,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "Nagy Norbert"
+    "artist": "Nagy Norbert",
+    "flavor_text": "Great souls need great vessels."
   },
   {
     "collector_number" : "212",
@@ -3686,7 +3804,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "Conor Burke",
-    "subtypes": ["Spirit", "Warrior"]
+    "subtypes": ["Spirit", "Warrior"],
+    "flavor_text": "“Lord Gwyn’s sun shines brightly today. Nothing can stop us!”"
   },
   {
     "collector_number" : "217",
@@ -3705,7 +3824,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "Tim Keil",
-    "subtypes": ["Human", "Shaman"]
+    "subtypes": ["Human", "Shaman"],
+    "flavor_text": "She taps the roots of destiny."
   },
   {
     "collector_number" : "218",
@@ -3724,7 +3844,8 @@
     "toughness" : "3",
     "type" : "Creature",
     "artist": "ThemeFinland",
-    "subtypes": ["Human", "Dragon"]
+    "subtypes": ["Human", "Dragon"],
+    "flavor_text": "“I will sniff out any scent that leads to dragon-scales.”"
   },
   {
     "collector_number" : "219",
@@ -3894,7 +4015,8 @@
     ],
     "set" : "HLW",
     "type" : "Instant",
-    "artist": "Moni158"
+    "artist": "Moni158",
+    "flavor_text": "Artorias ensured that Sif would survive the abyss, even though he would not."
   },
   {
     "collector_number" : "228",
@@ -3935,7 +4057,8 @@
     "toughness" : "4",
     "type" : "Creature",
     "artist": "Cheo36",
-    "subtypes": ["Human", "Knight"]
+    "subtypes": ["Human", "Knight"],
+    "flavor_text": "“What seeketh thee? Begone!”"
   },
   {
     "collector_number" : "230",
@@ -4010,7 +4133,8 @@
     "toughness" : "1",
     "type" : "Creature",
     "artist": "YMD",
-    "subtypes": ["Spirit", "Wizard"]
+    "subtypes": ["Spirit", "Wizard"],
+    "flavor_text": "Mad phantoms appear along the pilgrimage route, seeking souls."
   },
   {
     "collector_number" : "234",
@@ -4103,7 +4227,8 @@
     "toughness" : "1",
     "type" : "Artifact Creature",
     "artist": "Marcelo Sperandio",
-    "subtypes": ["Lizard"]
+    "subtypes": ["Lizard"],
+    "flavor_text": "“Their skins are essential for forging.”\n—Andre, Astora blacksmith"
   },
   {
     "collector_number" : "239",
@@ -4119,7 +4244,8 @@
     "set" : "HLW",
     "type" : "Artifact",
     "artist": "pixivid31835188",
-    "subtypes": ["Equipment"]
+    "subtypes": ["Equipment"],
+    "flavor_text": "Ripped from the maw of an everlasting dragon."
   },
   {
     "collector_number" : "240",
@@ -4135,7 +4261,8 @@
     "set" : "HLW",
     "type" : "Artifact",
     "artist": "sarahasmical",
-    "subtypes": ["Dragon"]
+    "subtypes": ["Dragon"],
+    "flavor_text": "“A favorite among the undead.”\n—Oscar, Knight of Astora"
   },
   {
     "collector_number" : "241",
@@ -4153,7 +4280,8 @@
     "toughness" : "6",
     "type" : "Artifact Creature",
     "artist": "ThemeFinland",
-    "subtypes": ["Equipment"]
+    "subtypes": ["Equipment"],
+    "flavor_text": "The last scion of the world’s first age."
   },
   {
     "collector_number" : "242",
@@ -4168,7 +4296,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Artifact",
-    "artist": "Dark Souls"
+    "artist": "Dark Souls",
+    "flavor_text": "A zweihander was the preferred weapon of a giant warrior, whose strength became famous in an undying legend."
   },
   {
     "collector_number" : "243",
@@ -4183,7 +4312,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Land",
-    "artist": "Sharrine Ishak"
+    "artist": "Sharrine Ishak",
+    "flavor_text": "Bonfires mark the path traveled by the undead pilgrims, acting as useful landmarks as well as safe havens."
   },
   {
     "collector_number" : "244",
@@ -4213,7 +4343,8 @@
     "rarity" : "common",
     "set" : "HLW",
     "type" : "Land",
-    "artist": "Dark Souls"
+    "artist": "Dark Souls",
+    "flavor_text": "“In the Age of Ancients, the world was unformed: A land of gray crags, Archtrees, and Everlasting Dragons...”\n—*The Legend of the Chosen Undead*"
   },
   {
     "collector_number" : "246",
@@ -4228,7 +4359,8 @@
     "rarity" : "rare",
     "set" : "HLW",
     "type" : "Land",
-    "artist": "Dragonizm"
+    "artist": "Dragonizm",
+    "flavor_text": "Meeting place of the lowly and the lost."
   },
   {
     "collector_number" : "247",

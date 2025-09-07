@@ -14,7 +14,7 @@ public func routes(_ app: Application) throws {
   
   app.get("jumpin", ":set", use: JumpInParser.shared.selectPackets(_:))
 	
-	app.post("card", "named", use: generatorController.singleCardNamed)
+  app.post("card", "named", use: generatorController.singleCardNamed)
   app.get("card", "named", use: generatorController.singleCardNamed)
 
 	app.post("card", ":code", ":number", use: generatorController.singleCard)

@@ -944,7 +944,7 @@ final class GeneratorController: Sendable {
     return promise.futureResult
   }
 	
-	func singleCardNamed(_ req: Request) throws -> EventLoopFuture<String> {
+  func singleCardNamed(_ req: Request) async throws -> Response {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let facedown: Bool = req.query.getBoolValue(at: "facedown") ?? false
     let format: String? = try? req.query.get(at: "format")
@@ -952,12 +952,10 @@ final class GeneratorController: Sendable {
 		let fuzzy = try? req.query.get(String.self, at: "fuzzy")
 		let exact = try? req.query.get(String.self, at: "exact")
     
-    let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
-    
     if let name = fuzzy ?? exact {
       let match = name.matches(forRegex: #"(.+)\((.+)\)(.+)?"#)
       if let groups = match.first?.groups {
-        promise.completeWithTask({
+        let result: String = try await {
           let cardName = groups[0].value.trimmingCharacters(in: .whitespaces)
           let setCode = groups[1].value.trimmingCharacters(in: .whitespaces)
           let collectorNumber = groups.count == 3 ? groups[2].value.trimmingCharacters(in: .whitespaces) : nil
@@ -1000,8 +998,9 @@ final class GeneratorController: Sendable {
               }
             }
           }
-        })
-        return promise.futureResult
+        }()
+        
+        return Response(headers: ["Content-Type": "application/json", "access-control-allow-headers": "Origin"], body: .init(string: result))
       }
     }
 		
@@ -1019,9 +1018,9 @@ final class GeneratorController: Sendable {
 			} catch {
 				throw error
 			}
-		}
+		}()
 		
-		return promise.futureResult
+    return Response(headers: ["Content-Type": "application/json", "access-control-allow-headers": "Origin"], body: .init(string: result))
 	}
 	
 	func singleCard(_ req: Request) throws -> EventLoopFuture<String> {

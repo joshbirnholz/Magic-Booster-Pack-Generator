@@ -1129,7 +1129,52 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
   )
 }
 
-func getAllBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Response {  
+func draftMancerAutocomplete(_ req: Request) async throws -> Response {
+  let query: String = try req.query.get(at: "q")
+  let headers: HTTPHeaders = [
+    "Content-Type": "application/json",
+    "access-control-allow-headers": "Origin",
+    "access-control-allow-origin": "*"
+  ]
+  
+  guard var allCards = await DraftmancerSetCache.shared.loadedDraftmancerCards else {
+    return .init(
+      status: .internalServerError, headers: headers
+    )
+  }
+  
+  allCards = query.count < 2 ? [] : Array(allCards.filter {
+    $0.nameHasPrefix(query) || $0.name?.contains(query) == true
+  }.sorted(by: { first, second in
+    let firstHasPrefix = first.nameHasPrefix(query)
+    let secondHasPrefix = second.nameHasPrefix(query)
+    
+    if firstHasPrefix != secondHasPrefix {
+      return firstHasPrefix
+    } else {
+      return first.name ?? "" < second.name ?? ""
+    }
+  }))
+  
+  let names = OrderedSet(allCards.compactMap { $0.name }).prefix(20)
+  
+  let encoder = JSONEncoder()
+  encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+  encoder.keyEncodingStrategy = .convertToSnakeCase
+  
+  let catalog = Swiftfall.Catalog(
+    uri: nil,
+    totalValues: allCards.count,
+    totalItems: nil,
+    data: Array(names)
+  )
+  
+  let data = try encoder.encode(catalog)
+  
+  return .init(headers: headers, body: .init(data: data))
+}
+
+func getAllBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Response {
   let headers: HTTPHeaders = [
     "Content-Type": "application/json",
     "access-control-allow-headers": "Origin",

@@ -91,6 +91,7 @@ public func routes(_ app: Application) throws {
   app.get("custom", "cards", use: getAllBuiltinDraftmancerCardsAsScryfall)
   app.get("custom", "sets", ":set", use: getBuiltinDraftmancerSetsAsScryfall)
   app.get("custom", "sets", use: getBuiltinDraftmancerSetsAsScryfall)
+  app.get("custom", "cards", "autocomplete", use: draftMancerAutocomplete)
 	
 //	do {
 //		let file = URL(fileURLWithPath: "/Users/compc/iCloud Drive (Archive) - 1/Documents/Xcode/TabletopSimulatorMagicBoosterPackServer/Sources/App/Generation/xmltojson.json")

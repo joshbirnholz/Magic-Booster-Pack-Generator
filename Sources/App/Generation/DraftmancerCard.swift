@@ -1221,7 +1221,7 @@ func getBuiltinDraftmancerSetsAsScryfall(_ req: Request) async throws -> Respons
     let scryfallUri = ""
     let searchUri: URL? = URL(string: "https://tts-magic-booster.fly.dev/custom/cards?set=\(code ?? "")")
     let releasedAt: Date? = nil
-    return Swiftfall.ScryfallSet(code: code, mtgo: nil, name: set.name, uri: uri, scryfallUri: scryfallUri, searchUri: searchUri, releasedAt: nil, setType: "expansion", cardCount: set.cards.count, digital: false, foilOnly: false, blockCode: nil, block: nil, printedSize: nil, iconSvgUri: nil)
+    return Swiftfall.ScryfallSet(code: code, mtgo: nil, name: set.name, uri: uri, scryfallUri: scryfallUri, searchUri: searchUri, releasedAt: Date(), setType: "expansion", cardCount: set.cards.count, digital: false, foilOnly: false, blockCode: nil, block: nil, printedSize: nil, iconSvgUri: nil)
   }
   
   let encoder = JSONEncoder()

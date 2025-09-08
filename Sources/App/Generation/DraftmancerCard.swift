@@ -860,11 +860,15 @@ actor DraftmancerSetCache {
       draftmancerSets.append(contentsOf: fromManifesto)
       
       let cubeURL = URL(string: "https://capitalich.github.io/lists/all-cards.json")!
-      if let data = try? await URLSession.shared.data(from: cubeURL).0, let adventureTimeCube = try? decoder.decode(MSESet.self, from: data) {
+      do {
+        let data = try await URLSession.shared.data(from: cubeURL).0
+        let adventureTimeCube = try decoder.decode(MSESet.self, from: data)
         var set = DraftmancerSet(mseSet: adventureTimeCube)
         set.name = "Adventure Time Cube"
         draftmancerSets.append(set)
-      } else {
+        print("Loaded ATC from GitHub")
+      } catch {
+        print("Error loading ATC from GitHub:", error)
         let fromMSE: [DraftmancerSet] = loadedMSESets?.map {
           DraftmancerSet(mseSet: $0)
         } ?? []

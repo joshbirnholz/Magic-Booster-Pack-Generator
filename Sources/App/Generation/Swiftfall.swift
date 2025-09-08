@@ -155,6 +155,14 @@ public class Swiftfall {
   
   // struct which contains all sets
   public struct SetList: Codable, CustomStringConvertible, Sendable {
+    internal init(data: [Swiftfall.ScryfallSet], hasMore: Bool) {
+      self.object = "list"
+      self.data = data
+      self.hasMore = hasMore
+    }
+    
+    let object: String
+    
     // data is an array of Sets
     public let data: [ScryfallSet]
     
@@ -202,6 +210,27 @@ public class Swiftfall {
   // A Magic set is how cards are released in reality.
   // It contains no cards in Swiftfall or Scryfall.
   public struct ScryfallSet: Codable, CustomStringConvertible, Hashable, Sendable {
+    internal init(code: String? = nil, mtgo: String? = nil, name: String, uri: String, scryfallUri: String, searchUri: URL? = nil, releasedAt: Date? = nil, setType: String, cardCount: Int, digital: Bool, foilOnly: Bool, blockCode: String? = nil, block: String? = nil, printedSize: Int? = nil, iconSvgUri: String? = nil) {
+      self.object = "set"
+      self.code = code
+      self.mtgo = mtgo
+      self.name = name
+      self.uri = uri
+      self.scryfallUri = scryfallUri
+      self.searchUri = searchUri
+      self.releasedAt = releasedAt
+      self.setType = setType
+      self.cardCount = cardCount
+      self.digital = digital
+      self.foilOnly = foilOnly
+      self.blockCode = blockCode
+      self.block = block
+      self.printedSize = printedSize
+      self.iconSvgUri = iconSvgUri
+    }
+    
+    
+    let object: String
     
     // The unique three or four-letter code for this set.
     public var code: String?
@@ -1443,7 +1472,7 @@ extension Swiftfall {
     }
     
     let encoder = JSONEncoder()
-    encoder.outputFormatting = .prettyPrinted
+    encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
     encoder.keyEncodingStrategy = .convertToSnakeCase
     
     let data = try encoder.encode(["identifiers": identifiers])

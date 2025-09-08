@@ -638,6 +638,14 @@ actor DraftmancerSetCache {
     }
   }
   
+  var loadedDraftmancerSets: [DraftmancerSet]? {
+    get async {
+      guard let sets = await sets else { return nil }
+      
+      return sets
+    }
+  }
+  
   var loadedDraftmancerCards: [MTGCard]? {
     get async {
       guard let sets = await sets else { return nil }
@@ -1055,6 +1063,52 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
   return .init(
     status: .ok, headers: headers, body: .init(string: string)
   )
+}
+
+func getBuiltinDraftmancerSetsAsScryfall(_ req: Request) async throws -> Response {
+  let headers: HTTPHeaders = [
+    "Content-Type": "application/json",
+    "access-control-allow-headers": "Origin",
+    "access-control-allow-origin": "*"
+  ]
+  
+  guard var sets = await DraftmancerSetCache.shared.loadedDraftmancerSets else {
+    return .init(
+      status: .internalServerError, headers: headers
+    )
+  }
+  
+  func makeScryfallSet(_ set: DraftmancerSet) -> Swiftfall.ScryfallSet {
+    let code = set.cards.first?.set
+    let uri = ""
+    let scryfallUri = ""
+    let searchUri: URL? = nil
+    let releasedAt: Date? = nil
+    return Swiftfall.ScryfallSet(code: code, mtgo: nil, name: set.name, uri: uri, scryfallUri: scryfallUri, searchUri: searchUri, releasedAt: nil, setType: "expansion", cardCount: set.cards.count, digital: false, foilOnly: false, blockCode: nil, block: nil, printedSize: nil, iconSvgUri: nil)
+  }
+  
+  let encoder = JSONEncoder()
+  encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+  encoder.keyEncodingStrategy = .convertToSnakeCase
+  
+  if let setCode = req.parameters.get("set")?.lowercased() {
+    if let set = sets.first(where: { $0.cards.contains(where: { $0.set?.lowercased() == setCode }) }) {
+      let set = makeScryfallSet(set)
+      
+      let data = try encoder.encode(set)
+      return .init(headers: headers, body: .init(data: data))
+    } else {
+      throw Abort(.notFound, headers: headers)
+    }
+  }
+  
+  let scryfallSets = sets.map(makeScryfallSet(_:))
+  
+  let list = Swiftfall.SetList(data: scryfallSets, hasMore: false)
+  
+  let data = try encoder.encode(list)
+  
+  return .init(headers: headers, body: .init(data: data))
 }
 
 // MARK: Cockatrice

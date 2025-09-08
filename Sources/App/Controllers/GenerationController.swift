@@ -947,7 +947,6 @@ final class GeneratorController: Sendable {
   func singleCardNamed(_ req: Request) async throws -> Response {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let facedown: Bool = req.query.getBoolValue(at: "facedown") ?? false
-    let format: String? = try? req.query.get(at: "format")
 		
 		let fuzzy = try? req.query.get(String.self, at: "fuzzy")
 		let exact = try? req.query.get(String.self, at: "exact")
@@ -1007,10 +1006,10 @@ final class GeneratorController: Sendable {
     let result: String = try await {
 			do {
 				if let fuzzy = fuzzy {
-          let result = try await singleCardFuzzy(name: fuzzy, facedown: facedown, export: export, format: format)
+          let result = try await singleCardFuzzy(name: fuzzy, facedown: facedown, export: export)
 					return result
 				} else if let exact = exact {
-          let result = try await singleCardExact(name: exact, facedown: facedown, export: export, format: format)
+          let result = try await singleCardExact(name: exact, facedown: facedown, export: export)
 					return result
 				} else {
 					throw PackError.noName
@@ -1022,6 +1021,31 @@ final class GeneratorController: Sendable {
 		
     return Response(headers: ["Content-Type": "application/json", "access-control-allow-headers": "Origin", "access-control-allow-origin": "*"], body: .init(string: result))
 	}
+  
+  func singleCardNamed_Scryfall(_ req: Request) async throws -> Response {
+    let fuzzy = try? req.query.get(String.self, at: "fuzzy")
+    let exact = try? req.query.get(String.self, at: "exact")
+    
+    let headers: HTTPHeaders = ["Content-Type": "application/json", "access-control-allow-headers": "Origin", "access-control-allow-origin": "*"]
+    
+    let mtgCard: MTGCard = try await {
+      if let fuzzy, let card = await DraftmancerSetCache.shared.cardNamed(fuzzy: fuzzy) {
+        return card
+      } else if let exact, let card = await DraftmancerSetCache.shared.cardNamed(exact: exact) {
+        return card
+      } else {
+        throw Abort(.notFound, headers: headers, reason: "No card found")
+      }
+    }()
+    
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+    let data = try encoder.encode(Swiftfall.Card(mtgCard))
+    let result = String(data: data, encoding: .utf8)!
+    
+    return Response(headers: headers, body: .init(string: result))
+  }
 	
 	func singleCard(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true

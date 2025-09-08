@@ -64,7 +64,6 @@ public func routes(_ app: Application) throws {
 	app.get("seeds", use: SeedOptions.shared.getAllSeeds)
   
   app.get("draftmancercards", use: getBuiltinDraftmancerCards)
-  app.get("customcards", use: getBuiltinDraftmancerCardsAsScryfall)
 
 	app.get("decks", use: MyDecks.shared.getDecks(_:))
 
@@ -83,6 +82,14 @@ public func routes(_ app: Application) throws {
   app.get("artcrop", ":set", ":number", use: imageController.artCrop(_:))
   
   app.routes.defaultMaxBodySize = .init(stringLiteral: "4mb")
+  
+  // Scryfall-format API: Endpoints under /custom/ fetch custom cards in a format
+  // that somewhat matches the Scryfall API
+  
+  app.get("custom", "cards", "named", use: generatorController.singleCardNamed_Scryfall(_:))
+  app.get("custom", "cards", use: getBuiltinDraftmancerCardsAsScryfall)
+  app.get("custom", "sets", ":set", use: getBuiltinDraftmancerSetsAsScryfall)
+  app.get("custom", "sets", use: getBuiltinDraftmancerSetsAsScryfall)
 	
 //	do {
 //		let file = URL(fileURLWithPath: "/Users/compc/iCloud Drive (Archive) - 1/Documents/Xcode/TabletopSimulatorMagicBoosterPackServer/Sources/App/Generation/xmltojson.json")

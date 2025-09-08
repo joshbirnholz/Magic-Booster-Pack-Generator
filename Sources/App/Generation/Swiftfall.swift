@@ -1049,11 +1049,19 @@ public class Swiftfall {
     return formatter
   }()
   
-  fileprivate static let decoder: JSONDecoder = {
+  static let decoder: JSONDecoder = {
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
     decoder.dateDecodingStrategy = .formatted(dateFormatter)
     return decoder
+  }()
+  
+  static let encoder: JSONEncoder = {
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    encoder.dateEncodingStrategy = .formatted(dateFormatter)
+    return encoder
   }()
   
   /// Retreives JSON data from URL and parses it with JSON decoder.

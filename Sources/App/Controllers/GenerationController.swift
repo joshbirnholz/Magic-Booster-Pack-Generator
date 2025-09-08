@@ -1038,10 +1038,7 @@ final class GeneratorController: Sendable {
       }
     }()
     
-    let encoder = JSONEncoder()
-    encoder.keyEncodingStrategy = .convertToSnakeCase
-    encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-    let data = try encoder.encode(Swiftfall.Card(mtgCard))
+    let data = try Swiftfall.encoder.encode(Swiftfall.Card(mtgCard))
     let result = String(data: data, encoding: .utf8)!
     
     return Response(headers: headers, body: .init(string: result))

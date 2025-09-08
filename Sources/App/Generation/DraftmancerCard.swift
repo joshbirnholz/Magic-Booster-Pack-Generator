@@ -853,11 +853,11 @@ actor DraftmancerSetCache {
       
       draftmancerSets.append(contentsOf: fromCockatrice)
       
-      let fromManifesto: [DraftmancerSet] = loadedManifestoSets?.map {
-        DraftmancerSet.init(manifestoSet: $0)
-      } ?? []
-      
-      draftmancerSets.append(contentsOf: fromManifesto)
+//      let fromManifesto: [DraftmancerSet] = loadedManifestoSets?.map {
+//        DraftmancerSet.init(manifestoSet: $0)
+//      } ?? []
+//      
+//      draftmancerSets.append(contentsOf: fromManifesto)
       
       let cubeURL = URL(string: "https://capitalich.github.io/lists/all-cards.json")!
       do {
@@ -1014,17 +1014,13 @@ func getBuiltinDraftmancerCards(_ req: Request) throws -> NIOCore.EventLoopFutur
     var headers = HTTPHeaders()
     headers.add(name: .contentType, value: "application/json")
     
-    let encoder = JSONEncoder()
-    encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-    encoder.keyEncodingStrategy = .convertToSnakeCase
-    
     guard let responses = await DraftmancerSetCache.shared.sets else {
       return .init(
         status: .internalServerError, headers: headers
       )
     }
     
-    let data = try encoder.encode(responses)
+    let data = try Swiftfall.encoder.encode(responses)
     let string = String.init(data: data, encoding: .utf8) ?? ""
     
     return .init(
@@ -1051,10 +1047,6 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
   guard let token = tokenizer.scryfallToken(for: query, ignoreUnrecognized: true) else {
     throw Abort(.internalServerError, headers: headers, reason: "Unable to parse query.")
   }
-  
-  let encoder = JSONEncoder()
-  encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-  encoder.keyEncodingStrategy = .convertToSnakeCase
   
   guard var allCards = await DraftmancerSetCache.shared.loadedDraftmancerCards else {
     return .init(
@@ -1121,7 +1113,7 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
   let scryfallCards = allCards.map { Swiftfall.Card.init($0) }
   let list = Swiftfall.CardList.init(data: scryfallCards, hasMore: false, nextPage: nil, totalCards: scryfallCards.count)
   
-  let data = try encoder.encode(list)
+  let data = try Swiftfall.encoder.encode(list)
   let string = String.init(data: data, encoding: .utf8) ?? ""
   
   return .init(
@@ -1158,10 +1150,6 @@ func draftMancerAutocomplete(_ req: Request) async throws -> Response {
   
   let names = OrderedSet(allCards.compactMap { $0.name }).prefix(20)
   
-  let encoder = JSONEncoder()
-  encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-  encoder.keyEncodingStrategy = .convertToSnakeCase
-  
   let catalog = Swiftfall.Catalog(
     uri: nil,
     totalValues: allCards.count,
@@ -1169,7 +1157,7 @@ func draftMancerAutocomplete(_ req: Request) async throws -> Response {
     data: Array(names)
   )
   
-  let data = try encoder.encode(catalog)
+  let data = try Swiftfall.encoder.encode(catalog)
   
   return .init(headers: headers, body: .init(data: data))
 }
@@ -1181,10 +1169,6 @@ func getAllBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Res
     "access-control-allow-origin": "*"
   ]
   
-  let encoder = JSONEncoder()
-  encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-  encoder.keyEncodingStrategy = .convertToSnakeCase
-  
   guard let cards = await DraftmancerSetCache.shared.loadedDraftmancerCards else {
     return .init(
       status: .internalServerError, headers: headers
@@ -1194,7 +1178,7 @@ func getAllBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Res
   let scryfallCards = cards.map { Swiftfall.Card.init($0) }
   let list = Swiftfall.CardList.init(data: scryfallCards, hasMore: false, nextPage: nil, totalCards: scryfallCards.count)
   
-  let data = try encoder.encode(list)
+  let data = try Swiftfall.encoder.encode(list)
   let string = String.init(data: data, encoding: .utf8) ?? ""
   
   return .init(
@@ -1224,15 +1208,11 @@ func getBuiltinDraftmancerSetsAsScryfall(_ req: Request) async throws -> Respons
     return Swiftfall.ScryfallSet(code: code, mtgo: nil, name: set.name, uri: uri, scryfallUri: scryfallUri, searchUri: searchUri, releasedAt: Date(), setType: "expansion", cardCount: set.cards.count, digital: false, foilOnly: false, blockCode: nil, block: nil, printedSize: nil, iconSvgUri: nil)
   }
   
-  let encoder = JSONEncoder()
-  encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-  encoder.keyEncodingStrategy = .convertToSnakeCase
-  
   if let setCode = req.parameters.get("set")?.lowercased() {
     if let set = sets.first(where: { $0.cards.contains(where: { $0.set?.lowercased() == setCode }) }) {
       let set = makeScryfallSet(set)
       
-      let data = try encoder.encode(set)
+      let data = try Swiftfall.encoder.encode(set)
       return .init(headers: headers, body: .init(data: data))
     } else {
       throw Abort(.notFound, headers: headers)
@@ -1243,7 +1223,7 @@ func getBuiltinDraftmancerSetsAsScryfall(_ req: Request) async throws -> Respons
   
   let list = Swiftfall.SetList(data: scryfallSets, hasMore: false)
   
-  let data = try encoder.encode(list)
+  let data = try Swiftfall.encoder.encode(list)
   
   return .init(headers: headers, body: .init(data: data))
 }

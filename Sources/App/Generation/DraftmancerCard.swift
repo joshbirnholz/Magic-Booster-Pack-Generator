@@ -1834,7 +1834,8 @@ extension DraftmancerCard {
         name: card.cardName2?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
         image: imageURL(isBack: true),
         type: card.type2 ?? "",
-        oracleText: card.rulesText2?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: ""),
+        oracleText: card.rulesText2?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: "").optionalIfEmpty(),
+        flavorText: card.flavorText2?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: "").optionalIfEmpty(),
         power: power2,
         toughness: toughness2,
         loyalty: card.loyalty2,
@@ -1845,7 +1846,8 @@ extension DraftmancerCard {
       draftEffects: nil,
       power: power,
       toughness: toughness,
-      oracleText: card.rulesText?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: ""),
+      oracleText: card.rulesText?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: "").optionalIfEmpty(),
+      flavorText: card.flavorText?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: "").optionalIfEmpty(),
       loyalty: card.loyalty,
       keywords: []
     )
@@ -1887,5 +1889,15 @@ extension DraftmancerSet {
       cards: cards,
       name: mseSet.name ?? ""
     )
+  }
+}
+
+extension String {
+  func optionalIfEmpty() -> String? {
+    if self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+      return nil
+    } else {
+      return self
+    }
   }
 }

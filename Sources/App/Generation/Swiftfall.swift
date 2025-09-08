@@ -1288,7 +1288,7 @@ public class Swiftfall {
       return rawValue
     }
     
-    func autoDirection(for order: SearchOrder) -> SearchOrderDirection {
+    static func autoDirection(for order: SearchOrder) -> SearchOrderDirection {
       switch order {
       case .name:
         return .ascending

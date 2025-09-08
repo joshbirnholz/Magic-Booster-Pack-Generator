@@ -1033,6 +1033,9 @@ func getBuiltinDraftmancerCards(_ req: Request) throws -> NIOCore.EventLoopFutur
 
 func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Response {
   let query: String = try req.query.get(at: "q")
+  let order = (try? req.query.get(Swiftfall.SearchOrder.self, at: "order")) ?? .name
+  var direction = (try? req.query.get(Swiftfall.SearchOrderDirection.self, at: "direction")) ?? .auto
+  let unique = try? req.query.get(Swiftfall.Unique.self, at: "unique")
   
   let headers: HTTPHeaders = [
     "Content-Type": "application/json",
@@ -1062,6 +1065,54 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
   guard !allCards.isEmpty else {
     throw Abort(.notFound, headers: headers, reason: "Your query didn’t match any cards.")
   }
+  
+  if direction == .auto {
+    direction = .autoDirection(for: order)
+  }
+  
+  func isOrderedBefore<T: Comparable>(_ lhs: T?, rhs: T?) -> Bool {
+    guard let lhs else { return false }
+    guard let rhs else { return true }
+    
+    return direction == .ascending ? lhs < rhs : lhs > rhs
+  }
+  
+  allCards = allCards.sorted(by: { first, second in
+    switch order {
+    case .name:
+      return isOrderedBefore(first.name, rhs: second.name)
+    case .set:
+      return  isOrderedBefore(first.set, rhs: second.set)
+    case .released:
+      return isOrderedBefore(first.releaseDate, rhs: second.releaseDate)
+    case .rarity:
+      return isOrderedBefore(first.rarity, rhs: second.rarity)
+    case .color:
+      return false // Not yet implemented
+    case .usd:
+      return false
+    case .tix:
+      return false
+    case .eur:
+      return false
+    case .cmc:
+      return isOrderedBefore(first.convertedManaCost ?? 0, rhs: second.convertedManaCost ?? 0)
+    case .power:
+      let result = (first.power ?? "0").compare(second.power ?? "0", options: .numeric)
+      return result == (direction == .ascending ? .orderedAscending : .orderedDescending)
+    case .toughness:
+      let result = (first.toughness ?? "0").compare(second.toughness ?? "0", options: .numeric)
+      return result == (direction == .ascending ? .orderedAscending : .orderedDescending)
+    case .artist:
+      return isOrderedBefore(first.artist, rhs: second.artist)
+    case .edhrec:
+      return false // Not yet implemented
+    case .review:
+      return false // Not yet implemented
+    case .spoiled:
+      return false // Not yet implemented
+    }
+  })
   
   let scryfallCards = allCards.map { Swiftfall.Card.init($0) }
   let list = Swiftfall.CardList.init(data: scryfallCards, hasMore: false, nextPage: nil, totalCards: scryfallCards.count)

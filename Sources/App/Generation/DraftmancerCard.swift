@@ -1834,7 +1834,7 @@ extension DraftmancerCard {
         name: card.cardName2?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
         image: imageURL(isBack: true),
         type: card.type2 ?? "",
-        oracleText: card.rulesText2,
+        oracleText: card.rulesText2?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: ""),
         power: power2,
         toughness: toughness2,
         loyalty: card.loyalty2,
@@ -1845,7 +1845,7 @@ extension DraftmancerCard {
       draftEffects: nil,
       power: power,
       toughness: toughness,
-      oracleText: card.rulesText,
+      oracleText: card.rulesText?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: ""),
       loyalty: card.loyalty,
       keywords: []
     )

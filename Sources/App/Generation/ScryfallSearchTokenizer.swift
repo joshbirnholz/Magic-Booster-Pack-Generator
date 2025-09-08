@@ -245,6 +245,9 @@ struct ScryfallTokenizer {
 						return .criterion("owned")
 					}
 					return nil
+        case "name":
+          guard qualifier == ":" || qualifier == "=" else { return nil }
+          return .cardName(value)
 				default:
 					return nil
 				}

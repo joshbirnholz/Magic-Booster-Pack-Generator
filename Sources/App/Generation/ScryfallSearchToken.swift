@@ -1064,10 +1064,11 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     case .direct(let query, let name, let humanReadableDescription):
       break // Not yet implemented
     case .cardName(let string, let exact):
+      let string = string.replacingOccurrences(of: "_", with: " ").lowercased()
       if exact {
-        return card.allNames.contains(where: { $0.lowercased() == string.lowercased() })
+        return card.allNames.contains(where: { $0.lowercased() == string })
       } else {
-        return card.allNames.contains(where: { $0.lowercased().contains(string.lowercased()) })
+        return card.allNames.contains(where: { $0.lowercased().contains(string) })
       }
     case .oracleContains(let string):
       return card.oracleText?.lowercased().contains(string.lowercased()) == true
@@ -1206,7 +1207,7 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       return scryfallSearchToken.matches(card)
     }
     
-    return false
+    return true
   }
   
   #if OFFLINE_BACKUP

@@ -1059,6 +1059,156 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     string.contains(" ") ? "\"\(string)\"" : string
   }
   
+  func matches(_ card: MTGCard) -> Bool {
+    switch self {
+    case .direct(let query, let name, let humanReadableDescription):
+      break // Not yet implemented
+    case .cardName(let string, let exact):
+      if exact {
+        return card.allNames.contains(where: { $0.lowercased() == string.lowercased() })
+      } else {
+        return card.allNames.contains(where: { $0.lowercased().contains(string.lowercased()) })
+      }
+    case .oracleContains(let string):
+      return card.oracleText?.lowercased().contains(string.lowercased()) == true
+    case .type(let string):
+      return card.typeLine?.lowercased().contains(string.lowercased()) == true
+    case .colors(let colorChoice, let array, let quantifier):
+      guard let cardValueArray = colorChoice == .color ? card.colors : card.colorIdentity else { return false }
+      let cardValue = Set(cardValueArray)
+      let colors = Set(array.compactMap { MTGColor(rawValue: $0.rawValue) })
+      switch quantifier {
+      case .exactly:
+        return colors == cardValue
+      case .including: // >=
+        return cardValue.isSuperset(of: colors)
+      case .atMost: // <=
+        return cardValue.isSubset(of: colors)
+      case .greaterThan: // >
+        return cardValue.isStrictSuperset(of: colors)
+      case .lessThan: // <
+        return cardValue.isStrictSubset(of: colors)
+      case .not:
+        return colors != cardValue
+      }
+    case .manaCost(let string, let quantifier):
+      return false // Not yet implemented
+    case .stats(let stat, let quantifier, let string):
+      guard let doubleValue = Double(string) else { return false }
+      switch stat {
+      case .cmc:
+        guard let cardValue = card.convertedManaCost.flatMap(Double.init) else { return false }
+        return quantifier.performOn(cardValue, doubleValue)
+      case .power:
+        guard let cardValue = card.power.flatMap(Double.init) else { return false }
+        return quantifier.performOn(cardValue, doubleValue)
+      case .toughness:
+        guard let cardValue = card.toughness.flatMap(Double.init) else { return false }
+        return quantifier.performOn(cardValue, doubleValue)
+      case .loyalty:
+        guard let cardValue = card.loyalty.flatMap(Double.init) else { return false }
+        return quantifier.performOn(cardValue, doubleValue)
+      }
+    case .price(let currency, let quantifier, let string):
+      return false
+    case .legal(let legality, let string):
+      return false
+    case .sets(let array):
+      return array.contains(where: { $0.lowercased() == card.set.lowercased() })
+    case .blocks(let array):
+      return false
+    case .in(let string):
+      return card.set.lowercased() == string.lowercased()
+    case .rarity(let rarity, let quantifier):
+      guard let rarity = MTGCard.Rarity(rawValue: rarity.rawValue) else { return false }
+      
+      return quantifier.performOn(card.rarity, rarity)
+    case .keyword(let string):
+      return card.keywords?.contains(where: { $0.lowercased() == string.lowercased() }) == true
+    case .criterion(let string):
+      return false
+    case .year(let quantifier, let string):
+      guard let releaseDate = card.releaseDate, let intValue = Int(string) else { return false }
+      let component = Calendar.current.component(.year, from: releaseDate)
+      return quantifier.performOn(component, intValue)
+    case .border(let borderColor):
+      return card.borderColor?.rawValue.lowercased() == borderColor.rawValue.lowercased()
+    case .artist(let string):
+      return card.artist?.lowercased().contains(string.lowercased()) == true
+    case .include(let string):
+      return false
+    case .flavorText(let string):
+      return card.flavorText?.lowercased().contains(string.lowercased()) == true
+    case .lore(let string):
+      return card.name?.lowercased().contains(string) == true || card.flavorName?.lowercased().contains(string) == true || card.flavorText?.lowercased().contains(string) == true || card.cardFaces?.contains(where: { face in
+        face.name?.lowercased().contains(string) == true || face.flavorName?.lowercased().contains(string) == true || face.flavorText?.lowercased().contains(string) == true
+      }) == true
+    case .unique(let string):
+      return false
+    case .language(let language):
+      guard let language else { return false }
+      switch language {
+      case .any:
+        return true
+      case .language(let language):
+        return card.language.rawValue.lowercased() == language.rawValue.lowercased()
+      }
+    case .watermark(let string):
+      return card.watermark?.lowercased() == string.lowercased()
+    case .owned(let int, let quantifier):
+      return false
+    case .new(let new):
+      return false
+    case .cheapest(let currency):
+      return false
+    case .artists(let quantifier, let string):
+      guard let artist = card.artist else { return false }
+      return quantifier.performOn(artist.lowercased(), string.lowercased())
+    case .colorCount(let colorChoice, let int, let quantifier):
+      break // Not yet implemented
+    case .devotion(let quantifier, let string):
+      break // Not yet implemented
+    case .collectorNumber(let quantifier, let string):
+      switch quantifier {
+      case .exactly:
+        return card.collectorNumber.lowercased() == string.lowercased()
+      case .not:
+        return card.collectorNumber.lowercased() != string.lowercased()
+      default:
+        guard let intValue = Int(string), let intCardValue = Int(card.collectorNumber)  else { return false }
+        return quantifier.performOn(intCardValue, intValue)
+      }
+    case .setType(let string):
+      return false
+    case .cube(let string):
+      return false
+    case .frame(let frame):
+      return card.frame.lowercased() == frame?.rawValue.lowercased()
+    case .stamp(let securityStamp):
+      break // Not yet implemented
+    case .game(let game):
+      if let value = game?.rawValue.lowercased() {
+        return card.games.contains(value)
+      }
+    case .prefer(let prefer):
+      return false
+    case .art(let string):
+      return false
+    case .function(let string):
+      break // Not yet implemented
+    case .and(let scryfallSearchToken, let scryfallSearchToken2):
+      return scryfallSearchToken.matches(card) && scryfallSearchToken2.matches(card)
+    case .or(let scryfallSearchToken, let scryfallSearchToken2):
+      return scryfallSearchToken.matches(card) || scryfallSearchToken2.matches(card)
+    case .not(let scryfallSearchToken):
+      return !scryfallSearchToken.matches(card)
+    case .parentheses(let scryfallSearchToken):
+      return scryfallSearchToken.matches(card)
+    }
+    
+    return false
+  }
+  
   #if OFFLINE_BACKUP
   var predicate: NSPredicate? {
     switch self {
@@ -2510,5 +2660,15 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     default:
       return true
     }
+  }
+}
+
+extension MTGCard {
+  var allNames: Set<String> {
+    var names: [String?] = [name, flavorName]
+    names += cardFaces?.compactMap(\.name) ?? []
+    names += cardFaces?.compactMap(\.flavorName) ?? []
+    
+    return Set(names.compactMap { $0 })
   }
 }

@@ -1032,8 +1032,49 @@ func getBuiltinDraftmancerCards(_ req: Request) throws -> NIOCore.EventLoopFutur
 }
 
 func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Response {
-  let query: String? = try? req.query.get(at: "q")
+  let query: String = try req.query.get(at: "q")
   
+  let headers: HTTPHeaders = [
+    "Content-Type": "application/json",
+    "access-control-allow-headers": "Origin",
+    "access-control-allow-origin": "*"
+  ]
+  
+  let tokenizer = ScryfallTokenizer()
+  guard let token = tokenizer.scryfallToken(for: query, ignoreUnrecognized: true) else {
+    throw Abort(.internalServerError, headers: headers, reason: "Unable to parse query.")
+  }
+  
+  let encoder = JSONEncoder()
+  encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+  encoder.keyEncodingStrategy = .convertToSnakeCase
+  
+  guard var allCards = await DraftmancerSetCache.shared.loadedDraftmancerCards else {
+    return .init(
+      status: .internalServerError, headers: headers
+    )
+  }
+  
+  allCards = allCards.filter { card in
+    token.matches(card)
+  }
+  
+  guard !allCards.isEmpty else {
+    throw Abort(.notFound, headers: headers, reason: "Your query didn’t match any cards.")
+  }
+  
+  let scryfallCards = allCards.map { Swiftfall.Card.init($0) }
+  let list = Swiftfall.CardList.init(data: scryfallCards, hasMore: false, nextPage: nil, totalCards: scryfallCards.count)
+  
+  let data = try encoder.encode(list)
+  let string = String.init(data: data, encoding: .utf8) ?? ""
+  
+  return .init(
+    status: .ok, headers: headers, body: .init(string: string)
+  )
+}
+
+func getAllBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Response {  
   let headers: HTTPHeaders = [
     "Content-Type": "application/json",
     "access-control-allow-headers": "Origin",
@@ -1044,14 +1085,10 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
   encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
   encoder.keyEncodingStrategy = .convertToSnakeCase
   
-  guard var cards = await DraftmancerSetCache.shared.loadedDraftmancerCards else {
+  guard let cards = await DraftmancerSetCache.shared.loadedDraftmancerCards else {
     return .init(
       status: .internalServerError, headers: headers
     )
-  }
-  
-  if let query {
-    cards = try await DraftmancerSetCache.shared.cardsMatchingNameQuery(query)
   }
   
   let scryfallCards = cards.map { Swiftfall.Card.init($0) }

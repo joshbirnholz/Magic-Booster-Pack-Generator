@@ -8,40 +8,59 @@
 
 import Foundation
 
-typealias Match = (range: Range<String.Index>, value: String)
+internal typealias Match = (range: Range<String.Index>, value: String)
 
-extension String {
-
-	func matches(forRegex regex: String, options: NSRegularExpression.Options = []) -> [(fullMatch: Match, groups: [Match])] {
-		do {
-			let regex = try NSRegularExpression(pattern: regex, options: options)
-			let results = regex.matches(in: self, range: NSRange(startIndex..., in: self))
-			return results.map { result in
-				let fullMatchRange = Range(result.range, in: self)!
-				let groups: [Match]
-				
-				if result.numberOfRanges > 1 {
-					groups = (1 ..< result.numberOfRanges).compactMap { i in
-						guard let range = Range(result.range(at: i), in: self) else {
-							return nil
-						}
-						let value = String(self[range])
-						return (range: range, value: value)
-					}
-				} else {
-					groups = []
-				}
-				
-				let fullMatch = (range: fullMatchRange, value: String(self[fullMatchRange]))
-				
-				return (fullMatch, groups)
-			}
-		} catch {
-			return []
-		}
-	}
-	
+internal struct RegexResult {
+  public var fullMatch: Match
+  public var groups: [Match]
+  
+  fileprivate var getGroupWithName: (String) -> Match?
+  
+  public subscript(_ groupName: String) -> Match? {
+    return getGroupWithName(groupName)
+  }
 }
+
+internal extension String {
+  func matches(forRegex regex: String, options: NSRegularExpression.Options = []) -> [RegexResult] {
+    do {
+      let regex = try NSRegularExpression(pattern: regex, options: options)
+      let results = regex.matches(in: self, range: NSRange(startIndex..., in: self))
+      return results.map { result in
+        let fullMatchRange = Range(result.range, in: self)!
+        let groups: [Match]
+        
+        if result.numberOfRanges > 1 {
+          groups = (1 ..< result.numberOfRanges).compactMap { i in
+            guard let range = Range(result.range(at: i), in: self) else {
+              return nil
+            }
+            let value = String(self[range])
+            return (range: range, value: value)
+          }
+        } else {
+          groups = []
+        }
+        
+        let fullMatch = (range: fullMatchRange, value: String(self[fullMatchRange]))
+        
+        func getGroupWithName(name: String) -> Match? {
+          guard let range = Range(result.range(withName: name), in: self) else {
+            return nil
+          }
+          
+          let value = String(self[range])
+          return (range: range, value: value)
+        }
+        
+        return RegexResult(fullMatch: fullMatch, groups: groups, getGroupWithName: getGroupWithName(name:))
+      }
+    } catch {
+      return []
+    }
+  }
+}
+
 
 extension Array {
 	/// Removes all the elements that satisfy the given predicate, and returns a new array containing the removed elements.
@@ -96,8 +115,30 @@ extension Optional where Wrapped: Collection, Wrapped.Element: Equatable {
 }
 
 extension Optional where Wrapped: Collection {
-	func contains(where predicate: (Wrapped.Element) throws -> Bool) rethrows -> Bool {
-		guard let value = self else { return false }
-		return try value.contains(where: predicate)
-	}
+  func contains(where predicate: (Wrapped.Element) throws -> Bool) rethrows -> Bool {
+    guard let value = self else { return false }
+    return try value.contains(where: predicate)
+  }
 }
+
+extension Int {
+  var withCommas: String {
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .decimal
+    return numberFormatter.string(from: NSNumber(value:self)) ?? String(describing: self)
+  }
+}
+
+extension Comparable {
+  func clamped(to limits: ClosedRange<Self>) -> Self {
+    return min(max(self, limits.lowerBound), limits.upperBound)
+  }
+}
+
+//#if swift(<5.1)
+//extension Strideable where Stride: SignedInteger {
+//  func clamped(to limits: CountableClosedRange<Self>) -> Self {
+//    return min(max(self, limits.lowerBound), limits.upperBound)
+//  }
+//}
+//#endif

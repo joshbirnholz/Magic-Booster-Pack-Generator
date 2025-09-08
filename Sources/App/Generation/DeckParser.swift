@@ -91,8 +91,9 @@ public struct DeckParser {
 		let matches = deckList.matches(forRegex: regex, options: [.anchorsMatchLines])
 		var cardGroups: [CardGroup] = []
 		
-		for (_, groups) in matches {
-			switch groups.count {
+    for match in matches {
+      let groups = match.groups
+      switch groups.count {
 			case 1:
 				let value = groups[0].value.trimmingCharacters(in: .whitespacesAndNewlines)
 				let newGroup = CardGroup(name: CardGroup.name(for: value, defaultToMain: true), cardCounts: [])
@@ -231,7 +232,8 @@ public struct DeckParser {
 		let matches = deckList.matches(forRegex: regex, options: [.anchorsMatchLines])
 		var cardGroups: [CardGroup] = []
 		
-		for (_, groups) in matches {
+    for match in matches {
+      let groups = match.groups
 			switch groups.count {
 			case 1:
 				let value = groups[0].value.trimmingCharacters(in: .whitespacesAndNewlines)

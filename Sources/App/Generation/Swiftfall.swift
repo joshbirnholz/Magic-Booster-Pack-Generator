@@ -184,6 +184,16 @@ public class Swiftfall {
   
   // struct which contrains a list of cards
   public struct CardList: Codable, CustomStringConvertible {
+    internal init(data: [Swiftfall.Card], hasMore: Bool, nextPage: URL? = nil, totalCards: Int? = nil) {
+      self.object = "list"
+      self.data = data
+      self.hasMore = hasMore
+      self.nextPage = nextPage
+      self.totalCards = totalCards
+    }
+    
+    public let object: String
+    
     // an array of Cards
     public let data: [Card]
     
@@ -334,7 +344,7 @@ public class Swiftfall {
   public struct Card: Codable, CustomStringConvertible, Equatable, Hashable, Sendable, Identifiable {
     var object: String
     
-    internal init(prices: Swiftfall.Card.Prices? = nil, id: UUID, oracleId: UUID? = nil, multiverseIds: [Int], mtgoId: Int? = nil, arenaId: Int? = nil, mtgoFoilId: Int? = nil, tcgplayerId: Int? = nil, tcgplayerEtchedId: Int? = nil, name: String, flavorName: String? = nil, uri: String? = nil, scryfallUri: String, cardFaces: [Swiftfall.Card.Face]? = nil, printsSearchUri: String, securityStamp: String? = nil, rulingsUri: String, layout: String, cmc: Double? = nil, typeLine: String? = nil, oracleText: String? = nil, manaCost: String? = nil, power: String? = nil, toughness: String? = nil, loyalty: String? = nil, defense: String? = nil, colors: [String]? = nil, colorIndicator: [String]? = nil, colorIdentity: [String]? = nil, keywords: [String]? = nil, producedMana: [String]? = nil, purchaseUris: [String : URL]? = nil, flavorText: String? = nil, attractionLights: [Int]? = nil, illustrationId: String? = nil, imageUris: [String : URL]? = nil, legalities: [String : String], reserved: Bool, edhrecRank: Int? = nil, allParts: [Swiftfall.Card.RelatedCard]? = nil, set: String, setName: String, setType: String? = nil, rarity: String, cardBackId: UUID? = nil, artist: String? = nil, collectorNumber: String, digital: Bool, highresImage: Bool, lifeModifier: String? = nil, handModifier: String? = nil, frame: String, frameEffects: [String]? = nil, promoTypes: [String]? = nil, oversized: Bool? = nil, fullArt: Bool, watermark: String? = nil, borderColor: String, storySpotlightNumber: Int? = nil, storySpotlightUri: String? = nil, storySpotlight: Bool? = nil, contentWarning: Bool? = nil, printedName: String? = nil, printedText: String? = nil, printedTypeLine: String? = nil, textless: Bool, lang: Swiftfall.Card.Language, foil: Bool, finishes: [Swiftfall.Card.Finish], nonfoil: Bool, promo: Bool, booster: Bool, releasedAt: String, relatedUris: [String : URL]? = nil, games: [String], gameChanger: Bool? = nil, variation: Bool? = nil, variationOf: UUID? = nil) {
+    internal init(prices: Swiftfall.Card.Prices? = nil, id: UUID, oracleId: UUID? = nil, multiverseIds: [Int], mtgoId: Int? = nil, arenaId: Int? = nil, mtgoFoilId: Int? = nil, tcgplayerId: Int? = nil, tcgplayerEtchedId: Int? = nil, name: String, flavorName: String? = nil, uri: String? = nil, scryfallUri: String, cardFaces: [Swiftfall.Card.Face]? = nil, printsSearchUri: URL, securityStamp: String? = nil, rulingsUri: String, layout: String, cmc: Double? = nil, typeLine: String? = nil, oracleText: String? = nil, manaCost: String? = nil, power: String? = nil, toughness: String? = nil, loyalty: String? = nil, defense: String? = nil, colors: [String]? = nil, colorIndicator: [String]? = nil, colorIdentity: [String]? = nil, keywords: [String]? = nil, producedMana: [String]? = nil, purchaseUris: [String : URL]? = nil, flavorText: String? = nil, attractionLights: [Int]? = nil, illustrationId: String? = nil, imageUris: [String : URL]? = nil, legalities: [String : String], reserved: Bool, edhrecRank: Int? = nil, allParts: [Swiftfall.Card.RelatedCard]? = nil, set: String, setName: String, setType: String? = nil, rarity: String, cardBackId: UUID? = nil, artist: String? = nil, collectorNumber: String, digital: Bool, highresImage: Bool, lifeModifier: String? = nil, handModifier: String? = nil, frame: String, frameEffects: [String]? = nil, promoTypes: [String]? = nil, oversized: Bool? = nil, fullArt: Bool, watermark: String? = nil, borderColor: String, storySpotlightNumber: Int? = nil, storySpotlightUri: String? = nil, storySpotlight: Bool? = nil, contentWarning: Bool? = nil, printedName: String? = nil, printedText: String? = nil, printedTypeLine: String? = nil, textless: Bool, lang: Swiftfall.Card.Language, foil: Bool, finishes: [Swiftfall.Card.Finish], nonfoil: Bool, promo: Bool, booster: Bool, releasedAt: String, relatedUris: [String : URL]? = nil, games: [String], gameChanger: Bool? = nil, variation: Bool? = nil, variationOf: UUID? = nil) {
       self.object = "card"
       self.prices = prices
       self.id = id
@@ -737,12 +747,12 @@ public class Swiftfall {
     
     // A link to where you can begin paginating all re/prints for this card on Scryfall’s API.
     /// This should be a URL, but has to be a String in order to support migrating old bookmarks.
-    public let printsSearchUri: String
+    public let printsSearchUri: URL
     
     public let securityStamp: String?
     
     public func getAllPrints() async throws -> [Card] {
-      try await getAllCards(searchURL: URL(string: printsSearchUri)!)
+      try await getAllCards(searchURL: printsSearchUri)
     }
     
     public func getOtherLanguages() async throws -> [Card] {

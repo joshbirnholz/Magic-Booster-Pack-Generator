@@ -219,7 +219,7 @@
     "set" : "HLW",
     "type" : "Instant",
     "artist": "Ulises Serrano",
-    "flavor_text": "“Thy transgression shall not go unpunished.”—Gwyndolin"
+    "flavor_text": "“Thy transgression shall not go unpunished.”\n—Gwyndolin"
   },
   {
     "collector_number" : "13",

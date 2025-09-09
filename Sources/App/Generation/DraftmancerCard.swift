@@ -750,6 +750,8 @@ actor DraftmancerSetCache {
             let name: String
             let flavorName: String?
             let flavorNameBack: String?
+            let flavorText: String?
+            let flavorTextBack: String?
             let front: URL
             let back: URL?
             let set: String?
@@ -789,19 +791,23 @@ actor DraftmancerSetCache {
                   if let back = quick.back, mtgCard.cardFaces?.count == 2 {
                     let newFronts = mtgCard.cardFaces?[0].imageUris?.mapValues { _ in quick.front }
                     mtgCard.cardFaces?[0].imageUris = newFronts
+                    mtgCard.cardFaces?[0].flavorText = quick.flavorText ?? nil
+                    mtgCard.cardFaces?[0].flavorName = quick.flavorName ?? nil
                     
                     let newBacks = mtgCard.cardFaces?[1].imageUris?.mapValues { _ in back }
                     mtgCard.cardFaces?[1].imageUris = newBacks
                     
-                    mtgCard.cardFaces?[1].flavorName = quick.flavorNameBack
+                    mtgCard.cardFaces?[1].flavorName = quick.flavorNameBack ?? nil
+                    mtgCard.cardFaces?[1].flavorText = quick.flavorTextBack ?? nil
                   } else {
                     mtgCard.imageUris = mtgCard.imageUris?.mapValues { _ in quick.front }
                   }
                   
                   var draftmancerCard = await DraftmancerCard(mtgCard: mtgCard)
                   draftmancerCard.collectorNumber = quick.collectorNumber
-                  draftmancerCard.flavorName = quick.flavorName
-                  draftmancerCard.back?.flavorName = quick.flavorNameBack
+                  draftmancerCard.flavorName = quick.flavorName ?? nil
+                  draftmancerCard.flavorText = quick.flavorText ?? nil
+                  draftmancerCard.back?.flavorName = quick.flavorNameBack ?? nil
                   draftmancerCard.set = quick.set
                   draftmancerCard.artist = nil
                   

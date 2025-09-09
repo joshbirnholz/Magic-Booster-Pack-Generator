@@ -1,17 +1,1482 @@
 [CustomCards]
 [
   {
+    "name": "Ominous Asylum",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "182",
+    "rarity": "common"
+  },
+  {
+    "name": "Oscorp Industries",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Exclusive Nightclub",
+    "set": "om1",
+    "collector_number": "179",
+    "rarity": "rare"
+  },
+  {
+    "name": "Savage Mansion",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "183",
+    "rarity": "common"
+  },
+  {
+    "name": "Sinister Hideout",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "184",
+    "rarity": "common"
+  },
+  {
+    "name": "Suburban Sanctuary",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "185",
+    "rarity": "common"
+  },
+  {
+    "name": "University Campus",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "186",
+    "rarity": "common"
+  },
+  {
+    "name": "Urban Retreat",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "187",
+    "rarity": "rare"
+  },
+  {
+    "name": "Vibrant Cityscape",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "188",
+    "rarity": "common"
+  },
+  {
+    "name": "Anti-Venom, Horrifying Healer",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Verilax the Havenskin",
+    "set": "om1",
+    "collector_number": "22",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Arachne, Psionic Weaver",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Yera and Oski, Weaver and Guide",
+    "set": "om1",
+    "collector_number": "23",
+    "rarity": "rare"
+  },
+  {
+    "name": "Aunt May",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Zora, Spider Fancier",
+    "set": "om1",
+    "collector_number": "24",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "City Pigeon",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "5",
+    "rarity": "common"
+  },
+  {
+    "name": "Costume Closet",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "7",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Daily Bugle Reporters",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Principled Referee",
+    "set": "om1",
+    "collector_number": "16",
+    "rarity": "common"
+  },
+  {
+    "name": "Flash Thompson, Spider-Fan",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Basil, Cabaretti Loudmouth",
+    "set": "om1",
+    "collector_number": "3",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Friendly Neighborhood",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Remarkable Readings",
+    "set": "om1",
+    "collector_number": "17",
+    "rarity": "rare"
+  },
+  {
+    "name": "Origin of Spider-Man",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "A Most Helpful Weaver",
+    "set": "om1",
+    "collector_number": "14",
+    "rarity": "rare"
+  },
+  {
+    "name": "Rent Is Due",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Confessor's Bindings",
+    "set": "om1",
+    "collector_number": "6",
+    "rarity": "rare"
+  },
+  {
+    "name": "Selfless Police Captain",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Crime-Scene Instructor",
+    "set": "om1",
+    "collector_number": "8",
+    "rarity": "common"
+  },
+  {
+    "name": "Silver Sable, Mercenary Leader",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Generous Betty Wray",
+    "set": "om1",
+    "collector_number": "12",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Spectacular Spider-Man",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Ademi of the Silkchutes",
+    "set": "om1",
+    "collector_number": "1",
+    "rarity": "rare"
+  },
+  {
+    "name": "Spectacular Tactics",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "19",
+    "rarity": "common"
+  },
+  {
+    "name": "Spider-Man, Web-Slinger",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Darval, Whose Web Protects",
+    "set": "om1",
+    "collector_number": "9",
+    "rarity": "common"
+  },
+  {
+    "name": "Spider-UK",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Sarn of the Silken Throne",
+    "set": "om1",
+    "collector_number": "18",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Starling, Aerial Ally",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Eztli of the Thousand Moons",
+    "set": "om1",
+    "collector_number": "10",
+    "rarity": "common"
+  },
+  {
+    "name": "Sudden Strike",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "20",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Thwip!",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Lively Leap",
+    "set": "om1",
+    "collector_number": "13",
+    "rarity": "common"
+  },
+  {
+    "name": "Web Up",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Mothwing Shroud",
+    "set": "om1",
+    "collector_number": "15",
+    "rarity": "common"
+  },
+  {
+    "name": "Web-Shooters",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Archangler's Skyrod",
+    "set": "om1",
+    "collector_number": "2",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Wild Pack Squad",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Freestrider Aces",
+    "set": "om1",
+    "collector_number": "11",
+    "rarity": "common"
+  },
+  {
+    "name": "With Great Power...",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Chosen by Valgavoth",
+    "set": "om1",
+    "collector_number": "4",
+    "rarity": "rare"
+  },
+  {
+    "name": "Amazing Acrobatics",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Drix Interception",
+    "set": "om1",
+    "collector_number": "29",
+    "rarity": "common"
+  },
+  {
+    "name": "Beetle, Legacy Criminal",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Arala, Hedron Scaler",
+    "set": "om1",
+    "collector_number": "25",
+    "rarity": "common"
+  },
+  {
+    "name": "Chameleon, Master of Disguise",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Vazin, Two-Faced Trickster",
+    "set": "om1",
+    "collector_number": "46",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "The Clone Saga",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Lost in Littjara",
+    "set": "om1",
+    "collector_number": "33",
+    "rarity": "rare"
+  },
+  {
+    "name": "Doc Ock, Sinister Scientist",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Ozor, Chronicler of Collapse",
+    "set": "om1",
+    "collector_number": "38",
+    "rarity": "common"
+  },
+  {
+    "name": "Doc Ock's Henchmen",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Obscura Alleylurkers",
+    "set": "om1",
+    "collector_number": "35",
+    "rarity": "common"
+  },
+  {
+    "name": "Flying Octobot",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Vexed Bots",
+    "set": "om1",
+    "collector_number": "47",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Hide on the Ceiling",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Spectral Restitching",
+    "set": "om1",
+    "collector_number": "44",
+    "rarity": "rare"
+  },
+  {
+    "name": "Hydro-Man, Fluid Felon",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Belion, the Parched",
+    "set": "om1",
+    "collector_number": "27",
+    "rarity": "rare"
+  },
+  {
+    "name": "Impostor Syndrome",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "32",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Lady Octopus, Inspired Inventor",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Merata, Neuron Hacker",
+    "set": "om1",
+    "collector_number": "34",
+    "rarity": "rare"
+  },
+  {
+    "name": "Madame Web, Clairvoyant",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Olx, Mouth to Many Eyes",
+    "set": "om1",
+    "collector_number": "36",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Mysterio, Master of Illusion",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "The Watcher on the Road",
+    "set": "om1",
+    "collector_number": "48",
+    "rarity": "rare"
+  },
+  {
+    "name": "Mysterio's Phantasm",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Phantasmal Vision",
+    "set": "om1",
+    "collector_number": "39",
+    "rarity": "common"
+  },
+  {
+    "name": "Oscorp Research Team",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Pinnacle Research Team",
+    "set": "om1",
+    "collector_number": "40",
+    "rarity": "common"
+  },
+  {
+    "name": "Robotics Mastery",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "41",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "School Daze",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Outsmart the Amateur",
+    "set": "om1",
+    "collector_number": "37",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Secret Identity",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "42",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Spider-Byte, Web Warden",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Argyr, Tidal Spinner",
+    "set": "om1",
+    "collector_number": "26",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Spider-Man No More",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Hide in Mundanity",
+    "set": "om1",
+    "collector_number": "31",
+    "rarity": "common"
+  },
+  {
+    "name": "Spider-Sense",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Detect Intrusion",
+    "set": "om1",
+    "collector_number": "28",
+    "rarity": "rare"
+  },
+  {
+    "name": "Unstable Experiment",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "45",
+    "rarity": "common"
+  },
+  {
+    "name": "Whoosh!",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Snatch Back",
+    "set": "om1",
+    "collector_number": "43",
+    "rarity": "common"
+  },
+  {
+    "name": "Agent Venom",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Rhilex the Accursed",
+    "set": "om1",
+    "collector_number": "66",
+    "rarity": "rare"
+  },
+  {
+    "name": "Alien Symbiosis",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Aggressive Symbiosis",
+    "set": "om1",
+    "collector_number": "49",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Behold the Sinister Six!",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Hex of Undeath",
+    "set": "om1",
+    "collector_number": "57",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Black Cat, Cunning Thief",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Wrench, Speedway Saboteur",
+    "set": "om1",
+    "collector_number": "74",
+    "rarity": "rare"
+  },
+  {
+    "name": "Common Crook",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "53",
+    "rarity": "common"
+  },
+  {
+    "name": "The Death of Gwen Stacy",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "The House Grows Hungry",
+    "set": "om1",
+    "collector_number": "58",
+    "rarity": "rare"
+  },
+  {
+    "name": "Gwenom, Remorseless",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Egrix the Bile Bulwark",
+    "set": "om1",
+    "collector_number": "56",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Inner Demons Gangsters",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Caldaia Brawlers",
+    "set": "om1",
+    "collector_number": "51",
+    "rarity": "common"
+  },
+  {
+    "name": "Merciless Enforcers",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "61",
+    "rarity": "common"
+  },
+  {
+    "name": "Morlun, Devourer of Spiders",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Luis, Pompous Pillager",
+    "set": "om1",
+    "collector_number": "60",
+    "rarity": "rare"
+  },
+  {
+    "name": "Parker Luck",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Duskmourn's Claim",
+    "set": "om1",
+    "collector_number": "55",
+    "rarity": "rare"
+  },
+  {
+    "name": "Prison Break",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "64",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Risky Research",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Clandestine Work",
+    "set": "om1",
+    "collector_number": "52",
+    "rarity": "common"
+  },
+  {
+    "name": "Sandman's Quicksand",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Miasmic Mist",
+    "set": "om1",
+    "collector_number": "62",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Scorpion, Seething Striker",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Scorvus Ames, Crimelord",
+    "set": "om1",
+    "collector_number": "68",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Scorpion's Sting",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "68",
+    "rarity": "common"
+  },
+  {
     "name": "The Soul Stone",
     "front": "https://i.imgur.com/yI6PQhH.jpeg",
     "flavor_name": "The Terminus of Return",
-    "set": "OM1",
-    "collector_number": "66"
+    "set": "om1",
+    "collector_number": "69",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Spider-Man Noir",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Kroble, Envoy of the Bog",
+    "set": "om1",
+    "collector_number": "59",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "The Spot's Portal",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Remorseless Coup",
+    "set": "om1",
+    "collector_number": "65",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Swarm, Being of Bees",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Wekhdu, Midnight Hunter",
+    "set": "om1",
+    "collector_number": "73",
+    "rarity": "common"
+  },
+  {
+    "name": "Tombstone, Career Criminal",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Nill, Vessel of Valgavoth",
+    "set": "om1",
+    "collector_number": "63",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Venom, Evil Unleashed",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Tethex, Gift of Malice",
+    "set": "om1",
+    "collector_number": "70",
+    "rarity": "common"
+  },
+  {
+    "name": "Venomized Cat",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Bane-Marked Leonin",
+    "set": "om1",
+    "collector_number": "50",
+    "rarity": "common"
+  },
+  {
+    "name": "Venom's Hunger",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Damning Caress",
+    "set": "om1",
+    "collector_number": "54",
+    "rarity": "common"
+  },
+  {
+    "name": "Villainous Wrath",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "72",
+    "rarity": "rare"
+  },
+  {
+    "name": "Angry Rabble",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Galvanized Workforce",
+    "set": "om1",
+    "collector_number": "81",
+    "rarity": "common"
+  },
+  {
+    "name": "Electro, Assaulting Battery",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Bayo, Irritable Instructor",
+    "set": "om1",
+    "collector_number": "76",
+    "rarity": "rare"
+  },
+  {
+    "name": "Electro's Bolt",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Deathflame Burst",
+    "set": "om1",
+    "collector_number": "78",
+    "rarity": "common"
+  },
+  {
+    "name": "Heroes' Hangout",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Fire-Brained Scheme",
+    "set": "om1",
+    "collector_number": "79",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Hobgoblin, Mantled Marauder",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Cam and Farrik, Havoc Duo",
+    "set": "om1",
+    "collector_number": "77",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "J. Jonah Jameson",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Lazlo, Enthusiastic Accuser",
+    "set": "om1",
+    "collector_number": "88",
+    "rarity": "rare"
+  },
+  {
+    "name": "Masked Meower",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Skittering Kitten",
+    "set": "om1",
+    "collector_number": "96",
+    "rarity": "common"
+  },
+  {
+    "name": "Maximum Carnage",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Lavabrink Repels the Magmaloth",
+    "set": "om1",
+    "collector_number": "87",
+    "rarity": "rare"
+  },
+  {
+    "name": "Molten Man, Inferno Incarnate",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "The Infernus",
+    "set": "om1",
+    "collector_number": "82",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Raging Goblinoids",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Lavaborn Goblins",
+    "set": "om1",
+    "collector_number": "86",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Romantic Rendezvous",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "93",
+    "rarity": "common"
+  },
+  {
+    "name": "Shadow of the Goblin",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Quint's Insight",
+    "set": "om1",
+    "collector_number": "90",
+    "rarity": "rare"
+  },
+  {
+    "name": "Shock",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "95",
+    "rarity": "common"
+  },
+  {
+    "name": "Shocker, Unshakable",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Kazuo, Ruthless Rival",
+    "set": "om1",
+    "collector_number": "83",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Spider-Gwen, Free Spirit",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Wardens of Silverweb Summit",
+    "set": "om1",
+    "collector_number": "97",
+    "rarity": "common"
+  },
+  {
+    "name": "Spider-Islanders",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Sadistic String-Puller",
+    "set": "om1",
+    "collector_number": "94",
+    "rarity": "common"
   },
   {
     "name": "Spider-Punk",
     "front": "https://i.imgur.com/myYpPyi.jpeg",
     "flavor_name": "Kraza, the Swarm as One",
-    "set": "OM1",
-    "collector_number": "92"
+    "set": "om1",
+    "collector_number": "85",
+    "rarity": "rare"
+  },
+  {
+    "name": "Spider-Verse",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Arachnomania",
+    "set": "om1",
+    "collector_number": "75",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Spinneret and Spiderling",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Rizna, the Spider-Crowned",
+    "set": "om1",
+    "collector_number": "92",
+    "rarity": "rare"
+  },
+  {
+    "name": "Stegron the Dinosaur Man",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Kephon, Rage Incubator",
+    "set": "om1",
+    "collector_number": "84",
+    "rarity": "common"
+  },
+  {
+    "name": "Superior Foes of Spider-Man",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Restless Razorkin",
+    "set": "om1",
+    "collector_number": "91",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Taxi Driver",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Full-Throttle Fanatic",
+    "set": "om1",
+    "collector_number": "80",
+    "rarity": "common"
+  },
+  {
+    "name": "Wisecrack",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "98",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Damage Control Crew",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Selesnya Archivist",
+    "set": "om1",
+    "collector_number": "115",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Ezekiel Sims, Spider-Totem",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Orris, Last of the Web Lords",
+    "set": "om1",
+    "collector_number": "110",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Grow Extra Arms",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "107",
+    "rarity": "common"
+  },
+  {
+    "name": "Guy in the Chair",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Eccentric Arachnologist",
+    "set": "om1",
+    "collector_number": "104",
+    "rarity": "common"
+  },
+  {
+    "name": "Kapow!",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Perilous Lunge",
+    "set": "om1",
+    "collector_number": "111",
+    "rarity": "common"
+  },
+  {
+    "name": "Kraven's Cats",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Cruel Caracals",
+    "set": "om1",
+    "collector_number": "103",
+    "rarity": "common"
+  },
+  {
+    "name": "Kraven's Last Hunt",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "A Trail of Teacups",
+    "set": "om1",
+    "collector_number": "121",
+    "rarity": "rare"
+  },
+  {
+    "name": "Lizard, Connors's Curse",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "King of the Coldblood Curse",
+    "set": "om1",
+    "collector_number": "108",
+    "rarity": "rare"
+  },
+  {
+    "name": "Lurking Lizards",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "109",
+    "rarity": "common"
+  },
+  {
+    "name": "Pictures of Spider-Man",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Ancestral Carvings",
+    "set": "om1",
+    "collector_number": "99",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Professional Wrestler",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Favored Fighter",
+    "set": "om1",
+    "collector_number": "106",
+    "rarity": "common"
+  },
+  {
+    "name": "Radioactive Spider",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Fateweaver",
+    "set": "om1",
+    "collector_number": "105",
+    "rarity": "rare"
+  },
+  {
+    "name": "Sandman, Shifting Scoundrel",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "The Scouring Stormsoul",
+    "set": "om1",
+    "collector_number": "113",
+    "rarity": "rare"
+  },
+  {
+    "name": "Scout the City",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "114",
+    "rarity": "common"
+  },
+  {
+    "name": "Spider-Ham, Peter Porker",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Tarantusk, Unwisely Awoken",
+    "set": "om1",
+    "collector_number": "118",
+    "rarity": "rare"
+  },
+  {
+    "name": "Spider-Man, Brooklyn Visionary",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Zan, Tunnelweb Explorer",
+    "set": "om1",
+    "collector_number": "122",
+    "rarity": "common"
+  },
+  {
+    "name": "Spider-Rex, Daring Dino",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Chizak, Apex Arachnosaur",
+    "set": "om1",
+    "collector_number": "100",
+    "rarity": "common"
+  },
+  {
+    "name": "Spiders-Man, Heroic Horde",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "The Clutter Cluster",
+    "set": "om1",
+    "collector_number": "101  ",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Strength of Will",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "116",
+    "rarity": "rare"
+  },
+  {
+    "name": "Supportive Parents",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "117",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Terrific Team-Up",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "119",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Wall Crawl",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Rouse the Swarm",
+    "set": "om1",
+    "collector_number": "112",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Web of Life and Destiny",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Through the Omenpath",
+    "set": "om1",
+    "collector_number": "120",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Araña, Heart of the Spider",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Gloria, the Great Armorer",
+    "set": "om1",
+    "collector_number": "138",
+    "rarity": "rare"
+  },
+  {
+    "name": "Biorganic Carapace",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Angler's Shield",
+    "set": "om1",
+    "collector_number": "125",
+    "rarity": "rare"
+  },
+  {
+    "name": "Carnage, Crimson Chaos",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Desecrex, Gift of Servitude",
+    "set": "om1",
+    "collector_number": "133",
+    "rarity": "rare"
+  },
+  {
+    "name": "Cheering Crowd",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "129",
+    "rarity": "rare"
+  },
+  {
+    "name": "Cosmic Spider-Man",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Scions of the Ur-Spider",
+    "set": "om1",
+    "collector_number": "154",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Doctor Octopus, Master Planner",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Neach, Pinnacle Pariah",
+    "set": "om1",
+    "collector_number": "148",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Gallant Citizen",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "137",
+    "rarity": "common"
+  },
+  {
+    "name": "Green Goblin, Revenant",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Nu and Sumi, Career Criminals",
+    "set": "om1",
+    "collector_number": "149",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Jackal, Genius Geneticist",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Druneth, Reviver of the Hive",
+    "set": "om1",
+    "collector_number": "136",
+    "rarity": "rare"
+  },
+  {
+    "name": "Kraven, Proud Predator",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Dreadfang, Loathed by Fans",
+    "set": "om1",
+    "collector_number": "135",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Kraven the Hunter",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Brako, Heartless Hunter",
+    "set": "om1",
+    "collector_number": "127",
+    "rarity": "rare"
+  },
+  {
+    "name": "Mary Jane Watson",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Demera, Soul of a Spider",
+    "set": "om1",
+    "collector_number": "132",
+    "rarity": "rare"
+  },
+  {
+    "name": "Mister Negative",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Withar, Cocoon Keeper",
+    "set": "om1",
+    "collector_number": "158",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Mob Lookout",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "147",
+    "rarity": "common"
+  },
+  {
+    "name": "Morbius the Living Vampire",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Tearle, Entropic Hunger",
+    "set": "om1",
+    "collector_number": "156",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Prowler, Clawed Thief",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Carlo, Suave Schemer",
+    "set": "om1",
+    "collector_number": "128",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Pumpkin Bombardment",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Knife Trick",
+    "set": "om1",
+    "collector_number": "142",
+    "rarity": "common"
+  },
+  {
+    "name": "Rhino, Barreling Brute",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Xecau, Predation's Shadow",
+    "set": "om1",
+    "collector_number": "160",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Rhino's Rampage",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "151",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Scarlet Spider, Ben Reilly",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Borys, the Spider Rider",
+    "set": "om1",
+    "collector_number": "126",
+    "rarity": "rare"
+  },
+  {
+    "name": "Scarlet Spider, Kaine",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Kivni, Orb Weaver",
+    "set": "om1",
+    "collector_number": "141",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Shriek, Treblemaker",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Crash, Reckless Endrider",
+    "set": "om1",
+    "collector_number": "131",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Silk, Web Weaver",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Alenni, Brood Recruiter",
+    "set": "om1",
+    "collector_number": "123",
+    "rarity": "rare"
+  },
+  {
+    "name": "Skyward Spider",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Wonderweave Aerialist",
+    "set": "om1",
+    "collector_number": "159",
+    "rarity": "common"
+  },
+  {
+    "name": "SP//dr, Piloted by Peni",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Kumonosu, the Watchful",
+    "set": "om1",
+    "collector_number": "143",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Spider Manifestation",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Leyline Weaver",
+    "set": "om1",
+    "collector_number": "144",
+    "rarity": "common"
+  },
+  {
+    "name": "Spider-Girl, Legacy Hero",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Janai and Hoppy, Roofskippers",
+    "set": "om1",
+    "collector_number": "139",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Spider-Man 2099",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Uharis, the Stormspinner",
+    "set": "om1",
+    "collector_number": "157",
+    "rarity": "rare"
+  },
+  {
+    "name": "Spider-Man India",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Alessos and Pras, Acrobats",
+    "set": "om1",
+    "collector_number": "124",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Spider-Woman, Stunning Savior",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Makdee and Itla, Skysnarers",
+    "set": "om1",
+    "collector_number": "145",
+    "rarity": "rare"
+  },
+  {
+    "name": "The Spot, Living Portal",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Qoneus, Horizon Splicer",
+    "set": "om1",
+    "collector_number": "150",
+    "rarity": "rare"
+  },
+  {
+    "name": "Sun-Spider, Nimble Webber",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Cirina Bargainspinner",
+    "set": "om1",
+    "collector_number": "130",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Superior Spider-Man",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Kavaero, Mind-Bitten",
+    "set": "om1",
+    "collector_number": "140",
+    "rarity": "rare"
+  },
+  {
+    "name": "Symbiote Spider-Man",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Skv'x the Augmenter",
+    "set": "om1",
+    "collector_number": "155",
+    "rarity": "rare"
+  },
+  {
+    "name": "Ultimate Green Goblin",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Ruzic, Booed but Victorious",
+    "set": "om1",
+    "collector_number": "153",
+    "rarity": "rare"
+  },
+  {
+    "name": "Vulture, Scheming Scavenger",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Rishei, Getaway Accomplice",
+    "set": "om1",
+    "collector_number": "152",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Web-Warriors",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Diligent Webkeepers",
+    "set": "om1",
+    "collector_number": "134",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Wraith, Vicious Vigilante",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Margot, On the Case",
+    "set": "om1",
+    "collector_number": "146",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Bagel and Schmear",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Perfected Pastry",
+    "set": "om1",
+    "collector_number": "170",
+    "rarity": "common"
+  },
+  {
+    "name": "Doc Ock's Tentacles",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Giantcraft Helm",
+    "set": "om1",
+    "collector_number": "167",
+    "rarity": "rare"
+  },
+  {
+    "name": "Eerie Gravestone",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "164",
+    "rarity": "common"
+  },
+  {
+    "name": "Hot Dog Cart",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Treat Trolley",
+    "set": "om1",
+    "collector_number": "177",
+    "rarity": "common"
+  },
+  {
+    "name": "Interdimensional Web Watch",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Reality Fulcrum",
+    "set": "om1",
+    "collector_number": "172",
+    "rarity": "rare"
+  },
+  {
+    "name": "Iron Spider, Stark Upgrade",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Fizik, Etherium Mechanic",
+    "set": "om1",
+    "collector_number": "166",
+    "rarity": "rare"
+  },
+  {
+    "name": "Living Brain, Mechanical Marvel",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Error-9, Viral Node",
+    "set": "om1",
+    "collector_number": "165",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Mechanical Mobster",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Data Scrubber",
+    "set": "om1",
+    "collector_number": "163",
+    "rarity": "common"
+  },
+  {
+    "name": "News Helicopter",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Opulent Valet",
+    "set": "om1",
+    "collector_number": "169",
+    "rarity": "common"
+  },
+  {
+    "name": "Passenger Ferry",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Carriage of Dreams",
+    "set": "om1",
+    "collector_number": "162",
+    "rarity": "common"
+  },
+  {
+    "name": "Peter Parker's Camera",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Phenomena Recorder",
+    "set": "om1",
+    "collector_number": "171",
+    "rarity": "rare"
+  },
+  {
+    "name": "Rocket-Powered Goblin Glider",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Stitcher's Wings",
+    "set": "om1",
+    "collector_number": "175",
+    "rarity": "rare"
+  },
+  {
+    "name": "Spider-Bot",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Steelweb Surveyor",
+    "set": "om1",
+    "collector_number": "174",
+    "rarity": "common"
+  },
+  {
+    "name": "Spider-Mobile",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Scuttling Spidercoach",
+    "set": "om1",
+    "collector_number": "173",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Spider-Slayer, Hatred Honed",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Goro Rel, Scourge to Spiders",
+    "set": "om1",
+    "collector_number": "168",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Spider-Suit",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Cactarantula Saddle",
+    "set": "om1",
+    "collector_number": "161",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Steel Wrecking Ball",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Temple Trap",
+    "set": "om1",
+    "collector_number": "176",
+    "rarity": "common"
+  },
+  {
+    "name": "Subway Train",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Vinewoven Chariot",
+    "set": "om1",
+    "collector_number": "178",
+    "rarity": "common"
+  },
+  {
+    "name": "Daily Bugle Building",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Fearsome Ridgeline",
+    "set": "om1",
+    "collector_number": "180",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Multiversal Passage",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "set": "om1",
+    "collector_number": "181",
+    "rarity": "rare"
+  },
+  {
+    "name": "Peter Parker // Amazing Spider-Man",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "back": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Surris, Spidersilk Innovator",
+    "flavor_name_back": "Surris, Sil-Tech Vanguard",
+    "set": "om1",
+    "collector_number": "21",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Norman Osborn // Green Goblin",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "back": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Goben, Gene-Splice Savant",
+    "flavor_name_back": "Fleem, Goben's Creation'",
+    "set": "om1",
+    "collector_number": "30",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Eddie Brock // Venom, Lethal Protector",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "back": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Viggo, Enforcer of Ig's Crossing",
+    "flavor_name_back": "Viggo, End of Ig's Crossing",
+    "set": "om1",
+    "collector_number": "71",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Gwen Stacy // Ghost-Spider",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "back": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Nia, Skysail Storyteller",
+    "flavor_name_back": "Nia, Fabled Skyclimber",
+    "set": "om1",
+    "collector_number": "89",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Miles Morales // Ultimate Spider-Man",
+    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "back": "https://i.imgur.com/cIMXHR8.jpeg",
+    "flavor_name": "Cren, Undercity Dreamer",
+    "flavor_name_back": "Cren of the Spider Brood",
+    "set": "om1",
+    "collector_number": "102",
+    "rarity": "mythic"
   }
 ]

@@ -29,7 +29,6 @@ public func routes(_ app: Application) throws {
   app.get("landpacks", use: generatorController.landPacks)
 
 	app.post(":set", use: generatorController.boosterPack)
-  app.get(":set", use: generatorController.boosterPack)
 	app.post("booster", ":set", use: generatorController.boosterPack)
   app.get("booster", ":set", use: generatorController.boosterPack)
 	app.post("boosterpack", ":set", use: generatorController.boosterPack)

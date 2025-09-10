@@ -543,7 +543,7 @@
   },
   {
     "name": "The Soul Stone",
-    "front": "https://i.imgur.com/yI6PQhH.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/The Terminus of Return.jpeg",
     "flavor_name": "The Terminus of Return",
     "set": "om1",
     "collector_number": "69",
@@ -740,7 +740,7 @@
   },
   {
     "name": "Spider-Punk",
-    "front": "https://i.imgur.com/myYpPyi.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Kraza, the Swarm as One.jpeg",
     "flavor_name": "Kraza, the Swarm as One",
     "set": "om1",
     "collector_number": "85",

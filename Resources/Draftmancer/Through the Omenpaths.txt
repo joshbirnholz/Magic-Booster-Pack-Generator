@@ -2,64 +2,64 @@
 [
   {
     "name": "Ominous Asylum",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Ominous Asylum.jpeg",
     "set": "om1",
     "collector_number": "182",
     "rarity": "common"
   },
   {
     "name": "Oscorp Industries",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Oscorp Industries.jpeg",
     "flavor_name": "Exclusive Nightclub",
     "set": "om1",
-    "collector_number": "179",
+    "collector_number": "179",  
     "rarity": "rare"
   },
   {
     "name": "Savage Mansion",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Savage Mansion.jpeg",
     "set": "om1",
     "collector_number": "183",
     "rarity": "common"
   },
   {
     "name": "Sinister Hideout",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Sinister Hideout.jpeg",
     "set": "om1",
     "collector_number": "184",
     "rarity": "common"
   },
   {
     "name": "Suburban Sanctuary",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Suburban Sanctuary.jpeg",
     "set": "om1",
     "collector_number": "185",
     "rarity": "common"
   },
   {
     "name": "University Campus",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/University Campus.jpeg",
     "set": "om1",
     "collector_number": "186",
     "rarity": "common"
   },
   {
     "name": "Urban Retreat",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Urban Retreat.jpeg",
     "set": "om1",
     "collector_number": "187",
     "rarity": "rare"
   },
   {
     "name": "Vibrant Cityscape",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Vibrant Cityscape.jpeg",
     "set": "om1",
     "collector_number": "188",
     "rarity": "common"
   },
   {
     "name": "Anti-Venom, Horrifying Healer",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Verilax the Havenskin.jpeg",
     "flavor_name": "Verilax the Havenskin",
     "set": "om1",
     "collector_number": "22",
@@ -67,7 +67,7 @@
   },
   {
     "name": "Arachne, Psionic Weaver",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Yera and Oski, Weaver and Guide.jpeg",
     "flavor_name": "Yera and Oski, Weaver and Guide",
     "set": "om1",
     "collector_number": "23",
@@ -75,7 +75,7 @@
   },
   {
     "name": "Aunt May",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Zora, Spider Fancier.jpeg",
     "flavor_name": "Zora, Spider Fancier",
     "set": "om1",
     "collector_number": "24",
@@ -83,21 +83,21 @@
   },
   {
     "name": "City Pigeon",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/City Pigeon.jpeg",
     "set": "om1",
     "collector_number": "5",
     "rarity": "common"
   },
   {
     "name": "Costume Closet",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Costume Closet.jpeg",
     "set": "om1",
     "collector_number": "7",
     "rarity": "uncommon"
   },
   {
     "name": "Daily Bugle Reporters",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Principled Referee.jpeg",
     "flavor_name": "Principled Referee",
     "set": "om1",
     "collector_number": "16",
@@ -105,7 +105,7 @@
   },
   {
     "name": "Flash Thompson, Spider-Fan",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Basil, Cabaretti Loudmouth.jpeg",
     "flavor_name": "Basil, Cabaretti Loudmouth",
     "set": "om1",
     "collector_number": "3",
@@ -113,7 +113,7 @@
   },
   {
     "name": "Friendly Neighborhood",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Remarkable Readings.jpeg",
     "flavor_name": "Remarkable Readings",
     "set": "om1",
     "collector_number": "17",
@@ -121,7 +121,7 @@
   },
   {
     "name": "Origin of Spider-Man",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/A Most Helpful Weaver.jpeg",
     "flavor_name": "A Most Helpful Weaver",
     "set": "om1",
     "collector_number": "14",
@@ -129,15 +129,15 @@
   },
   {
     "name": "Rent Is Due",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
-    "flavor_name": "Confessor's Bindings",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Confessor’s Bindings.jpeg",
+    "flavor_name": "Confessor’s Bindings",
     "set": "om1",
     "collector_number": "6",
     "rarity": "rare"
   },
   {
     "name": "Selfless Police Captain",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Crime-Scene Instructor.jpeg",
     "flavor_name": "Crime-Scene Instructor",
     "set": "om1",
     "collector_number": "8",
@@ -145,7 +145,7 @@
   },
   {
     "name": "Silver Sable, Mercenary Leader",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Generous Betty Wray.jpeg",
     "flavor_name": "Generous Betty Wray",
     "set": "om1",
     "collector_number": "12",
@@ -153,7 +153,7 @@
   },
   {
     "name": "Spectacular Spider-Man",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Ademi of the Silkchutes.jpeg",
     "flavor_name": "Ademi of the Silkchutes",
     "set": "om1",
     "collector_number": "1",
@@ -161,14 +161,14 @@
   },
   {
     "name": "Spectacular Tactics",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Spectacular Tactics.jpeg",
     "set": "om1",
     "collector_number": "19",
     "rarity": "common"
   },
   {
     "name": "Spider-Man, Web-Slinger",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Darval, Whose Web Protects.jpeg",
     "flavor_name": "Darval, Whose Web Protects",
     "set": "om1",
     "collector_number": "9",
@@ -176,7 +176,7 @@
   },
   {
     "name": "Spider-UK",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Sarn of the Silken Throne.jpeg",
     "flavor_name": "Sarn of the Silken Throne",
     "set": "om1",
     "collector_number": "18",
@@ -184,7 +184,7 @@
   },
   {
     "name": "Starling, Aerial Ally",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Eztli of the Thousand Moons.jpeg",
     "flavor_name": "Eztli of the Thousand Moons",
     "set": "om1",
     "collector_number": "10",
@@ -192,14 +192,14 @@
   },
   {
     "name": "Sudden Strike",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Sudden Strike.jpeg",
     "set": "om1",
     "collector_number": "20",
     "rarity": "uncommon"
   },
   {
     "name": "Thwip!",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Lively Leap.jpeg",
     "flavor_name": "Lively Leap",
     "set": "om1",
     "collector_number": "13",
@@ -207,7 +207,7 @@
   },
   {
     "name": "Web Up",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Mothwing Shroud.jpeg",
     "flavor_name": "Mothwing Shroud",
     "set": "om1",
     "collector_number": "15",
@@ -215,15 +215,15 @@
   },
   {
     "name": "Web-Shooters",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
-    "flavor_name": "Archangler's Skyrod",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Archangler’s Skyrod.jpeg",
+    "flavor_name": "Archangler’s Skyrod",
     "set": "om1",
     "collector_number": "2",
     "rarity": "uncommon"
   },
   {
     "name": "Wild Pack Squad",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Freestrider Aces.jpeg",
     "flavor_name": "Freestrider Aces",
     "set": "om1",
     "collector_number": "11",
@@ -231,7 +231,7 @@
   },
   {
     "name": "With Great Power...",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Chosen by Valgavoth.jpeg",
     "flavor_name": "Chosen by Valgavoth",
     "set": "om1",
     "collector_number": "4",
@@ -239,7 +239,7 @@
   },
   {
     "name": "Amazing Acrobatics",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Drix Interception.jpeg",
     "flavor_name": "Drix Interception",
     "set": "om1",
     "collector_number": "29",
@@ -247,7 +247,7 @@
   },
   {
     "name": "Beetle, Legacy Criminal",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Arala, Hedron Scaler.jpeg",
     "flavor_name": "Arala, Hedron Scaler",
     "set": "om1",
     "collector_number": "25",
@@ -255,7 +255,7 @@
   },
   {
     "name": "Chameleon, Master of Disguise",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Vazin, Two-Faced Trickster.jpeg",
     "flavor_name": "Vazin, Two-Faced Trickster",
     "set": "om1",
     "collector_number": "46",
@@ -263,7 +263,7 @@
   },
   {
     "name": "The Clone Saga",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Lost in Littjara.jpeg",
     "flavor_name": "Lost in Littjara",
     "set": "om1",
     "collector_number": "33",
@@ -271,15 +271,15 @@
   },
   {
     "name": "Doc Ock, Sinister Scientist",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Ozor, Chronicler of Collapse.jpeg",
     "flavor_name": "Ozor, Chronicler of Collapse",
     "set": "om1",
     "collector_number": "38",
     "rarity": "common"
   },
   {
-    "name": "Doc Ock's Henchmen",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "name": "Doc Ock’s Henchmen",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Obscura Alleylurkers.jpeg",
     "flavor_name": "Obscura Alleylurkers",
     "set": "om1",
     "collector_number": "35",
@@ -287,7 +287,7 @@
   },
   {
     "name": "Flying Octobot",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Vexed Bots.jpeg",
     "flavor_name": "Vexed Bots",
     "set": "om1",
     "collector_number": "47",
@@ -295,7 +295,7 @@
   },
   {
     "name": "Hide on the Ceiling",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Spectral Restitching.jpeg",
     "flavor_name": "Spectral Restitching",
     "set": "om1",
     "collector_number": "44",
@@ -303,7 +303,7 @@
   },
   {
     "name": "Hydro-Man, Fluid Felon",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Belion, the Parched.jpeg",
     "flavor_name": "Belion, the Parched",
     "set": "om1",
     "collector_number": "27",
@@ -311,14 +311,14 @@
   },
   {
     "name": "Impostor Syndrome",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Impostor Syndrome.jpeg",
     "set": "om1",
     "collector_number": "32",
     "rarity": "mythic"
   },
   {
     "name": "Lady Octopus, Inspired Inventor",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Merata, Neuron Hacker.jpeg",
     "flavor_name": "Merata, Neuron Hacker",
     "set": "om1",
     "collector_number": "34",
@@ -326,7 +326,7 @@
   },
   {
     "name": "Madame Web, Clairvoyant",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Olx, Mouth to Many Eyes.jpeg",
     "flavor_name": "Olx, Mouth to Many Eyes",
     "set": "om1",
     "collector_number": "36",
@@ -334,15 +334,15 @@
   },
   {
     "name": "Mysterio, Master of Illusion",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/The Watcher on the Road.jpeg",
     "flavor_name": "The Watcher on the Road",
     "set": "om1",
     "collector_number": "48",
     "rarity": "rare"
   },
   {
-    "name": "Mysterio's Phantasm",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "name": "Mysterio’s Phantasm",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Phantasmal Vision.jpeg",
     "flavor_name": "Phantasmal Vision",
     "set": "om1",
     "collector_number": "39",
@@ -350,7 +350,7 @@
   },
   {
     "name": "Oscorp Research Team",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Pinnacle Research Team.jpeg",
     "flavor_name": "Pinnacle Research Team",
     "set": "om1",
     "collector_number": "40",
@@ -358,14 +358,14 @@
   },
   {
     "name": "Robotics Mastery",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Robotics Mastery.jpeg",
     "set": "om1",
     "collector_number": "41",
     "rarity": "uncommon"
   },
   {
     "name": "School Daze",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Outsmart the Amateur.jpeg",
     "flavor_name": "Outsmart the Amateur",
     "set": "om1",
     "collector_number": "37",
@@ -373,14 +373,14 @@
   },
   {
     "name": "Secret Identity",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Secret Identity.jpeg",
     "set": "om1",
     "collector_number": "42",
     "rarity": "uncommon"
   },
   {
     "name": "Spider-Byte, Web Warden",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Argyr, Tidal Spinner.jpeg",
     "flavor_name": "Argyr, Tidal Spinner",
     "set": "om1",
     "collector_number": "26",
@@ -388,7 +388,7 @@
   },
   {
     "name": "Spider-Man No More",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Hide in Mundanity.jpeg",
     "flavor_name": "Hide in Mundanity",
     "set": "om1",
     "collector_number": "31",
@@ -396,7 +396,7 @@
   },
   {
     "name": "Spider-Sense",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Detect Intrusion.jpeg",
     "flavor_name": "Detect Intrusion",
     "set": "om1",
     "collector_number": "28",
@@ -404,14 +404,14 @@
   },
   {
     "name": "Unstable Experiment",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Unstable Experiment.jpeg",
     "set": "om1",
     "collector_number": "45",
     "rarity": "common"
   },
   {
     "name": "Whoosh!",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Snatch Back.jpeg",
     "flavor_name": "Snatch Back",
     "set": "om1",
     "collector_number": "43",
@@ -419,7 +419,7 @@
   },
   {
     "name": "Agent Venom",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Rhilex the Accursed.jpeg",
     "flavor_name": "Rhilex the Accursed",
     "set": "om1",
     "collector_number": "66",
@@ -427,7 +427,7 @@
   },
   {
     "name": "Alien Symbiosis",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Aggressive Symbiosis.jpeg",
     "flavor_name": "Aggressive Symbiosis",
     "set": "om1",
     "collector_number": "49",
@@ -435,7 +435,7 @@
   },
   {
     "name": "Behold the Sinister Six!",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Hex of Undeath.jpeg",
     "flavor_name": "Hex of Undeath",
     "set": "om1",
     "collector_number": "57",
@@ -443,7 +443,7 @@
   },
   {
     "name": "Black Cat, Cunning Thief",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Wrench, Speedway Saboteur.jpeg",
     "flavor_name": "Wrench, Speedway Saboteur",
     "set": "om1",
     "collector_number": "74",
@@ -451,14 +451,14 @@
   },
   {
     "name": "Common Crook",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Common Crook.jpeg",
     "set": "om1",
     "collector_number": "53",
     "rarity": "common"
   },
   {
     "name": "The Death of Gwen Stacy",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/The House Grows Hungry.jpeg",
     "flavor_name": "The House Grows Hungry",
     "set": "om1",
     "collector_number": "58",
@@ -466,7 +466,7 @@
   },
   {
     "name": "Gwenom, Remorseless",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Egrix the Bile Bulwark.jpeg",
     "flavor_name": "Egrix the Bile Bulwark",
     "set": "om1",
     "collector_number": "56",
@@ -474,7 +474,7 @@
   },
   {
     "name": "Inner Demons Gangsters",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Caldaia Brawlers.jpeg",
     "flavor_name": "Caldaia Brawlers",
     "set": "om1",
     "collector_number": "51",
@@ -482,14 +482,14 @@
   },
   {
     "name": "Merciless Enforcers",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Merciless Enforcers.jpeg",
     "set": "om1",
     "collector_number": "61",
     "rarity": "common"
   },
   {
     "name": "Morlun, Devourer of Spiders",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Luis, Pompous Pillager.jpeg",
     "flavor_name": "Luis, Pompous Pillager",
     "set": "om1",
     "collector_number": "60",
@@ -497,30 +497,30 @@
   },
   {
     "name": "Parker Luck",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
-    "flavor_name": "Duskmourn's Claim",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Duskmourn’s Claim.jpeg",
+    "flavor_name": "Duskmourn’s Claim",
     "set": "om1",
     "collector_number": "55",
     "rarity": "rare"
   },
   {
     "name": "Prison Break",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Prison Break.jpeg",
     "set": "om1",
     "collector_number": "64",
     "rarity": "uncommon"
   },
   {
     "name": "Risky Research",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Clandestine Work.jpeg",
     "flavor_name": "Clandestine Work",
     "set": "om1",
     "collector_number": "52",
     "rarity": "common"
   },
   {
-    "name": "Sandman's Quicksand",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "name": "Sandman’s Quicksand",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Miasmic Mist.jpeg",
     "flavor_name": "Miasmic Mist",
     "set": "om1",
     "collector_number": "62",
@@ -528,15 +528,15 @@
   },
   {
     "name": "Scorpion, Seething Striker",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Scorvus Ames, Crimelord.jpeg",
     "flavor_name": "Scorvus Ames, Crimelord",
     "set": "om1",
     "collector_number": "68",
     "rarity": "uncommon"
   },
   {
-    "name": "Scorpion's Sting",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "name": "Scorpion’s Sting",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Scorpion’s Sting.jpeg",
     "set": "om1",
     "collector_number": "68",
     "rarity": "common"
@@ -551,15 +551,15 @@
   },
   {
     "name": "Spider-Man Noir",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Kroble, Envoy of the Bog.jpeg",
     "flavor_name": "Kroble, Envoy of the Bog",
     "set": "om1",
     "collector_number": "59",
     "rarity": "uncommon"
   },
   {
-    "name": "The Spot's Portal",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "name": "The Spot’s Portal",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Remorseless Coup.jpeg",
     "flavor_name": "Remorseless Coup",
     "set": "om1",
     "collector_number": "65",
@@ -567,7 +567,7 @@
   },
   {
     "name": "Swarm, Being of Bees",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Wekhdu, Midnight Hunter.jpeg",
     "flavor_name": "Wekhdu, Midnight Hunter",
     "set": "om1",
     "collector_number": "73",
@@ -575,7 +575,7 @@
   },
   {
     "name": "Tombstone, Career Criminal",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Nill, Vessel of Valgavoth.jpeg",
     "flavor_name": "Nill, Vessel of Valgavoth",
     "set": "om1",
     "collector_number": "63",
@@ -583,7 +583,7 @@
   },
   {
     "name": "Venom, Evil Unleashed",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Tethex, Gift of Malice.jpeg",
     "flavor_name": "Tethex, Gift of Malice",
     "set": "om1",
     "collector_number": "70",
@@ -591,15 +591,15 @@
   },
   {
     "name": "Venomized Cat",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Bane-Marked Leonin.jpeg",
     "flavor_name": "Bane-Marked Leonin",
     "set": "om1",
     "collector_number": "50",
     "rarity": "common"
   },
   {
-    "name": "Venom's Hunger",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "name": "Venom’s Hunger",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Damning Caress.jpeg",
     "flavor_name": "Damning Caress",
     "set": "om1",
     "collector_number": "54",
@@ -607,14 +607,14 @@
   },
   {
     "name": "Villainous Wrath",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Villainous Wrath.jpeg",
     "set": "om1",
     "collector_number": "72",
     "rarity": "rare"
   },
   {
     "name": "Angry Rabble",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Galvanized Workforce.jpeg",
     "flavor_name": "Galvanized Workforce",
     "set": "om1",
     "collector_number": "81",
@@ -622,15 +622,15 @@
   },
   {
     "name": "Electro, Assaulting Battery",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Bayo, Irritable Instructor.jpeg",
     "flavor_name": "Bayo, Irritable Instructor",
     "set": "om1",
     "collector_number": "76",
     "rarity": "rare"
   },
   {
-    "name": "Electro's Bolt",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "name": "Electro’s Bolt",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Deathflame Burst.jpeg",
     "flavor_name": "Deathflame Burst",
     "set": "om1",
     "collector_number": "78",
@@ -638,7 +638,7 @@
   },
   {
     "name": "Heroes' Hangout",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Fire-Brained Scheme.jpeg",
     "flavor_name": "Fire-Brained Scheme",
     "set": "om1",
     "collector_number": "79",
@@ -646,7 +646,7 @@
   },
   {
     "name": "Hobgoblin, Mantled Marauder",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Cam and Farrik, Havoc Duo.jpeg",
     "flavor_name": "Cam and Farrik, Havoc Duo",
     "set": "om1",
     "collector_number": "77",
@@ -654,7 +654,7 @@
   },
   {
     "name": "J. Jonah Jameson",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Lazlo, Enthusiastic Accuser.jpeg",
     "flavor_name": "Lazlo, Enthusiastic Accuser",
     "set": "om1",
     "collector_number": "88",
@@ -662,7 +662,7 @@
   },
   {
     "name": "Masked Meower",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Skittering Kitten.jpeg",
     "flavor_name": "Skittering Kitten",
     "set": "om1",
     "collector_number": "96",
@@ -670,7 +670,7 @@
   },
   {
     "name": "Maximum Carnage",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Lavabrink Repels the Magmaloth.jpeg",
     "flavor_name": "Lavabrink Repels the Magmaloth",
     "set": "om1",
     "collector_number": "87",
@@ -678,7 +678,7 @@
   },
   {
     "name": "Molten Man, Inferno Incarnate",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/The Infernus.jpeg",
     "flavor_name": "The Infernus",
     "set": "om1",
     "collector_number": "82",
@@ -686,7 +686,7 @@
   },
   {
     "name": "Raging Goblinoids",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Lavaborn Goblins.jpeg",
     "flavor_name": "Lavaborn Goblins",
     "set": "om1",
     "collector_number": "86",
@@ -694,29 +694,29 @@
   },
   {
     "name": "Romantic Rendezvous",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Romantic Rendezvous.jpeg",
     "set": "om1",
     "collector_number": "93",
     "rarity": "common"
   },
   {
     "name": "Shadow of the Goblin",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
-    "flavor_name": "Quint's Insight",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Shadow of the Goblin.jpeg",
+    "flavor_name": "Quint’s Insight",
     "set": "om1",
     "collector_number": "90",
     "rarity": "rare"
   },
   {
     "name": "Shock",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Shock.jpeg",
     "set": "om1",
     "collector_number": "95",
     "rarity": "common"
   },
   {
     "name": "Shocker, Unshakable",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Kazuo, Ruthless Rival.jpeg",
     "flavor_name": "Kazuo, Ruthless Rival",
     "set": "om1",
     "collector_number": "83",
@@ -724,7 +724,7 @@
   },
   {
     "name": "Spider-Gwen, Free Spirit",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Wardens of Silverweb Summit.jpeg",
     "flavor_name": "Wardens of Silverweb Summit",
     "set": "om1",
     "collector_number": "97",
@@ -732,7 +732,7 @@
   },
   {
     "name": "Spider-Islanders",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Sadistic String-Puller.jpeg",
     "flavor_name": "Sadistic String-Puller",
     "set": "om1",
     "collector_number": "94",
@@ -748,7 +748,7 @@
   },
   {
     "name": "Spider-Verse",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Arachnomania.jpeg",
     "flavor_name": "Arachnomania",
     "set": "om1",
     "collector_number": "75",
@@ -756,7 +756,7 @@
   },
   {
     "name": "Spinneret and Spiderling",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Rizna, the Spider-Crowned.jpeg",
     "flavor_name": "Rizna, the Spider-Crowned",
     "set": "om1",
     "collector_number": "92",
@@ -764,7 +764,7 @@
   },
   {
     "name": "Stegron the Dinosaur Man",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Kephon, Rage Incubator.jpeg",
     "flavor_name": "Kephon, Rage Incubator",
     "set": "om1",
     "collector_number": "84",
@@ -772,7 +772,7 @@
   },
   {
     "name": "Superior Foes of Spider-Man",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Restless Razorkin.jpeg",
     "flavor_name": "Restless Razorkin",
     "set": "om1",
     "collector_number": "91",
@@ -780,7 +780,7 @@
   },
   {
     "name": "Taxi Driver",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Full-Throttle Fanatic.jpeg",
     "flavor_name": "Full-Throttle Fanatic",
     "set": "om1",
     "collector_number": "80",
@@ -788,14 +788,14 @@
   },
   {
     "name": "Wisecrack",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Wisecrack.jpeg",
     "set": "om1",
     "collector_number": "98",
     "rarity": "uncommon"
   },
   {
     "name": "Damage Control Crew",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Selesnya Archivist.jpeg",
     "flavor_name": "Selesnya Archivist",
     "set": "om1",
     "collector_number": "115",
@@ -803,7 +803,7 @@
   },
   {
     "name": "Ezekiel Sims, Spider-Totem",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Orris, Last of the Web Lords.jpeg",
     "flavor_name": "Orris, Last of the Web Lords",
     "set": "om1",
     "collector_number": "110",
@@ -811,14 +811,14 @@
   },
   {
     "name": "Grow Extra Arms",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Grow Extra Arms.jpeg",
     "set": "om1",
     "collector_number": "107",
     "rarity": "common"
   },
   {
     "name": "Guy in the Chair",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Eccentric Arachnologist.jpeg",
     "flavor_name": "Eccentric Arachnologist",
     "set": "om1",
     "collector_number": "104",
@@ -826,31 +826,31 @@
   },
   {
     "name": "Kapow!",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Perilous Lunge.jpeg",
     "flavor_name": "Perilous Lunge",
     "set": "om1",
     "collector_number": "111",
     "rarity": "common"
   },
   {
-    "name": "Kraven's Cats",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "name": "Kraven’s Cats",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Cruel Caracals.jpeg",
     "flavor_name": "Cruel Caracals",
     "set": "om1",
     "collector_number": "103",
     "rarity": "common"
   },
   {
-    "name": "Kraven's Last Hunt",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "name": "Kraven’s Last Hunt",
+    "front": "http://josh.birnholz.com/tts/cards/om1/A Trail of Teacups.jpeg",
     "flavor_name": "A Trail of Teacups",
     "set": "om1",
     "collector_number": "121",
     "rarity": "rare"
   },
   {
-    "name": "Lizard, Connors's Curse",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "name": "Lizard, Connors’s Curse",
+    "front": "http://josh.birnholz.com/tts/cards/om1/King of the Coldblood Curse.jpeg",
     "flavor_name": "King of the Coldblood Curse",
     "set": "om1",
     "collector_number": "108",
@@ -858,14 +858,14 @@
   },
   {
     "name": "Lurking Lizards",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Lurking Lizards.jpeg",
     "set": "om1",
     "collector_number": "109",
     "rarity": "common"
   },
   {
     "name": "Pictures of Spider-Man",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Ancestral Carvings.jpeg",
     "flavor_name": "Ancestral Carvings",
     "set": "om1",
     "collector_number": "99",
@@ -873,7 +873,7 @@
   },
   {
     "name": "Professional Wrestler",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Favored Fighter.jpeg",
     "flavor_name": "Favored Fighter",
     "set": "om1",
     "collector_number": "106",
@@ -881,7 +881,7 @@
   },
   {
     "name": "Radioactive Spider",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Fateweaver.jpeg",
     "flavor_name": "Fateweaver",
     "set": "om1",
     "collector_number": "105",
@@ -889,7 +889,7 @@
   },
   {
     "name": "Sandman, Shifting Scoundrel",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/The Scouring Stormsoul.jpeg",
     "flavor_name": "The Scouring Stormsoul",
     "set": "om1",
     "collector_number": "113",
@@ -897,14 +897,14 @@
   },
   {
     "name": "Scout the City",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Scout the City.jpeg",
     "set": "om1",
     "collector_number": "114",
     "rarity": "common"
   },
   {
     "name": "Spider-Ham, Peter Porker",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Tarantusk, Unwisely Awoken.jpeg",
     "flavor_name": "Tarantusk, Unwisely Awoken",
     "set": "om1",
     "collector_number": "118",
@@ -912,7 +912,7 @@
   },
   {
     "name": "Spider-Man, Brooklyn Visionary",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Zan, Tunnelweb Explorer.jpeg",
     "flavor_name": "Zan, Tunnelweb Explorer",
     "set": "om1",
     "collector_number": "122",
@@ -920,7 +920,7 @@
   },
   {
     "name": "Spider-Rex, Daring Dino",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Chizak, Apex Arachnosaur.jpeg",
     "flavor_name": "Chizak, Apex Arachnosaur",
     "set": "om1",
     "collector_number": "100",
@@ -928,7 +928,7 @@
   },
   {
     "name": "Spiders-Man, Heroic Horde",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/The Clutter Cluster.jpeg",
     "flavor_name": "The Clutter Cluster",
     "set": "om1",
     "collector_number": "101  ",
@@ -936,28 +936,28 @@
   },
   {
     "name": "Strength of Will",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Strength of Will.jpeg",
     "set": "om1",
     "collector_number": "116",
     "rarity": "rare"
   },
   {
     "name": "Supportive Parents",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Supportive Parents.jpeg",
     "set": "om1",
     "collector_number": "117",
     "rarity": "uncommon"
   },
   {
     "name": "Terrific Team-Up",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Terrific Team-Up.jpeg",
     "set": "om1",
     "collector_number": "119",
     "rarity": "uncommon"
   },
   {
     "name": "Wall Crawl",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Rouse the Swarm.jpeg",
     "flavor_name": "Rouse the Swarm",
     "set": "om1",
     "collector_number": "112",
@@ -965,7 +965,7 @@
   },
   {
     "name": "Web of Life and Destiny",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Through the Omenpath.jpeg",
     "flavor_name": "Through the Omenpath",
     "set": "om1",
     "collector_number": "120",
@@ -973,7 +973,7 @@
   },
   {
     "name": "Araña, Heart of the Spider",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Gloria, the Great Armorer.jpeg",
     "flavor_name": "Gloria, the Great Armorer",
     "set": "om1",
     "collector_number": "138",
@@ -981,15 +981,15 @@
   },
   {
     "name": "Biorganic Carapace",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
-    "flavor_name": "Angler's Shield",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Angler’s Shield.jpeg",
+    "flavor_name": "Angler’s Shield",
     "set": "om1",
     "collector_number": "125",
     "rarity": "rare"
   },
   {
     "name": "Carnage, Crimson Chaos",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Desecrex, Gift of Servitude.jpeg",
     "flavor_name": "Desecrex, Gift of Servitude",
     "set": "om1",
     "collector_number": "133",
@@ -997,14 +997,14 @@
   },
   {
     "name": "Cheering Crowd",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Cheering Crowd.jpeg",
     "set": "om1",
     "collector_number": "129",
     "rarity": "rare"
   },
   {
     "name": "Cosmic Spider-Man",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Scions of the Ur-Spider.jpeg",
     "flavor_name": "Scions of the Ur-Spider",
     "set": "om1",
     "collector_number": "154",
@@ -1012,7 +1012,7 @@
   },
   {
     "name": "Doctor Octopus, Master Planner",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Neach, Pinnacle Pariah.jpeg",
     "flavor_name": "Neach, Pinnacle Pariah",
     "set": "om1",
     "collector_number": "148",
@@ -1020,14 +1020,14 @@
   },
   {
     "name": "Gallant Citizen",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Gallant Citizen.jpeg",
     "set": "om1",
     "collector_number": "137",
     "rarity": "common"
   },
   {
     "name": "Green Goblin, Revenant",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Nu and Sumi, Career Criminals.jpeg",
     "flavor_name": "Nu and Sumi, Career Criminals",
     "set": "om1",
     "collector_number": "149",
@@ -1035,7 +1035,7 @@
   },
   {
     "name": "Jackal, Genius Geneticist",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Druneth, Reviver of the Hive.jpeg",
     "flavor_name": "Druneth, Reviver of the Hive",
     "set": "om1",
     "collector_number": "136",
@@ -1043,7 +1043,7 @@
   },
   {
     "name": "Kraven, Proud Predator",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Dreadfang, Loathed by Fans.jpeg",
     "flavor_name": "Dreadfang, Loathed by Fans",
     "set": "om1",
     "collector_number": "135",
@@ -1051,7 +1051,7 @@
   },
   {
     "name": "Kraven the Hunter",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Brako, Heartless Hunter.jpeg",
     "flavor_name": "Brako, Heartless Hunter",
     "set": "om1",
     "collector_number": "127",
@@ -1059,7 +1059,7 @@
   },
   {
     "name": "Mary Jane Watson",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Demera, Soul of a Spider.jpeg",
     "flavor_name": "Demera, Soul of a Spider",
     "set": "om1",
     "collector_number": "132",
@@ -1067,7 +1067,7 @@
   },
   {
     "name": "Mister Negative",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Withar, Cocoon Keeper.jpeg",
     "flavor_name": "Withar, Cocoon Keeper",
     "set": "om1",
     "collector_number": "158",
@@ -1075,14 +1075,14 @@
   },
   {
     "name": "Mob Lookout",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Mob Lookout.jpeg",
     "set": "om1",
     "collector_number": "147",
     "rarity": "common"
   },
   {
     "name": "Morbius the Living Vampire",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Tearle, Entropic Hunger.jpeg",
     "flavor_name": "Tearle, Entropic Hunger",
     "set": "om1",
     "collector_number": "156",
@@ -1090,7 +1090,7 @@
   },
   {
     "name": "Prowler, Clawed Thief",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Carlo, Suave Schemer.jpeg",
     "flavor_name": "Carlo, Suave Schemer",
     "set": "om1",
     "collector_number": "128",
@@ -1098,7 +1098,7 @@
   },
   {
     "name": "Pumpkin Bombardment",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Knife Trick.jpeg",
     "flavor_name": "Knife Trick",
     "set": "om1",
     "collector_number": "142",
@@ -1106,22 +1106,22 @@
   },
   {
     "name": "Rhino, Barreling Brute",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
-    "flavor_name": "Xecau, Predation's Shadow",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Xecau, Predation’s Shadow.jpeg",
+    "flavor_name": "Xecau, Predation’s Shadow",
     "set": "om1",
     "collector_number": "160",
     "rarity": "uncommon"
   },
   {
-    "name": "Rhino's Rampage",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "name": "Rhino’s Rampage",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Rhino’s Rampage.jpeg",
     "set": "om1",
     "collector_number": "151",
     "rarity": "uncommon"
   },
   {
     "name": "Scarlet Spider, Ben Reilly",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Scarlet Spider, Ben Reilly.jpeg",
     "flavor_name": "Borys, the Spider Rider",
     "set": "om1",
     "collector_number": "126",
@@ -1129,7 +1129,7 @@
   },
   {
     "name": "Scarlet Spider, Kaine",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Kivni, Orb Weaver.jpeg",
     "flavor_name": "Kivni, Orb Weaver",
     "set": "om1",
     "collector_number": "141",
@@ -1137,7 +1137,7 @@
   },
   {
     "name": "Shriek, Treblemaker",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Crash, Reckless Endrider.jpeg",
     "flavor_name": "Crash, Reckless Endrider",
     "set": "om1",
     "collector_number": "131",
@@ -1145,7 +1145,7 @@
   },
   {
     "name": "Silk, Web Weaver",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Alenni, Brood Recruiter.jpeg",
     "flavor_name": "Alenni, Brood Recruiter",
     "set": "om1",
     "collector_number": "123",
@@ -1153,7 +1153,7 @@
   },
   {
     "name": "Skyward Spider",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Wonderweave Aerialist.jpeg",
     "flavor_name": "Wonderweave Aerialist",
     "set": "om1",
     "collector_number": "159",
@@ -1161,7 +1161,7 @@
   },
   {
     "name": "SP//dr, Piloted by Peni",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Kumonosu, the Watchful.jpeg",
     "flavor_name": "Kumonosu, the Watchful",
     "set": "om1",
     "collector_number": "143",
@@ -1169,7 +1169,7 @@
   },
   {
     "name": "Spider Manifestation",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Leyline Weaver.jpeg",
     "flavor_name": "Leyline Weaver",
     "set": "om1",
     "collector_number": "144",
@@ -1177,7 +1177,7 @@
   },
   {
     "name": "Spider-Girl, Legacy Hero",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Janai and Hoppy, Roofskippers.jpeg",
     "flavor_name": "Janai and Hoppy, Roofskippers",
     "set": "om1",
     "collector_number": "139",
@@ -1185,7 +1185,7 @@
   },
   {
     "name": "Spider-Man 2099",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Uharis, the Stormspinner.jpeg",
     "flavor_name": "Uharis, the Stormspinner",
     "set": "om1",
     "collector_number": "157",
@@ -1193,7 +1193,7 @@
   },
   {
     "name": "Spider-Man India",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Alessos and Pras, Acrobats.jpeg",
     "flavor_name": "Alessos and Pras, Acrobats",
     "set": "om1",
     "collector_number": "124",
@@ -1201,7 +1201,7 @@
   },
   {
     "name": "Spider-Woman, Stunning Savior",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Makdee and Itla, Skysnarers.jpeg",
     "flavor_name": "Makdee and Itla, Skysnarers",
     "set": "om1",
     "collector_number": "145",
@@ -1209,7 +1209,7 @@
   },
   {
     "name": "The Spot, Living Portal",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Qoneus, Horizon Splicer.jpeg",
     "flavor_name": "Qoneus, Horizon Splicer",
     "set": "om1",
     "collector_number": "150",
@@ -1217,7 +1217,7 @@
   },
   {
     "name": "Sun-Spider, Nimble Webber",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Cirina Bargainspinner.jpeg",
     "flavor_name": "Cirina Bargainspinner",
     "set": "om1",
     "collector_number": "130",
@@ -1225,7 +1225,7 @@
   },
   {
     "name": "Superior Spider-Man",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Kavaero, Mind-Bitten.jpeg",
     "flavor_name": "Kavaero, Mind-Bitten",
     "set": "om1",
     "collector_number": "140",
@@ -1233,7 +1233,7 @@
   },
   {
     "name": "Symbiote Spider-Man",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Skv'x the Augmenter.jpeg",
     "flavor_name": "Skv'x the Augmenter",
     "set": "om1",
     "collector_number": "155",
@@ -1241,7 +1241,7 @@
   },
   {
     "name": "Ultimate Green Goblin",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Ruzic, Booed but Victorious.jpeg",
     "flavor_name": "Ruzic, Booed but Victorious",
     "set": "om1",
     "collector_number": "153",
@@ -1249,7 +1249,7 @@
   },
   {
     "name": "Vulture, Scheming Scavenger",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Rishei, Getaway Accomplice.jpeg",
     "flavor_name": "Rishei, Getaway Accomplice",
     "set": "om1",
     "collector_number": "152",
@@ -1257,7 +1257,7 @@
   },
   {
     "name": "Web-Warriors",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Diligent Webkeepers.jpeg",
     "flavor_name": "Diligent Webkeepers",
     "set": "om1",
     "collector_number": "134",
@@ -1265,7 +1265,7 @@
   },
   {
     "name": "Wraith, Vicious Vigilante",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Margot, On the Case.jpeg",
     "flavor_name": "Margot, On the Case",
     "set": "om1",
     "collector_number": "146",
@@ -1273,15 +1273,15 @@
   },
   {
     "name": "Bagel and Schmear",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Perfected Pastry.jpeg",
     "flavor_name": "Perfected Pastry",
     "set": "om1",
     "collector_number": "170",
     "rarity": "common"
   },
   {
-    "name": "Doc Ock's Tentacles",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "name": "Doc Ock’s Tentacles",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Giantcraft Helm.jpeg",
     "flavor_name": "Giantcraft Helm",
     "set": "om1",
     "collector_number": "167",
@@ -1289,14 +1289,14 @@
   },
   {
     "name": "Eerie Gravestone",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Eerie Gravestone.jpeg",
     "set": "om1",
     "collector_number": "164",
     "rarity": "common"
   },
   {
     "name": "Hot Dog Cart",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Hot Dog Cart.jpeg",
     "flavor_name": "Treat Trolley",
     "set": "om1",
     "collector_number": "177",
@@ -1304,7 +1304,7 @@
   },
   {
     "name": "Interdimensional Web Watch",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Interdimensional Web Watch.jpeg",
     "flavor_name": "Reality Fulcrum",
     "set": "om1",
     "collector_number": "172",
@@ -1312,7 +1312,7 @@
   },
   {
     "name": "Iron Spider, Stark Upgrade",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Iron Spider, Stark Upgrade.jpeg",
     "flavor_name": "Fizik, Etherium Mechanic",
     "set": "om1",
     "collector_number": "166",
@@ -1320,7 +1320,7 @@
   },
   {
     "name": "Living Brain, Mechanical Marvel",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Error-9, Viral Node.jpeg",
     "flavor_name": "Error-9, Viral Node",
     "set": "om1",
     "collector_number": "165",
@@ -1328,7 +1328,7 @@
   },
   {
     "name": "Mechanical Mobster",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Data Scrubber.jpeg",
     "flavor_name": "Data Scrubber",
     "set": "om1",
     "collector_number": "163",
@@ -1336,7 +1336,7 @@
   },
   {
     "name": "News Helicopter",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Opulent Valet.jpeg",
     "flavor_name": "Opulent Valet",
     "set": "om1",
     "collector_number": "169",
@@ -1344,15 +1344,15 @@
   },
   {
     "name": "Passenger Ferry",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Carriage of Dreams.jpeg",
     "flavor_name": "Carriage of Dreams",
     "set": "om1",
     "collector_number": "162",
     "rarity": "common"
   },
   {
-    "name": "Peter Parker's Camera",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "name": "Peter Parker’s Camera",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Phenomena Recorder.jpeg",
     "flavor_name": "Phenomena Recorder",
     "set": "om1",
     "collector_number": "171",
@@ -1360,15 +1360,15 @@
   },
   {
     "name": "Rocket-Powered Goblin Glider",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
-    "flavor_name": "Stitcher's Wings",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Stitcher’s Wings.jpeg",
+    "flavor_name": "Stitcher’s Wings",
     "set": "om1",
     "collector_number": "175",
     "rarity": "rare"
   },
   {
     "name": "Spider-Bot",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Steelweb Surveyor.jpeg",
     "flavor_name": "Steelweb Surveyor",
     "set": "om1",
     "collector_number": "174",
@@ -1376,7 +1376,7 @@
   },
   {
     "name": "Spider-Mobile",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Scuttling Spidercoach.jpeg",
     "flavor_name": "Scuttling Spidercoach",
     "set": "om1",
     "collector_number": "173",
@@ -1384,7 +1384,7 @@
   },
   {
     "name": "Spider-Slayer, Hatred Honed",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Goro Rel, Scourge to Spiders.jpeg",
     "flavor_name": "Goro Rel, Scourge to Spiders",
     "set": "om1",
     "collector_number": "168",
@@ -1392,7 +1392,7 @@
   },
   {
     "name": "Spider-Suit",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Cactarantula Saddle.jpeg",
     "flavor_name": "Cactarantula Saddle",
     "set": "om1",
     "collector_number": "161",
@@ -1400,7 +1400,7 @@
   },
   {
     "name": "Steel Wrecking Ball",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Temple Trap.jpeg",
     "flavor_name": "Temple Trap",
     "set": "om1",
     "collector_number": "176",
@@ -1408,7 +1408,7 @@
   },
   {
     "name": "Subway Train",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Vinewoven Chariot.jpeg",
     "flavor_name": "Vinewoven Chariot",
     "set": "om1",
     "collector_number": "178",
@@ -1416,7 +1416,7 @@
   },
   {
     "name": "Daily Bugle Building",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Fearsome Ridgeline.jpeg",
     "flavor_name": "Fearsome Ridgeline",
     "set": "om1",
     "collector_number": "180",
@@ -1424,45 +1424,45 @@
   },
   {
     "name": "Multiversal Passage",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Multiversal Passage.jpeg",
     "set": "om1",
     "collector_number": "181",
     "rarity": "rare"
   },
   {
     "name": "Peter Parker // Amazing Spider-Man",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
-    "back": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Surris, Spidersilk Innovator.jpeg",
+    "back": "http://josh.birnholz.com/tts/cards/om1/Surris, Silk-Tech Vanguard.jpeg",
     "flavor_name": "Surris, Spidersilk Innovator",
-    "flavor_name_back": "Surris, Sil-Tech Vanguard",
+    "flavor_name_back": "Surris, Silk-Tech Vanguard",
     "set": "om1",
     "collector_number": "21",
     "rarity": "mythic"
   },
   {
     "name": "Norman Osborn // Green Goblin",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
-    "back": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Goben, Gene-Splice Savant.jpeg",
+    "back": "http://josh.birnholz.com/tts/cards/om1/Fleem, Goben’s Creation.jpeg",
     "flavor_name": "Goben, Gene-Splice Savant",
-    "flavor_name_back": "Fleem, Goben's Creation'",
+    "flavor_name_back": "Fleem, Goben’s Creation'",
     "set": "om1",
     "collector_number": "30",
     "rarity": "mythic"
   },
   {
     "name": "Eddie Brock // Venom, Lethal Protector",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
-    "back": "https://i.imgur.com/cIMXHR8.jpeg",
-    "flavor_name": "Viggo, Enforcer of Ig's Crossing",
-    "flavor_name_back": "Viggo, End of Ig's Crossing",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Viggo, Enforcer of Ig’s Crossing.jpeg",
+    "back": "http://josh.birnholz.com/tts/cards/om1/Viggo, End of Ig’s Crossing.jpeg",
+    "flavor_name": "Viggo, Enforcer of Ig’s Crossing",
+    "flavor_name_back": "Viggo, End of Ig’s Crossing",
     "set": "om1",
     "collector_number": "71",
     "rarity": "mythic"
   },
   {
     "name": "Gwen Stacy // Ghost-Spider",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
-    "back": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Nia, Skysail Storyteller.jpeg",
+    "back": "http://josh.birnholz.com/tts/cards/om1/Nia, Fabled Skyclimber.jpeg",
     "flavor_name": "Nia, Skysail Storyteller",
     "flavor_name_back": "Nia, Fabled Skyclimber",
     "set": "om1",
@@ -1471,8 +1471,8 @@
   },
   {
     "name": "Miles Morales // Ultimate Spider-Man",
-    "front": "https://i.imgur.com/cIMXHR8.jpeg",
-    "back": "https://i.imgur.com/cIMXHR8.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Cren, Undercity Dreamer.jpeg",
+    "back": "http://josh.birnholz.com/tts/cards/om1/Cren of the Spider Brood.jpeg",
     "flavor_name": "Cren, Undercity Dreamer",
     "flavor_name_back": "Cren of the Spider Brood",
     "set": "om1",

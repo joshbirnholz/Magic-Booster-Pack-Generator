@@ -9,7 +9,7 @@
   },
   {
     "name": "Oscorp Industries",
-    "front": "http://josh.birnholz.com/tts/cards/om1/Oscorp Industries.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Exclusive Nightclub.jpeg",
     "flavor_name": "Exclusive Nightclub",
     "set": "om1",
     "collector_number": "179",  
@@ -701,7 +701,7 @@
   },
   {
     "name": "Shadow of the Goblin",
-    "front": "http://josh.birnholz.com/tts/cards/om1/Shadow of the Goblin.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Quint’s Insight.jpeg",
     "flavor_name": "Quint’s Insight",
     "set": "om1",
     "collector_number": "90",
@@ -1121,7 +1121,7 @@
   },
   {
     "name": "Scarlet Spider, Ben Reilly",
-    "front": "http://josh.birnholz.com/tts/cards/om1/Scarlet Spider, Ben Reilly.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Borys, the Spider Rider.jpeg",
     "flavor_name": "Borys, the Spider Rider",
     "set": "om1",
     "collector_number": "126",
@@ -1233,7 +1233,7 @@
   },
   {
     "name": "Symbiote Spider-Man",
-    "front": "http://josh.birnholz.com/tts/cards/om1/Skv'x the Augmenter.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Skvx the Augmenter.jpeg",
     "flavor_name": "Skv'x the Augmenter",
     "set": "om1",
     "collector_number": "155",
@@ -1296,7 +1296,7 @@
   },
   {
     "name": "Hot Dog Cart",
-    "front": "http://josh.birnholz.com/tts/cards/om1/Hot Dog Cart.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Treat Trolley.jpeg",
     "flavor_name": "Treat Trolley",
     "set": "om1",
     "collector_number": "177",
@@ -1304,7 +1304,7 @@
   },
   {
     "name": "Interdimensional Web Watch",
-    "front": "http://josh.birnholz.com/tts/cards/om1/Interdimensional Web Watch.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Reality Fulcrum.jpeg",
     "flavor_name": "Reality Fulcrum",
     "set": "om1",
     "collector_number": "172",
@@ -1312,7 +1312,7 @@
   },
   {
     "name": "Iron Spider, Stark Upgrade",
-    "front": "http://josh.birnholz.com/tts/cards/om1/Iron Spider, Stark Upgrade.jpeg",
+    "front": "http://josh.birnholz.com/tts/cards/om1/Fizik, Etherium Mechanic.jpeg",
     "flavor_name": "Fizik, Etherium Mechanic",
     "set": "om1",
     "collector_number": "166",

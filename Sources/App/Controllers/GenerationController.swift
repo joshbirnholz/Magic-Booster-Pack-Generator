@@ -148,7 +148,7 @@ final class GeneratorController: Sendable {
 		var deck: String
 	}
   
-  fileprivate func deckFromURL(_ deckURL: URL, autofix: Bool, _ completion: @Sendable @escaping (Result<Deck, Error>) -> Void) {
+  fileprivate func deckFromURL(_ deckURL: URL, autofix: Bool, omenpath: Bool, _ completion: @Sendable @escaping (Result<Deck, Error>) -> Void) {
     guard let components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else {
       completion(.failure(PackError.invalidURL))
       return
@@ -417,7 +417,7 @@ final class GeneratorController: Sendable {
     }
   }
 	
-	fileprivate func deckFromURL(_ deckURL: URL, _ export: Bool, _ cardBack: URL?, autofix: Bool, _ promise: EventLoopPromise<String>) throws -> EventLoopFuture<String> {
+  fileprivate func deckFromURL(_ deckURL: URL, _ export: Bool, _ cardBack: URL?, autofix: Bool, omenpath: Bool, _ promise: EventLoopPromise<String>) throws -> EventLoopFuture<String> {
 		guard let components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else {
 			throw PackError.invalidURL
 		}
@@ -439,7 +439,7 @@ final class GeneratorController: Sendable {
 						
             promise.completeWithTask {
 							do {
-								let result: String = try await deck(.archidekt(archidektDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: archidektDeck.name)
+                let result: String = try await deck(.archidekt(archidektDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: archidektDeck.name, omenpath: omenpath)
 								print("Success")
 								return result
 							} catch let error as DebuggableError {
@@ -501,7 +501,7 @@ final class GeneratorController: Sendable {
 						
             promise.completeWithTask {
 							do {
-								let result: String = try await deck(.moxfield(moxfieldDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: moxfieldDeck.name)
+                let result: String = try await deck(.moxfield(moxfieldDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: moxfieldDeck.name, omenpath: omenpath)
 								print("Success")
 								return result
 							} catch let error as DebuggableError {
@@ -591,7 +591,7 @@ final class GeneratorController: Sendable {
             promise.completeWithTask {
 							do {
 								
-								let result: String = try await deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName)
+								let result: String = try await deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, omenpath: omenpath)
 								print("Success")
 								return result
 							} catch let error as DebuggableError {
@@ -670,7 +670,7 @@ final class GeneratorController: Sendable {
             promise.completeWithTask {
               do {
                 
-                let result: String = try await deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName)
+                let result: String = try await deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, omenpath: omenpath)
                 print("Success")
                 return result
               } catch let error as DebuggableError {
@@ -740,7 +740,7 @@ final class GeneratorController: Sendable {
 								
                 promise.completeWithTask {
 									do {
-										let result: String = try await deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix)
+										let result: String = try await deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, omenpath: omenpath)
 										print("Success")
 										return result
 									} catch let error as DebuggableError {
@@ -821,6 +821,7 @@ final class GeneratorController: Sendable {
 	func deckstatsDeck(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let autofix: Bool = req.query.getBoolValue(at: "autofix") ?? true
+    let omenpath: Bool = req.query.getBoolValue(at: "omenpath") ?? false
 		let cardBack: URL? = (try? req.query.get(String.self, at: "back")).flatMap(URL.init(string:))
 
 		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
@@ -829,12 +830,13 @@ final class GeneratorController: Sendable {
 			throw PackError.invalidURL
 		}
 
-		return try deckFromURL(deckURL, export, cardBack, autofix: autofix, promise)
+    return try deckFromURL(deckURL, export, cardBack, autofix: autofix, omenpath: omenpath, promise)
 	}
 	
 	func fullDeck(_ req: Request) throws -> EventLoopFuture<String> {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let autofix: Bool = req.query.getBoolValue(at: "autofix") ?? true
+    let omenpath: Bool = req.query.getBoolValue(at: "omenpath") ?? false
 		let cardBack: URL? = (try? req.query.get(String.self, at: "back")).flatMap(URL.init(string:))
 		
 		let decklist = try req.content.decode(DeckList.self)
@@ -842,13 +844,13 @@ final class GeneratorController: Sendable {
 		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
 		
     if let url = URL(string: decklist.deck), url.absoluteString.lowercased().hasPrefix("http") {
-			return try self.deckFromURL(url, export, cardBack, autofix: autofix, promise)
+      return try self.deckFromURL(url, export, cardBack, autofix: autofix, omenpath: omenpath, promise)
 		}
 		
     promise.completeWithTask {
 			do {
 				let d: Deck = decklist.deck.contains("[") || decklist.deck.contains("]") ? .deckstats(decklist.deck) : .arena(decklist.deck)
-				let result: String = try await deck(d, export: export, cardBack: cardBack, autofix: autofix)
+        let result: String = try await deck(d, export: export, cardBack: cardBack, autofix: autofix, omenpath: omenpath)
 				return result
 			} catch let error as DebuggableError {
 				struct ErrorMessage: Codable {
@@ -919,10 +921,11 @@ final class GeneratorController: Sendable {
     do {
       let autofix: Bool = req.query.getBoolValue(at: "autofix") ?? true
       let format: String = try req.query.get(String.self, at: "format")
+      let omenpath: Bool = req.query.getBoolValue(at: "omenpath") ?? false
       let decklist = try req.content.decode(DeckList.self)
       
       if let url = URL(string: decklist.deck), url.absoluteString.lowercased().hasPrefix("http") {
-        self.deckFromURL(url, autofix: autofix) { result in
+        self.deckFromURL(url, autofix: autofix, omenpath: omenpath) { result in
           do {
             let deck = try result.get()
             promise.succeed(.init(deck: deck))

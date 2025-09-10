@@ -4,6 +4,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="scripts.js"></script>
 	<script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const omenpath = document.querySelector("#omenpath");
+      if (omenpath) {
+        omenpath.checked = localStorage.getItem("omenpath") === "true";
+      }
+    });
+    
 		loadSets();
 		loadSeeds();
 		
@@ -40,8 +47,11 @@
   <button type="button" onclick="window.open(document.getElementById('deckHistory').value, '_blank').focus();">Open</button>
   </p>
   
-	<input type="checkbox" id="autofix" checked>
-		<label for="autofix"> Fix errors automatically</label><br><br>
+    <input type="checkbox" id="autofix" checked>
+		<label for="autofix"> Fix errors automatically</label><br>
+    
+    <input type="checkbox" id="omenpath" onchange="omenpathToggled();">
+    <label for="omenpath"> Prefer <i>Through the Omenpaths</i> verions</label><br><br>
 		<input id="back" type="text" size="52" placeholder="Card back image URL (optional)"></input><br>
 		
 		<p id="herokumove" hidden><b>Important: This tool is moving.</b> After November 28, 2022, this site will stop working from this address.<br>Please use the new URL at: <a href="https://tts-magic-booster.fly.dev/">https://tts-magic-booster.fly.dev/</a></p>

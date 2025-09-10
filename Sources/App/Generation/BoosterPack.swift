@@ -4717,7 +4717,7 @@ func customSet(forSetCode inputString: String) -> Swiftfall.ScryfallSet? {
     }
 }
 
-public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, includeBasicLands: Bool, includeTokens: Bool, specialOptions: [String] = [], cardBack: URL? = nil, autofixDecklist: Bool, outputFormat: OutputFormat, seed: Seed? = nil) async throws -> String {
+public func generate(input: Input, inputString: String, output: Output, export: Bool, boxCount: Int? = nil, prereleaseIncludePromoCard: Bool? = nil, prereleaseIncludeLands: Bool? = nil, prereleaseIncludeSheet: Bool? = nil, prereleaseIncludeSpindown: Bool? = nil, prereleaseBoosterCount: Int? = nil, includeExtendedArt: Bool, includeBasicLands: Bool, includeTokens: Bool, specialOptions: [String] = [], cardBack: URL? = nil, autofixDecklist: Bool, outputFormat: OutputFormat, seed: Seed? = nil, omenpath: Bool = false) async throws -> String {
 	let mtgCards: [MTGCard]
 	let setName: String
 	let setCode: String?
@@ -4808,7 +4808,7 @@ public func generate(input: Input, inputString: String, output: Output, export: 
 			mythicPolicy = .previous
 		}
 	case .cardlist:
-		return try await deck(.arena(inputString), export: export, cardBack: cardBack, autofix: autofixDecklist)
+    return try await deck(.arena(inputString), export: export, cardBack: cardBack, autofix: autofixDecklist, omenpath: omenpath)
 	}
 	
 	guard !mtgCards.isEmpty else { throw PackError.noCards }
@@ -6576,7 +6576,7 @@ fileprivate func getCustomCards(_ identifiersToReplace: inout [MTGCardIdentifier
   }
 }
 
-func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil, direct: Bool = false) async throws -> String {
+func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool = true, faceCards: [MTGCard] = [], autofix: Bool, outputName: String? = nil, direct: Bool = false, omenpath: Bool = false) async throws -> String {
 	enum CustomOverride {
 		case identifiers(String)
 		case url(name: String, imageURL: URL)
@@ -6683,6 +6683,28 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
   // Custom cards from Draftmancer
   if !notFound.isEmpty, let draftmancerCards = await DraftmancerSetCache.shared.loadedDraftmancerCards {
     getCustomCards(&notFound, &mtgCards, &identifiers, draftmancerCards, autofix)
+  }
+  
+  if omenpath {
+    // Upgrade UB cards to Through the Omenpaths versions
+    let omenpathSets = [
+      "SPM": "OM1"
+    ]
+    
+    for (originalSetCode, replacementSetCode) in omenpathSets {
+      let identifiersToReplace = identifiers.filter { identifier in
+        mtgCards[identifier]?.set.uppercased() == originalSetCode
+      }
+      
+      for identifier in identifiersToReplace {
+        guard let originalName = mtgCards[identifier]?.name else { continue }
+        guard let replacementCard = await DraftmancerSetCache.shared.loadedDraftmancerCards?[MTGCardIdentifier.nameSet(name: originalName, set: replacementSetCode)] else { continue }
+        
+        if let index = mtgCards.firstIndex(where: { $0.isIdentified(by: identifier) }) {
+          mtgCards[index] = replacementCard
+        }
+      }
+    }
   }
 	
 	// First round of retries: Remove incorrect collector numbers

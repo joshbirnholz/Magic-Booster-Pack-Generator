@@ -369,6 +369,12 @@ function doDownloadDeck() {
 	} else {
 		url += "?autofix=false"
 	}
+  
+  if ($("#omenpath").prop("checked") == true) {
+    url += "&omenpath=true"
+  } else {
+    url += "&omenpath=false"
+  }
 	
 	var cardBack = document.getElementById("back").value;
 	
@@ -1318,4 +1324,8 @@ function deleteSelectedDeck() {
   localStorage.setItem("deckHistory", JSON.stringify(decks));
   populateDeckHistory();
   document.getElementById("deck").value = "";
+}
+
+function omenpathToggled() {
+  localStorage.setItem('omenpath', document.querySelector('#omenpath').checked);
 }

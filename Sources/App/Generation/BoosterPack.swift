@@ -6404,7 +6404,7 @@ fileprivate func getAllTokens(for cards: [MTGCard]) async -> [MTGCard] {
 extension MTGCard {
   func isIdentified(by identifier: MTGCardIdentifier) -> Bool {
     switch identifier {
-    case .id(let id):
+    case .id(let id), .idName(let id, _):
       return scryfallID == id
 //    case .mtgoID(let id):
 //      return mtgoID == id

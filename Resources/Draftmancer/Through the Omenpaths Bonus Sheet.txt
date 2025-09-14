@@ -1,0 +1,283 @@
+[CustomCards]
+[
+  {
+    "name": "Comeuppance",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Comeuppance.jpeg",
+    "set": "omb",
+    "collector_number": "1",
+    "rarity": "rare"
+  },
+  {
+    "name": "Leyline Binding",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Leyline Binding.jpeg",
+    "set": "omb",
+    "collector_number": "2",
+    "rarity": "rare"
+  },
+  {
+    "name": "Nine Lives",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Nine Lives.jpeg",
+    "set": "omb",
+    "collector_number": "3",
+    "rarity": "rare"
+  },
+  {
+    "name": "Path to Exile",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Path to Exile.jpeg",
+    "set": "omb",
+    "collector_number": "4",
+    "rarity": "rare"
+  },
+  {
+    "name": "Reprieve",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Reprieve.jpeg",
+    "set": "omb",
+    "collector_number": "5",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Rest in Peace",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Rest in Peace.jpeg",
+    "set": "omb",
+    "collector_number": "6",
+    "rarity": "rare"
+  },
+  {
+    "name": "Wedding Ring",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Wedding Ring.jpeg",
+    "set": "omb",
+    "collector_number": "7",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Clever Impersonator",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Clever Impersonator.jpeg",
+    "set": "omb",
+    "collector_number": "8",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Counterspell",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Counterspell.jpeg",
+    "set": "omb",
+    "collector_number": "9",
+    "rarity": "rare"
+  },
+  {
+    "name": "Lorthos, the Tidemaker",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Lorthos, the Tidemaker.jpeg",
+    "set": "omb",
+    "collector_number": "10",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Mindbreak Trap",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Mindbreak Trap.jpeg",
+    "set": "omb",
+    "collector_number": "11",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Mystic Confluence",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Mystic Confluence.jpeg",
+    "set": "omb",
+    "collector_number": "12",
+    "rarity": "rare"
+  },
+  {
+    "name": "Ponder",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Ponder.jpeg",
+    "set": "omb",
+    "collector_number": "13",
+    "rarity": "common"
+  },
+  {
+    "name": "Rite of Replication",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Rite of Replication.jpeg",
+    "set": "omb",
+    "collector_number": "14",
+    "rarity": "rare"
+  },
+  {
+    "name": "Traumatize",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Traumatize.jpeg",
+    "set": "omb",
+    "collector_number": "15",
+    "rarity": "rare"
+  },
+  {
+    "name": "Feed the Swarm",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Feed the Swarm.jpeg",
+    "set": "omb",
+    "collector_number": "16",
+    "rarity": "common"
+  },
+  {
+    "name": "Hex",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Hex.jpeg",
+    "set": "omb",
+    "collector_number": "17",
+    "rarity": "rare"
+  },
+  {
+    "name": "Infernal Grasp",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Infernal Grasp.jpeg",
+    "set": "omb",
+    "collector_number": "18",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Opposition Agent",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Opposition Agent.jpeg",
+    "set": "omb",
+    "collector_number": "19",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Reanimate",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Reanimate.jpeg",
+    "set": "omb",
+    "collector_number": "20",
+    "rarity": "rare"
+  },
+  {
+    "name": "Saw in Half",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Saw in Half.jpeg",
+    "set": "omb",
+    "collector_number": "21",
+    "rarity": "rare"
+  },
+  {
+    "name": "Skithiryx, the Blight Dragon",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Skithiryx, the Blight Dragon.jpeg",
+    "set": "omb",
+    "collector_number": "22",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Goblin Bombardment",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Goblin Bombardment.jpeg",
+    "set": "omb",
+    "collector_number": "23",
+    "rarity": "rare"
+  },
+  {
+    "name": "Najeela, the Blade-Blossom",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Najeela, the Blade-Blossom.jpeg",
+    "set": "omb",
+    "collector_number": "24",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Relentless Assault",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Relentless Assault.jpeg",
+    "set": "omb",
+    "collector_number": "25",
+    "rarity": "rare"
+  },
+  {
+    "name": "Savage Beating",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Savage Beating.jpeg",
+    "set": "omb",
+    "collector_number": "26",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Shock",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Shock.jpeg",
+    "set": "omb",
+    "collector_number": "27",
+    "rarity": "common"
+  },
+  {
+    "name": "Thrill of Possibility",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Thrill of Possibility.jpeg",
+    "set": "omb",
+    "collector_number": "28",
+    "rarity": "common"
+  },
+  {
+    "name": "Unexpected Windfall",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Unexpected Windfall.jpeg",
+    "set": "omb",
+    "collector_number": "29",
+    "rarity": "common"
+  },
+  {
+    "name": "Winds of Change",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Winds of Change.jpeg",
+    "set": "omb",
+    "collector_number": "30",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Arachnogenesis",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Arachnogenesis.jpeg",
+    "set": "omb",
+    "collector_number": "31",
+    "rarity": "rare"
+  },
+  {
+    "name": "Arasta of the Endless Web",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Arasta of the Endless Web.jpeg",
+    "set": "omb",
+    "collector_number": "32",
+    "rarity": "rare"
+  },
+  {
+    "name": "Beast Within",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Beast Within.jpeg",
+    "set": "omb",
+    "collector_number": "33",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Heroic Intervention",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Heroic Intervention.jpeg",
+    "set": "omb",
+    "collector_number": "34",
+    "rarity": "rare"
+  },
+  {
+    "name": "Hunter's Insight",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Hunter’s Insight.jpeg",
+    "set": "omb",
+    "collector_number": "35",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Parallel Lives",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Parallel Lives.jpeg",
+    "set": "omb",
+    "collector_number": "36",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Silkguard",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Silkguard.jpeg",
+    "set": "omb",
+    "collector_number": "37",
+    "rarity": "rare"
+  },
+  {
+    "name": "Tangle",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Tangle.jpeg",
+    "set": "omb",
+    "collector_number": "38",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Alibou, Ancient Witness",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Alibou, Ancient Witness.jpeg",
+    "set": "omb",
+    "collector_number": "39",
+    "rarity": "mythic"
+  },
+  {
+    "name": "Terminate",
+    "front": "http://josh.birnholz.com/tts/cards/omb/Terminate.jpeg",
+    "set": "omb",
+    "collector_number": "40",
+    "rarity": "uncommon"
+  }
+]

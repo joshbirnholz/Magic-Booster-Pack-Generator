@@ -287,6 +287,8 @@ extension JumpInParser {
     let set2 = try req.query.get(String.self, at: "set2").uppercased()
     let pack1 = try req.query.get(String.self, at: "pack1").uppercased()
     let pack2 = try req.query.get(String.self, at: "pack2").uppercased()
+    
+    let format = try? req.query.get(String.self, at: "format")
 
     let export = req.query.getBoolValue(at: "export") ?? true
 
@@ -300,6 +302,10 @@ extension JumpInParser {
     promise.completeWithTask {
       let fullDecklist = try await addLands(packetA: packetA, set1: set1, packetB: packetB, set2: set2)
 
+      if format == "list" {
+        return fullDecklist
+      }
+      
       return try await deck(.arena(fullDecklist), export: export, autofix: true, outputName: "\(packetA.name) + \(packetB.name)", direct: true)
     }
 

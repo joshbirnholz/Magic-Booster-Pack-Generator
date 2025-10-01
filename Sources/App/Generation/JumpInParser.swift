@@ -172,13 +172,26 @@ struct JumpInParser {
     return packet.generateDeckList()
   }
   
-  func getAllPackets(_ req: Request) throws -> EventLoopFuture<[Packet]> {
-    let promise: EventLoopPromise<[Packet]> = req.eventLoop.makePromise()
-    guard let setCode = req.parameters.get("set") else { throw PackError.missingSet }
+  func getAllSets(_ req: Request) throws -> EventLoopFuture<[String]> {
+    let promise: EventLoopPromise<[String]> = req.eventLoop.makePromise()
     
     promise.completeWithTask {
-      guard let packets = packets[setCode.lowercased()] else { throw PackError.invalidSet(setCode) }
-      return packets.sorted { $0.name < $1.name }
+      return Array(packets.keys).map { $0.uppercased() }
+    }
+    
+    return promise.futureResult
+  }
+  
+  func getAllPackets(_ req: Request) throws -> EventLoopFuture<[Packet]> {
+    let promise: EventLoopPromise<[Packet]> = req.eventLoop.makePromise()
+    
+    promise.completeWithTask {
+      if let setCode = req.parameters.get("set") {
+        guard let packets = packets[setCode.lowercased()] else { throw PackError.invalidSet(setCode) }
+        return packets.sorted { $0.name < $1.name }
+      } else {
+        return Array(packets.values.joined()).sorted { $0.name < $1.name }
+      }
     }
     
     return promise.futureResult

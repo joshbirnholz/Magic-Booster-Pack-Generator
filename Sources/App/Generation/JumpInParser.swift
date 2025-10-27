@@ -172,105 +172,80 @@ struct JumpInParser {
     return packet.generateDeckList()
   }
   
-  func getAllSets(_ req: Request) throws -> EventLoopFuture<[String]> {
-    let promise: EventLoopPromise<[String]> = req.eventLoop.makePromise()
-    
-    promise.completeWithTask {
-      return Array(packets.keys).map { $0.uppercased() }
-    }
-    
-    return promise.futureResult
+  func getAllSets(_ req: Request) async throws -> [String] {
+    return Array(packets.keys).map { $0.uppercased() }
   }
   
-  func getAllPackets(_ req: Request) throws -> EventLoopFuture<[Packet]> {
-    let promise: EventLoopPromise<[Packet]> = req.eventLoop.makePromise()
-    
-    promise.completeWithTask {
-      if let setCode = req.parameters.get("set") {
-        guard let packets = packets[setCode.lowercased()] else { throw PackError.invalidSet(setCode) }
-        return packets.sorted { $0.name < $1.name }
-      } else {
-        return Array(packets.values.joined()).sorted { $0.name < $1.name }
-      }
+  func getAllPackets(_ req: Request) async throws -> [Packet] {
+    if let setCode = req.parameters.get("set") {
+      guard let packets = packets[setCode.lowercased()] else { throw PackError.invalidSet(setCode) }
+      return packets.sorted { $0.name < $1.name }
+    } else {
+      return Array(packets.values.joined()).sorted { $0.name < $1.name }
     }
-    
-    return promise.futureResult
   }
   
-  func selectPackets(_ req: Request) throws -> EventLoopFuture<[Packet]> {
-    let promise: EventLoopPromise<[Packet]> = req.eventLoop.makePromise()
+  func selectPackets(_ req: Request) async throws -> [Packet] {
     guard let setCode = req.parameters.get("set") else { throw PackError.missingSet }
     let firstPack = try? req.query.get(String.self, at: "pack1").uppercased()
     
-    promise.completeWithTask {
-      guard let array = packets[setCode.lowercased()] else { throw PackError.invalidSet(setCode) }
-      var packets = Set(array)
+    guard let array = packets[setCode.lowercased()] else { throw PackError.invalidSet(setCode) }
+    var packets = Set(array)
+    
+    if let firstPack {
+      guard let pack = packets.first(where: { $0.name == firstPack }) else {
+        throw PackError.invalidJumpStartName
+      }
+      packets.remove(pack)
       
-      if let firstPack {
-        guard let pack = packets.first(where: { $0.name == firstPack }) else {
-          throw PackError.invalidJumpStartName
+      switch pack.colors.count {
+      case 1:
+        guard let mono = packets.removeRandomElement(where: { $0.colors.count == 1 }),
+              let multi = packets.removeRandomElement(where: { $0.colors.count > 1 && $0.colors.contains(pack.colors[0]) }),
+              let other = packets.randomElement(where: {
+                if $0.colors.count > 1 && !$0.colors.contains(pack.colors[0]) { return false }
+                return true
+              })
+        else {
+          throw PackError.failedToBuildPack
         }
-        packets.remove(pack)
         
-        switch pack.colors.count {
-        case 1:
-          guard let mono = packets.removeRandomElement(where: { $0.colors.count == 1 }),
-                let multi = packets.removeRandomElement(where: { $0.colors.count > 1 && $0.colors.contains(pack.colors[0]) }),
-                let other = packets.randomElement(where: {
-                  if $0.colors.count > 1 && !$0.colors.contains(pack.colors[0]) { return false }
+        return [mono, multi, other].shuffled()
+      case 2:
+        guard let firstMono = packets.removeRandomElement(where: { $0.colors == [pack.colors[0]] }),
+              let secondMono = packets.removeRandomElement(where: { $0.colors == [pack.colors[1]] }),
+              let other = packets.randomElement(where: {
+                switch $0.colors.count {
+                case 1:
                   return true
-                })
-          else {
-            throw PackError.failedToBuildPack
-          }
-          
-          return [mono, multi, other].shuffled()
-        case 2:
-          guard let firstMono = packets.removeRandomElement(where: { $0.colors == [pack.colors[0]] }),
-                let secondMono = packets.removeRandomElement(where: { $0.colors == [pack.colors[1]] }),
-                let other = packets.randomElement(where: {
-                  switch $0.colors.count {
-                  case 1:
-                    return true
-                  case 2:
-                    return Set($0.colors) == Set(pack.colors)
-                  case 3:
-                    return Set(pack.colors).isSubset(of: Set($0.colors))
-                  default:
-                    return false
-                  }
-                })
-          else {
-            throw PackError.failedToBuildPack
-          }
-          
-          return [firstMono, secondMono, other].shuffled()
-        case 3:
-          guard let firstMono = packets.removeRandomElement(where: { $0.colors.count == 1 && pack.colors.contains($0.colors[0]) }),
-                let secondMono = packets.removeRandomElement(where: { $0.colors.count == 1 && pack.colors.contains($0.colors[0]) && pack.colors != firstMono.colors }),
-                let other = packets.removeRandomElement(where: {
-                  if $0.colors.count > 1 {
-                    return Set($0.colors).isSubset(of: Set(pack.colors))
-                  }
-                  return true
-                })
-          else {
-            throw PackError.failedToBuildPack
-          }
-          
-          return [firstMono, secondMono, other].shuffled()
-        default:
-          guard
-            let mono = packets.removeRandomElement(where: { $0.colors.count == 1 }),
-            let multi = packets.removeRandomElement(where: { $0.colors.count > 1 && Set($0.colors) != Set(mono.colors) }),
-            let other = packets.randomElement(where: { Set($0.colors) != Set(mono.colors) && Set($0.colors) != Set(multi.colors) })
-          else {
-            throw PackError.failedToBuildPack
-          }
-          
-          return [mono, multi, other].shuffled()
+                case 2:
+                  return Set($0.colors) == Set(pack.colors)
+                case 3:
+                  return Set(pack.colors).isSubset(of: Set($0.colors))
+                default:
+                  return false
+                }
+              })
+        else {
+          throw PackError.failedToBuildPack
         }
-      } else {
+        
+        return [firstMono, secondMono, other].shuffled()
+      case 3:
+        guard let firstMono = packets.removeRandomElement(where: { $0.colors.count == 1 && pack.colors.contains($0.colors[0]) }),
+              let secondMono = packets.removeRandomElement(where: { $0.colors.count == 1 && pack.colors.contains($0.colors[0]) && pack.colors != firstMono.colors }),
+              let other = packets.removeRandomElement(where: {
+                if $0.colors.count > 1 {
+                  return Set($0.colors).isSubset(of: Set(pack.colors))
+                }
+                return true
+              })
+        else {
+          throw PackError.failedToBuildPack
+        }
+        
+        return [firstMono, secondMono, other].shuffled()
+      default:
         guard
           let mono = packets.removeRandomElement(where: { $0.colors.count == 1 }),
           let multi = packets.removeRandomElement(where: { $0.colors.count > 1 && Set($0.colors) != Set(mono.colors) }),
@@ -281,10 +256,17 @@ struct JumpInParser {
         
         return [mono, multi, other].shuffled()
       }
+    } else {
+      guard
+        let mono = packets.removeRandomElement(where: { $0.colors.count == 1 }),
+        let multi = packets.removeRandomElement(where: { $0.colors.count > 1 && Set($0.colors) != Set(mono.colors) }),
+        let other = packets.randomElement(where: { Set($0.colors) != Set(mono.colors) && Set($0.colors) != Set(multi.colors) })
+      else {
+        throw PackError.failedToBuildPack
+      }
       
+      return [mono, multi, other].shuffled()
     }
-    
-    return promise.futureResult
   }
 }
 
@@ -293,9 +275,7 @@ struct JumpInParser {
 
 extension JumpInParser {
 
-  func jumpinDeck(_ req: Request) throws -> EventLoopFuture<String> {
-    let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
-
+  func jumpinDeck(_ req: Request) async throws -> String {
     let set1 = try req.query.get(String.self, at: "set1").uppercased()
     let set2 = try req.query.get(String.self, at: "set2").uppercased()
     let pack1 = try req.query.get(String.self, at: "pack1").uppercased()
@@ -312,17 +292,13 @@ extension JumpInParser {
       throw PackError.invalidJumpStartName
     }
 
-    promise.completeWithTask {
-      let fullDecklist = try await addLands(packetA: packetA, set1: set1, packetB: packetB, set2: set2)
+    let fullDecklist = try await addLands(packetA: packetA, set1: set1, packetB: packetB, set2: set2)
 
-      if format == "list" {
-        return fullDecklist
-      }
-      
-      return try await deck(.arena(fullDecklist), export: export, autofix: true, outputName: "\(packetA.name) + \(packetB.name)", direct: true)
+    if format == "list" {
+      return fullDecklist
     }
-
-    return promise.futureResult
+    
+    return try await deck(.arena(fullDecklist), export: export, autofix: true, outputName: "\(packetA.name) + \(packetB.name)", direct: true)
   }
 
   func addLands(packetA: Packet, set1: String, packetB: Packet, set2: String) async throws -> String {

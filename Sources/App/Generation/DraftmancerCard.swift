@@ -1013,28 +1013,22 @@ private func addBracketsToManaCost(_ manaCost: String) -> String {
   return result
 }
 
-func getBuiltinDraftmancerCards(_ req: Request) throws -> NIOCore.EventLoopFuture<Vapor.Response> {
-  let promise: EventLoopPromise<Vapor.Response> = req.eventLoop.makePromise()
+func getBuiltinDraftmancerCards(_ req: Request) async throws -> Vapor.Response {
+  var headers = HTTPHeaders()
+  headers.add(name: .contentType, value: "application/json")
   
-  promise.completeWithTask {
-    var headers = HTTPHeaders()
-    headers.add(name: .contentType, value: "application/json")
-    
-    guard let responses = await DraftmancerSetCache.shared.sets else {
-      return .init(
-        status: .internalServerError, headers: headers
-      )
-    }
-    
-    let data = try Swiftfall.encoder.encode(responses)
-    let string = String.init(data: data, encoding: .utf8) ?? ""
-    
+  guard let responses = await DraftmancerSetCache.shared.sets else {
     return .init(
-      status: .ok, headers: headers, body: .init(string: string)
+      status: .internalServerError, headers: headers
     )
   }
   
-  return promise.futureResult
+  let data = try Swiftfall.encoder.encode(responses)
+  let string = String.init(data: data, encoding: .utf8) ?? ""
+  
+  return .init(
+    status: .ok, headers: headers, body: .init(string: string)
+  )
 }
 
 func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Response {

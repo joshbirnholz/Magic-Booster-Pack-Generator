@@ -52,16 +52,7 @@ final class MyDecks: Sendable {
         }
     }
     
-	func getDecks(_ req: Request) throws -> EventLoopFuture<[MyDeck]> {
-		let promise: EventLoopPromise<[MyDeck]> = req.eventLoop.makePromise()
-
-		do {
-			let cardList = try self.deckURLs.get()
-			promise.succeed(cardList)
-		} catch {
-			promise.fail(error)
-		}
-
-		return promise.futureResult
+	func getDecks(_ req: Request) async throws -> [MyDeck] {
+    return try self.deckURLs.get()
 	}
 }

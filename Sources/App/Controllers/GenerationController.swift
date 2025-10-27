@@ -417,7 +417,7 @@ final class GeneratorController: Sendable {
     }
   }
 	
-  fileprivate func deckFromURL(_ deckURL: URL, _ export: Bool, _ cardBack: URL?, autofix: Bool, omenpath: Bool, _ promise: EventLoopPromise<String>) throws -> EventLoopFuture<String> {
+  fileprivate func deckFromURL(_ deckURL: URL, _ export: Bool, _ cardBack: URL?, autofix: Bool, omenpath: Bool) async throws -> String {
 		guard let components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else {
 			throw PackError.invalidURL
 		}
@@ -426,129 +426,45 @@ final class GeneratorController: Sendable {
 		case "www.archidekt.com", "archidekt.com":
 			guard deckURL.pathComponents.count >= 2, deckURL.pathComponents[1] == "decks", let decklistURL = URL(string: "https://archidekt.com/api/decks/\(deckURL.pathComponents[2])/") else { throw PackError.invalidURL }
 			
-			DispatchQueue.global(qos: .userInitiated).async {
-				let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
-				URLSession.shared.dataTask(with: request) { data, response, error in
-					do {
-						guard let data = data else {
-							throw error!
-						}
-						
-						let decoder = JSONDecoder()
-						let archidektDeck = try decoder.decode(ArchidektDeck.self, from: data)
-						
-            promise.completeWithTask {
-							do {
-                let result: String = try await deck(.archidekt(archidektDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: archidektDeck.name, omenpath: omenpath)
-								print("Success")
-								return result
-							} catch let error as DebuggableError {
-								struct ErrorMessage: Codable {
-									var error: String
-								}
-								
-								let encoder = JSONEncoder()
-								let errorMessage = ErrorMessage(error: error.reason)
-								do {
-									let data = try encoder.encode(errorMessage)
-									let string = String(data: data, encoding: .utf8)!
-									return string
-								} catch {
-									throw error
-								}
-							} catch {
-								throw error
-							}
-						}
-					} catch let error as DebuggableError {
-						struct ErrorMessage: Codable {
-							var error: String
-						}
-						
-						let encoder = JSONEncoder()
-						let errorMessage = ErrorMessage(error: error.reason)
-						do {
-							let data = try encoder.encode(errorMessage)
-							let string = String(data: data, encoding: .utf8)!
-							promise.succeed(string)
-						} catch {
-							promise.fail(error)
-						}
-					} catch {
-						promise.fail(error)
-					}
-				}.resume()
-			}
+      let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+      let (data, response) = try await URLSession.shared.data(for: request)
+      
+      let decoder = JSONDecoder()
+      let archidektDeck = try decoder.decode(ArchidektDeck.self, from: data)
+      
+      let result: String = try await deck(.archidekt(archidektDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: archidektDeck.name, omenpath: omenpath)
+      print("Success")
+      return result
 		case "moxfield.com", "www.moxfield.com":
 			guard deckURL.pathComponents.count >= 2, deckURL.pathComponents[1] == "decks", let decklistURL = URL(string: "https://api.moxfield.com/v2/decks/all/\(deckURL.pathComponents[2])") else { throw PackError.invalidURL }
 			
-			DispatchQueue.global(qos: .userInitiated).async {
-				var request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+      var request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+      
+      if let apiKey = Environment.get("MoxfieldAgent") {
+        request.setValue(apiKey, forHTTPHeaderField: "User-Agent")
+        print("Added Moxfield API key to header")
+      }
+      
+      do {
+        let (data, response) = try await URLSession.shared.data(for: request)
+        let decoder = JSONDecoder()
+        let moxfieldDeck = try decoder.decode(MoxfieldDeck.self, from: data)
         
-        if let apiKey = Environment.get("MoxfieldAgent") {
-          request.setValue(apiKey, forHTTPHeaderField: "User-Agent")
-          print("Added Moxfield API key to header")
+        let result: String = try await deck(.moxfield(moxfieldDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: moxfieldDeck.name, omenpath: omenpath)
+        print("Success")
+        return result
+      } catch let error as DebuggableError {
+        struct ErrorMessage: Codable {
+          var error: String
         }
         
-				URLSession.shared.dataTask(with: request) { data, response, error in
-					do {
-						guard let data = data else {
-							throw error!
-						}
-						
-						let decoder = JSONDecoder()
-						let moxfieldDeck = try decoder.decode(MoxfieldDeck.self, from: data)
-						
-            promise.completeWithTask {
-							do {
-                let result: String = try await deck(.moxfield(moxfieldDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: moxfieldDeck.name, omenpath: omenpath)
-								print("Success")
-								return result
-							} catch let error as DebuggableError {
-								struct ErrorMessage: Codable {
-									var error: String
-								}
-								
-								let encoder = JSONEncoder()
-								let errorMessage = ErrorMessage(error: error.reason)
-								do {
-									let data = try encoder.encode(errorMessage)
-									let string = String(data: data, encoding: .utf8)!
-									return string
-								} catch {
-									throw error
-								}
-							} catch {
-								throw error
-							}
-						}
-					} catch let error as DebuggableError {
-						struct ErrorMessage: Codable {
-							var error: String
-						}
-						
-						let encoder = JSONEncoder()
-						let errorMessage = ErrorMessage(error: error.reason)
-						do {
-							let data = try encoder.encode(errorMessage)
-							let string = String(data: data, encoding: .utf8)!
-							promise.succeed(string)
-						} catch {
-							promise.fail(error)
-              print("Moxfield error:", error)
-              if let data = data, let response = String(data: data, encoding: .utf8) {
-                print("Moxfield response:", response)
-              }
-						}
-					} catch {
-						promise.fail(error)
-            print("Moxfield error:", error)
-            if let data = data, let response = String(data: data, encoding: .utf8) {
-              print("Moxfield response:", response)
-            }
-					}
-				}.resume()
-			}
+        let encoder = JSONEncoder()
+        let errorMessage = ErrorMessage(error: error.reason)
+        
+        let data = try encoder.encode(errorMessage)
+        let string = String(data: data, encoding: .utf8)!
+        return string
+      }
 			
 		case "deckstats.net", "www.deckstats.net":
 			guard var components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else { throw PackError.invalidURL  }
@@ -560,77 +476,31 @@ final class GeneratorController: Sendable {
 			
 			guard let decklistURL = components.url else { throw PackError.invalidURL }
 			
-			DispatchQueue.global(qos: .userInitiated).async {
-				let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
-				URLSession.shared.dataTask(with: request) { data, response, error in
-					do {
-						guard let data = data else {
-							throw error!
-						}
-						
-						if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 400 {
-							throw PackError.privateDeck
-						}
-						
-						guard let decklist = String(data: data, encoding: .utf8) else {
-							promise.fail(PackError.invalidURL)
-							return
-						}
-						
-						let deckName: String?
-						
-						if let response = response as? HTTPURLResponse, let disposition: String = response.allHeaderFields["Content-Disposition"] as? String, let range = disposition.range(of: "attachment; filename=\"") {
-							print(disposition)
-							var name: String = disposition
-							name.replaceSubrange(range, with: "")
-							deckName = String(name.dropLast(5))
-						} else {
-							deckName = nil
-						}
-						
-            promise.completeWithTask {
-							do {
-								
-								let result: String = try await deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, omenpath: omenpath)
-								print("Success")
-								return result
-							} catch let error as DebuggableError {
-								struct ErrorMessage: Codable {
-									var error: String
-								}
-								
-								let encoder = JSONEncoder()
-								let errorMessage = ErrorMessage(error: error.reason)
-								do {
-									let data = try encoder.encode(errorMessage)
-									let string = String(data: data, encoding: .utf8)!
-									return string
-								} catch {
-									throw error
-								}
-							} catch {
-								throw error
-							}
-						}
-					} catch let error as DebuggableError {
-						struct ErrorMessage: Codable {
-							var error: String
-						}
-						
-						let encoder = JSONEncoder()
-						let errorMessage = ErrorMessage(error: error.reason)
-						do {
-							let data = try encoder.encode(errorMessage)
-							let string = String(data: data, encoding: .utf8)!
-							promise.succeed(string)
-						} catch {
-							promise.fail(error)
-						}
-					} catch {
-						promise.fail(error)
-					}
-				}.resume()
-			}
+      let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+      let (data, response) = try await URLSession.shared.data(for: request)
+      
+      if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 400 {
+        throw PackError.privateDeck
+      }
+      
+      guard let decklist = String(data: data, encoding: .utf8) else {
+        throw PackError.invalidURL
+      }
+      
+      let deckName: String?
+      
+      if let response = response as? HTTPURLResponse, let disposition: String = response.allHeaderFields["Content-Disposition"] as? String, let range = disposition.range(of: "attachment; filename=\"") {
+        print(disposition)
+        var name: String = disposition
+        name.replaceSubrange(range, with: "")
+        deckName = String(name.dropLast(5))
+      } else {
+        deckName = nil
+      }
+      
+      let result: String = try await deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, omenpath: omenpath)
+      print("Success")
+      return result
 		case "www.tappedout.net", "tappedout.net":
       var newComponents = components
       var queryItems = newComponents.queryItems ?? []
@@ -638,167 +508,61 @@ final class GeneratorController: Sendable {
       newComponents.queryItems = queryItems
       
       guard let decklistURL = newComponents.url else { throw PackError.invalidURL }
+      let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+      let (data, response) = try await URLSession.shared.data(for: request)
       
-      DispatchQueue.global(qos: .userInitiated).async {
-        let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
-        URLSession.shared.dataTask(with: request) { data, response, error in
-          do {
-            guard let data = data else {
-              throw error!
-            }
-            
-            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 400 {
-              throw PackError.privateDeck
-            }
-            
-            guard let decklist = String(data: data, encoding: .utf8) else {
-              promise.fail(PackError.invalidURL)
-              return
-            }
-            
-            let deckName: String?
-            
-            if let response = response as? HTTPURLResponse, let disposition: String = response.allHeaderFields["Content-Disposition"] as? String, let range = disposition.range(of: "attachment;filename=") {
-              print(disposition)
-              var name: String = disposition
-              name.replaceSubrange(range, with: "")
-              deckName = String(name.dropLast(4))
-            } else {
-              deckName = nil
-            }
-            
-            promise.completeWithTask {
-              do {
-                
-                let result: String = try await deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, omenpath: omenpath)
-                print("Success")
-                return result
-              } catch let error as DebuggableError {
-                struct ErrorMessage: Codable {
-                  var error: String
-                }
-                
-                let encoder = JSONEncoder()
-                let errorMessage = ErrorMessage(error: error.reason)
-                do {
-                  let data = try encoder.encode(errorMessage)
-                  let string = String(data: data, encoding: .utf8)!
-                  return string
-                } catch {
-                  throw error
-                }
-              } catch {
-                throw error
-              }
-            }
-          } catch let error as DebuggableError {
-            struct ErrorMessage: Codable {
-              var error: String
-            }
-            
-            let encoder = JSONEncoder()
-            let errorMessage = ErrorMessage(error: error.reason)
-            do {
-              let data = try encoder.encode(errorMessage)
-              let string = String(data: data, encoding: .utf8)!
-              promise.succeed(string)
-            } catch {
-              promise.fail(error)
-            }
-          } catch {
-            promise.fail(error)
-          }
-        }.resume()
+      if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 400 {
+        throw PackError.privateDeck
       }
+      
+      guard let decklist = String(data: data, encoding: .utf8) else {
+        throw PackError.invalidURL
+      }
+      
+      let deckName: String?
+      
+      if let response = response as? HTTPURLResponse, let disposition: String = response.allHeaderFields["Content-Disposition"] as? String, let range = disposition.range(of: "attachment;filename=") {
+        print(disposition)
+        var name: String = disposition
+        name.replaceSubrange(range, with: "")
+        deckName = String(name.dropLast(4))
+      } else {
+        deckName = nil
+      }
+      
+      let result: String = try await deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, omenpath: omenpath)
+      print("Success")
+      return result
 		case "www.mtggoldfish.com", "mtggoldfish.com":
-			DispatchQueue.global().async {
-				let request = URLRequest(url: deckURL, cachePolicy: .reloadIgnoringLocalCacheData)
-				URLSession.shared.dataTask(with: request) { data, response, error in
-					do {
-						if let response = response as? HTTPURLResponse, response.statusCode == 404 {
-							throw PackError.privateDeck
-						}
-						
-						guard let data = data, let page = String(data: data, encoding: .utf8) else {
-							throw PackError.invalidURL
-						}
-						
-						guard let arenaDownloadLink = page.matches(forRegex: #"<a class="btn btn-secondary deck-tools-btn" href="(\/deck\/arena_download\/.+)">"#).first?.groups.first?.value, let arenaDownloadURL = URL(string: "https://www.mtggoldfish.com" + arenaDownloadLink) else {
-							throw PackError.invalidURL
-						}
-						
-						let arenaDownloadRequest = URLRequest(url: arenaDownloadURL, cachePolicy: .reloadIgnoringLocalCacheData)
-						URLSession.shared.dataTask(with: arenaDownloadRequest) { data, response, error in
-							do {
-								guard let data = data, let page = String(data: data, encoding: .utf8) else {
-									throw PackError.invalidURL
-								}
-								
-								guard let decklist = page.matches(forRegex: #"<textarea class='copy-paste-box'>(.*)<\/textarea>"#, options: .dotMatchesLineSeparators).first?.groups.first?.value.decodingHTMLEntities else {
-									throw PackError.invalidURL
-								}
-								
-                promise.completeWithTask {
-									do {
-										let result: String = try await deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, omenpath: omenpath)
-										print("Success")
-										return result
-									} catch let error as DebuggableError {
-										struct ErrorMessage: Codable {
-											var error: String
-										}
-										
-										let encoder = JSONEncoder()
-										let errorMessage = ErrorMessage(error: error.reason)
-										do {
-											let data = try encoder.encode(errorMessage)
-											let string = String(data: data, encoding: .utf8)!
-											return string
-										} catch {
-											throw error
-										}
-									} catch {
-										throw error
-									}
-								}
-								
-							} catch let error as DebuggableError {
-								struct ErrorMessage: Codable {
-									var error: String
-								}
-								
-								let encoder = JSONEncoder()
-								let errorMessage = ErrorMessage(error: error.reason)
-								do {
-									let data = try encoder.encode(errorMessage)
-									let string = String(data: data, encoding: .utf8)!
-									promise.succeed(string)
-								} catch {
-									promise.fail(error)
-								}
-							} catch {
-								promise.fail(error)
-							}
-						}.resume()
-					} catch let error as DebuggableError {
-						struct ErrorMessage: Codable {
-							var error: String
-						}
-						
-						let encoder = JSONEncoder()
-						let errorMessage = ErrorMessage(error: error.reason)
-						do {
-							let data = try encoder.encode(errorMessage)
-							let string = String(data: data, encoding: .utf8)!
-							promise.succeed(string)
-						} catch {
-							promise.fail(error)
-						}
-					} catch {
-						promise.fail(error)
-					}
-				}.resume()
-			}
+      let request = URLRequest(url: deckURL, cachePolicy: .reloadIgnoringLocalCacheData)
+      var (data, response) = try await URLSession.shared.data(for: request)
+      
+      if let response = response as? HTTPURLResponse, response.statusCode == 404 {
+        throw PackError.privateDeck
+      }
+      
+      guard let page = String(data: data, encoding: .utf8) else {
+        throw PackError.invalidURL
+      }
+      
+      guard let arenaDownloadLink = page.matches(forRegex: #"<a class="btn btn-secondary deck-tools-btn" href="(\/deck\/arena_download\/.+)">"#).first?.groups.first?.value, let arenaDownloadURL = URL(string: "https://www.mtggoldfish.com" + arenaDownloadLink) else {
+        throw PackError.invalidURL
+      }
+      
+      let arenaDownloadRequest = URLRequest(url: arenaDownloadURL, cachePolicy: .reloadIgnoringLocalCacheData)
+      (data, response) = try await URLSession.shared.data(for: arenaDownloadRequest)
+      
+      guard let page = String(data: data, encoding: .utf8) else {
+        throw PackError.invalidURL
+      }
+      
+      guard let decklist = page.matches(forRegex: #"<textarea class='copy-paste-box'>(.*)<\/textarea>"#, options: .dotMatchesLineSeparators).first?.groups.first?.value.decodingHTMLEntities else {
+        throw PackError.invalidURL
+      }
+      
+      let result: String = try await deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, omenpath: omenpath)
+      print("Success")
+      return result
 		default:
 			struct ErrorMessage: Codable {
 				var error: String
@@ -806,34 +570,26 @@ final class GeneratorController: Sendable {
 			
 			let encoder = JSONEncoder()
 			let errorMessage = ErrorMessage(error: PackError.invalidURL.reason)
-			do {
-				let data = try encoder.encode(errorMessage)
-				let string = String(data: data, encoding: .utf8)!
-				promise.succeed(string)
-			} catch {
-				promise.fail(error)
-			}
+      let data = try encoder.encode(errorMessage)
+      let string = String(data: data, encoding: .utf8)!
+      return string
 		}
-		
-		return promise.futureResult
 	}
 	
-	func deckstatsDeck(_ req: Request) throws -> EventLoopFuture<String> {
+	func deckstatsDeck(_ req: Request) async throws -> String {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let autofix: Bool = req.query.getBoolValue(at: "autofix") ?? true
     let omenpath: Bool = req.query.getBoolValue(at: "omenpath") ?? false
 		let cardBack: URL? = (try? req.query.get(String.self, at: "back")).flatMap(URL.init(string:))
-
-		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
 		
 		guard let deckURLString = req.parameters.get("deck"), let deckURL = URL(string: deckURLString) else {
 			throw PackError.invalidURL
 		}
 
-    return try deckFromURL(deckURL, export, cardBack, autofix: autofix, omenpath: omenpath, promise)
+    return try await deckFromURL(deckURL, export, cardBack, autofix: autofix, omenpath: omenpath)
 	}
 	
-	func fullDeck(_ req: Request) throws -> EventLoopFuture<String> {
+	func fullDeck(_ req: Request) async throws -> String {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let autofix: Bool = req.query.getBoolValue(at: "autofix") ?? true
     let omenpath: Bool = req.query.getBoolValue(at: "omenpath") ?? false
@@ -841,37 +597,30 @@ final class GeneratorController: Sendable {
 		
 		let decklist = try req.content.decode(DeckList.self)
 		
-		let promise: EventLoopPromise<String> = req.eventLoop.makePromise()
-		
     if let url = URL(string: decklist.deck), url.absoluteString.lowercased().hasPrefix("http") {
-      return try self.deckFromURL(url, export, cardBack, autofix: autofix, omenpath: omenpath, promise)
+      return try await self.deckFromURL(url, export, cardBack, autofix: autofix, omenpath: omenpath)
 		}
 		
-    promise.completeWithTask {
-			do {
-				let d: Deck = decklist.deck.contains("[") || decklist.deck.contains("]") ? .deckstats(decklist.deck) : .arena(decklist.deck)
-        let result: String = try await deck(d, export: export, cardBack: cardBack, autofix: autofix, omenpath: omenpath)
-				return result
-			} catch let error as DebuggableError {
-				struct ErrorMessage: Codable {
-					var error: String
-				}
-				
-				let encoder = JSONEncoder()
-				let errorMessage = ErrorMessage(error: error.reason)
-				do {
-					let data = try encoder.encode(errorMessage)
-					let string = String(data: data, encoding: .utf8)!
-					return string
-				} catch {
-					throw error
-				}
-			} catch {
-				throw error
-			}
-		}
-		
-		return promise.futureResult
+    do {
+      let d: Deck = decklist.deck.contains("[") || decklist.deck.contains("]") ? .deckstats(decklist.deck) : .arena(decklist.deck)
+      return try await deck(d, export: export, cardBack: cardBack, autofix: autofix, omenpath: omenpath)
+    } catch let error as DebuggableError {
+      struct ErrorMessage: Codable {
+        var error: String
+      }
+      
+      let encoder = JSONEncoder()
+      let errorMessage = ErrorMessage(error: error.reason)
+      do {
+        let data = try encoder.encode(errorMessage)
+        let string = String(data: data, encoding: .utf8)!
+        return string
+      } catch {
+        throw error
+      }
+    } catch {
+      throw error
+    }
 	}
   
   struct DeckResponse: Codable, Content {

@@ -430,7 +430,8 @@ final class GeneratorController: Sendable {
         
         guard let decklistURL = components.url else { throw PackError.invalidURL }
         
-        let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+        var request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+        request.setValue("Mozilla/5.0 (Macintosh; Intel Mac OS X 15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15", forHTTPHeaderField: "User-Agent")
         let (data, response) = try await URLSession.shared.data(for: request)
         
         if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 400 {

@@ -453,10 +453,9 @@ final class GeneratorController: Sendable {
       }
       
       do {
-//        let result: String = try await deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, omenpath: omenpath)
-//        print("Success")
-//        return result
-        throw PackError.emptyInput
+        let result: String = try await deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, omenpath: omenpath)
+        print("Success")
+        return result
       } catch {
         // Importing failed for some reason, fallback to parsing the page.
         let (data, _) = try await URLSession.shared.data(from: deckURL)

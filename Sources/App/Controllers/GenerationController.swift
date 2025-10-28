@@ -10,6 +10,7 @@ import Vapor
 import FoundationNetworking
 import Foundation
 #endif
+import SwiftSoup
 
 public enum OutputFormat: String, CaseIterable, Sendable {
 	case tts, cardlist, json
@@ -383,157 +384,230 @@ final class GeneratorController: Sendable {
 	
   /// This one is used in the main deck importer
   fileprivate func deckFromURL(_ deckURL: URL, _ export: Bool, _ cardBack: URL?, autofix: Bool, omenpath: Bool) async throws -> String {
-    do {
+    guard let components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else {
+      throw PackError.invalidURL
+    }
+    
+    switch components.host {
+    case "www.archidekt.com", "archidekt.com":
+      guard deckURL.pathComponents.count >= 2, deckURL.pathComponents[1] == "decks", let decklistURL = URL(string: "https://archidekt.com/api/decks/\(deckURL.pathComponents[2])/") else { throw PackError.invalidURL }
       
-      guard let components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else {
+      let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+      let (data, _) = try await URLSession.shared.data(for: request)
+      
+      let decoder = JSONDecoder()
+      let archidektDeck = try decoder.decode(ArchidektDeck.self, from: data)
+      
+      let result: String = try await deck(.archidekt(archidektDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: archidektDeck.name, omenpath: omenpath)
+      print("Success")
+      return result
+    case "moxfield.com", "www.moxfield.com":
+      guard deckURL.pathComponents.count >= 2, deckURL.pathComponents[1] == "decks", let decklistURL = URL(string: "https://api.moxfield.com/v2/decks/all/\(deckURL.pathComponents[2])") else { throw PackError.invalidURL }
+      
+      var request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+      
+      if let apiKey = Environment.get("MoxfieldAgent") {
+        request.setValue(apiKey, forHTTPHeaderField: "User-Agent")
+        print("Added Moxfield API key to header")
+      }
+      
+      let (data, _) = try await URLSession.shared.data(for: request)
+      let decoder = JSONDecoder()
+      let moxfieldDeck = try decoder.decode(MoxfieldDeck.self, from: data)
+      
+      let result: String = try await deck(.moxfield(moxfieldDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: moxfieldDeck.name, omenpath: omenpath)
+      print("Success")
+      return result
+      
+    case "deckstats.net", "www.deckstats.net":
+      guard var components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else { throw PackError.invalidURL  }
+      components.queryItems = [
+        URLQueryItem(name: "export_dec", value: "1"),
+        URLQueryItem(name: "include_comments", value: "1"),
+        URLQueryItem(name: "include_collector_numbers", value: "1")
+      ]
+      
+      guard let decklistURL = components.url else { throw PackError.invalidURL }
+      
+      var request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+      request.setValue("Mozilla/5.0 (Macintosh; Intel Mac OS X 15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15", forHTTPHeaderField: "User-Agent")
+      let (data, response) = try await URLSession.shared.data(for: request)
+      
+      if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 400 {
+        throw PackError.privateDeck
+      }
+      
+      guard let decklist = String(data: data, encoding: .utf8) else {
         throw PackError.invalidURL
       }
       
-      switch components.host {
-      case "www.archidekt.com", "archidekt.com":
-        guard deckURL.pathComponents.count >= 2, deckURL.pathComponents[1] == "decks", let decklistURL = URL(string: "https://archidekt.com/api/decks/\(deckURL.pathComponents[2])/") else { throw PackError.invalidURL }
-        
-        let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
-        let (data, _) = try await URLSession.shared.data(for: request)
-        
-        let decoder = JSONDecoder()
-        let archidektDeck = try decoder.decode(ArchidektDeck.self, from: data)
-        
-        let result: String = try await deck(.archidekt(archidektDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: archidektDeck.name, omenpath: omenpath)
-        print("Success")
-        return result
-      case "moxfield.com", "www.moxfield.com":
-        guard deckURL.pathComponents.count >= 2, deckURL.pathComponents[1] == "decks", let decklistURL = URL(string: "https://api.moxfield.com/v2/decks/all/\(deckURL.pathComponents[2])") else { throw PackError.invalidURL }
-        
-        var request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
-        
-        if let apiKey = Environment.get("MoxfieldAgent") {
-          request.setValue(apiKey, forHTTPHeaderField: "User-Agent")
-          print("Added Moxfield API key to header")
-        }
-        
-        let (data, _) = try await URLSession.shared.data(for: request)
-        let decoder = JSONDecoder()
-        let moxfieldDeck = try decoder.decode(MoxfieldDeck.self, from: data)
-        
-        let result: String = try await deck(.moxfield(moxfieldDeck), export: export, cardBack: cardBack, autofix: autofix, outputName: moxfieldDeck.name, omenpath: omenpath)
-        print("Success")
-        return result
-        
-      case "deckstats.net", "www.deckstats.net":
-        guard var components = URLComponents(url: deckURL, resolvingAgainstBaseURL: false) else { throw PackError.invalidURL  }
-        components.queryItems = [
-          URLQueryItem(name: "export_dec", value: "1"),
-          URLQueryItem(name: "include_comments", value: "1"),
-          URLQueryItem(name: "include_collector_numbers", value: "1")
-        ]
-        
-        guard let decklistURL = components.url else { throw PackError.invalidURL }
-        
-        var request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
-        request.setValue("Mozilla/5.0 (Macintosh; Intel Mac OS X 15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15", forHTTPHeaderField: "User-Agent")
-        let (data, response) = try await URLSession.shared.data(for: request)
-        
-        if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 400 {
-          throw PackError.privateDeck
-        }
-        
-        guard let decklist = String(data: data, encoding: .utf8) else {
-          throw PackError.invalidURL
-        }
-        
-        let deckName: String?
-        
-        if let response = response as? HTTPURLResponse, let disposition: String = response.allHeaderFields["Content-Disposition"] as? String, let range = disposition.range(of: "attachment; filename=\"") {
-          print(disposition)
-          var name: String = disposition
-          name.replaceSubrange(range, with: "")
-          deckName = String(name.dropLast(5))
-        } else {
-          deckName = nil
-        }
-        
-        let result: String = try await deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, omenpath: omenpath)
-        print("Success")
-        return result
-      case "www.tappedout.net", "tappedout.net":
-        var newComponents = components
-        var queryItems = newComponents.queryItems ?? []
-        queryItems.append(.init(name: "fmt", value: "txt"))
-        newComponents.queryItems = queryItems
-        
-        guard let decklistURL = newComponents.url else { throw PackError.invalidURL }
-        let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
-        let (data, response) = try await URLSession.shared.data(for: request)
-        
-        if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 400 {
-          throw PackError.privateDeck
-        }
-        
-        guard let decklist = String(data: data, encoding: .utf8) else {
-          throw PackError.invalidURL
-        }
-        
-        let deckName: String?
-        
-        if let response = response as? HTTPURLResponse, let disposition: String = response.allHeaderFields["Content-Disposition"] as? String, let range = disposition.range(of: "attachment;filename=") {
-          print(disposition)
-          var name: String = disposition
-          name.replaceSubrange(range, with: "")
-          deckName = String(name.dropLast(4))
-        } else {
-          deckName = nil
-        }
-        
-        let result: String = try await deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, omenpath: omenpath)
-        print("Success")
-        return result
-      case "www.mtggoldfish.com", "mtggoldfish.com":
-        let request = URLRequest(url: deckURL, cachePolicy: .reloadIgnoringLocalCacheData)
-        var (data, response) = try await URLSession.shared.data(for: request)
-        
-        if let response = response as? HTTPURLResponse, response.statusCode == 404 {
-          throw PackError.privateDeck
-        }
-        
-        guard let page = String(data: data, encoding: .utf8) else {
-          throw PackError.invalidURL
-        }
-        
-        guard let arenaDownloadLink = page.matches(forRegex: #"<a class="btn btn-secondary deck-tools-btn" href="(\/deck\/arena_download\/.+)">"#).first?.groups.first?.value, let arenaDownloadURL = URL(string: "https://www.mtggoldfish.com" + arenaDownloadLink) else {
-          throw PackError.invalidURL
-        }
-        
-        let arenaDownloadRequest = URLRequest(url: arenaDownloadURL, cachePolicy: .reloadIgnoringLocalCacheData)
-        (data, response) = try await URLSession.shared.data(for: arenaDownloadRequest)
-        
-        guard let page = String(data: data, encoding: .utf8) else {
-          throw PackError.invalidURL
-        }
-        
-        guard let decklist = page.matches(forRegex: #"<textarea class='copy-paste-box'>(.*)<\/textarea>"#, options: .dotMatchesLineSeparators).first?.groups.first?.value.decodingHTMLEntities else {
-          throw PackError.invalidURL
-        }
-        
-        let result: String = try await deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, omenpath: omenpath)
-        print("Success")
-        return result
-      default:
-        let encoder = JSONEncoder()
-        let errorMessage = ErrorMessage(error: PackError.invalidURL.reason)
-        let data = try encoder.encode(errorMessage)
-        let string = String(data: data, encoding: .utf8)!
-        return string
-      }
-    } catch let error as DebuggableError {
-      let encoder = JSONEncoder()
-      let errorMessage = ErrorMessage(error: error.reason)
+      let deckName: String?
       
+      if let response = response as? HTTPURLResponse, let disposition: String = response.allHeaderFields["Content-Disposition"] as? String, let range = disposition.range(of: "attachment; filename=\"") {
+        print(disposition)
+        var name: String = disposition
+        name.replaceSubrange(range, with: "")
+        deckName = String(name.dropLast(5))
+      } else {
+        deckName = nil
+      }
+      
+      do {
+//        let result: String = try await deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, omenpath: omenpath)
+//        print("Success")
+//        return result
+        throw PackError.emptyInput
+      } catch {
+        // Importing failed for some reason, fallback to parsing the page.
+        let (data, _) = try await URLSession.shared.data(from: deckURL)
+        guard let html = String(data: data, encoding: .utf8) else { throw PackError.emptyInput }
+        let doc = try SwiftSoup.parse(html)
+        
+        let deckstatsDeck: DeckstatsDeck = try parse(doc: doc)
+        
+        let list = deckstatsDeck.sections.map(\.cards).joined().sorted(on: \.cardPosition).map {
+          "\($0.amount) \($0.name)"
+        }.joined(separator: "\n")
+        
+        let result: String = try await deck(.arena(list), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, omenpath: omenpath)
+        print("Success")
+        return result
+      }
+    case "www.tappedout.net", "tappedout.net":
+      var newComponents = components
+      var queryItems = newComponents.queryItems ?? []
+      queryItems.append(.init(name: "fmt", value: "txt"))
+      newComponents.queryItems = queryItems
+      
+      guard let decklistURL = newComponents.url else { throw PackError.invalidURL }
+      let request = URLRequest(url: decklistURL, cachePolicy: .reloadIgnoringLocalCacheData)
+      let (data, response) = try await URLSession.shared.data(for: request)
+      
+      if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 400 {
+        throw PackError.privateDeck
+      }
+      
+      guard let decklist = String(data: data, encoding: .utf8) else {
+        throw PackError.invalidURL
+      }
+      
+      let deckName: String?
+      
+      if let response = response as? HTTPURLResponse, let disposition: String = response.allHeaderFields["Content-Disposition"] as? String, let range = disposition.range(of: "attachment;filename=") {
+        print(disposition)
+        var name: String = disposition
+        name.replaceSubrange(range, with: "")
+        deckName = String(name.dropLast(4))
+      } else {
+        deckName = nil
+      }
+      
+      let result: String = try await deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, omenpath: omenpath)
+      print("Success")
+      return result
+    case "www.mtggoldfish.com", "mtggoldfish.com":
+      let request = URLRequest(url: deckURL, cachePolicy: .reloadIgnoringLocalCacheData)
+      var (data, response) = try await URLSession.shared.data(for: request)
+      
+      if let response = response as? HTTPURLResponse, response.statusCode == 404 {
+        throw PackError.privateDeck
+      }
+      
+      guard let page = String(data: data, encoding: .utf8) else {
+        throw PackError.invalidURL
+      }
+      
+      guard let arenaDownloadLink = page.matches(forRegex: #"<a class="btn btn-secondary deck-tools-btn" href="(\/deck\/arena_download\/.+)">"#).first?.groups.first?.value, let arenaDownloadURL = URL(string: "https://www.mtggoldfish.com" + arenaDownloadLink) else {
+        throw PackError.invalidURL
+      }
+      
+      let arenaDownloadRequest = URLRequest(url: arenaDownloadURL, cachePolicy: .reloadIgnoringLocalCacheData)
+      (data, response) = try await URLSession.shared.data(for: arenaDownloadRequest)
+      
+      guard let page = String(data: data, encoding: .utf8) else {
+        throw PackError.invalidURL
+      }
+      
+      guard let decklist = page.matches(forRegex: #"<textarea class='copy-paste-box'>(.*)<\/textarea>"#, options: .dotMatchesLineSeparators).first?.groups.first?.value.decodingHTMLEntities else {
+        throw PackError.invalidURL
+      }
+      
+      let result: String = try await deck(.arena(decklist), export: export, cardBack: cardBack, autofix: autofix, omenpath: omenpath)
+      print("Success")
+      return result
+    default:
+      let encoder = JSONEncoder()
+      let errorMessage = ErrorMessage(error: PackError.invalidURL.reason)
       let data = try encoder.encode(errorMessage)
       let string = String(data: data, encoding: .utf8)!
       return string
     }
 	}
+  
+  struct DeckstatsDeck: Codable {
+    struct Section: Codable {
+      let name: String
+      let cards: [Card]
+      
+    }
+    struct Card: Codable {
+      struct CardData: Codable {
+        let collectorNumber: String
+        let displaySetId: Int
+      }
+      let name: String
+      let amount: Int
+      let data: CardData
+      let cardPosition: Int
+    }
+    let sections: [Section]
+  }
+  
+  func parse(doc: SwiftSoup.Document) throws -> DeckstatsDeck {
+    guard let script = try doc.select("script").first(where: { $0.data().contains("init_deck_data(") }) else {
+      fatalError("init_deck_data not found")
+    }
+    
+    let scriptContent = script.data()
+    
+    // Find the start of the JSON object
+    guard let startRange = scriptContent.range(of: "init_deck_data(") else {
+      fatalError("Couldn't find init_deck_data(")
+    }
+    guard let jsonStart = scriptContent[startRange.upperBound...].firstIndex(of: "{") else {
+      fatalError("Couldn't find JSON start")
+    }
+    
+    // --- Bracket matching to find the end of JSON object ---
+    var braceCount = 0
+    var jsonEnd: String.Index? = nil
+    for i in scriptContent[jsonStart...].indices {
+      let ch = scriptContent[i]
+      if ch == "{" {
+        braceCount += 1
+      } else if ch == "}" {
+        braceCount -= 1
+        if braceCount == 0 {
+          jsonEnd = i
+          break
+        }
+      }
+    }
+    
+    guard let jsonEnd else {
+      fatalError("Could not find end of JSON object")
+    }
+    
+    // Extract JSON substring
+    var jsonString = String(scriptContent[jsonStart...jsonEnd])
+    jsonString = jsonString.replacingOccurrences(of: "\\/", with: "/")
+    
+    // Decode JSON
+    let data = jsonString.data(using: .utf8)!
+    let decoder = JSONDecoder()
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
+    return try decoder.decode(DeckstatsDeck.self, from: data)
+  }
 	
 	func deckstatsDeck(_ req: Request) async throws -> String {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
@@ -556,29 +630,19 @@ final class GeneratorController: Sendable {
 		
 		let decklist = try req.content.decode(DeckList.self)
 		
-    if let url = URL(string: decklist.deck), url.absoluteString.lowercased().hasPrefix("http") {
-      return try await self.deckFromURL(url, export, cardBack, autofix: autofix, omenpath: omenpath)
-		}
-		
     do {
+      if let url = URL(string: decklist.deck), url.absoluteString.lowercased().hasPrefix("http") {
+        return try await self.deckFromURL(url, export, cardBack, autofix: autofix, omenpath: omenpath)
+      }
+      
       let d: Deck = decklist.deck.contains("[") || decklist.deck.contains("]") ? .deckstats(decklist.deck) : .arena(decklist.deck)
       return try await deck(d, export: export, cardBack: cardBack, autofix: autofix, omenpath: omenpath)
     } catch let error as DebuggableError {
-      struct ErrorMessage: Codable {
-        var error: String
-      }
-      
       let encoder = JSONEncoder()
       let errorMessage = ErrorMessage(error: error.reason)
-      do {
-        let data = try encoder.encode(errorMessage)
-        let string = String(data: data, encoding: .utf8)!
-        return string
-      } catch {
-        throw error
-      }
-    } catch {
-      throw error
+      let data = try encoder.encode(errorMessage)
+      let string = String(data: data, encoding: .utf8)!
+      return string
     }
 	}
   

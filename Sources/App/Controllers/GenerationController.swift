@@ -452,26 +452,26 @@ final class GeneratorController: Sendable {
         deckName = nil
       }
       
-      do {
+//      do {
         let result: String = try await deck(.deckstats(decklist), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, omenpath: omenpath)
         print("Success")
         return result
-      } catch {
-        // Importing failed for some reason, fallback to parsing the page.
-        let (data, _) = try await URLSession.shared.data(from: deckURL)
-        guard let html = String(data: data, encoding: .utf8) else { throw PackError.emptyInput }
-        let doc = try SwiftSoup.parse(html)
-        
-        let deckstatsDeck: DeckstatsDeck = try parse(doc: doc)
-        
-        let list = deckstatsDeck.sections.map(\.cards).joined().sorted(on: \.cardPosition).map {
-          "\($0.amount) \($0.name)"
-        }.joined(separator: "\n")
-        
-        let result: String = try await deck(.arena(list), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, omenpath: omenpath)
-        print("Success")
-        return result
-      }
+//      } catch {
+//        // Importing failed for some reason, fallback to parsing the page.
+//        let (data, _) = try await URLSession.shared.data(from: deckURL)
+//        guard let html = String(data: data, encoding: .utf8) else { throw PackError.emptyInput }
+//        let doc = try SwiftSoup.parse(html)
+//        
+//        let deckstatsDeck: DeckstatsDeck = try parse(doc: doc)
+//        
+//        let list = deckstatsDeck.sections.map(\.cards).joined().sorted(on: \.cardPosition).map {
+//          "\($0.amount) \($0.name)"
+//        }.joined(separator: "\n")
+//        
+//        let result: String = try await deck(.arena(list), export: export, cardBack: cardBack, autofix: autofix, outputName: deckName, omenpath: omenpath)
+//        print("Success")
+//        return result
+//      }
     case "www.tappedout.net", "tappedout.net":
       var newComponents = components
       var queryItems = newComponents.queryItems ?? []

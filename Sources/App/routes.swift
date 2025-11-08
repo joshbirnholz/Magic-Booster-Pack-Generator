@@ -13,6 +13,9 @@ public func routes(_ app: Application) throws {
   app.get("jumpinpackets", use: JumpInParser.shared.getAllPackets(_:))
   app.get("jumpinsets", use: JumpInParser.shared.getAllSets(_:))
   app.get("jumpin", use: JumpInParser.shared.jumpinDeck(_:))
+  app.get("jumpstartsets") { _ in
+    ["jmp", "j22", "sjm", "j25", "tle"]
+  }
   
   app.get("jumpin", ":set", use: JumpInParser.shared.selectPackets(_:))
 	

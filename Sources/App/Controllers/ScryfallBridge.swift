@@ -58,7 +58,7 @@ final class ScryfallBridgeController: Sendable {
         set.name = "Mystery Booster (Retail Edition)"
       }
       
-      if ["clu", "j25"].contains(set.code) {
+      if ["clu", "j25", "tle"].contains(set.code) {
         return [set]
       }
       

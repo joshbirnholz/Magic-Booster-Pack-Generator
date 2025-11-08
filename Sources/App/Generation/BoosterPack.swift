@@ -2210,6 +2210,8 @@ let jumpstart2022DeckListURLs: [URL] = try! urlsForResources(withExtension: "txt
 
 let jumpstart2025DeckListURLs: [URL] = try! urlsForResources(withExtension: "txt", subdirectory: "JumpStart 2025")
 
+let jumpstartAvatarDeckListURLs: [URL] = try! urlsForResources(withExtension: "txt", subdirectory: "JumpStart Avatar")
+
 let superJumpDeckListURLs: [URL] = try! urlsForResources(withExtension: "txt", subdirectory: "SuperJump")
 
 let ravnicaClueEditionDeckListURLs: [URL] = try! urlsForResources(withExtension: "txt", subdirectory: "Ravnica Clue Edition")
@@ -2368,6 +2370,42 @@ func generateJumpStart2025Pack() async throws -> CardCollection {
     let frontURL = URL(string: "http://josh.birnholz.com/tts/resources/fj25/\(name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!).png")!
     let number = superJumpDeckListURLs.firstIndex(of: deckListURL) ?? 0
     let faceCard = MTGCard(name: name, layout: "token", frame: "", isFullArt: true, collectorNumber: "\(number)", set: "fj25", rarity: .common, scryfallCardBackID: nil, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], language: .english, isTextless: false, imageUris: ["normal": frontURL])
+    collection.append(faceCard)
+  }
+  
+  for cardCount in cardCounts {
+    guard let card = cards[cardCount.identifier] else { continue }
+    let mtgCard = MTGCard(card)
+    for _ in 0 ..< cardCount.count {
+      collection.append(mtgCard)
+    }
+  }
+  
+  return collection
+}
+
+func generateJumpStartAvatarPack() async throws -> CardCollection {
+  guard let deckListURL = jumpstartAvatarDeckListURLs.randomElement() else {
+    throw PackError.unsupported
+  }
+  
+  let name = String(deckListURL.lastPathComponent.prefix(while: { !$0.isNumber && $0 != "." }).trimmingCharacters(in: .whitespacesAndNewlines))
+  
+  let faceCardIdentifier: MTGCardIdentifier = .nameSet(name: name, set: "ftla")
+  
+  let contents = try String(contentsOf: deckListURL)
+  var cardCounts = DeckParser.parse(deckList: contents, autofix: true).first?.cardCounts ?? []
+  let identifiers: [MTGCardIdentifier] = [faceCardIdentifier] + cardCounts.map(\.identifier)
+  let cards = try await Swiftfall.getCollection(identifiers: identifiers).data
+  
+  var collection = CardCollection()
+  if let faceCard = cards.first(where: { $0.set.lowercased() == "ftla" }) {
+    let mtgCard = MTGCard(faceCard)
+    collection.append(mtgCard)
+  } else {
+    let frontURL = URL(string: "http://josh.birnholz.com/tts/resources/ftla/\(name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!).jpeg")!
+    let number = jumpstartAvatarDeckListURLs.firstIndex(of: deckListURL) ?? 0
+    let faceCard = MTGCard(name: name, layout: "token", frame: "", isFullArt: true, collectorNumber: "\(number)", set: "ftla", rarity: .common, scryfallCardBackID: nil, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], language: .english, isTextless: false, imageUris: ["normal": frontURL])
     collection.append(faceCard)
   }
   
@@ -2739,7 +2777,7 @@ fileprivate struct CardInfo {
 			return nil
 		}
 		
-		if card.set == "jumpstartface" || card.set == "fjmp" || card.set == "fj22" || card.set == "fj25" {
+    if card.set == "jumpstartface" || card.set == "fjmp" || card.set == "fj22" || card.set == "fj25" || card.set == "ftla" {
 			self.backURL = Self.jumpstartBack
 		}
 		
@@ -5578,7 +5616,7 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		}
 		
 		switch setCode {
-		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "cmr", "jmp", "dbl", "sjm", "2x2", "clb", "j22", "cmm", "j25":
+		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "cmr", "jmp", "dbl", "sjm", "2x2", "clb", "j22", "cmm", "j25", "tle":
 			return 24
 		default:
 			return 36
@@ -5622,6 +5660,10 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
     return try await output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
   } else if setCode?.lowercased() == "j25" {
     let packs: [CardCollection] = await (1...count).asyncCompactMap { _ in try? await generateJumpStart2025Pack() }
+    
+    return try await output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
+  } else if setCode?.lowercased() == "tle" {
+    let packs: [CardCollection] = await (1...count).asyncCompactMap { _ in try? await generateJumpStartAvatarPack() }
     
     return try await output(setName: setName, setCode: setCode ?? "", packs: packs, tokens: [])
   } else if setCode?.lowercased() == "clu" {
@@ -5686,7 +5728,7 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 		}
 		
 		switch setCode {
-		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "2x2", "clb", "j22", "cmm", "j25":
+		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "2x2", "clb", "j22", "cmm", "j25", "tle":
 			return 24
 		default:
 			return 36
@@ -5863,6 +5905,10 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
     let pack = try await generateJumpStart2025Pack()
     
     return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+  } else if setCode?.lowercased() == "tle" {
+    let pack = try await generateJumpStartAvatarPack()
+    
+    return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
   } else if setCode?.lowercased() == "clu" {
     let pack = try await generateRavnicaClueEditionPack()
     
@@ -5940,7 +5986,7 @@ fileprivate func prereleaseKit(setName: String, setCode: String, cards: [MTGCard
 	}()
 	let packCount = packCount ?? 1
 	let prereleasePacks: [String] = try await (0 ..< (packCount)).asyncMap { _ in
-    if setCode.lowercased() == "mb1" || setCode.lowercased() == "fmb1" || setCode.lowercased() == "cmb1" || setCode.lowercased() == "jmp" || setCode.lowercased() == "sjm" || setCode.lowercased() == "j22" || setCode.lowercased() == "clu" || setCode.lowercased() == "j25" {
+    if setCode.lowercased() == "mb1" || setCode.lowercased() == "fmb1" || setCode.lowercased() == "cmb1" || setCode.lowercased() == "jmp" || setCode.lowercased() == "sjm" || setCode.lowercased() == "j22" || setCode.lowercased() == "clu" || setCode.lowercased() == "j25" || setCode.lowercased() == "tle" {
 			throw PackError.unsupported
 		} else if setCode.lowercased() == "plc" {
 			let cards = processPlanarChaosCards(cards: cards)

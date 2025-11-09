@@ -18,6 +18,7 @@ final class ScryfallBridgeController: Sendable {
 	
 	static let customSets = [
     Swiftfall.ScryfallSet(code: "sjm", mtgo: nil, name: "SuperJump! (Magic Online)", uri: "", scryfallUri: "", searchUri: nil, releasedAt: nil, setType: "expansion", cardCount: 0, digital: true, foilOnly: false, blockCode: "sjm", block: "sjm", printedSize: nil, iconSvgUri: nil),
+    Swiftfall.ScryfallSet(code: "tle", mtgo: nil, name: "Avatar: The Last Airbender JumpStart", uri: "", scryfallUri: "", searchUri: nil, releasedAt: nil, setType: "draft_innovation", cardCount: 0, digital: true, foilOnly: false, blockCode: "tle", block: "tle", printedSize: nil, iconSvgUri: nil),
 	]
 	
 	func getSets(_ req: Request) async throws -> [Swiftfall.ScryfallSet] {

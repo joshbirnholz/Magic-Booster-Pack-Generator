@@ -2522,6 +2522,7 @@ fileprivate struct CardInfo {
 	private static let defaultBack = URL(string: "https://backs.scryfall.io/normal/0/a/0aeebaf5-8c7d-4636-9e82-8c27447861f7.jpg")!
 	private static let tokenBack = URL(string: "http://josh.birnholz.com/tts/tback.jpg")!
 	private static let jumpstartBack = URL(string: "http://josh.birnholz.com/tts/resources/jumpstartback.jpg")!
+  private static let jumpstartBackTLA = URL(string: "http://josh.birnholz.com/tts/resources/jumpstartbackTLE.jpg")!
 	
 	var faceURL: URL
 	var backURL: URL
@@ -2777,9 +2778,11 @@ fileprivate struct CardInfo {
 			return nil
 		}
 		
-    if card.set == "jumpstartface" || card.set == "fjmp" || card.set == "fj22" || card.set == "fj25" || card.set == "ftla" {
+    if card.set == "jumpstartface" || card.set == "fjmp" || card.set == "fj22" || card.set == "fj25" {
 			self.backURL = Self.jumpstartBack
-		}
+    } else if card.set == "ftla" {
+      self.backURL = Self.jumpstartBackTLA
+    }
 		
 		self.num = num
         

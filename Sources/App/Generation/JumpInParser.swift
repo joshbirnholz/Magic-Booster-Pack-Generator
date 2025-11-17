@@ -10,8 +10,8 @@ import SwiftSoup
 import Vapor
 
 struct JumpstartSet: Content {
-  let name: String
   let code: String
+  let name: String
 }
 
 struct JumpInParser {

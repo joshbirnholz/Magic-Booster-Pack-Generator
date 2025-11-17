@@ -15,12 +15,12 @@ public func routes(_ app: Application) throws {
   app.get("jumpin", use: JumpInParser.shared.jumpinDeck(_:))
   app.get("jumpstartsets") { _ -> [JumpstartSet] in
     [
-      .init(name: "JumpStart", code: "jmp"),
-      .init(name: "JumpStart 2022", code: "j22"),
-      .init(name: "sjm", code: "SuperJump"),
-      .init(name: "clu", code: "Ravnica: Clue Edition"),
-      .init(name: "j25", code: "Foundations JumpStart"),
-      .init(name: "tle", code: "Avatar: The Last Airbender JumpStart")
+      .init(code: "jmp", name: "JumpStart"),
+      .init(code: "j22", name: "JumpStart 2022"),
+      .init(code: "sjm", name: "SuperJump"),
+      .init(code: "clu", name: "Ravnica: Clue Edition"),
+      .init(code: "j25", name: "Foundations JumpStart"),
+      .init(code: "tle", name: "Avatar: The Last Airbender JumpStart")
     ]
   }
   

@@ -9,6 +9,11 @@ import Foundation
 import SwiftSoup
 import Vapor
 
+struct JumpstartSet: Content {
+  let name: String
+  let code: String
+}
+
 struct JumpInParser {
   struct Card {
     let name: String

@@ -13,8 +13,14 @@ public func routes(_ app: Application) throws {
   app.get("jumpinpackets", use: JumpInParser.shared.getAllPackets(_:))
   app.get("jumpinsets", use: JumpInParser.shared.getAllSets(_:))
   app.get("jumpin", use: JumpInParser.shared.jumpinDeck(_:))
-  app.get("jumpstartsets") { _ in
-    ["jmp", "j22", "sjm", "j25", "tle"]
+  app.get("jumpstartsets") { _ -> [JumpstartSet] in
+    [
+      .init(name: "JumpStart", code: "jmp"),
+      .init(name: "JumpStart 2022", code: "j22"),
+      .init(name: "sjm", code: "SuperJump"),
+      .init(name: "j25", code: "Foundations JumpStart"),
+      .init(name: "tle", code: "Avatar: The Last Airbender JumpStart")
+    ]
   }
   
   app.get("jumpin", ":set", use: JumpInParser.shared.selectPackets(_:))

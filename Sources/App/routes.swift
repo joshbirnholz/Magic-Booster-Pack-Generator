@@ -18,6 +18,7 @@ public func routes(_ app: Application) throws {
       .init(name: "JumpStart", code: "jmp"),
       .init(name: "JumpStart 2022", code: "j22"),
       .init(name: "sjm", code: "SuperJump"),
+      .init(name: "clu", code: "Ravnica: Clue Edition"),
       .init(name: "j25", code: "Foundations JumpStart"),
       .init(name: "tle", code: "Avatar: The Last Airbender JumpStart")
     ]

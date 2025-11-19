@@ -636,269 +636,175 @@ actor DraftmancerSetCache {
   static let shared = DraftmancerSetCache()
   
   private var cachedSets: [DraftmancerSet]? = nil
+  private var cachedCards: [MTGCard]? = nil
+  
+  // New cached lookup tables
+  private var exactNameIndex: [String: MTGCard] = [:]
+  private var fuzzyIndex: [String: [MTGCard]] = [:] // prefix or substring
+  private var normalizedNames: [MTGCard: [String]] = [:]
+  private var cardBySetAndNumber: [String: [String: MTGCard]] = [:]
   
   var sets: [DraftmancerSet]? {
     get async {
-      if let cachedSets {
-        return cachedSets
-      } else {
-        do {
-          let sets = try await load()
-          self.cachedSets = sets
-          return sets
-        } catch {
-          return nil
-        }
+      if let cachedSets { return cachedSets }
+      do {
+        let sets = try await load()
+        self.cachedSets = sets
+        buildCaches(from: sets)
+        return sets
+      } catch {
+        return nil
       }
     }
   }
   
   var loadedDraftmancerSets: [DraftmancerSet]? {
-    get async {
-      guard let sets = await sets else { return nil }
-      
-      return sets
-    }
+    get async { await sets }
   }
   
   var loadedDraftmancerCards: [MTGCard]? {
     get async {
-      guard let sets = await sets else { return nil }
+      if let cachedCards { return cachedCards }
       
-      return Array(sets.map { $0.cards.compactMap(\.mtgCard) }.joined())
+      guard let sets = await sets else { return nil }
+      let all = Array(sets.map { $0.cards.compactMap(\.mtgCard) }.joined())
+      self.cachedCards = all
+      return all
     }
   }
   
   func cardNamed(fuzzy name: String) async -> MTGCard? {
-    let cards = await loadedDraftmancerCards ?? []
-    let cardsAndNames: [(MTGCard, [String])] = cards.map {
-      var names: [String?] = [$0.name, $0.flavorName]
-      names += $0.cardFaces?.compactMap(\.name) ?? []
-      names += $0.cardFaces?.compactMap(\.flavorName) ?? []
-      
-      return ($0, names.compactMap { $0?.lowercased() })
+    let normalized = name.lowercased()
+    
+    // First try exact match
+    if let exact = exactNameIndex[normalized] {
+      return exact
     }
     
-    var filtered = cardsAndNames.filter({ (card, names) in
-      names.contains(where: { $0.hasPrefix(name.lowercased()) })
-    })
-    
-    if let first = filtered.first, filtered.count == 1 {
-      return first.0
-    }
-    
-    filtered = cardsAndNames.filter({ (card, names) in
-      names.contains(where: { $0.contains(name.lowercased()) })
-    })
-    
-    if let first = filtered.first, filtered.count == 1 {
-      return first.0
+    // Then fuzzy match via prefix index
+    if let matches = fuzzyIndex[normalized] {
+      return matches.count == 1 ? matches.first : nil
     }
     
     return nil
   }
   
   func cardsMatchingNameQuery(_ query: String) async throws -> [MTGCard] {
-    let cards = await loadedDraftmancerCards ?? []
-    
-    return cards.filter { card in
-      var names: [String] = [card.name, card.flavorName].compactMap { $0 }
-      names += card.cardFaces?.compactMap(\.name) ?? []
-      names += card.cardFaces?.compactMap(\.flavorName) ?? []
-      
-      return names.contains(where: { nameMatchesCardName(cardName: $0, query: query) })
-    }
-  }
-  
-  private func nameMatchesCardName(cardName: String, query: String) -> Bool {
-    // Normalize both query and card name
-    let normalizedCardName = cardName
-      .lowercased()
-      .components(separatedBy: CharacterSet.alphanumerics.inverted)
-      .filter { !$0.isEmpty }
-    
-    let normalizedQuery = query
-      .lowercased()
-      .components(separatedBy: CharacterSet.alphanumerics.inverted)
-      .filter { !$0.isEmpty }
-    
-    // If query is empty, no match
-    guard !normalizedQuery.isEmpty else { return false }
-    
-    // Each query word must match the prefix of some card name word
-    for q in normalizedQuery {
-      guard normalizedCardName.contains(where: { $0.hasPrefix(q) }) else {
-        return false
-      }
-    }
-    
-    return true
+    let normalized = query.lowercased()
+    return fuzzyIndex[normalized] ?? []
   }
   
   func cardNamed(exact name: String) async -> MTGCard? {
-    let cards = await loadedDraftmancerCards ?? []
-    return cards[.name(name)]
+    exactNameIndex[name.lowercased()]
   }
-
+  
   func cardWithSetAndNumber(setCode: String, collectorNumber: String) async -> MTGCard? {
-    let cards = await loadedDraftmancerCards ?? []
-    return cards[.collectorNumberSet(collectorNumber: collectorNumber, set: setCode, name: nil)]
+    let setKey = setCode.lowercased()
+    let numKey = collectorNumber.lowercased()
+    
+    return cardBySetAndNumber[setKey]?[numKey]
+  }
+  
+  private func buildCaches(from sets: [DraftmancerSet]) {
+    let cards = Array(sets.map { $0.cards.compactMap(\.mtgCard) }.joined())
+    cachedCards = cards
+    
+    for card in cards {
+      let set = card.set.lowercased()
+      let number = card.collectorNumber.lowercased()
+      let names = collectNames(for: card)
+      
+      cardBySetAndNumber[set, default: [:]][number] = card
+      
+      // Cache normalized list
+      normalizedNames[card] = names
+      
+      for name in names {
+        // Store exact match (favor first)
+        exactNameIndex[name, default: card] = card
+        
+        // Store fuzzy index by prefix
+        for prefixLength in 1...name.count {
+          let prefix = String(name.prefix(prefixLength))
+          fuzzyIndex[prefix, default: []].append(card)
+        }
+      }
+    }
+  }
+  
+  private func collectNames(for card: MTGCard) -> [String] {
+    var names: [String] = [card.name, card.flavorName].compactMap { $0?.lowercased() }
+    names += card.cardFaces?.compactMap { $0.name?.lowercased() } ?? []
+    names += card.cardFaces?.compactMap { $0.flavorName?.lowercased() } ?? []
+    return names
   }
   
   private func load() async throws -> [DraftmancerSet] {
+    print("Loading custom cards…")
+    let startDate = Date()
+    
     do {
       let urls = try urlsForResources(withExtension: "txt", subdirectory: "Draftmancer")
       
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       
-      var draftmancerSets: [DraftmancerSet] = await urls.asyncCompactMap { url -> DraftmancerSet? in
-        do {
-          let rawData = try Data(contentsOf: url)
-          guard let rawString = String(data: rawData, encoding: .utf8) else {
-            print("‼️ Error loading string from data for \(url.deletingPathExtension().lastPathComponent):")
-            return nil
-          }
-          let string = draftMancerStringSection("CustomCards", from: rawString)
-          guard let data = string?.data(using: .utf8) else {
-            print("‼️ Error getting data from string for \(url.deletingPathExtension().lastPathComponent):")
-            return nil
-          }
-          
-          struct QuickCard: Decodable {
-            let name: String
-            let flavorName: String?
-            let flavorNameBack: String?
-            let flavorText: String?
-            let flavorTextBack: String?
-            let front: URL
-            let back: URL?
-            let set: String?
-            let rarity: DraftmancerCard.Rarity?
-            let collectorNumber: String?
-          }
-          
-          enum DraftmancerDecodable: Decodable {
-            case full(DraftmancerCard)
-            case quick(QuickCard)
-            
-            init(from decoder: any Decoder) throws {
-              let container = try decoder.singleValueContainer()
-              if let quick = try? container.decode(QuickCard.self) {
-                self = .quick(quick)
-              } else {
-                let full = try container.decode(DraftmancerCard.self)
-                self = .full(full)
-              }
-            }
-            
-            func card(from collection: [Swiftfall.Card]) async -> DraftmancerCard? {
-              switch self {
-              case .full(let card):
-                return card
-              case .quick(let quick):
-                do {
-                  let card: Swiftfall.Card = try await {
-                    if let card = collection[.name(quick.name)] {
-                      return card
-                    } else {
-                      return try await Swiftfall.getCard(exact: quick.name)
-                    }
-                  }()
-                  var mtgCard = MTGCard(card)
-                  
-                  if let back = quick.back, mtgCard.cardFaces?.count == 2 {
-                    let newFronts = mtgCard.cardFaces?[0].imageUris?.mapValues { _ in quick.front }
-                    mtgCard.cardFaces?[0].imageUris = newFronts
-                    mtgCard.cardFaces?[0].flavorText = quick.flavorText ?? nil
-                    mtgCard.cardFaces?[0].flavorName = quick.flavorName ?? nil
-                    
-                    let newBacks = mtgCard.cardFaces?[1].imageUris?.mapValues { _ in back }
-                    mtgCard.cardFaces?[1].imageUris = newBacks
-                    
-                    mtgCard.cardFaces?[1].flavorName = quick.flavorNameBack ?? nil
-                    mtgCard.cardFaces?[1].flavorText = quick.flavorTextBack ?? nil
-                  } else {
-                    mtgCard.imageUris = mtgCard.imageUris?.mapValues { _ in quick.front }
-                  }
-                  
-                  var draftmancerCard = await DraftmancerCard(mtgCard: mtgCard)
-                  draftmancerCard.collectorNumber = quick.collectorNumber
-                  draftmancerCard.flavorName = quick.flavorName ?? nil
-                  draftmancerCard.flavorText = quick.flavorText ?? nil
-                  draftmancerCard.back?.flavorName = quick.flavorNameBack ?? nil
-                  draftmancerCard.set = quick.set
-                  draftmancerCard.artist = nil
-                  
-                  if let rarity = quick.rarity {
-                    draftmancerCard.rarity = rarity
-                  }
-                  
-                  return draftmancerCard
-                } catch {
-                  print("Error loading card for \(quick.name): \(error)")
-                  return nil
-                }
-              }
-            }
-          }
-          
-          let cards = try decoder.decode([DraftmancerDecodable].self, from: data)
-          let name = url.deletingPathExtension().lastPathComponent
-          
-          print("✅ Loaded \(cards.count) Draftmancer cards from \(name)")
-          
-          let idsToFetch: [[MTGCardIdentifier]] = cards.compactMap {
-            guard case .quick(let quick) = $0 else { return nil }
-            return .name(quick.name)
-          }.chunked(by: 75)
-          var collection: [Swiftfall.Card] = []
-          for chunk in idsToFetch where !chunk.isEmpty {
+      var draftmancerSets: [DraftmancerSet] = try await withThrowingTaskGroup(of: DraftmancerSet?.self) { group in
+        for url in urls {
+          group.addTask {
             do {
-              let fetched = try await Swiftfall.getCollection(identifiers: chunk).data
-              collection.append(contentsOf: fetched)
+              return try await self.loadDraftmancerSetFromURL(url: url, decoder: decoder)
             } catch {
-              print(error)
+              print("‼️ Error loading cards from \(url.deletingPathExtension().lastPathComponent):", error)
+              return nil
             }
           }
-          
-          return await DraftmancerSet(
-            cards: cards.asyncCompactMap { await $0.card(from: collection) },
-            name: name
-          )
-        } catch {
-          print("‼️ Error loading cards from \(url.deletingPathExtension().lastPathComponent):", error)
-          return nil
         }
-      }
-      
-      let fromCockatrice: [DraftmancerSet] = loadedCockatriceDatabases?.map {
-        DraftmancerSet.init(cockatriceDatabase: $0)
-      } ?? []
-      
-      draftmancerSets.append(contentsOf: fromCockatrice)
-      
-//      let fromManifesto: [DraftmancerSet] = loadedManifestoSets?.map {
-//        DraftmancerSet.init(manifestoSet: $0)
-//      } ?? []
-//      
-//      draftmancerSets.append(contentsOf: fromManifesto)
-      
-      let cubeURL = URL(string: "https://capitalich.github.io/lists/all-cards.json")!
-      do {
-        let data = try await URLSession.shared.data(from: cubeURL).0
-        let adventureTimeCube = try decoder.decode(MSESet.self, from: data)
-        var set = DraftmancerSet(mseSet: adventureTimeCube)
-        set.name = "Adventure Time Cube"
-        draftmancerSets.append(set)
-        print("Loaded ATC from GitHub")
-      } catch {
-        print("Error loading ATC from GitHub:", error)
-        let fromMSE: [DraftmancerSet] = loadedMSESets?.map {
-          DraftmancerSet(mseSet: $0)
-        } ?? []
         
-        draftmancerSets.append(contentsOf: fromMSE)
+        if let loadedCockatriceDatabases {
+          for database in loadedCockatriceDatabases {
+            group.addTask {
+              return DraftmancerSet.init(cockatriceDatabase: database)
+            }
+          }
+        }
+        
+//        if let loadedManifestoSets {
+//          for set in loadedManifestoSets {
+//            group.addTask {
+//              return DraftmancerSet.init(manifestoSet: $0)
+//            }
+//          }
+//        }
+        
+        group.addTask {
+          let cubeURL = URL(string: "https://capitalich.github.io/lists/all-cards.json")!
+          do {
+            let data = try await URLSession.shared.data(from: cubeURL).0
+            let adventureTimeCube = try decoder.decode(MSESet.self, from: data)
+            var set = DraftmancerSet(mseSet: adventureTimeCube)
+            set.name = "Adventure Time Cube"
+            return set
+            print("Loaded ATC from GitHub")
+          } catch {
+//            print("Error loading ATC from GitHub:", error)
+//            let fromMSE: [DraftmancerSet] = loadedMSESets?.map {
+//              DraftmancerSet(mseSet: $0)
+//            } ?? []
+//            
+//            return fromMSE
+            return nil
+          }
+        }
+        
+        var results: [DraftmancerSet] = []
+        for try await result in group {
+          if let set = result {
+            results.append(set)
+          }
+        }
+        
+        return results
       }
       
       // Fill in missing sets and collector numbers
@@ -962,11 +868,129 @@ actor DraftmancerSetCache {
         return set
       }
       
+      let secondsSinceStart = Date().timeIntervalSince(startDate)
+      print("Finished loading \(draftmancerSets.map(\.cards.count).reduce(0, +)) custom cards in \(secondsSinceStart)s")
+      
       return draftmancerSets.sorted { $0.name < $1.name }
     } catch {
       print("Error loading Draftmancer sets:", error)
       throw error
     }
+  }
+  
+  func loadDraftmancerSetFromURL(url: URL, decoder: JSONDecoder) async throws -> DraftmancerSet? {
+    let rawData = try Data(contentsOf: url)
+    guard let rawString = String(data: rawData, encoding: .utf8) else {
+      print("‼️ Error loading string from data for \(url.deletingPathExtension().lastPathComponent):")
+      return nil
+    }
+    let string = draftMancerStringSection("CustomCards", from: rawString)
+    guard let data = string?.data(using: .utf8) else {
+      print("‼️ Error getting data from string for \(url.deletingPathExtension().lastPathComponent):")
+      return nil
+    }
+    
+    struct QuickCard: Decodable {
+      let name: String
+      let flavorName: String?
+      let flavorNameBack: String?
+      let flavorText: String?
+      let flavorTextBack: String?
+      let front: URL
+      let back: URL?
+      let set: String?
+      let rarity: DraftmancerCard.Rarity?
+      let collectorNumber: String?
+    }
+    
+    enum DraftmancerDecodable: Decodable {
+      case full(DraftmancerCard)
+      case quick(QuickCard)
+      
+      init(from decoder: any Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let quick = try? container.decode(QuickCard.self) {
+          self = .quick(quick)
+        } else {
+          let full = try container.decode(DraftmancerCard.self)
+          self = .full(full)
+        }
+      }
+      
+      func card(from collection: [Swiftfall.Card]) async -> DraftmancerCard? {
+        switch self {
+        case .full(let card):
+          return card
+        case .quick(let quick):
+          do {
+            let card: Swiftfall.Card = try await {
+              if let card = collection[.name(quick.name)] {
+                return card
+              } else {
+                return try await Swiftfall.getCard(exact: quick.name)
+              }
+            }()
+            var mtgCard = MTGCard(card)
+            
+            if let back = quick.back, mtgCard.cardFaces?.count == 2 {
+              let newFronts = mtgCard.cardFaces?[0].imageUris?.mapValues { _ in quick.front }
+              mtgCard.cardFaces?[0].imageUris = newFronts
+              mtgCard.cardFaces?[0].flavorText = quick.flavorText ?? nil
+              mtgCard.cardFaces?[0].flavorName = quick.flavorName ?? nil
+              
+              let newBacks = mtgCard.cardFaces?[1].imageUris?.mapValues { _ in back }
+              mtgCard.cardFaces?[1].imageUris = newBacks
+              
+              mtgCard.cardFaces?[1].flavorName = quick.flavorNameBack ?? nil
+              mtgCard.cardFaces?[1].flavorText = quick.flavorTextBack ?? nil
+            } else {
+              mtgCard.imageUris = mtgCard.imageUris?.mapValues { _ in quick.front }
+            }
+            
+            var draftmancerCard = await DraftmancerCard(mtgCard: mtgCard)
+            draftmancerCard.collectorNumber = quick.collectorNumber
+            draftmancerCard.flavorName = quick.flavorName ?? nil
+            draftmancerCard.flavorText = quick.flavorText ?? nil
+            draftmancerCard.back?.flavorName = quick.flavorNameBack ?? nil
+            draftmancerCard.set = quick.set
+            draftmancerCard.artist = nil
+            
+            if let rarity = quick.rarity {
+              draftmancerCard.rarity = rarity
+            }
+            
+            return draftmancerCard
+          } catch {
+            print("Error loading card for \(quick.name): \(error)")
+            return nil
+          }
+        }
+      }
+    }
+    
+    let cards = try decoder.decode([DraftmancerDecodable].self, from: data)
+    let name = url.deletingPathExtension().lastPathComponent
+    
+    print("✅ Loaded \(cards.count) Draftmancer cards from \(name)")
+    
+    let idsToFetch: [[MTGCardIdentifier]] = cards.compactMap {
+      guard case .quick(let quick) = $0 else { return nil }
+      return .name(quick.name)
+    }.chunked(by: 75)
+    var collection: [Swiftfall.Card] = []
+    for chunk in idsToFetch where !chunk.isEmpty {
+      do {
+        let fetched = try await Swiftfall.getCollection(identifiers: chunk).data
+        collection.append(contentsOf: fetched)
+      } catch {
+        print(error)
+      }
+    }
+    
+    return await DraftmancerSet(
+      cards: cards.asyncCompactMap { await $0.card(from: collection) },
+      name: name
+    )
   }
 }
 

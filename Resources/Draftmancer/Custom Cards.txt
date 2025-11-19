@@ -9,7 +9,12 @@
     "type": "Creature",
     "oracle_text": "Flying\nWhen this creature enters, scry 1. (Look at the top card of your library. You may put it on the bottom.)",
     "flavor_text": "The Fire Nation never expected the Earth Kingdom to take to the skies.",
-    "artist": "ikeda_cpt"
+    "artist": "ikeda_cpt",
+    "power": "2",
+    "toughness": "3",
+    "colors": ["W", "U"],
+    "layout": "normal",
+    "keywords": ["Flying"]
   },
   {
     "image" : "https://i.imgur.com/J0LsiPp.png",

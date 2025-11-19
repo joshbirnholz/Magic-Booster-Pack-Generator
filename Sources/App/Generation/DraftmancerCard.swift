@@ -724,11 +724,15 @@ actor DraftmancerSetCache {
     
     return true
   }
-
   
   func cardNamed(exact name: String) async -> MTGCard? {
     let cards = await loadedDraftmancerCards ?? []
     return cards[.name(name)]
+  }
+
+  func cardWithSetAndNumber(setCode: String, collectorNumber: String) async -> MTGCard? {
+    let cards = await loadedDraftmancerCards ?? []
+    return cards[.collectorNumberSet(collectorNumber: collectorNumber, set: setCode, name: nil)]
   }
   
   private func load() async throws -> [DraftmancerSet] {

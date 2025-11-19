@@ -98,6 +98,7 @@ public func routes(_ app: Application) throws {
   // that somewhat matches the Scryfall API
   
   app.get("custom", "cards", "named", use: generatorController.singleCardNamed_Scryfall(_:))
+  app.get("custom", "cards", ":set", ":collectornumber", use: generatorController.singleCardSetNumber_Scryfall(_:))
   app.get("custom", "cards", "search", use: getBuiltinDraftmancerCardsAsScryfall)
   app.get("custom", "cards", use: getAllBuiltinDraftmancerCardsAsScryfall)
   app.post("custom", "cards", "collection", use: getAllBuiltinDraftmancerCardsAsCollection)

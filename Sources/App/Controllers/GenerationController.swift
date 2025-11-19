@@ -809,6 +809,27 @@ final class GeneratorController: Sendable {
     
     return Response(headers: headers, body: .init(string: result))
   }
+  
+  func singleCardSetNumber_Scryfall(_ req: Request) async throws -> Response {
+    let headers: HTTPHeaders = ["Content-Type": "application/json", "access-control-allow-headers": "Origin", "access-control-allow-origin": "*"]
+    
+    guard let set = req.parameters.get("set"), let number = req.parameters.get("collectornumber") else {
+      throw Abort(.notFound, headers: headers, reason: "Set code and collector number are required")
+    }
+    
+    let mtgCard: MTGCard = try await {
+      if let card = await DraftmancerSetCache.shared.cardWithSetAndNumber(setCode: set, collectorNumber: number) {
+        return card
+      } else {
+        throw Abort(.notFound, headers: headers, reason: "No card found")
+      }
+    }()
+    
+    let data = try Swiftfall.encoder.encode(Swiftfall.Card(mtgCard))
+    let result = String(data: data, encoding: .utf8)!
+    
+    return Response(headers: headers, body: .init(string: result))
+  }
 	
 	func singleCard(_ req: Request) async throws -> String {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true

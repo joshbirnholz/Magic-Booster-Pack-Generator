@@ -2394,9 +2394,18 @@ func generateJumpStartAvatarPack() async throws -> CardCollection {
   let faceCardIdentifier: MTGCardIdentifier = .nameSet(name: name, set: "ftla")
   
   let contents = try String(contentsOf: deckListURL)
-  var cardCounts = DeckParser.parse(deckList: contents, autofix: true).first?.cardCounts ?? []
+  let cardCounts = DeckParser.parse(deckList: contents, autofix: true).first?.cardCounts ?? []
   let identifiers: [MTGCardIdentifier] = [faceCardIdentifier] + cardCounts.map(\.identifier)
-  let cards = try await Swiftfall.getCollection(identifiers: identifiers).data
+  let found = try await Swiftfall.getCollection(identifiers: identifiers)
+  var cards = found.data
+  
+  if let notFound = found.notFound {
+    for card in notFound {
+      if let card = await DraftmancerSetCache.shared.loadedDraftmancerCards?[card] {
+        cards.append(Swiftfall.Card(card))
+      }
+    }
+  }
   
   var collection = CardCollection()
   if let faceCard = cards.first(where: { $0.set.lowercased() == "ftla" }) {

@@ -1,5 +1,5 @@
 1 Gran-Gran (TLA)
-1 Glider Kids (TLA)
+1 Glider Kids (CUSTOM)
 1 Platypus-Bear (TLA)
 1 Iguana Parrot (TLA)
 1 Katara, Seeking Revenge (TLE)

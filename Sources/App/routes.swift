@@ -100,6 +100,7 @@ public func routes(_ app: Application) throws {
   app.get("custom", "cards", "named", use: generatorController.singleCardNamed_Scryfall(_:))
   app.get("custom", "cards", "search", use: getBuiltinDraftmancerCardsAsScryfall)
   app.get("custom", "cards", use: getAllBuiltinDraftmancerCardsAsScryfall)
+  app.post("custom", "cards", "collection", use: getAllBuiltinDraftmancerCardsAsCollection)
   app.get("custom", "sets", ":set", use: getBuiltinDraftmancerSetsAsScryfall)
   app.get("custom", "sets", use: getBuiltinDraftmancerSetsAsScryfall)
   app.get("custom", "cards", "autocomplete", use: draftMancerAutocomplete)

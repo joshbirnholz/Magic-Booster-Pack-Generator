@@ -155,6 +155,7 @@ public struct DraftmancerCard: Codable, Sendable {
   var subtypes: [String]?
   var rating: Int?
   var layout: String?
+  var frame: String?
   var back: Face?
   var relatedCards: [Face]?
   var relatedCardIdentifiers: [MTGCardIdentifier]?
@@ -303,6 +304,8 @@ public struct DraftmancerCard: Codable, Sendable {
     try container.encodeIfPresent(self.flavorText, forKey: .flavorText)
     try container.encodeIfPresent(self.loyalty, forKey: .loyalty)
     try container.encodeIfPresent(self.keywords, forKey: .keywords)
+    
+    try container.encodeIfPresent(self.frame, forKey: .frame)
   }
   
   enum CodingKeys: CodingKey {
@@ -331,6 +334,7 @@ public struct DraftmancerCard: Codable, Sendable {
     case flavorText
     case loyalty
     case keywords
+    case frame
   }
   
   public init(from decoder: Decoder) throws {
@@ -351,6 +355,7 @@ public struct DraftmancerCard: Codable, Sendable {
     self.layout = try container.decodeIfPresent(String.self, forKey: .layout)
     self.back = try container.decodeIfPresent(DraftmancerCard.Face.self, forKey: .back)
     self.artist = try container.decodeIfPresent(String.self, forKey: .artist)
+    self.frame = try container.decodeIfPresent(String.self, forKey: .frame)
     
     if let relatedCardIdentifiers = try? container.decodeIfPresent([String].self, forKey: .relatedCards) {
       self.relatedCardIdentifiers = relatedCardIdentifiers.compactMap { string in
@@ -480,7 +485,7 @@ extension DraftmancerCard {
         cardFaces: [frontFace, backFace],
         convertedManaCost: nil,
         layout: self.layout ?? (self.type.lowercased().contains("token") ? "token" : self.type.lowercased().contains("emblem") ? "emblem" : "normal"),
-        frame: "",
+        frame: self.frame ?? "2015",
         frameEffects: nil,
         manaCost: self.manaCost,
         scryfallURL: nil,
@@ -526,7 +531,7 @@ extension DraftmancerCard {
         cardFaces: nil, // Back faces and split cards not supported yet
         convertedManaCost: nil,
         layout: self.layout ?? (self.type.lowercased().contains("token") ? "token" : self.type.lowercased().contains("emblem") ? "emblem" : "normal"),
-        frame: "",
+        frame: self.frame ?? "2015",
         frameEffects: nil,
         manaCost: self.manaCost,
         scryfallURL: nil,
@@ -1177,6 +1182,59 @@ func getAllBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Res
   
   let scryfallCards = cards.map { Swiftfall.Card.init($0) }
   let list = Swiftfall.CardList.init(data: scryfallCards, hasMore: false, nextPage: nil, totalCards: scryfallCards.count)
+  
+  let data = try Swiftfall.encoder.encode(list)
+  let string = String.init(data: data, encoding: .utf8) ?? ""
+  
+  return .init(
+    status: .ok, headers: headers, body: .init(string: string)
+  )
+}
+
+func getAllBuiltinDraftmancerCardsAsCollection(_ req: Request) async throws -> Response {
+  let headers: HTTPHeaders = [
+    "Content-Type": "application/json",
+    "access-control-allow-headers": "Origin",
+    "access-control-allow-origin": "*"
+  ]
+  
+  guard
+    let bodyString = req.body.string,
+    let dict = try? Swiftfall.decoder.decode([String: [MTGCardIdentifier]].self, from: bodyString.data(using: .utf8)!),
+    let identifiers = dict["identifiers"]
+  else {
+    return .init(status: .badRequest, headers: headers)
+  }
+  
+  guard identifiers.count <= 75 else {
+    return .init(status: .badRequest, headers: headers)
+  }
+  
+  guard let cards = await DraftmancerSetCache.shared.loadedDraftmancerCards else {
+    return .init(
+      status: .internalServerError, headers: headers
+    )
+  }
+  
+  var cardData: [MTGCard] = []
+  var notFound: [MTGCardIdentifier] = []
+  
+  for identifier in identifiers {
+    if let found = cards.first(where: { $0.isIdentified(by: identifier) }) {
+      cardData.append(found)
+    } else {
+      notFound.append(identifier)
+    }
+  }
+  
+  let scryfallCards = cardData.map { Swiftfall.Card.init($0) }
+  let list = Swiftfall.CardList.init(
+    data: scryfallCards,
+    hasMore: false,
+    nextPage: nil,
+    totalCards: nil,
+    notFound: notFound
+  )
   
   let data = try Swiftfall.encoder.encode(list)
   let string = String.init(data: data, encoding: .utf8) ?? ""

@@ -8,7 +8,8 @@
     "subtypes": ["Human", "Pilot", "Ally"],
     "type": "Creature",
     "oracle_text": "Flying\nWhen this creature enters, scry 1. (Look at the top card of your library. You may put it on the bottom.)",
-    "flavor_text": "The Fire Nation never expected the Earth Kingdom to take to the skies."
+    "flavor_text": "The Fire Nation never expected the Earth Kingdom to take to the skies.",
+    "artist": "ikeda_cpt"
   },
   {
     "image" : "https://i.imgur.com/J0LsiPp.png",

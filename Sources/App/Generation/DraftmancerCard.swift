@@ -389,8 +389,13 @@ extension DraftmancerCard {
     var imageURIs = self.imageUris ?? [:]
     
     if let image = image ?? imageURIs["en"] {
+      imageURIs["small"] = image
       imageURIs["normal"] = image
       imageURIs["large"] = image
+      
+      if image.absoluteString.contains(".png") {
+        imageURIs["png"] = image
+      }
     }
     
     let relatedCards: [MTGCard.RelatedCard]? = {
@@ -431,9 +436,14 @@ extension DraftmancerCard {
       
       if let image = back.image ?? back.imageUris?["en"] {
         backImageUris = [
+          "small": image,
           "normal": image,
           "large": image
         ]
+        
+        if image.absoluteString.contains(".png") {
+          backImageUris?["png"] = image
+        }
       }
       
       var backTypeLine = back.type

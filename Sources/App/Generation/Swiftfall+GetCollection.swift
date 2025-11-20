@@ -14,7 +14,7 @@ import FoundationNetworking
 extension Swiftfall {
 	
 	// struct which contrains a list of cards
-    public struct CardCollectionList: Codable, CustomStringConvertible {
+    public struct CardCollectionList: Codable, CustomStringConvertible, Sendable {
         // an array of Cards
         public let data: [Card]
 		

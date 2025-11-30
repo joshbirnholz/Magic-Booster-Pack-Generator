@@ -15,6 +15,7 @@ import Foundation
 actor ImageController {
   
   private var cropCache: [URL: Data] = [:]
+  private var proxyCache: [URL: Data] = [:]
   private var accessOrder: [URL] = []
   private let maxCacheEntries = 100  // tune this number
   
@@ -32,6 +33,27 @@ actor ImageController {
   
   private func getCache(for url: URL) -> Data? {
     if let data = cropCache[url] {
+      accessOrder.removeAll { $0 == url }
+      accessOrder.insert(url, at: 0)
+      return data
+    }
+    return nil
+  }
+  
+  private func setProxyCache(for url: URL, data: Data) {
+    proxyCache[url] = data
+    accessOrder.removeAll { $0 == url }
+    accessOrder.insert(url, at: 0)
+    
+    if accessOrder.count > maxCacheEntries {
+      if let toRemove = accessOrder.popLast() {
+        proxyCache.removeValue(forKey: toRemove)
+      }
+    }
+  }
+  
+  private func getProxyCache(for url: URL) -> Data? {
+    if let data = proxyCache[url] {
       accessOrder.removeAll { $0 == url }
       accessOrder.insert(url, at: 0)
       return data
@@ -105,8 +127,8 @@ actor ImageController {
       "access-control-allow-origin": "*"
     ]
     
-    if let data = getCache(for: url) ?? loadFromDisk(for: url) {
-      setCache(for: url, data: data)
+    if let data = getProxyCache(for: url) ?? loadFromDisk(for: url) {
+      setProxyCache(for: url, data: data)
       return Response(status: .ok,
                       headers: headers,
                       body: .init(data: data))

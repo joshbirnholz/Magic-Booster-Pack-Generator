@@ -93,6 +93,11 @@ public func routes(_ app: Application) throws {
   app.get("artcrop", ":set", ":number", use: imageController.artCrop(_:))
   
   app.get("proxycrop", use: imageController.proxyCrop(_:))
+//  app.get("gatherercrop", use: imageController.gathererCrop(_:))
+  
+  let gatherer = GathererController()
+  
+  app.get("gatherer", ":set", ":number", use: gatherer.instanceText)
   
   app.routes.defaultMaxBodySize = .init(stringLiteral: "4mb")
   

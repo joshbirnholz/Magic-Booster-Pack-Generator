@@ -53,9 +53,9 @@ actor GathererController {
       
       let object = try JSONSerialization.jsonObject(with: text.data(using: .utf8)!) as? [Any]
       guard let value = object?.last as? String else { continue }
-      guard let data = value.quotingNumericJSONKeys().data(using: .utf8) else { continue }
+      guard let data = "{\(value.quotingNumericJSONKeys())}".data(using: .utf8) else { continue }
       
-      guard let innerObject = try JSONSerialization.jsonObject(with: data, options: .topLevelDictionaryAssumed) as? [String: Any] else { continue }
+      guard let innerObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else { continue }
       guard let arr = innerObject.values.first as? [Any] else { continue }
       guard let childrenArr = arr.first(where: { $0 is [String: Any] }) as? [String: Any] else { continue }
       guard let children = (childrenArr["children"] as? [Any])?.first(where: { $0 is [String: Any] }) as? [String: Any] else { continue }

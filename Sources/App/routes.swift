@@ -93,7 +93,7 @@ public func routes(_ app: Application) throws {
   app.get("artcrop", ":set", ":number", use: imageController.artCrop(_:))
   
   app.get("proxycrop", use: imageController.proxyCrop(_:))
-//  app.get("gatherercrop", use: imageController.gathererCrop(_:))
+  app.get("gatherercrop", use: imageController.gathererCrop(_:))
   
   let gatherer = GathererController()
   

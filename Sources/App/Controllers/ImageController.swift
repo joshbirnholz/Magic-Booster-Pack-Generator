@@ -7,6 +7,7 @@
 
 import Vapor
 import Swim
+import SwiftSoup
 #if canImport(FoundationNetworking)
 import FoundationNetworking
 import Foundation
@@ -143,6 +144,49 @@ actor ImageController {
     )
   }
   
+  func gathererCrop(_ req: Request) async throws -> Response {
+    guard let card: Swiftfall.Card = try await {
+      if let name = try? req.query.get(String.self, at: "name") {
+        if let set = try? req.query.get(String.self, at: "set") {
+          return try await Swiftfall.getCard(name: name, set: set)
+        } else {
+          return try await Swiftfall.getCard(fuzzy: name)
+        }
+      } else if let set = try? req.query.get(String.self, at: "set"),
+                let number = try? req.query.get(String.self, at: "number")
+      {
+        return try await Swiftfall.getCard(code: set, number: number)
+      } else {
+        return nil
+      }
+    }() else {
+      throw Abort(.expectationFailed, reason: "Couldn't get card")
+    }
+    
+    let headers: HTTPHeaders = [
+      "Content-Type": "image/png",
+      "access-control-allow-headers": "Origin",
+      "access-control-allow-origin": "*"
+    ]
+    
+    let url = try await gathererImageURLForCard(card)
+    
+    if let data = getCache(for: url) ?? loadFromDisk(for: url) {
+      setCache(for: url, data: data)
+      return Response(status: .ok,
+                      headers: headers,
+                      body: .init(data: data))
+    }
+    
+    let data = try await gathererArtCrop(card: card, url: url)
+    
+    return Response(
+      status: .ok,
+      headers: headers,
+      body: .init(data: data)
+    )
+  }
+  
   private func artCrop(url: URL) async throws -> Data {
     let referenceWidth: Double = 2010
     let referenceHeight: Double = 2814
@@ -185,6 +229,70 @@ actor ImageController {
     }
     
     return jpegData
+  }
+  
+  private func gathererImageURLForCard(_ card: Swiftfall.Card) async throws -> URL {
+    guard let multiverseID = card.multiverseIds.first, let gathererURL = URL(string: "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=\(multiverseID)") else {
+      throw Abort(.unsupportedMediaType, reason: "Requested card does not have a multiverse ID")
+    }
+    
+    let (data, _) = try await URLSession.shared.data(from: gathererURL)
+    guard let html = String(data: data, encoding: .utf8) else { throw PackError.emptyInput }
+    let doc = try SwiftSoup.parse(html)
+    let meta = try doc.select("meta[property=\"og:image\"]")
+    let imageURLString = try meta.attr("content")
+    
+    guard let url = URL(string: imageURLString.replacingOccurrences(of: ".webp", with: ".png")) else {
+      throw Abort(.unsupportedMediaType, reason: "Could not read image from page")
+    }
+    
+    return url
+  }
+  
+  private func gathererArtCrop(card: Swiftfall.Card, url: URL) async throws -> Data {
+    guard let image = try? await downloadImage(url: url) else {
+      print("Could not decode image at \(url)")
+      throw Abort(.unsupportedMediaType, reason: "Could not decode image")
+    }
+    
+    let referenceWidth: Double = 744
+    let referenceHeight: Double = 1039
+    
+    let (refX, refY, refW, refH) = switch card.frame {
+    case "2003": (65.0, 124.0, 615.0, 451.0)
+    case "1997": (87.0, 104.0, 573.0, 458.0)
+    default: (58.0, 117.0, 628.0, 460.0) // 2015
+    }
+    
+    // Calculate scale factors
+    let scaleX = Double(image.width) / referenceWidth
+    let scaleY = Double(image.height) / referenceHeight
+    
+    // Compute scaled crop rect
+    let x = Int(refX * scaleX)
+    let y = Int(refY * scaleY)
+    let w = Int(refW * scaleX)
+    let h = Int(refH * scaleY)
+    
+    // Perform crop
+    let cropped = image[x..<(x+w), y..<(y+h)]
+    
+    // Encode back to JPEG
+    
+    guard let pngData = try? cropped.fileData(format: WriteFormat.png) else {
+      throw Abort(.internalServerError, reason: "Encoding failed")
+    }
+    
+    cropCache[url] = pngData
+    
+    Task {
+      saveToDisk(pngData, for: url)
+    }
+    Task {
+      setCache(for: url, data: pngData)
+    }
+    
+    return pngData
   }
   
   private func downloadImage(url: URL) async throws -> Image<RGBA, UInt8> {
@@ -264,3 +372,4 @@ extension ImageController {
     try? data.write(to: path)
   }
 }
+

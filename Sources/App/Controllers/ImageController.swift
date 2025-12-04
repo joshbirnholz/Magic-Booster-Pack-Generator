@@ -163,8 +163,11 @@ actor ImageController {
       throw Abort(.expectationFailed, reason: "Couldn't get card")
     }
     
+    let filename = String(card.name.unicodeScalars.filter { CharacterSet.urlPathAllowed.contains($0) }) + "-" + card.id.uuidString + ".png"
+    
     let headers: HTTPHeaders = [
       "Content-Type": "image/png",
+      "Content-Disposition": "inline; filename=\"\(filename)\"",
       "access-control-allow-headers": "Origin",
       "access-control-allow-origin": "*"
     ]

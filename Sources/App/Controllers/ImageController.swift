@@ -18,7 +18,7 @@ actor ImageController {
   private var cropCache: [URL: Data] = [:]
   private var proxyCache: [URL: Data] = [:]
   private var accessOrder: [URL] = []
-  private let maxCacheEntries = 100  // tune this number
+  private let maxCacheEntries = 10  // tune this number
   
   private func setCache(for url: URL, data: Data) {
     cropCache[url] = data
@@ -163,10 +163,10 @@ actor ImageController {
       throw Abort(.expectationFailed, reason: "Couldn't get card")
     }
     
-    let filename = String(card.name.unicodeScalars.filter { CharacterSet.urlPathAllowed.contains($0) }) + "-" + card.set + "-" + card.collectorNumber + ".png"
+    let filename = String(card.name.unicodeScalars.filter { CharacterSet.urlPathAllowed.contains($0) }) + "-" + card.set + "-" + card.collectorNumber + ".jpeg"
     
     let headers: HTTPHeaders = [
-      "Content-Type": "image/png",
+      "Content-Type": "image/jpeg",
       "Content-Disposition": "inline; filename=\"\(filename)\"",
       "access-control-allow-headers": "Origin",
       "access-control-allow-origin": "*"
@@ -282,20 +282,18 @@ actor ImageController {
     
     // Encode back to JPEG
     
-    guard let pngData = try? cropped.fileData(format: WriteFormat.png) else {
+    guard let jpegData = try? cropped.fileData(format: WriteFormat.jpeg(quality: 90)) else {
       throw Abort(.internalServerError, reason: "Encoding failed")
     }
     
-    cropCache[url] = pngData
-    
     Task {
-      saveToDisk(pngData, for: url)
+      saveToDisk(jpegData, for: url)
     }
     Task {
-      setCache(for: url, data: pngData)
+      setCache(for: url, data: jpegData)
     }
     
-    return pngData
+    return jpegData
   }
   
   private func downloadImage(url: URL) async throws -> Image<RGBA, UInt8> {

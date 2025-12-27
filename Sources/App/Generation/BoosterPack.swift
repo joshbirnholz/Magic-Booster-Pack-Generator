@@ -6285,6 +6285,7 @@ public struct ArchidektDeck: Decodable, Sendable {
 			struct OracleCard: Decodable {
 				let name: String
 			}
+			let uid: UUID?
 			let edition: Edition
 			let collectorNumber: String
 			let oracleCard: OracleCard
@@ -6294,7 +6295,11 @@ public struct ArchidektDeck: Decodable, Sendable {
 		let categories: [String]
 		
 		var cardCount: DeckParser.CardCount {
-			return DeckParser.CardCount(identifier: .nameSet(name: card.oracleCard.name, set: card.edition.editioncode), count: quantity)
+			if let id = card.uid {
+        		return DeckParser.CardCount(identifier: .idName(id, card.oracleCard.name), count: quantity)
+			} else {
+				return DeckParser.CardCount(identifier: .nameSet(name: card.oracleCard.name, set: card.edition.editioncode), count: quantity)
+			}
 		}
 	}
 	let name: String

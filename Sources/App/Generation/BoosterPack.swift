@@ -6302,8 +6302,36 @@ public struct ArchidektDeck: Decodable, Sendable {
 			}
 		}
 	}
+
+	struct CustomCardInfo: Decodable {
+		struct CustomCard: Decodable {
+			let setCode: String?
+			let collectorNumber: String?
+			let frontName: String
+			let frontImageUrl: URL?
+			let hasBack: Bool
+			let backName: String?
+			let backImageUrl: URL?
+		}
+
+		let card: CustomCard
+		let categories: [String]
+		let quantity: Int
+
+		var cardCount: DeckParser.CardCount {
+			if let setCode = card.setCode, let collectorNumber = card.collectorNumber {
+				return DeckParser.CardCount(identifier: .collectorNumberSet(collectorNumber: collectorNumber, set: setCode, name: card.frontName), count: quantity)
+			} else if let setCode = card.setCode {
+				return DeckParser.CardCount(identifier: .nameSet(name: card.frontName, set: setCode), count: quantity)
+			} else {
+				return DeckParser.CardCount(identifier: .name(card.frontName), count: quantity)
+			}
+		}
+	}
+
 	let name: String
 	let cards: [CardInfo]
+	let customCards: [CustomCardInfo]
 }
 
 public struct MoxfieldDeck: Decodable, Sendable {

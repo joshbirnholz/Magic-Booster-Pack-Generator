@@ -6329,9 +6329,15 @@ public struct ArchidektDeck: Decodable, Sendable {
 		}
 	}
 
+	struct Category: Decodable {
+		let name: String
+		let includedInDeck: Bool
+	}
+
 	let name: String
 	let cards: [CardInfo]
 	let customCards: [CustomCardInfo]
+	let categories: [Category]
 }
 
 public struct MoxfieldDeck: Decodable, Sendable {

@@ -371,18 +371,22 @@ public struct DeckParser {
 		
 		var cards = archidektDeck.cards.sorted { $0.card.oracleCard.name < $1.card.oracleCard.name }
 		cards.removeAll { $0.categories.contains("Maybeboard") }
+		var customCards = archidektDeck.customCards.sorted { $0.card.frontName < $1.card.frontName }
+		customCards.removeAll { $0.categories.contains("Maybeboard") }
 		
 		let commanderCards = cards.separateAll { $0.categories.contains("Commander") }
+		let commanderCustomCards = customCards.separateAll { $0.categories.contains("Commander") }
 		let sideboardCards = cards.separateAll { $0.categories.contains("Sideboard") }
+		let sideboardCustomCards = customCards.separateAll { $0.categories.contains("Sideboard") }
 		
-		groups.append(CardGroup(name: CardGroup.GroupName.deck.rawValue, cardCounts: cards.map(\.cardCount)))
+		groups.append(CardGroup(name: CardGroup.GroupName.deck.rawValue, cardCounts: cards.map(\.cardCount) + customCards.map(\.cardCount)))
 		
-		if !commanderCards.isEmpty {
-			groups.append(CardGroup(name: CardGroup.GroupName.command.rawValue, cardCounts: commanderCards.map(\.cardCount)))
+		if !commanderCards.isEmpty || !commanderCustomCards.isEmpty {
+			groups.append(CardGroup(name: CardGroup.GroupName.command.rawValue, cardCounts: commanderCards.map(\.cardCount) + commanderCustomCards.map(\.cardCount)))
 		}
 		
-		if !sideboardCards.isEmpty {
-			groups.append(CardGroup(name: CardGroup.GroupName.sideboard.rawValue, cardCounts: sideboardCards.map(\.cardCount)))
+		if !sideboardCards.isEmpty || !sideboardCustomCards.isEmpty {
+			groups.append(CardGroup(name: CardGroup.GroupName.sideboard.rawValue, cardCounts: sideboardCards.map(\.cardCount) + sideboardCustomCards.map(\.cardCount)))
 		}
 		
 		return groups

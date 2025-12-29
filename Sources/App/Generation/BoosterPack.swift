@@ -6320,11 +6320,11 @@ public struct ArchidektDeck: Decodable, Sendable {
 
 		var cardCount: DeckParser.CardCount {
 			if let setCode = card.setCode, let collectorNumber = card.collectorNumber {
-				return DeckParser.CardCount(identifier: .collectorNumberSet(collectorNumber: collectorNumber, set: setCode, name: card.frontName), count: quantity, alter: frontImageUrl)
+				return DeckParser.CardCount(identifier: .collectorNumberSet(collectorNumber: collectorNumber, set: setCode, name: card.frontName), count: quantity, alter: card.frontImageUrl)
 			} else if let setCode = card.setCode {
-				return DeckParser.CardCount(identifier: .nameSet(name: card.frontName, set: setCode), count: quantity, alter: frontImageUrl)
+				return DeckParser.CardCount(identifier: .nameSet(name: card.frontName, set: setCode), count: quantity, alter: card.frontImageUrl)
 			} else {
-				return DeckParser.CardCount(identifier: .name(card.frontName), count: quantity, alter: frontImageUrl)
+				return DeckParser.CardCount(identifier: .name(card.frontName), count: quantity, alter: card.frontImageUrl)
 			}
 		}
 	}

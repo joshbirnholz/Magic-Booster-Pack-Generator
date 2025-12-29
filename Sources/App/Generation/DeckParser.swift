@@ -368,16 +368,18 @@ public struct DeckParser {
 	
 	public static func parse(archidektDeck: ArchidektDeck) -> [CardGroup] {
 		var groups: [CardGroup] = []
+		let excludedCategories: Set<String> = Set(archidektDeck.categories.compactMap { $0.includedInDeck ? nil : $0.name })
 		
 		var cards = archidektDeck.cards.sorted { $0.card.oracleCard.name < $1.card.oracleCard.name }
-		cards.removeAll { $0.categories.contains("Maybeboard") }
 		var customCards = archidektDeck.customCards.sorted { $0.card.frontName < $1.card.frontName }
-		customCards.removeAll { $0.categories.contains("Maybeboard") }
-		
+
 		let commanderCards = cards.separateAll { $0.categories.contains("Commander") }
 		let commanderCustomCards = customCards.separateAll { $0.categories.contains("Commander") }
 		let sideboardCards = cards.separateAll { $0.categories.contains("Sideboard") }
 		let sideboardCustomCards = customCards.separateAll { $0.categories.contains("Sideboard") }
+		
+		cards.removeAll { card in card.categories.contains { excludedCategories.contains($0) } }
+		customCards.removeAll { card in card.categories.contains { excludedCategories.contains($0) } }
 		
 		groups.append(CardGroup(name: CardGroup.GroupName.deck.rawValue, cardCounts: cards.map(\.cardCount) + customCards.map(\.cardCount)))
 		

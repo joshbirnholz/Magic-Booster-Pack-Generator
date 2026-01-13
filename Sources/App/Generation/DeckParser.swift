@@ -369,12 +369,13 @@ public struct DeckParser {
 	public static func parse(archidektDeck: ArchidektDeck) -> [CardGroup] {
 		var groups: [CardGroup] = []
 		let excludedCategories: Set<String> = Set(archidektDeck.categories.compactMap { $0.includedInDeck ? nil : $0.name })
+    let commanderCategories: Set<String> = Set(archidektDeck.categories.compactMap { $0.isPremier ? $0.name : nil })
 		
 		var cards = archidektDeck.cards.sorted { $0.card.oracleCard.name < $1.card.oracleCard.name }
 		var customCards = archidektDeck.customCards.sorted { $0.card.frontName < $1.card.frontName }
 
-		let commanderCards = cards.separateAll { $0.categories.contains("Commander") }
-		let commanderCustomCards = customCards.separateAll { $0.categories.contains("Commander") }
+    let commanderCards = cards.separateAll { $0.categories.contains(where: { cat in commanderCategories.contains(cat) }) }
+    let commanderCustomCards = customCards.separateAll { $0.categories.contains(where: { cat in commanderCategories.contains(cat) }) }
 		let sideboardCards = cards.separateAll { $0.categories.contains("Sideboard") }
 		let sideboardCustomCards = customCards.separateAll { $0.categories.contains("Sideboard") }
 		

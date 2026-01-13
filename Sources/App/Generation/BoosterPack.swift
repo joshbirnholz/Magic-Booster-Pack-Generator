@@ -6330,8 +6330,10 @@ public struct ArchidektDeck: Decodable, Sendable {
 	}
 
 	struct Category: Decodable {
+    let id: Int
 		let name: String
 		let includedInDeck: Bool
+    let isPremier: Bool
 	}
 
 	let name: String

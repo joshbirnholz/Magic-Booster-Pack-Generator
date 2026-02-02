@@ -1,22 +1,6 @@
 [CustomCards]
 [
   {
-    "image": "https://i.imgur.com/yI80fIS.jpeg",
-    "name": "Pep, Raucous Raider",
-    "mana_cost": "{2}{R}{G}",
-    "rarity": "rare",
-    "subtypes": ["Noggle", "Rogue"],
-    "type": "Legendary Creature",
-    "oracle_text": "Trample, haste\nWhenever a creature you control deals combat damage to a player, exile the top card of that player's library. It perpetually becomes an artifact if it's a nonland permanent card.\nUntil end of turn, you may play the exiled card.\n{T}, Sacrifice an artifact: Add three mana of any one color.",
-    "artist": "Heather Hudson",
-    "power": "3",
-    "toughness": "3",
-    "colors": ["R", "G"],
-    "layout": "normal",
-    "keywords": ["Trample", "Haste"],
-    "set": "YECL"
-  },
-  {
     "image": "https://i.imgur.com/8PRe9ts.jpeg",
     "mana_cost": "{2}{W/U}",
     "name": "Glider Kids",

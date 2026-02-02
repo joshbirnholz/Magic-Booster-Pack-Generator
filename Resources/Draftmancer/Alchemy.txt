@@ -1,0 +1,9 @@
+[CustomCards]
+[
+  {
+    "name": "Pep, Raucous Raider",
+    "front": "https://i.imgur.com/yI80fIS.jpeg",
+    "set": "yecl",
+    "collector_number": "23"
+  }
+]

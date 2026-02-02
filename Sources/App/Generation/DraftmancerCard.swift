@@ -272,6 +272,7 @@ public struct DraftmancerCard: Codable, Sendable {
     try container.encodeIfPresent(self.flavorName, forKey: .flavorName)
     try container.encode(self.manaCost, forKey: .manaCost)
     try container.encode(self.type, forKey: .type)
+    try container.encode(self.subtypes, forKey: .subtypes)
     
     if let imageUris = imageUris {
       try container.encode(imageUris, forKey: .imageUris)
@@ -617,6 +618,9 @@ struct DraftmancerSet: Encodable, Sendable {
   }
   
   var isDraftable: Bool {
+    if name == "Custom Cards" {
+      return false
+    }
     return [DraftmancerCard.Rarity.common, .uncommon, .rare].allSatisfy { rarity in cards.contains(where: { $0.rarity == rarity }) }
   }
   

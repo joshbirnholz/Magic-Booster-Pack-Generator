@@ -1,6 +1,6 @@
 [
   {
-	"url": "https://deckstats.net/decks/149419/2915362-perrie-proliferate",
+	"url": "https://archidekt.com/decks/18506956/perrie_proliferate",
 	"front": "https://cards.scryfall.io/large/front/d/4/d438237b-c6f7-44d0-a3e6-6ec7d7465d33.jpg",
 	"ids": ["51"],
 	"ci": "WUG",
@@ -9,7 +9,7 @@
     "hide": false
   },
   {
-	"url": "https://deckstats.net/decks/149419/1854884-akroma-sakashima",
+	"url": "https://archidekt.com/decks/18507348/akroma_sakashima",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/c/0/c0bdd07d-9fb9-4ee4-80db-494ee0cba58d.jpg",
 	"back": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/1/714c3a1f-7b30-4ed8-8f38-6176758741fb.jpg",
 	"ids": ["3", "21"],
@@ -19,7 +19,7 @@
     "name": "Akroma, Vision of Ixidor // Sakashima of a Thousand Faces"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2637687-alela-artful-provocateur",
+	"url": "https://archidekt.com/decks/18507034/alela_artful_provocateur",
 	"front": "https://cards.scryfall.io/large/front/7/2/726e7dc5-2089-4758-93e1-79212aedf75f.jpg",
 	"ids": ["45"],
 	"ci": "WUB",
@@ -27,15 +27,15 @@
     "name": "Alela, Artful Provocateur"
   },
   {
-	"url": "https://deckstats.net/decks/149419/1971009-anowon-the-ruin-thief",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/c/bca84fc4-4710-44c8-b90a-73ef888714d8.jpg",
+	"url": "https://archidekt.com/decks/18508196/anowon_the_ruin_thief",
+	"front": "https://cards.scryfall.io/large/front/2/8/28b41026-4988-44f0-9281-93b3d4905be9.jpg",
 	"ids": ["4"],
 	"ci": "UB",
 	"comment": "Rogues, theft, mill",
     "name": "Anowon, the Ruin Thief"
   },
   {
-    "url": "https://deckstats.net/decks/149419/2838619-auntie-blyte-bad-influence",
+    "url": "https://archidekt.com/decks/18507322/auntie_blyte_bad_influence",
     "front": "https://i.imgur.com/lnp1Sfi.jpg",
     "ids": ["48"],
     "ci": "R",
@@ -43,7 +43,7 @@
     "name": "Auntie Blyte, Bad Influence"
   },
   {
-	  "url": "https://deckstats.net/decks/149419/2134546-breya-treasures",
+	  "url": "https://archidekt.com/decks/18506617/breya_treasures",
 	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/8/581591f0-b3c7-4fca-b4b9-1d1d098ca7fb.jpg",
 	  "ids": ["24"],
 	  "ci": "WUBR",
@@ -51,7 +51,7 @@
       "name": "Breya, Etherium Sculptor"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2656416-captain-n-ghathrod",
+	"url": "https://archidekt.com/decks/18506601/captain_nghathrod",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/a/7aa652e2-caa6-4b48-bd04-67354380a761.jpg",
 	"ids": ["44"],
 	"ci": "UB",
@@ -59,7 +59,7 @@
     "name": "Captain N'ghathrod"
   },
   {
-	"url": "https://deckstats.net/decks/149419/1960862-crosis-discard",
+	"url": "https://archidekt.com/decks/18506581/crosis_discard",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/3/4/349e598a-aa12-44b7-b9de-067c9b85fcec.jpg",
 	"ids": ["5"],
 	"ci": "UBR",
@@ -67,7 +67,7 @@
     "name": "Crosis, the Purger"
   },
   {
-	  "url": "https://deckstats.net/decks/149419/2133459-edgar-markov",
+	  "url": "https://archidekt.com/decks/18507049/edgar_markov",
 	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/d/8d94b8ec-ecda-43c8-a60e-1ba33e6a54a4.jpg",
 	  "ids": ["26"],
 	  "ci": "RWB",
@@ -75,7 +75,7 @@
       "name": "Edgar Markov"
   },
   {
-	"url": "https://deckstats.net/decks/149419/1916347-the-prismatic-bridge",
+	"url": "https://archidekt.com/decks/18506748/the_prismatic_bridge",
 	"front": "https://cards.scryfall.io/large/front/4/6/46d43696-3c63-4c55-bc61-e1560c8b8201.jpg?1683383495",
 	"back": "https://cards.scryfall.io/large/back/4/6/46d43696-3c63-4c55-bc61-e1560c8b8201.jpg?1683383495",
 	"ids": ["6"],
@@ -93,7 +93,7 @@
     "name": "Gavi, Nest Warden"
   },
   {
-	"url": "https://deckstats.net/decks/149419/1876924-ghen-arcanum-weaver",
+	"url": "https://archidekt.com/decks/18505974/ghen_arcanum_weaver",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/0/804a7bac-0425-4cab-817a-5cb3686ef5bb.jpg",
 	"ids": ["8"],
 	"ci": "RWB",
@@ -101,7 +101,7 @@
     "name": "Ghen, Arcanum Weaver"
   },
   {
-	"url": "https://deckstats.net/decks/149419/1740765-gishath-sun-s-avatar",
+	"url": "https://archidekt.com/decks/18506815/gishath_suns_avatar",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/6/6/6674c7f7-8022-4457-9a8a-6b87ff3348b0.jpg",
 	"ids": ["9"],
 	"ci": "RGW",
@@ -110,14 +110,14 @@
   },
   {
 	"url": "https://deckstats.net/decks/149419/2550617-henzie-toolbox-torre",
-	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/6/86cf1196-cf25-49cf-9fed-98f7dcd56c06.jpg",
+	"front": "https://i.imgur.com/nOCiFXW.png",
 	"ids": ["39"],
 	"ci": "BRG",
 	"comment": "Blitz",
     "name": "Henzie \"Toolbox\" Torre"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2420753-isshin-two-heavens-as-one",
+	"url": "https://archidekt.com/decks/18506965/isshin_two_heavens_as_one",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/1/b/1bf8b008-3a7c-4b6d-8c18-263a576f0d64.jpg",
 	"ids": ["38"],
 	"ci": "RWB",
@@ -125,7 +125,7 @@
     "name": "Isshin, Two Heavens as One"
   },
   {
-	  "url": "https://deckstats.net/decks/149419/2135182-kardur-doomscourge",
+	  "url": "https://archidekt.com/decks/18505801/kardur_doomscourge",
 	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/f/bfc779ac-a418-4cd0-aa73-8d0d91d51f1c.jpg",
 	  "ids": ["23"],
 	  "ci": "BR",
@@ -133,7 +133,7 @@
       "name": "Kardur, Doomscourge"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2493499-katilda-humans-counters",
+	"url": "https://archidekt.com/decks/18508050/katilda_humans_counters",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/3/e/3ef98a2c-4b48-45e3-bbcb-9fd338f5a05a.jpg",
 	"ids": ["12"],
 	"ci": "GW",
@@ -141,7 +141,7 @@
     "name": "Katilda, Dawnheart Prime"
   },
   {
-	  "url": "https://deckstats.net/decks/149419/2200931-kenrith-esper-reanimator",
+	  "url": "https://archidekt.com/decks/18506491/kenrith_esper_reanimator",
 	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/6/56c1227e-bea7-47cb-bbec-389a3d585af5.jpg",
 	  "ids": ["30"],
 	  "ci": "WUB",
@@ -149,7 +149,7 @@
       "name": "Kenrith, the Returned King"
   },
   {
-	"url": "https://deckstats.net/decks/149419/1719895-krav-regna",
+	"url": "https://archidekt.com/decks/18507899/krav_regna",
 	"front": "https://i.imgur.com/JlBWy89.jpg",
 	"back": "https://i.imgur.com/GrdVW3E.jpg",
 	"ids": ["18", "22"],
@@ -159,7 +159,7 @@
     "name": "Regna, the Redeemer // Krav, the Unredeemed"
   },
   {
-	"url": "https://deckstats.net/decks/149419/1901722-lathril-blade-of-the-elves",
+	"url": "https://archidekt.com/decks/18505978/lathril_blade_of_the_elves",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/4/547888c3-a9a6-4413-b29a-6bcd8a9279bf.jpg",
 	"ids": ["10"],
 	"ci": "BG",
@@ -167,7 +167,7 @@
     "name": "Lathril, Blade of the Elves"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2223243-liesa-forgotten-archangel",
+	"url": "https://archidekt.com/decks/18506442/liesa_forgotten_archangel",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/9/3/93a4ecfa-8173-4c9b-a28f-dc06e63491de.jpg",
 	"ids": ["33"],
 	"ci": "WB",
@@ -175,7 +175,7 @@
     "name": "Liesa, Forgotten Archangel"
   },
   {
-	"url": "https://deckstats.net/decks/149419/1909081-magda-brazen-outlaw",
+	"url": "https://archidekt.com/decks/18507444/magda_brazen_outlaw",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/a/b/ab551f0e-7a9c-4c99-b199-042ab018dd9a.jpg",
 	"ids": ["11"],
 	"ci": "R",
@@ -183,7 +183,7 @@
     "name": "Magda, Brazen Outlaw"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2732863-magus-lucea-kane",
+	"url": "https://archidekt.com/decks/18507006/magus_lucea_kane",
 	"front": "https://cards.scryfall.io/large/front/4/1/419ac203-d8b9-46df-99a8-65dfcea07ff5.jpg",
 	"ids": ["46"],
 	"ci": "GUR",
@@ -191,7 +191,7 @@
     "name": "Magus Lucea Kane"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2559235-mahadi-emporium-master",
+	"url": "https://archidekt.com/decks/18506930/mahadi_20",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/7/c/7c502480-111e-46a3-9f2f-9c4901d88323.jpg",
 	"ids": ["42"],
 	"ci": "BR",
@@ -199,7 +199,7 @@
     "name": "Mahadi, Emporium Master"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2308978-millicent-restless-revenant",
+	"url": "https://archidekt.com/decks/18507072/millicent_restless_revenant",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/2/b/2b86b538-0766-440d-a2cd-f5d5bfcfb010.jpg",
 	"ids": ["34"],
 	"ci": "WU",
@@ -207,7 +207,7 @@
     "name": "Millicent, Restless Revenant"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2556615-myrkul-landfall",
+	"url": "https://archidekt.com/decks/18506386/myrkul_landfall",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/d/bd790307-9926-4b7c-a90d-ca844adbe0ba.jpg",
 	"ids": ["43"],
 	"ci": "WBG",
@@ -215,7 +215,7 @@
     "name": "Myrkul, Lord of Bones"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2043629-osgir-the-reconstructor",
+	"url": "https://archidekt.com/decks/18506154/osgir_the_reconstructor",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/5/8/5815fe6e-e26b-4918-a090-55d6442722c1.jpg",
 	"ids": ["0"],
 	"ci": "RW",
@@ -224,7 +224,7 @@
     "hide": true
   },
   {
-	"url": "https://deckstats.net/decks/149419/2156914-prosper-tome-bound",
+	"url": "https://archidekt.com/decks/18507283/prosper_tomebound",
 	"front": "https://i.imgur.com/V7nWuIX.jpg",
 	"ids": ["29"],
 	"ci": "BR",
@@ -232,7 +232,7 @@
     "name": "Prosper, Tome-Bound"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2401892-queen-marchesa",
+	"url": "https://archidekt.com/decks/18506633/queen_marchesa",
 	"front": "https://cards.scryfall.io/large/front/a/1/a15bebe2-ae6a-48b4-b203-5ab78996b86f.jpg",
 	"ids": ["47"],
 	"ci": "RWB",
@@ -248,7 +248,7 @@
     "name": "Ranar the Ever-Watchful"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2585800-rayth-2-0",
+	"url": "https://archidekt.com/decks/18506413/rayth_20",
 	"front": "https://i.imgur.com/Y4YEJoJ.jpg",
 	"ids": ["28"],
 	"ci": "WUB",
@@ -256,7 +256,7 @@
     "name": "Rayth, Spirit Raiser"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2594486-rivaz-of-the-claw/en",
+	"url": "https://archidekt.com/decks/18508186/rivaz_of_the_claw",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/0/a/0a8218a4-1861-4ac6-9e36-4d6ff4199f55.jpg",
 	"ids": ["40"],
 	"ci": "BR",
@@ -264,7 +264,7 @@
     "name": "Rivaz of the Claw"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2295269-runo-stromkirk-krothuss-lord-o",
+	"url": "https://archidekt.com/decks/18506396/runo_stromkirk_krothuss_lord_of_the_deep",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/1/2/12c50b51-776c-472b-bda3-f7b82eebe2f4.jpg",
 	"back": "https://c1.scryfall.com/file/scryfall-cards/large/back/1/2/12c50b51-776c-472b-bda3-f7b82eebe2f4.jpg",
 	"ids": ["37"],
@@ -274,7 +274,7 @@
     "name": "Runo Stromkirk // Krothuss, Lord of the Deep"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2499707-ruric-thar-the-unbowed",
+	"url": "https://archidekt.com/decks/18506902/ruric_thar_the_unbowed",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/4/846b7039-9449-4064-8101-1260c59872a5.jpg",
 	"ids": ["41"],
 	"ci": "RG",
@@ -282,7 +282,7 @@
     "name": "Ruric Thar, the Unbowed"
   },
   {
-	"url": "https://deckstats.net/decks/149419/1691052-sen-triplets",
+	"url": "https://archidekt.com/decks/18505600/sen_triplets",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/6/9/6917eb5b-a00c-4268-bc66-795fab2d227f.jpg",
 	"ids": ["15"],
 	"ci": "WUB",
@@ -290,7 +290,7 @@
     "name": "Sen Triplets"
   },
   {
-	"url": "https://deckstats.net/decks/149419/1994671-shadrix-silverquill",
+	"url": "https://archidekt.com/decks/18507823/shadrix_silverquill",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/a/b/ab701909-83d6-4d39-9a84-e6a9b2cb38d6.jpg",
 	"ids": ["16"],
 	"ci": "WB",
@@ -298,7 +298,7 @@
     "name": "Shadrix Silverquill"
   },
   {
-	  "url": "https://deckstats.net/decks/149419/2116018-sythis-harvest-s-hand",
+	  "url": "https://archidekt.com/decks/18505944/sythis_harvests_hand",
 	  "front": "https://c1.scryfall.com/file/scryfall-cards/large/front/0/b/0babfe00-9bad-48fc-b3b1-df8280242fd2.jpg",
 	  "ids": ["25"],
 	  "ci": "GW",
@@ -306,7 +306,7 @@
       "name": "Sythis, Harvest's Hand"
   },
   {
-	"url": "https://deckstats.net/decks/149419/1841034-teysa-orzhov-scion",
+	"url": "https://archidekt.com/decks/18508168/teysa_orzhov_scion",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/4/7/4716ede8-d08e-426b-aed3-8cf36c9b51c9.jpg?1559958674",
 	"ids": ["17"],
 	"ci": "WB",
@@ -314,7 +314,7 @@
     "name": "Teysa, Orzhov Scion"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2270754-tovolar-dire-overlord",
+	"url": "https://archidekt.com/decks/18507166/tovolar_dire_overlord",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/9/2/925dee92-9c8d-4eef-a326-2fdae72b4328.jpg",
 	"back": "https://c1.scryfall.com/file/scryfall-cards/large/back/9/2/925dee92-9c8d-4eef-a326-2fdae72b4328.jpg",
 	"type": "dfc",
@@ -324,7 +324,7 @@
     "name": "Tovolar, Dire Overlord"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2027459-tymna-ikra-shidiqi",
+	"url": "https://archidekt.com/decks/18507630/tymna_ikra_shidiqi",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/b/c/bc7cbe9b-324e-42b8-94e2-36e91cb32163.jpg",
 	"back": "https://c1.scryfall.com/file/scryfall-cards/large/front/8/f/8f2abcc3-dc33-4b9d-a372-1d936e954f94.jpg",
 	"ids": ["35", "36"],
@@ -334,7 +334,7 @@
     "name": "Tymna, the Weaver // Ikra Shidiqi, the Usurper"
   },
   {
-	"url": "https://deckstats.net/decks/149419/1936713-tribal-tribal",
+	"url": "https://archidekt.com/decks/18506099/tribal_tribal",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/e/a/ea949741-af94-47ae-a577-2953c69ab71d.jpg",
 	"ids": ["19"],
 	"ci": "WUBRG",
@@ -342,7 +342,7 @@
     "name": "The Ur-Dragon"
   },
   {
-	"url": "https://deckstats.net/decks/149419/1984546-vorel-of-the-hull-clade",
+	"url": "https://archidekt.com/decks/18506209/vorel_of_the_hull_clade",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/4/7/47edde50-81c8-4fe0-ae13-9a10171361bc.jpg",
 	"ids": ["20"],
 	"ci": "GU",
@@ -351,7 +351,7 @@
     "hide": true
   },
   {
-	"url": "https://deckstats.net/decks/149419/2233344-wilhelt-the-rotcleaver",
+	"url": "https://archidekt.com/decks/18506611/wilhelt_the_rotcleaver",
 	"front": "https://c1.scryfall.com/file/scryfall-cards/large/front/2/5/2501a911-d072-436d-ae3b-a5164e3b30aa.jpg",
 	"ids": ["31"],
 	"ci": "UB",
@@ -359,7 +359,7 @@
     "name": "Wilhelt, the Rotcleaver"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2376890-yarok-the-desecrated",
+	"url": "https://archidekt.com/decks/18507107/yarok_the_desecrated",
 	"front": "https://cards.scryfall.io/large/front/e/5/e56ba25b-1803-4e1a-b7cf-c2c873159010.jpg",
 	"ids": ["1"],
 	"ci": "BGU",
@@ -367,7 +367,7 @@
     "name": "Yarok, the Desecrated"
   },
   {
-	"url": "https://deckstats.net/decks/149419/2076674-coin-flip-deck-gavin-verhey-mo",
+	"url": "https://archidekt.com/decks/18505785/coin_flip_deck_gavin_verhey_modified",
 	"front": "https://cards.scryfall.io/large/front/d/5/d5dfd236-b1da-4552-b94f-ebf6bb9dafdf.jpg",
 	"back": "https://cards.scryfall.io/large/front/9/4/94eea6e3-20bc-4dab-90ba-3113c120fb90.jpg",
 	"ids": ["13", "27"],
@@ -377,7 +377,7 @@
     "name": "Zndrsplt, Eye of Wisdom // Okaun, Eye of Chaos"
   },
   {
-      "url": "https://deckstats.net/decks/149419/2960018-ovika-enigma-goliath",
+      "url": "https://archidekt.com/decks/18506987/ovika_enigma_goliah",
       "front": "https://cards.scryfall.io/large/front/5/2/52321500-b025-4195-819a-4b895315d0ee.jpg",
       "ids": ["49"],
       "ci": "UR",
@@ -385,7 +385,7 @@
       "name": "Ovika, Enigma Goliath"
   },
   {
-      "url": "https://deckstats.net/decks/149419/2903287-urtet-remnant-of-memnarch",
+      "url": "https://archidekt.com/decks/18506830/urtet_remnant_of_memnarch",
       "front": "https://cards.scryfall.io/large/front/7/a/7aa01ab4-26b0-49dc-8514-b3850d355a21.jpg",
       "ids": ["50"],
       "ci": "WUBRG",
@@ -393,7 +393,7 @@
       "name": "Urtet, Remnant of Memnarch"
   },
   {
-      "url": "https://deckstats.net/decks/149419/2928038-goro-goro-and-satoru",
+      "url": "https://archidekt.com/decks/18506846/gorogoro_and_satoru",
       "front": "https://cards.scryfall.io/large/front/8/4/841e14a3-abb9-4a2d-a21b-273307825e02.jpg",
       "ids": ["2"],
       "ci": "UBR",
@@ -401,7 +401,7 @@
       "name": "Goro-Goro and Satoru"
   },
   {
-      "url": "https://deckstats.net/decks/149419/2934903-awaken-a-blood-avatar",
+      "url": "https://archidekt.com/decks/18505487/jumbo_commander_extus_recurs_creatures_for_death_rituals",
       "front": "https://cards.scryfall.io/large/front/b/a/ba09360a-067e-48a5-bdc5-a19fd066a785.jpg",
       "back": "https://cards.scryfall.io/large/back/b/a/ba09360a-067e-48a5-bdc5-a19fd066a785.jpg",
       "ids": ["52"],
@@ -411,7 +411,7 @@
       "name": "Extus, Oriq Overlord // Awaken the Blood Avatar"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3082375-food-and-fellowship-upgraded-",
+      "url": "https://archidekt.com/decks/18507368/food_and_fellowship_upgraded",
       "front": "https://cards.scryfall.io/large/front/3/2/328df403-7428-4b17-bdd1-9759fc0f32d8.jpg",
       "back": "https://cards.scryfall.io/large/front/6/8/687a2b76-3f05-4732-bd9b-513d06d16300.jpg",
       "ids": ["53", "54"],
@@ -421,7 +421,7 @@
       "name": "Frodo, Adventurous Hobbit // Sam, Loyal Attendant"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3114577-auriel-peaceful-sentinel",
+      "url": "https://archidekt.com/decks/18507771/auriel_vigilant_sentinel",
       "front": "https://i.imgur.com/3EexxTT.png",
       "ids": ["55"],
       "ci": "W",
@@ -429,7 +429,7 @@
       "name": "Auriel, the Peaceful Sentinel"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3158769-zhulodok-void-gorger",
+      "url": "https://archidekt.com/decks/18507699/zhulodok_void_gorger",
       "front": "https://cards.scryfall.io/large/front/4/4/4424b9ec-70d8-4b32-931f-fac1516f8472.jpg",
       "ids": ["56"],
       "ci": "",
@@ -437,7 +437,7 @@
       "name": "Zhulodok, Void Gorger"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3161582-anikthea-hand-of-erebos",
+      "url": "https://archidekt.com/decks/18507359/anikthea_hand_of_erebos",
       "front": "https://cards.scryfall.io/large/front/8/b/8b796a56-1611-4835-ac5b-48b4e9263685.jpg",
       "ids": ["57"],
       "ci": "WBG",
@@ -445,7 +445,7 @@
       "name": "Anikthea, Hand of Erebos"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3008818-sheoldred",
+      "url": "https://archidekt.com/decks/18507721/sheoldred",
       "front": "https://cards.scryfall.io/large/front/7/3/7367ddfd-508e-49de-9428-3384bbe80b55.jpg",
       "back": "https://cards.scryfall.io/large/back/7/3/7367ddfd-508e-49de-9428-3384bbe80b55.jpg",
       "ids": ["58"],
@@ -455,15 +455,15 @@
       "name": "Sheoldred"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3101990-lord-of-the-nazg-l",
+      "url": "https://archidekt.com/decks/18508366/lord_of_the_nazgl",
       "front": "https://cards.scryfall.io/large/front/4/1/41e3d118-8f97-4c68-acff-2f90a055af5b.jpg",
       "ids": ["59"],
       "ci": "UB",
       "comment": "Wraiths",
-      "name": "Lord of hte Nazgûl"
+      "name": "Lord of the Nazgûl"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3244174-timey-wimey-upgraded-",
+      "url": "https://archidekt.com/decks/18507149/timeywimey_upgraded",
       "front": "https://cards.scryfall.io/large/front/f/1/f1499f49-793b-4265-9ad0-883a431941ab.jpg",
       "back": "https://cards.scryfall.io/large/front/3/a/3aa8d034-f98c-4e27-b6af-850eadf59941.jpg",
       "ids": ["60", "61"],
@@ -473,7 +473,7 @@
       "type": "partners"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3244174-timey-wimey-upgraded-",
+      "url": "https://archidekt.com/decks/18507118/the_war_doctor_clara",
       "front": "https://cards.scryfall.io/large/front/d/d/ddf2d71d-f662-470d-bd99-68e69ea516d5.jpg",
       "back": "https://cards.scryfall.io/large/front/5/0/50c0b868-a688-4ccb-97b7-58fd424a7864.jpg",
       "ids": ["62", "63"],
@@ -483,7 +483,7 @@
       "type": "partners"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3208317-the-hosts-of-mordor-upgraded-",
+      "url": "https://archidekt.com/decks/18507017/the_hosts_of_morder_upgraded",
       "front": "https://cards.scryfall.io/large/front/b/8/b83261ba-c239-4b6a-88eb-bdfc411916b3.jpg",
       "ids": ["64"],
       "ci": "UBR",
@@ -491,7 +491,7 @@
       "name": "The Hosts of Mordor"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3269939-paradox-power-upgraded-",
+      "url": "https://archidekt.com/decks/18507316/paradox_power_upgraded",
       "front": "https://cards.scryfall.io/large/front/0/d/0dc4ec90-1650-4b98-9350-66341394cf0b.jpg",
       "back": "https://cards.scryfall.io/large/front/1/2/12b09a4f-bb62-4766-8115-cae4d5cc4c12.jpg",
       "ids": ["65", "66"],
@@ -501,7 +501,7 @@
       "type": "partners"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3270805-blast-from-the-past-upgraded-",
+      "url": "https://archidekt.com/decks/18507399/blast_from_the_past_upgraded",
       "front": "https://cards.scryfall.io/large/front/1/0/10414d81-177d-43f4-9381-0d10ac51507f.jpg",
       "back": "https://cards.scryfall.io/large/front/1/b/1ba76f68-e647-4786-903c-92dbd3cef05d.jpg",
       "ids": ["67", "68"],
@@ -511,7 +511,7 @@
       "type": "partners"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3270700-masters-of-evil-upgraded-",
+      "url": "https://archidekt.com/decks/18507302/masters_of_evil_upgraded",
       "front": "https://cards.scryfall.io/large/front/5/9/59c5bd2b-cf68-4e5e-819d-53917a6c5275.jpg",
       "ids": ["69"],
       "ci": "UBR",
@@ -519,7 +519,7 @@
       "name": "Masters of Evil"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3343411-beledros-dragons",
+      "url": "https://archidekt.com/decks/18508043/beledros_dragons",
       "front": "https://cards.scryfall.io/large/front/e/3/e34dd2ef-a52d-48b6-becc-825f0e78eb75.jpg?1627001361",
       "ids": ["70"],
       "ci": "GB",
@@ -527,7 +527,7 @@
       "name": "Beledros Dragons"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3452993-copy-of-revenant-recon",
+      "url": "https://archidekt.com/decks/18507920/copy_of_revenant_recon",
       "front": "https://cards.scryfall.io/large/front/0/4/043c7b0e-2f7b-4936-88fe-84d8022ffb51.jpg?1706240534",
       "ids": ["71"],
       "ci": "UB",
@@ -535,7 +535,7 @@
       "name": "Revenant Recon"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3284244-elenda-vampire-aristocrats",
+      "url": "https://archidekt.com/decks/18508118/elenda_vampire_aristocrats",
       "front": "https://cards.scryfall.io/large/front/4/1/41c42be7-84fe-4d9d-bf5c-e75e4d5635fa.jpg?1700490606",
       "ids": ["72"],
       "ci": "WB",
@@ -543,7 +543,7 @@
       "name": "Elenda Vampire Aristocrats"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3511418-teysa-of-the-ghost-council",
+      "url": "https://archidekt.com/decks/18507524/teysa_of_the_ghost_council",
       "front": "https://i.imgur.com/xcOid8F.jpeg",
       "ids": ["73"],
       "ci": "WB",
@@ -551,7 +551,7 @@
       "name": "Teysa of the Ghost Council"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3473474-vihaan-treasure",
+      "url": "https://archidekt.com/decks/18508000/vihaan_goldwaker",
       "front": "https://cards.scryfall.io/large/front/7/b/7b09ab3a-344c-42d0-9f71-e8374214cda1.jpg",
       "ids": ["74"],
       "ci": "WBR",
@@ -559,7 +559,7 @@
       "name": "Vihaan Treasure"
   },
   {
-      "url": "https://deckstats.net/decks/149419/3483355-roxanne-starfall-savant",
+      "url": "https://archidekt.com/decks/18507970/roxanne_starfall_savant",
       "front": "https://cards.scryfall.io/large/front/1/1/11fbe52f-febd-49fc-8391-28d3efe9c3eb.jpg",
       "ids": ["75"],
       "ci": "GR",
@@ -567,7 +567,7 @@
       "name": "Roxanne, Starfall Savant"
   },
   {
-    "url": "https://deckstats.net/decks/149419/3502208-gisa-geralf",
+    "url": "https://archidekt.com/decks/18507686/gisa_geralf",
     "front": "https://cards.scryfall.io/large/front/d/b/db7c07b2-02b2-4e62-bf1b-4848e06eec28.jpg",
     "back": "https://cards.scryfall.io/large/front/a/f/afe3b678-b340-4c53-bbf6-19252a809d73.jpg",
     "ids": ["76", "77"],
@@ -577,7 +577,7 @@
     "name": "Gisa + Geralf"
   },
   {
-    "url": "https://deckstats.net/decks/149419/3589698-ygra-eater-of-all",
+    "url": "https://archidekt.com/decks/18507878/ygra_eater_of_all",
     "front": "https://cards.scryfall.io/large/front/9/7/97e0d6ca-eed9-4b57-a34a-0105c41b20b9.jpg",
     "ids": ["78"],
     "ci": "bg",
@@ -585,7 +585,7 @@
     "name": "Ygra, Eater of All"
   },
   {
-    "url": "https://deckstats.net/decks/149419/3626098-animated-army-upgraded-",
+    "url": "https://archidekt.com/decks/18505094/animated_army_upgraded",
     "front": "https://cards.scryfall.io/large/front/3/1/31e4b7a1-b377-49d2-a92e-4bcb0db35f16.jpg",
     "ids": ["79"],
     "ci": "rg",
@@ -593,7 +593,7 @@
     "name": "Animated Army",
   },
   {
-    "url": "https://deckstats.net/decks/149419/3442894-the-wise-mothman",
+    "url": "https://archidekt.com/decks/18507849/the_wise_mothman",
     "front": "https://cards.scryfall.io/large/front/3/d/3d6d6944-a364-41c2-b824-7a1bf6ad0d1e.jpg",
     "ids": ["80"],
     "ci": "bgu",
@@ -601,7 +601,7 @@
     "name": "The Wise Mothman"
   },
   {
-    "url": "https://deckstats.net/decks/149419/3612568-zinnia-valley-s-voice",
+    "url": "https://archidekt.com/decks/18508027/zinnia_valleys_voice",
     "front": "https://cards.scryfall.io/large/front/d/f/dfe36901-5841-4942-8b61-c273111f715e.jpg",
     "ids": ["81"],
     "ci": "wur",
@@ -609,7 +609,7 @@
     "name": "Zinnia, Valley's Voice"
   },
   {
-    "url": "https://deckstats.net/decks/149419/3588472-disa-the-restless",
+    "url": "https://archidekt.com/decks/18507675/disa_the_restless",
     "front": "https://cards.scryfall.io/large/front/1/9/19439420-9e0a-4fd1-bae9-f1c698edee1c.jpg",
     "ids": ["82"],
     "ci": "bgr",
@@ -617,7 +617,7 @@
     "name": "Disa the Restless"
   },
   {
-    "url": "https://deckstats.net/decks/149419/3702740-toby-beastie-befriender",
+    "url": "https://archidekt.com/decks/18508357/toby_beastie_befriender",
     "front": "https://cards.scryfall.io/large/front/c/a/cafe5755-88b0-4fee-8596-4232844f60fc.jpg",
     "ids": ["83"],
     "ci": "w",
@@ -633,11 +633,59 @@
     "name": "Celes, Rune Knight"
   },
   {
-    "url": "https://deckstats.net/decks/149419/3985813-copy-of-eternal-might",
+    "url": "https://archidekt.com/decks/18508127/celes_rune_knight",
     "front": "https://cards.scryfall.io/large/front/c/0/c0629894-0b72-4abe-9771-03becfdb241c.jpg",
     "ids": ["85"],
     "ci": "wub",
     "comment": "Eternal Might",
     "name": "Eternal Might (upgraded)"
+  },
+  {
+    "url": "https://archidekt.com/decks/18522004/estinien_varlineau",
+    "front": "https://cards.scryfall.io/large/front/3/5/356432cf-a17c-4147-9d02-921960032d0e.jpg",
+    "ids": ["86"],
+    "ci": "wb",
+    "comment": "Noncreatures and Dragons",
+    "name": "Estinien Varlineau"
+  },
+  {
+    "url": "https://archidekt.com/decks/18508219/sephiroth_fallen_hero",
+    "front": "https://i.imgur.com/hAtjyxn.png",
+    "ids": ["87"],
+    "ci": "rw",
+    "comment": "Modified Aggro",
+    "name": "Sephiroth, Fallen Hero"
+  },
+  {
+    "url": "https://archidekt.com/decks/18521885/jenova_ancient_calamity",
+    "front": "https://cards.scryfall.io/large/front/9/f/9f80efa6-769f-4205-b69e-9cf0e78b7bcd.jpg",
+    "ids": ["88"],
+    "ci": "bg",
+    "comment": "+1/+1 Counters, Sacrifice",
+    "name": "Jenova, Ancient Calamity"
+  },
+  {
+    "url": "https://archidekt.com/decks/18521953/limit_break_upgraded",
+    "front": "https://i.imgur.com/dhzTSYQ.jpeg",
+    "ids": ["89"],
+    "ci": "rgw",
+    "comment": "Equipment, 7 power",
+    "name": "Limit Break"
+  },
+  {
+    "url": "https://archidekt.com/decks/18473143/ardbert_warrior_of_darkness",
+    "front": "https://cards.scryfall.io/large/front/9/f/9fc1ac8a-bbd4-4d17-81d9-fd04876084b1.jpg",
+    "ids": ["90"],
+    "ci": "wb",
+    "comment": "White/Black Legends",
+    "name": "Ardbert, Warrior of Darkness"
+  },
+  {
+    "url": "https://archidekt.com/decks/18508337/verilax_the_havenskin",
+    "front": "https://i.imgur.com/sFI4GWb.jpeg",
+    "ids": ["91"],
+    "ci": "w",
+    "comment": "AKA Anti-Venom",
+    "name": "Verilax the Havenskin"
   }
 ]

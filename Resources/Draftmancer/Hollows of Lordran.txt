@@ -5031,6 +5031,7 @@
 ]
 [Settings]
 {
+  "name": "Hollows of Lordran",
   "layouts" : {
     "Mythic" : {
       "slots" : {
@@ -5055,11 +5056,10 @@
 }
 [Common]
 Arrest (HLW) 2
-Astora Elite (HLW) 5
-#Comment!
-Balder Knight (HLW) 7
-Bell Gargoyles (HLW) 8
-Bonfire Keeper (HLW) 9
+Astora Elite (HLW) 3
+Balder Knight (HLW) 5
+Bell Gargoyles (HLW) 6
+Bonfire Keeper (HLW) 7
 Evander's Phantom (HLW) 16
 Exiled Priestess (HLW) 17
 Fade to Ash (HLW) 19
@@ -5078,7 +5078,7 @@ Absorbed in Thought (HLW) 45
 Banish to the Painting (HLW) 46
 Blue Crystal Golem (HLW) 47
 Cancel (HLW) 48
-Ciaran's Obsession (HLW) 50
+Ciaran's Obsession (HLW) 49
 Curse-Marked Crook (HLW) 53
 Darkroot Sorcerer (HLW) 55
 Essence Scatter (HLW) 59
@@ -5117,9 +5117,9 @@ Ceaseless Destruction (HLW) 133
 Crazed Butcher (HLW) 135
 Doomsayer Sage (HLW) 137
 Excessive Moxie (HLW) 139
-Lightning Spear (HLW) 140
-Glory Chaser (HLW) 142
-Grand Fire Orb (HLW) 143
+Glory Chaser (HLW) 141
+Grand Fire Orb (HLW) 142
+Lightning Spear (HLW) 150
 Lingering Animosity (HLW) 151
 Mad Prayer (HLW) 153
 Magma Spider (HLW) 154
@@ -5157,8 +5157,8 @@ Abandoned Bonfire (HLW) 243
 Evolving Wilds (HLW) 245
 [Uncommon]
 Adorned Gargoyle (HLW) 1
-Astora Outcast (HLW) 6
-Companion's Experience (HLW) 10
+Astora Outcast (HLW) 4
+Companion's Experience (HLW) 9
 Darkmoon Avenger (HLW) 11
 Darkmoon Deterrence (HLW) 12
 Dull Defender (HLW) 14
@@ -5191,17 +5191,17 @@ Hopeless Determination (HLW) 109
 Izalith's Ruination (HLW) 112
 Journey's End (HLW) 113
 Key-Holder Demon (HLW) 114
-Nito's Miasma (HLW) 118
+Nito's Miasma (HLW) 117
 Parasitic Wallhugger (HLW) 120
 Sin Cultist (HLW) 125
 Venomous Bandit (HLW) 129
 Batwing Demon (HLW) 130
 Bloodied Shotel (HLW) 131
 Dragon-Path Daredevil (HLW) 138
-Grim Mercenary (HLW) 144
-Heir of Chaos (HLW) 146
-Hero's Gamble (HLW) 147
-Kalameet's Gaze (HLW) 150
+Grim Mercenary (HLW) 143
+Heir of Chaos (HLW) 145
+Hero's Gamble (HLW) 146
+Kalameet's Gaze (HLW) 149
 Paragon Transformation (HLW) 156
 Path of Violence (HLW) 157
 Solaire's Madness (HLW) 165
@@ -5238,7 +5238,7 @@ Lava Roots (HLW) 249
 Sinister Ruins (HLW) 250
 Watery Depths (HLW) 251
 [Rare]
-Chosen by the Lords (HLW) 3
+Chosen by the Lords (HLW) 8
 Doomed Pilgrim (HLW) 13
 Endless Encounters (HLW) 15
 Gwyn's Last Hope (HLW) 21
@@ -5247,7 +5247,7 @@ Havel, the Rock (HLW) 24
 Legacy of Knights (HLW) 28
 Sunlight Paragon (HLW) 37
 Wondrous Incandescence (HLW) 43
-Ciaran, Blade of the Lords (HLW) 49
+Ciaran, Blade of the Lords (HLW) 50
 Crossing the Fog (HLW) 51
 Dour Vagrant (HLW) 58
 Everlasting Research (HLW) 60
@@ -5256,8 +5256,8 @@ Moonlight Butterfly (HLW) 65
 Pale-Drake's Pact (HLW) 68
 Ring Collector (HLW) 73
 The Moonlight Greatsword (HLW) 82
-Artorias, Abyss-Stricken (HLW) 88
-Artorias's Cursed Greatsword (HLW) 89
+Artorias's Cursed Greatsword (HLW) 88
+Artorias, Abyss-Stricken (HLW) 89
 Centipede Demon (HLW) 97
 Darkwraith Elite (HLW) 99
 Deathless Commander (HLW) 101
@@ -5266,10 +5266,10 @@ Futile Pursuit (HLW) 107
 Reign of the Dark Lord (HLW) 121
 Sin Caller (HLW) 124
 Cruel Lunatic (HLW) 136
-Flame Storm (HLW) 141
-Gwyn's Defeat (HLW) 145
-Izalith Firesage (HLW) 148
-Jolly Cooperation (HLW) 149
+Flame Storm (HLW) 140
+Gwyn's Defeat (HLW) 144
+Izalith Firesage (HLW) 147
+Jolly Cooperation (HLW) 148
 Linking the Flame (HLW) 152
 Ornstein, Dragonslayer (HLW) 155
 Power Within (HLW) 158
@@ -5289,11 +5289,11 @@ The Gods' Blacksmith (HLW) 234
 Dragon Tooth (HLW) 239
 Firelink Shrine (HLW) 246
 [Mythic]
-Darkbreaker Angel (HLW) 4
+Darkbreaker Angel (HLW) 10
 Sen's Fortress Golem (HLW) 35
 Seath, Scaleless Betrayer (HLW) 76
 Soul Confluence (HLW) 81
-Nito, the Gravelord (HLW) 117
+Nito, the Gravelord (HLW) 118
 The Furtive Pygmy (HLW) 126
 Ceaseless Discharge (HLW) 134
 The First Flame (HLW) 171
@@ -5316,31 +5316,31 @@ Swamp (HLW) 254
 Mountain (HLW) 255
 Forest (HLW) 256
 [Tokens]
-Astora Outcast Hollow (THLW) 1
-Darkbreaker Angel Hollow (THLW) 2
-Darkmoon Avenger Hollow (THLW) 3
-Doomed Pilgrim Hollow (THLW) 4
-Exiled Priestess Hollow (THLW) 5
-Knight (THLW) 6
-Seeker of the Cure Hollow (THLW) 7
-Velka's Missionary Hollow (THLW) 8
-Zombie Soldier (THLW) 9
-Curse-Marked Crook Hollow (THLW) 10
-Demented Sorcerer Hollow (THLW) 11
-Dour Vagrant Hollow (THLW) 12
-Raven Rider Hollow (THLW) 13
-Barbaric Cleric Hollow (THLW) 14
-Human (THLW) 15
-Sewer Nibbler Hollow (THLW) 16
-Sin Caller Hollow (THLW) 17
-Sin Cultist Hollow (THLW) 18
-Skeleton (THLW) 19
-Cruel Lunatic Hollow (THLW) 20
-Fungus (THLW) 21
-Spider (THLW) 22
-Wolf (THLW) 23
+Slaine Card Draw Emblem (THLW) 2
+Slaine Extra Turns Emblem (THLW) 3
+Slaine Token Emblem (THLW) 4
+Knight (THLW) 5
+Zombie Soldier (THLW) 6
+Barbaric Cleric Hollow (THLW) 7
+Human (THLW) 8
+Sewer Nibbler Hollow (THLW) 9
+Sin Caller Hollow (THLW) 10
+Sin Cultist Hollow (THLW) 11
+Skeleton (THLW) 12
+Fungus (THLW) 13
+Spider (THLW) 14
+Wolf (THLW) 15
+Astora Outcast Hollow (THLW) 16
+Cruel Lunatic Hollow (THLW) 17
+Curse-Marked Crook Hollow (THLW) 18
+Darkbreaker Angel Hollow (THLW) 19
+Darkmoon Avenger Hollow (THLW) 20
+Demented Sorcerer Hollow (THLW) 21
+Doomed Pilgrim Hollow (THLW) 22
+Dour Vagrant Hollow (THLW) 23
+Exiled Priestess Hollow (THLW) 24
 Priest of Velka Hollow (THLW) 25
-Dragon (THLW) 26
-Slaine Card Draw Emblem (THLW) 27
-Slaine Extra Turns Emblem (THLW) 28
-Slaine Token Emblem (THLW) 29
+Raven Rider Hollow (THLW) 26
+Seeker of the Cure Hollow (THLW) 27
+Velka's Missionary Hollow (THLW) 28
+Dragon (THLW) 29

@@ -271,8 +271,13 @@ public struct DraftmancerCard: Codable, Sendable {
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.flavorName, forKey: .flavorName)
     try container.encode(self.manaCost, forKey: .manaCost)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.subtypes, forKey: .subtypes)
+    
+    var type = type
+    if let subtypes {
+      type += " — " + subtypes.joined(separator: " ")
+    }
+    
+    try container.encode(type, forKey: .type)
     
     if let imageUris = imageUris {
       try container.encode(imageUris, forKey: .imageUris)

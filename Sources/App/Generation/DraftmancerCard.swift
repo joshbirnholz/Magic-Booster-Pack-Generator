@@ -613,6 +613,7 @@ struct DraftmancerSet: Encodable, Sendable {
   var cards: [DraftmancerCard]
   var name: String
   var displayReversed: Bool = false
+  var directString: String?
   
   enum CodingKeys: String, CodingKey {
     case cards
@@ -626,7 +627,8 @@ struct DraftmancerSet: Encodable, Sendable {
     if name == "Custom Cards" {
       return false
     }
-    return [DraftmancerCard.Rarity.common, .uncommon, .rare].allSatisfy { rarity in cards.contains(where: { $0.rarity == rarity }) }
+    let rarities = Set(cards.map(\.rarity))
+    return Set([DraftmancerCard.Rarity.common, .uncommon, .rare]).isSubset(of: rarities) || rarities == [.special]
   }
   
   func encode(to encoder: Encoder) throws {
@@ -787,24 +789,51 @@ actor DraftmancerSetCache {
 //        }
         
         group.addTask {
-          let cubeURL = URL(string: "https://capitalich.github.io/lists/all-cards.json")!
+          let cubeURL = URL(string: "https://capitalich.github.io/sets/ATC-files/ATC-draft.txt")!
           do {
-            let data = try await URLSession.shared.data(from: cubeURL).0
-            let adventureTimeCube = try decoder.decode(MSESet.self, from: data)
-            var set = DraftmancerSet(mseSet: adventureTimeCube)
-            set.name = "Adventure Time Cube"
-            return set
-            print("Loaded ATC from GitHub")
+            guard var cube = try await self.loadDraftmancerSetFromURL(url: cubeURL , decoder: decoder) else {
+              return nil
+            }
+            cube.name = "Adventure Time Cube"
+            
+            cube.cards = cube.cards.map { card in
+              var card = card
+              
+              if card.type == "" || card.type.contains("Token") || card.type.contains("Emblem") {
+                card.set = "TATC"
+              } else {
+                card.set = "ATC"
+              }
+              
+              return card
+            }
+            
+            return cube
           } catch {
-//            print("Error loading ATC from GitHub:", error)
-//            let fromMSE: [DraftmancerSet] = loadedMSESets?.map {
-//              DraftmancerSet(mseSet: $0)
-//            } ?? []
-//            
-//            return fromMSE
+            print("‼️ Error loading cards from \(cubeURL ):", error)
             return nil
           }
         }
+        
+//        group.addTask {
+//          let cubeURL = URL(string: "https://capitalich.github.io/lists/all-cards.json")!
+//          do {
+//            let data = try await URLSession.shared.data(from: cubeURL).0
+//            let adventureTimeCube = try decoder.decode(MSESet.self, from: data)
+//            var set = DraftmancerSet(mseSet: adventureTimeCube)
+//            set.name = "Adventure Time Cube"
+//            return set
+//            print("Loaded ATC from GitHub")
+//          } catch {
+////            print("Error loading ATC from GitHub:", error)
+////            let fromMSE: [DraftmancerSet] = loadedMSESets?.map {
+////              DraftmancerSet(mseSet: $0)
+////            } ?? []
+////            
+////            return fromMSE
+//            return nil
+//          }
+//        }
         
         var results: [DraftmancerSet] = []
         for try await result in group {
@@ -998,7 +1027,8 @@ actor DraftmancerSetCache {
     
     return await DraftmancerSet(
       cards: cards.asyncCompactMap { await $0.card(from: collection) },
-      name: name
+      name: name,
+      directString: url.scheme == "https" ? rawString : nil
     )
   }
 }
@@ -1605,6 +1635,10 @@ extension DraftmancerSet {
 
 extension DraftmancerSet {
   var string: String? {
+    if let directString {
+      return directString
+    }
+    
     enum Slot: String, CaseIterable, Hashable, Equatable {
       case common
       case uncommon
@@ -1772,10 +1806,10 @@ extension DraftmancerSet {
           "layouts" : {
             \(standardMythicString)"Rare" : {
               "slots" : {
-                "Land" : 1,
-                "Rare" : 1,
-                "Uncommon" : 3,
-                "Common" : 10
+                "\(Slot.land.name)" : 1,
+                "\(Slot.rare.name)" : 1,
+                "\(Slot.uncommon.name)" : 3,
+                "\(Slot.common.name)" : 10
               },
               "weight" : 7
             }
@@ -1851,6 +1885,7 @@ struct MSECard: Codable {
   let artist: String
   let notes: String?
   let imageType: String
+  let position: String
   
   // Back face or Adventure side
   let cardName2: String?
@@ -2011,13 +2046,19 @@ let loadedMSESets: [MSESet]? = {
 
 extension DraftmancerSet {
   init(mseSet: MSESet) {
-    let cards: [DraftmancerCard] = mseSet.cards.compactMap { card in
-      guard let c = DraftmancerCard(mseCard: card) else {
-        print("Couldn't load Draftmancer card for \(card.cardName)")
-        return nil
-      }
-      return c
-    }
+    let allCards = mseSet.cards
+    let groupedBySet: [String: [MSECard]] = .init(grouping: allCards, by: \.set)
+    
+    let cards: [DraftmancerCard] = Array(groupedBySet.values.map { set in
+      return set.sorted(on: \.position, by: { $0.compare($1, options: .numeric) == .orderedAscending })
+        .compactMap { card in
+          guard let c = DraftmancerCard(mseCard: card) else {
+            print("Couldn't load Draftmancer card for \(card.cardName)")
+            return nil
+          }
+          return c
+        }
+    }.joined())
     
     self.init(
       cards: cards,

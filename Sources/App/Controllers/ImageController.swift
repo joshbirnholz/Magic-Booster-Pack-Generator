@@ -117,6 +117,33 @@ actor ImageController {
     )
   }
   
+  func artCropURL(_ req: Request) async throws -> Response {
+    guard let url = try? req.query.get(URL.self, at: "url") else {
+      throw Abort(.expectationFailed, reason: "Couldn't get URL")
+    }
+    
+    let headers: HTTPHeaders = [
+      "Content-Type": "image/jpeg",
+      "access-control-allow-headers": "Origin",
+      "access-control-allow-origin": "*"
+    ]
+    
+    if let data = getCache(for: url) ?? loadFromDisk(for: url) {
+      setCache(for: url, data: data)
+      return Response(status: .ok,
+                      headers: headers,
+                      body: .init(data: data))
+    }
+    
+    let data = try await artCrop(url: url)
+    
+    return Response(
+      status: .ok,
+      headers: headers,
+      body: .init(data: data)
+    )
+  }
+  
   func proxyCrop(_ req: Request) async throws -> Response {
     guard let url = try? req.query.get(URL.self, at: "url") else {
       throw Abort(.expectationFailed, reason: "Couldn't get URL")

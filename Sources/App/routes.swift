@@ -91,6 +91,7 @@ public func routes(_ app: Application) throws {
   let imageController = ImageController()
   
   app.get("artcrop", ":set", ":number", use: imageController.artCrop(_:))
+  app.get("artcropurl", ":url", use: imageController.artCropURL(_:))
   
   app.get("proxycrop", use: imageController.proxyCrop(_:))
   app.get("gatherercrop", use: imageController.gathererCrop(_:))

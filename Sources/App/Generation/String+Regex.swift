@@ -21,42 +21,88 @@ internal struct RegexResult {
   }
 }
 
+//internal extension String {
+//  func matches(forRegex regex: String, options: NSRegularExpression.Options = []) -> [RegexResult] {
+//    do {
+//      let regex = try NSRegularExpression(pattern: regex, options: options)
+//      let results = regex.matches(in: self, range: NSRange(startIndex..., in: self))
+//      return results.map { result in
+//        let fullMatchRange = Range(result.range, in: self)!
+//        let groups: [Match]
+//        
+//        if result.numberOfRanges > 1 {
+//          groups = (1 ..< result.numberOfRanges).compactMap { i in
+//            guard let range = Range(result.range(at: i), in: self) else {
+//              return nil
+//            }
+//            let value = String(self[range])
+//            return (range: range, value: value)
+//          }
+//        } else {
+//          groups = []
+//        }
+//        
+//        let fullMatch = (range: fullMatchRange, value: String(self[fullMatchRange]))
+//        
+//        func getGroupWithName(name: String) -> Match? {
+//          guard let range = Range(result.range(withName: name), in: self) else {
+//            return nil
+//          }
+//          
+//          let value = String(self[range])
+//          return (range: range, value: value)
+//        }
+//        
+//        return RegexResult(fullMatch: fullMatch, groups: groups, getGroupWithName: getGroupWithName(name:))
+//      }
+//    } catch {
+//      return []
+//    }
+//  }
+//}
+
 internal extension String {
-  func matches(forRegex regex: String, options: NSRegularExpression.Options = []) -> [RegexResult] {
-    do {
-      let regex = try NSRegularExpression(pattern: regex, options: options)
-      let results = regex.matches(in: self, range: NSRange(startIndex..., in: self))
-      return results.map { result in
-        let fullMatchRange = Range(result.range, in: self)!
-        let groups: [Match]
-        
-        if result.numberOfRanges > 1 {
-          groups = (1 ..< result.numberOfRanges).compactMap { i in
-            guard let range = Range(result.range(at: i), in: self) else {
-              return nil
-            }
-            let value = String(self[range])
-            return (range: range, value: value)
-          }
-        } else {
-          groups = []
-        }
-        
-        let fullMatch = (range: fullMatchRange, value: String(self[fullMatchRange]))
-        
-        func getGroupWithName(name: String) -> Match? {
-          guard let range = Range(result.range(withName: name), in: self) else {
-            return nil
-          }
-          
+  func matches(forRegex pattern: String, options: NSRegularExpression.Options = []) -> [RegexResult] {
+    // Build a Regex from the pattern string at runtime.
+    // NSRegularExpression.Options don't map 1-to-1 to Swift Regex options,
+    // so we translate the common ones here.
+    var swiftOptions = ""
+    
+    if options.contains(.caseInsensitive) { swiftOptions += "(?i)" }
+    if options.contains(.allowCommentsAndWhitespace) { swiftOptions += "(?x)" }
+    if options.contains(.dotMatchesLineSeparators) { swiftOptions += "(?s)" }
+    if options.contains(.anchorsMatchLines) { swiftOptions += "(?m)" }
+    
+    let fullPattern = swiftOptions + pattern
+    
+    guard let regex = try? Regex(fullPattern) else { return [] }
+    
+    let matches = self.matches(of: regex)
+    
+    return matches.map { match in
+      let fullRange = match.range
+      let fullValue = String(self[fullRange])
+      let fullMatch: Match = (range: fullRange, value: fullValue)
+      
+      // Captures start at index 1 (index 0 is the whole match)
+      let groups: [Match] = match.output
+        .dropFirst()          // drop the whole-match capture
+        .compactMap { capture in
+          guard let range = capture.range else { return nil }
+          // capture.range is Range<String.Index>
           let value = String(self[range])
           return (range: range, value: value)
         }
-        
-        return RegexResult(fullMatch: fullMatch, groups: groups, getGroupWithName: getGroupWithName(name:))
+      
+      func getGroupWithName(_ name: String) -> Match? {
+        guard
+          let capture = match[name],
+          let range = capture.range
+        else { return nil }
+        return (range: range, value: String(self[range]))
       }
-    } catch {
-      return []
+      
+      return RegexResult(fullMatch: fullMatch, groups: groups, getGroupWithName: getGroupWithName)
     }
   }
 }

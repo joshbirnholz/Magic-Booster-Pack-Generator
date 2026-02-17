@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
   name: "TabletopSimulatorMagicBoosterPackServer",
   platforms: [
-    .macOS(.v12),
+    .macOS(.v13),
   ],
   dependencies: [
     // 💧 A server-side Swift web framework.

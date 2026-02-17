@@ -924,7 +924,9 @@ actor DraftmancerSetCache {
     }
     let string = draftMancerStringSection("CustomCards", from: rawString)
     guard let data = string?.data(using: .utf8) else {
-      print("‼️ Error getting data from string for \(url.deletingPathExtension().lastPathComponent):")
+      print("‼️ Error getting data from string for \(url.deletingPathExtension().lastPathComponent)")
+      print("Raw string:")
+      print(rawString)
       return nil
     }
     

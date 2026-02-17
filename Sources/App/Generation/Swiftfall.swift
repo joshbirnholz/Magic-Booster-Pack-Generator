@@ -498,6 +498,8 @@ public class Swiftfall {
       /// The localized type line printed on this card, if any.
       public let printedTypeLine: String?
       
+      public let object = "card_face"
+      
       public var description: String {
         var text = ""
         // Each variable is tested to see if printing it makes sense.

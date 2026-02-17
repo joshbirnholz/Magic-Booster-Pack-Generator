@@ -788,52 +788,54 @@ actor DraftmancerSetCache {
 //          }
 //        }
         
-        group.addTask {
-          let cubeURL = URL(string: "https://capitalich.github.io/sets/ATC-files/ATC-draft.txt")!
-          do {
-            guard var cube = try await self.loadDraftmancerSetFromURL(url: cubeURL , decoder: decoder) else {
-              return nil
-            }
-            cube.name = "Adventure Time Cube"
-            
-            cube.cards = cube.cards.map { card in
-              var card = card
-              
-              if card.type == "" || card.type.contains("Token") || card.type.contains("Emblem") {
-                card.set = "TATC"
-              } else {
-                card.set = "ATC"
-              }
-              
-              return card
-            }
-            
-            return cube
-          } catch {
-            print("‼️ Error loading cards from \(cubeURL ):", error)
-            return nil
-          }
-        }
-        
 //        group.addTask {
-//          let cubeURL = URL(string: "https://capitalich.github.io/lists/all-cards.json")!
+//          let cubeURL = URL(string: "https://capitalich.github.io/sets/ATC-files/ATC-draft.txt")!
 //          do {
-//            let data = try await URLSession.shared.data(from: cubeURL).0
-//            let adventureTimeCube = try decoder.decode(MSESet.self, from: data)
-//            var set = DraftmancerSet(mseSet: adventureTimeCube)
-//            set.name = "Adventure Time Cube"
-//            return set
-//            print("Loaded ATC from GitHub")
+//            guard var cube = try await self.loadDraftmancerSetFromURL(url: cubeURL , decoder: decoder) else {
+//              return nil
+//            }
+//            cube.name = "Adventure Time Cube"
+//            
+//            cube.cards = cube.cards.map { card in
+//              var card = card
+//              
+//              if card.type == "" || card.type.contains("Token") || card.type.contains("Emblem") {
+//                card.set = "TATC"
+//              } else {
+//                card.set = "ATC"
+//              }
+//              
+//              return card
+//            }
+//            
+//            return cube
 //          } catch {
-////            print("Error loading ATC from GitHub:", error)
-////            let fromMSE: [DraftmancerSet] = loadedMSESets?.map {
-////              DraftmancerSet(mseSet: $0)
-////            } ?? []
-////            
-////            return fromMSE
+//            print("‼️ Error loading cards from \(cubeURL ):", error)
 //            return nil
 //          }
 //        }
+        
+        group.addTask {
+          let cubeURL = URL(string: "https://capitalich.github.io/lists/all-cards.json")!
+          do {
+            let data = try await URLSession.shared.data(from: cubeURL).0
+            let adventureTimeCube = try decoder.decode(MSESet.self, from: data)
+            var set = DraftmancerSet(mseSet: adventureTimeCube)
+            set.name = "Adventure Time Cube"
+            print("Loaded ATC from GitHub")
+            return set
+          } catch {
+            print("‼️ Error loading MSE set from \(cubeURL ):", error)
+            print("Trying to load local backup instead…")
+            
+            if let mseSets = loadedMSESets {
+              for set in mseSets {
+                return DraftmancerSet(mseSet: set)
+              }
+            }
+            return nil
+          }
+        }
         
         var results: [DraftmancerSet] = []
         for try await result in group {
@@ -1955,13 +1957,13 @@ extension DraftmancerCard {
             let set = card.set.uppercased().addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
       else { return nil }
       
-      var string = "https://capitalich.github.io/sets/\(set)-files/img/\(card.number)"
+      var string = "https://Capitalich.github.io/sets/\(set)-files/img/\(card.position)"
       
-      if card.shape == "token" {
-        string += "t"
-      }
+//      if card.shape == "token" {
+//        string += "t"
+//      }
       
-      string += "_\(name)"
+//      string += "_\(name)"
       
       if isDFC {
         string += (isBack ? "_back" : "_front")
@@ -2041,7 +2043,7 @@ let loadedMSESets: [MSESet]? = {
       print("✅ Loaded \(set.cards.count) MSE cards from \(url.lastPathComponent)")
       return set
     } catch {
-      print("‼️ Error loading Cockatrice cards:", error)
+      print("‼️ Error loading MSE cards from \(url.lastPathComponent):", error)
       return nil
     }
   }

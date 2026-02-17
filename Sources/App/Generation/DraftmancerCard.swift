@@ -437,10 +437,10 @@ extension DraftmancerCard {
       }
     }()
     
-    if let back, let layout, layout.lowercased().contains("transform") || layout.lowercased().contains("dfc") || layout.lowercased().contains("double_sided") {
+    if let back, let layout = layout?.lowercased(), layout.contains("transform") || layout.contains("dfc") || layout.contains("double_sided") || layout.contains("double_sided") || layout.contains("adventure") || layout.contains("split") {
       var backImageUris: [String: URL]?
       
-      if let image = back.image ?? back.imageUris?["en"] {
+      if let image = back.image ?? back.imageUris?["en"], !layout.contains("adventure") && !layout.contains("split") {
         backImageUris = [
           "small": image,
           "normal": image,
@@ -484,7 +484,7 @@ extension DraftmancerCard {
         manaCost: self.manaCost,
         colors: self.colors?.compactMap(MTGColor.init(rawValue:)),
         watermark: nil,
-        imageUris: imageURIs
+        imageUris: backImageUris != nil ? imageURIs : nil
       )
       
       return .init(
@@ -530,7 +530,7 @@ extension DraftmancerCard {
         language: .english,
         releaseDate: nil,
         isTextless: false,
-        imageUris: nil
+        imageUris: backImageUris == nil ? imageURIs : nil
       )
     } else {
       return .init(
@@ -1936,6 +1936,7 @@ extension DraftmancerCard {
     
     let isDFC = card.shape.contains("transform")
     
+    
     let typeParts = card.type.components(separatedBy: " — ")
     let type = typeParts.first ?? card.type
     let subtypes = typeParts.count > 1 ? typeParts[1].components(separatedBy: " ") : nil
@@ -2004,7 +2005,7 @@ extension DraftmancerCard {
       subtypes: subtypes,
       rating: nil,
       layout: card.shape,
-      back: isDFC ? DraftmancerCard.Face(
+      back: isDFC || card.shape.contains("adventure") || card.shape.contains("split") ? DraftmancerCard.Face(
         name: card.cardName2?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
         image: imageURL(isBack: true),
         type: card.type2 ?? "",

@@ -1122,7 +1122,7 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
   let query: String = try req.query.get(at: "q")
   let order = (try? req.query.get(Swiftfall.SearchOrder.self, at: "order")) ?? .name
   var direction = (try? req.query.get(Swiftfall.SearchOrderDirection.self, at: "direction")) ?? .auto
-  let unique = try? req.query.get(Swiftfall.Unique.self, at: "unique")
+  let unique = try? req.query.get(Swiftfall.Unique.self, at: "unique") // Not currently supported, basically always true
   
   let headers: HTTPHeaders = [
     "Content-Type": "application/json",

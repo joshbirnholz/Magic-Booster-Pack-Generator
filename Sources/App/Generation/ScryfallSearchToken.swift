@@ -1068,7 +1068,9 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       if exact {
         return card.allNames.contains(where: { $0.lowercased() == string })
       } else {
-        return card.allNames.contains(where: { $0.lowercased().contains(string) })
+        return card.allNames.contains(where: { name in
+          let withoutPunctuation = name.lowercased().filter { char in !char.isPunctuation }
+          return withoutPunctuation.contains(string.filter { char in !char.isPunctuation }) })
       }
     case .oracleContains(let string):
       return card.oracleText?.lowercased().contains(string.lowercased()) == true

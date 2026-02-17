@@ -922,11 +922,12 @@ actor DraftmancerSetCache {
       print("‼️ Error loading string from data for \(url.deletingPathExtension().lastPathComponent):")
       return nil
     }
-    let string = draftMancerStringSection("CustomCards", from: rawString)
-    guard let data = string?.data(using: .utf8) else {
+    guard let string = draftMancerStringSection("CustomCards", from: rawString) else {
+      print("‼️ Error getting CustomCards section from string from \(url.deletingPathExtension().lastPathComponent)")
+      return nil
+    }
+    guard let data = string.data(using: .utf8) else {
       print("‼️ Error getting data from string for \(url.deletingPathExtension().lastPathComponent)")
-      print("Raw string:")
-      print(rawString)
       return nil
     }
     

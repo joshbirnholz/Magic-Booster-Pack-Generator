@@ -1093,10 +1093,9 @@ public class Swiftfall {
       
       decoder.dateDecodingStrategy = dateDecodingStrategy ?? .formatted(dateFormatter)
       
-      let decoded:ResultType = try decoder.decode(ResultType.self, from: content)
-      return decoded
+      return try decoder.decode(ResultType.self, from: content)
     } catch {
-      print(error)
+      print("Error parsing resource from \(url):", error)
       throw error
     }
   }

@@ -917,7 +917,7 @@ actor DraftmancerSetCache {
   }
   
   func loadDraftmancerSetFromURL(url: URL, decoder: JSONDecoder) async throws -> DraftmancerSet? {
-    let rawData = try Data(contentsOf: url)
+    let rawData = url.scheme == "https" ? try await URLSession.shared.data(from: url).0 : try Data(contentsOf: url)
     guard let rawString = String(data: rawData, encoding: .utf8) else {
       print("‼️ Error loading string from data for \(url.deletingPathExtension().lastPathComponent):")
       return nil
@@ -1024,7 +1024,7 @@ actor DraftmancerSetCache {
         let fetched = try await Swiftfall.getCollection(identifiers: chunk).data
         collection.append(contentsOf: fetched)
       } catch {
-        print(error)
+        print("Error fetching collection chunk: \(error)")
       }
     }
     

@@ -826,13 +826,13 @@ actor DraftmancerSetCache {
             return set
           } catch {
             print("‼️ Error loading MSE set from \(cubeURL ):", error)
-            print("Trying to load local backup instead…")
-            
-            if let mseSets = loadedMSESets {
-              for set in mseSets {
-                return DraftmancerSet(mseSet: set)
-              }
-            }
+//            print("Trying to load local backup instead…")
+//            
+//            if let mseSets = loadedMSESets {
+//              for set in mseSets {
+//                return DraftmancerSet(mseSet: set)
+//              }
+//            }
             return nil
           }
         }

@@ -563,8 +563,47 @@ function loadDraftmancerCards() {
       }
       
       document.getElementById('loading').hidden = true;
+      document.getElementById('search-form').hidden = false;
     },
     error: function(xhr, status, error) {
+      console.log("error");
+      console.log(xhr);
+      console.log(status);
+      console.log(error);
+      
+      alert(error);
+    }
+  })
+}
+
+function loadSearchResults(query) {
+  document.getElementById('loading').hidden = false;
+  
+  $.ajax({
+    url: `custom/cards/search?q=${query}`,
+    data: null,
+    cache: false,
+    contentType: false,
+    processData: false,
+    method: "GET",
+    success: function(response) {
+      document.getElementById('loading').hidden = true;
+      
+      console.log("success:");
+      console.log(response);
+      
+      var cardset = {
+        "cards": response.data,
+        "display_reversed": false,
+        "is_draftable": false,
+        "name": `${response.total_cards} cards`
+      };
+      
+      setDraftmancerCardSet(cardset);
+    },
+    error: function(xhr, status, error) {
+      document.getElementById('loading').hidden = true;
+      
       console.log("error");
       console.log(xhr);
       console.log(status);
@@ -654,7 +693,7 @@ function setDraftmancerCardSet(cardset) {
       row1.appendChild(imageData);
       imageData.setAttribute("rowspan", 4);
       
-      var imageURL = element.image || element.image_uris["en"];
+      var imageURL = element.image || element.image_uris["en"] || element.image_uris["normal"];
       imageData.innerHTML = "<div><a href=\"" + imageURL + "\"><img src=\"" + imageURL + "\" height=264 width=189 style='border-radius:10px;'></a></div>";
       
       var nameData = document.createElement("td");
@@ -762,7 +801,7 @@ function setDraftmancerCardSet(cardset) {
         name += " (" + element.name + ")";
       }
       
-      var imageURL = element.image || element.image_uris["en"];
+      var imageURL = element.image || element.image_uris.en || element.image_uris.normal || "";
       data.innerHTML = "<center><div><a href=\"" + imageURL + "\"><img src=\"" + imageURL + "\" height=264 width=189 style='border-radius:10px;'></a></div><p>" + name + "<br>" + element.set.toUpperCase() + " #" + element.collector_number + rarity + "</p><br></center>";
       
       row.appendChild(data);

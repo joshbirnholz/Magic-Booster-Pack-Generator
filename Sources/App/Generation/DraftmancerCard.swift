@@ -78,10 +78,13 @@ public struct DraftmancerCard: Codable, Sendable {
     var toughness: String?
     var loyalty: String?
     var keywords: [String]?
+    var manaCost: String?
+    var colors: [String]?
+    var watermark: String?
     
-    init(name: String, flavorName: String? = nil, imageUris: [String : URL]? = nil, image: URL? = nil, type: String, subtypes: [String]? = nil, oracleText: String? = nil, flavorText: String? = nil, power: String? = nil, toughness: String? = nil, loyalty: String? = nil, keywords: [String]? = nil) {
+    init(name: String, flavorName: String? = nil, imageUris: [String : URL]? = nil, image: URL? = nil, type: String, subtypes: [String]? = nil, oracleText: String? = nil, flavorText: String? = nil, power: String? = nil, toughness: String? = nil, loyalty: String? = nil, keywords: [String]? = nil, manaCost: String? = nil, colors: [String]? = nil, watermark: String? = nil) {
       self.name = name
-      self.flavorName = name
+      self.flavorName = flavorName
       self.imageUris = imageUris
       self.image = image
       self.type = type
@@ -92,6 +95,9 @@ public struct DraftmancerCard: Codable, Sendable {
       self.toughness = toughness
       self.loyalty = loyalty
       self.keywords = keywords
+      self.manaCost = manaCost
+      self.colors = colors
+      self.watermark = watermark
     }
     
     public init(from decoder: Decoder) throws {
@@ -114,6 +120,9 @@ public struct DraftmancerCard: Codable, Sendable {
       self.toughness = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.toughness)
       self.loyalty = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.loyalty)
       self.keywords = try container.decodeIfPresent([String].self, forKey: DraftmancerCard.Face.CodingKeys.keywords)
+      self.manaCost = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.manaCost)
+      self.colors = try container.decodeIfPresent([String].self, forKey: DraftmancerCard.Face.CodingKeys.colors)
+      self.watermark = try container.decodeIfPresent(String.self, forKey: DraftmancerCard.Face.CodingKeys.watermark)
     }
   }
   
@@ -461,14 +470,14 @@ extension DraftmancerCard {
         typeLine: backTypeLine,
         power: back.power,
         toughness: back.toughness,
-        oracleText: oracleText,
-        flavorText: nil,
+        oracleText: back.oracleText,
+        flavorText: back.flavorText,
         name: back.name,
         flavorName: back.flavorName,
         loyalty: back.loyalty,
-        manaCost: nil,
+        manaCost: back.manaCost,
         colors: nil,
-        watermark: nil,
+        watermark: back.watermark,
         imageUris: backImageUris
       )
       
@@ -1934,7 +1943,7 @@ extension DraftmancerCard {
     
     let fixedCost = fixManaCost(cost)
     
-    let isDFC = card.shape.contains("transform")
+    let isDFC = card.shape.contains("double face")
     
     
     let typeParts = card.type.components(separatedBy: " — ")
@@ -2005,25 +2014,30 @@ extension DraftmancerCard {
       subtypes: subtypes,
       rating: nil,
       layout: card.shape,
-      back: isDFC || card.shape.contains("adventure") || card.shape.contains("split") ? DraftmancerCard.Face(
+      back: isDFC || card.shape.contains("adventure") || card.shape.contains("split") ? .init(
         name: card.cardName2?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
+        flavorName: nil,
         image: imageURL(isBack: true),
         type: card.type2 ?? "",
+        subtypes: nil,
         oracleText: card.rulesText2?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: "").optionalIfEmpty(),
         flavorText: card.flavorText2?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: "").optionalIfEmpty(),
         power: power2,
         toughness: toughness2,
-        loyalty: card.loyalty2,
-        keywords: []
+        loyalty: card.loyalty2?.optionalIfEmpty(),
+        keywords: [],
+        manaCost: card.cost2,
+        colors: card.color2.flatMap { Array($0).map(String.init) },
+        watermark: nil
       ) : nil,
       relatedCards: nil,
       relatedCardIdentifiers: nil,
       draftEffects: nil,
-      power: power,
-      toughness: toughness,
+      power: power?.optionalIfEmpty(),
+      toughness: toughness?.optionalIfEmpty(),
       oracleText: card.rulesText?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: "").optionalIfEmpty(),
       flavorText: card.flavorText?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: "").optionalIfEmpty(),
-      loyalty: card.loyalty,
+      loyalty: card.loyalty?.optionalIfEmpty(),
       keywords: []
     )
   }

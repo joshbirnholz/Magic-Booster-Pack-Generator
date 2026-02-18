@@ -156,7 +156,28 @@ extension Swiftfall.Card {
     }
     
     let faces = mtgCard.cardFaces?.map {
-      Swiftfall.Card.Face(name: $0.name, flavorName: $0.flavorName, manaCost: $0.manaCost, cmc: nil, typeLine: $0.typeLine, oracleText: $0.oracleText, colors: $0.colors?.compactMap(\.rawValue), colorIndicator: nil, power: $0.power, toughness: $0.toughness, loyalty: $0.loyalty, defense: nil, flavorText: $0.flavorText, illustrationId: UUID().uuidString, imageUris: $0.imageUris, oracleId: mtgCard.oracleID, watermark: $0.watermark, printedName: $0.printedName, printedText: nil, printedTypeLine: nil)
+      Swiftfall.Card.Face(
+        name: $0.name,
+        flavorName: $0.flavorName,
+        manaCost: $0.manaCost,
+        cmc: nil,
+        typeLine: $0.typeLine,
+        oracleText: $0.oracleText,
+        colors: $0.colors?.compactMap(\.rawValue),
+        colorIndicator: nil,
+        power: $0.power,
+        toughness: $0.toughness,
+        loyalty: $0.loyalty,
+        defense: nil,
+        flavorText: $0.flavorText,
+        illustrationId: UUID().uuidString,
+        imageUris: $0.imageUris,
+        oracleId: mtgCard.oracleID,
+        watermark: $0.watermark,
+        printedName: $0.printedName,
+        printedText: nil,
+        printedTypeLine: nil
+      )
     }
     
     let printsSearchUri = URL(string: "https://tts-magic-booster.fly.dev/custom/cards/search?q=name=\(mtgCard.name?.replacingOccurrences(of: " ", with: "_") ?? "")")!

@@ -1139,7 +1139,7 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     case .artist(let string):
       return card.artist?.lowercased().contains(string.lowercased()) == true
     case .include(let string):
-      return false
+      break // Not handled here
     case .flavorText(let string):
       return card.flavorText?.lowercased().contains(string.lowercased()) == true
     case .lore(let string):
@@ -1147,7 +1147,7 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
         face.name?.lowercased().contains(string) == true || face.flavorName?.lowercased().contains(string) == true || face.flavorText?.lowercased().contains(string) == true
       }) == true
     case .unique(let string):
-      return false
+      return true // Not handled here
     case .language(let language):
       guard let language else { return false }
       switch language {
@@ -1161,7 +1161,7 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     case .owned(let int, let quantifier):
       return false
     case .new(let new):
-      return false
+      return true
     case .cheapest(let currency):
       return false
     case .artists(let quantifier, let string):
@@ -1196,7 +1196,7 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     case .prefer(let prefer):
       return false
     case .art(let string):
-      return false
+      break // Not yet implemented
     case .function(let string):
       break // Not yet implemented
     case .and(let scryfallSearchToken, let scryfallSearchToken2):

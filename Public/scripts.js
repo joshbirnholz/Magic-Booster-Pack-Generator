@@ -553,8 +553,13 @@ function loadDraftmancerCards() {
         };
         (cardset.is_draftable ? tabsDraftable : tabs).appendChild(button);
       }
+      const urlParams = new URLSearchParams(window.location.search);
+      const query = urlParams.get('q');
       
-      if (window.location.hash) {
+      if (query) {
+        document.getElementById("search-input").value = query;
+        loadSearchResults(query);
+      } else if (window.location.hash) {
         var index = response.findIndex(cardset => cardset.name == decodeURI(window.location.hash.substring(1)));
         setDraftmancerCardSet(response[index] || response[0]);
       } else {
@@ -596,7 +601,9 @@ function loadSearchResults(query) {
         "cards": response.data,
         "display_reversed": false,
         "is_draftable": false,
-        "name": `${response.total_cards} cards`
+        "name": `${response.total_cards} cards`,
+        "is_search": true,
+        "query": query
       };
       
       setDraftmancerCardSet(cardset);
@@ -801,7 +808,11 @@ function setDraftmancerCardSet(cardset) {
         name += " (" + element.name + ")";
       }
       
-      var imageURL = element.image || element.image_uris.en || element.image_uris.normal || "";
+      var image_uris = element.image_uris;
+      if (element.card_faces && element.card_faces[0].image_uris) {
+        image_uris = element.card_faces[0].image_uris
+      }
+      var imageURL = element.image || image_uris.en || image_uris.normal || "";
       data.innerHTML = "<center><div><a href=\"" + imageURL + "\"><img src=\"" + imageURL + "\" height=264 width=189 style='border-radius:10px;'></a></div><p>" + name + "<br>" + element.set.toUpperCase() + " #" + element.collector_number + rarity + "</p><br></center>";
       
       row.appendChild(data);
@@ -821,8 +832,33 @@ function setDraftmancerCardSet(cardset) {
     }
   }
   
-  window.location.hash = cardset.name;
+  if (cardset.is_search) {
+    setURL(cardset.query, null);
+    document.getElementById("filters").hidden = true;
+  } else {
+    setURL(null, cardset.name);
+    document.getElementById("filters").hidden = false;
+  }
+}
+
+/// Sets the URL query OR the hash, and clears out the values if null.
+function setURL(query, hash) {
+  const path = window.location.pathname;
   
+  // Update URL
+  var location = path;
+  
+  if (query) {
+    const params = new URLSearchParams(window.location.search);
+    params.set('q', query);
+    location += "?" + params.toString();
+  }
+  
+  if (hash) {
+    location += "#" + hash;
+  }
+  
+  window.history.replaceState({}, '', location);
 }
 
 function copyableText(draftmancerCard) {

@@ -10,14 +10,15 @@
 <body>
 	
 	<h1>Draftmancer Cards</h1>
-  <form id="search-form" hidden=true onsubmit="event.preventDefault(); loadSearchResults(document.getElementById('search-input').value.trim());" style="margin: 0 0 1rem 0;">
-    <input type="search" id="search-input" placeholder="Search cards…" aria-label="Search cards" style="padding: 6px 10px; max-width: 320px; width: 60%;" />
-    <button type="submit" style="padding: 6px 10px;">Search</button>
-  </form>
   
   <p>You can include these custom cards in your decks just as you would with any other card! Specify them by the name, set, and collector numbers shown here.</p>
   
   <p><button onClick='toggleViewMode();'>Toggle View</button></p>
+  
+  <form id="search-form" hidden=true onsubmit="event.preventDefault(); loadSearchResults(document.getElementById('search-input').value.trim());" style="margin: 0 0 1rem 0;">
+    <input type="search" id="search-input" placeholder="Search cards…" aria-label="Search cards" style="padding: 6px 10px; max-width: 320px; width: 60%;" />
+    <button type="submit" style="padding: 6px 10px;">Search</button>
+  </form>  
   
   <p id='tabs'>Custom Cards Lists:<br></p>
   <p id='tabs-draftable'>Draftable Sets:<br></p>

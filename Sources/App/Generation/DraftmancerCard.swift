@@ -1139,6 +1139,10 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
     "access-control-allow-origin": "*"
   ]
   
+  guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+    throw Abort(.notFound, headers: headers, reason: "You didn‘t enter anything to search for.")
+  }
+  
   let tokenizer = ScryfallTokenizer()
   guard let token = tokenizer.scryfallToken(for: query, ignoreUnrecognized: true) else {
     throw Abort(.internalServerError, headers: headers, reason: "Unable to parse query.")
@@ -1150,8 +1154,10 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
     )
   }
   
-  allCards = allCards.filter { card in
-    token.matches(card)
+  if query != "*" {
+    allCards = allCards.filter { card in
+      token.matches(card)
+    }
   }
   
   guard !allCards.isEmpty else {

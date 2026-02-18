@@ -2014,7 +2014,7 @@ extension DraftmancerCard {
       subtypes: subtypes,
       rating: nil,
       layout: card.shape,
-      back: isDFC || card.shape.contains("adventure") || card.shape.contains("split") ? .init(
+      back: isDFC || card.shape.contains("adventure") || card.shape.contains("split") ? DraftmancerCard.Face(
         name: card.cardName2?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
         flavorName: nil,
         image: imageURL(isBack: true),

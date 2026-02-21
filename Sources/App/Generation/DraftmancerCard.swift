@@ -1129,9 +1129,10 @@ func getBuiltinDraftmancerCards(_ req: Request) async throws -> Vapor.Response {
 
 func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Response {
   let query: String = try req.query.get(at: "q")
-  let order = (try? req.query.get(Swiftfall.SearchOrder.self, at: "order")) ?? .name
-  var direction = (try? req.query.get(Swiftfall.SearchOrderDirection.self, at: "direction")) ?? .auto
-  let unique = try? req.query.get(Swiftfall.Unique.self, at: "unique") // Not currently supported, basically always true
+  var order: Swiftfall.SearchOrder? = (try? req.query.get(Swiftfall.SearchOrder.self, at: "order")) // ?? .name
+  var direction: Swiftfall.SearchOrderDirection? = (try? req.query.get(Swiftfall.SearchOrderDirection.self, at: "direction")) // ?? .auto
+  var unique: Swiftfall.Unique? = try? req.query.get(Swiftfall.Unique.self, at: "unique")
+  var include: String? = (try? req.query.get(String.self, at: "include"))?.lowercased()
   
   let headers: HTTPHeaders = [
     "Content-Type": "application/json",
@@ -1144,9 +1145,12 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
   }
   
   let tokenizer = ScryfallTokenizer()
-  guard let token = tokenizer.scryfallToken(for: query, ignoreUnrecognized: true) else {
+  guard let (token, directives) = tokenizer.scryfallToken(for: query, ignoreUnrecognized: true) else {
     throw Abort(.internalServerError, headers: headers, reason: "Unable to parse query.")
   }
+  
+  print("Token: ", token)
+  print("Directives: ", directives)
   
   guard var allCards = await DraftmancerSetCache.shared.loadedDraftmancerCards else {
     return .init(
@@ -1154,18 +1158,80 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
     )
   }
   
-  if query != "*" {
-    allCards = allCards.filter { card in
-      token.matches(card)
-    }
-  }
-  
   guard !allCards.isEmpty else {
     throw Abort(.notFound, headers: headers, reason: "Your query didn’t match any cards.")
   }
   
-  if direction == .auto {
-    direction = .autoDirection(for: order)
+  if directives.contains(.includeExtas) {
+    include = "extras"
+  }
+  
+  if order == nil {
+    order = directives.compactMap {
+      if case .sort(let v) = $0 {
+        return v
+      }
+      return nil
+    }.last ?? .name
+  }
+  
+  if direction == nil {
+    direction = directives.compactMap {
+      if case .direction(let v) = $0 {
+        return v
+      }
+      return nil
+    }.last ?? .auto
+    
+    if direction == .auto {
+      direction = .autoDirection(for: order!)
+    }
+  }
+  
+  if unique == nil {
+    unique = directives.compactMap {
+      if case .unique(let v) = $0 {
+        return v
+      }
+      return nil
+    }.last ?? .cards
+  }
+  
+  let prefer: ScryfallSearchToken.Prefer? = directives.compactMap {
+    if case .prefer(let v) = $0 {
+      return v
+    }
+    return nil
+  }.last
+  
+  let includeExtras = include?.lowercased() == "extras"
+  
+  func filter(includeExtras: Bool) -> [MTGCard] {
+    var seenNames: Set<String> = []
+    var results: [MTGCard] = []
+    
+    for card in allCards {
+      if token.matches(card, includeExtras: includeExtras) {
+        if unique == .prints || unique == .art {
+          results.append(card)
+        } else if unique == .cards && !card.allNames.contains(where: { seenNames.contains($0) }) {
+          results.append(card)
+          seenNames.formUnion(card.allNames)
+        }
+      }
+    }
+    return results
+  }
+  
+  if query != "*" {
+    let results = filter(includeExtras: includeExtras)
+    
+    if results.isEmpty && !includeExtras {
+      // If there are no results, try again with include:extras
+      allCards = filter(includeExtras: true)
+    } else {
+      allCards = results
+    }
   }
   
   func isOrderedBefore<T: Comparable>(_ lhs: T?, rhs: T?) -> Bool {
@@ -1176,7 +1242,7 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
   }
   
   allCards = allCards.sorted(by: { first, second in
-    switch order {
+    switch order! {
     case .name:
       return isOrderedBefore(first.name, rhs: second.name)
     case .set:

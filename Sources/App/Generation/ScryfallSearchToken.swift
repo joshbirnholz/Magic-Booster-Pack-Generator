@@ -926,12 +926,19 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     }
   }
   
-  public enum Prefer: String, CaseIterable, Codable {
-    // prefer:oldest, prefer:newest, prefer:usd-low or prefer:usd-high (and the equivalents for tix and eur), or prefer:promo.
+   public enum Prefer: String, CaseIterable, Codable {
     case oldest, newest, promo
     case usdLow = "usd-low", usdHigh = "usd-high"
     case eurLow = "eur-low", eurHigh = "eur-high"
     case tixLow = "tix-low", tixHigh = "tix-high"
+    case defaultFrame = "default"
+    case atypical
+    case universesBeyond = "universesbeyond" // also: ub
+    case notUniversesBeyond = "notuniversesbeyond" // also: notub
+  }
+  
+  public enum Sort: String, CaseIterable, Codable {
+    case name, released, set, rarity, color, usd, tix, eur, cmc, power, toughness, artist, edhrec, review
   }
   
   case direct(query:String, name:String? = nil, humanReadableDescription: String? = nil)
@@ -952,10 +959,8 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
   case year(Quantifier, String)
   case border(BorderColor)
   case artist(String)
-  case include(String)
   case flavorText(String)
   case lore(String)
-  case unique(String)
   case language(Language?)
   case watermark(String)
   case owned(Int, Quantifier = .including)
@@ -970,7 +975,6 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
   case frame(Frame?)
   case stamp(Swiftfall.Card.SecurityStamp?)
   case game(Game?)
-  case prefer(Prefer?)
   case art(String)
   case function(String)
   
@@ -1059,7 +1063,11 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     string.contains(" ") ? "\"\(string)\"" : string
   }
   
-  func matches(_ card: MTGCard) -> Bool {
+  func matches(_ card: MTGCard, includeExtras: Bool) -> Bool {
+    if !includeExtras && cardHasCriteria(card: card, criteria: .extra) {
+      return false
+    }
+    
     switch self {
     case .direct(let query, let name, let humanReadableDescription):
       break // Not yet implemented
@@ -1095,7 +1103,23 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
         return colors != cardValue
       }
     case .manaCost(let string, let quantifier):
-      return false // Not yet implemented
+      guard let cardCost = card.manaCost else { return false }
+      // Normalize both to uppercase, strip spaces
+      let normalized = string.uppercased().filter { !$0.isWhitespace }
+      let cardNormalized = cardCost.uppercased().filter { !$0.isWhitespace }
+      switch quantifier {
+      case .exactly:
+        return cardNormalized == normalized
+      case .including:
+        // Does the card's mana cost contain all the specified symbols?
+        return normalized.components(separatedBy: CharacterSet(charactersIn: "{}"))
+          .filter { !$0.isEmpty }
+          .allSatisfy { symbol in
+            cardNormalized.contains("{\(symbol)}")
+          }
+      default:
+        return false
+      }
     case .stats(let stat, let quantifier, let string):
       guard let doubleValue = Double(string) else { return false }
       switch stat {
@@ -1129,7 +1153,8 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     case .keyword(let string):
       return card.keywords?.contains(where: { $0.lowercased() == string.lowercased() }) == true
     case .criterion(let string):
-      return false
+      guard let criterion = Criterion(rawValue: string.lowercased()) else { return false }
+      return cardHasCriteria(card: card, criteria: criterion)
     case .year(let quantifier, let string):
       guard let releaseDate = card.releaseDate, let intValue = Int(string) else { return false }
       let component = Calendar.current.component(.year, from: releaseDate)
@@ -1138,16 +1163,12 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       return card.borderColor?.rawValue.lowercased() == borderColor.rawValue.lowercased()
     case .artist(let string):
       return card.artist?.lowercased().contains(string.lowercased()) == true
-    case .include(let string):
-      break // Not handled here
     case .flavorText(let string):
       return card.flavorText?.lowercased().contains(string.lowercased()) == true
     case .lore(let string):
       return card.name?.lowercased().contains(string) == true || card.flavorName?.lowercased().contains(string) == true || card.flavorText?.lowercased().contains(string) == true || card.cardFaces?.contains(where: { face in
         face.name?.lowercased().contains(string) == true || face.flavorName?.lowercased().contains(string) == true || face.flavorText?.lowercased().contains(string) == true
       }) == true
-    case .unique(let string):
-      return true // Not handled here
     case .language(let language):
       guard let language else { return false }
       switch language {
@@ -1168,9 +1189,21 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       guard let artist = card.artist else { return false }
       return quantifier.performOn(artist.lowercased(), string.lowercased())
     case .colorCount(let colorChoice, let int, let quantifier):
-      break // Not yet implemented
+      let colors = colorChoice == .color ? card.colors : card.colorIdentity
+      let count = colors?.count ?? 0
+      return quantifier.performOn(count, int)
     case .devotion(let quantifier, let string):
-      break // Not yet implemented
+      // string is a color string like "W" or "WW" or "WU"
+      guard let manaCost = card.manaCost else { return false }
+      let devotionColors = Set(string.compactMap { MTGColor(rawValue: String($0)) })
+      guard !devotionColors.isEmpty else { return false }
+      // Count how many mana symbols in the cost match the requested colors
+      let symbolPattern = #"\{([^}]+)\}"#
+      let symbols = manaCost.matches(forRegex: symbolPattern).compactMap { $0["1"]?.value }
+      let devotionCount = symbols.filter { symbol in
+        devotionColors.contains(where: { $0.rawValue == symbol.uppercased() })
+      }.count
+      return quantifier.performOn(devotionCount, devotionColors.count)
     case .collectorNumber(let quantifier, let string):
       switch quantifier {
       case .exactly:
@@ -1193,20 +1226,19 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       if let value = game?.rawValue.lowercased() {
         return card.games.contains(value)
       }
-    case .prefer(let prefer):
       return false
     case .art(let string):
       break // Not yet implemented
     case .function(let string):
       break // Not yet implemented
     case .and(let scryfallSearchToken, let scryfallSearchToken2):
-      return scryfallSearchToken.matches(card) && scryfallSearchToken2.matches(card)
+      return scryfallSearchToken.matches(card, includeExtras: includeExtras) && scryfallSearchToken2.matches(card, includeExtras: includeExtras)
     case .or(let scryfallSearchToken, let scryfallSearchToken2):
-      return scryfallSearchToken.matches(card) || scryfallSearchToken2.matches(card)
+      return scryfallSearchToken.matches(card, includeExtras: includeExtras) || scryfallSearchToken2.matches(card, includeExtras: includeExtras)
     case .not(let scryfallSearchToken):
-      return !scryfallSearchToken.matches(card)
+      return !scryfallSearchToken.matches(card, includeExtras: includeExtras)
     case .parentheses(let scryfallSearchToken):
-      return scryfallSearchToken.matches(card)
+      return scryfallSearchToken.matches(card, includeExtras: includeExtras)
     }
     
     return true
@@ -1751,6 +1783,36 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
   }
   #endif
   
+  private func
+  cardHasCriteria(card: MTGCard, criteria: Criterion) -> Bool {
+    if let cardNames = cardNamesForCriterion[criteria] {
+      if card.allNames.contains(where: { cardNames.contains($0) }) {
+        return true
+      }
+    }
+    
+    switch criteria {
+    case .token:
+      let layout = card.layout.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+      
+      if let type = card.typeLine?.lowercased(), !type.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+        if type.contains("token") || type.contains("emblem") || type.contains("card")  {
+          return true
+        }
+      } else if !layout.isEmpty && layout == "token" || layout == "emblem" || layout == "card" {
+        return true
+      }
+      
+      return false
+    case .extra:
+      return cardHasCriteria(card: card, criteria: .token) || card.borderColor == .silver
+    case .adventure:
+      return card.typeLine?.lowercased().contains("adventure") == true || card.layout.lowercased() == "adventure"
+    default:
+      return false
+    }
+  }
+  
   private var cardNamesForCriterion: [Criterion: [String]] {
     [
       .cycleland: [
@@ -2005,8 +2067,6 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
   
   var needsExtras: Bool {
     switch self {
-    case .include(let value):
-      return value.lowercased() == "extras"
     case .type(let t):
       let t = t.lowercased()
       switch t {
@@ -2236,16 +2296,6 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     return false
   }
   
-  var noPredicateAllowed: Bool {
-    if case .unique(_) = self {
-      return true
-    } else if case .include(_) = self {
-      return true
-    }
-    
-    return false
-  }
-  
   var queryString: String {
     switch self {
     case .language(let lang):
@@ -2309,16 +2359,12 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       return "border:\(color.rawValue)"
     case .artist(let artist):
       return "artist:\(spaceFixed(artist))"
-    case .include(let quality):
-      return "include:\(spaceFixed(quality))"
     case .flavorText(let value):
       return "flavor:\(spaceFixed(value))"
     case .lore(let value):
       return "lore:\(spaceFixed(value))"
     case .price(let currency, let quantifier, let value):
       return "\(currency.rawValue)\(quantifier.numericHumanReadable)\(value)"
-    case .unique(let value):
-      return "unique:\(value)"
     case .watermark(let wm):
       return "watermark:\(spaceFixed(wm))"
     case .owned(let quantity, let quantifier):
@@ -2345,8 +2391,6 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       return "stamp:\(stamp?.rawValue ?? "")"
     case .game(let value):
       return "game:\(value?.rawValue ?? "")"
-    case .prefer(let prefer):
-      return "prefer:\(prefer?.rawValue ?? "")"
     case .art(let value):
       return "art:\(value)"
     case .function(let value):
@@ -2409,11 +2453,11 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       return "the card has the keyword “\(value)”"
       
     case .and(let first, let second):
-      if let first = first.humanReadableDescription, second.noPredicateAllowed {
+      if let first = first.humanReadableDescription {
         return first
       }
       
-      if let second = second.humanReadableDescription, first.noPredicateAllowed {
+      if let second = second.humanReadableDescription {
         return second
       }
       
@@ -2524,14 +2568,10 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
         return "the border color is not \"\(color.rawValue)\""
       case .artist(let artist):
         return "the artist name doesn't contain “\(artist)”"
-      case .include(_):
-        return nil
       case .flavorText(let value):
         return "the flavor text doesn't contain “\(value)”"
       case .lore(let value):
         return "the lore doesn't include “\(value)”"
-      case .unique(_):
-        return nil
       case .watermark(let wm):
         return "the cards don't have the “\(wm)” watermark"
       case .owned(let quantity, let quantifier):
@@ -2580,8 +2620,6 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       case .game(let value):
         guard let value else { return nil }
         return "the card is not available on \(value.name)"
-      case .prefer(_):
-        return nil
       case .art(let value):
         return "the illustration doesn't contain “\(value)”"
       case .function(let value):
@@ -2589,14 +2627,10 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       case .direct(query: let query, name: let name, humanReadableDescription: let description):
         return nil
       }
-    case .include(_):
-      return nil
     case .flavorText(let value):
       return "the flavor text contains “\(value)”"
     case .lore(let value):
       return "the lore includes “\(value)”"
-    case .unique(_):
-      return nil
     case .watermark(let wm):
       return "the cards have the “\(wm)” watermark"
     case .owned(let quantity, let quantifier):
@@ -2641,8 +2675,6 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     case .game(let value):
       guard let value else { return nil }
       return "the card is available on \(value.name)"
-    case .prefer(_):
-      return nil
     case .art(let value):
       return "the illustration contains “\(value)”"
     case .function(let value):
@@ -2656,9 +2688,7 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     switch self {
     case .not(let token):
       return token.canBeNegated
-    case .include(_):
-      return false
-    case .year, .stats, .price, .unique(_), .artists(_, _), .collectorNumber(_, _), .prefer:
+    case .year, .stats, .price, .artists(_, _), .collectorNumber(_, _):
       return false
     default:
       return true

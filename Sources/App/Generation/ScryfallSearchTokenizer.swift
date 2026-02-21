@@ -8,7 +8,30 @@
 
 import Foundation
 
-struct ScryfallTokenizer {
+struct ScryfallTokenizer {  
+  enum Directive: Equatable, CustomStringConvertible {
+    case includeExtas      // include:extras
+    case sort(Swiftfall.SearchOrder)         // sort:edhrec
+    case unique(Swiftfall.Unique)       // unique:prints / unique:art
+    case prefer(ScryfallSearchToken.Prefer)       // prefer:newest
+    case direction(Swiftfall.SearchOrderDirection) // order:asc
+    
+    var description: String {
+      switch self {
+      case .includeExtas:
+        "include:extras"
+      case .sort(let sort):
+        "sort:\(sort.rawValue)"
+      case .unique(let unique):
+        "unique:\(unique.rawValue)"
+      case .prefer(let prefer):
+        "prefer:\(prefer.rawValue)"
+      case .direction(let direction):
+        "direction:\(direction)"
+      }
+    }
+  }
+  
 	private indirect enum TokenizedPart: CustomStringConvertible {
 		case string(quality: String, qualifier: String, value: String)
 		case name(String, exact: Bool = false)
@@ -104,7 +127,6 @@ struct ScryfallTokenizer {
 			
 			switch self {
 			case .string(quality: let quality, qualifier: let qualifier, value: var value):
-				
 				let valueColors: [ScryfallSearchToken.Color] = {
 					let dict: [String: [ScryfallSearchToken.Color]] = [
 						"white": [.w],
@@ -157,12 +179,22 @@ struct ScryfallTokenizer {
 				}
 				
 				switch quality.lowercased() {
-				case "c", "color":
+				case "c", "color", "colors":
+          if let num = Int(value), let quantifier = ScryfallSearchToken.Quantifier(value: qualifier, valueForColon: .exactly) {
+            return .colorCount(.color, num, quantifier)
+          }
+          
 					guard let quantifier = ScryfallSearchToken.Quantifier(value: qualifier, valueForColon: valueColors == [.c] ? .exactly : .including) else { return nil }
+          
 					guard !valueColors.isEmpty else { return nil }
 					return .colors(.color, valueColors, quantifier)
 				case "commander", "id", "identity", "ci":
+          if let num = Int(value), let quantifier = ScryfallSearchToken.Quantifier(value: qualifier, valueForColon: .exactly) {
+            return .colorCount(.identity, num, quantifier)
+          }
+          
 					guard let quantifier = ScryfallSearchToken.Quantifier(value: qualifier, valueForColon: valueColors == [.c] ? .exactly : .atMost) else { return nil }
+          
 					guard !valueColors.isEmpty else { return nil }
 					return .colors(.identity, valueColors, quantifier)
 				case "t", "type":
@@ -221,14 +253,6 @@ struct ScryfallTokenizer {
 				case "ft", "flavor":
 					guard qualifier == ":" || qualifier == "=" else { return nil }
 					return .flavorText(value)
-				case "include":
-					return .include(value)
-				case "unique":
-					if value.lowercased() == "prints" || value.lowercased() == "art" {
-						return .unique(value)
-					} else {
-						return nil
-					}
 				case "lore":
 					return .lore(value)
 				case "format", "f":
@@ -281,177 +305,222 @@ struct ScryfallTokenizer {
 			}
 		}
 	}
-	
-//	enum TokenizerError: Error {
-//
-//	}
-
-	private func token(for query: String) -> TokenizedPart? {
-		let valueAllowedWordsString = #"\w°>²\]!{®\[—”\*-<:;&\?―•\\\.½“™#@\|\^’\$\+„=}\/…¾,˝−一-龠ぁ-ゔァ-ヴーa-zA-Z0-9ａ-ｚＡ-Ｚ０-９々〆〤ヶ~"#
-		let regex = #"(?<prefix>[!\(\)-])|(?:(?:(?<quality>\w+)(?<qualifier>>=|<=|>|<|=|!=|:))?(?:"(?<doubleQuoteValue>[\#(valueAllowedWordsString)'\s\(\)]+)"|'(?<singleQuoteValue>[\#(valueAllowedWordsString)"\(\)\s]+)'|(?<value>[\#(valueAllowedWordsString)]+)))"#
-		
-		var exactIndex: Int?
-		
-		let tokens: [TokenizedPart] = query.matches(forRegex: regex).enumerated().compactMap { (index, token) in
-			let prefix = token["prefix"]?.value
-			switch prefix {
-			case "(":
-				return .openParenthesis
-			case ")":
-				return .closeParenthesis
-			case "-":
-				return .not(nil)
-			case "!":
-				exactIndex = index
-			default:
-				break
-			}
-			
-			let quality = token["quality"]?.value
-			let qualifier = token["qualifier"]?.value
-			let value = token["doubleQuoteValue"]?.value ?? token["singleQuoteValue"]?.value ?? token["value"]?.value
-			
-			if let quality = quality, let qualifier = qualifier, let value = value {
-				return .string(quality: quality, qualifier: qualifier, value: value)
-			} else {
-				if let value = value {
-					switch value.lowercased() {
-					case "or":
-						return .or(nil)
-					case "and":
-	//					return .and(nil)
-						return nil // AND operator does nothing, just put the things next to each other and they will get ANDed.
-					default:
-						let isExact = exactIndex == index-1
-						exactIndex = nil
-						return .name(value, exact: isExact)
-					}
-				}
-			}
-			
-			return nil
-		}
-		
-		var sections: [[TokenizedPart]] = [[]]
-		var indent = 0
-		for token in tokens {
-			if case .closeParenthesis = token {
-				indent -= 1
-				continue
-			}
-			
-			if case .openParenthesis = token {
-				indent += 1
-				sections.append([])
-				continue
-			}
-			
-			guard sections.indices.contains(indent) else {
-				// Mismatched parentheses
-				return nil
-			}
-			
-			sections[indent].append(token)
-		}
+  
+  private func groupParentheses(_ tokens: [TokenizedPart]) -> TokenizedPart? {
+    var stack: [[TokenizedPart]] = [[]]
     
-		// Resolve NOT
-
-		for (sectionIndex, section) in sections.enumerated().reversed() {
-			for (itemIndex, item) in section.enumerated().reversed() {
-				if case .not(let value) = item, value == nil {
-					// find next index.
-					let nextIndex = section.enumerated().filter {
-						if case .or = $0.1 { return false }
-						if case .and = $0.1 { return false }
-						return $0.0 > itemIndex
-					}.first?.offset
-					
-					if let nextIndex = nextIndex {
-						let next = sections[sectionIndex].remove(at: nextIndex)
-						sections[sectionIndex][itemIndex] = .not(next)
-					} else if sections.indices.contains(sectionIndex+1) {
-						let nextSection = sections.remove(at: sectionIndex+1)
-						let group = TokenizedPart.group(nextSection)
-						sections[sectionIndex][itemIndex] = .not(group)
-					}
-				}
-			}
-		}
-
-		// Guard here to ensure all NOTs are handled.
-
-		// Resolve OR
-
-		for (sectionIndex, section) in sections.enumerated().reversed() {
-			var section = section
-			resolveOrInSection(&section)
-			sections[sectionIndex] = section
-		}
-
-		// Guard here to ensure all ORs are handled.
+    for token in tokens {
+      switch token {
+      case .openParenthesis:
+        stack.append([])
+      case .closeParenthesis:
+        guard stack.count > 1 else { return nil } // mismatched
+        let completed = stack.removeLast()
+        stack[stack.count - 1].append(.group(completed))
+      default:
+        stack[stack.count - 1].append(token)
+      }
+    }
     
-		// Resolve ANDs
+    guard stack.count == 1 else { return nil } // unclosed parenthesis
+    return buildExpression(stack[0])
+  }
+  
+  private func buildExpression(_ tokens: [TokenizedPart]) -> TokenizedPart? {
+    var slice = tokens[...]
+    return parseOr(&slice)
+  }
+  
+  // OR binds loosest
+  private func parseOr(_ tokens: inout ArraySlice<TokenizedPart>) -> TokenizedPart? {
+    guard var left = parseAnd(&tokens) else { return nil }
+    
+    while let first = tokens.first, case .or(nil) = first {
+      tokens.removeFirst()
+      guard let right = parseAnd(&tokens) else { break }
+      left = .or((left, right))
+    }
+    
+    return left
+  }
+  
+  // AND is implicit adjacency — keep consuming while next token isn't OR
+  private func parseAnd(_ tokens: inout ArraySlice<TokenizedPart>) -> TokenizedPart? {
+    guard var left = parseNot(&tokens) else { return nil }
+    
+    while let next = tokens.first {
+      // Stop if we see an OR — let the caller handle it
+      if case .or(nil) = next { break }
+      // Stop if nothing parseable follows
+      guard let right = parseNot(&tokens) else { break }
+      left = .and((left, right))
+    }
+    
+    return left
+  }
+  
+  // NOT is a prefix operator
+  private func parseNot(_ tokens: inout ArraySlice<TokenizedPart>) -> TokenizedPart? {
+    if let first = tokens.first, case .not(nil) = first {
+      tokens.removeFirst()
+      guard let operand = parseAtom(&tokens) else { return nil }
+      return .not(operand)
+    }
+    return parseAtom(&tokens)
+  }
+  
+  // Atoms: named values, key:value strings, and groups
+  private func parseAtom(_ tokens: inout ArraySlice<TokenizedPart>) -> TokenizedPart? {
+    guard let first = tokens.first else { return nil }
+    
+    switch first {
+    case .string, .name:
+      tokens.removeFirst()
+      return first
+    case .group(let contents):
+      tokens.removeFirst()
+      // Recursively parse the group's contents as a full expression
+      var inner = contents[...]
+      return parseOr(&inner).map { .group([$0]) }
+    case .not(nil), .or(nil), .and(nil):
+      // These are operators, not atoms — don't consume
+      return nil
+    default:
+      return nil
+    }
+  }
 
-		let joinedSections: [TokenizedPart] = Array(sections.joined())
-
-		guard !joinedSections.isEmpty else {
-			return nil
-		}
-		guard joinedSections.count >= 2 else {
-			return joinedSections[0]
-		}
-		
-		var result: TokenizedPart
-
-		let object = (joinedSections[0], joinedSections[1])
-		let finalTokens = joinedSections[2...]
-		
-		result = .and(object)
-
-		for token in finalTokens {
-			let object = (result, token)
-			result = .and(object)
-		}
-		
-		return result
-	}
-	
-	private func resolveOrInSection(_ section: inout [TokenizedPart]) {
-		for (itemIndex, item) in section.enumerated().reversed() {
-			if case .or(let value) = item, value == nil {
-				let previousIndex = itemIndex-1
-				let nextIndex = itemIndex+1
-				if section.indices.contains(previousIndex) && section.indices.contains(nextIndex) {
-					let next = section.remove(at: nextIndex)
-					section.remove(at: itemIndex)
-					let previous = section.remove(at: previousIndex)
-					
-					let object = (previous, next)
-					section.insert(TokenizedPart.or(object), at: previousIndex)
-				}
-			} else if case .group(let group) = item {
-				var group = group
-				resolveOrInSection(&group)
-				section[itemIndex] = .group(group)
-			} else if case .not(let notGroup) = item, case .group(let group) = notGroup {
-				var group = group
-				resolveOrInSection(&group)
-				section[itemIndex] = .not(.group(group))
-			}
-		}
-	}
+  private func token(for query: String) -> (token: TokenizedPart, directives: [Directive])? {
+    // 1. Lex: regex → flat token list
+    let (flat, directives) = lex(query)
+    guard !flat.isEmpty, let token = groupParentheses(flat) else { return nil }
+    
+    // 2. Group: handle parentheses with a stack
+    return (token, directives)
+  }
+  
+  private func lex(_ query: String) -> (parts: [TokenizedPart], directives: [Directive]) {
+    var parts: [TokenizedPart] = []
+    var directives: [Directive] = []
+    
+    let valueAllowedWordsString = #"\w°>²\]!{®\[—"\*-<:;&\?―•\\\.½"™#@\|\^'\$\+„=}\/…¾,˝−一-龠ぁ-ゔァ-ヴーa-zA-Z0-9ａ-ｚＡ-Ｚ０-９々〆〤ヶ~"#
+    let regex = #"(?<prefix>[\(\)-])|(?<exact>!(?:"(?<exactDoubleQuoteValue>[\#(valueAllowedWordsString)'\s\(\)]+)"|'(?<exactSingleQuoteValue>[\#(valueAllowedWordsString)"\(\)\s]+)'|(?<exactValue>[\#(valueAllowedWordsString)]+)))|(?:(?:(?<field>\w+)(?<op>>=|<=|>|<|=|!=|:))?(?:"(?<doubleQuoteValue>[\#(valueAllowedWordsString)'\s\(\)]+)"|'(?<singleQuoteValue>[\#(valueAllowedWordsString)"\(\)\s]+)'|(?<value>[\#(valueAllowedWordsString)]+)))"#
+    
+    for match in query.matches(forRegex: regex) {
+      if let part = makeTokenizedPart(from: match) {
+        if let directive = directive(from: part) {
+          directives.append(directive)
+        } else {
+          parts.append(part)
+        }
+      }
+    }
+    
+    return (parts, directives)
+  }
+  
+  private func makeTokenizedPart(from token: RegexResult) -> TokenizedPart? {
+    let prefix = token["prefix"]?.value
+    switch prefix {
+    case "(": return .openParenthesis
+    case ")": return .closeParenthesis
+    case "-": return .not(nil)
+    default: break
+    }
+    
+    if token["exact"]?.value != nil {
+      let value = token["exactDoubleQuoteValue"]?.value
+      ?? token["exactSingleQuoteValue"]?.value
+      ?? token["exactValue"]?.value
+      guard let value else { return nil }
+      return .name(value, exact: true)
+    }
+    
+    let field = token["field"]?.value
+    let op = token["op"]?.value
+    let value = token["doubleQuoteValue"]?.value
+    ?? token["singleQuoteValue"]?.value
+    ?? token["value"]?.value
+    
+    if let field, let op, let value {
+      return .string(quality: field, qualifier: op, value: value)
+    } else if let value {
+      switch value.lowercased() {
+      case "or":  return .or(nil)
+      case "and": return nil
+      case "++":  return .string(quality: "unique", qualifier: ":", value: "prints")
+      case "@@":  return .string(quality: "unique", qualifier: ":", value: "art")
+      default:
+        if value.hasPrefix("!") {
+          return .name(String(value.dropFirst()), exact: true)
+        }
+        return .name(value, exact: false)
+      }
+    }
+    
+    return nil
+  }
+  
+  private func directive(from part: TokenizedPart) -> Directive? {
+    guard case .string(let quality, let qualifier, let value) = part, qualifier == ":" else {
+      return nil
+    }
+    let v = value.lowercased()
+    
+    switch quality.lowercased() {
+    case "include" where v == "extras":
+      return .includeExtas
+    case "sort":
+      if let o = Swiftfall.SearchOrder(rawValue: v) {
+        return .sort(o)
+      } else if v == "mv" {
+        return .sort(.cmc)
+      }
+    case "unique":
+      if let u = Swiftfall.Unique(rawValue: v) {
+        return .unique(u)
+      }
+    case "prefer":
+      if let p = ScryfallSearchToken.Prefer(rawValue: v) {
+        return .prefer(p)
+      } else if v == "ub" {
+        return .prefer(.universesBeyond)
+      } else if v == "notub" {
+        return .prefer(.notUniversesBeyond)
+      }
+    case "order":
+      if let o = Swiftfall.SearchOrderDirection(rawValue: v) {
+        return.direction(o)
+      }
+    default:
+      break
+    }
+    
+    return nil
+  }
 
 	private func string(for query: String) -> String? {
-		guard let token = self.token(for: query) else { return nil }
-		return String(describing: token)
+    guard let (token, directives) = self.token(for: query) else { return nil }
+		var string = String(describing: token)
+    
+    if !directives.isEmpty {
+      string += " "
+      string += directives.map(String.init).joined(separator: " ")
+    }
+    
+    return string
 	}
 	
-	public func scryfallToken(for query: String, ignoreUnrecognized: Bool = false) -> ScryfallSearchToken? {
-		guard let token = self.token(for: query) else {
+  public func scryfallToken(for query: String, ignoreUnrecognized: Bool = false) -> (token: ScryfallSearchToken, directives: [Directive])? {
+    guard let (token, directives) = self.token(for: query) else {
 			// Coudln't get tokenized part
 			return nil
 		}
 //		return token.scryfallToken
-		return ignoreUnrecognized ? token.scryfallTokenIgnoringUnrecognized : token.scryfallToken
+    if let fullToken = ignoreUnrecognized ? token.scryfallTokenIgnoringUnrecognized : token.scryfallToken {
+      return (fullToken, directives)
+    } else {
+      return nil
+    }
 	}
 }

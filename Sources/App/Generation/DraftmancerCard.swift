@@ -694,6 +694,8 @@ actor DraftmancerSetCache {
   }
   
   func cardNamed(fuzzy name: String) async -> MTGCard? {
+    let _ = await sets
+    
     let normalized = name.lowercased()
     
     // First try exact match
@@ -710,15 +712,21 @@ actor DraftmancerSetCache {
   }
   
   func cardsMatchingNameQuery(_ query: String) async throws -> [MTGCard] {
+    let _ = await sets
+    
     let normalized = query.lowercased()
     return fuzzyIndex[normalized] ?? []
   }
   
   func cardNamed(exact name: String) async -> MTGCard? {
-    exactNameIndex[name.lowercased()]
+    let _ = await sets
+    
+    return exactNameIndex[name.lowercased()]
   }
   
   func cardWithSetAndNumber(setCode: String, collectorNumber: String) async -> MTGCard? {
+    let _ = await sets
+    
     let setKey = setCode.lowercased()
     let numKey = collectorNumber.lowercased()
     

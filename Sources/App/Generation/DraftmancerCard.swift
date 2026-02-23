@@ -1140,6 +1140,37 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
     "access-control-allow-origin": "*"
   ]
   
+  guard let allCards = try await customCardsMatchingQuery(query: query, order: order, direction: direction, unique: unique, include: include) else {
+    return .init(
+      status: .internalServerError, headers: headers
+    )
+  }
+  
+  guard !allCards.isEmpty else {
+    throw Abort(.notFound, headers: headers, reason: "Your query didn’t match any cards.")
+  }
+  
+  let scryfallCards = allCards.map { Swiftfall.Card.init($0) }
+  
+  let list = Swiftfall.CardList.init(data: scryfallCards, hasMore: false, nextPage: nil, totalCards: scryfallCards.count)
+  
+  let data = try Swiftfall.encoder.encode(list)
+  let string = String.init(data: data, encoding: .utf8) ?? ""
+  
+  return .init(
+    status: .ok, headers: headers, body: .init(string: string)
+  )
+}
+
+func customCardsMatchingQuery(
+  query: String,
+  order: Swiftfall.SearchOrder? = nil,
+  direction: Swiftfall.SearchOrderDirection? = nil,
+  unique: Swiftfall.Unique? = nil,
+  include: String? = nil
+) async throws -> [MTGCard]! {
+  let headers: HTTPHeaders = ["Content-Type": "application/json", "access-control-allow-headers": "Origin", "access-control-allow-origin": "*"]
+  
   guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
     throw Abort(.notFound, headers: headers, reason: "You didn‘t enter anything to search for.")
   }
@@ -1153,13 +1184,16 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
   print("Directives: ", directives)
   
   guard var allCards = await DraftmancerSetCache.shared.loadedDraftmancerCards else {
-    return .init(
-      status: .internalServerError, headers: headers
-    )
+    throw Abort(.internalServerError, headers: headers, reason: "An error occurred loading custom cards.")
   }
   
+  var order = order
+  var direction = direction
+  var unique = unique
+  var include = include
+  
   guard !allCards.isEmpty else {
-    throw Abort(.notFound, headers: headers, reason: "Your query didn’t match any cards.")
+    return []
   }
   
   if directives.contains(.includeExtas) {
@@ -1278,15 +1312,7 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
     }
   })
   
-  let scryfallCards = allCards.map { Swiftfall.Card.init($0) }
-  let list = Swiftfall.CardList.init(data: scryfallCards, hasMore: false, nextPage: nil, totalCards: scryfallCards.count)
-  
-  let data = try Swiftfall.encoder.encode(list)
-  let string = String.init(data: data, encoding: .utf8) ?? ""
-  
-  return .init(
-    status: .ok, headers: headers, body: .init(string: string)
-  )
+  return allCards
 }
 
 func draftMancerAutocomplete(_ req: Request) async throws -> Response {

@@ -810,6 +810,27 @@ final class GeneratorController: Sendable {
     return Response(headers: headers, body: .init(string: result))
   }
   
+  func singleCardRandom_Scryfall(_ req: Request) async throws -> Response {
+    var query = try? req.query.get(String.self, at: "q")
+    
+    if let q = query, q.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+      query = nil
+    }
+    
+    let headers: HTTPHeaders = ["Content-Type": "application/json", "access-control-allow-headers": "Origin", "access-control-allow-origin": "*"]
+    
+    let allCards = try await customCardsMatchingQuery(query: query ?? "*", unique: .cards)
+    
+    guard let mtgCard = allCards?.randomElement() else {
+      throw Abort(.notFound, headers: headers, reason: "No matching cards found.")
+    }
+    
+    let data = try Swiftfall.encoder.encode(Swiftfall.Card(mtgCard))
+    let result = String(data: data, encoding: .utf8)!
+    
+    return Response(headers: headers, body: .init(string: result))
+  }
+  
   func singleCardSetNumber_Scryfall(_ req: Request) async throws -> Response {
     let headers: HTTPHeaders = ["Content-Type": "application/json", "access-control-allow-headers": "Origin", "access-control-allow-origin": "*"]
     

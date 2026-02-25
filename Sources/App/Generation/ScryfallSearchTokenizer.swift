@@ -499,7 +499,7 @@ struct ScryfallTokenizer {
     return nil
   }
 
-	private func string(for query: String) -> String? {
+	func string(for query: String) -> String? {
     guard let (token, directives) = self.token(for: query) else { return nil }
 		var string = String(describing: token)
     

@@ -1783,8 +1783,7 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
   }
   #endif
   
-  private func
-  cardHasCriteria(card: MTGCard, criteria: Criterion) -> Bool {
+  private func cardHasCriteria(card: MTGCard, criteria: Criterion) -> Bool {
     if let cardNames = cardNamesForCriterion[criteria] {
       if card.allNames.contains(where: { cardNames.contains($0) }) {
         return true
@@ -1805,7 +1804,21 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       
       return false
     case .extra:
-      return cardHasCriteria(card: card, criteria: .token) || card.borderColor == .silver
+      if cardHasCriteria(card: card, criteria: .token) {
+        return true
+      }
+      if card.borderColor == .silver {
+        return true
+      }
+      let typeLine = card.typeLine?.lowercased() ?? ""
+      if ["vanguard", "plane", "phenomenon", "scheme", "conspiracy"].contains(where: { typeLine.contains($0) }) {
+        return true
+      }
+//      let setType = card.setType?.lowercased() ?? ""
+//      if setType == "memorabilia" {
+//        return true
+//      }
+      return false
     case .adventure:
       return card.typeLine?.lowercased().contains("adventure") == true || card.layout.lowercased() == "adventure"
     default:
@@ -2453,18 +2466,12 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       return "the card has the keyword “\(value)”"
       
     case .and(let first, let second):
-      if let first = first.humanReadableDescription {
-        return first
+      switch (first.humanReadableDescription, second.humanReadableDescription) {
+      case (let a?, let b?): return "\(a) and \(b)"
+      case (let a?, nil):    return a
+      case (nil, let b?):    return b
+      case (nil, nil):       return nil
       }
-      
-      if let second = second.humanReadableDescription {
-        return second
-      }
-      
-      guard let first = first.humanReadableDescription, let second = second.humanReadableDescription else {
-        return nil
-      }
-      return "\(first) and \(second)"
     case .or(let first, let second):
       guard let first = first.humanReadableDescription, let second = second.humanReadableDescription else {
         return nil

@@ -747,7 +747,7 @@ actor DraftmancerSetCache {
       // Cache normalized list
       normalizedNames[card] = names
       
-      for name in names {
+      for name in names where !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
         // Store exact match (favor first)
         exactNameIndex[name, default: card] = card
         
@@ -1188,8 +1188,13 @@ func customCardsMatchingQuery(
     throw Abort(.internalServerError, headers: headers, reason: "Unable to parse query.")
   }
   
+  print("Query: ", query)
   print("Token: ", token)
   print("Directives: ", directives)
+  if let humanReadableDescription = token.humanReadableDescription {
+    print("Human readable: ", token.humanReadableDescription)
+  }
+  
   
   guard var allCards = await DraftmancerSetCache.shared.loadedDraftmancerCards else {
     throw Abort(.internalServerError, headers: headers, reason: "An error occurred loading custom cards.")

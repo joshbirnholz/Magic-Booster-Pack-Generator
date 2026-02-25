@@ -1270,15 +1270,13 @@ func customCardsMatchingQuery(
     return results
   }
   
-  if query != "*" {
-    let results = filter(includeExtras: includeExtras)
-    
-    if results.isEmpty && !includeExtras {
-      // If there are no results, try again with include:extras
-      allCards = filter(includeExtras: true)
-    } else {
-      allCards = results
-    }
+  let results = filter(includeExtras: includeExtras)
+  
+  if results.isEmpty && !includeExtras {
+    // If there are no results, try again with include:extras
+    allCards = filter(includeExtras: true)
+  } else {
+    allCards = results
   }
   
   func isOrderedBefore<T: Comparable>(_ lhs: T?, rhs: T?) -> Bool {

@@ -357,230 +357,264 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     
     case cycleland, bounceland, checkland, canopyland, dual, fastland, fetchland, filterland, gainland, painland, scryland, shadowland, shockland, storageland, triland, battleland, bondland, triome, slowland, snarl, owned
     
+    case ffi, ffii, ffiii, ffiv, ffv, ffvi, ffvii, ffviii, ffix, ffx, ffxi, ffxii, ffxiii, ffxiv, ffxv, ffxvi
+    
     var title: String {
       switch self {
       case .alchemy:
-        return "Alchemy"
+        "Alchemy"
       case .adventure:
-        return "Adventure"
+        "Adventure"
       case .arenaid:
-        return "Arena ID"
+        "Arena ID"
       case .artistmisprint:
-        return "Artist Misprint"
+        "Artist Misprint"
       case .augmentation:
-        return "Augment"
+        "Augment"
       case .back:
-        return "Back"
+        "Back"
       case .booster:
-        return "Booster"
+        "Booster"
       case .brawlcommander:
-        return "Brawl Commander"
+        "Brawl Commander"
       case .buyabox:
-        return "Buy-a-Box"
+        "Buy-a-Box"
       case .ci:
-        return "Color Indicator"
+        "Color Indicator"
       case .colorshifted:
-        return "Colorshifted"
+        "Colorshifted"
       case .commander:
-        return "Commander"
+        "Commander"
       case .companion:
-        return "Companion"
+        "Companion"
       case .manland:
-        return "Creature Land"
+        "Creature Land"
       case .datestamped:
-        return "Datestamped"
+        "Datestamped"
       case .digital:
-        return "Digital"
+        "Digital"
       case .doublesided:
-        return "Double Sided"
+        "Double Sided"
       case .etb:
-        return "E T B"
+        "E T B"
       case .englishart:
-        return "English Art"
+        "English Art"
       case .extra:
-        return "Extra"
+        "Extra"
       case .firstprint:
-        return "First Printing"
+        "First Printing"
       case .flavorname:
-        return "Flavor Name"
+        "Flavor Name"
       case .flavor:
-        return "Flavor Text"
+        "Flavor Text"
       case .flip:
-        return "Flip"
+        "Flip"
       case .foil:
-        return "Foil"
+        "Foil"
       case .fbb:
-        return "Foreign Black Border"
+        "Foreign Black Border"
       case .fwb:
-        return "Foreign White Border"
+        "Foreign White Border"
       case .frenchvanilla:
-        return "French Vanilla"
+        "French Vanilla"
       case .fullart:
-        return "Full Art"
+        "Full Art"
       case .funny:
-        return "Funny"
+        "Funny"
       case .future:
-        return "Future"
+        "Future"
       case .gameday:
-        return "Game Day"
+        "Game Day"
       case .hires:
-        return "Highres"
+        "Highres"
       case .historic:
-        return "Historic"
+        "Historic"
       case .splitmana:
-        return "Hybrid Mana"
+        "Hybrid Mana"
       case .intropack:
-        return "Intro Pack"
+        "Intro Pack"
       case .invitational:
-        return "Invitational Card"
+        "Invitational Card"
       case .leveler:
-        return "Leveler"
+        "Leveler"
       case .localizedname:
-        return "Localized Name"
+        "Localized Name"
       case .mtgoid:
-        return "MTGO ID"
+        "MTGO ID"
       case .masterpiece:
-        return "Masterpiece"
+        "Masterpiece"
       case .meld:
-        return "Meld"
+        "Meld"
       case .modal:
-        return "Modal"
+        "Modal"
       case .mdfc:
-        return "Modal Double Faced"
+        "Modal Double Faced"
       case .modern:
-        return "Modern"
+        "Modern"
       case .multiverse:
-        return "Multiverse"
+        "Multiverse"
       case .new:
-        return "New"
+        "New"
       case .nonfoil:
-        return "Nonfoil"
+        "Nonfoil"
       case .old:
-        return "Old"
+        "Old"
       case .oversized:
-        return "Oversized"
+        "Oversized"
       case .paperart:
-        return "Paper Art"
+        "Paper Art"
       case .party:
-        return "Party"
+        "Party"
       case .permanent:
-        return "Permanent"
+        "Permanent"
       case .phyrexian:
-        return "Phyrexian Mana"
+        "Phyrexian Mana"
       case .planeswalkerdeck:
-        return "Planeswalker Deck"
+        "Planeswalker Deck"
       case .prerelease:
-        return "Prerelease Promo"
+        "Prerelease Promo"
       case .printedtext:
-        return "Printed Text"
+        "Printed Text"
       case .promo:
-        return "Promo"
+        "Promo"
       case .promostamped:
-        return "Promo Stamped"
+        "Promo Stamped"
       case .release:
-        return "Release Promo"
+        "Release Promo"
       case .reprint:
-        return "Reprint"
+        "Reprint"
       case .reserved:
-        return "Reserved List"
+        "Reserved List"
       case .spell:
-        return "Spell"
+        "Spell"
       case .spikey:
-        return "Spikey"
+        "Spikey"
       case .split:
-        return "Split Card"
+        "Split Card"
       case .starterdeck:
-        return "Starter Deck"
+        "Starter Deck"
       case .story:
-        return "Story Spotlight"
+        "Story Spotlight"
       case .tcgplayer:
-        return "TCGplayer ID"
+        "TCGplayer ID"
       case .textless:
-        return "Textless"
+        "Textless"
       case .timeshifted:
-        return "Timeshifted"
+        "Timeshifted"
       case .token:
-        return "Token"
+        "Token"
       case .tombstone:
-        return "Tombstone"
+        "Tombstone"
       case .transform:
-        return "Transform"
+        "Transform"
       case .onlyprint:
-        return "Unique"
+        "Unique"
       case .vanilla:
-        return "Vanilla"
+        "Vanilla"
       case .variation:
-        return "Variation"
+        "Variation"
       case .watermark:
-        return "Watermark"
+        "Watermark"
       case .cycleland:
-        return "Cycle Land"
+        "Cycle Land"
       case .bounceland:
-        return "Bounce Land"
+        "Bounce Land"
       case .checkland:
-        return "Check Land"
+        "Check Land"
       case .canopyland:
-        return "Canopy Land"
+        "Canopy Land"
       case .dual:
-        return "Dual Land"
+        "Dual Land"
       case .fastland:
-        return "Fast Land"
+        "Fast Land"
       case .fetchland:
-        return "Fetch Land"
+        "Fetch Land"
       case .filterland:
-        return "Filter Land"
+        "Filter Land"
       case .gainland:
-        return "Gain Land"
+        "Gain Land"
       case .painland:
-        return "Pain Land"
+        "Pain Land"
       case .scryland:
-        return "Scry Land"
+        "Scry Land"
       case .shadowland:
-        return "Shadow Land"
+        "Shadow Land"
       case .shockland:
-        return "Shock Land"
+        "Shock Land"
       case .storageland:
-        return "Storage Land"
+        "Storage Land"
       case .triland:
-        return "Tri Land"
+        "Tri Land"
       case .triome:
-        return "Triome"
+        "Triome"
       case .battleland:
-        return "Battle Land"
+        "Battle Land"
       case .bondland:
-        return "Battlebond Land"
+        "Battlebond Land"
       case .boosterfun:
-        return "Booster Fun"
+        "Booster Fun"
       case .etched:
-        return "Etched"
+        "Etched"
       case .slowland:
-        return "Slowland"
+        "Slowland"
       case .artist:
-        return "Artist"
+        "Artist"
       case .bear:
-        return "Bear"
+        "Bear"
       case .snarl:
-        return "Snarl"
+        "Snarl"
       case .stamp:
-        return "Stamp"
+        "Stamp"
       case .owned:
-        return "Owned"
+        "Owned"
       case .outlaw:
-        return "Outlaw"
+        "Outlaw"
       case .serialized:
-        return "Serialized"
+        "Serialized"
       case .gamechanger:
-        return "Game Changer"
+        "Game Changer"
       case .beginnerbox:
-        return "Beginner Box"
+        "Beginner Box"
       case .startercollection:
-        return "Starter Collection"
+        "Starter Collection"
       case .universesbeyond:
-        return "Universes Beyond"
+        "Universes Beyond"
       case .normal:
-        return "Normal"
+        "Normal"
       case .finalfantasy:
-        return "Final Fantasy"
+        "Final Fantasy"
+      case .ffi:
+        "Final Fantasy I"
+      case .ffii:
+        "Final Fantasy II"
+      case .ffiii:
+        "Final Fantasy III"
+      case .ffiv:
+        "Final Fantasy IV"
+      case .ffv:
+        "Final Fantasy V"
+      case .ffvi:
+        "Final Fantasy VI"
+      case .ffvii:
+        "Final Fantasy VII"
+      case .ffviii:
+        "Final Fantasy VIII"
+      case .ffix:
+        "Final Fantasy IX"
+      case .ffx:
+        "Final Fantasy X"
+      case .ffxi:
+        "Final Fantasy XI"
+      case .ffxii:
+        "Final Fantasy XII"
+      case .ffxiii:
+        "Final Fantasy XIII"
+      case .ffxiv:
+        "Final Fantasy XIV"
+      case .ffxv:
+        "Final Fantasy XV"
+      case .ffxvi:
+        "Final Fantasy XVI"
       }
     }
     
@@ -597,26 +631,35 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     
     var alternateNames: [String] {
       switch self {
-      case .phyrexian:
-        return ["phyrexia"]
-      case .hires:
-        return ["highres"]
-      case .triome:
-        return ["tricycleland"]
-      case .cycleland:
-        return ["bikeland", "bicycleland"]
-      case .bounceland:
-        return ["karoo"]
-      case .canopyland:
-        return ["canland"]
-      case .battleland:
-        return ["tangoland"]
-      case .bondland:
-        return ["crowdland", "battlebondland"]
-      case .etched:
-        return ["etch"]
-      default:
-        return []
+      case .splitmana: ["hybrid"]
+      case .phyrexian: ["phyrexia"]
+      case .hires: ["highres"]
+      case .triome: ["tricycleland"]
+      case .cycleland: ["bikeland", "bicycleland"]
+      case .bounceland: ["karoo"]
+      case .canopyland: ["canland"]
+      case .battleland: ["tangoland"]
+      case .bondland: ["crowdland", "battlebondland"]
+      case .etched: ["etch"]
+      case .universesbeyond: ["ub"]
+      case .finalfantasy: ["ff"]
+      case .ffi: ["ff1"]
+      case .ffii: ["ff2"]
+      case .ffiii: ["ff3"]
+      case .ffiv: ["ff4"]
+      case .ffv: ["ff5"]
+      case .ffvi: ["ff6"]
+      case .ffvii: ["ff7"]
+      case .ffviii: ["ff8"]
+      case .ffix: ["ff9"]
+      case .ffx: ["ff10"]
+      case .ffxi: ["ff11"]
+      case .ffxii: ["ff12"]
+      case .ffxiii: ["ff13"]
+      case .ffxiv: ["ff14"]
+      case .ffxv: ["ff15"]
+      case .ffxvi: ["ff16"]
+      default: []
       }
     }
     
@@ -733,6 +776,22 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       case .universesbeyond: "the cards are part of a Universes Beyond edition"
       case .normal: "the cards are printed with standard frames and effects"
       case .finalfantasy: "the cards are from Final Fantasy"
+      case .ffi: "the cards are from Final Fantasy I"
+      case .ffii: "the cards are from Final Fantasy II"
+      case .ffiii: "the cards are from Final Fantasy III"
+      case .ffiv: "the cards are from Final Fantasy IV"
+      case .ffv: "the cards are from Final Fantasy V"
+      case .ffvi: "the cards are from Final Fantasy VI"
+      case .ffvii: "the cards are from Final Fantasy VII"
+      case .ffviii: "the cards are from Final Fantasy VIII"
+      case .ffix: "the cards are from Final Fantasy IX"
+      case .ffx: "the cards are from Final Fantasy X"
+      case .ffxi: "the cards are from Final Fantasy XI"
+      case .ffxii: "the cards are from Final Fantasy XII"
+      case .ffxiii: "the cards are from Final Fantasy XIII"
+      case .ffxiv: "the cards are from Final Fantasy XIV"
+      case .ffxv: "the cards are from Final Fantasy XV"
+      case .ffxvi: "the cards are from Final Fantasy XVI"
       }
     }
     
@@ -1072,6 +1131,10 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     case .direct(let query, let name, let humanReadableDescription):
       break // Not yet implemented
     case .cardName(let string, let exact):
+      if string == "*" {
+        return true
+      }
+      
       let string = string.replacingOccurrences(of: "_", with: " ").lowercased()
       if exact {
         return card.allNames.contains(where: { $0.lowercased() == string })
@@ -1793,36 +1856,141 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     switch criteria {
     case .token:
       let layout = card.layout.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-      
       if let type = card.typeLine?.lowercased(), !type.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-        if type.contains("token") || type.contains("emblem") || type.contains("card")  {
+        if type.contains("token") || type.contains("emblem") || type.contains("card") {
           return true
         }
-      } else if !layout.isEmpty && layout == "token" || layout == "emblem" || layout == "card" {
+      } else if !layout.isEmpty && (layout == "token" || layout == "emblem" || layout == "card") {
         return true
       }
-      
       return false
     case .extra:
-      if cardHasCriteria(card: card, criteria: .token) {
-        return true
-      }
-      if card.borderColor == .silver {
-        return true
-      }
+      if cardHasCriteria(card: card, criteria: .token) { return true }
+      if card.borderColor == .silver { return true }
       let typeLine = card.typeLine?.lowercased() ?? ""
       if ["vanguard", "plane", "phenomenon", "scheme", "conspiracy"].contains(where: { typeLine.contains($0) }) {
         return true
       }
-//      let setType = card.setType?.lowercased() ?? ""
-//      if setType == "memorabilia" {
-//        return true
-//      }
       return false
     case .adventure:
-      return card.typeLine?.lowercased().contains("adventure") == true || card.layout.lowercased() == "adventure"
-    default:
+      return card.typeLine?.lowercased().contains("adventure") == true
+      || card.layout.lowercased() == "adventure"
+    case .augmentation:
+      return card.layout.lowercased() == "augment"
+    case .boosterfun:
+      return card.hasAnyFrameEffects("showcase", "borderless", "extendedart", "etched")
+    case .brawlcommander:
+      return card.hasType("Legendary", "Creature")
+      || card.hasType("Legendary", "Planeswalker")
+    case .commander:
+      return card.hasType("Legendary", "Creature")
+      || card.oracleText?.lowercased().contains("can be your commander") == true
+    case .companion:
+      return card.keywords?.map { $0.lowercased() }.contains("companion") == true
+    case .digital:
+      let games = card.games.map { $0.lowercased() }
+      return !games.isEmpty && !games.contains("paper")
+    case .doublesided:
+      let layout = card.layout.lowercased()
+      return layout == "transform" || layout == "modal_dfc" || layout == "double_faced_token"
+      || layout == "reversible_card" || layout == "meld"
+    case .etched:
+      return card.finishes.contains(.etched)
+    case .flavorname:
+      return card.flavorName != nil
+      || card.cardFaces?.contains(where: { $0.flavorName != nil }) == true
+    case .flavor:
+      return card.flavorText != nil
+      || card.cardFaces?.contains(where: { $0.flavorText != nil }) == true
+    case .flip:
+      return card.layout.lowercased() == "flip"
+    case .foil:
+      return card.finishes.contains(.foil)
+    case .nonfoil:
+      return card.finishes.contains(.nonfoil)
+    case .frenchvanilla:
+      guard var oracleText = card.oracleText?.lowercased(),
+            let keywords = card.keywords?.map({ $0.lowercased() }) else { return false }
+      for keyword in keywords {
+        oracleText = oracleText.replacingOccurrences(of: keyword, with: "")
+      }
+      oracleText = oracleText.replacingOccurrences(of: ", ", with: "")
+      return oracleText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    case .vanilla:
+      let text = card.oracleText?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+      return text.isEmpty
+    case .fullart:
+      return card.isFullArt
+    case .historic:
+      return card.hasType("artifact") || card.hasType("legendary") || card.hasType("saga")
+    case .leveler:
+      return card.layout.lowercased() == "leveler"
+    case .meld:
+      return card.layout.lowercased() == "meld"
+    case .mdfc:
+      return card.layout.lowercased().contains("modal")
+    case .transform:
+      return card.layout.lowercased() == "transform"
+    case .split:
+      return card.layout.lowercased() == "split"
+    case .permanent:
+      return card.hasType("creature") || card.hasType("artifact")
+      || card.hasType("enchantment") || card.hasType("planeswalker")
+      || card.hasType("land") || card.hasType("battle")
+    case .spell:
+      return card.hasType("instant") || card.hasType("sorcery")
+    case .party:
+      return card.hasType("cleric") || card.hasType("rogue")
+      || card.hasType("warrior") || card.hasType("wizard")
+    case .outlaw:
+      return card.hasType("assassin") || card.hasType("mercenary")
+      || card.hasType("pirate") || card.hasType("rogue") || card.hasType("warlock")
+    case .promo:
+      return card.isPromo
+    case .printedtext:
+      return card.printedText != nil
+    case .textless:
+      return card.isTextless
+    case .watermark:
+      return card.watermark != nil
+      || card.cardFaces?.contains(where: { $0.watermark != nil }) == true
+    case .reserved:
+      // No reserved list property on MTGCard
       return false
+    case .serialized:
+      return card.hasPromoType("serialized")
+    case .future:
+      return card.frame.lowercased() == "future"
+    case .modern:
+      return card.frame.lowercased() == "2003"
+    case .old:
+      return card.frame.lowercased() == "1993" || card.frame.lowercased() == "1997"
+    case .new:
+      return card.frame.lowercased() == "2015"
+    case .normal:
+      let hasSpecialFrameEffects = card.hasAnyFrameEffects("showcase", "extendedart", "borderless", "etched")
+      return !hasSpecialFrameEffects && card.borderColor != .borderless
+    case .bear:
+      return card.power == "2" && card.toughness == "2"
+      && card.convertedManaCost == 2
+    case .splitmana:
+      guard let manaCost = card.manaCost else { return false }
+      // Hybrid mana symbols contain / e.g. {W/U}
+      return manaCost.contains("/")
+    case .phyrexian:
+      guard let manaCost = card.manaCost else { return false }
+      return manaCost.lowercased().contains("/p")
+    case .ci:
+      return card.cardFaces?.contains(where: { $0.colors != nil }) == true
+      // No colorIndicator property directly on MTGCard
+    case .colorshifted:
+      return card.frameEffects?.contains("colorshifted") == true
+    case .timeshifted:
+      return card.frameEffects?.contains("timeshifted") == true
+    case .tombstone:
+      return card.frameEffects?.contains("tombstone") == true
+    default:
+      return true
     }
   }
   
@@ -2598,6 +2766,14 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       case .artists(_, _):
         return nil
       case .colorCount(let colorChoice, let value, let quantifier):
+        if value == 0 && quantifier == .exactly {
+          if colorChoice == .identity {
+            return "the cards don’t have colorless identity"
+          } else {
+            return "the cards aren’t colorless"
+          }
+        }
+        
         if quantifier == .exactly {
           return "the number of \(colorChoice == .identity ? "identity " : "")colors is not \(value)"
         } else {
@@ -2657,7 +2833,19 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
     case .artists(let quantifier, let value):
       return "the number of artists \(quantifier) \(value)"
     case .colorCount(let colorChoice, let value, let quantifier):
-      return "the number of \(colorChoice == .identity ? "identity " : "")colors \(quantifier == .exactly ? "is" : quantifier.rawValue) \(value)"
+      if value == 0 && quantifier == .exactly {
+        if colorChoice == .identity {
+          return "the cards have colorless identity"
+        } else {
+          return "the cards are colorless"
+        }
+      }
+      
+      if quantifier == .exactly {
+        return "the number of \(colorChoice == .identity ? "identity " : "")colors is \(value)"
+      } else {
+        return "the number of \(colorChoice == .identity ? "identity " : "")colors is \(quantifier.rawValue) \(value)"
+      }
     case .devotion(let quantifier, let value):
       return "the card's devotion is \(quantifier.humanReadable) to \(value)"
     case .collectorNumber(let quantifier, let value):

@@ -175,11 +175,26 @@ public struct MTGCard: Codable, Equatable, Hashable, Sendable {
         }
     }
     
-    /// Returns true if the card has all of the given promo types (case-insensitive)
+    /// Returns true if the card has all of the given frame effects types (case-insensitive)
     public func hasFrameEffects(_ frameEffects: String...) -> Bool {
         guard let effects = self.frameEffects?.map({ $0.lowercased() }) else { return false }
         
         return Set(frameEffects.map { $0.lowercased() }).isSubset(of: Set(effects))
+    }
+   
+    /// Returns true if the card has any of the given frame effects (case-insensitive)
+    public func hasAnyFrameEffects(_ frameEffects: String...) -> Bool {
+        guard let effects = self.frameEffects?.map({ $0.lowercased() }) else { return false }
+      
+        for effect in effects {
+          for otherEffect in frameEffects.map({ $0.lowercased() }) {
+            if otherEffect == effect {
+              return true
+            }
+          }
+        }
+      
+        return false
     }
     
     /// Returns true if the card's name has the given prefix. Case-insensitive by default.

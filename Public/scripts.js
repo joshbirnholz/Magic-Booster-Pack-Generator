@@ -607,6 +607,8 @@ function loadSearchResults(query) {
       };
       
       setDraftmancerCardSet(cardset);
+      
+      document.getElementById('query-description').innerText = `${response.total_cards} cards where ${response.query_description}`;
     },
     error: function(xhr, status, error) {
       document.getElementById('loading').hidden = true;
@@ -835,9 +837,11 @@ function setDraftmancerCardSet(cardset) {
   if (cardset.is_search) {
     setURL(cardset.query, null);
     document.getElementById("filters").hidden = true;
+    document.getElementById("query-description").hidden = false;
   } else {
     setURL(null, cardset.name);
     document.getElementById("filters").hidden = false;
+    document.getElementById("query-description").hidden = true;
   }
 }
 

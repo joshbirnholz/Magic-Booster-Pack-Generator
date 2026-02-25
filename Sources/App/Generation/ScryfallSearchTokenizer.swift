@@ -199,9 +199,6 @@ struct ScryfallTokenizer {
 					return .colors(.identity, valueColors, quantifier)
 				case "t", "type":
 					guard qualifier == ":" || qualifier == "=" else { return nil }
-					if value.lowercased() == "legend" {
-						value = "legendary"
-					}
 					if value.lowercased() == "walker" {
 						value = "planeswalker"
 					}

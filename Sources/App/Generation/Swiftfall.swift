@@ -184,13 +184,14 @@ public class Swiftfall {
   
   // struct which contrains a list of cards
   public struct CardList: Codable, CustomStringConvertible {
-    internal init(data: [Swiftfall.Card], hasMore: Bool, nextPage: URL? = nil, totalCards: Int? = nil, notFound: [MTGCardIdentifier]? = nil) {
+    internal init(data: [Swiftfall.Card], hasMore: Bool, nextPage: URL? = nil, totalCards: Int? = nil, notFound: [MTGCardIdentifier]? = nil, queryDescription: String? = nil) {
       self.object = "list"
       self.data = data
       self.hasMore = hasMore
       self.nextPage = nextPage
       self.totalCards = totalCards
       self.notFound = notFound
+      self.queryDescription = queryDescription
     }
     
     public let object: String
@@ -205,6 +206,9 @@ public class Swiftfall {
     public let nextPage: URL?
     
     public let totalCards: Int?
+    
+    // CUSTOM PROPERTY
+    public let queryDescription: String?
     
     // prints each set
     public var description: String {

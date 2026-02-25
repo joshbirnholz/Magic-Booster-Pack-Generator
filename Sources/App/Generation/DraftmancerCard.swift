@@ -767,11 +767,26 @@ actor DraftmancerSetCache {
     return names
   }
   
+  private var isLoading = false
+  private var loadingContinuations: [CheckedContinuation<[DraftmancerSet], Error>] = []
+  
   private func load() async throws -> [DraftmancerSet] {
+    if isLoading {
+      // Another load is in progress — wait for it to finish
+      return try await withCheckedThrowingContinuation { continuation in
+        loadingContinuations.append(continuation)
+      }
+    }
+    
+    isLoading = true
     print("Loading custom cards…")
     let startDate = Date()
     
     do {
+      defer {
+        isLoading = false
+      }
+      
       let urls = try urlsForResources(withExtension: "txt", subdirectory: "Draftmancer")
       
       let decoder = JSONDecoder()
@@ -928,8 +943,23 @@ actor DraftmancerSetCache {
       let secondsSinceStart = Date().timeIntervalSince(startDate)
       print("Finished loading \(draftmancerSets.map(\.cards.count).reduce(0, +)) custom cards in \(secondsSinceStart)s")
       
-      return draftmancerSets.sorted { $0.name < $1.name }
+      let result = draftmancerSets.sorted { $0.name < $1.name }
+      
+      // Resume any waiters
+      for continuation in loadingContinuations {
+        continuation.resume(returning: result)
+      }
+      loadingContinuations.removeAll()
+      isLoading = false
+      
+      return result
     } catch {
+      // Resume waiters with the error too
+      for continuation in loadingContinuations {
+        continuation.resume(throwing: error)
+      }
+      loadingContinuations.removeAll()
+      isLoading = false
       print("Error loading Draftmancer sets:", error)
       throw error
     }
@@ -1137,10 +1167,10 @@ func getBuiltinDraftmancerCards(_ req: Request) async throws -> Vapor.Response {
 
 func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Response {
   let query: String = try req.query.get(at: "q")
-  var order: Swiftfall.SearchOrder? = (try? req.query.get(Swiftfall.SearchOrder.self, at: "order")) // ?? .name
-  var direction: Swiftfall.SearchOrderDirection? = (try? req.query.get(Swiftfall.SearchOrderDirection.self, at: "direction")) // ?? .auto
-  var unique: Swiftfall.Unique? = try? req.query.get(Swiftfall.Unique.self, at: "unique")
-  var include: String? = (try? req.query.get(String.self, at: "include"))?.lowercased()
+  let order: Swiftfall.SearchOrder? = (try? req.query.get(Swiftfall.SearchOrder.self, at: "order")) // ?? .name
+  let direction: Swiftfall.SearchOrderDirection? = (try? req.query.get(Swiftfall.SearchOrderDirection.self, at: "direction")) // ?? .auto
+  let unique: Swiftfall.Unique? = try? req.query.get(Swiftfall.Unique.self, at: "unique")
+  let include: String? = (try? req.query.get(String.self, at: "include"))?.lowercased()
   
   let headers: HTTPHeaders = [
     "Content-Type": "application/json",
@@ -1148,7 +1178,16 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
     "access-control-allow-origin": "*"
   ]
   
-  guard let allCards = try await customCardsMatchingQuery(query: query, order: order, direction: direction, unique: unique, include: include) else {
+  guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+    throw Abort(.notFound, headers: headers, reason: "You didn‘t enter anything to search for.")
+  }
+  
+  let tokenizer = ScryfallTokenizer()
+  guard let (token, directives) = tokenizer.scryfallToken(for: query, ignoreUnrecognized: true) else {
+    throw Abort(.internalServerError, headers: headers, reason: "Unable to parse query.")
+  }
+  
+  guard let allCards = try await customCardsMatchingQuery(token: token, directives: directives, order: order, direction: direction, unique: unique, include: include) else {
     return .init(
       status: .internalServerError, headers: headers
     )
@@ -1160,7 +1199,7 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
   
   let scryfallCards = allCards.map { Swiftfall.Card.init($0) }
   
-  let list = Swiftfall.CardList.init(data: scryfallCards, hasMore: false, nextPage: nil, totalCards: scryfallCards.count)
+  let list = Swiftfall.CardList.init(data: scryfallCards, hasMore: false, nextPage: nil, totalCards: scryfallCards.count, queryDescription: token.humanReadableDescription)
   
   let data = try Swiftfall.encoder.encode(list)
   let string = String.init(data: data, encoding: .utf8) ?? ""
@@ -1188,13 +1227,25 @@ func customCardsMatchingQuery(
     throw Abort(.internalServerError, headers: headers, reason: "Unable to parse query.")
   }
   
-  print("Query: ", query)
-  print("Token: ", token)
-  print("Directives: ", directives)
-  if let humanReadableDescription = token.humanReadableDescription {
-    print("Human readable: ", token.humanReadableDescription)
-  }
-  
+  return try await customCardsMatchingQuery(
+    token: token,
+    directives: directives,
+    order: order,
+    direction: direction,
+    unique: unique,
+    include: include
+  )
+}
+
+func customCardsMatchingQuery(
+  token: ScryfallSearchToken,
+  directives: [ScryfallTokenizer.Directive] = [],
+  order: Swiftfall.SearchOrder? = nil,
+  direction: Swiftfall.SearchOrderDirection? = nil,
+  unique: Swiftfall.Unique? = nil,
+  include: String? = nil
+) async throws -> [MTGCard]! {
+  let headers: HTTPHeaders = ["Content-Type": "application/json", "access-control-allow-headers": "Origin", "access-control-allow-origin": "*"]
   
   guard var allCards = await DraftmancerSetCache.shared.loadedDraftmancerCards else {
     throw Abort(.internalServerError, headers: headers, reason: "An error occurred loading custom cards.")

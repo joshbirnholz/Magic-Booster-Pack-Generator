@@ -1165,45 +1165,103 @@ func getBuiltinDraftmancerCards(_ req: Request) async throws -> Vapor.Response {
   )
 }
 
+private let customSearchPageSize = 175
+
+actor CustomSearchCache {
+  static let shared = CustomSearchCache()
+
+  private var cache: [String: [Swiftfall.Card]] = [:]
+
+  func results(for key: String) -> [Swiftfall.Card]? {
+    cache[key]
+  }
+
+  func store(_ cards: [Swiftfall.Card], for key: String) {
+    cache[key] = cards
+  }
+}
+
 func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Response {
   let query: String = try req.query.get(at: "q")
   let order: Swiftfall.SearchOrder? = (try? req.query.get(Swiftfall.SearchOrder.self, at: "order")) // ?? .name
   let direction: Swiftfall.SearchOrderDirection? = (try? req.query.get(Swiftfall.SearchOrderDirection.self, at: "direction")) // ?? .auto
   let unique: Swiftfall.Unique? = try? req.query.get(Swiftfall.Unique.self, at: "unique")
   let include: String? = (try? req.query.get(String.self, at: "include"))?.lowercased()
-  
+  let page: Int = (try? req.query.get(Int.self, at: "page")) ?? 1
+
   let headers: HTTPHeaders = [
     "Content-Type": "application/json",
     "access-control-allow-headers": "Origin",
     "access-control-allow-origin": "*"
   ]
-  
+
   guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-    throw Abort(.notFound, headers: headers, reason: "You didn‘t enter anything to search for.")
+    throw Abort(.notFound, headers: headers, reason: "You didn’t enter anything to search for.")
   }
-  
+
   let tokenizer = ScryfallTokenizer()
   guard let (token, directives) = tokenizer.scryfallToken(for: query, ignoreUnrecognized: true) else {
     throw Abort(.internalServerError, headers: headers, reason: "Unable to parse query.")
   }
-  
-  guard let allCards = try await customCardsMatchingQuery(token: token, directives: directives, order: order, direction: direction, unique: unique, include: include) else {
+
+  // Build a cache key from the query parameters (excluding page)
+  let cacheKey = "\(query)|\(order?.rawValue ?? "")|\(direction?.rawValue ?? "")|\(unique?.rawValue ?? "")|\(include ?? "")"
+
+  let scryfallCards: [Swiftfall.Card]
+  if let cached = await CustomSearchCache.shared.results(for: cacheKey) {
+    scryfallCards = cached
+  } else {
+    guard let allCards = try await customCardsMatchingQuery(token: token, directives: directives, order: order, direction: direction, unique: unique, include: include) else {
+      return .init(
+        status: .internalServerError, headers: headers
+      )
+    }
+
+    guard !allCards.isEmpty else {
+      throw Abort(.notFound, headers: headers, reason: "Your query didn’t match any cards.")
+    }
+
+    let cards = allCards.map { Swiftfall.Card.init($0) }
+    await CustomSearchCache.shared.store(cards, for: cacheKey)
+    scryfallCards = cards
+  }
+
+  let totalCards = scryfallCards.count
+  let totalPages = (totalCards + customSearchPageSize - 1) / customSearchPageSize
+
+  guard page >= 1, page <= totalPages else {
+    let errorJSON = """
+    {"object":"error","code":"validation_error","status":422,"details":"You have paginated beyond the end of these results, reduce your `page` parameter or refer to the syntax guide at https://scryfall.com/docs/reference"}
+    """
     return .init(
-      status: .internalServerError, headers: headers
+      status: .unprocessableEntity, headers: headers, body: .init(string: errorJSON)
     )
   }
-  
-  guard !allCards.isEmpty else {
-    throw Abort(.notFound, headers: headers, reason: "Your query didn’t match any cards.")
-  }
-  
-  let scryfallCards = allCards.map { Swiftfall.Card.init($0) }
-  
-  let list = Swiftfall.CardList.init(data: scryfallCards, hasMore: false, nextPage: nil, totalCards: scryfallCards.count, queryDescription: token.humanReadableDescription)
-  
+
+  let startIndex = (page - 1) * customSearchPageSize
+  let endIndex = min(startIndex + customSearchPageSize, totalCards)
+  let pageCards = Array(scryfallCards[startIndex..<endIndex])
+
+  let hasMore = page < totalPages
+
+  let nextPage: URL? = hasMore ? {
+    // Build a full absolute URL for the next page
+    let scheme = req.headers.first(name: "X-Forwarded-Proto") ?? (req.application.http.server.configuration.tlsConfiguration != nil ? "https" : "http")
+    let host = req.headers.first(name: .host) ?? "localhost:\(req.application.http.server.configuration.port)"
+    let baseURL = "\(scheme)://\(host)\(req.url.path)"
+    var components = URLComponents(string: baseURL)
+    var queryItems = URLComponents(string: req.url.string)?.queryItems ?? []
+    queryItems.removeAll { $0.name == "page" }
+    queryItems.append(URLQueryItem(name: "page", value: "\(page + 1)"))
+    components?.queryItems = queryItems
+    return components?.url
+  }() : nil
+
+  let list = Swiftfall.CardList.init(data: pageCards, hasMore: hasMore, nextPage: nextPage, totalCards: totalCards, queryDescription: token.humanReadableDescription)
+
   let data = try Swiftfall.encoder.encode(list)
   let string = String.init(data: data, encoding: .utf8) ?? ""
-  
+
   return .init(
     status: .ok, headers: headers, body: .init(string: string)
   )

@@ -8,6 +8,28 @@ public typealias Card = Swiftfall.Card
 public class Swiftfall {
   
   static let scryfall = "https://api.scryfall.com/"
+
+  // Rate limiters per Scryfall documentation:
+  // /cards/search, /cards/named, /cards/random, /cards/collection — 2/second
+  // All other methods — 10/second
+  private static let cardsRateLimiter = RateLimiter(maxRequests: 2)
+  private static let defaultRateLimiter = RateLimiter(maxRequests: 10)
+
+  private static func rateLimiter(for url: URL) -> RateLimiter {
+    let path = url.path
+    if path.hasPrefix("/cards/search")
+        || path.hasPrefix("/cards/named")
+        || path.hasPrefix("/cards/random")
+        || path.hasPrefix("/cards/collection") {
+      return cardsRateLimiter
+    }
+    return defaultRateLimiter
+  }
+
+  private static func applyPenaltyToAllLimiters(until date: Date) async {
+    await cardsRateLimiter.applyPenalty(until: date)
+    await defaultRateLimiter.applyPenalty(until: date)
+  }
   
   public struct Symbol: Codable, CustomStringConvertible {
     
@@ -1075,30 +1097,42 @@ public class Swiftfall {
   
   /// Retreives JSON data from URL and parses it with JSON decoder.
   static func parseResource<ResultType: Decodable>(url: URL, body: Data? = nil, method: String? = "GET", dateDecodingStrategy: JSONDecoder.DateDecodingStrategy? = nil, urlSession: URLSession = .shared) async throws -> ResultType {
-    do {
-      let content: Data
+    let limiter = rateLimiter(for: url)
+
+    // Wait for rate limit capacity, then perform the network request.
+    // Decoding happens outside the actor-isolated closure to avoid Sendable constraints on ResultType.
+    let (content, httpStatus): (Data, Int) = try await limiter.execute {
+      let data: Data
       let response: URLResponse
-      
+
       if let body = body, let method = method {
         var request = URLRequest(url: url)
         request.httpBody = body
         request.httpMethod = method
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        (content, response) = try await urlSession.data(from: request)
+
+        (data, response) = try await urlSession.data(from: request)
       } else {
         let request = URLRequest(url: url)
-        (content, response) = try await urlSession.data(from: request)
+        (data, response) = try await urlSession.data(from: request)
       }
-      
-      let httpStatus = (response as! HTTPURLResponse).statusCode
-      
-      if !(200..<300).contains(httpStatus), let decoded:ScryfallError = try? decoder.decode(ScryfallError.self, from: content) {
+
+      let status = (response as! HTTPURLResponse).statusCode
+      return (data, status)
+    }
+
+    do {
+      if httpStatus == 429 {
+        let penaltyDate = Date().addingTimeInterval(30)
+        await applyPenaltyToAllLimiters(until: penaltyDate)
+      }
+
+      if !(200..<300).contains(httpStatus), let decoded: ScryfallError = try? decoder.decode(ScryfallError.self, from: content) {
         throw decoded
       }
-      
+
       decoder.dateDecodingStrategy = dateDecodingStrategy ?? .formatted(dateFormatter)
-      
+
       return try decoder.decode(ResultType.self, from: content)
     } catch {
       print("Error parsing resource from \(url):", error)

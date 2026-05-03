@@ -75,6 +75,11 @@ actor ImageController {
     
     let card = Swiftfall.Card(mtgCard)
     
+    if card.set.lowercased() == "atc", let name = (back ? card.cardFaces?.last?.name : card.cardFaces?.first?.name ?? card.name)?.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
+      let url = "https://josh.birnholz.com/tts/atc/\(name).png"
+      return req.redirect(to: url)
+    }
+    
     let urls = {
       var temp: [URL] = []
       if let url = card.imageUris?["large"] ?? card.imageUris?["normal"] {

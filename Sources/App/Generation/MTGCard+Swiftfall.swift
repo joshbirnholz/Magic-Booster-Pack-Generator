@@ -147,12 +147,21 @@ extension Swiftfall.Card {
     let artCropURLString = "\(host)/artcrop/\(mtgCard.set.lowercased())/\(mtgCard.collectorNumber.lowercased())"
     
     if mtgCard.imageUris?["art_crop"] == nil {
-      mtgCard.imageUris?["art_crop"] = URL(string: artCropURLString)!
+      if mtgCard.set == "atc", let name = mtgCard.name ?? mtgCard.cardFaces?.first?.name {
+        mtgCard.imageUris?["art_crop"] = URL(string: "https://josh.birnholz.com/tts/atc/\(name).png")
+      } else {
+        mtgCard.imageUris?["art_crop"] = URL(string: artCropURLString)!
+      }
     }
     
     if let faces = mtgCard.cardFaces, faces.count == 2, faces.allSatisfy({ $0.imageUris?["art_crop"] == nil }) {
-      mtgCard.cardFaces![0].imageUris?["art_crop"] = URL(string: artCropURLString)!
-      mtgCard.cardFaces![1].imageUris?["art_crop"] = URL(string: artCropURLString + "?back=true")!
+      if mtgCard.set == "atc", let frontName = faces.first?.name, let backName = faces.last?.name {
+        mtgCard.cardFaces![0].imageUris?["art_crop"] = URL(string: "https://josh.birnholz.com/tts/atc/\(frontName).png")
+        mtgCard.cardFaces![1].imageUris?["art_crop"] = URL(string: "https://josh.birnholz.com/tts/atc/\(backName).png")
+      } else {
+        mtgCard.cardFaces![0].imageUris?["art_crop"] = URL(string: artCropURLString)!
+        mtgCard.cardFaces![1].imageUris?["art_crop"] = URL(string: artCropURLString + "?back=true")!
+      }
     }
     
     let faces = mtgCard.cardFaces?.map {

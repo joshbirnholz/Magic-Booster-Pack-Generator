@@ -2129,12 +2129,6 @@ extension DraftmancerCard {
       
       var string = "https://Capitalich.github.io/sets/\(set)-files/img/\(card.position)"
       
-//      if card.shape == "token" {
-//        string += "t"
-//      }
-      
-//      string += "_\(name)"
-      
       if isDFC {
         string += (isBack ? "_back" : "_front")
       }
@@ -2167,7 +2161,6 @@ extension DraftmancerCard {
       colors: card.color.flatMap { Array($0).map(String.init) },
       artist: card.artist,
       printedNames: nil,
-      image: imageURL(),
       set: (card.shape == "token" || type.lowercased().contains("token")) ? "T\(card.set)" : card.set,
       collectorNumber: String(card.number),
       rarity: rarity,

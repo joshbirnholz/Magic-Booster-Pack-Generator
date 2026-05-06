@@ -32,7 +32,7 @@ public actor RateLimiter {
     }
   }
 
-  func execute<T>(_ block: @Sendable () async throws -> T) async rethrows -> T {
+  func execute<T: Sendable>(_ block: @Sendable () async throws -> T) async rethrows -> T {
     // Re-check after each sleep because awaiting suspends the actor,
     // allowing other callers in who may consume the capacity we expected.
     while true {

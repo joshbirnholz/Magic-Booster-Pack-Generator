@@ -75,9 +75,14 @@ actor ImageController {
     
     let card = Swiftfall.Card(mtgCard)
     
-    if let name = back ? card.cardFaces?.last?.name : card.cardFaces?.first?.name ?? card.name {
-      let setCode = card.set.uppercased()
-      let subdirectory = "Images/\(setCode)/art_crop"
+    let setCode = card.set.uppercased()
+    let subdirectory = "Images/\(setCode)/art_crop"
+    let directory = DirectoryConfiguration.detect()
+    let artCropDirURL = URL(fileURLWithPath: directory.workingDirectory)
+      .appendingPathComponent("Resources/\(subdirectory)", isDirectory: true)
+    let hasLocalArtDir = FileManager.default.fileExists(atPath: artCropDirURL.path)
+
+    if hasLocalArtDir, let name = back ? card.cardFaces?.last?.name : card.cardFaces?.first?.name ?? card.name {
       for ext in ["png", "jpg", "jpeg", "webp"] {
         let fileURL = urlForResource(name, withExtension: ext, subdirectory: subdirectory)
         if var data = try? Data(contentsOf: fileURL) {
@@ -95,6 +100,8 @@ actor ImageController {
           return Response(status: .ok, headers: headers, body: .init(data: data))
         }
       }
+      // Directory exists but image not found — don't fall back to remote cropping
+      throw Abort(.notFound, reason: "Art crop not found for \(name)")
     }
     
     let urls = {

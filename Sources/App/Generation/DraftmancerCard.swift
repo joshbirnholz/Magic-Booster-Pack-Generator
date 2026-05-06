@@ -2164,8 +2164,11 @@ extension DraftmancerCard {
     let isDFC = card.shape.contains("double face")
     
     
-    let typeParts = card.type.components(separatedBy: " — ")
-    let type = typeParts.first ?? card.type
+    let normalizedType = card.type
+      .replacingOccurrences(of: " – ", with: " — ")
+      .replacingOccurrences(of: " - ", with: " — ")
+    let typeParts = normalizedType.components(separatedBy: " — ")
+    let type = typeParts.first ?? normalizedType
     let subtypes = typeParts.count > 1 ? typeParts[1].components(separatedBy: " ") : nil
     
     let rarity: Rarity? = {
@@ -2229,7 +2232,9 @@ extension DraftmancerCard {
         name: card.cardName2?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
         flavorName: nil,
         image: imageURL(isBack: true),
-        type: card.type2 ?? "",
+        type: (card.type2 ?? "")
+          .replacingOccurrences(of: " – ", with: " — ")
+          .replacingOccurrences(of: " - ", with: " — "),
         subtypes: nil,
         oracleText: card.rulesText2?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: "").optionalIfEmpty(),
         flavorText: card.flavorText2?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: "").optionalIfEmpty(),

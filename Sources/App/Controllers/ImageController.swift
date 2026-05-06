@@ -75,9 +75,26 @@ actor ImageController {
     
     let card = Swiftfall.Card(mtgCard)
     
-    if card.set.lowercased() == "atc", let name = (back ? card.cardFaces?.last?.name : card.cardFaces?.first?.name ?? card.name)?.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
-      let url = "https://josh.birnholz.com/tts/atc/\(name).png"
-      return req.redirect(to: url)
+    if let name = back ? card.cardFaces?.last?.name : card.cardFaces?.first?.name ?? card.name {
+      let setCode = card.set.uppercased()
+      let subdirectory = "Images/\(setCode)/art_crop"
+      for ext in ["png", "jpg", "jpeg", "webp"] {
+        let fileURL = urlForResource(name, withExtension: ext, subdirectory: subdirectory)
+        if var data = try? Data(contentsOf: fileURL) {
+          if ext == "png",
+             let image = try? Image<RGBA, UInt8>(fileData: data),
+             let jpegData = try? image.fileData(format: WriteFormat.jpeg(quality: 90)) {
+            data = jpegData
+          }
+          let contentType = ext == "webp" ? "image/webp" : "image/jpeg"
+          let headers: HTTPHeaders = [
+            "Content-Type": contentType,
+            "access-control-allow-headers": "Origin",
+            "access-control-allow-origin": "*"
+          ]
+          return Response(status: .ok, headers: headers, body: .init(data: data))
+        }
+      }
     }
     
     let urls = {

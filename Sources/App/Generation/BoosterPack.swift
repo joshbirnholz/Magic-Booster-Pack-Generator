@@ -6740,10 +6740,10 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 					return identifier
 				}
 			}()
-			
-      return DeckParser.CardCount(identifier: identifier, count: cardCount.count)
+
+      return DeckParser.CardCount(identifier: identifier, count: cardCount.count, foil: cardCount.foil, alter: cardCount.alter)
 		}
-		
+
 		return cardGroup
 	}
 
@@ -6917,48 +6917,14 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
     mtgCards += Array(collections.map(\.data).joined()).map(MTGCard.init)
 	}
 	
-	for group in parsed {
+	for group in groups {
 		for cardCount in group.cardCounts {
-			guard let alterURL = cardCount.alter else { continue }
-      
-      if let notFoundIndex = notFound.firstIndex(of: cardCount.identifier), let index = identifiers.firstIndex(of: cardCount.identifier) {
-        // The user is supplying a custom image for a card that doesn't exist. Most likely a custom card
-        notFound.remove(at: notFoundIndex)
-        let newCard = MTGCard.init(name: cardCount.identifier.name, layout: "normal", frame: "2015", isFullArt: false, collectorNumber: "0", set: "custom", rarity: .rare, isFoilAvailable: true, isNonFoilAvailable: true, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil, .foil], language: .english, isTextless: false)
-        mtgCards.insert(newCard, at: index)
-      }
-      
-			let indices: [Int] = mtgCards.enumerated().compactMap { index, card in
-				switch cardCount.identifier {
-				case .id(let id):
-					if card.scryfallID == id {
-						return index
-					}
-				case .name(let name):
-					let name = name.lowercased()
-					if card.name?.lowercased() == name || card.cardFaces?.contains(where: { $0.name?.lowercased() == name }) == true {
-						return index
-					}
-				case .nameSet(name: let name, set: let set):
-					let name = name.lowercased()
-					if (card.name?.lowercased() == name || card.cardFaces?.contains(where: { $0.name?.lowercased() == name }) == true) && card.set.lowercased() == set.lowercased() {
-						return index
-					}
-				case .collectorNumberSet(collectorNumber: let collectorNumber, set: let set, _):
-					if card.collectorNumber.lowercased() == collectorNumber.lowercased() && card.set.lowercased() == set.lowercased() {
-						return index
-					}
-				default:
-					break
-				}
-				return nil
-			}
-			
-			for index in indices {
-				var imageURIs = mtgCards[index].imageUris ?? [:]
-				imageURIs["normal"] = alterURL
-				imageURIs["large"] = alterURL
-				mtgCards[index].imageUris = imageURIs
+			guard cardCount.alter != nil else { continue }
+
+			if let notFoundIndex = notFound.firstIndex(of: cardCount.identifier), let index = identifiers.firstIndex(of: cardCount.identifier) {
+				notFound.remove(at: notFoundIndex)
+				let newCard = MTGCard.init(name: cardCount.identifier.name, layout: "normal", frame: "2015", isFullArt: false, collectorNumber: "0", set: "custom", rarity: .rare, isFoilAvailable: true, isNonFoilAvailable: true, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil, .foil], language: .english, isTextless: false)
+				mtgCards.insert(newCard, at: index)
 			}
 		}
 	}
@@ -7022,7 +6988,13 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
 			guard let index = identifiers.firstIndex(of: cardCount.identifier) else {
 				return
 			}
-			let card = mtgCards[index]
+			var card = mtgCards[index]
+			if let alterURL = cardCount.alter {
+				var imageURIs = card.imageUris ?? [:]
+				imageURIs["normal"] = alterURL
+				imageURIs["large"] = alterURL
+				card.imageUris = imageURIs
+			}
 			if card.layout == "token" || card.layout == "emblem" && includeTokens {
 				tokens.append(contentsOf: Array(repeating: card, count: cardCount.count))
 			} else {

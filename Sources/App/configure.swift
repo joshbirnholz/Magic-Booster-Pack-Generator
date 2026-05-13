@@ -15,6 +15,13 @@ public func configure(_ app: Application) throws {
 //	app.middleware.use(FileMiddleware.self)
 //	app.middleware.use(ErrorMiddleware.self)
 	
+  let cors = CORSMiddleware(configuration: .init(
+    allowedOrigin: .all,
+    allowedMethods: [.GET, .POST, .OPTIONS],
+    allowedHeaders: [.accept, .authorization, .contentType, .origin, .xRequestedWith]
+  ))
+  app.middleware.use(cors, at: .beginning)
+
   let file = FileMiddleware(publicDirectory: app.directory.publicDirectory, defaultFile: "index.html")
 	app.middleware.use(file)
 	

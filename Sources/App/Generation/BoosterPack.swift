@@ -6783,25 +6783,36 @@ func deck(_ deck: Deck, export: Bool, cardBack: URL? = nil, includeTokens: Bool 
   if !notFound.isEmpty, let draftmancerCards = await DraftmancerSetCache.shared.loadedDraftmancerCards {
     getCustomCards(&notFound, &mtgCards, &identifiers, draftmancerCards, autofix)
   }
-  
+
   if omenpath {
-    // Upgrade UB cards to Through the Omenpaths versions
     let omenpathSets = [
       "SPM": "OM1"
     ]
     
+    // Upgrade UB cards to Through the Omenpaths versions
     for (originalSetCode, replacementSetCode) in omenpathSets {
       let identifiersToReplace = identifiers.filter { identifier in
         mtgCards[identifier]?.set.uppercased() == originalSetCode
       }
-      
+
       for identifier in identifiersToReplace {
         guard let originalName = mtgCards[identifier]?.name else { continue }
         guard let replacementCard = await DraftmancerSetCache.shared.loadedDraftmancerCards?[MTGCardIdentifier.nameSet(name: originalName, set: replacementSetCode)] else { continue }
-        
+
         if let index = mtgCards.firstIndex(where: { $0.isIdentified(by: identifier) }) {
           mtgCards[index] = replacementCard
         }
+      }
+    }
+  }
+
+  // Replace cards fetched from Scryfall with matching custom Draftmancer versions
+  if let draftmancerCards = await DraftmancerSetCache.shared.loadedDraftmancerCards {
+    for (index, card) in mtgCards.enumerated() {
+      let set = card.set
+      if let replacement = card.name.flatMap({ draftmancerCards[MTGCardIdentifier.nameSet(name: $0, set: set)] })
+          ?? card.flavorName.flatMap({ draftmancerCards[MTGCardIdentifier.nameSet(name: $0, set: set)] }) {
+        mtgCards[index] = replacement
       }
     }
   }

@@ -942,7 +942,9 @@ actor DraftmancerSetCache {
       
       let secondsSinceStart = Date().timeIntervalSince(startDate)
       print("Finished loading \(draftmancerSets.map(\.cards.count).reduce(0, +)) custom cards in \(secondsSinceStart)s")
-      
+
+      checkForMissingArtCrops(in: draftmancerSets)
+
       let result = draftmancerSets.sorted { $0.name < $1.name }
       
       // Resume any waiters
@@ -965,6 +967,81 @@ actor DraftmancerSetCache {
     }
   }
   
+  private func checkForMissingArtCrops(in sets: [DraftmancerSet]) {
+    let directory = DirectoryConfiguration.detect()
+    let resourcesURL = URL(fileURLWithPath: directory.workingDirectory)
+      .appendingPathComponent("Resources/Images", isDirectory: true)
+    let supportedExtensions = ["png", "jpg", "jpeg", "webp"]
+    let fm = FileManager.default
+
+    guard let setDirs = try? fm.contentsOfDirectory(at: resourcesURL, includingPropertiesForKeys: nil) else { return }
+
+    let setsWithArtCropDir = setDirs.filter {
+      var isDir: ObjCBool = false
+      let artCropPath = $0.appendingPathComponent("art_crop", isDirectory: true).path
+      return fm.fileExists(atPath: artCropPath, isDirectory: &isDir) && isDir.boolValue
+    }.map { $0.lastPathComponent.uppercased() }
+
+    guard !setsWithArtCropDir.isEmpty else { return }
+
+    for setCode in setsWithArtCropDir {
+      let artCropDirURL = resourcesURL
+        .appendingPathComponent(setCode, isDirectory: true)
+        .appendingPathComponent("art_crop", isDirectory: true)
+
+      let allCards = sets.flatMap(\.cards).filter { $0.set?.uppercased() == setCode }
+      var expectedNames: Set<String> = []
+      var missingNames: [String] = []
+
+      for card in allCards {
+        var namesToCheck: [String] = []
+        
+        if !card.type.lowercased().contains("token") {
+          namesToCheck.append(card.name)
+        }
+
+        if let back = card.back, let layout = card.layout?.lowercased(),
+           !layout.contains("adventure") && !layout.contains("split") {
+          namesToCheck.append(back.name)
+        }
+
+        for name in namesToCheck where !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+          expectedNames.insert(name)
+          let hasFile = supportedExtensions.contains { ext in
+            let fileURL = artCropDirURL.appendingPathComponent(name).appendingPathExtension(ext)
+            return fm.fileExists(atPath: fileURL.path)
+          }
+          if !hasFile {
+            missingNames.append(name)
+          }
+        }
+      }
+
+      if missingNames.isEmpty {
+        print("✅ All \(allCards.count) \(setCode) cards have art crop images")
+      } else {
+        print("⚠️ \(missingNames.count) \(setCode) card(s) missing art crop images:")
+        for name in missingNames.sorted() {
+          print("   - \(name)")
+        }
+      }
+
+      if let files = try? fm.contentsOfDirectory(at: artCropDirURL, includingPropertiesForKeys: nil) {
+        let unusedFiles = files.filter { fileURL in
+          let name = fileURL.deletingPathExtension().lastPathComponent
+          return !expectedNames.contains(name)
+        }.map { $0.lastPathComponent }.sorted()
+
+        if !unusedFiles.isEmpty {
+          print("🗑️ \(unusedFiles.count) unused art crop image(s) in \(setCode):")
+          for file in unusedFiles {
+            print("   - \(file)")
+          }
+        }
+      }
+    }
+  }
+
   func loadDraftmancerSetFromURL(url: URL, decoder: JSONDecoder) async throws -> DraftmancerSet? {
     let rawData = url.scheme == "https" ? try await URLSession.shared.data(from: url).0 : try Data(contentsOf: url)
     guard let rawString = String(data: rawData, encoding: .utf8) else {

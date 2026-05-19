@@ -96,6 +96,8 @@ public func routes(_ app: Application) throws {
   app.get("proxycrop", use: imageController.proxyCrop(_:))
   app.get("gatherercrop", use: imageController.gathererCrop(_:))
   
+  app.get("moodswings.xml", use: makeMoodSwingsXML(_:))
+  
   let gatherer = GathererController()
   
   app.get("gatherer", ":set", ":number", use: gatherer.instanceText)

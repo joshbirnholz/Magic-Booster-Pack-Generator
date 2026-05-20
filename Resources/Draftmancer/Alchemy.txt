@@ -5,5 +5,17 @@
     "front": "https://i.imgur.com/yI80fIS.jpeg",
     "set": "yecl",
     "collector_number": "23"
+  },
+  {
+    "name": "Soovril, Patient Antiquarian",
+    "front": "https://i.imgur.com/RoWTkLw.jpeg",
+    "set": "ysos",
+    "collector_number": "27"
+  },
+  {
+    "name": "Anina, Natural Parallelist",
+    "front": "https://i.imgur.com/7IgbKia.jpeg",
+    "set": "ysos",
+    "collector_number": "14"
   }
 ]

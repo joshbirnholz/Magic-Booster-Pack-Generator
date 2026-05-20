@@ -19,22 +19,208 @@ func makeMoodSwingsXML(_ req: Request) async throws -> Response {
   )
 }
 
-import Foundation
+func moodSwingsDeck(_ req: Request) async throws -> String {
+  let export: Bool = req.query.getBoolValue(at: "export") ?? true
+  let cardBack = "https://josh.birnholz.com/tts/moodswings/back.jpg"
+  let baseURL = "https://josh.birnholz.com/tts/moodswings/"
 
-// MARK: - Data Model
+  let commons   = allCards.filter { $0.rarity == .common   }
+  let uncommons = allCards.filter { $0.rarity == .uncommon }
+  let rares     = allCards.filter { $0.rarity == .rare     }
+  let mythics   = allCards.filter { $0.rarity == .mythic   }
+
+  let chosen = (
+    Array(commons.choose(23)) +
+    Array(uncommons.choose(14)) +
+    Array(rares.choose(6)) +
+    Array(mythics.choose(2))
+  ).shuffled()
+
+  func moodSwingsURL(_ filename: String) -> String {
+    baseURL + (filename.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? filename)
+  }
+
+  func customDeck(faceURL: String, backURL: String) -> String {
+    """
+    {
+      "FaceURL": "\(faceURL)",
+      "BackURL": "\(backURL)",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false
+    }
+    """
+  }
+
+  func cardObject(num: Int, faceURL: String, backURL: String, nickname: String) -> String {
+    let id = num * 100
+    let deck = customDeck(faceURL: faceURL, backURL: backURL)
+    return """
+    {
+      "Name": "CardCustom",
+      "Transform": {
+        "posX": 0.5254047,
+        "posY": 1.21068287,
+        "posZ": 0.19025977,
+        "rotX": -0.0008576067,
+        "rotY": 180.000061,
+        "rotZ": 179.9986,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "\(nickname)",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.713235259,
+        "g": 0.713235259,
+        "b": 0.713235259
+      },
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": true,
+      "Hands": true,
+      "CardID": \(id),
+      "SidewaysCard": false,
+      "CustomDeck": {
+        "\(num)": \(deck)
+      },
+      "XmlUI": "",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "GUID": "\(UUID().uuidString.prefix(6).lowercased())"
+    }
+    """
+  }
+
+  struct DeckEntry {
+    let num: Int
+    let faceURL: String
+    let backURL: String
+    let nickname: String
+    var id: Int { num * 100 }
+  }
+
+  var entries: [DeckEntry] = []
+
+  // Chosen cards
+  for (index, card) in chosen.enumerated() {
+    entries.append(DeckEntry(
+      num: index + 1,
+      faceURL: moodSwingsURL("\(card.name).jpg"),
+      backURL: cardBack,
+      nickname: card.name
+    ))
+  }
+
+  // Hurt Feelings
+  entries.append(DeckEntry(
+    num: chosen.count + 1,
+    faceURL: moodSwingsURL(hurtFeelingsFront.name),
+    backURL: moodSwingsURL("Mood Swings.jpg"),
+    nickname: "Hurt Feelings"
+  ))
+  
+  // Rules card
+  entries.append(DeckEntry(
+    num: 0,
+    faceURL: moodSwingsURL("Mood Swings Rules 1.jpg"),
+    backURL: moodSwingsURL("Mood Swings Rules 2.jpg"),
+    nickname: "Mood Swings Rules"
+  ))
+
+  let deckJSON = """
+  {
+    "Name": "Deck",
+    "Transform": {
+      "posX": 0.1779872,
+      "posY": 3.08887124,
+      "posZ": 0.29411754,
+      "rotX": 358.469971,
+      "rotY": 179.966263,
+      "rotZ": 1.77417183,
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "scaleZ": 1.0
+    },
+    "Nickname": "Mood Swings",
+    "Description": "",
+    "GMNotes": "",
+    "ColorDiffuse": {
+      "r": 0.713235259,
+      "g": 0.713235259,
+      "b": 0.713235259
+    },
+    "Locked": false,
+    "Grid": true,
+    "Snap": true,
+    "IgnoreFoW": false,
+    "Autoraise": true,
+    "Sticky": true,
+    "Tooltip": true,
+    "GridProjection": false,
+    "HideWhenFaceDown": true,
+    "Hands": false,
+    "SidewaysCard": false,
+    "DeckIDs": \(entries.map(\.id)),
+    "CustomDeck": {
+      \(entries.map { "\"\($0.num)\": \(customDeck(faceURL: $0.faceURL, backURL: $0.backURL))" }.joined(separator: ",\n    "))
+    },
+    "XmlUI": "",
+    "LuaScript": "",
+    "LuaScriptState": "",
+    "ContainedObjects": [
+      \(entries.map { cardObject(num: $0.num, faceURL: $0.faceURL, backURL: $0.backURL, nickname: $0.nickname) }.joined(separator: ",\n    "))
+    ],
+    "GUID": "\(UUID().uuidString.prefix(6).lowercased())"
+  }
+  """
+
+  if !export {
+    return deckJSON
+  }
+
+  return """
+  {
+    "SaveName": "",
+    "GameMode": "",
+    "Gravity": 0.5,
+    "PlayArea": 0.5,
+    "Date": "",
+    "Table": "",
+    "Sky": "",
+    "Note": "",
+    "Rules": "",
+    "XmlUI": "",
+    "LuaScript": "",
+    "LuaScriptState": "",
+    "ObjectStates": [
+      \(deckJSON)
+    ],
+    "TabStates": {},
+    "VersionNumber": ""
+  }
+  """
+}
 
 struct MoodSwingsCard {
-  let name: String       // Display name (also used as filename base, e.g. "Altruism" → "Altruism.jpg")
-  let id: String         // Google Drive file ID
-  let query: String      // Search query string used in the XML
+  let name: String
+  let id: String
+  let query: String
   let rarity: Rarity
   
   enum Rarity {
     case common, uncommon, rare, mythic
   }
 }
-
-// MARK: - Card Catalogue
 
 private let allCards: [MoodSwingsCard] = [
   // MARK: White
@@ -181,8 +367,6 @@ private let allCards: [MoodSwingsCard] = [
   .init(name: "Wonder",          id: "1WBahRjKqvehnxiBbwXj2XZgd3bhBZMLa", query: "wonder",          rarity: .mythic),
 ]
 
-// MARK: - Fixed Cards (always included)
-
 private let rulesCardFront = (
   id: "1Tt6hjk2jesuvHK0I0c_TFOaHY_XrBSps",
   name: "Mood Swings Rules (1).jpg",
@@ -205,9 +389,7 @@ private let hurtFeelingsBack = (
 )
 private let defaultCardback = "1hKGZQPiSk_PCKEToNk4YwG5k1U62Z0bc"
 
-// MARK: - XML Builder
-
-/// Returns an XML order string for one real copy of Mood Swings:
+/// Returns an XML order string matching a real copy of Mood Swings:
 /// - Rules card (double-sided)
 /// - 23 commons, 14 uncommons, 6 rares, 2 mythics chosen at random
 /// - Hurt Feelings (with its special Mood Swings back)
@@ -224,14 +406,9 @@ func buildMoodSwingsOrder() -> String {
     Array(mythics.choose(2))
   ).shuffled()
   
-  // Slot layout:
-  //   0            → rules card
-  //   1 … 45       → the 45 randomly chosen cards
-  //   46           → Hurt Feelings
-  let hurtFeelingsSlot = chosen.count + 1  // = 46
+  let hurtFeelingsSlot = chosen.count + 1
   
-  // Total card count for <quantity>
-  let totalCards = 1 + chosen.count + 1    // rules + 45 + hurt feelings = 47
+  let totalCards = 1 + chosen.count + 1
   
   func cardXML(id: String, slot: Int, name: String, query: String) -> String {
         """
@@ -245,7 +422,6 @@ func buildMoodSwingsOrder() -> String {
         """
   }
   
-  // Build front cards
   var frontCards = [String]()
   frontCards.append(cardXML(
     id: rulesCardFront.id,
@@ -268,7 +444,6 @@ func buildMoodSwingsOrder() -> String {
     query: hurtFeelingsFront.query
   ))
   
-  // Build back overrides (rules card + Hurt Feelings)
   let backCards = [
     cardXML(
       id: rulesCardBack.id,

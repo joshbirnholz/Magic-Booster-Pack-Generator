@@ -2547,95 +2547,185 @@ fileprivate struct CardInfo {
 
 	var facedown: Bool = true
 	
-	private var transform: String {
-		if facedown {
-			return """
-			"Transform": {
-			  "posX": 0.5254047,
-			  "posY": 1.21068287,
-			  "posZ": 0.19025977,
-			  "rotX": -0.0008576067,
-			  "rotY": 180.000061,
-			  "rotZ": 179.9986,
-			  "scaleX": 1.0,
-			  "scaleY": 1.0,
-			  "scaleZ": 1.0
+	private struct TTSTransform: Encodable {
+		var posX: Double
+		var posY: Double
+		var posZ: Double
+		var rotX: Double
+		var rotY: Double
+		var rotZ: Double
+		var scaleX: Double
+		var scaleY: Double
+		var scaleZ: Double
+
+		static let facedown = TTSTransform(
+			posX: 0.5254047, posY: 1.21068287, posZ: 0.19025977,
+			rotX: -0.0008576067, rotY: 180.000061, rotZ: 179.9986,
+			scaleX: 1.0, scaleY: 1.0, scaleZ: 1.0
+		)
+
+		static let faceup = TTSTransform(
+			posX: 0.1779872, posY: 3.08887124, posZ: 0.29411754,
+			rotX: 358.469971, rotY: 179.966263, rotZ: 1.77417183,
+			scaleX: 1.0, scaleY: 1.0, scaleZ: 1.0
+		)
+	}
+
+	private struct TTSColorDiffuse: Encodable {
+		var r: Double
+		var g: Double
+		var b: Double
+
+		static let standard = TTSColorDiffuse(r: 0.713235259, g: 0.713235259, b: 0.713235259)
+	}
+
+	private struct TTSCustomDeckEntry: Encodable {
+		var faceURL: URL
+		var backURL: URL
+		var numWidth: Int = 1
+		var numHeight: Int = 1
+		var backIsHidden: Bool
+		var uniqueBack: Bool = false
+
+		enum CodingKeys: String, CodingKey {
+			case faceURL = "FaceURL"
+			case backURL = "BackURL"
+			case numWidth = "NumWidth"
+			case numHeight = "NumHeight"
+			case backIsHidden = "BackIsHidden"
+			case uniqueBack = "UniqueBack"
+		}
+	}
+
+	private struct TTSCardObject: Encodable {
+		var name: String = "CardCustom"
+		var transform: TTSTransform
+		var nickname: String
+		var description: String
+		var gmNotes: String = ""
+		var colorDiffuse: TTSColorDiffuse = .standard
+		var locked: Bool = false
+		var grid: Bool = true
+		var snap: Bool = true
+		var ignoreFoW: Bool = false
+		var autoraise: Bool = true
+		var sticky: Bool = true
+		var tooltip: Bool = true
+		var gridProjection: Bool = false
+		var hideWhenFaceDown: Bool
+		var hands: Bool = true
+		var cardID: Int
+		var sidewaysCard: Bool
+		var customDeck: [String: TTSCustomDeckEntry]
+		var xmlUI: String = ""
+		var luaScript: String = ""
+		var luaScriptState: String = ""
+		var guid: String
+		var states: [String: TTSCardObject]?
+
+		enum CodingKeys: String, CodingKey {
+			case name = "Name"
+			case transform = "Transform"
+			case nickname = "Nickname"
+			case description = "Description"
+			case gmNotes = "GMNotes"
+			case colorDiffuse = "ColorDiffuse"
+			case locked = "Locked"
+			case grid = "Grid"
+			case snap = "Snap"
+			case ignoreFoW = "IgnoreFoW"
+			case autoraise = "Autoraise"
+			case sticky = "Sticky"
+			case tooltip = "Tooltip"
+			case gridProjection = "GridProjection"
+			case hideWhenFaceDown = "HideWhenFaceDown"
+			case hands = "Hands"
+			case cardID = "CardID"
+			case sidewaysCard = "SidewaysCard"
+			case customDeck = "CustomDeck"
+			case xmlUI = "XmlUI"
+			case luaScript = "LuaScript"
+			case luaScriptState = "LuaScriptState"
+			case guid = "GUID"
+			case states = "States"
+		}
+
+		func encode(to encoder: Encoder) throws {
+			var container = encoder.container(keyedBy: CodingKeys.self)
+			try container.encode(name, forKey: .name)
+			try container.encode(transform, forKey: .transform)
+			try container.encode(nickname, forKey: .nickname)
+			try container.encode(description, forKey: .description)
+			try container.encode(gmNotes, forKey: .gmNotes)
+			try container.encode(colorDiffuse, forKey: .colorDiffuse)
+			try container.encode(locked, forKey: .locked)
+			try container.encode(grid, forKey: .grid)
+			try container.encode(snap, forKey: .snap)
+			try container.encode(ignoreFoW, forKey: .ignoreFoW)
+			try container.encode(autoraise, forKey: .autoraise)
+			try container.encode(sticky, forKey: .sticky)
+			try container.encode(tooltip, forKey: .tooltip)
+			try container.encode(gridProjection, forKey: .gridProjection)
+			try container.encode(hideWhenFaceDown, forKey: .hideWhenFaceDown)
+			try container.encode(hands, forKey: .hands)
+			try container.encode(cardID, forKey: .cardID)
+			try container.encode(sidewaysCard, forKey: .sidewaysCard)
+			try container.encode(customDeck, forKey: .customDeck)
+			try container.encode(xmlUI, forKey: .xmlUI)
+			try container.encode(luaScript, forKey: .luaScript)
+			try container.encode(luaScriptState, forKey: .luaScriptState)
+			try container.encode(guid, forKey: .guid)
+			if let states {
+				try container.encode(states, forKey: .states)
 			}
-			"""
+		}
+	}
+
+	private static let jsonEncoder: JSONEncoder = {
+		let encoder = JSONEncoder()
+		encoder.outputFormatting = .prettyPrinted
+		return encoder
+	}()
+
+	private func makeTTSCardObject() -> TTSCardObject {
+		let statesDict: [String: TTSCardObject]?
+		if otherStates.isEmpty {
+			statesDict = nil
 		} else {
-			return """
-			"Transform": {
-			  "posX": 0.1779872,
-			  "posY": 3.08887124,
-			  "posZ": 0.29411754,
-			  "rotX": 358.469971,
-			  "rotY": 179.966263,
-			  "rotZ": 1.77417183,
-			  "scaleX": 1.0,
-			  "scaleY": 1.0,
-			  "scaleZ": 1.0
+			var dict = [String: TTSCardObject]()
+			for otherState in otherStates {
+				dict["\(otherState.state)"] = otherState.makeTTSCardObject()
 			}
-			"""
+			statesDict = dict
 		}
+
+		return TTSCardObject(
+			transform: facedown ? .facedown : .faceup,
+			nickname: nickname,
+			description: description,
+			hideWhenFaceDown: backIsHidden,
+			cardID: id,
+			sidewaysCard: sideways,
+			customDeck: ["\(num)": TTSCustomDeckEntry(
+				faceURL: faceURL,
+				backURL: backURL,
+				backIsHidden: backIsHidden
+			)],
+			guid: String(UUID().uuidString.prefix(6)).lowercased(),
+			states: statesDict
+		)
 	}
-	
-	var customDeck: String {
-		return """
-		{
-		  "FaceURL": "\(faceURL)",
-		  "BackURL": "\(backURL)",
-		  "NumWidth": 1,
-		  "NumHeight": 1,
-		  "BackIsHidden": \(backIsHidden),
-		  "UniqueBack": false
-		}
-		"""
-	}
-  
-  struct CardCustom: JSONResponseEncodable {
-    
-  }
-	
+
 	fileprivate var cardCustomObject: String {
-		return """
-		{
-		  "Name": "CardCustom",
-		  \(transform),
-		  "Nickname": "\(nickname.replacingOccurrences(of: "\"", with: "\\\""))",
-		  "Description": "\(description)",
-		  "GMNotes": "",
-		  "ColorDiffuse": {
-			"r": 0.713235259,
-			"g": 0.713235259,
-			"b": 0.713235259
-		  },
-		  "Locked": false,
-		  "Grid": true,
-		  "Snap": true,
-		  "IgnoreFoW": false,
-		  "Autoraise": true,
-		  "Sticky": true,
-		  "Tooltip": true,
-		  "GridProjection": false,
-		  "HideWhenFaceDown": \(backIsHidden),
-		  "Hands": true,
-		  "CardID": \(id),
-		  "SidewaysCard": \(sideways),
-		  "CustomDeck": {
-			"\(num)": \(customDeck)
-		  },
-		  "XmlUI": "",
-		  "LuaScript": "",
-		  "LuaScriptState": "",
-		  "GUID": "\(UUID().uuidString.prefix(6).lowercased())"\(altFaceCustomObject)
-		}
-		"""
+		let object = makeTTSCardObject()
+		let data = try! Self.jsonEncoder.encode(object)
+		return String(data: data, encoding: .utf8)!
 	}
 	
 	fileprivate var numToCustomDeck: String {
-		return """
-		"\(num)": \(customDeck)
-		"""
+		let entry = TTSCustomDeckEntry(faceURL: faceURL, backURL: backURL, backIsHidden: backIsHidden)
+		let data = try! Self.jsonEncoder.encode(entry)
+		return "\"\(num)\": \(String(data: data, encoding: .utf8)!)"
 	}
 	
 	private init(faceURL: URL, backURL: URL = Self.defaultBack, nickname: String, description: String, sideways: Bool = false, backIsHidden: Bool = true) {
@@ -2654,22 +2744,6 @@ fileprivate struct CardInfo {
 	
 	/// The 1-indexed value for which state is being shown. This only has a use if `otherStates` is not empty, and there should not be a value in `otherStates` with a `state` value matching this one.
 	private var state: Int
-	
-	private var altFaceCustomObject: String {
-		guard !otherStates.isEmpty else { return "" }
-		
-		let customObjects = otherStates.map { object in
-			"\"\(object.state)\": \(object.cardCustomObject)"
-		}
-		
-		let altFaceCustomObject = """
-		,\n"States": {
-			\(customObjects.joined(separator: ",\n"))
-		}
-		"""
-		return altFaceCustomObject
-	}
-	
 	
 	fileprivate static func cardBackURL(for backID: UUID) -> URL? {
 	//https://backs.scryfall.io/large/e/9/e962ce76-2a5d-4173-a5ee-9b01b6c57fe8.jpg?1665006297
@@ -2817,7 +2891,6 @@ fileprivate struct CardInfo {
       }
     }
     
-    description = description.replacingOccurrences(of: "\n", with: "\\n")
     self.description = description
   }
   

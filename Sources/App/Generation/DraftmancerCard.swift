@@ -466,6 +466,7 @@ extension DraftmancerCard {
         backTypeLine += " — \(subtypes.joined(separator: " "))"
       }
       
+      let backColors = back.colors?.compactMap(MTGColor.init(rawValue:))
       let backFace = MTGCard.Face(
         typeLine: backTypeLine,
         power: back.power,
@@ -476,7 +477,8 @@ extension DraftmancerCard {
         flavorName: back.flavorName,
         loyalty: back.loyalty,
         manaCost: back.manaCost,
-        colors: nil,
+        colors: backColors,
+        colorIndicator: (back.manaCost ?? "").isEmpty && backColors != nil && !backColors!.isEmpty ? backColors : nil,
         watermark: back.watermark,
         imageUris: backImageUris
       )
@@ -2290,6 +2292,15 @@ extension DraftmancerCard {
       return (components[0], components[1])
     } ?? (nil, nil)
     
+    var layoutFromShape: String {
+      switch card.shape {
+      case "transform double faced":
+        "transform"
+      default:
+        card.shape
+      }
+    }
+    
     self.init(
       name: card.cardName.trimmingCharacters(in: .whitespacesAndNewlines),
       flavorName: nil,
@@ -2304,7 +2315,7 @@ extension DraftmancerCard {
       rarity: rarity,
       subtypes: subtypes,
       rating: nil,
-      layout: card.shape,
+      layout: layoutFromShape,
       back: isDFC || card.shape.contains("adventure") || card.shape.contains("split") ? DraftmancerCard.Face(
         name: card.cardName2?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
         flavorName: nil,
@@ -2382,10 +2393,12 @@ extension DraftmancerSet {
 
 extension String {
   func optionalIfEmpty() -> String? {
-    if self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-      return nil
-    } else {
-      return self
-    }
+    trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : self
+  }
+}
+
+extension Array {
+  func optionalIfEmpty() -> [Element]? {
+    isEmpty ? nil : self
   }
 }

@@ -73,6 +73,7 @@ extension MTGCard {
              loyalty: face.loyalty,
 						 manaCost: face.manaCost,
 						 colors: face.colors?.compactMap(MTGColor.init(rawValue:)),
+						 colorIndicator: face.colorIndicator?.compactMap(MTGColor.init(rawValue:)),
 						 watermark: face.watermark,
 						 imageUris: imageURIs)
 		}
@@ -155,26 +156,26 @@ extension Swiftfall.Card {
       mtgCard.cardFaces![1].imageUris?["art_crop"] = URL(string: artCropURLString + "?back=true")!
     }
     
-    let faces = mtgCard.cardFaces?.map {
+    let faces = mtgCard.cardFaces?.enumerated().map { index, face in
       Swiftfall.Card.Face(
-        name: $0.name,
-        flavorName: $0.flavorName,
-        manaCost: $0.manaCost,
+        name: face.name,
+        flavorName: face.flavorName,
+        manaCost: face.manaCost,
         cmc: nil,
-        typeLine: $0.typeLine,
-        oracleText: $0.oracleText,
-        colors: $0.colors?.compactMap(\.rawValue),
-        colorIndicator: nil,
-        power: $0.power,
-        toughness: $0.toughness,
-        loyalty: $0.loyalty,
+        typeLine: face.typeLine,
+        oracleText: face.oracleText,
+        colors: face.colors?.compactMap(\.rawValue),
+        colorIndicator: face.colorIndicator?.compactMap(\.rawValue),
+        power: face.power,
+        toughness: face.toughness,
+        loyalty: face.loyalty,
         defense: nil,
-        flavorText: $0.flavorText,
+        flavorText: face.flavorText,
         illustrationId: UUID().uuidString,
-        imageUris: $0.imageUris,
+        imageUris: face.imageUris,
         oracleId: mtgCard.oracleID,
-        watermark: $0.watermark,
-        printedName: $0.printedName,
+        watermark: face.watermark,
+        printedName: face.printedName,
         printedText: nil,
         printedTypeLine: nil
       )
@@ -183,6 +184,13 @@ extension Swiftfall.Card {
     let printsSearchUri = URL(string: "https://tts-magic-booster.fly.dev/custom/cards/search?q=name=\(mtgCard.name?.replacingOccurrences(of: " ", with: "_") ?? "")")!
     let releaseDate = mtgCard.releaseDate ?? Date()
     
-    self.init(prices: nil, id: mtgCard.scryfallID ?? UUID(), oracleId: mtgCard.oracleID ?? UUID(), multiverseIds: [], mtgoId: nil, arenaId: nil, mtgoFoilId: nil, tcgplayerId: nil, tcgplayerEtchedId: nil, name: mtgCard.name ?? "", flavorName: mtgCard.flavorName, uri: mtgCard.scryfallURL?.absoluteString, scryfallUri: mtgCard.scryfallURL?.absoluteString ?? "", cardFaces: faces, printsSearchUri: printsSearchUri, securityStamp: nil, rulingsUri: "", layout: mtgCard.layout, cmc: mtgCard.convertedManaCost, typeLine: mtgCard.typeLine, oracleText: mtgCard.oracleText, manaCost: mtgCard.manaCost, power: mtgCard.power, toughness: mtgCard.toughness, loyalty: mtgCard.loyalty, defense: mtgCard.defense, colors: mtgCard.colors?.compactMap(\.rawValue), colorIndicator: nil, colorIdentity: mtgCard.colorIdentity?.compactMap(\.rawValue), keywords: mtgCard.keywords, producedMana: mtgCard.producedMana?.compactMap(\.rawValue), purchaseUris: nil, flavorText: mtgCard.flavorText, attractionLights: nil, illustrationId: UUID().uuidString, imageUris: mtgCard.imageUris, legalities: [:], reserved: false, edhrecRank: nil, allParts: nil, set: mtgCard.set, setName: mtgCard.set, setType: nil, rarity: mtgCard.rarity.rawValue, cardBackId: mtgCard.scryfallCardBackID, artist: mtgCard.artist ?? "Unknown", collectorNumber: mtgCard.collectorNumber, digital: false, highresImage: true, lifeModifier: nil, handModifier: nil, frame: mtgCard.frame, frameEffects: mtgCard.frameEffects, promoTypes: mtgCard.promoTypes, oversized: nil, fullArt: mtgCard.isFullArt, watermark: mtgCard.watermark, borderColor: mtgCard.borderColor?.rawValue ?? "black", storySpotlightNumber: nil, storySpotlightUri: nil, storySpotlight: nil, contentWarning: nil, printedName: mtgCard.printedName, printedText: mtgCard.printedText, printedTypeLine: mtgCard.printedTypeLine, textless: mtgCard.isTextless, lang: .init(rawValue: mtgCard.language.rawValue)!, foil: mtgCard.isFoilAvailable, finishes: mtgCard.finishes, nonfoil: mtgCard.isNonFoilAvailable, promo: mtgCard.isPromo, booster: mtgCard.isFoundInBoosters, releasedAt: dateFormatter.string(from: releaseDate), relatedUris: nil, games: mtgCard.games, gameChanger: nil, variation: nil, variationOf: nil)
+    var colorIndicator: [String]? {
+      if let colors = mtgCard.colors, !colors.isEmpty, (mtgCard.manaCost ?? "").isEmpty {
+        return colors.compactMap(\.rawValue)
+      }
+      return nil
+    }
+    
+    self.init(prices: nil, id: mtgCard.scryfallID ?? UUID(), oracleId: mtgCard.oracleID ?? UUID(), multiverseIds: [], mtgoId: nil, arenaId: nil, mtgoFoilId: nil, tcgplayerId: nil, tcgplayerEtchedId: nil, name: mtgCard.name ?? "", flavorName: mtgCard.flavorName, uri: mtgCard.scryfallURL?.absoluteString, scryfallUri: mtgCard.scryfallURL?.absoluteString ?? "", cardFaces: faces, printsSearchUri: printsSearchUri, securityStamp: nil, rulingsUri: "", layout: mtgCard.layout, cmc: mtgCard.convertedManaCost, typeLine: mtgCard.typeLine, oracleText: mtgCard.oracleText, manaCost: mtgCard.manaCost, power: mtgCard.power, toughness: mtgCard.toughness, loyalty: mtgCard.loyalty, defense: mtgCard.defense, colors: mtgCard.colors?.compactMap(\.rawValue), colorIndicator: colorIndicator, colorIdentity: mtgCard.colorIdentity?.compactMap(\.rawValue), keywords: mtgCard.keywords, producedMana: mtgCard.producedMana?.compactMap(\.rawValue), purchaseUris: nil, flavorText: mtgCard.flavorText, attractionLights: nil, illustrationId: UUID().uuidString, imageUris: mtgCard.imageUris, legalities: [:], reserved: false, edhrecRank: nil, allParts: nil, set: mtgCard.set, setName: mtgCard.set, setType: nil, rarity: mtgCard.rarity.rawValue, cardBackId: mtgCard.scryfallCardBackID, artist: mtgCard.artist ?? "Unknown", collectorNumber: mtgCard.collectorNumber, digital: false, highresImage: true, lifeModifier: nil, handModifier: nil, frame: mtgCard.frame, frameEffects: mtgCard.frameEffects, promoTypes: mtgCard.promoTypes, oversized: nil, fullArt: mtgCard.isFullArt, watermark: mtgCard.watermark, borderColor: mtgCard.borderColor?.rawValue ?? "black", storySpotlightNumber: nil, storySpotlightUri: nil, storySpotlight: nil, contentWarning: nil, printedName: mtgCard.printedName, printedText: mtgCard.printedText, printedTypeLine: mtgCard.printedTypeLine, textless: mtgCard.isTextless, lang: .init(rawValue: mtgCard.language.rawValue)!, foil: mtgCard.isFoilAvailable, finishes: mtgCard.finishes, nonfoil: mtgCard.isNonFoilAvailable, promo: mtgCard.isPromo, booster: mtgCard.isFoundInBoosters, releasedAt: dateFormatter.string(from: releaseDate), relatedUris: nil, games: mtgCard.games, gameChanger: nil, variation: nil, variationOf: nil)
   }
 }

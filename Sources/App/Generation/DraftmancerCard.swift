@@ -500,7 +500,7 @@ extension DraftmancerCard {
         power: self.power,
         toughness: self.toughness,
         oracleText: self.oracleText,
-        flavorText: nil,
+        flavorText: self.flavorText,
         name: self.name,
         flavorName: self.flavorName,
         loyalty: self.loyalty,
@@ -517,7 +517,7 @@ extension DraftmancerCard {
         power: nil,
         toughness: nil,
         oracleText: "\(self.oracleText ?? "")\n//\n\(back.oracleText ?? "")",
-        flavorText: self.flavorText,
+        flavorText: nil,
         name: "\(name) // \(back.name)",
         flavorName: nil,
         loyalty: nil,
@@ -2385,8 +2385,8 @@ extension DraftmancerCard {
           .replacingOccurrences(of: " – ", with: " — ")
           .replacingOccurrences(of: " - ", with: " — "),
         subtypes: nil,
-        oracleText: card.rulesText2?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: "").optionalIfEmpty(),
-        flavorText: card.flavorText2?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: "").optionalIfEmpty(),
+        oracleText: fixText(card.rulesText2),
+        flavorText: fixText(card.flavorText2),
         power: power2,
         toughness: toughness2,
         loyalty: card.loyalty2?.optionalIfEmpty(),
@@ -2400,12 +2400,21 @@ extension DraftmancerCard {
       draftEffects: nil,
       power: power?.optionalIfEmpty(),
       toughness: toughness?.optionalIfEmpty(),
-      oracleText: card.rulesText?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: "").optionalIfEmpty(),
-      flavorText: card.flavorText?.replacingOccurrences(of: "[i]", with: "").replacingOccurrences(of: "[/i]", with: "").optionalIfEmpty(),
+      oracleText: fixText(card.rulesText),
+      flavorText: fixText(card.flavorText),
       loyalty: card.loyalty?.optionalIfEmpty(),
       keywords: []
     )
   }
+}
+
+private func fixText(_ string: String?) -> String? {
+  string?
+    .replacingOccurrences(of: "[i]", with: "")
+    .replacingOccurrences(of: "[/i]", with: "")
+    .replacingOccurrences(of: "[b]", with: "")
+    .replacingOccurrences(of: "[/b]", with: "")
+    .optionalIfEmpty()
 }
 
 let loadedMSESets: [MSESet]? = {

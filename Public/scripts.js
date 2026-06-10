@@ -547,7 +547,8 @@ function loadDraftmancerCards() {
         }
         
         var button = document.createElement('button');
-        button.innerHTML = cardset.name;
+        button.className = 'cc-tab-btn';
+        button.textContent = cardset.name;
         button.onclick = function() {
           setDraftmancerCardSet(cardset);
         };
@@ -583,7 +584,8 @@ function loadDraftmancerCards() {
 
 function loadSearchResults(query) {
   document.getElementById('loading').hidden = false;
-  
+  document.getElementById('cardtable').innerHTML = "";
+
   $.ajax({
     url: `custom/cards/search?q=${query}`,
     data: null,
@@ -612,12 +614,36 @@ function loadSearchResults(query) {
     },
     error: function(xhr, status, error) {
       document.getElementById('loading').hidden = true;
-      
+
+      // The search endpoint mimics Scryfall and returns 404 when nothing matches.
+      // Show an empty "0 cards where …" result inline instead of a popup.
+      if (xhr.status === 404) {
+        var description = query;
+        try {
+          var body = xhr.responseJSON || JSON.parse(xhr.responseText);
+          if (body && body.query_description) {
+            description = body.query_description;
+          }
+        } catch (e) {}
+
+        var cardset = {
+          "cards": [],
+          "display_reversed": false,
+          "is_draftable": false,
+          "name": "0 cards",
+          "is_search": true,
+          "query": query
+        };
+        setDraftmancerCardSet(cardset);
+        document.getElementById('query-description').innerText = `0 cards where ${description}`;
+        return;
+      }
+
       console.log("error");
       console.log(xhr);
       console.log(status);
       console.log(error);
-      
+
       alert(error);
     }
   })
@@ -636,213 +662,350 @@ function toggleViewMode() {
   setDraftmancerCardSet(currentCardset);
 }
 
+function escapeHTML(value) {
+  return String(value == null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+/// Returns the best image URL for a card or a single card face.
+function faceImageURL(obj) {
+  if (!obj) return "";
+  if (obj.image) return obj.image;
+  var uris = obj.image_uris;
+  if (uris) {
+    return uris.en || uris.normal || uris.large || uris.png || "";
+  }
+  return "";
+}
+
+/// Returns the front image URL of a card, falling back to its first face.
+function frontImageURL(element) {
+  var direct = faceImageURL(element);
+  if (direct) return direct;
+  if (element.card_faces && element.card_faces[0]) {
+    return faceImageURL(element.card_faces[0]);
+  }
+  return "";
+}
+
+/// Returns [frontURL] or [frontURL, backURL] for double-faced cards.
+function cardImageURLs(element) {
+  if (element.card_faces && element.card_faces.length >= 2 &&
+      element.card_faces[0].image_uris && element.card_faces[1].image_uris) {
+    return [faceImageURL(element.card_faces[0]), faceImageURL(element.card_faces[1])];
+  }
+  var urls = [frontImageURL(element)];
+  if (element.back) {
+    var backURL = faceImageURL(element.back);
+    if (backURL) urls.push(backURL);
+  }
+  return urls;
+}
+
+/// Normalizes a card or a card face into the fields the detail view renders.
+function faceInfo(obj) {
+  var typeLine = obj.type_line || "";
+  if (!typeLine) {
+    typeLine = obj.type || "";
+    if (obj.subtypes && obj.subtypes.length) {
+      typeLine += " — " + obj.subtypes.join(" ");
+    }
+  }
+
+  var pt = "";
+  if (obj.power != undefined && obj.toughness != undefined) {
+    pt = obj.power.toString() + "/" + obj.toughness.toString();
+  } else if (obj.loyalty != undefined) {
+    pt = obj.loyalty.toString();
+  }
+
+  var oracleHTML = "";
+  if (obj.oracle_text) {
+    oracleHTML = escapeHTML(obj.oracle_text).replace(/\n/g, "<br />");
+  }
+
+  // When a card has a flavor name (e.g. a Universes Within version), show the
+  // flavor name as the display name and the real Magic name underneath it.
+  var displayName = obj.flavor_name || obj.name || "";
+  var realName = (obj.flavor_name && obj.name && obj.flavor_name !== obj.name) ? obj.name : "";
+
+  return {
+    name: displayName,
+    realName: realName,
+    manaCost: obj.mana_cost || "",
+    typeLine: typeLine,
+    oracleHTML: oracleHTML,
+    pt: pt,
+    artist: obj.artist || ""
+  };
+}
+
+/// Only transform and modal_dfc cards physically flip; other multi-faced cards
+/// (split, adventure, etc.) are a single static image.
+function isFlippable(element) {
+  var layout = (element.layout || "").toLowerCase();
+  if (layout !== "transform" && layout !== "modal_dfc") {
+    return false;
+  }
+  return cardImageURLs(element).length > 1;
+}
+
+/// Returns [{info}] for every face of a card, so the detail view can show the
+/// text of all faces (e.g. both halves of a split card) regardless of flipping.
+function cardTextFaces(element) {
+  if (element.card_faces && element.card_faces.length >= 2) {
+    return element.card_faces.map(function(face) {
+      return { info: faceInfo(face) };
+    });
+  }
+  var faces = [{ info: faceInfo(element) }];
+  if (element.back) {
+    faces.push({ info: faceInfo(element.back) });
+  }
+  return faces;
+}
+
+var FLIP_ICON = "<svg viewBox='0 0 24 24' width='18' height='18' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M21 2v6h-6'/><path d='M3 12a9 9 0 0 1 15-6.7L21 8'/><path d='M3 22v-6h6'/><path d='M21 12a9 9 0 0 1-15 6.7L3 16'/></svg>";
+
+/// Creates a flip toggle button that flips the nearest ancestor matching `selector`.
+function makeFlipButton(selector) {
+  var btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "cc-flip-btn";
+  btn.title = "Flip card";
+  btn.setAttribute("aria-label", "Flip card");
+  btn.innerHTML = FLIP_ICON;
+  btn.addEventListener("click", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    var card = btn.closest(selector);
+    if (card) {
+      card.classList.toggle("cc-flipped");
+    }
+  });
+  return btn;
+}
+
+/// Creates a button that copies the card's raw Swiftfall JSON to the clipboard.
+function makeCopyButton(element) {
+  var btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "cc-btn-small cc-copy-btn";
+  btn.textContent = "Copy JSON";
+  btn.addEventListener("click", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    navigator.clipboard.writeText(JSON.stringify(element, null, 2)).then(function() {
+      btn.textContent = "Copied!";
+      btn.classList.add("cc-copied");
+      setTimeout(function() {
+        btn.textContent = "Copy JSON";
+        btn.classList.remove("cc-copied");
+      }, 1200);
+    });
+  });
+  return btn;
+}
+
+/// Builds the combined display name (with flavor names and back face) for the grid label.
+function combinedCardName(element) {
+  var name = element.flavor_name || element.name;
+  if (element.back && element.back.flavor_name) {
+    name += " // " + element.back.flavor_name;
+  }
+  if (element.flavor_name) {
+    name += " (" + element.name + ")";
+  }
+  return name;
+}
+
 function setDraftmancerCardSet(cardset) {
   document.getElementById("cardset-title").innerHTML = cardset.name;
   currentCardset = cardset;
-  
+
+  document.querySelectorAll('.cc-tab-btn').forEach(function(btn) {
+    btn.classList.toggle('active', !cardset.is_search && btn.textContent === cardset.name);
+  });
+
   var filters = document.getElementById("filters");
   filters.innerHTML = "";
-  
-  // Rarity
-  var allRaritiesButton = document.createElement("button");
-  allRaritiesButton.innerHTML = "All";
-  allRaritiesButton.onclick = function() {
+
+  var allBtn = document.createElement("button");
+  allBtn.className = "cc-filter-btn" + (!currentRarity ? " active" : "");
+  allBtn.textContent = "All";
+  allBtn.onclick = function() {
     currentRarity = null;
     setDraftmancerCardSet(cardset);
   };
-  filters.appendChild(allRaritiesButton);
-  
+  filters.appendChild(allBtn);
+
   var rarities = ["common", "uncommon", "rare", "mythic", "special"];
   rarities.forEach((rarity) => {
     var button = document.createElement("button");
-    button.innerHTML = rarity.capitalize();
+    button.className = "cc-filter-btn cc-rarity-" + rarity + (currentRarity === rarity ? " active" : "");
+    button.textContent = rarity.capitalize();
     button.onclick = function() {
       currentRarity = rarity;
       setDraftmancerCardSet(cardset);
     };
-    if (currentRarity == rarity) {
-      button.style.background='#000000';
-      button.style.color='white';
-    }
     filters.appendChild(button);
   });
-  
+
   var p = document.getElementById("download-button");
   p.innerHTML = "";
-  
-  // Download button
+
   if (cardset.string) {
     var downloadButton = document.createElement("button");
-    downloadButton.innerHTML = "Download Draftmancer File"
+    downloadButton.className = "cc-btn";
+    downloadButton.textContent = "Download Draftmancer File";
     downloadButton.onclick = function() {
       download(cardset.name + ".txt", cardset.string, "text/plain");
     };
     p.appendChild(downloadButton);
   }
-  
-  // Setup table
-  
-  var table = document.getElementById("cardtable");
-  table.innerHTML = "<style>th, td { padding-block: 2px; padding-inline: 4px } </style>";
-  
+
+  var showDetails = localStorage.getItem("showDetails") === 'true';
+  var viewToggleLabel = document.getElementById("view-toggle-label");
+  if (viewToggleLabel) {
+    viewToggleLabel.textContent = showDetails ? "Grid View" : "Detail View";
+  }
+
+  var container = document.getElementById("cardtable");
+  container.innerHTML = "";
+  container.className = showDetails ? "cc-card-list" : "cc-card-grid";
+
   var cards = cardset.cards;
-  
+
   if (currentRarity) {
     cards = cards.filter((card) => card.rarity == currentRarity);
   }
-  
-  if (localStorage.getItem("showDetails") === 'true') {
-    for(var i=0; i <cards.length; i++) {
+
+  if (showDetails) {
+    for (var i = 0; i < cards.length; i++) {
       var element = cards[i];
-      
-      var row1 = document.createElement("tr");
-      table.appendChild(row1);
-      
-      var imageData = document.createElement("td");
-      row1.appendChild(imageData);
-      imageData.setAttribute("rowspan", 4);
-      
-      var imageURL = element.image || element.image_uris["en"] || element.image_uris["normal"];
-      imageData.innerHTML = "<div><a href=\"" + imageURL + "\"><img src=\"" + imageURL + "\" height=264 width=189 style='border-radius:10px;'></a></div>";
-      
-      var nameData = document.createElement("td");
-      row1.appendChild(nameData);
-      var name = element.flavor_name || element.name;
-      if (element.back && element.back.flavor_name) {
-        name += " // " + element.back.flavor_name;
-      }
-      
-      if (element.flavor_name) {
-        name += " (" + element.name + ")";
-      }
-      nameData.innerHTML = "<h3>" + name + "</h3>";
-      
-      var manaCostData = document.createElement("td");
-      manaCostData.setAttribute("align", "right");
-      row1.appendChild(manaCostData);
-      manaCostData.innerHTML = "<h3>" + (element.mana_cost || "") + "</h3>";
-      
-      var row2 = document.createElement("tr");
-      table.appendChild(row2);
-      
-      var typeData = document.createElement("td");
-      row2.appendChild(typeData);
-      var type = element.type || "";
-      if (element.subtypes) {
-        type += " — " + element.subtypes.join(" ");
-      }
-      typeData.innerHTML = "<h4>" + type + "</h4>";
-      
-      var rarityData = document.createElement("td");
-      rarityData.setAttribute("align", "right");
-      row2.appendChild(rarityData);
+      var faces = cardTextFaces(element);
+      var flippable = isFlippable(element);
+      var images = cardImageURLs(element);
+
+      var card = document.createElement("div");
+      card.className = "cc-card-detail" + (flippable ? " cc-flippable" : "");
+
       var rarity = "";
       if (element.rarity) {
         rarity = " (" + Array.from(element.rarity)[0].toUpperCase() + ")";
       }
-      rarityData.innerHTML = "<h4>" + element.set.toUpperCase() + " #" + element.collector_number + rarity + "</h4>";
-      
-      var row3 = document.createElement("tr");
-      table.appendChild(row3);
-      
-      var textData = document.createElement("td");
-      textData.setAttribute("width", 1000);
-      textData.setAttribute("colspan", 2);
-      row3.appendChild(textData);
-      if (element.oracle_text) {
-        textData.innerHTML = element.oracle_text.replace(/\n/g, "<br />") || "";
+      var setLine = (element.set ? element.set.toUpperCase() : "") + " #" + element.collector_number + rarity;
+
+      // Image column. Only transform / modal_dfc cards flip; everything else
+      // shows a single static image.
+      var imageCol = document.createElement("div");
+      imageCol.className = "cc-card-detail-image";
+
+      var flip = document.createElement("div");
+      flip.className = "cc-card-flip";
+      if (flippable) {
+        flip.innerHTML =
+          "<div class='cc-card-face cc-card-front'><img src=\"" + images[0] + "\" loading='lazy'></div>" +
+          "<div class='cc-card-face cc-card-back'><img src=\"" + images[1] + "\" loading='lazy'></div>";
+      } else {
+        flip.innerHTML = "<div class='cc-card-face cc-card-front'><img src=\"" + frontImageURL(element) + "\" loading='lazy'></div>";
       }
-      
-      var row4 = document.createElement("tr");
-      table.appendChild(row4);
-      
-      var artistData = document.createElement("td");
-      row4.appendChild(artistData);
-      if (element.artist) {
-        artistData.innerHTML = "Illustrated by: " + element.artist;
+      imageCol.appendChild(flip);
+      if (flippable) {
+        imageCol.appendChild(makeFlipButton(".cc-card-detail"));
       }
-      const copyButton = document.createElement("button");
-      const string = copyableText(element);
-      copyButton.onclick = function() {
-        navigator.clipboard.writeText(string);
-      };
-      copyButton.innerHTML = "Copy Text";
-      artistData.appendChild(copyButton);
-      
-      var ptLoyaltyData = document.createElement("td");
-      row4.appendChild(ptLoyaltyData);
-      var ptLoyalty = element.loyalty || "";
-      if (element.power != undefined && element.toughness != undefined) {
-        ptLoyalty = element.power.toString() + "/" + element.toughness.toString();
-      }
-//      ptLoyaltyData.setAttribute("colspan", 2);
-      ptLoyaltyData.setAttribute("align", "right");
-      ptLoyaltyData.innerHTML = "<h3>" + ptLoyalty + "</h3>";
-    }
-    
-    while (dataCount < rowCount) {
-      var data = document.createElement("td");
-      row.appendChild(data);
-      dataCount += 1;
+      card.appendChild(imageCol);
+
+      // Info column. Every face's text is shown stacked with a divider between
+      // them (matching Scryfall's text layout), whether or not the card flips.
+      var info = document.createElement("div");
+      info.className = "cc-card-detail-info";
+
+      faces.forEach(function(face, faceIndex) {
+        var block = document.createElement("div");
+        block.className = "cc-face-info";
+        var setHTML = faceIndex === 0 ? "<span class='cc-card-set'>" + escapeHTML(setLine) + "</span>" : "";
+        var realNameHTML = face.info.realName ? "<span class='cc-card-realname'>" + escapeHTML(face.info.realName) + "</span>" : "";
+        block.innerHTML =
+          "<div class='cc-card-detail-header'>" +
+            "<h3 class='cc-card-name'>" + escapeHTML(face.info.name) + realNameHTML + "</h3>" +
+            "<span class='cc-card-mana'>" + escapeHTML(face.info.manaCost) + "</span>" +
+          "</div>" +
+          "<div class='cc-card-detail-type'>" +
+            "<span>" + escapeHTML(face.info.typeLine) + "</span>" +
+            setHTML +
+          "</div>" +
+          "<div class='cc-card-detail-text'>" + face.info.oracleHTML + "</div>" +
+          "<div class='cc-card-detail-footer'>" +
+            "<span class='cc-card-artist'>" + (face.info.artist ? "Illustrated by " + escapeHTML(face.info.artist) : "") + "</span>" +
+            "<span class='cc-card-pt'>" + escapeHTML(face.info.pt) + "</span>" +
+          "</div>";
+        info.appendChild(block);
+      });
+
+      // A single Copy JSON action for the whole card.
+      var actions = document.createElement("div");
+      actions.className = "cc-face-actions";
+      actions.appendChild(makeCopyButton(element));
+      info.appendChild(actions);
+
+      card.appendChild(info);
+      container.appendChild(card);
     }
   } else {
-    var dataCount = 0;
-    var rowCount = 6;
-    var row = document.createElement("tr");
-    table.appendChild(row);
-    
-    for(var i=0; i <cards.length; i++) {
+    for (var i = 0; i < cards.length; i++) {
       var element = cards[i];
-      
-      var data = document.createElement("td");
-      
+      var flippable = isFlippable(element);
+      var images = cardImageURLs(element);
+
+      var card = document.createElement("div");
+      card.className = "cc-card" + (flippable ? " cc-flippable" : "");
+
       var rarity = "";
       if (element.rarity) {
         rarity = " (" + Array.from(element.rarity)[0].toUpperCase() + ")";
       }
-      
-      var name = element.flavor_name || element.name;
-      if (element.back && element.back.flavor_name) {
-        name += " // " + element.back.flavor_name;
+      var setLine = (element.set ? element.set.toUpperCase() : "") + " #" + element.collector_number + rarity;
+
+      var media = document.createElement("div");
+      media.className = "cc-card-media";
+
+      var flip = document.createElement("div");
+      flip.className = "cc-card-flip";
+      if (flippable) {
+        flip.innerHTML =
+          "<div class='cc-card-face cc-card-front'><a href=\"" + images[0] + "\"><img src=\"" + images[0] + "\" loading='lazy'></a></div>" +
+          "<div class='cc-card-face cc-card-back'><a href=\"" + images[1] + "\"><img src=\"" + images[1] + "\" loading='lazy'></a></div>";
+        media.appendChild(flip);
+        media.appendChild(makeFlipButton(".cc-card"));
+      } else {
+        var frontURL = frontImageURL(element);
+        flip.innerHTML = "<div class='cc-card-face cc-card-front'><a href=\"" + frontURL + "\"><img src=\"" + frontURL + "\" loading='lazy'></a></div>";
+        media.appendChild(flip);
       }
-      
-      if (element.flavor_name) {
-        name += " (" + element.name + ")";
-      }
-      
-      var image_uris = element.image_uris;
-      if (element.card_faces && element.card_faces[0].image_uris) {
-        image_uris = element.card_faces[0].image_uris
-      }
-      var imageURL = element.image || image_uris.en || image_uris.normal || "";
-      data.innerHTML = "<center><div><a href=\"" + imageURL + "\"><img src=\"" + imageURL + "\" height=264 width=189 style='border-radius:10px;'></a></div><p>" + name + "<br>" + element.set.toUpperCase() + " #" + element.collector_number + rarity + "</p><br></center>";
-      
-      row.appendChild(data);
-      dataCount += 1;
-      if (dataCount >= rowCount) {
-        table.appendChild(row);
-        row = document.createElement("tr");
-        table.appendChild(row);
-        dataCount = 0;
-      }
-    }
-    
-    while (dataCount < rowCount) {
-      var data = document.createElement("td");
-      row.appendChild(data);
-      dataCount += 1;
+      card.appendChild(media);
+
+      var label = document.createElement("div");
+      label.className = "cc-card-label";
+      label.innerHTML = escapeHTML(combinedCardName(element)) + "<br>" + escapeHTML(setLine);
+      card.appendChild(label);
+
+      container.appendChild(card);
     }
   }
   
   if (cardset.is_search) {
     setURL(cardset.query, null);
-    document.getElementById("filters").hidden = true;
-    document.getElementById("query-description").hidden = false;
   } else {
     setURL(null, cardset.name);
-    document.getElementById("filters").hidden = false;
-    document.getElementById("query-description").hidden = true;
   }
+  
+  document.getElementById("filters").hidden = cardset.is_search;
+  document.getElementById("query-description").hidden = !cardset.is_search;
+  document.getElementById("cardset-title").hidden = cardset.is_search;
 }
 
 /// Sets the URL query OR the hash, and clears out the values if null.

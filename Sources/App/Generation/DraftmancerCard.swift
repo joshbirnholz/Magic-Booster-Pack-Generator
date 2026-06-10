@@ -178,10 +178,22 @@ public struct DraftmancerCard: Codable, Sendable {
   var keywords: [String]?
   
   init(mtgCard: MTGCard) async {
-    self.name = mtgCard.name ?? ""
-    self.flavorName = mtgCard.flavorName
-    self.manaCost = mtgCard.manaCost ?? ""
-    var types = (mtgCard.typeLine ?? "").components(separatedBy: " — ")
+    // For double-faced cards the front face's data lives in cardFaces[0], not in
+    // the top-level fields (which hold the combined "A // B" name/type and a nil
+    // oracle text). Derive the front fields from that face when it exists.
+    let frontFace: MTGCard.Face? = {
+      let layout = mtgCard.layout.lowercased()
+      guard layout.contains("transform") || layout.contains("dfc") || layout.contains("double_sided"),
+            let faces = mtgCard.cardFaces, faces.count == 2 else {
+        return nil
+      }
+      return faces.first
+    }()
+
+    self.name = frontFace?.name ?? mtgCard.name ?? ""
+    self.flavorName = frontFace?.flavorName ?? mtgCard.flavorName
+    self.manaCost = frontFace?.manaCost ?? mtgCard.manaCost ?? ""
+    var types = ((frontFace?.typeLine ?? mtgCard.typeLine) ?? "").components(separatedBy: " — ")
     self.type = types.removeFirst()
     self.subtypes = types.first?.components(separatedBy: " ")
     self.set = mtgCard.set
@@ -260,17 +272,17 @@ public struct DraftmancerCard: Codable, Sendable {
     }
     self.draftEffects = nil
     
-    self.colors = mtgCard.colors?.compactMap { $0.rawValue }
+    self.colors = (frontFace?.colors ?? mtgCard.colors)?.compactMap { $0.rawValue }
     self.printedNames = nil
     self.rating = nil
     
     self.relatedCardIdentifiers = nil
     
-    self.power = mtgCard.power
-    self.toughness = mtgCard.toughness
-    self.loyalty = mtgCard.loyalty
-    self.oracleText = mtgCard.oracleText
-    self.flavorText = mtgCard.flavorText
+    self.power = frontFace?.power ?? mtgCard.power
+    self.toughness = frontFace?.toughness ?? mtgCard.toughness
+    self.loyalty = frontFace?.loyalty ?? mtgCard.loyalty
+    self.oracleText = frontFace?.oracleText ?? mtgCard.oracleText
+    self.flavorText = frontFace?.flavorText ?? mtgCard.flavorText
     self.keywords = mtgCard.keywords
     self.artist = mtgCard.artist
   }
@@ -1226,19 +1238,50 @@ private func addBracketsToManaCost(_ manaCost: String) -> String {
   return result
 }
 
+/// A Draftmancer set whose cards are encoded as Swiftfall/Scryfall cards, so the
+/// custom cards page receives one consistent card representation everywhere
+/// (the same format returned by the Scryfall-style search endpoint).
+private struct ScryfallDraftmancerSet: Encodable {
+  var name: String
+  var cards: [Swiftfall.Card]
+  var isDraftable: Bool
+  var string: String?
+  var displayReversed: Bool
+
+  enum CodingKeys: String, CodingKey {
+    case cards
+    case name
+    case string
+    case isDraftable
+    case displayReversed
+  }
+}
+
 func getBuiltinDraftmancerCards(_ req: Request) async throws -> Vapor.Response {
   var headers = HTTPHeaders()
   headers.add(name: .contentType, value: "application/json")
-  
-  guard let responses = await DraftmancerSetCache.shared.sets else {
+
+  guard let sets = await DraftmancerSetCache.shared.sets else {
     return .init(
       status: .internalServerError, headers: headers
     )
   }
-  
-  let data = try Swiftfall.encoder.encode(responses)
+
+  // Serve each set's cards as Swiftfall/Scryfall cards (converting from the
+  // internal DraftmancerCard format) while keeping the per-set wrapper fields.
+  let scryfallSets = sets.map { set in
+    ScryfallDraftmancerSet(
+      name: set.name,
+      cards: set.cards.map { Swiftfall.Card($0.mtgCard) },
+      isDraftable: set.isDraftable,
+      string: set.directString,
+      displayReversed: set.displayReversed
+    )
+  }
+
+  let data = try Swiftfall.encoder.encode(scryfallSets)
   let string = String.init(data: data, encoding: .utf8) ?? ""
-  
+
   return .init(
     status: .ok, headers: headers, body: .init(string: string)
   )
@@ -1258,6 +1301,16 @@ actor CustomSearchCache {
   func store(_ cards: [Swiftfall.Card], for key: String) {
     cache[key] = cards
   }
+}
+
+/// Scryfall-style "no cards found" error body, with the parsed query description
+/// added so the page can show "0 cards where …" without a popup.
+private struct CustomSearchNotFound: Encodable {
+  let object = "error"
+  let code = "not_found"
+  let status = 404
+  let details: String
+  let queryDescription: String
 }
 
 func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Response {
@@ -1297,7 +1350,15 @@ func getBuiltinDraftmancerCardsAsScryfall(_ req: Request) async throws -> Respon
     }
 
     guard !allCards.isEmpty else {
-      throw Abort(.notFound, headers: headers, reason: "Your query didn’t match any cards.")
+      let payload = CustomSearchNotFound(
+        details: "Your query didn’t match any cards. Adjust your search terms or refer check your syntax.",
+        queryDescription: token.humanReadableDescription ?? ""
+      )
+      let data = try Swiftfall.encoder.encode(payload)
+      let string = String.init(data: data, encoding: .utf8) ?? ""
+      return .init(
+        status: .notFound, headers: headers, body: .init(string: string)
+      )
     }
 
     let cards = allCards.map { Swiftfall.Card.init($0) }

@@ -1,54 +1,61 @@
-<!-- Created by Josh Birnholz on 5/12/18. -->
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta charset="utf-8"/>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="scripts.js"></script>
-	<script>loadDraftmancerCards();</script>
-	
-	<link rel="stylesheet" href="style.css"></style>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Cards</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="scripts.js"></script>
+    <script>loadDraftmancerCards();</script>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-	
-	<h1>Draftmancer Cards</h1>
-  
-  <p>You can include these custom cards in your decks just as you would with any other card! Specify them by the name, set, and collector numbers shown here.</p>
-  
-  <p><button onClick='toggleViewMode();'>Toggle View</button></p>
-  
-  <form id="search-form" hidden=true onsubmit="event.preventDefault(); loadSearchResults(document.getElementById('search-input').value.trim());" style="margin: 0 0 1rem 0;">
-    <input type="search" id="search-input" placeholder="Search cards…" aria-label="Search cards" style="padding: 6px 10px; max-width: 320px; width: 60%;" />
-    <button type="submit" style="padding: 6px 10px;">Search</button>
-  </form>  
-  
-  <p id='tabs'>Custom Cards Lists:<br></p>
-  <p id='tabs-draftable'>Draftable Sets:<br></p>
-  
-  <h2 id='cardset-title'></h2>
-  <p id='query-description' hidden=true></h2>
-  
-  <p id='download-button'></p>
-  <p id='filters'></p>
-	
-	<style>
-	.cardtable {
-		padding: 60px;
-	}
-	
-	.zoom {
-	  padding: 5px;
-	  transition: transform .2s; /* Animation */
-	  margin: 0 auto;
-	}
+<body class="cc-body">
+    <header class="cc-topbar">
+        <div class="cc-topbar-inner">
+            <a class="cc-brand" href="customcards.html">Custom Cards</a>
+            <form id="search-form" class="cc-search" hidden onsubmit="event.preventDefault(); loadSearchResults(document.getElementById('search-input').value.trim());">
+                <input type="search" id="search-input" placeholder="Search cards…" aria-label="Search cards" />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </header>
 
-	.zoom:hover {
-	  transform: scale(1.8); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-	}
-	</style>
-  
-  <p id="loading"><i>Loading…</i></p>
-	
-	<table id="cardtable">
-		
-	</table>
+    <nav class="cc-subbar">
+        <div class="cc-subbar-inner">
+            <div class="cc-tabs-group">
+                <span class="cc-tabs-label">Custom Card Lists</span>
+                <div id="tabs" class="cc-tabs"></div>
+            </div>
+            <div class="cc-tabs-group">
+                <span class="cc-tabs-label">Draftable Sets</span>
+                <div id="tabs-draftable" class="cc-tabs"></div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="cc-main">
+        <div class="cc-results-header">
+            <div class="cc-results-count">
+                <h1 id="cardset-title"></h1>
+                <p id="query-description" hidden></p>
+            </div>
+            <div class="cc-results-controls">
+                <div id="filters" class="cc-filters"></div>
+                <div class="cc-control">
+                    <span class="cc-control-label">As</span>
+                    <button id="view-toggle" class="cc-control-btn" onclick="toggleViewMode();">
+                        <span id="view-toggle-label">Detail View</span>
+                    </button>
+                </div>
+                <span id="download-button"></span>
+            </div>
+        </div>
+
+        <div id="loading" class="cc-loading" role="status" aria-label="Loading cards">
+            <div class="cc-spinner"></div>
+        </div>
+
+        <div id="cardtable" class="cc-card-grid"></div>
+    </main>
 </body>
-
+</html>

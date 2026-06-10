@@ -22,6 +22,12 @@ let package = Package(
     .package(url: "https://github.com/CoreOffice/XMLCoder.git", from: "0.17.1"),
     .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.6.0"),
     .package(url: "https://github.com/t-ae/swim.git", branch: "master"),
+
+    // Transitive dependency of Vapor, pinned explicitly because 1.1.1 fails to
+    // compile under newer Swift toolchains (a Sendable/region-isolation error
+    // in MultiProducerSingleConsumerChannel). 1.1.2 fixes it and remains
+    // compatible with the server's Swift 6.0 build.
+    .package(url: "https://github.com/apple/swift-async-algorithms.git", from: "1.1.2"),
   ],
   targets: [
     .target(

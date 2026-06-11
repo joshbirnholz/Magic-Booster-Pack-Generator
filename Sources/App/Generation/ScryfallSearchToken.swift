@@ -1036,6 +1036,7 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
   case game(Game?)
   case art(String)
   case function(String)
+  case layout(String)
   
   case and(ScryfallSearchToken, ScryfallSearchToken)
   case or(ScryfallSearchToken, ScryfallSearchToken)
@@ -1302,6 +1303,8 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       return !scryfallSearchToken.matches(card, includeExtras: includeExtras)
     case .parentheses(let scryfallSearchToken):
       return scryfallSearchToken.matches(card, includeExtras: includeExtras)
+    case .layout(let layout):
+      return card.layout.lowercased() == layout.lowercased()
     }
     
     return true
@@ -2578,6 +2581,8 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       return "function:\(value)"
     case .direct(query: let query, name: let name, humanReadableDescription: let description):
       return query
+    case .layout(let value):
+      return "layout:\(value)"
     }
   }
   
@@ -2809,6 +2814,8 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
         return "the card isn't tagged “\(value)”"
       case .direct(query: let query, name: let name, humanReadableDescription: let description):
         return nil
+      case .layout(let value):
+        return "the card layout is not “\(value)”"
       }
     case .flavorText(let value):
       return "the flavor text contains “\(value)”"
@@ -2876,6 +2883,8 @@ indirect public enum ScryfallSearchToken: Hashable, Equatable, Codable {
       return "the card is tagged “\(value)”"
     case .direct(query: let query, name: let name, humanReadableDescription: let description):
       return description
+    case .layout(let value):
+      return "the card layout is “\(value)”"
     }
   }
   

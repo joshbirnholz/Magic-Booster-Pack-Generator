@@ -254,6 +254,8 @@ struct ScryfallTokenizer {
 					return .lore(value)
 				case "format", "f":
 					return .legal(.legal, value)
+        case "layout":
+          return .layout(value)
 				case "owned":
 					guard let value = Int(value), let quantifier = ScryfallSearchToken.Quantifier(value: qualifier, valueForColon: .including) else { return nil }
 					return .owned(value, quantifier)

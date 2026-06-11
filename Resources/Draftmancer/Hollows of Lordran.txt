@@ -3858,7 +3858,7 @@
     "loyalty" : "3",
     "mana_cost" : "{2}{R}{W}",
     "name" : "Evander, Sunlight Martyr",
-    "oracle_text" : "Whenever one or more loyalty counters are removed from Evander, create a 2\/2 white Knight creature token.\n[+1]: Evander deals 1 damage to any target.\n[-1]: Creatures you control get +1\/+1 and gain haste until end of turn.",
+    "oracle_text" : "Whenever one or more loyalty counters are removed from Evander, create a 2\/2 white Knight creature token.\n+1: Evander deals 1 damage to any target.\n-1: Creatures you control get +1\/+1 and gain haste until end of turn.",
     "rarity" : "mythic",
     "set" : "HLW",
     "type" : "Legendary Planeswalker",
@@ -4261,7 +4261,6 @@
     "set" : "HLW",
     "type" : "Artifact",
     "artist": "sarahasmical",
-    "subtypes": [],
     "flavor_text": "“A favorite among the undead.”\n—Oscar, Knight of Astora"
   },
   {
@@ -4297,6 +4296,7 @@
     "set" : "HLW",
     "type" : "Artifact",
     "artist": "Dark Souls",
+    "subtypes": ["Equipment"],
     "flavor_text": "A zweihander was the preferred weapon of a giant warrior, whose strength became famous in an undying legend."
   },
   {

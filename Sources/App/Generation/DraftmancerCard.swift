@@ -1082,6 +1082,7 @@ actor DraftmancerSetCache {
       let set: String?
       let rarity: DraftmancerCard.Rarity?
       let collectorNumber: String?
+      let artist: String?
     }
     
     enum DraftmancerDecodable: Decodable {
@@ -1116,25 +1117,24 @@ actor DraftmancerSetCache {
             if let back = quick.back, mtgCard.cardFaces?.count == 2 {
               let newFronts = mtgCard.cardFaces?[0].imageUris?.mapValues { _ in quick.front }
               mtgCard.cardFaces?[0].imageUris = newFronts
-              mtgCard.cardFaces?[0].flavorText = quick.flavorText ?? nil
-              mtgCard.cardFaces?[0].flavorName = quick.flavorName ?? nil
+              mtgCard.cardFaces?[0].flavorText = quick.flavorText
+              mtgCard.cardFaces?[0].flavorName = quick.flavorName
               
               let newBacks = mtgCard.cardFaces?[1].imageUris?.mapValues { _ in back }
               mtgCard.cardFaces?[1].imageUris = newBacks
               
-              mtgCard.cardFaces?[1].flavorName = quick.flavorNameBack ?? nil
-              mtgCard.cardFaces?[1].flavorText = quick.flavorTextBack ?? nil
-            } else {
+              mtgCard.cardFaces?[1].flavorName = quick.flavorNameBack
+              mtgCard.cardFaces?[1].flavorText = quick.flavorTextBack
               mtgCard.imageUris = mtgCard.imageUris?.mapValues { _ in quick.front }
             }
             
             var draftmancerCard = await DraftmancerCard(mtgCard: mtgCard)
             draftmancerCard.collectorNumber = quick.collectorNumber
-            draftmancerCard.flavorName = quick.flavorName ?? nil
-            draftmancerCard.flavorText = quick.flavorText ?? nil
-            draftmancerCard.back?.flavorName = quick.flavorNameBack ?? nil
+            draftmancerCard.artist = quick.artist
+            draftmancerCard.flavorName = quick.flavorName
+            draftmancerCard.flavorText = quick.flavorText
+            draftmancerCard.back?.flavorName = quick.flavorNameBack
             draftmancerCard.set = quick.set
-            draftmancerCard.artist = nil
             
             if let rarity = quick.rarity {
               draftmancerCard.rarity = rarity
@@ -1274,7 +1274,7 @@ func getBuiltinDraftmancerCards(_ req: Request) async throws -> Vapor.Response {
       name: set.name,
       cards: set.cards.map { Swiftfall.Card($0.mtgCard) },
       isDraftable: set.isDraftable,
-      string: set.directString,
+      string: set.string,
       displayReversed: set.displayReversed
     )
   }

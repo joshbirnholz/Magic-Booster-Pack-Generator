@@ -217,4 +217,39 @@
     "collector_number": "55896",
     "rarity": "rare"
   },
+  {
+    "name": "Plains",
+    "front": "https://i.imgur.com/PpQmn3Q.jpeg",
+    "set": "PANA",
+    "collector_number": "267",
+    "artist": "Daren Bader"
+  },
+  {
+    "name": "Island",
+    "front": "https://i.imgur.com/4c2Pkqo.jpeg",
+    "set": "PANA",
+    "collector_number": "268",
+    "artist": "Shahab Alizadeh"
+  },
+  {
+    "name": "Swamp",
+    "front": "https://i.imgur.com/1ao5Yx4.jpeg",
+    "set": "PANA",
+    "collector_number": "269",
+    "artist": "Daren Bader"
+  },
+  {
+    "name": "Mountain",
+    "front": "https://i.imgur.com/ZMsHI9f.jpeg",
+    "set": "PANA",
+    "collector_number": "270",
+    "artist": "Shahab Alizadeh"
+  },
+  {
+    "name": "Forest",
+    "front": "https://i.imgur.com/aGbZehY.jpeg",
+    "set": "PANA",
+    "collector_number": "271",
+    "artist": "Alayna Danner"
+  },
 ]

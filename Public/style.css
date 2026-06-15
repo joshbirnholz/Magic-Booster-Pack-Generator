@@ -712,6 +712,22 @@ ul li {
   white-space: nowrap;
 }
 
+/* Inline mana / card symbols rendered from Scryfall SVGs. Sized in `em` so they
+   scale with the surrounding font and sit inline with the text baseline. */
+.cc-symbol {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.12em;
+  margin: 0 0.03em;
+}
+
+/* Mana and tap/untap symbols are round "coins" and get a drop shadow, matching
+   Scryfall. Flat symbols (energy, etc.) are left without one. */
+.cc-symbol-shadow {
+  filter: drop-shadow(0.05em 0.09em 0.04em #000);
+}
+
 .cc-card-detail-type {
   display: flex;
   justify-content: space-between;

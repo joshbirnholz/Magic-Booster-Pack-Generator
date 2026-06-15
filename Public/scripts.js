@@ -526,6 +526,7 @@ function loadSets() {
 }
 
 function loadDraftmancerCards() {
+  loadCardSymbols();
   $.ajax({
     url: "draftmancercards",
     data: null,
@@ -670,6 +671,69 @@ function escapeHTML(value) {
     .replace(/"/g, "&quot;");
 }
 
+// Maps a Scryfall symbol code (e.g. "{W}", "{T}", "{G/U}") to its SVG URL.
+// Populated dynamically from Scryfall's symbology endpoint so that newly added
+// symbols render here without any code changes.
+var cardSymbols = {};
+
+/// Fetches the full list of card symbols from Scryfall and re-renders whatever
+/// is currently on screen once they arrive. A cached copy from a previous visit
+/// is applied immediately so symbols appear on first paint without waiting.
+function loadCardSymbols() {
+  function apply(data) {
+    if (!data) return;
+    data.forEach(function(symbol) {
+      if (symbol.symbol && symbol.svg_uri) {
+        // Mana symbols (any color/hybrid/phyrexian/generic) plus the tap and
+        // untap symbols get a drop shadow to match Scryfall's "coin" look.
+        // Other inline symbols (energy, planeswalker, etc.) stay flat.
+        var shadow = symbol.represents_mana === true ||
+                     symbol.symbol === "{T}" || symbol.symbol === "{Q}";
+        cardSymbols[symbol.symbol] = { url: symbol.svg_uri, shadow: shadow };
+      }
+    });
+  }
+
+  try {
+    var cached = JSON.parse(localStorage.getItem("scryfallSymbology"));
+    if (cached && cached.length) {
+      apply(cached);
+    }
+  } catch (e) { /* ignore malformed cache */ }
+
+  $.ajax({
+    url: "https://api.scryfall.com/symbology",
+    dataType: "json",
+    cache: false,
+    success: function(response) {
+      if (!response || !response.data) return;
+      apply(response.data);
+      try {
+        localStorage.setItem("scryfallSymbology", JSON.stringify(response.data));
+      } catch (e) { /* storage full or unavailable */ }
+      // Symbols may have arrived after cards were already rendered; re-render so
+      // the literal "{W}" codes get replaced with their symbols.
+      if (typeof currentCardset !== "undefined" && currentCardset) {
+        setDraftmancerCardSet(currentCardset);
+      }
+    }
+  });
+}
+
+/// Replaces Scryfall symbol codes ({W}, {T}, {G/U}, etc.) in an already
+/// HTML-escaped string with inline <img> SVG symbols that scale with the font.
+/// Unknown codes are left as their literal text.
+function renderManaSymbols(escapedText) {
+  if (!escapedText) return escapedText || "";
+  return escapedText.replace(/\{[^}]+\}/g, function(match) {
+    var entry = cardSymbols[match];
+    if (!entry) return match;
+    var label = match.replace(/[{}]/g, "");
+    var className = "cc-symbol" + (entry.shadow ? " cc-symbol-shadow" : "");
+    return "<img class='" + className + "' src='" + entry.url + "' alt='{" + label + "}'>";
+  });
+}
+
 /// Returns the best image URL for a card or a single card face.
 function faceImageURL(obj) {
   if (!obj) return "";
@@ -724,7 +788,11 @@ function faceInfo(obj) {
 
   var oracleHTML = "";
   if (obj.oracle_text) {
-    oracleHTML = escapeHTML(obj.oracle_text).replace(/\n/g, "<br />");
+    // Reminder text is wrapped in parentheses and rendered in italics, like
+    // Scryfall. Symbols inside reminder text still render as images.
+    oracleHTML = renderManaSymbols(escapeHTML(obj.oracle_text))
+      .replace(/\([^)\n]*\)/g, "<i>$&</i>")
+      .replace(/\n/g, "<br />");
   }
 
   // When a card has a flavor name (e.g. a Universes Within version), show the
@@ -932,7 +1000,7 @@ function setDraftmancerCardSet(cardset) {
         block.innerHTML =
           "<div class='cc-card-detail-header'>" +
             "<h3 class='cc-card-name'>" + escapeHTML(face.info.name) + realNameHTML + "</h3>" +
-            "<span class='cc-card-mana'>" + escapeHTML(face.info.manaCost) + "</span>" +
+            "<span class='cc-card-mana'>" + renderManaSymbols(escapeHTML(face.info.manaCost)) + "</span>" +
           "</div>" +
           "<div class='cc-card-detail-type'>" +
             "<span>" + escapeHTML(face.info.typeLine) + "</span>" +

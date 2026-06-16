@@ -1125,6 +1125,7 @@ actor DraftmancerSetCache {
               
               mtgCard.cardFaces?[1].flavorName = quick.flavorNameBack
               mtgCard.cardFaces?[1].flavorText = quick.flavorTextBack
+            } else {
               mtgCard.imageUris = mtgCard.imageUris?.mapValues { _ in quick.front }
             }
             

@@ -39,13 +39,35 @@
                 <h1 id="cardset-title"></h1>
                 <p id="query-description" hidden></p>
             </div>
-            <div class="cc-results-controls">
-                <div id="filters" class="cc-filters"></div>
+            <div id="results-controls" class="cc-results-controls" hidden>
                 <div class="cc-control">
-                    <span class="cc-control-label">As</span>
-                    <button id="view-toggle" class="cc-control-btn" onclick="toggleViewMode();">
-                        <span id="view-toggle-label">Detail View</span>
-                    </button>
+                    <select id="unique-select" class="cc-control-select" onchange="setUnique(this.value);">
+                        <option value="cards">Cards</option>
+                        <option value="prints">Prints</option>
+                    </select>
+                    <span class="cc-control-label">as</span>
+                    <select id="view-select" class="cc-control-select" onchange="setViewMode(this.value);">
+                        <option value="grid">Images</option>
+                        <option value="full">Full</option>
+                    </select>
+                    <span class="cc-control-label">sorted by</span>
+                    <select id="sort-order" class="cc-control-select" onchange="setSortOrder(this.value);">
+                        <option value="default">Default</option>
+                        <option value="name">Name</option>
+                        <option value="set">Set / Number</option>
+                        <option value="rarity">Rarity</option>
+                        <option value="cmc">Mana Value</option>
+                        <option value="power">Power</option>
+                        <option value="toughness">Toughness</option>
+                        <option value="released">Released</option>
+                        <option value="artist">Artist</option>
+                    </select>
+                    <span class="cc-control-label">:</span>
+                    <select id="sort-direction" class="cc-control-select" onchange="setSortDirection(this.value);">
+                        <option value="auto">Auto</option>
+                        <option value="asc">Asc</option>
+                        <option value="desc">Desc</option>
+                    </select>
                 </div>
                 <span id="download-button"></span>
             </div>

@@ -525,6 +525,13 @@ function loadSets() {
 	})
 }
 
+/// Toggles the loading spinner and hides the results controls while loading.
+function setLoading(isLoading) {
+  document.getElementById('loading').hidden = !isLoading;
+  var controls = document.getElementById('results-controls');
+  if (controls) { controls.hidden = isLoading; }
+}
+
 function loadDraftmancerCards() {
   loadCardSymbols();
   $.ajax({
@@ -551,13 +558,16 @@ function loadDraftmancerCards() {
         button.className = 'cc-tab-btn';
         button.textContent = cardset.name;
         button.onclick = function() {
-          setDraftmancerCardSet(cardset);
+          selectCardList(cardset);
         };
         (cardset.is_draftable ? tabsDraftable : tabs).appendChild(button);
       }
       const urlParams = new URLSearchParams(window.location.search);
       const query = urlParams.get('q');
-      
+
+      // Restore option state from the URL (shared links) before displaying.
+      restoreOptionsFromURL(urlParams);
+
       if (query) {
         document.getElementById("search-input").value = query;
         loadSearchResults(query);
@@ -569,7 +579,7 @@ function loadDraftmancerCards() {
         setDraftmancerCardSet(response[index] || response[0]);
       }
       
-      document.getElementById('loading').hidden = true;
+      setLoading(false);
       document.getElementById('search-form').hidden = false;
     },
     error: function(xhr, status, error) {
@@ -584,19 +594,19 @@ function loadDraftmancerCards() {
 }
 
 function loadSearchResults(query) {
-  document.getElementById('loading').hidden = false;
+  setLoading(true);
   document.getElementById('cardtable').innerHTML = "";
 
   $.ajax({
-    url: `custom/cards/search?q=${query}`,
+    url: `custom/cards/search?q=${query}&order=${currentSortOrder}&direction=${currentSortDirection}&unique=${currentUnique}`,
     data: null,
     cache: false,
     contentType: false,
     processData: false,
     method: "GET",
     success: function(response) {
-      document.getElementById('loading').hidden = true;
-      
+      setLoading(false);
+
       console.log("success:");
       console.log(response);
       
@@ -614,7 +624,7 @@ function loadSearchResults(query) {
       document.getElementById('query-description').innerText = `${response.total_cards} cards where ${response.query_description}`;
     },
     error: function(xhr, status, error) {
-      document.getElementById('loading').hidden = true;
+      setLoading(false);
 
       // The search endpoint mimics Scryfall and returns 404 when nothing matches.
       // Show an empty "0 cards where …" result inline instead of a popup.
@@ -655,12 +665,147 @@ String.prototype.capitalize = function() {
 }
 
 var currentCardset;
-var currentRarity;
+var currentSortOrder = localStorage.getItem("sortOrder") || "default";
+var currentSortDirection = localStorage.getItem("sortDirection") || "auto";
+var currentUnique = localStorage.getItem("uniqueMode") || "cards";
+// "art" was removed (unique-by-art isn't reliably categorized); fall back.
+if (currentUnique === "art") { currentUnique = "cards"; }
 
-function toggleViewMode() {
-  localStorage.setItem("showDetails", !(localStorage.getItem("showDetails") === 'true'))
-  
+/// Applies an order / direction / unique change. Search results are sorted and
+/// de-duplicated by the backend, so re-run the search. The curated (non-search)
+/// card lists already hold every card, so just re-render — setDraftmancerCardSet
+/// sorts them client-side.
+function applyOptionChange() {
+  if (!currentCardset) return;
+  if (currentCardset.is_search) {
+    loadSearchResults(currentCardset.query);
+  } else {
+    setDraftmancerCardSet(currentCardset);
+  }
+}
+
+/// View mode (Images grid vs. Full list) is purely client-side.
+function setViewMode(value) {
+  localStorage.setItem("showDetails", value === "full");
   setDraftmancerCardSet(currentCardset);
+}
+
+function setSortOrder(value) {
+  currentSortOrder = value;
+  localStorage.setItem("sortOrder", value);
+  applyOptionChange();
+}
+
+function setSortDirection(value) {
+  currentSortDirection = value;
+  localStorage.setItem("sortDirection", value);
+  applyOptionChange();
+}
+
+function setUnique(value) {
+  currentUnique = value;
+  localStorage.setItem("uniqueMode", value);
+  applyOptionChange();
+}
+
+/// Selecting a curated list resets the sort back to the list's default order,
+/// then displays it. (Re-renders from sort changes go straight through
+/// setDraftmancerCardSet so they don't reset.)
+function selectCardList(cardset) {
+  currentSortOrder = "default";
+  currentSortDirection = "auto";
+  localStorage.setItem("sortOrder", "default");
+  localStorage.setItem("sortDirection", "auto");
+  setDraftmancerCardSet(cardset);
+}
+
+/// Applies unique / view (as) / sort (order) / direction (dir) options from URL
+/// params, so a shared link reproduces the view. Missing params keep the
+/// current values.
+function restoreOptionsFromURL(urlParams) {
+  var unique = urlParams.get('unique');
+  if (unique) {
+    if (unique === "art") { unique = "cards"; }
+    currentUnique = unique;
+    localStorage.setItem("uniqueMode", unique);
+  }
+  var as = urlParams.get('as');
+  if (as) {
+    localStorage.setItem("showDetails", as === 'full');
+  }
+  var order = urlParams.get('order');
+  if (order) {
+    currentSortOrder = order;
+    localStorage.setItem("sortOrder", order);
+  }
+  var dir = urlParams.get('dir');
+  if (dir) {
+    currentSortDirection = dir;
+    localStorage.setItem("sortDirection", dir);
+  }
+}
+
+// Default sort direction per order, mirroring the backend's autoDirection.
+var SORT_AUTO_DIRECTION = {
+  name: "asc",
+  set: "asc",
+  released: "desc",
+  rarity: "desc",
+  cmc: "desc",
+  power: "asc",
+  toughness: "asc",
+  artist: "asc"
+};
+
+/// Sorts a copy of the cards client-side, mirroring the backend's sort so the
+/// curated lists order identically to search results. Missing values sort last
+/// regardless of direction, matching the backend.
+function sortCardsClientSide(cards) {
+  var order = currentSortOrder;
+  // "Default" keeps the list's authored order untouched.
+  if (order === "default") return cards;
+  var direction = currentSortDirection === "auto"
+    ? (SORT_AUTO_DIRECTION[order] || "asc")
+    : currentSortDirection;
+  var asc = direction !== "desc";
+
+  function cmp(lhs, rhs) {
+    if (lhs == null) return rhs == null ? 0 : 1;
+    if (rhs == null) return -1;
+    if (lhs < rhs) return asc ? -1 : 1;
+    if (lhs > rhs) return asc ? 1 : -1;
+    return 0;
+  }
+
+  // Power/toughness/collector number compare numerically ("2" < "10").
+  function numericCmp(a, b) {
+    var an = parseFloat(a), bn = parseFloat(b);
+    an = isNaN(an) ? 0 : an;
+    bn = isNaN(bn) ? 0 : bn;
+    return cmp(an, bn);
+  }
+
+  return cards.slice().sort(function(a, b) {
+    switch (order) {
+      case "set":
+        if ((a.set || "") !== (b.set || "")) return cmp(a.set, b.set);
+        return numericCmp(a.collector_number, b.collector_number);
+      case "released":
+        return cmp(a.released_at, b.released_at);
+      case "rarity":
+        return cmp(a.rarity, b.rarity);
+      case "cmc":
+        return cmp(a.cmc == null ? 0 : a.cmc, b.cmc == null ? 0 : b.cmc);
+      case "power":
+        return numericCmp(a.power == null ? "0" : a.power, b.power == null ? "0" : b.power);
+      case "toughness":
+        return numericCmp(a.toughness == null ? "0" : a.toughness, b.toughness == null ? "0" : b.toughness);
+      case "artist":
+        return cmp(a.artist, b.artist);
+      default:
+        return cmp(a.name, b.name);
+    }
+  });
 }
 
 function escapeHTML(value) {
@@ -898,29 +1043,13 @@ function setDraftmancerCardSet(cardset) {
     btn.classList.toggle('active', !cardset.is_search && btn.textContent === cardset.name);
   });
 
-  var filters = document.getElementById("filters");
-  filters.innerHTML = "";
-
-  var allBtn = document.createElement("button");
-  allBtn.className = "cc-filter-btn" + (!currentRarity ? " active" : "");
-  allBtn.textContent = "All";
-  allBtn.onclick = function() {
-    currentRarity = null;
-    setDraftmancerCardSet(cardset);
-  };
-  filters.appendChild(allBtn);
-
-  var rarities = ["common", "uncommon", "rare", "mythic", "special"];
-  rarities.forEach((rarity) => {
-    var button = document.createElement("button");
-    button.className = "cc-filter-btn cc-rarity-" + rarity + (currentRarity === rarity ? " active" : "");
-    button.textContent = rarity.capitalize();
-    button.onclick = function() {
-      currentRarity = rarity;
-      setDraftmancerCardSet(cardset);
-    };
-    filters.appendChild(button);
-  });
+  // Reflect the current unique / sort / direction selections in the controls.
+  var uniqueSelect = document.getElementById("unique-select");
+  if (uniqueSelect) { uniqueSelect.value = currentUnique; }
+  var sortSelect = document.getElementById("sort-order");
+  if (sortSelect) { sortSelect.value = currentSortOrder; }
+  var directionSelect = document.getElementById("sort-direction");
+  if (directionSelect) { directionSelect.value = currentSortDirection; }
 
   var p = document.getElementById("download-button");
   p.innerHTML = "";
@@ -936,20 +1065,18 @@ function setDraftmancerCardSet(cardset) {
   }
 
   var showDetails = localStorage.getItem("showDetails") === 'true';
-  var viewToggleLabel = document.getElementById("view-toggle-label");
-  if (viewToggleLabel) {
-    viewToggleLabel.textContent = showDetails ? "Grid View" : "Detail View";
+  var viewSelect = document.getElementById("view-select");
+  if (viewSelect) {
+    viewSelect.value = showDetails ? "full" : "grid";
   }
 
   var container = document.getElementById("cardtable");
   container.innerHTML = "";
   container.className = showDetails ? "cc-card-list" : "cc-card-grid";
 
-  var cards = cardset.cards;
-
-  if (currentRarity) {
-    cards = cards.filter((card) => card.rarity == currentRarity);
-  }
+  // Search results arrive already sorted by the backend; curated lists are
+  // sorted here so the controls work on them too.
+  var cards = cardset.is_search ? cardset.cards : sortCardsClientSide(cardset.cards);
 
   if (showDetails) {
     for (var i = 0; i < cards.length; i++) {
@@ -1069,30 +1196,35 @@ function setDraftmancerCardSet(cardset) {
     setURL(cardset.query, null);
   } else {
     setURL(null, cardset.name);
+    // Selecting a curated list clears any leftover search query.
+    var searchInput = document.getElementById("search-input");
+    if (searchInput) { searchInput.value = ""; }
   }
-  
-  document.getElementById("filters").hidden = cardset.is_search;
+
   document.getElementById("query-description").hidden = !cardset.is_search;
   document.getElementById("cardset-title").hidden = cardset.is_search;
 }
 
-/// Sets the URL query OR the hash, and clears out the values if null.
+/// Encodes the current view state into the URL (Scryfall-style): the search
+/// query (for searches) or the list name (as a hash for curated lists), plus
+/// the unique / view / sort / direction options.
 function setURL(query, hash) {
   const path = window.location.pathname;
-  
-  // Update URL
-  var location = path;
-  
+  const params = new URLSearchParams();
+
   if (query) {
-    const params = new URLSearchParams(window.location.search);
     params.set('q', query);
-    location += "?" + params.toString();
   }
-  
+  params.set('unique', currentUnique);
+  params.set('as', localStorage.getItem("showDetails") === 'true' ? 'full' : 'grid');
+  params.set('order', currentSortOrder);
+  params.set('dir', currentSortDirection);
+
+  var location = path + "?" + params.toString();
   if (hash) {
     location += "#" + hash;
   }
-  
+
   window.history.replaceState({}, '', location);
 }
 

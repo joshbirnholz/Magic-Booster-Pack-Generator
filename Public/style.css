@@ -357,6 +357,23 @@ ul li {
   border-color: #b9bcc4;
 }
 
+.cc-control-select {
+  padding: 6px 28px 6px 10px;
+  background: #fff;
+  color: #2f3138;
+  border: 1px solid #cfd1d8;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.cc-control-select:hover {
+  background: #f1f2f5;
+  border-color: #b9bcc4;
+}
+
 /* Buttons */
 
 .cc-btn {
@@ -396,61 +413,6 @@ ul li {
   border-color: #b9bcc4;
 }
 
-/* Rarity filters */
-
-.cc-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.cc-filter-btn {
-  padding: 6px 14px;
-  border: 1px solid #cfd1d8;
-  border-radius: 999px;
-  background: #fff;
-  color: #45474f;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
-}
-
-.cc-filter-btn:hover {
-  border-color: #b0b3bc;
-}
-
-.cc-filter-btn.active {
-  color: #fff;
-  background: #3a4254;
-  border-color: #3a4254;
-}
-
-.cc-filter-btn.cc-rarity-common.active {
-  background: #2b2f3a;
-  border-color: #2b2f3a;
-}
-
-.cc-filter-btn.cc-rarity-uncommon.active {
-  background: #6b7d8f;
-  border-color: #6b7d8f;
-}
-
-.cc-filter-btn.cc-rarity-rare.active {
-  background: #c0982a;
-  border-color: #c0982a;
-}
-
-.cc-filter-btn.cc-rarity-mythic.active {
-  background: #d35400;
-  border-color: #d35400;
-}
-
-.cc-filter-btn.cc-rarity-special.active {
-  background: #8e44ad;
-  border-color: #8e44ad;
-}
-
 /* Loading */
 
 .cc-loading {
@@ -462,7 +424,7 @@ ul li {
 
 /* Respect the [hidden] attribute despite the flex display above */
 .cc-loading[hidden],
-.cc-filters[hidden] {
+.cc-results-controls[hidden] {
   display: none;
 }
 

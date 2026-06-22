@@ -2597,6 +2597,10 @@ fileprivate struct CardInfo {
 		}
 	}
 
+	// "Card" (not "CardCustom") is the type Tabletop Simulator uses for cards that live inside a
+	// deck — they share the deck's CustomDeck image atlas. Emitting "CardCustom" makes TTS treat
+	// each contained card as a standalone custom object, which is dramatically slower to spawn for
+	// a full deck (the fast community loaders all use "Card").
 	private struct TTSCardObject: Encodable {
 		var name: String = "CardCustom"
 		var transform: TTSTransform
@@ -2652,29 +2656,22 @@ fileprivate struct CardInfo {
 
 		func encode(to encoder: Encoder) throws {
 			var container = encoder.container(keyedBy: CodingKeys.self)
+			// Emit only the fields a card inside a deck actually needs. The fast community
+			// loaders ("MTG Deck Loader π") omit the rest and rely on Tabletop Simulator's
+			// defaults — fewer fields means a smaller payload and, more importantly, less
+			// per-card setup work (an empty XmlUI allocates a UI canvas per card; explicit
+			// GUIDs force per-object registration), which is what kept the spawn slow.
 			try container.encode(name, forKey: .name)
 			try container.encode(transform, forKey: .transform)
 			try container.encode(nickname, forKey: .nickname)
 			try container.encode(description, forKey: .description)
-			try container.encode(gmNotes, forKey: .gmNotes)
 			try container.encode(colorDiffuse, forKey: .colorDiffuse)
-			try container.encode(locked, forKey: .locked)
-			try container.encode(grid, forKey: .grid)
-			try container.encode(snap, forKey: .snap)
-			try container.encode(ignoreFoW, forKey: .ignoreFoW)
-			try container.encode(autoraise, forKey: .autoraise)
-			try container.encode(sticky, forKey: .sticky)
-			try container.encode(tooltip, forKey: .tooltip)
-			try container.encode(gridProjection, forKey: .gridProjection)
 			try container.encode(hideWhenFaceDown, forKey: .hideWhenFaceDown)
-			try container.encode(hands, forKey: .hands)
 			try container.encode(cardID, forKey: .cardID)
-			try container.encode(sidewaysCard, forKey: .sidewaysCard)
+			if sidewaysCard {
+				try container.encode(sidewaysCard, forKey: .sidewaysCard)
+			}
 			try container.encode(customDeck, forKey: .customDeck)
-			try container.encode(xmlUI, forKey: .xmlUI)
-			try container.encode(luaScript, forKey: .luaScript)
-			try container.encode(luaScriptState, forKey: .luaScriptState)
-			try container.encode(guid, forKey: .guid)
 			if let states {
 				try container.encode(states, forKey: .states)
 			}

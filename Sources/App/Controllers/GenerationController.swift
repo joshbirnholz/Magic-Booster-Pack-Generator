@@ -608,34 +608,51 @@ final class GeneratorController: Sendable {
     return try decoder.decode(DeckstatsDeck.self, from: data)
   }
 	
+	/// Unwraps the standard `{ downloadOutput, filename }` envelope and returns just the bare
+	/// Tabletop Simulator object JSON as the response body.
+	///
+	/// This lets the client feed the body straight to `spawnObjectJSON`, whose native parser is
+	/// dramatically faster than decoding a full deck with Lua's `JSON.decode`. That single Lua
+	/// decode of the whole deck — which every previous version of the importer performed — is what
+	/// froze the game for many seconds; with the raw body there is no client-side decode at all.
+	fileprivate func rawSpawnJSON(from downloadResponse: String) throws -> String {
+		let download = try JSONDecoder().decode(DownloadOutput.self, from: Data(downloadResponse.utf8))
+		return download.downloadOutput
+	}
+
 	func deckstatsDeck(_ req: Request) async throws -> String {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let autofix: Bool = req.query.getBoolValue(at: "autofix") ?? true
     let omenpath: Bool = req.query.getBoolValue(at: "omenpath") ?? false
+		let raw: Bool = req.query.getBoolValue(at: "raw") ?? false
 		let cardBack: URL? = (try? req.query.get(String.self, at: "back")).flatMap(URL.init(string:))
-		
+
 		guard let deckURLString = req.parameters.get("deck"), let deckURL = URL(string: deckURLString) else {
 			throw PackError.invalidURL
 		}
 
-    return try await deckFromURL(deckURL, export, cardBack, autofix: autofix, omenpath: omenpath)
+    let result = try await deckFromURL(deckURL, export, cardBack, autofix: autofix, omenpath: omenpath)
+    return raw ? try rawSpawnJSON(from: result) : result
 	}
-	
+
 	func fullDeck(_ req: Request) async throws -> String {
 		let export: Bool = req.query.getBoolValue(at: "export") ?? true
 		let autofix: Bool = req.query.getBoolValue(at: "autofix") ?? true
     let omenpath: Bool = req.query.getBoolValue(at: "omenpath") ?? false
+		let raw: Bool = req.query.getBoolValue(at: "raw") ?? false
 		let cardBack: URL? = (try? req.query.get(String.self, at: "back")).flatMap(URL.init(string:))
-		
+
 		let decklist = try req.content.decode(DeckList.self)
-		
+
     do {
+      let result: String
       if let url = URL(string: decklist.deck), url.absoluteString.lowercased().hasPrefix("http") {
-        return try await self.deckFromURL(url, export, cardBack, autofix: autofix, omenpath: omenpath)
+        result = try await self.deckFromURL(url, export, cardBack, autofix: autofix, omenpath: omenpath)
+      } else {
+        let d: Deck = decklist.deck.contains("[") || decklist.deck.contains("]") ? .deckstats(decklist.deck) : .arena(decklist.deck)
+        result = try await deck(d, export: export, cardBack: cardBack, autofix: autofix, omenpath: omenpath)
       }
-      
-      let d: Deck = decklist.deck.contains("[") || decklist.deck.contains("]") ? .deckstats(decklist.deck) : .arena(decklist.deck)
-      return try await deck(d, export: export, cardBack: cardBack, autofix: autofix, omenpath: omenpath)
+      return raw ? try rawSpawnJSON(from: result) : result
     } catch let error as DebuggableError {
       let encoder = JSONEncoder()
       let errorMessage = ErrorMessage(error: error.reason)

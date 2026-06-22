@@ -2597,11 +2597,9 @@ fileprivate struct CardInfo {
 		}
 	}
 
-	// "Card" (not "CardCustom") is the type Tabletop Simulator uses for cards that live inside a
-	// deck — they share the deck's CustomDeck image atlas. Emitting "CardCustom" makes TTS treat
-	// each contained card as a standalone custom object, which is dramatically slower to spawn for
-	// a full deck (the fast community loaders all use "Card").
 	private struct TTSCardObject: Encodable {
+    /// "CardCustom" here makes the card images customizable by the host inside Tabletop Simulator.
+    ///  "Card" is faster to import but can't be customized after importing.
 		var name: String = "CardCustom"
 		var transform: TTSTransform
 		var nickname: String
@@ -2656,11 +2654,7 @@ fileprivate struct CardInfo {
 
 		func encode(to encoder: Encoder) throws {
 			var container = encoder.container(keyedBy: CodingKeys.self)
-			// Emit only the fields a card inside a deck actually needs. The fast community
-			// loaders ("MTG Deck Loader π") omit the rest and rely on Tabletop Simulator's
-			// defaults — fewer fields means a smaller payload and, more importantly, less
-			// per-card setup work (an empty XmlUI allocates a UI canvas per card; explicit
-			// GUIDs force per-object registration), which is what kept the spawn slow.
+			// Emit only the fields a card inside a deck actually needs. This speeds up importing.
 			try container.encode(name, forKey: .name)
 			try container.encode(transform, forKey: .transform)
 			try container.encode(nickname, forKey: .nickname)

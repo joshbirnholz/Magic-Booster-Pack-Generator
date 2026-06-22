@@ -1,0 +1,72 @@
+{
+  "SaveName": "",
+  "GameMode": "",
+  "Date": "",
+  "Gravity": 0.5,
+  "PlayArea": 0.5,
+  "GameType": "",
+  "GameComplexity": "",
+  "Tags": [],
+  "Table": "",
+  "Sky": "",
+  "Note": "",
+  "Rules": "",
+  "TabStates": {},
+  "ObjectStates": [
+    {
+      "Name": "CardCustom",
+      "Transform": {
+        "posX": -5.10012436,
+        "posY": 0.9736048,
+        "posZ": -4.227927,
+        "rotX": -1.17681566e-07,
+        "rotY": 180.0,
+        "rotZ": -4.828659e-07,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Deck Importer",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.713235259,
+        "g": 0.713235259,
+        "b": 0.713235259
+      },
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": true,
+      "Hands": true,
+      "CardID": 141500,
+      "SidewaysCard": false,
+      "CustomDeck": {
+        "1415": {
+          "FaceURL": "https://i.imgur.com/DdCj1zI.jpg",
+          "BackURL": "https://i.imgur.com/DdCj1zI.jpg",
+          "NumWidth": 1,
+          "NumHeight": 1,
+          "BackIsHidden": true,
+          "UniqueBack": false,
+          "Type": 0
+        }
+      },
+      "LuaScript": "URL = \"\"\nBASE_URL = \"https://tts-magic-booster.fly.dev\"\n-- BASE_URL = \"localhost:8080\"\n\n-- Where to place the spawned deck relative to the importer (in world units).\nSPAWN_OFFSET = 3.0\nSPAWN_HEIGHT = 2.0\n\n-- Status message colors for the in-game chat/console.\nINFO_COLOR = {r = 0.7, g = 0.85, b = 1.0}\nSUCCESS_COLOR = {r = 0.45, g = 1.0, b = 0.45}\nERROR_COLOR = {r = 1.0, g = 0.35, b = 0.35}\n\n-- Prints a status line to all players' in-game chat/console.\nfunction logStatus(message, color)\n    printToAll(\"[Deck Importer] \" .. message, color or INFO_COLOR)\nend\n\nfunction setURL(player, value, id)\n    URL = value\nend\n\nfunction getDeck()\n    if URL == nil or URL == \"\" then\n        logStatus(\"Please enter a deck URL first.\", ERROR_COLOR)\n        return\n    end\n\n    logStatus(\"Fetching deck from server...\")\n    -- raw=true makes the server return the bare TTS object JSON (no envelope).\n    WebRequest.post(BASE_URL..\"/url/\"..url_encode(URL)..\"?autofix=true&export=false&raw=true\", nil, onResponse)\nend\n\nfunction onResponse(webResp)\n    if not webResp.is_done then return end\n    if webResp.is_error then\n        logStatus(\"Web request failed: \" .. tostring(webResp.error), ERROR_COLOR)\n        return\n    end\n\n    local txt = webResp.text or \"\"\n\n    -- Error responses are tiny JSON envelopes ({\"error\":...,\"reason\":...}); only those need a decode.\n    if txt:sub(1, 64):find('\"error\"', 1, true) then\n        local ok, rjson = pcall(function() return JSON.decode(txt) end)\n        local reason = (ok and rjson and (rjson.reason or rjson.error)) or \"Import failed.\"\n        logStatus(\"Error: \" .. tostring(reason), ERROR_COLOR)\n        return\n    end\n\n    logStatus(\"Decoding deck data...\")\n    local ok, data = pcall(function() return JSON.decode(txt) end)\n    if not ok or data == nil then\n        logStatus(\"Failed to decode the deck data returned by the server.\", ERROR_COLOR)\n        return\n    end\n\n    logStatus(\"Spawning deck...\")\n    -- spawnObjectData is lighter than spawnObjectJSON. The position override drops the deck\n    -- next to the importer instead of at its baked-in coordinates.\n    local origin = self.getPosition()\n    spawnObjectData({\n        data = data,\n        position = {\n            origin.x + SPAWN_OFFSET,\n            origin.y + SPAWN_HEIGHT,\n            origin.z\n        },\n        callback_function = function(spawned)\n            logStatus(\"Deck imported successfully!\", SUCCESS_COLOR)\n        end\n    })\nend\n\nfunction url_encode(str)\n    if (str) then\n        str = string.gsub (str, \"\\n\", \"\\r\\n\")\n        str = string.gsub (str, \"([^%w %-%_%.%~])\",\n            function (c) return string.format (\"%%%02X\", string.byte(c)) end)\n        str = string.gsub (str, \" \", \"+\")\n    end\n    return str\nend\n",
+      "LuaScriptState": "",
+      "XmlUI": "<InputField\r\n    position=\"0 -100 -150\"\r\n    rotation=\"0 0 180\"\r\n    placeholder=\"Deckstats URL\"\r\n    onValueChanged=\"setURL\"\r\n    characterValidation=\"None\"\r\n>\r\n</InputField>\r\n<Button\r\n    position=\"0 100 -150\"\r\n    rotation=\"0 0 180\"\r\n    width=\"100\"\r\n    height=\"50\"\r\n    onClick=\"getDeck\"\r\n>Import Deck\r\n</Button>",
+      "GUID": "fa57de"
+    }
+  ],
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "VersionNumber": ""
+}

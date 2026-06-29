@@ -437,7 +437,14 @@ actor ImageController {
     }
 
     let path = parts.dropFirst().joined(separator: "/")
-    let source = URL(string: "https://\(host)/\(path)")!
+
+    // Scryfall's image CDN sometimes 404s on the bare path — it requires *a*
+    // query string (normally the ?<timestamp> version tag; any value works).
+    // Preserve the incoming query if present, otherwise add a placeholder so
+    // the fetch succeeds. The R2 key stays query-less so images still dedupe
+    // by path.
+    let query = req.url.query.flatMap { $0.isEmpty ? nil : $0 } ?? "1"
+    let source = URL(string: "https://\(host)/\(path)?\(query)")!
 
     // Without R2 configured, degrade gracefully by redirecting to Scryfall.
     // (TTS still can't load it, but nothing crashes and browsers work.)

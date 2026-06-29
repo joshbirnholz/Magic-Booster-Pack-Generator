@@ -56,10 +56,11 @@ enum ImageProxy {
 	/// UnityPlayer can no longer load directly.
 	static let proxiedHosts: Set<String> = ["cards.scryfall.io", "backs.scryfall.io"]
 
-	/// Returns a proxied URL of the form `<base>/i/<host>/<path>` for Scryfall
-	/// image URLs, or the original URL unchanged for anything else (or when
-	/// proxying is disabled). The query string (a cache-busting timestamp) is
-	/// dropped so the same image always maps to the same proxy path / R2 key.
+	/// Returns a proxied URL of the form `<base>/i/<host>/<path>?<query>` for
+	/// Scryfall image URLs, or the original URL unchanged for anything else (or
+	/// when proxying is disabled). The `?<timestamp>` query is preserved and
+	/// forwarded to Scryfall on fetch (the bare path 404s), but the R2 key is
+	/// derived from the path alone so images still dedupe across timestamps.
 	static func rewrite(_ url: URL) -> URL {
 		guard let base = baseURL,
 			  let host = url.host,
@@ -73,7 +74,13 @@ enum ImageProxy {
 		for component in url.pathComponents where component != "/" {
 			result.appendPathComponent(component)
 		}
-		return result
+
+		guard let query = url.query, !query.isEmpty,
+			  var components = URLComponents(url: result, resolvingAgainstBaseURL: false) else {
+			return result
+		}
+		components.percentEncodedQuery = query
+		return components.url ?? result
 	}
 }
 

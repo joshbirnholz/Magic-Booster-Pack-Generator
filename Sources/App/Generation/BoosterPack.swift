@@ -2698,8 +2698,8 @@ fileprivate struct CardInfo {
 			cardID: id,
 			sidewaysCard: sideways,
 			customDeck: ["\(num)": TTSCustomDeckEntry(
-				faceURL: faceURL,
-				backURL: backURL,
+				faceURL: ImageProxy.rewrite(faceURL),
+				backURL: ImageProxy.rewrite(backURL),
 				backIsHidden: backIsHidden
 			)],
 			guid: String(UUID().uuidString.prefix(6)).lowercased(),
@@ -2714,7 +2714,7 @@ fileprivate struct CardInfo {
 	}
 	
 	fileprivate var numToCustomDeck: String {
-		let entry = TTSCustomDeckEntry(faceURL: faceURL, backURL: backURL, backIsHidden: backIsHidden)
+		let entry = TTSCustomDeckEntry(faceURL: ImageProxy.rewrite(faceURL), backURL: ImageProxy.rewrite(backURL), backIsHidden: backIsHidden)
 		let data = try! Self.jsonEncoder.encode(entry)
 		return "\"\(num)\": \(String(data: data, encoding: .utf8)!)"
 	}

@@ -28,6 +28,10 @@ let package = Package(
     // in MultiProducerSingleConsumerChannel). 1.1.2 fixes it and remains
     // compatible with the server's Swift 6.0 build.
     .package(url: "https://github.com/apple/swift-async-algorithms.git", from: "1.1.2"),
+
+    // S3-compatible client, used to cache Scryfall card images in Cloudflare R2
+    // so Tabletop Simulator loads them from us instead of hotlinking Scryfall.
+    .package(url: "https://github.com/soto-project/soto.git", from: "7.0.0"),
   ],
   targets: [
     .target(
@@ -39,7 +43,8 @@ let package = Package(
         .product(name: "CSV", package: "CSV.swift"),
         .product(name: "XMLCoder", package: "XMLCoder"),
         .product(name: "SwiftSoup", package: "SwiftSoup"),
-        .product(name: "Swim", package: "Swim")
+        .product(name: "Swim", package: "Swim"),
+        .product(name: "SotoS3", package: "soto")
       ]
     ),
     .executableTarget(

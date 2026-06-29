@@ -1110,10 +1110,14 @@ public class Swiftfall {
         request.httpBody = body
         request.httpMethod = method
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(scryfallUserAgent, forHTTPHeaderField: "User-Agent")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
 
         (data, response) = try await urlSession.data(from: request)
       } else {
-        let request = URLRequest(url: url)
+        var request = URLRequest(url: url)
+        request.setValue(scryfallUserAgent, forHTTPHeaderField: "User-Agent")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
         (data, response) = try await urlSession.data(from: request)
       }
 

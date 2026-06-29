@@ -19,6 +19,10 @@ actor ImageController {
   private var proxyCache: [URL: Data] = [:]
   private var accessOrder: [URL] = []
   private let maxCacheEntries = 10  // tune this number
+
+  /// R2 keys this process has already confirmed/uploaded, so repeat requests
+  /// skip the HeadObject round-trip and redirect straight to the public URL.
+  private var presentKeys: Set<String> = []
   
   private func setCache(for url: URL, data: Data) {
     cropCache[url] = data
@@ -353,7 +357,10 @@ actor ImageController {
   }
   
   private func downloadImage(url: URL) async throws -> Image<RGBA, UInt8> {
-    let (data, _) = try await URLSession.shared.data(from: url)
+    var request = URLRequest(url: url)
+    request.setValue(scryfallUserAgent, forHTTPHeaderField: "User-Agent")
+    request.setValue("image/*", forHTTPHeaderField: "Accept")
+    let (data, _) = try await URLSession.shared.data(from: request)
     return try Image<RGBA, UInt8>(fileData: data)
   }
   
@@ -399,6 +406,64 @@ actor ImageController {
     }
     
     return jpegData
+  }
+
+  // MARK: - Scryfall image proxy / R2 cache
+
+  /// Fetches raw image bytes from Scryfall with a compliant User-Agent.
+  private func fetchImageData(url: URL) async throws -> (data: Data, contentType: String) {
+    var request = URLRequest(url: url)
+    request.setValue(scryfallUserAgent, forHTTPHeaderField: "User-Agent")
+    request.setValue("image/*", forHTTPHeaderField: "Accept")
+    let (data, response) = try await URLSession.shared.data(from: request)
+    if let http = response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) {
+      throw Abort(.badGateway, reason: "Scryfall returned \(http.statusCode) for \(url.absoluteString)")
+    }
+    let contentType = (response as? HTTPURLResponse)?
+      .value(forHTTPHeaderField: "Content-Type") ?? "image/jpeg"
+    return (data, contentType)
+  }
+
+  /// Handles `GET /i/<host>/<path...>`. Ensures the requested Scryfall image is
+  /// cached in R2 (fetching + uploading on a miss), then 302-redirects the
+  /// client to R2's public URL so the bytes are served from there, never from
+  /// this server.
+  func proxyImage(_ req: Request) async throws -> Response {
+    let parts = req.parameters.getCatchall()
+    guard let host = parts.first,
+          ImageProxy.proxiedHosts.contains(host),
+          parts.count > 1 else {
+      throw Abort(.badRequest, reason: "Unsupported image path")
+    }
+
+    let path = parts.dropFirst().joined(separator: "/")
+    let source = URL(string: "https://\(host)/\(path)")!
+
+    // Without R2 configured, degrade gracefully by redirecting to Scryfall.
+    // (TTS still can't load it, but nothing crashes and browsers work.)
+    guard let r2 = req.application.r2 else {
+      return redirectResponse(to: source.absoluteString)
+    }
+
+    let key = "\(host)/\(path)"
+
+    if !presentKeys.contains(key) {
+      if await !r2.objectExists(key: key) {
+        let (data, contentType) = try await fetchImageData(url: source)
+        try await r2.put(key: key, data: data, contentType: contentType)
+      }
+      presentKeys.insert(key)
+    }
+
+    return redirectResponse(to: r2.publicURL(forKey: key).absoluteString)
+  }
+
+  private func redirectResponse(to location: String) -> Response {
+    let headers: HTTPHeaders = [
+      "Location": location,
+      "access-control-allow-origin": "*"
+    ]
+    return Response(status: .found, headers: headers)
   }
 }
 

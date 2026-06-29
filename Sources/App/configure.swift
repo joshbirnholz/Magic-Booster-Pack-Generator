@@ -24,7 +24,16 @@ public func configure(_ app: Application) throws {
 
   let file = FileMiddleware(publicDirectory: app.directory.publicDirectory, defaultFile: "index.html")
 	app.middleware.use(file)
-	
+
+	// Cloudflare R2 image cache (only active when the R2_* env vars are set).
+	if let r2Config = R2Config.shared {
+		app.r2 = R2Storage(config: r2Config, logger: app.logger)
+		app.lifecycle.use(R2StorageLifecycle())
+		app.logger.notice("R2 image cache enabled (bucket: \(r2Config.bucket)).")
+	} else {
+		app.logger.notice("R2 image cache disabled; serving raw Scryfall image URLs.")
+	}
+
 	try routes(app)
 }
 

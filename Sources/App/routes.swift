@@ -95,6 +95,10 @@ public func routes(_ app: Application) throws {
   
   app.get("proxycrop", use: imageController.proxyCrop(_:))
   app.get("gatherercrop", use: imageController.gathererCrop(_:))
+
+  // Scryfall image proxy: caches card images in R2 and redirects there, so
+  // Tabletop Simulator loads them from us instead of (blocked) Scryfall.
+  app.get("i", "**", use: imageController.proxyImage(_:))
   
   app.get("moodswings.xml", use: makeMoodSwingsXML(_:))
   app.get("moodswingsdeck", use: moodSwingsDeck(_:))

@@ -1,0 +1,65 @@
+{
+  "SaveName": "",
+  "Date": "",
+  "VersionNumber": "",
+  "GameMode": "",
+  "GameType": "",
+  "GameComplexity": "",
+  "Tags": [],
+  "Gravity": 0.5,
+  "PlayArea": 0.5,
+  "Table": "",
+  "Sky": "",
+  "Note": "",
+  "TabStates": {},
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "ObjectStates": [
+    {
+      "GUID": "9fc3a1",
+      "Name": "BlockSquare",
+      "Transform": {
+        "posX": 8.935865,
+        "posY": 1.1099999,
+        "posZ": -0.586279154,
+        "rotX": 8.67288747E-08,
+        "rotY": 179.999878,
+        "rotZ": 5.05314155E-08,
+        "scaleX": 5.0,
+        "scaleY": 0.3,
+        "scaleZ": 5.0
+      },
+      "Nickname": "Image Fixer",
+      "Description": "Drop a deck or card on top, then click \"Fix Images\".",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.119999923,
+        "g": 0.119999923,
+        "b": 0.139999926
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "LuaScript": "-- Scryfall Image Proxy Fixer (board)\r\n-- Place a deck or card on top of this board and press \"Fix Card Images\".\r\n-- It rewrites old and new Scryfall image URLs to load through the proxy server.\r\n-- Edit PROXY_BASE if your server lives somewhere else.\r\n\r\nPROXY_BASE = \"https://tts-magic-booster.fly.dev\"\r\n\r\nlocal PROXIED_HOSTS = {\r\n  [\"cards.scryfall.io\"] = true,\r\n  [\"backs.scryfall.io\"] = true,\r\n  [\"c1.scryfall.com\"] = true,\r\n}\r\n\r\n-- Turn a Scryfall image URL into a proxied one, keeping the ?timestamp query (the bare path 404s on Scryfall's CDN).\r\n-- Returns (newURL, changed).\r\nlocal function rewriteURL(url)\r\n  if type(url) ~= \"string\" then return url, false end\r\n\r\n  -- Convert legacy c1.scryfall.com URLs to the modern cards.scryfall.io format.\r\n  url = url:gsub(\r\n    \"^https://c1%.scryfall%.com/file/scryfall%-cards/([^/]+)/\",\r\n    \"https://cards.scryfall.io/%1/\"\r\n  )\r\n\r\n  -- Convert legacy img.scryfall.com card URLs to the modern cards.scryfall.io format.\r\n  url = url:gsub(\r\n    \"^https://img%.scryfall%.com/cards/([^/]+)/\",\r\n    \"https://cards.scryfall.io/%1/\"\r\n  )\r\n\r\n  -- Convert legacy img.scryfall.com card back URLs to the modern backs.scryfall.io format.\r\n  -- Example:\r\n  --   https://img.scryfall.com/card_backs/image/normal/0a/file.jpg\r\n  -- becomes\r\n  --   https://backs.scryfall.io/normal/0/a/file.jpg\r\n  url = url:gsub(\r\n    \"^https://img%.scryfall%.com/card_backs/image/([^/]+)/([0-9a-f])([0-9a-f])/\",\r\n    \"https://backs.scryfall.io/%1/%2/%3/\"\r\n  )\r\n\r\n  local host, rest = url:match(\"^https?://([^/]+)/(.+)$\")\r\n  if host and PROXIED_HOSTS[host] then\r\n    return PROXY_BASE .. \"/i/\" .. host .. \"/\" .. rest, true\r\n  end\r\n\r\n  return url, false\r\nend\r\n\r\n-- Recursively rewrite every string in a saved-object data table. Covers the\r\n-- deck-level CustomDeck, each ContainedObjects entry, and any States\r\n-- (double-faced cards). Returns true if anything changed.\r\nlocal function fixData(t)\r\n  local changed = false\r\n  for k, v in pairs(t) do\r\n    if type(v) == \"string\" then\r\n      local nv, didChange = rewriteURL(v)\r\n      if didChange then\r\n        t[k] = nv\r\n        changed = true\r\n      end\r\n    elseif type(v) == \"table\" then\r\n      if fixData(v) then\r\n        changed = true\r\n      end\r\n    end\r\n  end\r\n  return changed\r\nend\r\n\r\n-- Find Deck/Card objects currently resting on top of the board via a box cast\r\n-- across the board's footprint.\r\nlocal function objectsOnBoard()\r\n  local b = self.getBounds()\r\n  local hits = Physics.cast({\r\n    origin = self.getPosition() + vector(0, 2.5, 0),\r\n    direction = vector(0, 1, 0),\r\n    type = 3,\r\n    size = vector(b.size.x, 5, b.size.z),\r\n    max_distance = 0,\r\n  })\r\n\r\n  local found, seen = {}, {}\r\n  for _, hit in ipairs(hits) do\r\n    local o = hit.hit_object\r\n    if o and o ~= self and not seen[o.getGUID()] then\r\n      local n = o.name\r\n      if n == \"Deck\" or n == \"Card\" or n == \"CardCustom\" then\r\n        seen[o.getGUID()] = true\r\n        table.insert(found, o)\r\n      end\r\n    end\r\n  end\r\n\r\n  return found\r\nend\r\n\r\nfunction fixDeck(obj, player_clicker_color, alt_click)\r\n  local targets = objectsOnBoard()\r\n\r\n  if #targets == 0 then\r\n    broadcastToColor(\r\n      \"Place a deck or card on the board first.\",\r\n      player_clicker_color,\r\n      {1, 0.8, 0.2}\r\n    )\r\n    return\r\n  end\r\n\r\n  local fixedCount = 0\r\n\r\n  for _, obj in ipairs(targets) do\r\n    local data = obj.getData()\r\n    if fixData(data) then\r\n      destroyObject(obj)\r\n      spawnObjectData({ data = data })\r\n      fixedCount = fixedCount + 1\r\n    end\r\n  end\r\n\r\n  if fixedCount > 0 then\r\n    broadcastToColor(\r\n      \"Fixed images for \" .. fixedCount .. \" object(s).\",\r\n      player_clicker_color,\r\n      {0.2, 1, 0.2}\r\n    )\r\n  else\r\n    broadcastToColor(\r\n      \"No fixable images found.\",\r\n      player_clicker_color,\r\n      {1, 0.8, 0.2}\r\n    )\r\n  end\r\nend\r\n\r\nfunction onLoad()\r\n  self.createButton({\r\n    click_function = \"fixDeck\",\r\n    function_owner = self,\r\n    label = \"Fix Images\",\r\n    position = {0, 0.56, 0},\r\n    rotation = {0, 0, 0},\r\n    width = 400,\r\n    height = 180,\r\n    font_size = 60,\r\n    color = {0.1, 0.45, 0.9},\r\n    font_color = {1, 1, 1},\r\n  })\r\nend",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  ]
+}

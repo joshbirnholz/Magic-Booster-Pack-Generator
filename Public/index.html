@@ -9,7 +9,18 @@
       if (omenpath) {
         omenpath.checked = localStorage.getItem("omenpath") === "true";
       }
+
+      const notice = document.querySelector("#ttsNotice");
+      if (notice && localStorage.getItem("ttsImageNoticeDismissed") !== "true") {
+        notice.hidden = false;
+      }
     });
+
+    function dismissNotice() {
+      const notice = document.querySelector("#ttsNotice");
+      if (notice) notice.hidden = true;
+      localStorage.setItem("ttsImageNoticeDismissed", "true");
+    }
     
 		loadSets();
 		loadSeeds();
@@ -26,6 +37,11 @@
 	<link rel="stylesheet" href="style.css"></style>
 </head>
 <body>
+	<div id="ttsNotice" class="tts-notice" hidden onclick="dismissNotice()" title="Click to dismiss">
+		<button type="button" class="tts-notice-close" onclick="dismissNotice()" aria-label="Dismiss notice">&times;</button>
+		<p><strong>Important:</strong> Scryfall has prevented images from loading inside of Tabletop Simulator. I've already fixed the issue and newly imported decks will work fine, but decks you&rsquo;ve previously imported won&rsquo;t work correctly. To fix old decks, <a href="/Image%20Fixer.json" download="Image Fixer.json" onclick="event.stopPropagation()">click here to download this object</a> and place it in your saved objects folder. Then spawn it in Tabletop Simulator, put a broken deck on top of it, and click &ldquo;Fix Images&rdquo;. Re-save the fixed deck and you&rsquo;re good to go!</p>
+	</div>
+
 	<p><b>Deck Importer</b></p>
 	
 	<p>Enter your deck list or a link to a deck. Then place the downloaded file in Tabletop Simulator's Saved Objects folder:<p>
@@ -33,6 +49,7 @@
 		<li>Windows: My Documents/My Games/Tabletop Simulator/Saves/Saved Objects/</li>
 		<li>Mac: ~/Library/Tabletop Simulator/Saves/Saved Objects</li>
 	</ul>
+  
 	<form id="mainform" enctype="multipart/form-data">
 		<textarea class='deck' id="deck" cols="50" rows="20" placeholder="Enter deck or deck list here…"></textarea>
 	</form>
@@ -61,6 +78,8 @@
       <p>
         <small>
           <a href="customcards.html">View custom cards</a>
+          <br>
+          <a href="/Image%20Fixer.json" download="Image Fixer.json">Download Image Fixer Object</a>
         </small>
       </p>
 			
@@ -104,7 +123,7 @@
                       <li><a href="https://www.moxfield.com">Moxfield</a></li>
                       <li><a href="https://archidekt.com">Archidekt</a></li>
                     </ul>
-                    <p>Use deckstats.net for the most accurate import, keeping your selected printings and art choices.</p>
+                    <p>Use Archidekt, Moxfield, or deckstats.net for the most accurate import, keeping your selected printings and art choices.</p>
                     
                     <p>When entering a deck list, identify cards by either just a name, a name and set code, or a set code and collector number. (MTG Arena format)</p>
                     <ul>

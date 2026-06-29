@@ -111,6 +111,54 @@ ul li {
   display: none;
 }
 
+/* Dismissible "Scryfall images broken in TTS" notice */
+.tts-notice {
+  position: relative;
+  max-width: 720px;
+  margin: 0 0 24px;
+  padding: 16px 44px 16px 18px;
+  background: #fff8e1;
+  border: 1px solid #f3d98b;
+  border-left: 5px solid #f4b400;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+.tts-notice[hidden] {
+  display: none;
+}
+
+.tts-notice p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #5b4a16;
+}
+
+.tts-notice a {
+  font-weight: 600;
+}
+
+.tts-notice-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  padding: 2px 8px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  font-size: 20px;
+  line-height: 1;
+  color: #9a7b1f;
+  cursor: pointer;
+}
+
+.tts-notice-close:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: #5b4a16;
+}
+
 .inline-input {
   display: flex;
   align-items: center;

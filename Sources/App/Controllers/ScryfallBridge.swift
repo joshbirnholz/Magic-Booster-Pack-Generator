@@ -17,8 +17,9 @@ extension Swiftfall.ScryfallSet: Content {
 final class ScryfallBridgeController: Sendable {
 	
 	static let customSets = [
-    Swiftfall.ScryfallSet(code: "sjm", mtgo: nil, name: "SuperJump! (Magic Online)", uri: "", scryfallUri: "", searchUri: nil, releasedAt: nil, setType: "expansion", cardCount: 0, digital: true, foilOnly: false, blockCode: "sjm", block: "sjm", printedSize: nil, iconSvgUri: nil),
-    Swiftfall.ScryfallSet(code: "tle", mtgo: nil, name: "Avatar: The Last Airbender JumpStart", uri: "", scryfallUri: "", searchUri: nil, releasedAt: nil, setType: "draft_innovation", cardCount: 0, digital: true, foilOnly: false, blockCode: "tle", block: "tle", printedSize: nil, iconSvgUri: nil),
+    Swiftfall.ScryfallSet(code: "sjm", mtgo: nil, name: "SuperJump! (Magic Online)", uri: "", scryfallUri: "", searchUri: nil, releasedAt: Date(timeIntervalSince1970: 1695772800), setType: "expansion", cardCount: 0, digital: true, foilOnly: false, blockCode: "sjm", block: "sjm", printedSize: nil, iconSvgUri: nil),
+    Swiftfall.ScryfallSet(code: "tle", mtgo: nil, name: "Avatar: The Last Airbender JumpStart", uri: "", scryfallUri: "", searchUri: nil, releasedAt: Date(timeIntervalSince1970: 1763683200), setType: "draft_innovation", cardCount: 0, digital: true, foilOnly: false, blockCode: "tle", block: "tle", printedSize: nil, iconSvgUri: nil),
+    Swiftfall.ScryfallSet(code: "mbc", mtgo: nil, name: "Mystery Booster: Commander Edition", uri: "", scryfallUri: "", searchUri: nil, releasedAt: Date(timeIntervalSince1970: 1794182400), setType: "draft_innovation", cardCount: 0, digital: false, foilOnly: false, blockCode: "mbc", block: "mbc", printedSize: nil, iconSvgUri: nil),
 	]
 	
 	func getSets(_ req: Request) async throws -> [Swiftfall.ScryfallSet] {
@@ -84,7 +85,10 @@ final class ScryfallBridgeController: Sendable {
       let set = Swiftfall.ScryfallSet(code: "jumpin-\(code.lowercased())", mtgo: nil, name: "Jump In! \(set.name)", uri: "", scryfallUri: "", searchUri: nil, releasedAt: Date(), setType: "expansion", cardCount: 0, digital: true, foilOnly: false, blockCode: "jumpin", block: "jumpin", printedSize: nil, iconSvgUri: nil)
       sets.insert(set, at: 0)
     }
-    
+
+    // Sort newest first by release date; sets without a release date sort to the end.
+    sets.sort { ($0.releasedAt ?? .distantPast) > ($1.releasedAt ?? .distantPast) }
+
     return sets
 	}
 	

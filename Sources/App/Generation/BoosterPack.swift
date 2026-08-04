@@ -4886,6 +4886,13 @@ public func generate(input: Input, inputString: String, output: Output, export: 
       setCode = inputString
       tokens = []
       break
+    } else if inputString.lowercased() == "mbc" {
+      // Mystery Booster: Commander Edition fetches its own slot pools, so a placeholder is used here.
+      mtgCards = [MTGCard.init(layout: "", frame: "", isFullArt: false, collectorNumber: "", set: "", rarity: .common, isFoilAvailable: false, isNonFoilAvailable: false, isPromo: false, isFoundInBoosters: false, finishes: [.nonfoil], language: .english, isTextless: false)]
+      setName = "Mystery Booster: Commander Edition"
+      setCode = "mbc"
+      tokens = []
+      break
     }
     
     let set: Swiftfall.ScryfallSet = try await {
@@ -5692,7 +5699,7 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 		}
 		
 		switch setCode {
-		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "cmr", "jmp", "dbl", "sjm", "2x2", "clb", "j22", "cmm", "j25", "tle":
+		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "cmr", "jmp", "dbl", "sjm", "2x2", "clb", "j22", "cmm", "j25", "tle", "mbc":
 			return 24
 		default:
 			return 36
@@ -5719,8 +5726,12 @@ fileprivate func boosterBox(setName: String, cards: [MTGCard], tokens: [MTGCard]
 	} else if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
 		let cards = await processMysteryBoosterCards(cards)
 		let packs: [CardCollection] = (1...count).map { _ in generateMysteryBooster(cards: cards) }
-		
+
 		return try await output(setName: "Mystery Booster", setCode: setCode ?? "", packs: packs, tokens: [])
+	} else if setCode?.lowercased() == "mbc" {
+		let packs: [CardCollection] = try await generateMysteryBoosterCommanderPacks(count: count)
+
+		return try await output(setName: "Mystery Booster: Commander Edition", setCode: setCode ?? "", packs: packs, tokens: [])
 	} else if setCode?.lowercased() == "plc" {
 		let cards = processPlanarChaosCards(cards: cards)
 		let packs: [CardCollection] = (1...count).map { _ in generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities) }
@@ -5804,7 +5815,7 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 		}
 		
 		switch setCode {
-		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "2x2", "clb", "j22", "cmm", "j25", "tle":
+		case "cns", "cn2", "med", "me2", "me3", "me4", "vma", "tpr", "mma", "mm2", "mm3", "ema", "ima", "a25", "uma", "2xm", "2x2", "clb", "j22", "cmm", "j25", "tle", "mbc":
 			return 24
 		default:
 			return 36
@@ -5820,8 +5831,12 @@ fileprivate func commanderBoxingLeagueBox(setName: String, cards: [MTGCard], tok
 	} else if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
     let cards = await processMysteryBoosterCards(cards)
 		let packs: [CardCollection] = (1...count).map { _ in generateMysteryBooster(cards: cards) }
-		
+
     return try await boosterBag(setName: "Mystery Booster", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: [], export: export)
+	} else if setCode?.lowercased() == "mbc" {
+    let packs: [CardCollection] = try await generateMysteryBoosterCommanderPacks(count: count)
+
+    return try await boosterBag(setName: "Mystery Booster: Commander Edition", setCode: setCode ?? "", boosterPacks: packs.map(\.mtgCards), tokens: [], export: export)
 	} else if setCode?.lowercased() == "plc" {
 		let cards = processPlanarChaosCards(cards: cards)
 		let packs: [CardCollection] = (1...count).map { _ in generatePlanarChaosPack(normalRarities: cards.normalRarities, colorshiftedRarities: cards.colorshiftedRarities) }
@@ -5962,7 +5977,11 @@ fileprivate func boosterPack(setName: String, cards: [MTGCard], tokens: [MTGCard
 	} else if setCode?.lowercased() == "mb1" || setCode?.lowercased() == "fmb1" || setCode?.lowercased() == "cmb1" {
 		let cards = await processMysteryBoosterCards(cards)
 		let pack = generateMysteryBooster(cards: cards)
-		
+
+    return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
+	} else if setCode?.lowercased() == "mbc" {
+		let pack = try await generateMysteryBoosterCommanderPacks(count: 1).first ?? CardCollection()
+
     return try await output(setName: setName, setCode: setCode ?? "", pack: pack, tokens: [])
 	} else if setCode?.lowercased() == "plc" {
 		let cards = processPlanarChaosCards(cards: cards)

@@ -614,6 +614,7 @@ public class Swiftfall {
       case phyrexian = "ph"
       case quenya = "qya"
       case dwarvish = "dw"
+      case klingon = "kl"
       
       var name: String {
         switch self {
@@ -655,6 +656,8 @@ public class Swiftfall {
           return "Quenya"
         case .dwarvish:
           return "Dwarvish"
+        case .klingon:
+          return "Klingon"
         }
       }
       
@@ -698,6 +701,8 @@ public class Swiftfall {
           return 17
         case .dwarvish:
           return 18
+        case .klingon:
+          return 19
         }
       }
       
